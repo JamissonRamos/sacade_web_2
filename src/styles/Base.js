@@ -16,9 +16,10 @@ const Base = createGlobalStyle`
     main {
         border: 1px solid red;
         width: calc(100vw - 240px);
-        height: calc(100vh - 72px);
-        padding: 1.4rem ;
+        height: calc(100vh - 56px);
+        padding: 1rem ;
         margin-left: 240px;
+
         overflow: auto;
         transition: margin 0.4s; 
         @media (max-width: 768px) {
