@@ -1,5 +1,11 @@
 # sacade_web
 
-## Coisas a ser feitas
+## Tecnologias
+- Firebase
+  - Firestore;
+  - Analytics;
+  - Auth;
+- 
+    
 
 
