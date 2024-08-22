@@ -3,21 +3,25 @@ import { Route, Routes } from 'react-router-dom';
 
 // Pages
 import { Pages } from '../pages';
+import Header from '../components/header';
 
 const AppContent = () => {
 
     return (
-    <>
-        <Routes>
-            <Route 
-                path='/'
-                element={ < Pages.Home /> }
-            /> 
-            <Route 
-                path='/users'
-                element={<Pages.Users />}
-            /> 
-        </Routes>
+    <>  
+        <Header />
+        <main>
+            <Routes>
+                <Route 
+                    path='/'
+                    element={ < Pages.Home /> }
+                /> 
+                <Route 
+                    path='/users'
+                    element={<Pages.Users />}
+                /> 
+            </Routes>
+        </main>
 
         </>
     );
