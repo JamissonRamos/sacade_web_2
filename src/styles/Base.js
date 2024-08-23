@@ -14,18 +14,17 @@ const Base = createGlobalStyle`
     }
 
     main {
-        border: 1px solid green;
+        /* border: 1px solid green; */
         width: calc(100vw - 240px);
         height: calc(100vh - 60.8px);
         padding: 1rem ;
         margin-left: 240px;
-
         overflow: auto;
         transition: margin 0.4s; 
         @media (max-width: 768px) {
             width: calc(100vw - 80px);
             height: calc(100vh - 41.6px); //Header com essa altura
-            padding: .4rem ;
+            padding: .8rem ;
             margin-left: 80px;
         }
         @media (max-width: 425px) {
