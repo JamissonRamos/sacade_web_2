@@ -4,12 +4,15 @@ import { Route, Routes } from 'react-router-dom';
 // Pages
 import { Pages } from '../pages';
 import Header from '../components/header';
+import Sidebar from '../components/sideBar';
 
 const AppContent = () => {
 
     return (
     <>  
         <Header />
+        <Sidebar />
+
         <main>
             <Routes>
                 <Route 
@@ -22,7 +25,6 @@ const AppContent = () => {
                 /> 
             </Routes>
         </main>
-
         </>
     );
 };

@@ -14,22 +14,23 @@ const Base = createGlobalStyle`
     }
 
     main {
-        border: 1px solid red;
+        border: 1px solid green;
         width: calc(100vw - 240px);
-        height: calc(100vh - 56px);
+        height: calc(100vh - 60.8px);
         padding: 1rem ;
         margin-left: 240px;
 
         overflow: auto;
         transition: margin 0.4s; 
         @media (max-width: 768px) {
-            width: calc(100vw - 90px);
+            width: calc(100vw - 80px);
+            height: calc(100vh - 41.6px); //Header com essa altura
             padding: .4rem ;
             margin-left: 80px;
         }
         @media (max-width: 425px) {
             width: 100vw;
-            height: 86vh;
+            height: 80vh;
             padding: 0;
             margin: 0 ;
         }
