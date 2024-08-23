@@ -2,23 +2,11 @@ import styled, {css} from "styled-components";
 import {Theme} from '../../../theme';
 
 const stylesText = {
-    5: {
-        fontSize: '32px',
+    1: {
+        fontSize: '18px',
         letterSpacing: '0px',
         fontWeight: '400',
-        lineHeight: '40px',
-    },
-    4: {
-        fontSize: '28px',
-        letterSpacing: '0px',
-        fontWeight: '400',
-        lineHeight: '36px',
-    },
-    3: {
-        fontSize: '24px',
-        letterSpacing: '0px',
-        fontWeight: '400',
-        lineHeight: '32px',
+        lineHeight: '24px',
     },
     2: {
         fontSize: '20px',
@@ -26,12 +14,24 @@ const stylesText = {
         fontWeight: '400',
         lineHeight: '28px',
     },
-    1: {
-        fontSize: '18px',
+    3: {
+        fontSize: '24px',
         letterSpacing: '0px',
         fontWeight: '400',
-        lineHeight: '24px',
+        lineHeight: '32px',
     },
+    4: {
+        fontSize: '28px',
+        letterSpacing: '0px',
+        fontWeight: '400',
+        lineHeight: '36px',
+    },
+    5: {
+        fontSize: '32px',
+        letterSpacing: '0px',
+        fontWeight: '400',
+        lineHeight: '40px',
+    }
 };
 
 

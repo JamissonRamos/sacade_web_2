@@ -2,23 +2,11 @@ import styled, {css} from "styled-components";
 import {Theme} from '../../../theme';
 
 const stylesText = {
-    5: {
-        fontSize: '96px',
-        letterSpacing: '-1.5px',
-        fontWeight: '300',
-        lineHeight: '112px',
-    },
-    4: {
-        fontSize: '60px',
-        letterSpacing: '-0.5px',
-        fontWeight: '400',
-        lineHeight: '72px',
-    },
-    3: {
-        fontSize: '48px',
+    1: {
+        fontSize: '24px',
         letterSpacing: '0px',
         fontWeight: '400',
-        lineHeight: '56px',
+        lineHeight: '32px',
     },
     2: {
         fontSize: '34px',
@@ -26,12 +14,24 @@ const stylesText = {
         fontWeight: '400',
         lineHeight: '40px',
     },
-    1: {
-        fontSize: '24px',
+    3: {
+        fontSize: '48px',
         letterSpacing: '0px',
         fontWeight: '400',
-        lineHeight: '32px',
+        lineHeight: '56px',
     },
+    4: {
+        fontSize: '60px',
+        letterSpacing: '-0.5px',
+        fontWeight: '400',
+        lineHeight: '72px',
+    },
+    5: {
+        fontSize: '96px',
+        letterSpacing: '-1.5px',
+        fontWeight: '300',
+        lineHeight: '112px',
+    }
 };
 
 export const Display = styled.span`
