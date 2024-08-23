@@ -6,14 +6,8 @@ const Header = () => {
   return (
     <S.Header>
       <S.UserLogged>
-        <TextC.Display level={1}>Olá</TextC.Display>
-        <TextC.Display level={1}>Olá</TextC.Display>
-
-
-        <TextC.Headline  > Headline </TextC.Headline>
-        <TextC.Title > Title </TextC.Title>
-
-
+        <TextC.Title level={1}>Olá,</TextC.Title>
+        <TextC.Title level={1}>Usuário Logado</TextC.Title> 
       </S.UserLogged> 
     </S.Header>
   )
