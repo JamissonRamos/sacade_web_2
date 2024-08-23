@@ -1,4 +1,4 @@
-import React from 'react'
+
 import * as S from './styled';
 import { useScreenWidth } from '../../hooks/screenWidth';
 
