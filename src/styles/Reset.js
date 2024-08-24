@@ -15,6 +15,21 @@ const Reset =  createGlobalStyle `
         font-weight: 400;
         font-style: normal;
 	}
+	input:focus,
+	textarea:focus
+	{ 
+		outline: none;
+	}
+	ol, ul, a
+	{
+		list-style: none;
+		text-decoration: none;
+	}
+	table 
+	{
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
 `
 
 export default Reset;
