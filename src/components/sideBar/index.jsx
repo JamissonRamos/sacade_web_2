@@ -1,15 +1,21 @@
 
 import * as S from './styled';
 import { useScreenWidth } from '../../hooks/screenWidth';
+import Desktop from './desktop';
+import Mobile from './mobile';
+import { useState } from 'react';
 
 
 const Sidebar = () => {
     const isValueScreen = useScreenWidth(425);
-    console.log('Valor do screen: ', isValueScreen)
+    const [showSidebar, setShowSidebar] = useState(true);
+    const toggleSidebar = () => {
+        setShowSidebar(!showSidebar);
+    }
     return (
-        <S.Container $isValueScreen={isValueScreen}>
+        <S.Container $isValueScreen={isValueScreen} $showSidebar={showSidebar}>
             {!isValueScreen ? 
-                'desktop' : 'mobile'}
+                <Desktop showSidebar={showSidebar} toggleSidebar={toggleSidebar}/> : <Mobile />}
         </S.Container>
     )
 }

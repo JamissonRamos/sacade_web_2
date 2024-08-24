@@ -1,14 +1,17 @@
 import styled, {css} from "styled-components";
+import { Theme } from "../../theme";
 
 export const Container = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 240px;
     height: 100%;
     position: fixed;
     left: 0;
     padding: .4rem;
+    background-color: ${Theme.Colors.blue600};
+    transition: width 0.4s;
     @media (max-width: 768px) {
-        width: 80px;
+        width: ${({$showSidebar}) => $showSidebar ? '80px' : '240px'} ;
     }
     @media (max-width: 425px) {
         width: 100%;
