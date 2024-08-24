@@ -11,7 +11,7 @@ const Desktop = ({showSidebar, toggleSidebar}) => {
 
   return (
     <S.Container >
-      <Header />
+      <Header showSidebar={showSidebar}/>
       <Body />
       <Footer />
       <ArrowShowSidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar}/>

@@ -1,7 +1,10 @@
+import * as S from './styled'
 
 const Footer = () => {
     return (
-        <div>Footer</div>
+        <S.Container>
+            Footer
+        </S.Container>
     )
 }
 

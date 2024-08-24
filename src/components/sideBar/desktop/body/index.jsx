@@ -1,8 +1,8 @@
-
+import * as S from './styled'
 
 const Body = () => {
     return (
-        <div>Body</div>
+        <S.Container>Body</S.Container>
     )
 }
 
