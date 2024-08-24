@@ -2,7 +2,7 @@
 
 const Mobile = () => {
   return (
-    <div>Mobile</div>
+    <div> dentro do compoents Mobile</div>
   )
 }
 
