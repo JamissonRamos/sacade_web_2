@@ -6,7 +6,6 @@ import { TextC } from '../../../Typography'
 const Header = ({showSidebar}) => {
     return (
         <S.Container>
-
             <S.WrapLogo  >
                 <S.ImgLogo src={Theme.ImgC.Logo} />
             </S.WrapLogo>
@@ -14,8 +13,6 @@ const Header = ({showSidebar}) => {
             <S.WrapNameBrand $showSidebar={showSidebar}>
                 <TextC.Display level={1} >SACADE</TextC.Display>
             </S.WrapNameBrand>
-            
-
         </S.Container>
     )
 }

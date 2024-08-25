@@ -1,15 +1,11 @@
 import styled, { css } from "styled-components";
 import { Theme } from "../../../../theme";
 
-
 const CssStandard = css`
     height: 100%;
-    flex: 1;
     display: flex;
     align-items: center;
-
 `;
-
 
 export const Container = styled.div`
     /* border: 1px solid red; */
@@ -17,7 +13,8 @@ export const Container = styled.div`
     flex: 1;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    /* border-bottom: 2px solid ${Theme.Colors.grey300}; */
     @media (max-width: 768px) {
         max-height: 34px;
     }
@@ -25,13 +22,11 @@ export const Container = styled.div`
 `;
 export const WrapLogo = styled.div`
     /* border: 1px solid red; */
+    flex: 1;
     ${CssStandard}
-    align-items: start;
-    justify-content:  start;
     transition: width 0.4s;
     @media (max-width: 768px) {
         width: 100%;
-
     }
 `;
 
@@ -45,10 +40,11 @@ export const ImgLogo = styled.img`
 
 export const WrapNameBrand = styled.div`
     /* border: 1px solid red; */
+    flex: 2;
     ${CssStandard}
     position: relative;
     justify-content: center;
-    transition: .5s;
+    transition: font-size .5s, display 0.9s;
     & span {
         font-weight: 700;
         letter-spacing: .1em;
