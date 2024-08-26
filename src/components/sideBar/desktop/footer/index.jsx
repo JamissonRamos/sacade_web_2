@@ -35,7 +35,7 @@ const Footer = ({showSidebar}) => {
                             // $variant="outline" 
                             color={Theme.Colors.green800}
                             
-                            onClick={() => console.log('clicou')}
+                            onClick={() => console.log('Certo')}
                         >
                             <Theme.Icons.MdCancel /> 
                             Cancelar 

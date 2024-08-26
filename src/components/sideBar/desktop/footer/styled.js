@@ -44,6 +44,7 @@ export const Modal = styled.div`
 
 export const WrapButtonModal = styled.div `
     /* border: 1px solid red; */
+    
     width: 90%;
     display: flex;
     flex-direction: column;
