@@ -23,7 +23,7 @@ const containerStyles = css`
 `;
 
 const containedStyles = css`
-    background-color: ${(props) => props.color || Theme.Colors.blue900};
+    background-color: ${(props) => props.color || Theme.Colors.blue500};
     border: none;
     color: ${Theme.Colors.white800};
     transition: background-color 0.4s ease, color 0.4s;
@@ -32,7 +32,7 @@ const containedStyles = css`
     }
     &:hover {
         background-color: ${props => {
-            const color = props.color || Theme.Colors.blue900;
+            const color = props.color || Theme.Colors.blue500;
             const r = parseInt(color.slice(1, 3), 16);
             const g = parseInt(color.slice(3, 5), 16);
             const b = parseInt(color.slice(5, 7), 16);
@@ -44,7 +44,7 @@ const containedStyles = css`
 
 const outlineStyles = css`
     background-color: transparent;
-    border: 2px solid ${(props) => props.color || Theme.Colors.blue900} ;
+    border: 2px solid ${(props) => props.color || Theme.Colors.blue500} ;
     color: ${(props) => props.color };
     transition: background-color 0.4s ease, color 0.4s;
     & svg {
