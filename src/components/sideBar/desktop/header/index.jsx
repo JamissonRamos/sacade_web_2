@@ -9,7 +9,6 @@ const Header = ({showSidebar}) => {
             <S.WrapLogo  >
                 <S.ImgLogo src={Theme.ImgC.Logo} />
             </S.WrapLogo>
-
             <S.WrapNameBrand $showSidebar={showSidebar}>
                 <TextC.Display level={1} >SACADE</TextC.Display>
             </S.WrapNameBrand>

@@ -1,8 +1,24 @@
 import * as S from './styled'
 
-const Body = () => {
+import { MenuItem } from '../../../../constants/menuItem'
+import Menu from '../../menu'
+
+const Body = ({showSidebar}) => {
     return (
-        <S.Container>Body</S.Container>
+        <S.Container>
+            {
+                MenuItem &&
+                MenuItem
+                    .filter(item => item.title !== "Sair") //Retirar o obj sair
+                    .map((item, i) => (
+                        <Menu
+                            key={i}
+                            item={item}
+                            showSidebar={showSidebar}
+                        />
+                    ))
+            }
+        </S.Container>
     )
 }
 
