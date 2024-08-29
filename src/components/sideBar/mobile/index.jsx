@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MenuItem } from "../../../constants/menuItem";
+import  {MenuItem}  from "../../../constants/menuItem/index";
 import { Theme } from "../../../theme";
 import { TextC } from "../../Typography";
 
