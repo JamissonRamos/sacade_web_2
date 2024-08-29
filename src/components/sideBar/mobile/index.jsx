@@ -78,7 +78,7 @@ const handleShowMenu = () => { setSideBarMenu(!sideBarMenu);}
 
       {
         sideBarMenu &&
-        sideBarMenu ?  <MenuMobile handleShowMenu={handleShowMenu} /> : console.log('Fechar menu')
+        sideBarMenu ?  <MenuMobile handleShowMenu={handleShowMenu} /> : null
       }
       </S.Container>
     </>

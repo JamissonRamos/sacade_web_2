@@ -14,27 +14,14 @@ export const Container = styled.div`
     border-radius: 20px 20px 0 0;
     overflow: auto;
     z-index: 12;
-    transition: height .4s ease 0s;
-    animation: myAnim 2s ease 0s 1 normal none;
+    animation: myAnim .4s ease ;
     @keyframes myAnim {
         0% {
             animation-timing-function: ease-in;
             opacity: 0;
             transform: translateY(250px);
         }
-
-        38% {
-            animation-timing-function: ease-out;
-            opacity: 1;
-            transform: translateY(100);
-        }
-        55% {
-            animation-timing-function: ease-in;
-            transform: translateY(20px);
-        }
-
-
-    }       
+    }
 
 `;
 export const Header = styled.div`
@@ -42,7 +29,7 @@ export const Header = styled.div`
     width: 100%;
     height: 14%;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
 `;
 export const WrapText = styled.div`
     /* border: 1px solid ; */
@@ -79,7 +66,6 @@ export const WrapNavigation = styled.div`
     flex-direction: column;
     gap: 12px;
     padding: .4rem ;
-    /* border-bottom: 1px solid ${Theme.Colors.blue500}; */
 `;
 
 export const WrapHeaderNavigation = styled.div`
