@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const Sidebar = () => {
     const isValueScreen = useScreenWidth(425);
-    const [showSidebar, setShowSidebar] = useState(true);
+    const [showSidebar, setShowSidebar] = useState(true);   
     const toggleSidebar = () => {
         setShowSidebar(!showSidebar);
     }

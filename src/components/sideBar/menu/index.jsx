@@ -7,10 +7,8 @@ const Menu = ({item, showSidebar, handleShowModal}) => {
     const showSubMenu = () => {setSubMenu(!subMenu); };
     const handleClick = () => { showSubMenu();  };
 
-    console.log(showSidebar)
+    // console.log(showSidebar)
     const { title, path, icon, subNav, iconOpened, iconClosed } = item;
-
-
 
     const handleOnclick = () =>{
 

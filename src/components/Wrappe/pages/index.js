@@ -14,6 +14,7 @@ export const WrapPages = styled.div`
         padding: .8rem;
     }
     @media (max-width: 425px) {
+        padding: .4rem;
         margin: 0;
         box-shadow: none;
     }

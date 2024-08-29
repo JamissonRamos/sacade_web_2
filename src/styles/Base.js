@@ -29,7 +29,7 @@ const Base = createGlobalStyle`
         }
         @media (max-width: 425px) {
             width: 100vw;
-            height: 80vh;
+            height: calc(100vh - 118px);
             padding: 0;
             margin: 0 ;
         }

@@ -56,9 +56,14 @@ export const WrapButtonModal = styled.div `
     & :hover{
         background-color: ${Theme.Colors.blue200};
     }
-
     & svg{
         margin-right: 8px;
         font-size: 1em;
+    }
+    @media (max-width: 768px) {
+        & span {
+            /* display: ${ ({showSidebar}) =>  showSidebar ? 'flex' : 'none'}; */
+            display: ${({$showSidebar}) => $showSidebar ? "none" : "flex"}
+        }
     }
 `;

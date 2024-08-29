@@ -20,8 +20,20 @@ const AppContent = () => {
                     element={ < Pages.Home /> }
                 /> 
                 <Route 
+                    path='/students'
+                    element={<Pages.Students />}
+                /> 
+                <Route 
                     path='/users'
                     element={<Pages.Users />}
+                /> 
+                <Route 
+                    path='/payments'
+                    element={<Pages.Payments />}
+                /> 
+                <Route 
+                    path='/changePassword'
+                    element={<Pages.ChangePassword />}
                 /> 
             </Routes>
         </main>

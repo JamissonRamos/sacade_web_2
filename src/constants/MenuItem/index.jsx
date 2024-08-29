@@ -15,7 +15,7 @@ export const MenuItem = [
         subNav: [
             {
                 title: 'Alunos',
-                path: '/alunos',
+                path: '/students',
                 icon: <Theme.Icons.MdPerson  />,
             },
             {
@@ -27,7 +27,7 @@ export const MenuItem = [
     },
     {
         title: 'Pagamentos',
-        path: '/pagamentos',
+        path: '/payments',
         icon: <Theme.Icons.MdAttachMoney  />
     },
     {
