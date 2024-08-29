@@ -1,4 +1,3 @@
-import React from 'react'
 import * as S from './styled'
 import { TextC } from '../../../Typography'
 import { ButtonsC } from '../../../buttons'
