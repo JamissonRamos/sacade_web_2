@@ -2,7 +2,7 @@ import * as S from './styled'
 import { TextC } from '../../../Typography'
 import { ButtonsC } from '../../../buttons'
 import { Theme } from '../../../../theme'
-import { MenuItem } from '../../../../constants/MenuItem'
+import { MenuItem } from '../../../../constants/menuItem/index'
 const MenuMobile = ({handleShowMenu}) => {
     
 
