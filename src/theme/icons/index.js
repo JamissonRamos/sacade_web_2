@@ -30,6 +30,7 @@ export const Icons = {
     MdArrowForward:             MD.MdArrowForward,
     MdArrowBack:                MD.MdArrowBack,
     MdCancel:                   MD.MdCancel,
+    MdSend:                     MD.MdSend,
     RiArrowDownSFill:           RiIcons.RiArrowDownSFill,
     RiArrowUpSFill:             RiIcons.RiArrowUpSFill,
     FaMapLocationDot:           Fa6.FaMapLocationDot,
