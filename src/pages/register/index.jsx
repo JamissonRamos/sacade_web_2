@@ -12,7 +12,6 @@ const Register = () => {
   const navigate = useNavigate();
   const formFields = [
     <FieldUsers.DataUser key={'DataUser'}/>,
-    <FieldUsers.Contact key={'Contact'}/>,
     <FieldUsers.Address key={'Address'}/>
   ]
 
@@ -31,7 +30,6 @@ const Register = () => {
           <S.WrapTextInfo>
             <TextC.Body level={2}>Vamos registrar um novo usuário. Lembre-se: se você já tem um cadastro, pode fazer o seu login.</TextC.Body>
           </S.WrapTextInfo>
-
           <S.WrapButtonHeader>
             <ButtonsC.ButtonCustom 
               color={Theme.Colors.green800}
@@ -40,7 +38,6 @@ const Register = () => {
             </ButtonsC.ButtonCustom>
           </S.WrapButtonHeader>
         </S.HeaderPage>
-
         <S.BodyPage>
           <Form onSubmit={(e) => handleSubmit(e)}>
             <S.FormFields>
@@ -80,7 +77,6 @@ const Register = () => {
             </S.ButtonsStep>
           </Form>
         </S.BodyPage>
-
       </WrapPages>
     </S.Container>
   )
