@@ -22,3 +22,12 @@ export const Container = styled.div`
         }
     }
 `;
+
+export const WrapTitleStepper = styled.div`
+    /* border: 1px solid green; */
+    padding: 0 0 .4rem 0;
+    & span {
+        color: ${Theme.Colors.green800};
+    }
+
+`;

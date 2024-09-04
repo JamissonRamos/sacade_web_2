@@ -4,6 +4,7 @@ import * as S from './styled'
 //Hooks
 import { useState } from 'react';
 import { Theme } from '../../../../theme';
+import { TextC } from '../../../../components/Typography';
 
 const DataUser = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,8 +18,10 @@ const DataUser = () => {
   };
 
   return (
-
       <S.Container>
+        <S.WrapTitleStepper>
+          <TextC.Headline level={1} >Vamos preencher alguns dados pessoais. </TextC.Headline>
+        </S.WrapTitleStepper>
         <Container>
           <Row >
             <Col sm={5} className="mb-3">
@@ -26,6 +29,7 @@ const DataUser = () => {
                 <Form.Label >Nome</Form.Label>
                 <Form.Control 
                   type="text" 
+                  name="firstName"
                   placeholder="Digite seu primeiro nome" 
                   isInvalid={false}
                 />
@@ -51,7 +55,7 @@ const DataUser = () => {
             </Col>
           </Row>
           <Row >
-            <Col sm={12} className="mb-3">
+            <Col sm={8} className="mb-3">
               <Form.Group controlId="formGridEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control 
@@ -63,6 +67,21 @@ const DataUser = () => {
                   />
                   <Form.Control.Feedback type="invalid" >
                     erro email
+                  </Form.Control.Feedback>
+              </Form.Group>
+            </Col>
+            <Col sm={4} className="mb-3">
+              <Form.Group controlId="formGridPhoneUsers">
+                <Form.Label>Celular</Form.Label>
+                <Form.Control 
+                  type="text" 
+                  name='phoneUsers' 
+                  placeholder="Digite seu número de celular" 
+                  //{...register("emailUser")}
+                  isInvalid={false} //!!errors.lastName
+                  />
+                  <Form.Control.Feedback type="invalid" >
+                    erro celular
                   </Form.Control.Feedback>
               </Form.Group>
             </Col>
