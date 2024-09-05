@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Theme } from "../../../theme";
 
 export const WrapPages = styled.div`
-/* border: 1px solid blue; */
+    /* border: 1px solid blue; */
     width: 100%;
     height: 100%; 
     padding: 1.4rem .8rem;
