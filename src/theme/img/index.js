@@ -5,6 +5,7 @@ import Security from '../../assets/security.png'
 import PublishArticle from '../../assets/publishArticle.png'
 import AvatarMan from '../../assets/avatar_man.png'
 import LogoLuta from '../../assets/logo_luta.png'
+import SecureLogin from '../../assets/secure_login.png'
 
 export const ImgC = {
     Logo,
@@ -12,5 +13,7 @@ export const ImgC = {
     Security,
     PublishArticle,
     AvatarMan,
-    LogoLuta
+    LogoLuta,
+    SecureLogin
+
 }

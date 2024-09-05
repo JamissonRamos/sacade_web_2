@@ -1,7 +1,8 @@
-import * as MD from "react-icons/md";
+import * as MD      from "react-icons/md";
 import * as RiIcons from 'react-icons/ri';
-import * as Fa6 from "react-icons/fa6";
-import * as IM from "react-icons/im";
+import * as Fa6     from "react-icons/fa6";
+import * as IM      from "react-icons/im";
+import * as FA      from "react-icons/fa";
 
 export const Icons = {  
 
@@ -31,8 +32,11 @@ export const Icons = {
     MdArrowBack:                MD.MdArrowBack,
     MdCancel:                   MD.MdCancel,
     MdSend:                     MD.MdSend,
+    MdLocationOn:               MD.MdLocationOn,
     RiArrowDownSFill:           RiIcons.RiArrowDownSFill,
     RiArrowUpSFill:             RiIcons.RiArrowUpSFill,
+    RiSendPlaneFill:            RiIcons.RiSendPlaneFill,
     FaMapLocationDot:           Fa6.FaMapLocationDot,
-    ImSwitch:                   IM.ImSwitch
+    ImSwitch:                   IM.ImSwitch,
+    FaDatabase:                 FA.FaDatabase,
 }
