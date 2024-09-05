@@ -7,12 +7,16 @@ import { Theme } from '../../theme';
 import { Button, Form } from 'react-bootstrap';
 import { FieldUsers } from './fields';
 import { useStepper } from '../../hooks/use_stepper/useStepper';
+import Steps from './fields/stepper';
+// import Stepper from '../../components/stepper';
+// import {DataStepper} from './fields/stepper/index'
 
 const Register = () => {
   const navigate = useNavigate();
   const formFields = [
     <FieldUsers.DataUser key={'DataUser'}/>,
-    <FieldUsers.Address key={'Address'}/>
+    <FieldUsers.Address key={'Address'}/>,
+    <FieldUsers.EndRegister key={'EndRegister'}/>
   ]
 
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep} = useStepper(formFields)
@@ -40,6 +44,14 @@ const Register = () => {
         </S.HeaderPage>
         <S.BodyPage>
           <Form onSubmit={(e) => handleSubmit(e)}>
+            <Steps currentStep={currentStep} />
+            
+
+
+
+
+
+
             <S.FormFields>
               { currentComponent }
             </S.FormFields>
@@ -52,29 +64,20 @@ const Register = () => {
                   size="sm"
                   onClick={() => changeStep(currentStep - 1)}>
                     <Theme.Icons.MdOutlineArrowBackIos />
-                  
                 </Button>
               }
 
-              {!isLastStep ?
+              {!isLastStep &&
                   <Button
                     type="submit"
                     variant="success"
                     size="sm">
                       <Theme.Icons.MdOutlineArrowForwardIos />
                   </Button>
-                :
-                <div>
-                  <Button
-                    type="submit"
-                    variant="success"
-                    size="sm">
-                      <span> Salvar Cadastro </span>
-                      <Theme.Icons.MdSend />
-                  </Button>
-                </div>
+                
               }
             </S.ButtonsStep>
+
           </Form>
         </S.BodyPage>
       </WrapPages>

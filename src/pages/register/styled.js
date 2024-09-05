@@ -5,9 +5,11 @@ export const Container = styled.div`
     /* border: 1px solid green; */
     width: 100vw;
     height: 100vh;
-    padding:  1rem ;
+    padding: .8rem ;
     transition: margin 0.4s; 
     & > div {
+        /* border: 1px solid orange; */
+        padding: .8rem;
         overflow: hidden;
     }
 `;
@@ -17,7 +19,7 @@ export const HeaderPage = styled.div`
     height: 20%;
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: .4rem;
     & > span {
         color: ${Theme.Colors.green800}
     }
@@ -45,7 +47,7 @@ export const WrapButtonHeader = styled.div`
 `;
 export const BodyPage = styled.div`
     /* border: 1px solid red; */
-    height: 70%;
+    height: 80%;
     display: flex;
     padding: .2rem 0;
     & form {
@@ -69,7 +71,7 @@ export const FormFields = styled.div`
 export const ButtonsStep = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 18%;
+    height: 20%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
