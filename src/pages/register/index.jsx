@@ -29,6 +29,7 @@ const Register = () => {
           </S.WrapTextInfo>
           <S.WrapButtonHeader>
             <Button  
+              variant="warning"
               onClick={() => navigate(`/login`)}> 
                 <span> Fazer Login </span>
             </Button>

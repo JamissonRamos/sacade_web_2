@@ -16,7 +16,7 @@ export const Container = styled.div`
     padding: 1rem 2rem;
     transition: padding 0.4s; 
     @media (max-width: 768px) {
-        padding: .8rem;
+        padding: .6rem;
     }
     @media (max-width: 375px) {
         padding: .4rem ;
@@ -29,7 +29,6 @@ export const WrapPages = styled.div`
     height: 100%;
     position: relative;
     display: flex;
-    gap: .8rem;
     transition: padding 0.4s; 
     border-radius: 8px;
     box-shadow: ${Theme.Shadow.sh800};  
@@ -44,6 +43,9 @@ export const WrapPages = styled.div`
     }
     @media (max-width: 768px) {
         flex-direction: column;
+        &::after {
+            display: none;
+        }
     }
     @media (max-width: 425px) {
         padding: .4rem .8rem;
@@ -59,7 +61,7 @@ export const HeaderPage = styled.div`
     flex-direction: column;
     gap: .8rem;
     flex: 2;
-    padding: 1rem 1.4rem;
+    padding: 1rem;
     & > span {
         color: ${Theme.Colors.green800}
     }
@@ -96,10 +98,14 @@ export const WrapButtonHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: .1rem 0;
+    transition: background-color 0.4s ease, color 0.4s;
     & > Button {
-        background-color: ${Theme.Colors.green800};
+        color: ${Theme.Colors.white800};
+        background-color: ${Theme.Colors.yellow800};
         &:hover {
-            background-color: ${handleHoverBackground(Theme.Colors.green800)};
+            color: ${Theme.Colors.white800};
+            background-color: ${handleHoverBackground(Theme.Colors.yellow800)};
         }
     }
     @media (max-width: 768px) {
@@ -133,7 +139,7 @@ export const BodyPage = styled.div`
     /* border: 1px solid red; */
     display: flex;
     flex: 2;
-    padding: 1rem 1.4rem;
+    padding: .4rem 1.4rem;
     @media (max-width: 768px) {
         gap: .2rem;
         flex: 3;
@@ -145,13 +151,13 @@ export const BodyPage = styled.div`
         display: flex;
         flex-direction: column; 
         justify-content: space-between;
-        gap: 1rem;   
+        gap: .8rem;   
     }
 `;
 export const FormFields = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 90%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 `;
