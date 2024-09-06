@@ -1,15 +1,10 @@
 import * as S from './styled'
-import { ButtonsC } from '../../components/buttons'
-import { useNavigate } from 'react-router-dom';
-import { WrapPages } from '../../components/Wrappe/pages';
 import { TextC } from '../../components/Typography';
-import { Theme } from '../../theme';
 import { Button, Form } from 'react-bootstrap';
-import { FieldUsers } from './fields';
+import { Theme } from '../../theme';
+import { useNavigate } from 'react-router-dom';
 import { useStepper } from '../../hooks/use_stepper/useStepper';
-import Steps from './fields/stepper';
-// import Stepper from '../../components/stepper';
-// import {DataStepper} from './fields/stepper/index'
+import { FieldUsers } from './fields';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -18,44 +13,36 @@ const Register = () => {
     <FieldUsers.Address key={'Address'}/>,
     <FieldUsers.EndRegister key={'EndRegister'}/>
   ]
-
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep} = useStepper(formFields)
-  
+
   const handleSubmit = (e) =>{ 
     changeStep(currentStep + 1, e)
-    // console.log(data);
   }
 
   return (
     <S.Container>
-      <WrapPages>
+      <S.WrapPages>
         <S.HeaderPage>
           <TextC.Headline level={3}>Cadastrar Usuário</TextC.Headline>
           <S.WrapTextInfo>
             <TextC.Body level={2}>Vamos registrar um novo usuário. Lembre-se: se você já tem um cadastro, pode fazer o seu login.</TextC.Body>
           </S.WrapTextInfo>
           <S.WrapButtonHeader>
-            <ButtonsC.ButtonCustom 
-              color={Theme.Colors.green800}
+            <Button  
               onClick={() => navigate(`/login`)}> 
                 <span> Fazer Login </span>
-            </ButtonsC.ButtonCustom>
+            </Button>
           </S.WrapButtonHeader>
+          <S.WrapImg>
+            <img src={Theme.ImgC.SecurityRemoveBg} alt="Logo de Segurança"  />
+          </S.WrapImg>
         </S.HeaderPage>
         <S.BodyPage>
-          <Form onSubmit={(e) => handleSubmit(e)}>
-            <Steps currentStep={currentStep} />
-            
-
-
-
-
-
-
-            <S.FormFields>
-              { currentComponent }
-            </S.FormFields>
-
+        <Form onSubmit={(e) => handleSubmit(e)}>
+          <S.FormFields>
+            { currentComponent }
+          </S.FormFields>
+          <S.WrapButtonCounterPage>
             <S.ButtonsStep>
               {!isFirstStep &&
                 <Button
@@ -66,7 +53,6 @@ const Register = () => {
                     <Theme.Icons.MdOutlineArrowBackIos />
                 </Button>
               }
-
               {!isLastStep &&
                   <Button
                     type="submit"
@@ -74,13 +60,17 @@ const Register = () => {
                     size="sm">
                       <Theme.Icons.MdOutlineArrowForwardIos />
                   </Button>
-                
               }
             </S.ButtonsStep>
-
-          </Form>
+            <S.CounterPage>
+              <TextC.Label level={5}>
+                {currentStep + 1}/{formFields.length}
+              </TextC.Label>
+            </S.CounterPage>
+          </S.WrapButtonCounterPage>
+        </Form>
         </S.BodyPage>
-      </WrapPages>
+      </S.WrapPages>
     </S.Container>
   )
 }

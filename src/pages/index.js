@@ -10,7 +10,6 @@ import Register from './register';
 export const Pages = {
     Home,
     Users,
-    
     Students,
     Payments,
     ChangePassword,

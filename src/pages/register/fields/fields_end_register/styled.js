@@ -8,21 +8,26 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-`;
-
-export const WrapTitleStepper = styled.div`
-    /* border: 1px solid green; */
-    padding: 0 0 .4rem 0;
-    & span {
-        color: ${Theme.Colors.green800};
+    gap: 1rem;
+    @media (max-width: 425px) {
+        gap: 0;
     }
 `;
-
+export const WrapTitleStepper = styled.div`
+    /* border: 1px solid green; */
+    width: 100%;
+    padding: .8rem 0;
+    text-align: center;
+    & span {
+        color: ${Theme.Colors.yellow800};
+    }
+`;
 export const Panels = styled.div`
     /* border: 1px solid green; */
-    width: 80%;
+    width: 100%;
     height: 90%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     @media (max-width: 768px) {
         flex-direction: column;
@@ -53,7 +58,6 @@ export const Left = styled.div`
             transform: translateY(0);
         }
     }
-
 `;
 
 export const Right = styled.div`
@@ -72,13 +76,20 @@ export const Right = styled.div`
         background-color: ${Theme.Colors.green800};
         &:hover {
             background-color: ${props => {
-            const color = props.color || Theme.Colors.green800 ;
-            const r = parseInt(color.slice(1, 3), 16);
-            const g = parseInt(color.slice(3, 5), 16);
-            const b = parseInt(color.slice(5, 7), 16);
-            return `rgb(${r - 85}, ${g - 85}, ${b - 85})`;
-        }};
+                const color = props.color || Theme.Colors.green800 ;
+                const r = parseInt(color.slice(1, 3), 16);
+                const g = parseInt(color.slice(3, 5), 16);
+                const b = parseInt(color.slice(5, 7), 16);
+                return `rgb(${r - 85}, ${g - 85}, ${b - 85})`;
+            }};
+        }
     }
+    @media (max-width: 768px) {
+        flex: 2;
+        & > span {
+            padding: .2rem 0;
+            font-size: .8em;
+        }
     }
-
+    
 `;

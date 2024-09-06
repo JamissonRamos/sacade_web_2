@@ -23,12 +23,11 @@ export const Container = styled.div`
         }
     }
 `;
-
 export const WrapTitleStepper = styled.div`
     /* border: 1px solid green; */
-    padding: 0 0 .4rem 0;
+    text-align: center;
+    margin-bottom: 1.2rem;
     & span {
-        color: ${Theme.Colors.green800};
+        color: ${Theme.Colors.yellow800};
     }
-
 `;
