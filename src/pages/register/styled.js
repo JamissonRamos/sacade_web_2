@@ -18,6 +18,9 @@ export const Container = styled.div`
     @media (max-width: 768px) {
         padding: .6rem;
     }
+    @media (max-width: 425px) {
+        height: 94vh;
+    }
     @media (max-width: 375px) {
         padding: .4rem ;
     }
@@ -70,7 +73,8 @@ export const HeaderPage = styled.div`
         flex: 1;
     }
     @media (max-width: 425px) {
-        padding: .2rem .8rem;
+       
+        padding: .4rem .8rem;
     }
     @media (max-width: 375px) {
         justify-content: center;
