@@ -6,9 +6,10 @@ import { useState } from 'react';
 import { Theme } from '../../../../theme';
 import { TextC } from '../../../../components/Typography';
 
-const DataUser = () => {
+const DataUser = ({register,errors}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -22,17 +23,18 @@ const DataUser = () => {
         <S.WrapTitleStepper>
           <TextC.Title level={1} >Vamos preencher alguns dados pessoais. </TextC.Title>
         </S.WrapTitleStepper>
-        <Container>
-          <Form.Group className="mb-4" controlId="formGridFirstName">
+        <Container className="my-2">
+          <Form.Group className="mb-4 shadow-none" controlId="formGridFirstName">
             <Form.Label >Nome</Form.Label>
             <Form.Control 
               type="text" 
               name="firstName"
               placeholder="Digite seu primeiro nome" 
-              isInvalid={false}
+              {...register("firstName")}
+              isInvalid={!!errors.firstName}
             />
-            <Form.Control.Feedback type="invalid" >
-              erro no nome
+            <Form.Control.Feedback type="invalid">
+              {errors.firstName && errors.firstName.message}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-4" controlId="formGridLastName">
@@ -41,11 +43,11 @@ const DataUser = () => {
               type="text"  
               name='lastName' 
               placeholder="Digite seu segundo nome" 
-              ///{...register("lastName")}
-              isInvalid={true} //!!errors.lastName
+              {...register("lastName")}
+              isInvalid={!!errors.lastName} 
             />
             <Form.Control.Feedback type="invalid" >
-              erro sobrenome
+              {errors.lastName && errors.lastName.message}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-4" controlId="formGridEmail">
@@ -54,11 +56,11 @@ const DataUser = () => {
               type="email" 
               name='emailUser' 
               placeholder="Digite seu email" 
-              //{...register("emailUser")}
-              isInvalid={false} //!!errors.lastName
+              {...register("emailUser")}
+              isInvalid={!!errors.emailUser} //
               />
               <Form.Control.Feedback type="invalid" >
-                erro email
+                {errors.emailUser && errors.emailUser.message}
               </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-4" controlId="formGridPhoneUsers">
@@ -67,12 +69,12 @@ const DataUser = () => {
               type="text" 
               name='phoneUsers' 
               placeholder="Digite seu número de celular" 
-              //{...register("emailUser")}
-              isInvalid={false} //!!errors.lastName
+              {...register("phoneUsers")}
+              //isInvalid={false} //!!errors.lastName
               />
-              <Form.Control.Feedback type="invalid" >
+              {/* <Form.Control.Feedback type="invalid" >
                 erro celular
-              </Form.Control.Feedback>
+              </Form.Control.Feedback> */}
           </Form.Group>
           <Form.Group className="mb-4" controlId="formGridBirthDate">
             <Form.Label>Data Nascimento</Form.Label>
@@ -80,24 +82,28 @@ const DataUser = () => {
               type="date" 
               name='birthDate' 
               // placeholder="Digite seu email" 
-              //{...register("emailUser")}
-              isInvalid={true} //!!errors.lastName
+              {...register("birthDate")}
+              isInvalid={!!errors.birthDate} //!!errors.lastName
               />
               <Form.Control.Feedback type="invalid" >
-                erro data nascimento
+                {errors.birthDate && errors.birthDate.message}
               </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-4" controlId="formGridGender">
             <Form.Label>Gênero</Form.Label>
-            <Form.Select>
-              <option>Selecione um Gênero</option>
+            <Form.Select
+              name='gender' 
+              {...register("gender")}
+              isInvalid={!!errors.gender}
+            >
+              <option value="">Selecione um Gênero</option>
               <option value="1">Homem</option>
               <option value="2">Mulher</option>
               <option value="3">Outros</option>
             </Form.Select>
             
               <Form.Control.Feedback type="invalid" >
-                erro gênero
+                {errors.gender && errors.gender.message}
               </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-4" controlId="formGridNewPassword">
@@ -107,15 +113,15 @@ const DataUser = () => {
                 type={showPassword ? 'text' : 'password'}
                 name='newPassword' 
                 placeholder="Digite sua nova senha" 
-                //{...register("password")}
-                isInvalid={false} //!!errors.lastName
+                {...register("newPassword")}
+                isInvalid={!!errors.newPassword} //!!errors.lastName
               />
               <InputGroup.Text onClick={toggleShowPassword} style={{ cursor: 'pointer' }}>
                 {showPassword ? <Theme.Icons.MdVisibility /> : <Theme.Icons.MdVisibilityOff  />}
               </InputGroup.Text>
             </InputGroup>
             <Form.Control.Feedback type="invalid" >
-              erro nova senha
+              {errors.newPassword && errors.newPassword.message}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-4" controlId="formGridConfirmPassword">
@@ -125,15 +131,15 @@ const DataUser = () => {
                 type={showPasswordConfirm ? 'text' : 'password'} 
                 name='confirmPassword' 
                 placeholder="Confirme sua senha" 
-                //{...register("password")}
-                isInvalid={false} //!!errors.lastName
+                {...register("confirmPassword")}
+                isInvalid={!!errors.confirmPassword} 
               />
               <InputGroup.Text onClick={toggleShowPasswordConfirm} style={{ cursor: 'pointer' }}>
                 {showPasswordConfirm ? <Theme.Icons.MdVisibility /> : <Theme.Icons.MdVisibilityOff  />}
               </InputGroup.Text>
             </InputGroup>
             <Form.Control.Feedback type="invalid" >
-              erro confirma senha
+              {errors.confirmPassword && errors.confirmPassword.message}
             </Form.Control.Feedback>
           </Form.Group>
         </Container>
@@ -142,3 +148,13 @@ const DataUser = () => {
 }
 
 export default DataUser
+
+
+/* 
+  - fazer um teste {errors.lastName && errors.lastName.message} retirar o errors.lastName &&
+    ja que dentro do control tem o isInvalid={!!errors.lastName} que valida ou não o erro;
+
+  - campo celular ver a opção de colocar a validação quando user digitar o número, caso conrario não aplicar 
+    regra de validação;
+
+*/

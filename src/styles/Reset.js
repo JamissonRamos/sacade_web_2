@@ -19,6 +19,7 @@ const Reset =  createGlobalStyle `
 	textarea:focus
 	{ 
 		outline: none;
+		box-shadow: none;
 	}
 	ol, ul, a
 	{

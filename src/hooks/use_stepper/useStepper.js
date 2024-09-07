@@ -4,11 +4,11 @@ export const useStepper = (steps) => {
     const [currentStep, setCurrentStep] = useState(0);
     console.log(currentStep)
 
-    function changeStep(i, e) {
+    function changeStep(i) {
         //O hook form Hook ja faz isso de não deixa submeter o form
-        if (e) e.preventDefault();
-        console.log(i);
-        console.log(steps);
+        //if (e) e.preventDefault();
+        // console.log(i);
+        // console.log(steps);
         
         if (i < 0 || i >= steps.length) return;
 

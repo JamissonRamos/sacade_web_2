@@ -5,18 +5,37 @@ import { Theme } from '../../theme';
 import { useNavigate } from 'react-router-dom';
 import { useStepper } from '../../hooks/use_stepper/useStepper';
 import { FieldUsers } from './fields';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Validations } from '../validations/index'
 
 const Register = () => {
+  // const {handleSubmit} = useForm({
+  //   resolver: yupResolver(Validations.UserSchema)
+  // })
+  const { register, handleSubmit, formState:{ errors } } = useForm({
+    resolver: yupResolver(Validations.UserSchema)
+  }); // Certifique-se de que isso está correto
+
   const navigate = useNavigate();
   const formFields = [
-    <FieldUsers.DataUser key={'DataUser'}/>,
-    <FieldUsers.Address key={'Address'}/>,
+    <FieldUsers.DataUser key={'DataUser'} register={register} errors={errors} />,
+    <FieldUsers.Address key={'Address'} register={register} errors={errors} />,
     <FieldUsers.EndRegister key={'EndRegister'}/>
   ]
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep} = useStepper(formFields)
 
-  const handleSubmit = (e) =>{ 
-    changeStep(currentStep + 1, e)
+  const onSubmitForm = (data) => { 
+    console.log(currentStep);
+    changeStep(currentStep + 1)
+    console.log(data);
+
+    /* 
+      - Na hora de passar coloca o status do user como visitante;
+    
+    
+    */
+    
   }
 
   return (
@@ -39,7 +58,7 @@ const Register = () => {
           </S.WrapImg>
         </S.HeaderPage>
         <S.BodyPage>
-        <Form onSubmit={(e) => handleSubmit(e)}>
+        <Form onSubmit={handleSubmit(onSubmitForm)}>
           <S.FormFields>
             { currentComponent }
           </S.FormFields>
@@ -58,7 +77,10 @@ const Register = () => {
                   <Button
                     type="submit"
                     variant="success"
+                    onClick={() => console.log('clicou')
+                    }
                     size="sm">
+                    
                       <Theme.Icons.MdOutlineArrowForwardIos />
                   </Button>
               }
