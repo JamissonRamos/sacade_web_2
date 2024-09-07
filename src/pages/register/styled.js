@@ -73,7 +73,6 @@ export const HeaderPage = styled.div`
         flex: 1;
     }
     @media (max-width: 425px) {
-       
         padding: .4rem .8rem;
     }
     @media (max-width: 375px) {
