@@ -5,6 +5,7 @@ import * as S from './styled'
 import { useState } from 'react';
 import { Theme } from '../../../../theme';
 import { TextC } from '../../../../components/Typography';
+import InputMask from 'react-input-mask';
 
 const DataUser = ({register,errors}) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -63,19 +64,33 @@ const DataUser = ({register,errors}) => {
                 {errors.emailUser && errors.emailUser.message}
               </Form.Control.Feedback>
           </Form.Group>
+
+
           <Form.Group className="mb-4" controlId="formGridPhoneUsers">
             <Form.Label>Celular</Form.Label>
-            <Form.Control 
-              type="text" 
-              name='phoneUsers' 
-              placeholder="Digite seu número de celular" 
-              {...register("phoneUsers")}
-              //isInvalid={false} //!!errors.lastName
-              />
+            <InputMask mask="(99) 9 9999-9999" {...register('phoneUsers')}>
+              {(inputProps) => (
+              
+              
+              <Form.Control 
+              {...inputProps}
+                type="text" 
+                name='phoneUsers' 
+                placeholder="Digite seu número de celular" 
+                //{...register("phoneUsers")}
+                //isInvalid={false} //!!errors.lastName
+                />
+
+              )}
+            </InputMask>
+
+
               {/* <Form.Control.Feedback type="invalid" >
                 erro celular
               </Form.Control.Feedback> */}
           </Form.Group>
+
+
           <Form.Group className="mb-4" controlId="formGridBirthDate">
             <Form.Label>Data Nascimento</Form.Label>
             <Form.Control 
