@@ -13,13 +13,13 @@ const Register = () => {
   // const {handleSubmit} = useForm({
   //   resolver: yupResolver(Validations.UserSchema)
   // })
-  const { register, handleSubmit, formState:{ errors } } = useForm({
+  const { register, handleSubmit, watch, formState:{ errors } } = useForm({
     resolver: yupResolver(Validations.UserSchema)
   }); // Certifique-se de que isso está correto
 
   const navigate = useNavigate();
   const formFields = [
-    <FieldUsers.DataUser key={'DataUser'} register={register} errors={errors} />,
+    <FieldUsers.DataUser key={'DataUser'} register={register} watch={watch}  errors={errors} />,
     <FieldUsers.Address key={'Address'} register={register} errors={errors} />,
     <FieldUsers.EndRegister key={'EndRegister'}/>
   ]
