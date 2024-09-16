@@ -16,6 +16,7 @@ const EndRegister = () => {
           </S.Left>
           <S.Right>
             <Button
+            type='submit'
             >
               Finalizar Cadastro
             </Button>

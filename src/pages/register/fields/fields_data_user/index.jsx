@@ -1,16 +1,26 @@
 //Styled
-import { Container, InputGroup, Form } from 'react-bootstrap';
 import * as S from './styled'
 //Hooks
+import { Container, InputGroup, Form } from 'react-bootstrap';
 import { useState } from 'react';
 import { Theme } from '../../../../theme';
 import { TextC } from '../../../../components/Typography';
-import InputMask from 'react-input-mask';
+import { mask } from 'remask';
 
-const DataUser = ({register, watch, errors}) => {
+
+const DataUser = ({register, setValue, errors}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
 
+  const capitalizedValue = (e) => {
+      const inputValue = e.target.value;
+      // Capitaliza a primeira letra de cada palavra
+      const capitalizedWords = inputValue.split(' ').map(word => {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      });
+      const newValue = capitalizedWords.join(' ');
+      setValue(e.target.name, newValue); // Atualiza o valor no React Hook Form
+  };
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -18,6 +28,10 @@ const DataUser = ({register, watch, errors}) => {
   const toggleShowPasswordConfirm = () => {
     setShowPasswordConfirm(!showPasswordConfirm);
   };
+  const handleChange = (e) => {
+    const maskedValue = mask(e.target.value, ['(99) 9 9999-9999']);
+    setValue('phoneUsers', maskedValue)
+  }
 
   return (
       <S.Container>
@@ -33,6 +47,7 @@ const DataUser = ({register, watch, errors}) => {
               placeholder="Digite seu primeiro nome" 
               {...register("firstName")}
               isInvalid={!!errors.firstName}
+              onChange={(e) => capitalizedValue(e)}
             />
             <Form.Control.Feedback type="invalid">
               {errors.firstName && errors.firstName.message}
@@ -46,6 +61,7 @@ const DataUser = ({register, watch, errors}) => {
               placeholder="Digite seu segundo nome" 
               {...register("lastName")}
               isInvalid={!!errors.lastName} 
+              onChange={(e) => capitalizedValue(e)}
             />
             <Form.Control.Feedback type="invalid" >
               {errors.lastName && errors.lastName.message}
@@ -64,26 +80,16 @@ const DataUser = ({register, watch, errors}) => {
                 {errors.emailUser && errors.emailUser.message}
               </Form.Control.Feedback>
           </Form.Group>
-
-
           <Form.Group className="mb-4" controlId="formGridPhoneUsers">
             <Form.Label>Celular</Form.Label>
-            <InputMask 
-              mask="(99) 9 9999-9999" 
-              value={watch('phoneUsers') || ''}
-              {...register('phoneUsers')}>
-              {(inputProps) => (
-                <Form.Control 
-                  {...inputProps}
-                  type="text" 
-                  name='phoneUsers' 
-                  placeholder="Digite seu número de celular" 
-                  />
-              )}
-            </InputMask>
+            <Form.Control 
+              type="text" 
+              name='phoneUsers' 
+              placeholder="Digite seu phoneUsers" 
+              {...register("phoneUsers")}
+              onChange={handleChange}
+            />
           </Form.Group>
-
-
           <Form.Group className="mb-4" controlId="formGridBirthDate">
             <Form.Label>Data Nascimento</Form.Label>
             <Form.Control 
@@ -145,10 +151,10 @@ const DataUser = ({register, watch, errors}) => {
               <InputGroup.Text onClick={toggleShowPasswordConfirm} style={{ cursor: 'pointer' }}>
                 {showPasswordConfirm ? <Theme.Icons.MdVisibility /> : <Theme.Icons.MdVisibilityOff  />}
               </InputGroup.Text>
-            </InputGroup>
             <Form.Control.Feedback type="invalid" >
               {errors.confirmPassword && errors.confirmPassword.message}
             </Form.Control.Feedback>
+            </InputGroup>
           </Form.Group>
         </Container>
       </S.Container>
