@@ -8,34 +8,45 @@ import { FieldUsers } from './fields';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../validations/index'
+import { unMask } from 'remask';
 
 const Register = () => {
-  // const {handleSubmit} = useForm({
-  //   resolver: yupResolver(Validations.UserSchema)
-  // })
-  const { register, handleSubmit, watch, formState:{ errors } } = useForm({
-    resolver: yupResolver(Validations.UserSchema)
-  }); // Certifique-se de que isso está correto
-
   const navigate = useNavigate();
+  const { register, handleSubmit, setValue, reset, getValues, formState:{ errors } } = useForm({
+    resolver: yupResolver(Validations.UserSchema)
+  }); 
   const formFields = [
-    <FieldUsers.DataUser key={'DataUser'} register={register} watch={watch}  errors={errors} />,
-    <FieldUsers.Address key={'Address'} register={register} errors={errors} />,
-    <FieldUsers.EndRegister key={'EndRegister'}/>
+    <FieldUsers.DataUser 
+      key={'DataUser'} 
+      register={register} setValue={setValue} getValues={getValues} reset={reset}  errors={errors} />,
+    <FieldUsers.Address 
+      key={'Address'} 
+      register={register} setValue={setValue} getValues={getValues} reset={reset} errors={errors} />,
+    <FieldUsers.EndRegister key={'EndRegister'} />
   ]
   const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep} = useStepper(formFields)
 
-  const onSubmitForm = (data) => { 
-    console.log(currentStep);
-    changeStep(currentStep + 1)
-    console.log(data);
+  const formattedDate = (birthDate) => {
+    const newDate = new Date(birthDate);
+    const day = String(newDate.getDate()).padStart(2, '0');
+    const month = String(newDate.getMonth() + 1).padStart(2, '0'); // Mês começa em 0
+    const year = newDate.getFullYear();
+    
+    return `${day}/${month}/${year}`;
 
-    /* 
-      - Na hora de passar coloca o status do user como visitante;
-    
-    
-    */
-    
+  }
+
+  const onSubmitForm = (data) => { 
+    console.log('Dentro do submit');
+    changeStep(currentStep + 1)
+    if(currentStep + 1 === formFields.length){
+      data.phoneUsers = unMask(data.phoneUsers);
+      data.birthDate = formattedDate(data.birthDate);
+      data.cep = unMask(data.cep);
+      data.status = "Visitante";
+      console.log(data);
+    }
+
   }
 
   return (
@@ -77,8 +88,6 @@ const Register = () => {
                   <Button
                     type="submit"
                     variant="success"
-                    onClick={() => console.log('clicou')
-                    }
                     size="sm">
                     
                       <Theme.Icons.MdOutlineArrowForwardIos />

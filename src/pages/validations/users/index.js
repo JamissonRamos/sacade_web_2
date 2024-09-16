@@ -30,25 +30,7 @@ export const UserSchema = yup.object().shape({
         .required('Campo Nova Senha é obrigatório'),
     confirmPassword: yup
         .string()
+        .oneOf([yup.ref('newPassword'), null], 'As senhas devem ser iguais.')
         .min(6, 'Campo Confirma Senha deve ter no mínimo 6 caracteres.')
         .required('Campo Confirma Senha é obrigatório'),
-    // adicione outros campos conforme necessário
-    // phone: yup
-    //     .string()
-    //     .nullable()
-    //     .notRequired()
-    //     .min(11, 'Campo Celular deve ter no mínimo 11 caracteres.')
-    //     .max(16, 'Campo Celular deve ter no máximo 16 caracteres.')
-    //     .matches(/^\(\d{2}\) \d \d{4}-\d{4}$/, 'Número de telefone inválido'),
-    // cep: yup
-    //     .string()
-    //     .nullable()
-    //     .notRequired()
-    //     .matches(/^\d{5}-\d{3}$/, 'CEP inválido'),
-    // uf: yup
-    //     .string()
-    //     .nullable()
-    //     .notRequired()
-    //     .length(2, 'Campo UF deve ter exatamente 2 caracteres.')
-    //     .matches(/^[a-zA-Z]+$/, 'Campo UF deve conter apenas letras.')
 });
