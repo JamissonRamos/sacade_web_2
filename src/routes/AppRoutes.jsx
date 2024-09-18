@@ -1,8 +1,11 @@
 //Hooks
 import { Route, Routes, useLocation } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
+
 
 // Pages
 import { Pages } from '../pages';
+
 import Header from '../components/header';
 import Sidebar from '../components/sideBar';
 
@@ -20,11 +23,11 @@ const AppContent = () => {
                         <Route 
                             path='/login'
                             element={<Pages.Login />}
-                            /> 
-                            <Route 
-                                    path='/register'
-                                    element={<Pages.Register />}
-                                /> 
+                        /> 
+                        <Route 
+                            path='/register'
+                            element={<Pages.Register />}
+                        /> 
                     </Routes>
                 :
                     <>
@@ -32,32 +35,34 @@ const AppContent = () => {
                         <Sidebar />
                         <main>
                             <Routes>
-                                <Route 
-                                    path='/'
-                                    element={ < Pages.Home /> }
-                                /> 
-                                <Route 
-                                    path='/students'
-                                    element={<Pages.Students />}
-                                /> 
-                                <Route 
-                                    path='/users'
-                                    element={<Pages.Users />}
-                                /> 
-                               
-                                <Route 
-                                    path='/payments'
-                                    element={<Pages.Payments />}
-                                /> 
-                                <Route 
-                                    path='/changePassword'
-                                    element={<Pages.ChangePassword />}
-                                /> 
-                            
+                                <Route path="/" element={
+                                    <ProtectedRoute page='Home'>
+                                        <Pages.Home /> 
+                                    </ProtectedRoute>
+                                } />
+                                <Route path="/students" element={
+                                    <ProtectedRoute page='Students'>
+                                        <Pages.Students /> 
+                                    </ProtectedRoute>
+                                } />
+                                <Route path="/users" element={
+                                    <ProtectedRoute page='Users'>
+                                        <Pages.Users /> 
+                                    </ProtectedRoute>
+                                } />
+                                <Route path="/payments" element={
+                                    <ProtectedRoute page='Payments'>
+                                        <Pages.Payments /> 
+                                    </ProtectedRoute>
+                                } />
+                                <Route path="/changePassword" element={
+                                    <ProtectedRoute page='ChangePassword'>
+                                        <Pages.ChangePassword /> 
+                                    </ProtectedRoute>
+                                } />
                             </Routes>
                         </main>
                     </>
-
             }
         </>
     );

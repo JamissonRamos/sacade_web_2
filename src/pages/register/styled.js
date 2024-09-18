@@ -15,6 +15,7 @@ export const Container = styled.div`
     height: 100vh;
     padding: 1rem 2rem;
     transition: padding 0.4s; 
+    overflow: auto;
     @media (max-width: 768px) {
         padding: .6rem;
     }

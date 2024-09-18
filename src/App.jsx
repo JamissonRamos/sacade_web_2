@@ -1,12 +1,16 @@
 //Hooks
 import { BrowserRouter as Router } from "react-router-dom"
 import AppContent from "./routes/AppRoutes"
+//context
+import { AuthProvider } from "./contexts/authContext/AuthContex"
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </AuthProvider>
   )
 }
 

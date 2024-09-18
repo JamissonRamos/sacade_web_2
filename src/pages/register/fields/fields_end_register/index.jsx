@@ -1,9 +1,9 @@
-import { Button } from 'react-bootstrap'
+import { Button, Spinner } from 'react-bootstrap'
 import { TextC } from '../../../../components/Typography'
 import * as S from './styled'
 import { Theme } from '../../../../theme'
 
-const EndRegister = () => {
+const EndRegister = ({isLoadingCreate}) => {
 
   return (
     <S.Container>
@@ -16,8 +16,13 @@ const EndRegister = () => {
           </S.Left>
           <S.Right>
             <Button
-            type='submit'
+              type='submit'
+              disabled={isLoadingCreate ? true : false}
             >
+              {
+                isLoadingCreate ? 
+                  <Spinner as="span" size="sm" /> : null
+              }
               Finalizar Cadastro
             </Button>
             <TextC.Body level={2} >
