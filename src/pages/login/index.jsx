@@ -19,7 +19,7 @@ const Login = () => {
             <TextC.Display level={2}>Seja bem-vindo!</TextC.Display>
           </S.TitleOne>
           <S.WrapImg>
-            <img src={Theme.ImgC.GolpeQueda} alt="Logo de Segurança"  />
+            <img src={Theme.ImgC.LogoLutaYellow} alt="Logo de Segurança"  />
           </S.WrapImg>
           <S.WrapRegister>
             <TextC.Body level={2}>Se você ainda não está cadastrado, não se preocupe! Basta clicar no botão abaixo para se registrar.</TextC.Body>
