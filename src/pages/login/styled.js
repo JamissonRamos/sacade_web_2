@@ -237,7 +237,7 @@ export const FormFields = styled.div`
     & label {
         display: inline-block;
         margin: 0;
-        font-size: .8em;
+        font-size: 1em;
         font-weight: 500;
         letter-spacing: 0.5px;
         line-height: 1.5;
