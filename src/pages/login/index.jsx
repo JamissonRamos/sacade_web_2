@@ -1,5 +1,4 @@
 import * as S from './styled';
-import { ButtonsC } from '../../components/buttons'
 import { useNavigate } from 'react-router-dom';
 import { TextC } from '../../components/Typography';
 import { Button, Form, InputGroup } from 'react-bootstrap';
@@ -78,7 +77,6 @@ const Login = () => {
                     <InputGroup.Text onClick={toggleShowPassword} style={{ cursor: 'pointer' }}>
                       {showPassword ? <Theme.Icons.MdVisibility /> : <Theme.Icons.MdVisibilityOff  />}
                     </InputGroup.Text>
-                 
                   <Form.Control.Feedback type="invalid" >
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, et. Accusantium unde neque illo nulla esse expedita recusandae nostrum dolore! {/* {errors.newPassword && errors.newPassword.message} */}
                   </Form.Control.Feedback>
