@@ -1,19 +1,20 @@
 //Hooks
 import { Route, Routes, useLocation } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
-
-
+//Context
+// import { useAuth } from '../contexts/authContext/AuthContex'
 // Pages
 import { Pages } from '../pages';
-
+//Components
 import Header from '../components/header';
 import Sidebar from '../components/sideBar';
 
 const AppContent = () => {
+    // const { currentUser } = useAuth();
+
     //Verifica a url atual 
     const location = useLocation();
     const isLoginPage = location.pathname === "/login" || location.pathname === "/register";
-
 
     return (
         <>  
@@ -62,7 +63,7 @@ const AppContent = () => {
                                 } />
                             </Routes>
                         </main>
-                    </>
+                    </> 
             }
         </>
     );
@@ -71,6 +72,8 @@ const AppContent = () => {
 export default AppContent;
 
 /* 
-    1 = Criar regra para validar se user tem ou não permissão para o acesso da page;
+    - Ao carregar sistema mesmo sem usuario logado a home esta sendo carregado primeiro e depois da o bloqueio da page 
+        ver como melhora isso;
 
 */
+

@@ -40,7 +40,7 @@ const DataUser = ({register, setValue, errors}) => {
         </S.WrapTitleStepper>
         <Container className="my-2">
           <Form.Group className="mb-4 shadow-none" controlId="formGridFirstName">
-            <Form.Label >Nome</Form.Label>
+            <Form.Label  >Nome</Form.Label>
             <Form.Control 
               type="text" 
               name="firstName"

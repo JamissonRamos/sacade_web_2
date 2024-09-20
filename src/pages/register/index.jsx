@@ -86,38 +86,38 @@ const Register = () => {
           </S.WrapImg>
         </S.HeaderPage>
         <S.BodyPage>
-        <Form onSubmit={handleSubmit(onSubmitForm)}>
-          <S.FormFields>
-            { currentComponent }
-          </S.FormFields>
-          <S.WrapButtonCounterPage>
-            <S.ButtonsStep>
-              {!isFirstStep &&
-                <Button
-                  type="button"
-                  variant="success"
-                  size="sm"
-                  onClick={() => changeStep(currentStep - 1)}>
-                    <Theme.Icons.MdOutlineArrowBackIos />
-                </Button>
-              }
-              {!isLastStep &&
+          <Form onSubmit={handleSubmit(onSubmitForm)}>
+            <S.FormFields>
+              { currentComponent }
+            </S.FormFields>
+            <S.WrapButtonCounterPage>
+              <S.ButtonsStep>
+                {!isFirstStep &&
                   <Button
-                    type="submit"
+                    type="button"
                     variant="success"
-                    size="sm">
-                    
-                      <Theme.Icons.MdOutlineArrowForwardIos />
+                    size="sm"
+                    onClick={() => changeStep(currentStep - 1)}>
+                      <Theme.Icons.MdOutlineArrowBackIos />
                   </Button>
-              }
-            </S.ButtonsStep>
-            <S.CounterPage>
-              <TextC.Label level={5}>
-                {currentStep + 1}/{formFields.length}
-              </TextC.Label>
-            </S.CounterPage>
-          </S.WrapButtonCounterPage>
-        </Form>
+                }
+                {!isLastStep &&
+                    <Button
+                      type="submit"
+                      variant="success"
+                      size="sm">
+                      
+                        <Theme.Icons.MdOutlineArrowForwardIos />
+                    </Button>
+                }
+              </S.ButtonsStep>
+              <S.CounterPage>
+                <TextC.Label level={5}>
+                  {currentStep + 1}/{formFields.length}
+                </TextC.Label>
+              </S.CounterPage>
+            </S.WrapButtonCounterPage>
+          </Form>
         </S.BodyPage>
       </S.WrapPages>
     </S.Container>

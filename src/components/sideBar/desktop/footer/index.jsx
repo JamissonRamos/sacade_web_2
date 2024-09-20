@@ -5,12 +5,14 @@ import { useState } from 'react';
 import { ButtonsC } from '../../../buttons';
 import { Theme } from '../../../../theme';
 import { TextC } from '../../../Typography';
+import { useAuth } from '../../../../contexts/authContext/AuthContex'
+import { useNavigate } from 'react-router-dom';
 
 const Footer = ({showSidebar}) => {
     const [ showModalLogout, setShowModalLogout] = useState(false);
     const [loading, setLoading] = useState(false);
-    // const { logout } = useAuth(); // Acessa a função logout
-    // const navigate = useNavigate();
+    const { logout } = useAuth(); // Acessa a função logout
+    const navigate = useNavigate();
 
     const handleShowModal = () => {
         setShowModalLogout((prev) => !prev)
@@ -20,12 +22,14 @@ const Footer = ({showSidebar}) => {
         setLoading(true)
         try {
             // Executa o logout
-            //await logout();
-           //setShowModal(false);
+            console.log('Saindo');
+            
+            await logout();
+            setShowModalLogout(false);
             // Limpa o localStorage
             //localStorage.clear();
             // Redireciona o usuário para a página de login
-            //navigate("/login");
+            navigate("/login");
 
             setLoading(false)
             handleShowModal()
@@ -62,7 +66,7 @@ const Footer = ({showSidebar}) => {
 
                         <ButtonsC.ButtonCustom 
                             color={Theme.Colors.green800}
-                            onClick={() => handleLogout()}
+                            onClick={() => handleLogout}
                             disabled={loading ? true : false}
                         >
                             <Theme.Icons.ImSwitch /> 

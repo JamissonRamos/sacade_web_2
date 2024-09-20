@@ -33,6 +33,8 @@ export const Icons = {
     MdCancel:                   MD.MdCancel,
     MdSend:                     MD.MdSend,
     MdLocationOn:               MD.MdLocationOn,
+    MdPersonAddAlt1:            MD.MdPersonAddAlt1,
+    MdOutlineAlternateEmail:    MD.MdOutlineAlternateEmail,
     RiArrowDownSFill:           RiIcons.RiArrowDownSFill,
     RiArrowUpSFill:             RiIcons.RiArrowUpSFill,
     RiSendPlaneFill:            RiIcons.RiSendPlaneFill,
