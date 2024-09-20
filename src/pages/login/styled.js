@@ -170,15 +170,12 @@ export const WrapButtonRegister = styled.div`
 `;
 
 export const PanelRight = styled.div`
-    /* border: 1px solid red; */
+    /* border: 1px solid blue; */
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: .8rem;
-    @media (max-width: 768px) {
-        padding-top: .4rem;
-    }
+
 `;
 export const WrapHeader = styled.div`
     /* border: 1px solid red; */
@@ -199,48 +196,44 @@ export const WrapHeader = styled.div`
     }
     @media (max-width: 768px) {
         flex: 1;
-        gap: .2rem;
-        padding:  0;
+        gap: 0rem;
+        padding: 0;
         & > img {
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 40%;
+        max-height: 70%;
         }
         & span {
-            display: none;
+            font-size: 1em;
+            line-height: 20px;
+            /* display: none; */
         }
     }
 
 `;
 export const WrapForm = styled.div`
-    /* border: 1px solid red; */
+    /* border: 1px solid blue; */
     width: 100%;
-    height: 100%;
+    max-height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex: 4;
-    overflow: auto;
     & form {
         /* border: 1px solid blue; */
         width: 100%;
-        max-width: 400px;
         height: 100%;
         display: flex;
         flex-direction: column; 
-        /* justify-content: space-around; */
-        
         gap: .8rem;    
     }
 `;
 export const FormFields = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
+    max-height: 280px;
     gap: 1rem;
-    /* padding: 1rem 0; */
-    
+    flex: 1;
+    overflow: auto;
     & label {
         display: inline-block;
         margin: 0;
@@ -259,6 +252,9 @@ export const FormFields = styled.div`
         & svg {
             color: ${Theme.Colors.green800};
         };
+    }
+    @media (max-width: 768px) {
+        max-height: 220px;
     }
 `;
 
