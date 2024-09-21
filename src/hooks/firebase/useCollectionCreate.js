@@ -1,5 +1,4 @@
 import { useCallback } from "react";
-// import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from '../../services/firebase/config';
 
@@ -20,5 +19,6 @@ export const useCollectionCreate = () => {
             return { success: false, message: error.message };
         }
     }, []);
+    
     return { collectionCreate };
 };
