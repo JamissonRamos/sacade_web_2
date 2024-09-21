@@ -19,7 +19,7 @@ const Login = () => {
             <TextC.Display level={2}>Seja bem-vindo!</TextC.Display>
           </S.TitleOne>
           <S.WrapImg>
-            <img src={Theme.ImgC.LogoLutaYellow} alt="Logo de Segurança"  />
+            <img src={Theme.ImgC.LogoLutaYellow} alt="Logo de Segurança" />
           </S.WrapImg>
           <S.WrapRegister>
             <TextC.Body level={2}>Se você ainda não está cadastrado, não se preocupe! Basta clicar no botão abaixo para se registrar.</TextC.Body>
@@ -33,13 +33,11 @@ const Login = () => {
             </S.WrapButtonRegister>
           </S.WrapRegister>
         </S.LeftPanel>
-
         <S.PanelRight >
           <S.WrapHeader>
             <img src={Theme.ImgC.AvatarMan} alt="Logo" />
             <TextC.Headline level={2}>Faça seu login</TextC.Headline>
           </S.WrapHeader>
-
           <S.WrapForm>
             <Form>
               <S.FormFields >
@@ -79,7 +77,6 @@ const Login = () => {
                   </Form.Group >
                 </Container>
               </S.FormFields>
-
               <S.WrapFooterForm>
                 <Button
                   variant="outline-success"

@@ -168,7 +168,6 @@ export const WrapButtonRegister = styled.div`
     }
 
 `;
-
 export const PanelRight = styled.div`
     /* border: 1px solid blue; */
     flex: 1;
@@ -257,7 +256,6 @@ export const FormFields = styled.div`
         max-height: 220px;
     }
 `;
-
 export const WrapFooterForm = styled.div`
     /* border: 1px solid red; */
     width: 100%;
@@ -282,4 +280,3 @@ export const WrapFooterForm = styled.div`
     }
 
 `;
-
