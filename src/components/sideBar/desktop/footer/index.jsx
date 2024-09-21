@@ -66,7 +66,7 @@ const Footer = ({showSidebar}) => {
 
                         <ButtonsC.ButtonCustom 
                             color={Theme.Colors.green800}
-                            onClick={() => handleLogout}
+                            onClick={() => handleLogout()}
                             disabled={loading ? true : false}
                         >
                             <Theme.Icons.ImSwitch /> 
