@@ -1,30 +1,46 @@
 import * as S from './styled';
 import { useNavigate } from 'react-router-dom';
 import { TextC } from '../../components/Typography';
-import { Button, Container, Form, InputGroup } from 'react-bootstrap';
+import { Alert, Button, Container, Form, InputGroup } from 'react-bootstrap';
 import { Theme } from '../../theme';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../validations'
+import { useLogin } from '../../hooks/login';
+
 
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
-  const { register, handleSubmit, setValue, reset, getValues, formState:{ errors } } = useForm(
+
+  const { register, handleSubmit, reset, formState:{ errors } } = useForm(
     {
       resolver: yupResolver(Validations.LoginSchema)
     }
   );
+
+  const { loginIn, isLoadingLogin, errorLogin } = useLogin.useLoginIn()
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+
+    let result;
+    result = await loginIn(data)
+    
+    console.log(result);
+
+    if (result.success){
+      console.log('home');
+      
+    }
+    
+    //reset()
     
   }
 
@@ -51,6 +67,7 @@ const Login = () => {
           </S.WrapRegister>
         </S.LeftPanel>
         <S.PanelRight >
+        
           <S.WrapHeader>
             <img src={Theme.ImgC.AvatarMan} alt="Logo" />
             <TextC.Headline level={2}>Faça seu login</TextC.Headline>
@@ -96,6 +113,7 @@ const Login = () => {
                 <Button
                   type='submit'
                   variant="outline-success"
+                  disabled={isLoadingLogin ? true : false}
                 >
                   <Theme.Icons.MdLogout />
                   Login
@@ -105,6 +123,11 @@ const Login = () => {
           </S.WrapForm>
         </S.PanelRight>
       </S.WrapPages>
+      <S.Error>
+        {
+          errorLogin && <Alert variant={'danger'}> {errorLogin} </Alert>
+        }
+      </S.Error>
     </S.Container>
   )
 }

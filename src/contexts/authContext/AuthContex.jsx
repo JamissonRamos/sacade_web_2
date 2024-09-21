@@ -1,7 +1,7 @@
 // AuthContext.js
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from '../../services/firebase/config';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, signInWithEmailAndPassword, } from 'firebase/auth';
 import { Spinner } from 'react-bootstrap';
 
 const AuthContext = createContext();
@@ -20,12 +20,20 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    return await auth.signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const uid = userCredential.user.uid;
+    if (uid){
+      
+      return {success: true, uid: uid}
+    }else{
+      return {success: false}
+    }
   };
 
   const logout = async () => {
     return await auth.signOut(auth);
   };
+
   /* Ajusta esse loading  */
   if (loading) {
     return <Spinner 

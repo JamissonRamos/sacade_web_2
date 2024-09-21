@@ -6,11 +6,11 @@ export const Container = styled.div`
     width: 100vw;
     min-width: 320px;
     height: 100vh;
+    position: relative;
     display: flex;
     justify-content: center;
     padding: 1rem 2rem;
     transition: padding 0.4s; 
-    overflow: auto;
     @media (max-width: 768px) {
         padding: .6rem;
     }
@@ -174,7 +174,6 @@ export const PanelRight = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
 `;
 export const WrapHeader = styled.div`
     /* border: 1px solid red; */
@@ -282,6 +281,16 @@ export const WrapFooterForm = styled.div`
         & button {
             width: 40%;
         }
+    }
+`;
+export const Error = styled.div`
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 10;
+    @media (max-width: 768px) {
+        top: 10px;
+        right: 0px;
     }
 
 `;
