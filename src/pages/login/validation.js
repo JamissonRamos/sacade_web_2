@@ -5,7 +5,7 @@ const Schema = yup.object({
     email: yup
         .string()
         .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'E-mail inválido')
-        .required('Campo Usuário Obrigatório'),
+        .required('Campo Email é Obrigatório'),
     password: yup
         .string()
         .min(6, 'Campo Senha deve ter no mínimo 6 caracteres.')

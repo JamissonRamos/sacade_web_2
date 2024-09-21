@@ -278,5 +278,10 @@ export const WrapFooterForm = styled.div`
             color: ${Theme.Colors.white800}
         }
     }
+    @media (max-width: 768px) {
+        & button {
+            width: 40%;
+        }
+    }
 
 `;
