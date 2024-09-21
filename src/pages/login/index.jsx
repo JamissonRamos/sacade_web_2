@@ -44,14 +44,14 @@ const Login = () => {
             <Form>
               <S.FormFields >
                 <Container className="my-2">
-                  <Form.Group className="mb-5" controlId="formGridEmail">
+                  <Form.Group className="mb-4" controlId="formGridEmail">
                     <Form.Label s >Email</Form.Label>
                       <Form.Control 
                         type="email" 
                         name='email' 
                         placeholder="Digite seu email de acesso" 
                         // {...register("emailUser")}
-                        isInvalid={true} //!!errors.emailUser
+                        isInvalid={false} //!!errors.emailUser
                       />
                     
                       <Form.Control.Feedback  type="invalid" >
