@@ -1,7 +1,7 @@
 import * as S from './styled';
 import { useNavigate } from 'react-router-dom';
 import { TextC } from '../../components/Typography';
-import { Alert, Button, Container, Form, InputGroup } from 'react-bootstrap';
+import { Alert, Button, Container, Form, InputGroup, Spinner } from 'react-bootstrap';
 import { Theme } from '../../theme';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,10 +9,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../validations'
 import { useLogin } from '../../hooks/login';
 
+import { useAuth } from '../../contexts/authContext/AuthContex';
+
 
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const {currentUser} = useAuth();
 
 
   const { register, handleSubmit, reset, formState:{ errors } } = useForm(
@@ -36,8 +39,7 @@ const Login = () => {
     console.log(result);
 
     if (result.success){
-      console.log('home');
-      
+      navigate('/')
     }
     
     //reset()
@@ -116,7 +118,21 @@ const Login = () => {
                   disabled={isLoadingLogin ? true : false}
                 >
                   <Theme.Icons.MdLogout />
-                  Login
+
+                  {
+                    isLoadingLogin &&  
+                      <>
+                        <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                        <span className="visually-hidden">Loading...</span>
+                      </>
+                  }
+                  <span>Login</span>
                 </Button>
               </S.WrapFooterForm>
             </Form>
