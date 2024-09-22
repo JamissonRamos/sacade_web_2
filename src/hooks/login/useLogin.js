@@ -31,6 +31,8 @@ export const useLoginIn = () => {
                     lastName: lastName, 
                     status: status
                 }
+                // Armazena o usuário no sessionStorage ao logar
+                sessionStorage.setItem('userLogged', JSON.stringify(newDocUserIN));
                 setCurrentUser(newDocUserIN)
                 return { success: true }
             }else{

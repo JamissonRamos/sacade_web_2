@@ -4,9 +4,20 @@ import { Permissions } from "./Schema";
 
 const ProtectedRoute = ({children, page, ...rest }) => {
     const { currentUser } = useAuth(); // Obtém o estado de autenticação
+    //const {status} = currentUser;
     // console.log(page);
     // console.log(rest);
-    // console.log(currentUser);
+    console.log('ProtectedRoute: ', currentUser);
+        // Recupere o usuário logado do localStorage
+        const userLogged = JSON.parse(sessionStorage.getItem('userLogged'));
+        console.log('protec: ', userLogged) 
+        // console.log(currentUser) 
+        // if (!userLogged){
+        //     console.log('nulo')
+        //    // return <Navigate to={`/users/form/form_update/${currentUser.uid}`} />
+            
+        // }
+    //console.log('ProtectedRoute status : ', status);
 
     // Verifique se o usuário tem permissão para acessar a page
     //const hasAccess = currentUser && Permissions[page]?.includes(parseInt(userLogged.occupation, 10));
@@ -16,13 +27,6 @@ const ProtectedRoute = ({children, page, ...rest }) => {
     //        return <Navigate to={`/NoticeAuthorization/${userLogged.name}`}/>;
     //    }
 
-
-    /*  Parei para ir fazer o tela de login
-        aqui começa a fazer as autorizaçoes por tela do usuario logado;
-    */
-
-
-    
     return currentUser ? children : <Navigate to="/login" />;
 };
 

@@ -10,19 +10,12 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setLoading(true)
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      setLoading(false); 
-    });
-    return () => unsubscribe();
-  }, []);
+  
 
   const login = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const uid = userCredential.user.uid;
-    if (uid){
+    if(uid){
       
       return {success: true, uid: uid}
     }else{
@@ -31,16 +24,49 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
+    console.log("Sair");
+    
     return await auth.signOut(auth);
   };
 
+  useEffect(() => {
+    //const storedUser = sessionStorage.getItem('userLogged');
+    // console.log(JSON.parse(storedUser));
+
+    //if (storedUser) {
+      //setCurrentUser(JSON.parse(storedUser)); // Seta o usuário do sessionStorage no estado
+      // console.log('passou no storedUser');
+      
+    //}
+
+    setLoading(true)
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log('tem');
+        setCurrentUser(user);
+        //sessionStorage.setItem('userLogged', JSON.stringify(user)); // Atualiza o sessionStorage ao verificar o usuário
+      } else {
+        console.log('Não tem');
+        
+        //setCurrentUser(null);
+        //sessionStorage.removeItem('userLogged'); // Limpa o sessionStorage se não houver usuário
+      }
+      setLoading(false); 
+    });
+    return  unsubscribe;
+  }, []);
+
   /* Ajusta esse loading  */
   if (loading) {
-    return <Spinner 
-              animation="border" 
-              role="status">
-                <span className="sr-only">Carregando...</span>
-            </Spinner>;
+    return (
+      <>
+        <Spinner 
+          animation="border" 
+          role="status">
+            <span className="sr-only">Carregando...</span>
+        </Spinner>;
+      </>
+    )
   }
   
   return (

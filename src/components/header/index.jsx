@@ -5,9 +5,7 @@ import { useAuth } from "../../contexts/authContext/AuthContex"
 
 const Header = () => {
   const { currentUser } = useAuth()
-  const { firstName } = currentUser || {}
-  console.log(currentUser);
-  
+  const { firstName } = currentUser || {}  
   return (
     <S.Header>
       <S.UserLogged>
