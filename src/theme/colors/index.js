@@ -31,5 +31,6 @@ export const Colors =
     red500: '#B81800',
     red400: '#FFE0DB',
     black900: 'rgba(0, 0, 0, 0.1)',
+    black800: 'rgba(0, 0, 0, 0.5)',
 
 }

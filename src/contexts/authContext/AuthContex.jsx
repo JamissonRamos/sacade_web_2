@@ -1,16 +1,15 @@
-// AuthContext.js
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from '../../services/firebase/config';
 import { onAuthStateChanged, signInWithEmailAndPassword, } from 'firebase/auth';
 import { Spinner } from 'react-bootstrap';
+import { LoadingOverlay } from '../../components/spinner/global/styled';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  
 
   const login = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -30,47 +29,37 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    //const storedUser = sessionStorage.getItem('userLogged');
-    // console.log(JSON.parse(storedUser));
-
-    //if (storedUser) {
-      //setCurrentUser(JSON.parse(storedUser)); // Seta o usuário do sessionStorage no estado
-      // console.log('passou no storedUser');
-      
-    //}
-
-    setLoading(true)
+    // Recupera os dados existentes do sessionStorage
+    const storedUser = JSON.parse(sessionStorage.getItem('userLogged')) || null;
+    
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log('tem');
-        setCurrentUser(user);
-        //sessionStorage.setItem('userLogged', JSON.stringify(user)); // Atualiza o sessionStorage ao verificar o usuário
+      if (user && storedUser) {
+        // Mescla os dados existentes com os novos dados
+        const updatedUser = { ...user, ...storedUser };
+        setCurrentUser(updatedUser);
+        sessionStorage.setItem('userLogged', JSON.stringify(updatedUser)); // Atualiza o sessionStorage ao verificar o usuário
       } else {
-        console.log('Não tem');
-        
-        //setCurrentUser(null);
-        //sessionStorage.removeItem('userLogged'); // Limpa o sessionStorage se não houver usuário
+        setCurrentUser(null);
+        sessionStorage.removeItem('userLogged'); // Limpa o sessionStorage se não houver usuário
       }
       setLoading(false); 
     });
-    return  unsubscribe;
+    return unsubscribe;
   }, []);
+
 
   /* Ajusta esse loading  */
   if (loading) {
     return (
-      <>
-        <Spinner 
-          animation="border" 
-          role="status">
-            <span className="sr-only">Carregando...</span>
-        </Spinner>;
-      </>
+      <LoadingOverlay>
+        <Spinner animation="border" variant="warning" />
+        <span className="sr-only">Carregando...</span>
+      </LoadingOverlay>
     )
   }
   
   return (
-    <AuthContext.Provider value={{ currentUser, setCurrentUser, login, logout }}>
+    <AuthContext.Provider value={{ currentUser, setCurrentUser, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
