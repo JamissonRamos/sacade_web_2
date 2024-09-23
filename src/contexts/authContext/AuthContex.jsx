@@ -23,9 +23,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    console.log("Sair");
-    
-    return await auth.signOut(auth);
+    try {
+      await auth.signOut(auth); // Espera o logout ser concluído
+    } catch (error) {
+        console.error("Erro ao sair:", error); // Lida com possíveis erros
+    } finally {
+        setLoading(false); // Desativa o loading após a tentativa de logout
+    }
   };
 
   useEffect(() => {

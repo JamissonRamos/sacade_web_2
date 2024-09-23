@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Footer = ({showSidebar}) => {
     const [ showModalLogout, setShowModalLogout] = useState(false);
-    const [loading, setLoading] = useState(false);
     const { logout } = useAuth(); // Acessa a função logout
     const navigate = useNavigate();
 
@@ -19,23 +18,13 @@ const Footer = ({showSidebar}) => {
     }
 
     const handleLogout = async () => {
-        setLoading(true)
-        try {
-            // Executa o logout
-            console.log('Saindo');
-            
-            await logout();
-            setShowModalLogout(false);
-            // Limpa o localStorage
-            //localStorage.clear();
-            // Redireciona o usuário para a página de login
-            navigate("/login");
-
-            setLoading(false)
-            handleShowModal()
-        } catch (error) {
-            console.error("Erro ao fazer logout:", error);
-        }
+        await logout();
+        setShowModalLogout(false);
+        // Limpa o sessionStorage
+        sessionStorage.clear();
+        // Redireciona o usuário para a página de login
+        navigate("/login");
+        handleShowModal()
     }
     //Filtrando somente o sair
     const itemSair = MenuItem.find(item => item.title === "Sair");
@@ -67,7 +56,6 @@ const Footer = ({showSidebar}) => {
                         <ButtonsC.ButtonCustom 
                             color={Theme.Colors.green800}
                             onClick={() => handleLogout()}
-                            disabled={loading ? true : false}
                         >
                             <Theme.Icons.ImSwitch /> 
                             <TextC.Label level={2}>Quero siar</TextC.Label> 

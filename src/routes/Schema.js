@@ -1,7 +1,8 @@
 
 export const HasAccess = (page, status) => {
+    let result
     const statusIndex = getStatusIndex(status);
-    let result = pages[page]?.includes(statusIndex) || false; // Verifica se o status tem permissão    
+    result = pages[page]?.includes(statusIndex) || false; // Verifica se o status tem permissão    
     return result
 }
 const getStatusIndex = (status) => {
