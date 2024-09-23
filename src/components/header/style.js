@@ -41,7 +41,9 @@ export const UserLogged = styled.div`
     }
         @media (max-width: 425px) {
             width: 100%;
-            justify-content: ${props => props.status === "Visitante" ? 'flex-start' : 'center'};
+            /* justify-content: ${props => props.status === "Visitante" ? 'flex-start' : 'center'}; */
+            //Por enquanto vou aplicar o status permanente no header 
+            justify-content: flex-start;
             padding-left: 10px;
         }
 `;

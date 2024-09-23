@@ -9,14 +9,22 @@ const Header = () => {
   const { firstName, status } = currentUser || {}  
   return (
     <S.Header>
-      <S.UserLogged status={status}>
+      <S.UserLogged >
         <TextC.Title level={1}>Olá,</TextC.Title>
         <TextC.Title level={1}>{firstName}</TextC.Title> 
       </S.UserLogged> 
       <S.StatusLogged >
-        <Badge bg="warning" >
-          Status: {status}
-        </Badge>
+
+        {
+          status === 'Visitante' ? 
+            <Badge bg="warning" >
+              Status: {status}
+            </Badge>
+          :
+            <Badge bg="success" >
+              Status: {status}
+            </Badge>
+        }
       </S.StatusLogged>
     </S.Header>
   )
