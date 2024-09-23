@@ -1,20 +1,21 @@
 import  Home  from './home';
-import  Users  from './users';
-
 import Students from './students';
+import Users  from './users';
+import Register from './register';
 import Payments from './payments';
 import ChangePassword from './changePassword'
+import UserLevel from './userLevel';
 import Login from './login';
-import Register from './register';
 import NoticeAuthorization from './notice_authorization';
 
 export const Pages = {
     Home,
-    Users,
     Students,
+    Users,
+    Register,
     Payments,
     ChangePassword,
-    Register,
+    UserLevel,
     Login,
     NoticeAuthorization
 

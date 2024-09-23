@@ -9,7 +9,7 @@ const getStatusIndex = (status) => {
     return statusMap[status] || null; // Retorna o índice ou null se o status não for encontrado
 }
 const statusMap = {
-    Adm: 1,
+    Administrador: 1,
     Assistente: 2,
     Visitante: 3,
 };
@@ -20,5 +20,6 @@ const pages = {
     Users: [1, 2], 
     Payments: [1, 2],
     ChangePassword: [1, 2, 3],
+    UserLevel: [1],
     NoticeAuthorization: [1, 2, 3]
 };

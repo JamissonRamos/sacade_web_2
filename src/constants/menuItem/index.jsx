@@ -41,6 +41,11 @@ export const MenuItem = [
                 title: 'Alterar Senha',
                 path: '/changePassword',
                 icon: <Theme.Icons.MdLockReset  />,
+            },
+            {
+                title: 'Nível Usuário',
+                path: '/userLevel',
+                icon: <Theme.Icons.MdLockPerson  />,
             }
         ]
     },
