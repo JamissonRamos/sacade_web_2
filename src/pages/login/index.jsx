@@ -9,14 +9,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../validations'
 import { useLogin } from '../../hooks/login';
 
-import { useAuth } from '../../contexts/authContext/AuthContex';
-
-
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const {currentUser} = useAuth();
-
 
   const { register, handleSubmit, reset, formState:{ errors } } = useForm(
     {
@@ -30,20 +25,14 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-
   const onSubmit = async (data) => {
-
     let result;
     result = await loginIn(data)
-    
-    console.log(result);
-
     if (result.success){
       navigate('/')
     }
     
-    //reset()
-    
+    reset()
   }
 
   return (
@@ -117,10 +106,8 @@ const Login = () => {
                   variant="outline-success"
                   disabled={isLoadingLogin ? true : false}
                 >
-                  <Theme.Icons.MdLogout />
-
                   {
-                    isLoadingLogin &&  
+                    isLoadingLogin ?  
                       <>
                         <Spinner
                           as="span"
@@ -129,10 +116,14 @@ const Login = () => {
                           role="status"
                           aria-hidden="true"
                         />
-                        <span className="visually-hidden">Loading...</span>
+                        <span className="sr-only">Carregando...</span>
+                      </> :
+                      <>
+                        <Theme.Icons.MdLogout />
+                        <span>Login</span>
                       </>
                   }
-                  <span>Login</span>
+                  
                 </Button>
               </S.WrapFooterForm>
             </Form>

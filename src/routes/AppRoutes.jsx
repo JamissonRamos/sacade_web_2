@@ -61,6 +61,11 @@ const AppContent = () => {
                                         <Pages.ChangePassword /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/noticeAuthorization" element={
+                                    <ProtectedRoute page='NoticeAuthorization'>
+                                        <Pages.NoticeAuthorization /> 
+                                    </ProtectedRoute>
+                                } />
                             </Routes>
                         </main>
                     </> 
