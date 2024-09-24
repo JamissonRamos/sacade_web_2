@@ -1,41 +1,44 @@
 import styled from "styled-components";
 import { Theme } from "../../theme";
 
-export const Content = styled.div`
+export const HeaderPage = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 100%;
-    /* max-height: 340px;   */
-`;
-export const TableHeader = styled.div`
-    /* border: 1px solid blue; */
-    width: 100%;
-    height: 30px;
-    background-color: transparent;
-`;
-export const TableRow = styled.div`
-    /* border: 1px solid red; */
-    width: 100%;
+    min-width: 320px;
     display: flex;
-    border-bottom: 1px solid ${Theme.Colors.grey600};
-    &:nth-child(even) {
-        background-color: transparent;
+    flex-direction: column;
+    gap: .4rem;
+    padding: .2rem 0;
+    margin-bottom: .4rem;
+    & span {
+        color: ${Theme.Colors.grey500}
+    }
+    & span:first-child {
+        color: ${Theme.Colors.green800}
     }
 `;
-export const TableHeaderCell = styled.div`
+export const BodyPage = styled.div`
     /* border: 1px solid red; */
+    width: 100%;
+    min-width: 320px;
+    max-height: 84%;
+    padding-bottom: .8rem;
+    overflow: auto;
+`;
+
+export const Empty = styled.div`
+    /* border: 1px solid blue; */
+    width: 100%;
+    flex: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    flex: ${({$flex}) => $flex ? $flex : 1};    
-    padding: 8px;
-    /* border-bottom: 1px solid ${Theme.Colors.grey300}; */
-    & span {
-        font-style: normal;
-        font-weight: 800;
-        font-size: 12.8px;
-        line-height: 13px;
-        text-align: left;
-        text-transform: uppercase;
-        color: ${Theme.Colors.grey500};
+    justify-content: center;
+    flex: 2;
+    color: ${Theme.Colors.green800};
+    @media (max-width: 425px) {
+        height: 300px;
+        padding: 0;
+        flex: none;
     }
 `;

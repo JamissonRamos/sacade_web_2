@@ -25,6 +25,12 @@ const Header = () => {
               Status: {status}
             </Badge>
         }
+        {
+          status === 'Assistente' &&
+            <Badge bg="info" >
+              Status: {status}
+            </Badge>
+        }
       </S.StatusLogged>
     </S.Header>
   )
