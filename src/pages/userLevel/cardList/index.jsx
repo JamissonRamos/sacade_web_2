@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Badge, Button } from 'react-bootstrap'
 import { Theme } from '../../../theme'
 import ChangeRegistrationModal from '../modal'
+import { TextC } from '../../../components/Typography'
 
 
 const CardList = ({data}) => {
@@ -41,27 +42,27 @@ const CardList = ({data}) => {
         <S.Container>
             {
                 data && data.map(({uid, firstName, lastName, status, statusActive}) => (
-                    <S.Card key={uid}>
+                    <S.Card key={uid} >
                         <S.Header>
-                            <S.CircleLetterName>
-                                {firstName && firstName.charAt(0)} 
-                            </S.CircleLetterName>
+                            <Badge bg={handleBadge(status)} text="light">
+                                {status}
+                            </Badge>
+                            
+                        </S.Header>
+                        <S.Body>
                             <S.Name>
                                 <span> {firstName + ' ' + lastName} </span>
                             </S.Name>
-                        </S.Header>
-                        <S.Body>
-                            <Badge pill bg={handleBadge(status)} text="light">
-                                {status}
-                            </Badge>
                         </S.Body>
                         <S.Footer>
                             <S.WrapButton>
                                 <Button 
                                     variant="outline-success"
+                                    size='sm'
                                     onClick={() => {setDataUserModal({uid,firstName,lastName,status,statusActive}), handleShow()}}
                                 >
                                     <Theme.Icons.MdEdit />
+                                    <span>Alterar</span>
                                 </Button>
                             </S.WrapButton>
                         </S.Footer>
