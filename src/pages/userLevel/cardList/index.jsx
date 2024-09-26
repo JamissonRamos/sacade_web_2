@@ -3,11 +3,15 @@ import * as S from './styled'
 import { useNavigate } from 'react-router-dom'
 import { Badge, Button } from 'react-bootstrap'
 import { Theme } from '../../../theme'
+import ChangeRegistrationModal from '../modal'
 
 
 const CardList = ({data}) => {
     const [showModal, setShowModal] = useState(false);
+    const [dataUserModal, setDataUserModal] = useState(null);
+
     const navigate = useNavigate();
+
     const handleBadge = (status) => 
     {
         let bg
@@ -30,12 +34,13 @@ const CardList = ({data}) => {
         return bg 
     }
     const handleClose = () => setShowModal(false);
+
     const handleShow = () => setShowModal(true);
 
     return (
         <S.Container>
             {
-                data && data.map(({uid, firstName, lastName, status}) => (
+                data && data.map(({uid, firstName, lastName, status, statusActive}) => (
                     <S.Card key={uid}>
                         <S.Header>
                             <S.CircleLetterName>
@@ -54,17 +59,17 @@ const CardList = ({data}) => {
                             <S.WrapButton>
                                 <Button 
                                     variant="outline-success"
-                                    onclick={() => handleShowForm(uid)}
-                                > 
+                                    onClick={() => {setDataUserModal({uid,firstName,lastName,status,statusActive}), handleShow()}}
+                                >
                                     <Theme.Icons.MdEdit />
                                 </Button>
                             </S.WrapButton>
                         </S.Footer>
                     </S.Card>
-
                 ))
             }
 
+            <ChangeRegistrationModal data={dataUserModal} showModal={showModal} handleClose={handleClose}  />
         </S.Container>
     )
 }

@@ -10,8 +10,8 @@ export const useLoginIn = () => {
 
     const loginIn = async (data) => {
         const {email, password} = data;
-        console.log(email);
-        console.log(password);
+        // console.log(email);
+        // console.log(password);
 
         setIsLoadingLogin(true);
         setErrorLogin(null);
@@ -19,10 +19,10 @@ export const useLoginIn = () => {
         try {
             let checkLogin;
             checkLogin = await login(email, password);
-            console.log(checkLogin);
+            // console.log(checkLogin);
             let getDoc;
             getDoc = await getDocumentById('users', checkLogin.uid)
-            console.log(getDoc);
+            // console.log(getDoc);
             if(getDoc.success){
                 const {uid, firstName, lastName, status } = getDoc;
                 const newDocUserIN = {

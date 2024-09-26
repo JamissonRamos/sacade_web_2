@@ -15,7 +15,7 @@ export const useGetCollection = () => {
             const documents = docSnap.docs.map(doc => ({
                 ...doc.data()
             }));
-            console.log(documents);
+            // console.log(documents);
             
             return {success: true, data: documents };
         }catch (error) {

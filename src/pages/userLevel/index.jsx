@@ -12,7 +12,7 @@ import { Alert, Spinner } from 'react-bootstrap';
 const UserLevel = () => {
   const [registered, setRegistered] = useState({})
 
-  const isValueScreen = useScreenWidth(768);
+  const isValueScreen = useScreenWidth(590);
 
   const { documents, isLoading, error } = useUsers.useGetDocuments()
 
@@ -32,11 +32,7 @@ const UserLevel = () => {
     fetchDocuments();  // Chama a função ao renderizar o componente
   }, [documents]);
 
-  // console.log(registered.success);
-  console.log(registered.data);
-  
   return (
-
     <WrapPages >
       {
         error && <Alert variant={'danger'}> {error} </Alert>

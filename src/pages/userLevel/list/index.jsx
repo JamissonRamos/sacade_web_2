@@ -3,7 +3,7 @@ import { TextC } from '../../../components/Typography'
 import { Badge, Button, Form, Modal } from 'react-bootstrap';
 import { Theme } from '../../../theme';
 import { useState } from 'react';
-import ChangeRegistrationModal from './modal';
+import ChangeRegistrationModal from '../modal';
 
 
 const List = ({data}) => {
@@ -36,13 +36,13 @@ const List = ({data}) => {
   const handleShow = () => { 
     setShowModal(true)
   };
-    console.log(dataUserModal);
+    // console.log(dataUserModal);
 
   return (
       <S.Content>
         <S.TableHeader>
           <S.TableRow>
-            <S.TableHeaderCell $flex={.5}>
+            <S.TableHeaderCell $flex={.1}>
               <TextC.Label level={1}>#</TextC.Label>
             </S.TableHeaderCell>
             <S.TableHeaderCell $flex={2}>
@@ -58,10 +58,9 @@ const List = ({data}) => {
         </S.TableHeader>
         <S.TableBody>
           {
-            data && data.map(({uid, firstName, lastName, status }, i) => (
-
+            data && data.map(({uid, firstName, lastName, status, statusActive }, i) => (
               <S.TableRow key={i}>
-                <S.TableBodyCell $flex={.5}>
+                <S.TableBodyCell $flex={.1}>
                   <TextC.Body level={1}>{1 + i}</TextC.Body>
                 </S.TableBodyCell>
                 <S.TableBodyCell $flex={2}>
@@ -73,19 +72,19 @@ const List = ({data}) => {
                   </TextC.Body>
                 </S.TableBodyCell>
                 <S.TableBodyCell>
-                  <Badge pill bg={handleBadge(status)} text="light">
-                    {status}
-                  </Badge>
+                    <Badge bg={handleBadge(status)} text="light">
+                      {status}
+                    </Badge>
                 </S.TableBodyCell>
                 <S.TableBodyCell $flex={.5}>
                   <Button
                     variant="outline-success"
-                    onClick={() => {setDataUserModal({uid,firstName,lastName,status}), handleShow()}}>
+                    size="sm"
+                    onClick={() => {setDataUserModal({uid,firstName,lastName,status,statusActive}), handleShow()}}>
                     <Theme.Icons.MdModeEdit />
                   </Button>
                 </S.TableBodyCell>
               </S.TableRow>
-
             ))
           }
 

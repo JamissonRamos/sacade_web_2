@@ -12,7 +12,7 @@ export const useGetDocuments = () => {
         setError(null);
         try {
             const fetchRegistered = await getDocuments(collection); // Operação assíncrona
-            console.log(fetchRegistered.data);
+            // console.log(fetchRegistered.data);
             
             if(fetchRegistered.success){
                 return {

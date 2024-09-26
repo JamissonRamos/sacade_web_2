@@ -44,7 +44,6 @@ export const TableHeaderCell = styled.div`
         color: ${Theme.Colors.grey500};
     }
 `;
-
 export const TableBody = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
@@ -76,4 +75,9 @@ export const CircleLetterName = styled.div`
     line-height: 25px;
     text-transform: uppercase;
     color: ${Theme.Colors.blue800};
+    @media (max-width: 768px) {
+        width: 30px;
+        height: 30px;
+        font-size: 16.1px;
+    }
 `;
