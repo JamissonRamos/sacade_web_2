@@ -1,25 +1,35 @@
 import React, { useEffect, useState } from 'react'
-import { Badge, Button, Form, Modal } from 'react-bootstrap'
+import { Alert, Badge, Button, Form, Modal, Spinner } from 'react-bootstrap'
 import { TextC } from '../../../components/Typography'
 import * as S from './styled'
+import { useUsers } from '../../../hooks/users';
 
 const ChangeRegistrationModal = ({data, showModal, handleClose}) => {
     const [error, setError] = useState(null);
     const [labelChecked, setLabelChecked] = useState('');
     const {uid, firstName, lastName, status, statusActive} = data || " ";
+    // console.log(uid);
+    
+    const { UpdateUser, errorUpdate, isLoadingUpdate } = useUsers.usePostDocumentsID();
 
+   console.log(errorUpdate);
+   
+    
     const [formData, setFormData] = useState({
+        uid: '',
         status: '',
-        activeUser: '', 
+        statusActive: '', 
     });
 
+    // console.log(formData);
+    
     // UseEffect para carregar o valor do status e preencher o formulário
     useEffect(() => {
         if (data) {
             setFormData({
                 //...formData,
                 status: status || '', // Preenche o status recebido
-                activeUser: statusActive || false // Se houver um valor ativo, ele será atribuído
+                statusActive: statusActive || false // Se houver um valor ativo, ele será atribuído
             });
             setLabelChecked(
                 statusActive ? 'Ativado' : 'Bloqueado'
@@ -52,21 +62,20 @@ const ChangeRegistrationModal = ({data, showModal, handleClose}) => {
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setError(null);
-        // Se for checkbox, usa o valor de 'checked', senão usa 'value'
-        setFormData({
-            ...formData,
-            [name]: type === 'checkbox' ? checked : value
-        });
-
-        if(name === "activeUser") {
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: type === 'checkbox' ? checked : value,
+            uid: uid // Adiciona o uid aqui
+        }));
+        if(name === "statusActive") {
             setLabelChecked(
-                formData.activeUser ? 'Bloqueado' : 'Ativado'
+                formData.statusActive ? 'Bloqueado' : 'Ativado'
             )
         }
     };
     
     // Função para lidar com o submit do formulário
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
          // Validação do campo 'status'
@@ -74,8 +83,13 @@ const ChangeRegistrationModal = ({data, showModal, handleClose}) => {
             setError("Por favor, selecione um Status valido.");
             return; // Interrompe o envio do formulário
         }
+
         // Exibe os valores capturados
         console.log('Form Data:', formData);
+
+        let result =  await UpdateUser(formData);
+
+        console.log(result);
 
         handleCloseModal()
     };
@@ -116,7 +130,7 @@ const ChangeRegistrationModal = ({data, showModal, handleClose}) => {
                             value={formData.status}
                             onChange={handleChange}
                             isInvalid={!!error} //!!error
-                        >
+                            >
                             <option value="">Selecione um Status</option>
                             <option value="Administrador">Administrador</option>
                             <option value="Assistente">Assistente</option>
@@ -129,20 +143,52 @@ const ChangeRegistrationModal = ({data, showModal, handleClose}) => {
                     <Form.Group className="p-1">
                         <Form.Check 
                             type="switch"
-                            name="activeUser"
+                            name="statusActive"
                             label={'Usuário ' + labelChecked}
-                            checked={formData.activeUser}
+                            checked={formData.statusActive}
                             onChange={handleChange}
                         />
                     </Form.Group>
                 </Form>
+                {/* {
+                    isLoadingUpdate &&
+                    <>
+                        <Spinner
+                            as="span"
+                            animation="border"
+                            role="status"
+                            aria-hidden="true"
+                            variant={'wrang'}
+                        />
+                        <span className="sr-only">Carregando os dados...</span>
+                    </>
+                } */}
+                {
+                    errorUpdate && <Alert variant={'danger'}> {errorUpdate} </Alert>
+                }
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleCloseModal}>
                     Fechar
                 </Button>
-                <Button variant="primary" type='submit' onClick={handleSubmit}> 
-                    Salvar Mudanças
+                <Button 
+                    variant="primary" 
+                    type='submit' 
+                    disabled= { isLoadingUpdate ? true : false}
+                    onClick={handleSubmit}> 
+                        { isLoadingUpdate ?
+                            <>
+                                <Spinner
+                                    as="span"
+                                    animation="border"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                />
+                                <span className="sr-only"> Salvando mudança... </span>
+                            </> :
+                            <span>Salvar Mudanças</span>
+                        }
                 </Button>
             </Modal.Footer>
         </Modal>
