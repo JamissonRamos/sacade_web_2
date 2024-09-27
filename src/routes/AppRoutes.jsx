@@ -67,9 +67,14 @@ const AppContent = () => {
                                     </ProtectedRoute>
                                 } />
                                 <Route path="/noticeAuthorization" element={
-                                    <ProtectedRoute page='NoticeAuthorization'>
+                                    // <ProtectedRoute page='NoticeAuthorization'>
                                         <Pages.NoticeAuthorization /> 
-                                    </ProtectedRoute>
+                                    // </ProtectedRoute>
+                                } />
+                                <Route path="/userblocked" element={
+                                    // <ProtectedRoute page='NoticeAuthorization'>
+                                        <Pages.Userblocked /> 
+                                    // </ProtectedRoute>
                                 } />
                             </Routes>
                         </main>

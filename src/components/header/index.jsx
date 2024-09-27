@@ -20,14 +20,11 @@ const Header = () => {
             <Badge bg="warning" >
               Status: {status}
             </Badge>
-          :
-            <Badge bg="success" >
-              Status: {status}
-            </Badge>
-        }
-        {
-          status === 'Assistente' &&
+          :status === 'Assistente' ?
             <Badge bg="info" >
+              Status: {status}
+            </Badge>:
+            <Badge bg="success" >
               Status: {status}
             </Badge>
         }

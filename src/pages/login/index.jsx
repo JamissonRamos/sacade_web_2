@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../validations'
 import { useLogin } from '../../hooks/login';
 
+
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -30,7 +31,6 @@ const Login = () => {
     result = await loginIn(data)
 
     if (result.success){
-      
       navigate('/')
     }
     
