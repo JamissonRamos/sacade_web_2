@@ -5,7 +5,7 @@ import { TextC } from '../../components/Typography';
 import { useScreenWidth } from '../../hooks/screenWidth';
 import CardList from './cardList';
 import { useUsers } from '../../hooks/users';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LoadingOverlay } from '../../components/spinner/global/styled';
 import { Alert, Spinner } from 'react-bootstrap';
 
@@ -16,21 +16,20 @@ const UserLevel = () => {
 
   const { documents, isLoading, error } = useUsers.useGetDocuments()
 
+  const fetchDocuments = async () => {
+      const result = await documents();
+      if(result.success){
+        setRegistered({
+          success: result.success,
+          data: result.data
+        }) // Exibe o resultado no console
+      }
+  };
+  
   useEffect(() => {
-    const fetchDocuments = async () => {
-        const result = await documents();
-        if(result.success){
-          setRegistered(
-            {
-              success: result.success,
-              data: result.data
-            }
-          ) // Exibe o resultado no console
-        }
-    };
-
     fetchDocuments();  // Chama a função ao renderizar o componente
-  }, [documents]);
+  }, []);
+
 
   return (
     <WrapPages >
@@ -65,7 +64,7 @@ const UserLevel = () => {
           </S.Empty> 
         :
           <S.BodyPage>
-            { isValueScreen ?  <CardList data={registered.data}/> : <List data={registered.data}/>  }
+            { isValueScreen ?  <CardList data={registered.data}  onUserUpdate={fetchDocuments}/> : <List data={registered.data} onUserUpdate={fetchDocuments}/>  }
           </S.BodyPage>
       } 
 

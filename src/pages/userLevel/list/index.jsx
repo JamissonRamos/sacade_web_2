@@ -1,12 +1,11 @@
 import * as S from './styled';
 import { TextC } from '../../../components/Typography'
-import { Badge, Button, Form, Modal } from 'react-bootstrap';
+import { Badge, Button} from 'react-bootstrap';
 import { Theme } from '../../../theme';
 import { useState } from 'react';
 import ChangeRegistrationModal from '../modal';
 
-
-const List = ({data}) => {
+const List = ({data, onUserUpdate}) => {
   const [showModal, setShowModal] = useState(false);
   const [dataUserModal, setDataUserModal] = useState(null)
 
@@ -36,7 +35,6 @@ const List = ({data}) => {
   const handleShow = () => { 
     setShowModal(true)
   };
-    // console.log(dataUserModal);
 
   return (
       <S.Content>
@@ -90,7 +88,7 @@ const List = ({data}) => {
 
         </S.TableBody>
         
-        <ChangeRegistrationModal data={dataUserModal} showModal={showModal} handleClose={handleClose}  />
+        <ChangeRegistrationModal data={dataUserModal} showModal={showModal} handleClose={handleClose} onUserUpdate={onUserUpdate} />
       </S.Content>
   );
 

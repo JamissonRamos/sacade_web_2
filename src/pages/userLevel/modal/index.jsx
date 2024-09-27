@@ -4,25 +4,18 @@ import { TextC } from '../../../components/Typography'
 import * as S from './styled'
 import { useUsers } from '../../../hooks/users';
 
-const ChangeRegistrationModal = ({data, showModal, handleClose}) => {
+const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) => {
     const [error, setError] = useState(null);
     const [labelChecked, setLabelChecked] = useState('');
     const {uid, firstName, lastName, status, statusActive} = data || " ";
-    // console.log(uid);
-    
-    const { UpdateUser, errorUpdate, isLoadingUpdate } = useUsers.usePostDocumentsID();
 
-   console.log(errorUpdate);
-   
-    
+    const { UpdateUser, errorUpdate, isLoadingUpdate } = useUsers.usePostDocumentsID();
     const [formData, setFormData] = useState({
         uid: '',
         status: '',
         statusActive: '', 
     });
 
-    // console.log(formData);
-    
     // UseEffect para carregar o valor do status e preencher o formulário
     useEffect(() => {
         if (data) {
@@ -84,14 +77,12 @@ const ChangeRegistrationModal = ({data, showModal, handleClose}) => {
             return; // Interrompe o envio do formulário
         }
 
-        // Exibe os valores capturados
-        console.log('Form Data:', formData);
-
         let result =  await UpdateUser(formData);
 
-        console.log(result);
-
-        handleCloseModal()
+        if (result.success) {
+            onUserUpdate() //função que vem do index
+            handleCloseModal()
+        }
     };
 
     const handleCloseModal = () => {
@@ -150,19 +141,6 @@ const ChangeRegistrationModal = ({data, showModal, handleClose}) => {
                         />
                     </Form.Group>
                 </Form>
-                {/* {
-                    isLoadingUpdate &&
-                    <>
-                        <Spinner
-                            as="span"
-                            animation="border"
-                            role="status"
-                            aria-hidden="true"
-                            variant={'wrang'}
-                        />
-                        <span className="sr-only">Carregando os dados...</span>
-                    </>
-                } */}
                 {
                     errorUpdate && <Alert variant={'danger'}> {errorUpdate} </Alert>
                 }
@@ -185,7 +163,7 @@ const ChangeRegistrationModal = ({data, showModal, handleClose}) => {
                                     role="status"
                                     aria-hidden="true"
                                 />
-                                <span className="sr-only"> Salvando mudança... </span>
+                                <span className="sr-only"> Salvando Alterações... </span>
                             </> :
                             <span>Salvar Mudanças</span>
                         }

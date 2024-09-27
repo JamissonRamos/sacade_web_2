@@ -1,17 +1,12 @@
 import React, { useState } from 'react'
 import * as S from './styled'
-import { useNavigate } from 'react-router-dom'
 import { Badge, Button } from 'react-bootstrap'
 import { Theme } from '../../../theme'
 import ChangeRegistrationModal from '../modal'
-import { TextC } from '../../../components/Typography'
 
-
-const CardList = ({data}) => {
+const CardList = ({data, onUserUpdate}) => {
     const [showModal, setShowModal] = useState(false);
     const [dataUserModal, setDataUserModal] = useState(null);
-
-    const navigate = useNavigate();
 
     const handleBadge = (status) => 
     {
@@ -34,6 +29,7 @@ const CardList = ({data}) => {
     
         return bg 
     }
+    
     const handleClose = () => setShowModal(false);
 
     const handleShow = () => setShowModal(true);
@@ -70,7 +66,7 @@ const CardList = ({data}) => {
                 ))
             }
 
-            <ChangeRegistrationModal data={dataUserModal} showModal={showModal} handleClose={handleClose}  />
+            <ChangeRegistrationModal data={dataUserModal} showModal={showModal} handleClose={handleClose}  onUserUpdate={onUserUpdate}/>
         </S.Container>
     )
 }
