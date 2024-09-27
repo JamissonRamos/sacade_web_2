@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import * as S from './styled'
-import { Badge, Button } from 'react-bootstrap'
-import { Theme } from '../../../theme'
+import { Badge } from 'react-bootstrap'
 import ChangeRegistrationModal from '../modal'
 
 const CardList = ({data, onUserUpdate}) => {
@@ -40,8 +39,7 @@ const CardList = ({data, onUserUpdate}) => {
                 data && data.map(({uid, firstName, lastName, status, statusActive}) => (
                     <S.WrapButton 
                         key={uid}
-                        onClick={() => console.log('Clicou em :' , uid)}>
-
+                        onClick={() => {setDataUserModal({uid,firstName,lastName,status,statusActive}), handleShow()}}>
                         <S.Card>
                             <S.CircleFirstLetterNome>
                                 {firstName && firstName.charAt(0)}
