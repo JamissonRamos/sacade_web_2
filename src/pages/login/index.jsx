@@ -28,7 +28,9 @@ const Login = () => {
   const onSubmit = async (data) => {
     let result;
     result = await loginIn(data)
+
     if (result.success){
+      
       navigate('/')
     }
     

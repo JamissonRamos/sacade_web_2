@@ -24,12 +24,13 @@ export const useLoginIn = () => {
             getDoc = await getDocumentById('users', checkLogin.uid)
             // console.log(getDoc);
             if(getDoc.success){
-                const {uid, firstName, lastName, status } = getDoc;
+                const {uid, firstName, lastName, status, statusActive } = getDoc;
                 const newDocUserIN = {
                     id: uid, 
                     firstName: firstName, 
                     lastName: lastName, 
-                    status: status
+                    status: status,
+                    statusActive: statusActive
                 }
                 // Armazena o usuário no sessionStorage ao logar
                 sessionStorage.setItem('userLogged', JSON.stringify(newDocUserIN));
