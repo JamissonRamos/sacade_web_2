@@ -2,13 +2,10 @@ import * as S from './styled';
 import { TextC } from '../../../components/Typography'
 import { Badge, Button} from 'react-bootstrap';
 import { Theme } from '../../../theme';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import ChangeRegistrationModal from '../modal';
 
-const List = ({data, onUserUpdate}) => {
-  const [showModal, setShowModal] = useState(false);
-  const [dataUserModal, setDataUserModal] = useState(null)
+const List = ({data}) => {
   const navigate = useNavigate();
 
   const handleBadge = (status) => 
@@ -32,12 +29,8 @@ const List = ({data, onUserUpdate}) => {
 
     return bg 
   }
-  const handleClose = () => setShowModal(false);
 
-  const handleShow = (uid) => { 
-    console.log('clicou');
-    
-    // navigate(`/users/form_update/${ state: { uid: userData.uid } }`)
+  const handleShowFormUpdate = (uid) => { 
     navigate('/users/form_update', { state: { uid: uid } });
   };
 
@@ -61,7 +54,7 @@ const List = ({data, onUserUpdate}) => {
         </S.TableHeader>
         <S.TableBody>
           {
-            data && data.map(({uid, firstName, lastName, status, statusActive }, i) => (
+            data && data.map(({uid, firstName, lastName, status }, i) => (
               <S.TableRow key={i}>
                 <S.TableBodyCell $flex={.1}>
                   <TextC.Body level={1}>{1 + i}</TextC.Body>
@@ -83,8 +76,8 @@ const List = ({data, onUserUpdate}) => {
                   <Button
                     variant="outline-success"
                     size="sm"
-                    // onClick={() => {setDataUserModal({uid,firstName,lastName,status,statusActive}), handleShow()}}>
-                    onClick={() => handleShow(uid)}>
+                    onClick={() => handleShowFormUpdate(uid)}
+                  >
                     <Theme.Icons.MdModeEdit />
                   </Button>
                 </S.TableBodyCell>
@@ -92,9 +85,7 @@ const List = ({data, onUserUpdate}) => {
             ))
           }
 
-        </S.TableBody>
-        
-        {/* <ChangeRegistrationModal data={dataUserModal} showModal={showModal} handleClose={handleClose} onUserUpdate={onUserUpdate} /> */}
+        </S.TableBody>  
       </S.Content>
   );
 

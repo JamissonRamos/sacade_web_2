@@ -68,7 +68,7 @@ const Users = () => {
           </S.Empty> 
         :
           <S.BodyPage>
-            { isValueScreen ?  <CardList data={registered.data}  onUserUpdate={fetchDocuments}/> : <List data={registered.data} onUserUpdate={fetchDocuments}/>  }
+            { isValueScreen ?  <CardList data={registered.data}/> : <List data={registered.data}/>  }
           </S.BodyPage>
       } 
     </WrapPages>

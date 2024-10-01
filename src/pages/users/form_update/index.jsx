@@ -14,16 +14,7 @@ import { Theme } from '../../../theme';
 import { searchCep } from '../../../services/cep';
 
 
-const capitalizedValue = (e) => {
-    const inputValue = e.target.value;
-    // Capitaliza a primeira letra de cada palavra
-    const capitalizedWords = inputValue.split(' ').map(word => {
-        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    });
-    const newValue = capitalizedWords.join(' ');
-    return newValue
-    // setValue(e.target.name, newValue); // Atualiza o valor no React Hook Form
-};
+
 
 const FormUpdate = () => {
     const location = useLocation();  // Captura o UID da URL
@@ -32,7 +23,8 @@ const FormUpdate = () => {
     const [cep, setCep] = useState(''); // Gerencia o estado do CEP
     const [msgBox, setMsgBox] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-
+    const [isLoadingUpdate, setIsisLoadingUpdate] = useState(false); //fazer teste deois apagar quando gerar a função de update
+  
     const { documents, isLoading: loadingFetchDocument, error: fetchError  } = useUsers.useGetDocuments()
 
     const fetchDocuments = async () => {
@@ -52,6 +44,17 @@ const FormUpdate = () => {
     const { register, handleSubmit, setValue, reset, getValues, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.UserUpdateSchema)
     }); 
+
+    const capitalizedValue = (e) => {
+        const inputValue = e.target.value;
+        // Capitaliza a primeira letra de cada palavra
+        const capitalizedWords = inputValue.split(' ').map(word => {
+            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        });
+        const newValue = capitalizedWords.join(' ');
+        //return newValue
+        setValue(e.target.name, newValue); // Atualiza o valor no React Hook Form
+    };
 
     // const { createUser, isLoadingCreate, errorCreate } = useUsers.useCreate();
 
@@ -85,7 +88,6 @@ const FormUpdate = () => {
                 setValue('city', response.data.city);
                 setValue('federativeUnit', response.data.federativeUnit);
                 // setResidenceNumber(true)
-                setMsgBox({variant: 'success', message:'Endereço encontrado com sucesso!'});
             } else {
                 setMsgBox({variant: 'danger', message: response.message});
             // resetSelectedFields()
@@ -116,7 +118,10 @@ const FormUpdate = () => {
     }
     
     const onSubmitForm = async (data) => { 
+
+        setIsisLoadingUpdate(true)
         console.log(data);
+        setIsisLoadingUpdate(false)
         
         // changeStep(currentStep + 1)
         // if(currentStep + 1 === formFields.length){
@@ -163,8 +168,8 @@ const FormUpdate = () => {
 
             <S.BodyPage>
                 <Container >
-                    <Form>
-                        <Row className="mb-2">
+                    <Form onSubmit={handleSubmit(onSubmitForm)}>
+                        <Row className="mb-2 p-1 ">
                             <Form.Group className="mb-2" controlId="formGridFirstName">
                                 <Form.Label> Nome </Form.Label>
                                 <Form.Control 
@@ -173,45 +178,32 @@ const FormUpdate = () => {
                                     placeholder="Digite seu primeiro nome" 
                                     {...register("firstName")}
                                     isInvalid={!!errors.firstName}
-                                    onChange={(e) => setValue(e.target.name, capitalizedValue(e))}
+                                    setValue={setValue}
+                                    onBlur={(e) => capitalizedValue(e)}
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     {errors.firstName && errors.firstName.message}
                                 </Form.Control.Feedback>
                             </Form.Group>
                         </Row>
-                        <Row className="mb-2">
+                        <Row className="mb-2 p-1">
                             <Form.Group as={Col} className="mb-2" controlId="formGridLastName">
-                            <Form.Label>Sobrenome</Form.Label>
-                            <Form.Control 
-                                type="text"  
-                                name='lastName' 
-                                placeholder="Digite seu segundo nome" 
-                                {...register("lastName")}
-                                isInvalid={!!errors.lastName} 
-                                onChange={(e) => setValue(e.target.name, capitalizedValue(e))}
-                            />
+                                <Form.Label>Sobrenome</Form.Label>
+                                <Form.Control 
+                                    type="text"  
+                                    name='lastName' 
+                                    placeholder="Digite seu segundo nome" 
+                                    {...register("lastName")}
+                                    isInvalid={!!errors.lastName} 
+                                    setValue={setValue}
+                                    onBlur={(e) => capitalizedValue(e)}
+                                />
                             <Form.Control.Feedback type="invalid" >
                                 {errors.lastName && errors.lastName.message}
                             </Form.Control.Feedback>
                             </Form.Group>
                         </Row>
-                        <Row className="mb-2">
-                            <Form.Group className="mb-2" controlId="formGridEmail">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control 
-                                    type="email" 
-                                    name='emailUser' 
-                                    placeholder="Digite seu email" 
-                                    {...register("emailUser")}
-                                    isInvalid={!!errors.emailUser} //
-                                    />
-                                    <Form.Control.Feedback type="invalid" >
-                                    {errors.emailUser && errors.emailUser.message}
-                                    </Form.Control.Feedback>
-                            </Form.Group>
-                        </Row>
-                        <Row className="mb-2">
+                        <Row className="mb-2 p-1">
                             <Col lg={4}  >
                                 <Form.Group  className="mb-2" controlId="formGridPhoneUsers">
                                     <Form.Label>Celular</Form.Label>
@@ -221,10 +213,14 @@ const FormUpdate = () => {
                                         placeholder="Digite seu celular" 
                                         {...register("phoneUsers")}
                                         onChange={handleChange}
+                                        isInvalid={!!errors.phoneUsers} 
                                     />
+                                    <Form.Control.Feedback type="invalid" >
+                                        {errors.phoneUsers && errors.phoneUsers.message}
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
-                            <Col lg={4}  >
+                            <Col lg={4}>
                                 <Form.Group className="mb-2" controlId="formGridBirthDate">
                                     <Form.Label>Data Nascimento</Form.Label>
                                     <Form.Control 
@@ -233,12 +229,12 @@ const FormUpdate = () => {
                                         {...register("birthDate")}
                                         isInvalid={!!errors.birthDate} 
                                         />
-                                        <Form.Control.Feedback type="invalid" >
-                                            {errors.birthDate && errors.birthDate.message}
-                                        </Form.Control.Feedback>
+                                    <Form.Control.Feedback type="invalid" >
+                                        {errors.birthDate && errors.birthDate.message}
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
-                            <Col lg={4}  >
+                            <Col lg={4}>
                                 <Form.Group className="mb-2" controlId="formGridGender">
                                     <Form.Label>Gênero</Form.Label>
                                     <Form.Select
@@ -258,7 +254,7 @@ const FormUpdate = () => {
                                 </Form.Group>
                             </Col>
                         </Row>
-                        <Row className="mb-2">
+                        <Row className="mb-2 p-1">
                             <Col lg={4}>
                                 <Form.Group className="mb-2" controlId="formGridCep">
                                     <Form.Label>Cep</Form.Label>
@@ -271,7 +267,7 @@ const FormUpdate = () => {
                                             onChange={(e) => handleChange(e)} // Captura a mudança no input
                                         />
                                         <Button 
-                                        className="d-flex align-items-center gap-2"
+                                            className="d-flex align-items-center gap-2"
                                             variant='success'
                                             onClick={() => handleOnClickCep(cep)}
                                             disabled={isLoading ? true : false}
@@ -286,7 +282,7 @@ const FormUpdate = () => {
                                                     aria-hidden="true"
                                                 />
                                             }
-                                            <Theme.Icons.MdSearch />
+                                            <Theme.Icons.MdSearch />    
                                         </Button>
                                     </InputGroup>
                                     
@@ -296,7 +292,7 @@ const FormUpdate = () => {
                                 </Form.Group>
                             </Col>
                             <Col lg={8}>
-                                <Form.Group className="mb-4" controlId="formGridLogadouro">
+                                <Form.Group className="mb-2" controlId="formGridLogadouro">
                                     <Form.Label >Logadouro</Form.Label>
                                     <Form.Control 
                                         type="text" 
@@ -308,7 +304,7 @@ const FormUpdate = () => {
                                 </Form.Group>             
                             </Col>
                         </Row>
-                        <Row className="mb-2">
+                        <Row className="mb-2 p-1">
                             <Col lg={4}>
                                 <Form.Group className="mb-2" controlId="formGridResidenceNumber">
                                     <Form.Label>Número Residencia</Form.Label>
@@ -329,7 +325,7 @@ const FormUpdate = () => {
                                 </Form.Group>
                             </Col>
                             <Col lg={8}>
-                                <Form.Group className="mb-4" controlId="formGridNeighborhood">
+                                <Form.Group className="mb-2" controlId="formGridNeighborhood">
                                     <Form.Label >Bairro</Form.Label>
                                     <Form.Control 
                                         type="text" 
@@ -341,9 +337,9 @@ const FormUpdate = () => {
                                 </Form.Group>
                             </Col>
                         </Row>
-                        <Row className="mb-2">
+                        <Row className="mb-2 p-1">
                             <Col lg={4}>
-                                <Form.Group className="mb-4" controlId="formGridFederativeUnit">
+                                <Form.Group className="mb-2" controlId="formGridFederativeUnit">
                                     <Form.Label>UF</Form.Label>
                                     <Form.Control 
                                         type="text"  
@@ -356,7 +352,7 @@ const FormUpdate = () => {
                             </Col>
 
                             <Col lg={8}>
-                                <Form.Group className="mb-4" controlId="formGridCity">
+                                <Form.Group className="mb-2" controlId="formGridCity">
                                     <Form.Label>Cidade</Form.Label>
                                     <Form.Control 
                                         type="text"  
@@ -368,7 +364,7 @@ const FormUpdate = () => {
                                     </Form.Group>
                             </Col>
                         </Row>
-                        <Row className="mt-3">
+                        <Row className="mt-3 ">
                             <S.WrapButtonDelete>
                                 <Button
                                     variant="outline-danger"
@@ -385,7 +381,7 @@ const FormUpdate = () => {
                                     variant="success"
                                     size='sm'
                                     type='submit'
-                                    // disabled={isLoadingCreate ? true : false}
+                                    disabled={isLoadingUpdate ? true : false}
                                 >
                                     <Theme.Icons.MdUpdate />
                                     <span>Atualizar</span>
@@ -393,7 +389,6 @@ const FormUpdate = () => {
                                 <Button
                                     variant="outline-danger"
                                     size='sm'
-                                    type='submit'
                                     // disabled={isLoadingCreate ? true : false}
                                 >
                                     <Theme.Icons.MdClose />

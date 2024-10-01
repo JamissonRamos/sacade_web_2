@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import * as S from './styled'
 import { Badge } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom';
 // import ChangeRegistrationModal from '../modal'
 
-const CardList = ({data, onUserUpdate}) => {
-    const [showModal, setShowModal] = useState(false);
-    const [dataUserModal, setDataUserModal] = useState(null);
+const CardList = ({data}) => {
+    const navigate = useNavigate();
 
     const handleBadge = (status) => 
     {
@@ -28,18 +28,18 @@ const CardList = ({data, onUserUpdate}) => {
     
         return bg 
     }
-    
-    const handleClose = () => setShowModal(false);
 
-    const handleShow = () => setShowModal(true);
+    const handleShowFormUpdate = (uid) => { 
+        navigate('/users/form_update', { state: { uid: uid } });
+    };
 
     return (
         <S.Container>
             {
-                data && data.map(({uid, firstName, lastName, status, statusActive}) => (
+                data && data.map(({uid, firstName, lastName, status}) => (
                     <S.WrapButton 
                         key={uid}
-                        onClick={() => {setDataUserModal({uid,firstName,lastName,status,statusActive}), handleShow()}}>
+                        onClick={() => handleShowFormUpdate(uid)}>
                         <S.Card>
                             <S.CircleFirstLetterNome>
                                 {firstName && firstName.charAt(0)}
@@ -58,8 +58,6 @@ const CardList = ({data, onUserUpdate}) => {
                     </S.WrapButton>
                 ))
             }
-
-            {/* <ChangeRegistrationModal data={dataUserModal} showModal={showModal} handleClose={handleClose}  onUserUpdate={onUserUpdate}/> */}
         </S.Container>
     )
 }
