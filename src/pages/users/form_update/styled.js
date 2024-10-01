@@ -63,6 +63,10 @@ export const BodyPage = styled.div`
             color: ${Theme.Colors.green800};
         };
     }
+
+    @media (max-width: 425px) {
+        max-height: 80%;
+    }
 `;
 
 export const WrapButtonDelete = styled.div`
