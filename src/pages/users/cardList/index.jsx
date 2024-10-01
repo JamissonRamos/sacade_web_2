@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import * as S from './styled'
 import { Badge } from 'react-bootstrap'
-import ChangeRegistrationModal from '../modal'
+// import ChangeRegistrationModal from '../modal'
 
 const CardList = ({data, onUserUpdate}) => {
     const [showModal, setShowModal] = useState(false);
@@ -59,7 +59,7 @@ const CardList = ({data, onUserUpdate}) => {
                 ))
             }
 
-            <ChangeRegistrationModal data={dataUserModal} showModal={showModal} handleClose={handleClose}  onUserUpdate={onUserUpdate}/>
+            {/* <ChangeRegistrationModal data={dataUserModal} showModal={showModal} handleClose={handleClose}  onUserUpdate={onUserUpdate}/> */}
         </S.Container>
     )
 }

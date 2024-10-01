@@ -18,6 +18,7 @@ export const Icons = {
     MdSearch:                   MD.MdSearch,
     MdDelete:                   MD.MdDelete,
     MdEdit:                     MD.MdEdit,
+    MdUpdate:                   MD.MdUpdate,
     MdAdd:                      MD.MdAdd,
     MdClose:                    MD.MdClose,
     MdLock:                     MD.MdLock,

@@ -1,6 +1,7 @@
 import  Home  from './home';
 import Students from './students';
 import Users  from './users';
+import FormUpdate from './users/form_update';
 import Register from './register';
 import Payments from './payments';
 import ChangePassword from './changePassword'
@@ -13,6 +14,7 @@ export const Pages = {
     Home,
     Students,
     Users,
+    FormUpdate,
     Register,
     Payments,
     ChangePassword,
