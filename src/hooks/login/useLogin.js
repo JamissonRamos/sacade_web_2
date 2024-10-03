@@ -1,17 +1,16 @@
 import { useState } from "react";
 import { useAuth  } from "../../contexts/authContext/AuthContex";
-import { useCollectionID } from "../../hooks/firebase/useCollectionID"
+import { useGetCollectionID } from "../../hooks/firebase/useGetCollectionID"
+
 export const useLoginIn = () => {
     const [isLoadingLogin, setIsLoadingLogin] = useState(false);
     const [errorLogin, setErrorLogin] = useState(null);
     const { login, setCurrentUser } = useAuth();
-    const { getDocumentById } = useCollectionID();
+    const { getDocumentById } = useGetCollectionID();
     
 
     const loginIn = async (data) => {
         const {email, password} = data;
-        // console.log(email);
-        // console.log(password);
 
         setIsLoadingLogin(true);
         setErrorLogin(null);
@@ -19,12 +18,10 @@ export const useLoginIn = () => {
         try {
             let checkLogin;
             checkLogin = await login(email, password);
-            // console.log(checkLogin);
             let getDoc;
             getDoc = await getDocumentById('users', checkLogin.uid)
-            // console.log(getDoc);
             if(getDoc.success){
-                const {uid, firstName, lastName, status, statusActive } = getDoc;
+                const {uid, firstName, lastName, status, statusActive } = getDoc.data;
                 const newDocUserIN = {
                     id: uid, 
                     firstName: firstName, 

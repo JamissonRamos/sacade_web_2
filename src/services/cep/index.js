@@ -1,7 +1,11 @@
+import { useCallback, useState } from "react";
 
-export const searchCep = async (cep) => 
-    {   
-    
+
+export const useSearchCep = () => {  
+    const [isLoading, setIsLoading] = useState(false);
+
+    const fetchCep = useCallback( async (cep) => {
+        setIsLoading(true)
         try {
             const resp = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
             const data = await resp.json();
@@ -25,5 +29,14 @@ export const searchCep = async (cep) =>
         } catch (error) {
             console.error('Erro ao buscar o CEP:', error);
             return { success: false, message: 'Erro ao buscar o CEP. Tente novamente.' };
+        }finally{ 
+            setIsLoading(false)
         }
+
+    }, [] )
+
+    return{
+        fetchCep,
+        isLoading
     }
+}

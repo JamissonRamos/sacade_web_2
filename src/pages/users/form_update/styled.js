@@ -68,23 +68,6 @@ export const BodyPage = styled.div`
         max-height: 80%;
     }
 `;
-
-export const WrapButtonDelete = styled.div`
-    /* border: 1px solid red; */
-    width: 50%;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 2rem;
-    margin: 0 auto;
-    & button {
-        ${StyledButton}
-    }
-    @media (max-width: 768px) {
-        width: 100%;
-    }
-`;
 export const WrapButtonUpdateCancel = styled.div`
     /* border: 1px solid red; */
     width: 100%;

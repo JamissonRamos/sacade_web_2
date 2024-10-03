@@ -4,13 +4,15 @@ import * as S from './styled'
 import { Theme } from '../../../../theme'
 import { useState } from 'react'
 import { mask } from 'remask';
-import { searchCep } from '../../../../services/cep'
+import { useSearchCep } from '../../../../services/cep'
 
 const Address = ({register, setValue, getValues, reset}) => {    
   const [cep, setCep] = useState(''); // Gerencia o estado do CEP
   const [residenceNumber, setResidenceNumber] = useState(false); // Gerencia o estado do CEP
   const [msgBox, setMsgBox] = useState({variant: '', msg: ''}); // Gerencia o estado do CEP
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+
+  const {fetchCep, isLoading: loadingCep } = useSearchCep();
 
   const resetSelectedFields = () => {
     // Obtém os valores atuais do formulário
@@ -61,9 +63,9 @@ const Address = ({register, setValue, getValues, reset}) => {
         return
       }
       
-      try {  
-        setIsLoading(true)
-        const response = await searchCep(cep); // Chama a função do script e aguarda a resposta
+      // try {  
+        // setIsLoading(true)
+        const response = await fetchCep(cep); // Chama a função do script e aguarda a resposta
         if (response.success) {
           // Atualiza os valores dos campos com os dados recebidos  
           setValue('logadouro', response.data.logadouro);
@@ -77,12 +79,12 @@ const Address = ({register, setValue, getValues, reset}) => {
           resetSelectedFields()
         }
             
-      } catch (error) {
+      // } catch (error) {
         setMsgBox({variant: 'danger', msg: "Erro ao busca cep: " +  error.message});
         console.error('Erro ao busca cep:' + error);
-      }finally {
-        setIsLoading(false); // Garante que o estado seja atualizado no final
-      }
+      // }finally {
+      //   setIsLoading(false); // Garante que o estado seja atualizado no final
+      // }
   }
   
   return (
@@ -111,10 +113,10 @@ const Address = ({register, setValue, getValues, reset}) => {
               <Button 
                 variant='success'
                 onClick={() => handleOnClickCep(cep)}
-                disabled={isLoading ? true : false}
+                disabled={loadingCep ? true : false}
                 >
                   {
-                    isLoading ? 
+                    loadingCep ? 
                       <Spinner
                         as="span"
                         animation="border"

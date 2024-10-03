@@ -1,150 +1,112 @@
-import React, { useEffect, useState } from 'react'
-import { useUsers } from '../../../hooks/users';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { Validations } from '../../validations/index';
-import { WrapPages } from '../../../components/Wrappe/pages';
-import { useLocation } from 'react-router-dom';
-import { LoadingOverlay } from '../../../components/spinner/global/styled';
-import { Alert, Button, Col, Container, Form, InputGroup, Row, Spinner } from 'react-bootstrap';
-import * as S from './styled';
-import { TextC } from '../../../components/Typography';
-import { mask } from 'remask';
-import { Theme } from '../../../theme';
-import { searchCep } from '../../../services/cep';
-
-
+//CSS
+    import * as S from './styled';
+//Hooks
+    import React, { useEffect, useState } from 'react'
+    import { useUsers } from '../../../hooks/users';
+    import { useForm } from 'react-hook-form';
+    import { yupResolver } from '@hookform/resolvers/yup';
+    import { Validations } from '../../validations/index';
+    import { useLocation, useNavigate } from 'react-router-dom';
+    import { unMask } from 'remask';
+    import { Theme } from '../../../theme';
+//Service
+    import { useSearchCep } from '../../../services/cep';
+//Components
+    import { Alert, Button, Col, Container, Form, InputGroup, Row, Spinner } from 'react-bootstrap';
+    import { WrapPages } from '../../../components/Wrappe/pages';
+    import { LoadingOverlay } from '../../../components/spinner/global/styled';
+    import { TextC } from '../../../components/Typography';
+//Script
+    import * as Script from './script'
 
 
 const FormUpdate = () => {
+    const [msgBox, setMsgBox] = useState(null);
+    
     const location = useLocation();  // Captura o UID da URL
     const { uid } = location.state || {};  // Captura o UID do estado de navegação
-    const [registered, setRegistered] = useState({})
-    const [cep, setCep] = useState(''); // Gerencia o estado do CEP
-    const [msgBox, setMsgBox] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isLoadingUpdate, setIsisLoadingUpdate] = useState(false); //fazer teste deois apagar quando gerar a função de update
-    
-    const { documents, isLoading: loadingFetchDocument, error: fetchError  } = useUsers.useGetDocuments()
+    const navigate = useNavigate();
 
-    const fetchDocuments = async () => {
-        const result = await documents();        
-            if(result.success){
-                setRegistered({
-                    success: result.success,
-                    data: result.data
-                }) // Exibe o resultado no console
-            }
-    };
-    
-    useEffect(() => {
-        fetchDocuments();  // Chama a função ao renderizar o componente
-    }, []);
-
+    const { documentsID, isLoading: loadingFetchDocument, error: fetchError  } = useUsers.useGetDocumentsID();
     const { register, handleSubmit, setValue, reset, getValues, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.UserUpdateSchema)
     }); 
+    const {fetchCep, isLoading: loadingCep } = useSearchCep();
+    const { UpdateUser, errorUpdate, isLoadingUpdate: isLoadingPostUpdate } = useUsers.usePostDocumentsID();
 
-    const capitalizedValue = (e) => {
-        const inputValue = e.target.value;
-        // Capitaliza a primeira letra de cada palavra
-        const capitalizedWords = inputValue.split(' ').map(word => {
-            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-        });
-        const newValue = capitalizedWords.join(' ');
-        //return newValue
-        setValue(e.target.name, newValue); // Atualiza o valor no React Hook Form
+    useEffect(() => {
+        handleFetchDocument()
+    }, []);
+
+    const handleFetchDocument = async () => {
+        const result = await documentsID(uid);  
+        const {success, data, message} = result;
+        if(success){
+            await Script.fetchDocumentID(data, setValue); // por enquanto passei as funções de handleChange e convertDate mais a ideia é retirar 
+        }else{
+            setMsgBox({variant: 'danger', message: message});
+        }
     };
 
-    // const { createUser, isLoadingCreate, errorCreate } = useUsers.useCreate();
-
-    // const formattedDate = (birthDate) => {
-    //     const newDate = new Date(birthDate);
-    //     const day = String(newDate.getDate()).padStart(2, '0');
-    //     const month = String(newDate.getMonth() + 1).padStart(2, '0'); // Mês começa em 0
-    //     const year = newDate.getFullYear();
-        
-    //     return `${day}/${month}/${year}`;
-    
-    // }
-
-    const handleOnClickCep = async (cep) => {
+    const handleOnClickCep = async () => {
         setMsgBox(null)
-        if (!cep){
+        const cepValue = getValues('cep');
+
+        if (!cepValue){
             setMsgBox({variant: 'danger', message: 'CEP não fornecido.'});
-            //resetSelectedFields()
-            return
+            return;
         }
+        const response = await fetchCep(cepValue); // Chama a função do script e aguarda a resposta
+        const { success, data, message} = response;
         
-        try {  
-            setIsLoading(true)
-                const response = await searchCep(cep); // Chama a função do script e aguarda a resposta
-                console.log(response);
-                
-                if (response.success) {
-                // Atualiza os valores dos campos com os dados recebidos  
-                setValue('logadouro', response.data.logadouro);
-                setValue('neighborhood', response.data.neighborhood);
-                setValue('city', response.data.city);
-                setValue('federativeUnit', response.data.federativeUnit);
-                // setResidenceNumber(true)
-            } else {
-                setMsgBox({variant: 'danger', message: response.message});
-            // resetSelectedFields()
-            }
-        } catch (error) {
-            setMsgBox({variant: 'danger', message: "Erro ao busca cep: " +  error.message});
-            console.error('Erro ao busca cep:' + error);
-        }finally {
-          setIsLoading(false); // Garante que o estado seja atualizado no final
+        if (success) {
+            // Atualiza os valores dos campos com os dados recebidos  
+            setValue('logadouro', data.logadouro);
+            setValue('neighborhood', data.neighborhood);
+            setValue('city', data.city);
+            setValue('federativeUnit', data.federativeUnit);
+        } else {
+            setMsgBox({variant: 'danger', message: message});
         }
+}
+
+    const handleChange = (key, value) => {
+        let maskedValue = Script.applyMask(key, value);
+        setValue(key, maskedValue)
     }
 
-    const handleChange = (e) => {
-        let maskedValue = e.target.value
-        let field = e.target.name;
-
-        if (field === 'phoneUsers')
-        {
-            maskedValue = mask(maskedValue, ['(99) 9 9999-9999']);
-        }else if(field === "cep"){
-            maskedValue = mask(maskedValue, ['99999-999']);
-            setCep(maskedValue)
-            
-        }
-        setValue(field, maskedValue)
-        field = '';
-        maskedValue = '';
+    const handleOnBlur = (event) => {
+        let field = event.target.name;
+        let inputValue = Script.capitalizedValue(event)
+        setValue(field, inputValue);
     }
     
     const onSubmitForm = async (data) => { 
+        data.uid = uid;
+        data.birthDate = Script.formattedDate(data.birthDate);
+        data.cep = unMask(data.cep);
+        data.phoneUsers = unMask(data.phoneUsers);
 
-        setIsisLoadingUpdate(true)
-        console.log(data);
-        setIsisLoadingUpdate(false)
-        
-        // changeStep(currentStep + 1)
-        // if(currentStep + 1 === formFields.length){
-        //     data.phoneUsers = unMask(data.phoneUsers);
-        //     data.birthDate = formattedDate(data.birthDate);
-        //     data.cep = unMask(data.cep);
-        //     data.status = "Visitante";
-        //     delete data.confirmPassword
-            
-        //     let result;
-        //     result = await createUser(data);
+        const resultPost = await UpdateUser(data);
 
-        //     if (result.success){
-        //         navigate(`/`)
-        //     }
-        // }
+        if (resultPost.success){
+                setMsgBox({variant: 'success', message: 'Dados Atualizado com sucesso!'});
+                setTimeout(() => {
+                    reset()
+                    navigate(`/users`)
+                }, 1000);
+        }
     } 
+
 
     return (
         
         <WrapPages>
             {
                 fetchError && <Alert variant={'danger'}> {fetchError} </Alert>
+            }
+            {
+                errorUpdate && <Alert variant={'danger'}> {errorUpdate} </Alert>
             }
             {
                 msgBox && <Alert variant={msgBox.variant}> {msgBox.message} </Alert>
@@ -170,7 +132,7 @@ const FormUpdate = () => {
                 <Container >
                     <Form onSubmit={handleSubmit(onSubmitForm)}>
                         <Row className="mb-2 p-1 ">
-                            <Form.Group className="mb-2" controlId="formGridFirstName">
+                            <Form.Group className="mb-2 " controlId="formGridFirstName">
                                 <Form.Label> Nome </Form.Label>
                                 <Form.Control 
                                     type="text" 
@@ -179,7 +141,7 @@ const FormUpdate = () => {
                                     {...register("firstName")}
                                     isInvalid={!!errors.firstName}
                                     setValue={setValue}
-                                    onBlur={(e) => capitalizedValue(e)}
+                                    onBlur={(e) => handleOnBlur(e)}
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     {errors.firstName && errors.firstName.message}
@@ -196,7 +158,7 @@ const FormUpdate = () => {
                                     {...register("lastName")}
                                     isInvalid={!!errors.lastName} 
                                     setValue={setValue}
-                                    onBlur={(e) => capitalizedValue(e)}
+                                    onBlur={(e) =>  handleOnBlur(e)}
                                 />
                             <Form.Control.Feedback type="invalid" >
                                 {errors.lastName && errors.lastName.message}
@@ -212,7 +174,7 @@ const FormUpdate = () => {
                                         name='phoneUsers' 
                                         placeholder="Digite seu celular" 
                                         {...register("phoneUsers")}
-                                        onChange={handleChange}
+                                        onChange={(e) => handleChange(e.target.name, e.target.value)} // Captura a mudança no input
                                         isInvalid={!!errors.phoneUsers} 
                                     />
                                     <Form.Control.Feedback type="invalid" >
@@ -258,22 +220,23 @@ const FormUpdate = () => {
                             <Col lg={4}>
                                 <Form.Group className="mb-2" controlId="formGridCep">
                                     <Form.Label>Cep</Form.Label>
-                                    <InputGroup >
+                                    <InputGroup>
                                         <Form.Control 
                                             type="text"  
                                             name='cep' 
                                             placeholder="Digite seu cep" 
                                             {...register("cep")}
-                                            onChange={(e) => handleChange(e)} // Captura a mudança no input
+                                            isInvalid={!!errors.cep}
+                                            onChange={(e) => handleChange(e.target.name, e.target.value)} // Captura a mudança no input
                                         />
                                         <Button 
                                             className="d-flex align-items-center gap-2"
                                             variant='success'
-                                            onClick={() => handleOnClickCep(cep)}
-                                            disabled={isLoading ? true : false}
+                                            onClick={handleOnClickCep}
+                                            disabled={loadingCep ? true : false}
                                         >
                                             {
-                                                isLoading &&
+                                                loadingCep &&
                                                 <Spinner
                                                     as="span"
                                                     animation="border"
@@ -284,43 +247,43 @@ const FormUpdate = () => {
                                             }
                                             <Theme.Icons.MdSearch />    
                                         </Button>
+                                        <Form.Control.Feedback type="invalid" >
+                                            {errors.cep && errors.cep.message}
+                                        </Form.Control.Feedback>
                                     </InputGroup>
                                     
-                                    <Form.Control.Feedback type="valid" >
-                                        {/* {msgBox.message && msgBox.message} */}
-                                    </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
                             <Col lg={8}>
-                                <Form.Group className="mb-2" controlId="formGridLogadouro">
+                                <Form.Group className="mb-2 p-1" controlId="formGridLogadouro">
                                     <Form.Label >Logadouro</Form.Label>
                                     <Form.Control 
                                         type="text" 
                                         name="logadouro"
                                         placeholder="Digite seu logadouro"
                                         {...register("logadouro")} 
-                                        onChange={(e) => capitalizedValue(e)}
+                                        isInvalid={!!errors.logadouro} 
+                                        onChange={(e) =>  handleOnBlur(e)}
                                     />
+                                    <Form.Control.Feedback type="invalid" >
+                                        {errors.logadouro && errors.logadouro.message}
+                                    </Form.Control.Feedback>
                                 </Form.Group>             
                             </Col>
                         </Row>
-                        <Row className="mb-2 p-1">
+                        <Row className="mb-2 ">
                             <Col lg={4}>
-                                <Form.Group className="mb-2" controlId="formGridResidenceNumber">
+                                <Form.Group className="mb-2 p-1" controlId="formGridResidenceNumber">
                                     <Form.Label>Número Residencia</Form.Label>
                                     <Form.Control 
                                         type="text"  
                                         name='residenceNumber' 
                                         placeholder="Número Residencia" 
                                         {...register("residenceNumber")}
-                                        // isInvalid={!!residenceNumber} 
+                                        isInvalid={!!errors.residenceNumber} 
                                     />
                                     <Form.Control.Feedback type="invalid" >
-                                        {/* Número Residência é obrigatório quando o CEP está preenchido  */}
-                                    </Form.Control.Feedback>
-                                    
-                                    <Form.Control.Feedback type="invalid" >
-                                        {/* {errors.gender && errors.gender.message} */}
+                                        {errors.residenceNumber && errors.residenceNumber.message}
                                     </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
@@ -332,8 +295,13 @@ const FormUpdate = () => {
                                         name="neighborhood"
                                         placeholder="Digite o nome do see bairro" 
                                         {...register("neighborhood")}
-                                        onChange={(e) => capitalizedValue(e)}
+                                        isInvalid={!!errors.neighborhood} 
+                                        onChange={(e) =>  handleOnBlur(e)}
                                     />
+
+                                    <Form.Control.Feedback type="invalid" >
+                                        {errors.neighborhood && errors.neighborhood.message}
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
                         </Row>
@@ -346,11 +314,14 @@ const FormUpdate = () => {
                                         name='federativeUnit' 
                                         placeholder="Nome estado UF" 
                                         {...register("federativeUnit")}
-                                        onChange={(e) => capitalizedValue(e)}
+                                        isInvalid={!!errors.federativeUnit} 
+                                        onChange={(e) => handleOnBlur(e)}
                                     />
+                                    <Form.Control.Feedback type="invalid" >
+                                        {errors.federativeUnit && errors.federativeUnit.message}
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                             </Col>
-
                             <Col lg={8}>
                                 <Form.Group className="mb-2" controlId="formGridCity">
                                     <Form.Label>Cidade</Form.Label>
@@ -359,43 +330,49 @@ const FormUpdate = () => {
                                         name='city' 
                                         placeholder="Digite nome da cidade" 
                                         {...register("city")}
-                                        onChange={(e) => capitalizedValue(e)}
+                                        isInvalid={!!errors.federativeUnit}
+                                        onChange={(e) => handleOnBlur(e)}
                                     />
-                                    </Form.Group>
+                                    <Form.Control.Feedback type="invalid" >
+                                        {errors.city && errors.city.message}
+                                    </Form.Control.Feedback>
+                                </Form.Group>
                             </Col>
                         </Row>
-                        <Row className="mt-3 ">
-                            <S.WrapButtonDelete>
-                                <Button
-                                    variant="outline-danger"
-                                    size='sm'
-                                    type='submit'
-                                    // disabled={isLoadingCreate ? true : false}
-                                >
-                                    <Theme.Icons.MdDelete />
-                                    <span>Excluir Cadastro</span>
-                                </Button> 
-                            </S.WrapButtonDelete>
+                        <Row className="mt-2 ">
                             <S.WrapButtonUpdateCancel>
                                 <Button
                                     variant="success"
                                     size='sm'
                                     type='submit'
-                                    disabled={isLoadingUpdate ? true : false}
+                                    disabled={isLoadingPostUpdate ? true : false}
                                 >
-                                    <Theme.Icons.MdUpdate />
-                                    <span>Atualizar</span>
+                                    { isLoadingPostUpdate ?
+                                        <>
+                                            <Spinner
+                                                as="span"
+                                                animation="border"
+                                                size="sm"
+                                                role="status"
+                                                aria-hidden="true"
+                                            />
+                                            <span className="sr-only"> Atualizando... </span>
+                                        </> :
+                                        <>
+                                            <Theme.Icons.MdUpdate />
+                                            <span>Atualizar</span>
+                                        </>
+                                    }
                                 </Button> 
                                 <Button
                                     variant="outline-danger"
                                     size='sm'
-                                    // disabled={isLoadingCreate ? true : false}
+                                    onClick={() => navigate('/users')}
                                 >
                                     <Theme.Icons.MdClose />
                                     <span>Cancelar</span>
                                 </Button>                        
                             </S.WrapButtonUpdateCancel>
-                            
                         </Row>                
 
 
