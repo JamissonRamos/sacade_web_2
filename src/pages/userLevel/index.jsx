@@ -37,8 +37,10 @@ const UserLevel = () => {
         error && <Alert variant={'danger'}> {error} </Alert>
       }
       <S.HeaderPage>
-        <TextC.Title level={2}> Lista de Usuários</TextC.Title>
-        <TextC.Body level={1}>  Todos os usuários cadastrados no sistema </TextC.Body>
+        <TextC.Title level={2}> 
+          Lista de Usuários
+        </TextC.Title>
+        <TextC.Body level={1}> Controle de Nível de Usuário no Sistema. </TextC.Body>
       </S.HeaderPage>
       {
         isLoading &&

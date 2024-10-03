@@ -18,10 +18,8 @@ const Users = () => {
 
   const { documents, isLoading, error } = useUsers.useGetDocuments()
 
-
   const fetchDocuments = async () => {
     const result = await documents();
-    console.log(result);
     
     if(result.success){
       setRegistered({
@@ -42,7 +40,7 @@ const Users = () => {
       }
       <S.HeaderPage>
         <TextC.Title level={2}> Lista de Usuários</TextC.Title>
-        <TextC.Body level={1}>  Todos os usuários cadastrados no sistema </TextC.Body>
+        <TextC.Body level={1}> Cadastro de usuário no sistema. </TextC.Body>
       </S.HeaderPage>
       {
         isLoading &&
