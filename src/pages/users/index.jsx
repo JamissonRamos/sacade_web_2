@@ -57,9 +57,9 @@ const Users = () => {
       {
         registered.data && registered.data > 0 ?
           <S.Empty>
-          <TextC.Display level={2} >
-            Nenhum cadastro
-          </TextC.Display>
+            <TextC.Display level={2} >
+              Nenhum cadastro
+            </TextC.Display>
             <TextC.Body level={2}>
                 Não encontramos nenhum cadastro em nossa base de dados.
             </TextC.Body>
