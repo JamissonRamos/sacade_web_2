@@ -8,8 +8,7 @@ import LogoLuta from '../../assets/logo_luta.png'
 import LogoLutaYellow from '../../assets/logoLutaYellow.png'
 import SecureLogin from '../../assets/secure_login.png'
 import SecurityRemoveBg from '../../assets/securityRemoveBg.png'
-import ForgotPassword from '../../assets/forgot_password.svg'
-import ForgotPassword2 from '../../assets/forgot_password.png'
+
 
 export const ImgC = {
     Logo,
@@ -21,7 +20,4 @@ export const ImgC = {
     LogoLuta,
     LogoLutaYellow,
     SecureLogin,
-    ForgotPassword,
-    ForgotPassword2
-
 }
