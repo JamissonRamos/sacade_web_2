@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const uid = userCredential.user.uid;
     if(uid){
-      
       return {success: true, uid: uid}
     }else{
       return {success: false}

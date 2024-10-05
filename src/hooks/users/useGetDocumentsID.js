@@ -1,11 +1,11 @@
 import { useState, useCallback } from "react";
-import { useGetCollectionID } from "../firebase/useGetCollectionID";
+import { useGetCollectionById } from "../firebase/collection_users/useGetCollectionById";
 
 export const useGetDocumentsID = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const collection = 'users'
-    const {getDocumentById} = useGetCollectionID();
+    // const collection = 'users'
+    const {getDocumentById} = useGetCollectionById();
 
     const documentsID = useCallback( async (uid) => {
 
@@ -13,18 +13,20 @@ export const useGetDocumentsID = () => {
         setError(null);
 
         try {
-            const result = await getDocumentById(collection, uid)
-            if(result.success)
+            const result = await getDocumentById(uid)
+            const { success, data, message } = result;
+            if(success)
             {
-                return { success: true, data: result.data };
+                return { success: true, data: data };
 
             }else {
-                return { success: false,  message: result.message };
+                setError(message)
+                return { success: false,  message: message };
             }
             
         } catch (error) {
-            console.log('Erro ao atualizar os dados: ', error.message);
-            return { success: false,  message: error.message };
+            console.log('Erro ao recupera documento: ', error.message);
+            return { success: false,  message: `Todo mundo erra, e desta vez foi a nossa vez. Por favor, tente novamente.` };
         } finally {
             setIsLoading(false);
         }
