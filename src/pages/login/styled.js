@@ -279,7 +279,12 @@ export const WrapFooterForm = styled.div`
     }
     @media (max-width: 768px) {
         & button {
-            width: 40%;
+            width: 60%;
+        }
+    }
+    @media (max-width: 425px) {
+        & button {
+            width: 80%;
         }
     }
 `;

@@ -14,7 +14,6 @@ export const useLoginIn = () => {
 
         setIsLoadingLogin(true);
         setErrorLogin(null);
-
         try {
             let checkLogin;
             checkLogin = await login(email, password);
