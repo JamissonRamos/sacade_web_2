@@ -8,7 +8,7 @@ export const Container = styled.div`
     max-height: 84%;
     display: flex;
     padding-bottom: .8rem;
-    overflow: auto;
+    
 `;
 
 export const Left = styled.div`
@@ -66,6 +66,7 @@ export const Right = styled.div`
     & form {
         /* border: 1px solid blue; */
         height: 100%;
+        overflow: auto;
     }
 `;
 export const WrapButtonForm = styled.div`

@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from '../../services/firebase/config';
 import { onAuthStateChanged, signInWithEmailAndPassword, } from 'firebase/auth';
+import { updatePassword, EmailAuthProvider } from "firebase/auth";
 import { Spinner } from 'react-bootstrap';
 import { LoadingOverlay } from '../../components/spinner/global/styled';
 
@@ -9,7 +10,6 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
 
   const login = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -31,6 +31,76 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  
+//   // Função para atualizar os dados do usuário logado
+//   const updateUserEmailandPassword = async (currentPassword, newPassword) => {
+
+//   console.log(currentPassword);
+//   console.log(newPassword);
+//   console.log(currentUser);
+
+//   const reauthenticateUser = async (currentPassword) => {
+//     const credential = EmailAuthProvider.credential(
+//       currentUser.email,
+//       currentPassword
+//     );
+
+//     return currentUser.reauthenticateWithCredential(credential);
+//   };
+  
+//     return true
+//   // const updateUserPassword  = async (newPassword) => {
+//   //     try {
+//   //       // compara senha atual com email atual se é valido
+//   //       await updatePassword(currentUser, newPassword);  
+//   //       return 'Sucesso'
+//   //     } catch (error) {
+//   //       console.error("Erro ao atualizar o usuário no contexto senha: ", error);
+//   //       return error.message
+//   //     }
+//   // }
+  
+//   // if (currentUser) {
+//   //   try {
+//   //     // const resultEmail = await updateUserEmail(newEmail)
+//   //     // if (resultEmail.includes('Sucesso')){
+//   //         const resultPassword = await updateUserPassword(newPassword)
+//   //         if (resultPassword.includes('Sucesso')){
+//   //           return 'Sucesso' 
+//   //         }else{
+//   //           return `Error: ${resultPassword} `
+//   //         }
+//   //     // }
+//   //     // else{
+//   //         // return resultEmail;
+//   //     // }
+
+
+//   //   } catch (error) {
+//   //     console.error("Erro ao atualizar o usuário no contexto: ", error);
+      
+//   //   }finally {
+//   //     setLoading(false);
+//   //   }
+//   // }else {
+//   //   console.log('Não encontrado users no contexto');
+//   //   setLoading(false);
+//   //   return;
+//   // }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
   useEffect(() => {
     // Recupera os dados existentes do sessionStorage
     const storedUser = JSON.parse(sessionStorage.getItem('userLogged')) || null;
@@ -50,8 +120,6 @@ export const AuthProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
-
-  /* Ajusta esse loading  */
   if (loading) {
     return (
       <LoadingOverlay>
