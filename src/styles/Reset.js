@@ -8,7 +8,7 @@ const Reset =  createGlobalStyle `
 		border: 0;
 		box-sizing: border-box;
 		overflow: hidden;
-		font-family: "Roboto", sans-serif;
+		font-family: Roboto, Helvetica, Arial, sans-serif;
         font-size: 16px;
         line-height: 24px;
         letter-spacing: 0.5px;
