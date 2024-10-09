@@ -112,8 +112,8 @@ const FormUpdate = () => {
                 msgBox && <Alert variant={msgBox.variant}> {msgBox.message} </Alert>
             }
             <S.HeaderPage>
-                <TextC.Title level={2}> Lista de Usuários</TextC.Title>
-                <TextC.Body level={1}>  Todos os usuários cadastrados no sistema </TextC.Body>
+                <TextC.Title level={2}>Atualizar Usuário</TextC.Title>
+                <TextC.Body level={1}> Fazer atualização de dados de usuário</TextC.Body>
             </S.HeaderPage>
             {
                 loadingFetchDocument &&
@@ -374,8 +374,6 @@ const FormUpdate = () => {
                                 </Button>                        
                             </S.WrapButtonUpdateCancel>
                         </Row>                
-
-
                     </Form>
 
                 </Container>

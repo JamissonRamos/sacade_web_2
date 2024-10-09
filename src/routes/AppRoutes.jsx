@@ -46,6 +46,11 @@ const AppContent = () => {
                                         <Pages.Students /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/students/form_create" element={
+                                    <ProtectedRoute page='Students'>
+                                        <Pages.FormCreateStudents /> 
+                                    </ProtectedRoute>
+                                } />
                                 <Route path="/users" element={
                                     <ProtectedRoute page='Users'>
                                         <Pages.Users /> 
@@ -72,14 +77,10 @@ const AppContent = () => {
                                     </ProtectedRoute>
                                 } />
                                 <Route path="/noticeAuthorization" element={
-                                    // <ProtectedRoute page='NoticeAuthorization'>
-                                        <Pages.NoticeAuthorization /> 
-                                    // </ProtectedRoute>
+                                    <Pages.NoticeAuthorization /> 
                                 } />
                                 <Route path="/userblocked" element={
-                                    // <ProtectedRoute page='NoticeAuthorization'>
-                                        <Pages.Userblocked /> 
-                                    // </ProtectedRoute>
+                                    <Pages.Userblocked /> 
                                 } />
                             </Routes>
                         </main>

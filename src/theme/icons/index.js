@@ -37,6 +37,7 @@ export const Icons = {
     MdPersonAddAlt1:            MD.MdPersonAddAlt1,
     MdOutlineAlternateEmail:    MD.MdOutlineAlternateEmail,
     MdModeEdit:                 MD.MdModeEdit,
+    MdSaveAlt:                  MD.MdSaveAlt,
     RiArrowDownSFill:           RiIcons.RiArrowDownSFill,
     RiArrowUpSFill:             RiIcons.RiArrowUpSFill,
     RiSendPlaneFill:            RiIcons.RiSendPlaneFill,

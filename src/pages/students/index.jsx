@@ -31,37 +31,38 @@ const Students = () => {
 
   return (
     <WrapPages>
-      {
-        errorAll && <Alert variant={'danger'}> {errorAll} </Alert>
-      }
-      <Header />
-      {
-        loadingAll &&
-        <LoadingOverlay>
-          <Spinner
-            as="span"
-            animation="border"
-            role="status"
-            aria-hidden="true"
-          />
-          <span className="sr-only">Carregando os dados...</span>
-        </LoadingOverlay> 
-      }
+      <S.Content>
+        {
+          errorAll && <Alert variant={'danger'}> {errorAll} </Alert>
+        }
+        <Header />
+        {
+          loadingAll &&
+          <LoadingOverlay>
+            <Spinner
+              as="span"
+              animation="border"
+              role="status"
+              aria-hidden="true"
+            />
+            <span className="sr-only">Carregando os dados...</span>
+          </LoadingOverlay> 
+        }
 
-      {
-        registered && registered.length == 0
-        ? <S.Empty>
-            <TextC.Display level={2} >
-              Nenhum cadastro
-            </TextC.Display>
-            <TextC.Body level={2}>
-                Não encontramos nenhum cadastro em nossa base de dados.
-            </TextC.Body>
-          </S.Empty> 
-        : 'tem algo'
-      }
+        {
+          registered && registered.length == 0
+          ? <S.Empty>
+              <TextC.Display level={2} >
+                Nenhum cadastro
+              </TextC.Display>
+              <TextC.Body level={2}>
+                  Não encontramos nenhum cadastro em nossa base de dados.
+              </TextC.Body>
+            </S.Empty> 
+          : 'tem algo'
+        }
       
-
+      </S.Content>
     </WrapPages>
   )
 }

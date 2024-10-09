@@ -83,6 +83,7 @@ const Body = () => {
                             <Button
                                 variant="outline-danger"
                                 size="sm"
+                                onClick={() => navigate('/')}
                             >
                                 <Theme.Icons.MdClose />
                                 Cancelar

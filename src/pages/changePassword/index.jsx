@@ -10,9 +10,7 @@ const ChangePassword = () => {
   return (
     <WrapPages>
       <Header />
-
       <Body />
-
     </WrapPages>
   )
 }

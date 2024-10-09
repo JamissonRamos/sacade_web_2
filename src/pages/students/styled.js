@@ -1,11 +1,19 @@
 import styled from "styled-components";
 import { Theme } from "../../theme";
 
+export const Content = styled.div`
+    /* border: 1px solid blue; */
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+`;
 export const Empty = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
-    height: 80%;
-    /* flex: 1; */
+    /* height: 80%; */
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
