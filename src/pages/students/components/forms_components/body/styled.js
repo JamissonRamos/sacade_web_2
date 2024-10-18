@@ -53,6 +53,9 @@ const StyledButton = css`
     }
     cursor: pointer;
     transition: background-color 0.4s ease, color 0.4s;
+    @media (max-width: 425px) {
+        width: 50%;
+    }
 `;
 
 
@@ -60,7 +63,6 @@ const StyledButton = css`
 export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    /* min-width: 320px; */
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -97,6 +99,9 @@ export const Container = styled.div`
         & .custom-tabs{
             ${CustomTabs}
         }
+        @media (max-width: 425px) {
+            height: 94%;
+        }
     }
 `;
 
@@ -104,6 +109,8 @@ export const WrapFields = styled.div `
     height: 100%;
     padding-bottom: .4rem;
     overflow: auto;
+
+    
 `;
 export const ErrorCount = styled.div `
     /* border: 1px solid red; */
@@ -118,17 +125,21 @@ export const ErrorCount = styled.div `
 `;
 
 export const WrapButtons = styled.div`
-    /* border: 1px solid red; */
+    border: 1px solid red;
     width: 100%;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: end;
     gap: 12px;
-    padding: 0 1rem;
+    /* padding: 0 1rem; */
     margin-top: 1rem;
     & button {
         ${StyledButton}
+    }
+    @media (max-width: 425px) {
+        height: 60px;
+        justify-content: center;
     }
 `;
 

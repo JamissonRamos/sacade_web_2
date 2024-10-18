@@ -104,9 +104,6 @@ const BodyForm = () => {
                 }
 
                 <S.WrapButtons>
-                    
-
-
                     <Button
                         variant="success"
                         size='sm'

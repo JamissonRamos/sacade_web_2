@@ -15,4 +15,7 @@ export const Container = styled.div`
     & span:first-child {
         color: ${Theme.Colors.green800}
     }
+    @media (max-width: 425px) {
+        height: 10%;
+    }
 `;
