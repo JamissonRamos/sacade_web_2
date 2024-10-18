@@ -187,7 +187,7 @@ const ModalResponsible = ({showModal, handleClose, fetchDataResponsible, registe
                                     <Form.Group className="p-1" controlId="GroupResponsibleCellPhone">
                                         <Form.Label className="m-0"> Celular </Form.Label>
                                         <Form.Control 
-                                            type="text" 
+                                            type="tel" 
                                             name="responsibleCellPhone"
                                             placeholder="Digite seu Celular." 
                                             {...register("responsibleCellPhone")}
