@@ -191,6 +191,7 @@ const ModalResponsible = ({showModal, handleClose, fetchDataResponsible, registe
                                             name="responsibleCellPhone"
                                             placeholder="Digite seu Celular." 
                                             inputMode="numeric" // Adiciona o teclado numérico
+                                            pattern="[0-9]*"   // Limita a entrada apenas a números
                                             {...register("responsibleCellPhone")}
                                             isInvalid={!!errors.responsibleCellPhone}
                                             onChange={handleChange}
