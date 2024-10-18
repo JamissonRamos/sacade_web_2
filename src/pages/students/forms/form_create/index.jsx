@@ -1,14 +1,16 @@
 import * as S from './styled'
 import HeaderForm from "../../components/forms_components/header"
 import BodyForm from '../../components/forms_components/body'
-
+import { WrapPages } from '../../../../components/Wrappe/pages'
 const FormCreateStudents = () => {
 
     return (
-        <S.Container> 
-            <HeaderForm />
-            <BodyForm />
-        </S.Container>
+        <WrapPages>
+            <S.Container> 
+                <HeaderForm />
+                <BodyForm />
+            </S.Container>
+        </WrapPages>
     )
 }
 
