@@ -125,14 +125,14 @@ export const ErrorCount = styled.div `
 `;
 
 export const WrapButtons = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: end;
     gap: 12px;
-    /* padding: 0 1rem; */
+    padding: 0 1rem;
     margin-top: 1rem;
     & button {
         ${StyledButton}
