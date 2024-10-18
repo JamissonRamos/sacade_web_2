@@ -3,7 +3,7 @@ import { Theme } from "../../../../../theme";
 
 const CustomTabs = css`
     height: 60px;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     border: none;
     &.custom-tabs .nav-link {
         width: 100%;
@@ -25,12 +25,10 @@ const CustomTabs = css`
             padding: .8rem ;
         }
         &.custom-tabs .nav-link {
-            
-            font-size: .6em;
+            font-size: .7em;
         }
     }
     @media (max-width: 520px) {
-
         height: 100px;
     }
 `;
@@ -109,7 +107,9 @@ export const WrapFields = styled.div `
     height: 100%;
     padding-bottom: .4rem;
     overflow: auto;
-
+    @media (max-width: 425px) {
+            height: 68%;
+    }
     
 `;
 export const ErrorCount = styled.div `
