@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Theme } from "../../../theme";
 import { Link } from "react-router-dom";
 
@@ -13,7 +13,6 @@ export const Container = styled.div`
     gap: 8px;
     padding: 0 1rem;
     z-index: 1000;
-
 `;
 
 export const WrapMenu = styled.div`
@@ -42,7 +41,7 @@ export const WrapNavigationCircule = styled(Link)`
     width: 80px;
     height: 80px;
     position: fixed;
-    bottom: 30px;
+    bottom: 20px;
     left: 50%;
     display: flex;
     flex-direction: column;
@@ -57,8 +56,8 @@ export const WrapNavigationCircule = styled(Link)`
     box-shadow: ${Theme.Shadow.sh300};
     transition: .4s;
     @media (max-width: 375px) {
-        width: 70px;
-        height: 70px;        
+        width: 60px;
+        height: 60px;        
     }
 `;
 

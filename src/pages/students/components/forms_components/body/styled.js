@@ -41,16 +41,20 @@ const StyledButton = css`
     gap: 8px;
     padding: 8px 12px;
     border-radius: 4px;
+    transition: background-color 0.4s ease, color 0.4s;
+    cursor: pointer;
     & span {
-        font-size: .8rem;
+        font-size: 1rem;
         font-weight: 500;
         line-height: 18px;
         text-align: center;
         letter-spacing: 0.05em;
         text-transform: uppercase;
     }
-    cursor: pointer;
-    transition: background-color 0.4s ease, color 0.4s;
+    & svg {
+        font-size: 1.5rem;
+    }
+    
     @media (max-width: 425px) {
         width: 50%;
     }
@@ -98,7 +102,7 @@ export const Container = styled.div`
             ${CustomTabs}
         }
         @media (max-width: 425px) {
-            height: 94%;
+            height: 100%;
         }
     }
 `;
@@ -138,7 +142,7 @@ export const WrapButtons = styled.div`
         ${StyledButton}
     }
     @media (max-width: 425px) {
-        height: 60px;
+        height: 48px;
         justify-content: center;
     }
 `;
