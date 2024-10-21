@@ -91,7 +91,7 @@ const ModalResponsible = ({showModal, handleClose, fetchDataResponsible, registe
             }else{
                 console.log('Erro ao tenta criar dados no localStorage:');
                 setMsgBox({variant: 'danger', message: 'Erro ao tenta criar dados no localStorage'})
-                // setShowAlert(true)
+                setShowAlert(true)
             }
         }
 

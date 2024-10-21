@@ -19,7 +19,7 @@ import { MaskInput } from './script';
 const BodyForm = () => {
     const [basicActive, setBasicActive] = useState('tab1');
 
-    const { register, handleSubmit, setValue, formState:{ errors } } = useForm({
+    const { register, handleSubmit, setValue, getValues, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.StudentsSchema)
     });
     //Contas os erro e mostra se tiver algum em qualquer form 
@@ -41,6 +41,12 @@ const BodyForm = () => {
     }
 
     const onSubmit = async (data) => { 
+        
+
+
+
+
+
         console.log(data);
     } 
 
@@ -69,7 +75,6 @@ const BodyForm = () => {
                         </MDBTabsLink>
                     </MDBTabsItem>
                 </MDBTabs>
-
                 <S.WrapFields>
                     <MDBTabsContent>
                         <MDBTabsPane open={basicActive === 'tab1'}> 
@@ -88,7 +93,14 @@ const BodyForm = () => {
 
 
                         <MDBTabsPane open={basicActive === 'tab3'}>
-                            <FieldStudents.DataAddress />
+                            <FieldStudents.DataAddress 
+                                register={register} 
+                                setValue={setValue}
+                                getValues={getValues}
+
+                                errors={errors}
+                                handleChange={handleChange}
+                            />
                         </MDBTabsPane>
 
                         <MDBTabsPane open={basicActive === 'tab4'}>
@@ -102,8 +114,15 @@ const BodyForm = () => {
                         {'Foi detectados alguns erros no cadastro: ' + errorCount}
                     </S.ErrorCount> : null
                 }
-
                 <S.WrapButtons>
+                    <Button
+                        variant="outline-danger"
+                        size='sm'
+                        // onClick={() => navigate('/users')}
+                    >
+                        <Theme.Icons.MdClose />
+                        <span>Cancelar</span>
+                    </Button> 
                     <Button
                         variant="success"
                         size='sm'
@@ -127,15 +146,7 @@ const BodyForm = () => {
                                 <span>Salvar</span>
                             </>
                         {/* } */}
-                    </Button> 
-                    <Button
-                        variant="outline-danger"
-                        size='sm'
-                        // onClick={() => navigate('/users')}
-                    >
-                        <Theme.Icons.MdClose />
-                        <span>Cancelar</span>
-                    </Button>                        
+                    </Button>                      
                 </S.WrapButtons>
             </Form>
         </S.Container>

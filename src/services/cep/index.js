@@ -9,7 +9,6 @@ export const useSearchCep = () => {
         try {
             const resp = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
             const data = await resp.json();
-            console.log(data);
             // Adicione qualquer tratamento adicional dos dados aqui
             if (data.erro) {
                 return { success: false, message: 'CEP não encontrado.' };
@@ -27,7 +26,7 @@ export const useSearchCep = () => {
             }
     
         } catch (error) {
-            console.error('Erro ao buscar o CEP:', error);
+            console.error('Erro ao buscar o CEP:', error.message);
             return { success: false, message: 'Erro ao buscar o CEP. Tente novamente.' };
         }finally{ 
             setIsLoading(false)

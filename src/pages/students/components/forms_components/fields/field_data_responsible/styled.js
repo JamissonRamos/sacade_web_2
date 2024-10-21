@@ -53,6 +53,7 @@ export const WrapButtons = styled.div`
     justify-content: center;
     gap: 12px;
     padding: 0 1rem;
+    margin-top: .8rem;
     & button {
         ${StyledButton}
     }

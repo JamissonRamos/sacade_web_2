@@ -1,14 +1,33 @@
 
 import * as S from './styled'
-import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Form, InputGroup, Row, Spinner } from "react-bootstrap";
 import { Theme } from "../../../../../../theme";
+// import { useSearchCep } from '../../../../../../services/cep';
+import { FetchCep } from '../../body/script';
+import { useState } from 'react';
+import { AlertCustom } from '../../../../../../components/alert_custom';
+import { CapitalizedValue } from '../../body/script';
 
-const DataAddress = () => {
-    // const [cep, setCep] = useState(''); // Gerencia o estado do CEP
+const DataAddress = ({register, setValue, getValues, errors, handleChange}) => {
+    const [cep, setCep] = useState(''); // Gerencia o estado do CEP
+    const [msgBox, setMsgBox] = useState(null); // Gerencia o estado do CEP
+    const [showAlert, setShowAlert] = useState(false);
+
     // const [residenceNumber, setResidenceNumber] = useState(false); // Gerencia o estado do CEP
-    // const [msgBox, setMsgBox] = useState({variant: '', msg: ''}); // Gerencia o estado do CEP
+    // const { fetchCep, isLoading: loadingCep} = useSearchCep()
+    const {searchCep, loadingCep } = FetchCep()
 
-    // const {fetchCep, isLoading: loadingCep } = useSearchCep();
+    // Função para fechar o alerta e preparar para nova mensagem
+    const handleCloseAlert = () => {
+            setShowAlert(false);
+            setMsgBox(""); // Limpa a mensagem
+    };
+    const handleBlur = (e) => {
+        let fieldName = e.target.name;
+        let fieldValue = e.target.value;
+        let capitalized = CapitalizedValue(fieldValue)
+        setValue(fieldName, capitalized)
+    };
 
     // const resetSelectedFields = () => {
     //   // Obtém os valores atuais do formulário
@@ -25,6 +44,7 @@ const DataAddress = () => {
     //     // Adicione outros campos que deseja resetar
     //   });
     // };
+
     // const capitalizedValue = (e) => {
                                                         // const handleBlur = (e) => {
                                                         //     let fieldName = e.target.name;
@@ -56,151 +76,187 @@ const DataAddress = () => {
     //         }   
     //     }
     // };
-  
-    // const handleOnClickCep = async (cep) => {
-    //     setMsgBox(null)
-    //     if (!cep){
-    //         setMsgBox({variant: 'danger', msg: 'CEP não fornecido.'});
-    //         resetSelectedFields()
-    //         return
-    //     }
+
+
+    const handleOnClickCep = async () => {
+        handleCloseAlert()
+        const cep = getValues('cep');
+        console.log(cep);
         
-    //     // try {  
-    //       // setIsLoading(true)
-    //       const response = await fetchCep(cep); // Chama a função do script e aguarda a resposta
-    //     if (response.success) {
-    //         // Atualiza os valores dos campos com os dados recebidos  
-    //         setValue('logadouro', response.data.logadouro);
-    //         setValue('neighborhood', response.data.neighborhood);
-    //         setValue('city', response.data.city);
-    //         setValue('federativeUnit', response.data.federativeUnit);
-    //         setResidenceNumber(true)
-    //         setMsgBox({variant: 'warning', msg:'Endereço encontrado com sucesso!'});
-    //     } else {
-    //         setMsgBox({variant: 'danger', msg: response.message});
-    //         resetSelectedFields()
-    //     }
-    //     // } catch (error) {
-    //     setMsgBox({variant: 'danger', msg: "Erro ao busca cep: " +  error.message});
-    //     console.error('Erro ao busca cep:' + error);
-    //     // }finally {
-    //     //   setIsLoading(false); // Garante que o estado seja atualizado no final
-    //     // }
-    // }
+        const result = await searchCep(cep);
+        const { success, data, message  } = result;
+        console.log(success);
+        console.log(message);
+        if(success){
+            console.log(data);
+            // Atualiza os valores dos campos com os dados recebidos  
+            setValue('logadouro', data.logadouro);
+            setValue('neighborhood', data.neighborhood);
+            setValue('city', data.city);
+            setValue('federativeUnit', data.federativeUnit);
+
+
+
+            setMsgBox({variant: 'success', message: message})
+            setShowAlert(true)
+        }else{
+            setMsgBox({variant: 'danger', message: message})
+            setShowAlert(true)
+        }
+
+        
+        // // try {  
+        //   // setIsLoading(true)
+        //   const response = await fetchCep(cep); // Chama a função do script e aguarda a resposta
+        // if (response.success) {
+        //     // Atualiza os valores dos campos com os dados recebidos  
+        //     setValue('logadouro', response.data.logadouro);
+        //     setValue('neighborhood', response.data.neighborhood);
+        //     setValue('city', response.data.city);
+        //     setValue('federativeUnit', response.data.federativeUnit);
+        //     setResidenceNumber(true)
+        //     setMsgBox({variant: 'warning', msg:'Endereço encontrado com sucesso!'});
+        // } else {
+        //     setMsgBox({variant: 'danger', msg: response.message});
+        //     resetSelectedFields()
+        // }
+        // // } catch (error) {
+        // setMsgBox({variant: 'danger', msg: "Erro ao busca cep: " +  error.message});
+        // console.error('Erro ao busca cep:' + error);
+        // // }finally {
+        // //   setIsLoading(false); // Garante que o estado seja atualizado no final
+        // // }
+    }
     
     return (
         <>
-            {/* {
-            msgBox &&  
-                <Alert variant={msgBox.variant}>
-                {msgBox.msg}
-                </Alert>
-            } */}
-        <S.Container>
-            <Row className="mb-2 px-1">
-                <Col sm={6} md={7} lg={8}>
-                    <Form.Group className="p-1" controlId="GroupCep ">
-                        <Form.Label className="m-0">Cep</Form.Label>
-                        <InputGroup>
+            {
+                showAlert &&                                            
+                <AlertCustom variant={msgBox.variant} handleCloseAlert={handleCloseAlert}> {msgBox.message} </AlertCustom>
+            }
+            <S.Container>
+                <Row className="mb-2 px-1">
+                    <Col lg={8}>
+                        <Form.Group className="p-1" controlId="GroupCep ">
+                            <Form.Label className="m-0">Cep</Form.Label>
+                            <InputGroup>
+                                <Form.Control 
+                                    type="text"  
+                                    name='cep' 
+                                    placeholder="Digite seu cep" 
+                                    {...register("cep")}
+                                    isInvalid={!!errors.cep}
+                                    onChange={handleChange}
+                                />
+                                <Button 
+                                    variant='success'
+                                    onClick={ handleOnClickCep}
+                                    disabled={loadingCep ? true : false}
+                                >
+                                    {
+                                        loadingCep ? 
+                                            <Spinner
+                                                as="span"
+                                                animation="border"
+                                                size="sm"
+                                                role="status"
+                                                aria-hidden="true"
+                                        /> : <Theme.Icons.MdSearch />
+                                    }
+                                </Button>
+                                <Form.Control.Feedback type="invalid" >
+                                    {errors.cep && errors.cep.message}
+                                </Form.Control.Feedback>
+                            </InputGroup>
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Row className="mb-2 px-1">
+                    <Col className="mb-2" lg={8}>
+                        <Form.Group className="p-1"  controlId="GroupLogadouro">
+                            <Form.Label >Logadouro</Form.Label>
+                            <Form.Control 
+                                type="text" 
+                                name="logadouro"
+                                placeholder="Digite seu logadouro"
+                                {...register("logadouro")}
+                                isInvalid={!!errors.logadouro}
+                                onBlur={(e) => handleBlur(e)}
+                            />
+                            <Form.Control.Feedback type="invalid" >
+                                {errors.logadouro && errors.logadouro.message}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                    </Col>
+                    <Col  lg={4}>
+                        <Form.Group className="p-1" controlId="GroupResidenceNumber ">
+                            <Form.Label>Número Residencia</Form.Label>
                             <Form.Control 
                                 type="text"  
-                                name='cep' 
-                                placeholder="Digite seu cep" 
-                                // {...register("cep")}
-                                // onChange={handleChange} // Captura a mudança no input
+                                name='residenceNumber' 
+                                placeholder="Número Residencia" 
+                                {...register("residenceNumber")}
+                                isInvalid={!!errors.residenceNumber}
                             />
-                            <Button 
-                                variant='success'
-                                // onClick={() => handleOnClickCep(cep)}
-                                // disabled={loadingCep ? true : false}
-                            >
-                                {/* {
-                                loadingCep ? 
-                                    <Spinner
-                                    as="span"
-                                    animation="border"
-                                    size="sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                    /> : null
-                                } */}
-                                <Theme.Icons.MdSearch />
-                            </Button>
-                        </InputGroup>
-                    </Form.Group>
-                </Col>
-            </Row>
-            <Row className="mb-2 px-1">
-                <Col className="mb-2" sm={6} md={7} lg={8}>
-                    <Form.Group className="p-1" controlId="formGridLogadouro">
-                        <Form.Label >Logadouro</Form.Label>
-                        <Form.Control 
-                            type="text" 
-                            name="logadouro"
-                            placeholder="Digite seu logadouro"
-                            // {...register("logadouro")} 
-                            // onChange={(e) => capitalizedValue(e)}
-                        />
-                    </Form.Group>
-                </Col>
-                <Col sm={6} md={5} lg={4}>
-                    <Form.Group  className="mb-4" controlId="formGridResidenceNumber ">
-                        <Form.Label>Número Residencia</Form.Label>
-                        <Form.Control 
-                            type="text"  
-                            name='residenceNumber' 
-                            placeholder="Número Residencia" 
-                            // {...register("residenceNumber")}
-                            // isInvalid={!!residenceNumber} //
-                            // onChange={handleChange} // Captura a mudança no input
-                        />
-                        <Form.Control.Feedback type="invalid" >
-                            Número Residência é obrigatório quando o CEP está preenchido 
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                </Col>
-            </Row>
-            <Row className="mb-2 px-1">
-                <Col className="mb-2" sm={5} md={5} lg={5}>
-                    <Form.Group className="mb-4" controlId="formGridCity">
-                        <Form.Label>Cidade</Form.Label>
-                        <Form.Control 
-                            type="text"  
-                            name='city' 
-                            placeholder="Nome da cidade" 
-                            // {...register("city")}
-                            // onChange={(e) => capitalizedValue(e)}
-                        />
-                    </Form.Group>
-                </Col>
+                            <Form.Control.Feedback type="invalid" >
+                                {errors.residenceNumber && errors.residenceNumber.message}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Row className="mb-2 px-1">
+                    <Col className="mb-2" lg={5}>
+                        <Form.Group className="p-1" controlId="GroupCity">
+                            <Form.Label>Cidade</Form.Label>
+                            <Form.Control 
+                                type="text"  
+                                name='city' 
+                                placeholder="Nome da cidade" 
+                                {...register("city")}
+                                isInvalid={!!errors.city}
+                                onBlur={(e) => handleBlur(e)}
+                            />
+                            <Form.Control.Feedback type="invalid" >
+                                {errors.city && errors.city.message}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                    </Col>
 
-                <Col className="mb-2" sm={5} md={5} lg={5}>
-                    <Form.Group className="mb-4" controlId="formGridNeighborhood">
-                        <Form.Label >Bairro</Form.Label>
-                        <Form.Control 
-                            type="text" 
-                            name="neighborhood"
-                            placeholder="Nome do bairro" 
-                            // {...register("neighborhood")}
-                            // onChange={(e) => capitalizedValue(e)}
-                        />
-                    </Form.Group>
-                </Col>
+                    <Col className="mb-2" lg={5}>
+                        <Form.Group className="p-1" controlId="GroupNeighborhood">
+                            <Form.Label >Bairro</Form.Label>
+                            <Form.Control 
+                                type="text" 
+                                name="neighborhood"
+                                placeholder="Nome do bairro" 
+                                {...register("neighborhood")}
+                                isInvalid={!!errors.neighborhood}
+                                onBlur={(e) => handleBlur(e)}
+                            />
+                            <Form.Control.Feedback type="invalid" >
+                                {errors.neighborhood && errors.neighborhood.message}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                    </Col>
 
-                <Col className="mb-2" sm={2} md={2} lg={2}>
-                    <Form.Group className="mb-4" controlId="formGridFederativeUnit">
-                        <Form.Label>UF</Form.Label>
-                        <Form.Control 
-                            type="text"  
-                            name='federativeUnit' 
-                            placeholder="UF" 
-                            // {...register("federativeUnit")}
-                            // onChange={(e) => capitalizedValue(e)}
-                        />
-                    </Form.Group>
-                </Col>
-            </Row>
-        </S.Container>
+                    <Col className="mb-2" lg={2}>
+                        <Form.Group controlId="GroupFederativeUnit">
+                            <Form.Label>UF</Form.Label>
+                            <Form.Control 
+                                type="text"  
+                                name='federativeUnit' 
+                                placeholder="UF" 
+                                {...register("federativeUnit")}
+                                isInvalid={!!errors.federativeUnit}
+                                onBlur={(e) => handleBlur(e)}
+                            />
+                            <Form.Control.Feedback type="invalid" >
+                                {errors.federativeUnit && errors.federativeUnit.message}
+                            </Form.Control.Feedback>
+                        </Form.Group>
+                    </Col>
+                </Row>
+            </S.Container>
     </>
 )
 }

@@ -1,5 +1,6 @@
 import { mask } from 'remask';
 import { MaskList } from '../../../../../constants/mask';
+import { useSearchCep } from '../../../../../services/cep';
 
 export const MaskInput = (fieldName, fieldValue) => {
     let maskedValue;
@@ -16,6 +17,9 @@ export const MaskInput = (fieldName, fieldValue) => {
         case 'responsibleCellPhone':
             maskedValue = mask(fieldValue, MaskList.phone);
             break;
+        case 'cep':
+            maskedValue = mask(fieldValue, MaskList.cep);
+            break;
         default:
             break;
     }
@@ -31,4 +35,51 @@ export const CapitalizedValue = (fieldValue) => {
     });
     const newValue = capitalizedWords.join(' ');
     return(newValue); // Atualiza o valor no React Hook Form
+};
+
+export const FetchCep = () => {
+    
+    const { fetchCep, isLoading: loadingCep} =  useSearchCep();
+
+    
+    const searchCep = async (cep) => {
+        const cepValue = cep;
+
+        try {
+            
+            if (!cepValue) return{success: false, message: "Cep não foi fornecido."}
+            if (cepValue.length <= 8) return{success: false, message: "Cep não foi digitado corretamente."}
+            
+            const result = await fetchCep(cep);
+            const { success, data } = result
+            
+            if (success){
+                return{
+                    success: true,
+                    message: 'Cep Encontrado',
+                    data: data
+                }
+            }else{
+                return{
+                    success: false,
+                    message: 'Cep não foi encontrado'
+                }
+            }
+        } catch (error) {
+            console.log('Erro na busca do cep: ', error.message);
+    
+            return{
+                success: false,
+                message: 'Deu um erro na busca do cep'
+            }
+            
+        }
+
+    }
+
+    return {
+        searchCep,
+        loadingCep
+    }
+
 };

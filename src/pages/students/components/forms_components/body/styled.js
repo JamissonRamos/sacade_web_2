@@ -44,7 +44,7 @@ const StyledButton = css`
     transition: background-color 0.4s ease, color 0.4s;
     cursor: pointer;
     & span {
-        font-size: 1rem;
+        font-size: .8rem;
         font-weight: 500;
         line-height: 18px;
         text-align: center;
@@ -52,7 +52,7 @@ const StyledButton = css`
         text-transform: uppercase;
     }
     & svg {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
     
     @media (max-width: 425px) {

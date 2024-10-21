@@ -1,7 +1,7 @@
 import { Col, Form, Row } from "react-bootstrap"
 import * as S from './styled';
 
-const DataStudents = ({register, setValue, errors, handleChange}) => {
+const DataStudents = ({register, errors, handleChange}) => {
     return (
         <S.Container>
             <Row className="mb-2 px-2 ">
@@ -77,7 +77,7 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
                 
             </Row>
             <Row className="mb-2 px-2">
-                <Col sm={4} md={4} lg={4}>
+                <Col sm={6} md={6} lg={4}>
                     <Form.Group className="p-1" controlId="GroupCPF">
                         <Form.Label className="m-0"> CPF </Form.Label>
                         <Form.Control 
@@ -94,7 +94,7 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
-                <Col sm={4} md={4} lg={4}>
+                <Col sm={6} md={6} lg={4}>
                     <Form.Group className="p-1" controlId="GroupRg">
                         <Form.Label className="m-0"> RG </Form.Label>
                         <Form.Control 
@@ -111,7 +111,7 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
-                <Col  sm={4} md={4} lg={4}>
+                <Col  lg={4}>
                     <Form.Group className="p-1" controlId="GroupCellPhone">
                         <Form.Label className="m-0"> Celular </Form.Label>
                         <Form.Control 
@@ -130,7 +130,7 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
                 </Col>
             </Row>
             <Row className="mb-2 px-2 ">
-                <Col  md={8} lg={8}>
+                <Col  >
                     <Form.Group className="p-1" controlId="GroupEmail">
                         <Form.Label className="m-0"> Email </Form.Label>
                         <Form.Control 
