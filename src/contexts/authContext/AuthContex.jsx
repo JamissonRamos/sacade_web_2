@@ -24,6 +24,8 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await auth.signOut(auth); // Espera o logout ser concluído
+      // Exclui os dados do localStorage
+      localStorage.removeItem('studentResponsible');
     } catch (error) {
         console.error("Erro ao sair:", error); // Lida com possíveis erros
     } finally {

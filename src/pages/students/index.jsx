@@ -1,15 +1,16 @@
 import { Alert, Spinner } from 'react-bootstrap'
 import { LoadingOverlay } from '../../components/spinner/global/styled'
 import { WrapPages } from '../../components/Wrappe/pages'
-import { useGetDocuments } from '../../hooks/students/useGetDocuments'
+import { useStudents } from '../../hooks/students'
 import Header from './components/header'
 import { useEffect, useState } from 'react'
 import * as S from './styled'
 import { TextC } from '../../components/Typography'
+import List from './list'
 
 const Students = () => {
   const [registered, setRegistered] = useState(null);
-  const { getDocuments, loading: loadingAll , error: errorAll} = useGetDocuments()
+  const { getDocuments, loading: loadingAll , error: errorAll} = useStudents.useGetDocuments()
   
   const fetchDocuments = async () => {
     const result = await getDocuments();
@@ -26,12 +27,14 @@ const Students = () => {
   }
 
   useEffect(() => {
+    console.log('Carregando Lista de ALunos');
+    
     fetchDocuments();  // Chama a função ao renderizar o componente
   }, []);
 
   return (
     <WrapPages>
-      <S.Content>
+      <S.Container>
         {
           errorAll && <Alert variant={'danger'}> {errorAll} </Alert>
         }
@@ -59,10 +62,17 @@ const Students = () => {
                   Não encontramos nenhum cadastro em nossa base de dados.
               </TextC.Body>
             </S.Empty> 
-          : 'tem algo'
+          :   
+            <S.Content>
+              {/* 
+                - passar variavel que vai indicar se é card ou list;
+                - passar o card quando for menor a page;
+              */}
+                <List data={registered}/>
+            </S.Content>
         }
       
-      </S.Content>
+      </S.Container>
     </WrapPages>
   )
 }

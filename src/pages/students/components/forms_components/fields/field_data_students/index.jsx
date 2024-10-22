@@ -1,7 +1,16 @@
 import { Col, Form, Row } from "react-bootstrap"
 import * as S from './styled';
+import { CapitalizedValue } from "../../body/script";
 
-const DataStudents = ({register, errors, handleChange}) => {
+const DataStudents = ({register, errors, setValue, handleChange}) => {
+
+    const handleBlur = (e) => {
+        let fieldName = e.target.name;
+        let fieldValue = e.target.value;
+        let capitalized = CapitalizedValue(fieldValue)
+        setValue(fieldName, capitalized)
+    };
+
     return (
         <S.Container>
             <Row className="mb-2 px-2 ">
@@ -14,7 +23,7 @@ const DataStudents = ({register, errors, handleChange}) => {
                             placeholder="Digite seu nome." 
                             {...register("firstName")}
                             isInvalid={!!errors.firstName}
-                            //onBlur={(e) => handleOnBlur(e)}
+                            onBlur={(e) => handleBlur(e)}
                         />
                         <Form.Control.Feedback  type="invalid">
                             {errors.firstName && errors.firstName.message}
@@ -30,7 +39,7 @@ const DataStudents = ({register, errors, handleChange}) => {
                             placeholder="Digite seu sobrenome." 
                             {...register("lastName")}
                             isInvalid={!!errors.lastName}
-                            // onBlur={(e) => handleOnBlur(e)}
+                            onBlur={(e) => handleBlur(e)}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.lastName && errors.lastName .message}

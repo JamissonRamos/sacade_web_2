@@ -3,15 +3,19 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from '../../../services/firebase/config';
 
 export const useCollectionCreate = () => {
-    const collectionName = 'students';
+    const collectionName = 'responsible_students';
 
     /* Função para criar nova coleção */
     const collectionCreate = useCallback(async (data) => {
         try {
-            const docRef = await addDoc(collection(db, collectionName), data);
-            return { success: true, idStudent: docRef.id };
+            // const docRef = await addDoc(collection(db, collectionName), data);
+            // console.log(docRef);
+            
+            await addDoc(collection(db, collectionName), data);
+            
+            return { success: true};
         } catch (error) {
-            console.error('Error ao criar documento na coleção alunos:', error.message);
+            console.error('Error ao criar documento na coleção responsável:', error.message);
             return { success: false, message: error.message };
         }
     }, []);

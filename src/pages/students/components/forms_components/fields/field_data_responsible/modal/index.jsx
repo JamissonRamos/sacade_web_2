@@ -1,4 +1,4 @@
-import { Alert, Button, Col, Form, Modal, Row } from "react-bootstrap";
+import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import { Theme } from "../../../../../../../theme";
 import * as S from './styled'
 import { useForm } from 'react-hook-form';

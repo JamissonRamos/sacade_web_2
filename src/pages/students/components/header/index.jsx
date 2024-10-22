@@ -12,7 +12,7 @@ const Header = () => {
             <TextC.Body level={1}> Cadastro de alunos no sistema. </TextC.Body>
             <S.WrapButtonCreate>
                 <Button
-                    size="sm"
+                    variant="success"
                     onClick={() => navigate("/students/form_create")}
                 >
                     <Theme.Icons.MdAdd />

@@ -7,23 +7,41 @@ import {
     MDBTabsPane
 }   from 'mdb-react-ui-kit';
 import { useState } from 'react';
-import { Button, Form } from 'react-bootstrap'
+import { Alert, Button, Form, Spinner } from 'react-bootstrap'
 import { Theme } from '../../../../../theme'
 import { FieldStudents } from '../fields'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../../../../validations'
-import { MaskInput } from './script';
+import { FormattedDate, MaskInput } from './script';
+import { unMask } from 'remask';
+import { useStudents } from '../../../../../hooks/students'
+import { useResponsibleStudents } from '../../../../../hooks/responsibleStudents'
+import { AlertCustom } from '../../../../../components/alert_custom';
+import { useNavigate } from 'react-router-dom';
 
 
 const BodyForm = () => {
     const [basicActive, setBasicActive] = useState('tab1');
-
-    const { register, handleSubmit, setValue, getValues, formState:{ errors } } = useForm({
+    const [msgBox, setMsgBox] = useState(null)
+    const [showAlert, setShowAlert] = useState(false);
+    
+    const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.StudentsSchema)
     });
+    
+    const navigate = useNavigate();
+    const {createResponsibleStudent, isLoadingCreate: loadingResponsibleStudents, errorCreate: errorResponsibleStudents } = useResponsibleStudents.usePostDocumentsCreate();
+    const {createStudent, isLoadingCreate: loadingStudents, errorCreate: errorStudents } = useStudents.usePostDocumentsCreate();
+
     //Contas os erro e mostra se tiver algum em qualquer form 
     const errorCount = Object.keys(errors).length;
+    
+    // Função para fechar o alerta e preparar para nova mensagem
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+        setMsgBox(""); // Limpa a mensagem
+    };
 
     const handleBasicClick = (value) => {
         //Tabs nav
@@ -41,17 +59,50 @@ const BodyForm = () => {
     }
 
     const onSubmit = async (data) => { 
+        handleCloseAlert();
+        data.cellPhone = unMask(data.cellPhone);
+        data.cep = unMask(data.cep);
+        data.cpf = unMask(data.cpf);
+        data.rg = unMask(data.rg);
+        data.birthDate = FormattedDate(data.birthDate);
         
+        const result = await createStudent(data);
+        const { success, uid} = result;
 
-
-
-
-
-        console.log(data);
+        if(success){
+            const responsibleStudents = JSON.parse(localStorage.getItem('studentResponsible')) || [];
+            if (responsibleStudents.length > 0){
+                for (const responsible of responsibleStudents) {
+                    responsible.idStudent = uid;
+                    const result = await createResponsibleStudent(responsible);
+                    const {success} = result;
+                    if (success) {
+                        setMsgBox({variant: 'success', message: 'Cadastro Adicionado com sucesso!'})
+                        setShowAlert(true)
+                        reset()
+                        // Exclui os dados do localStorage
+                        localStorage.removeItem('studentResponsible');
+                        setTimeout(() => {
+                            navigate('/students');
+                        }, 4000);
+                    }
+                }
+            }
+        }else{
+            // Exclui os dados do localStorage
+            localStorage.removeItem('studentResponsible');
+        }
     } 
 
     return (
         <S.Container>
+            {
+                errorStudents || errorResponsibleStudents && <Alert variant={'danger'}> {errorStudents || errorResponsibleStudents} </Alert>
+            }
+            {
+                showAlert &&                                            
+                <AlertCustom variant={msgBox.variant} handleCloseAlert={handleCloseAlert}> {msgBox.message} </AlertCustom>
+            }
             <Form  id={'formStudents'} onSubmit={handleSubmit(onSubmit)}>
                 <MDBTabs className='custom-tabs' >
                     <MDBTabsItem>
@@ -75,6 +126,7 @@ const BodyForm = () => {
                         </MDBTabsLink>
                     </MDBTabsItem>
                 </MDBTabs>
+                    
                 <S.WrapFields>
                     <MDBTabsContent>
                         <MDBTabsPane open={basicActive === 'tab1'}> 
@@ -118,7 +170,7 @@ const BodyForm = () => {
                     <Button
                         variant="outline-danger"
                         size='sm'
-                        // onClick={() => navigate('/users')}
+                        onClick={() => navigate('/students')}
                     >
                         <Theme.Icons.MdClose />
                         <span>Cancelar</span>
@@ -128,9 +180,9 @@ const BodyForm = () => {
                         size='sm'
                         type='submit'
                         form='formStudents'
-                        // disabled={isLoadingPostUpdate ? true : false}
+                        disabled={loadingStudents ? true : false}
                     >
-                        {/* { isLoadingPostUpdate ?
+                        { loadingStudents || loadingResponsibleStudents ?
                             <>
                                 <Spinner
                                     as="span"
@@ -139,13 +191,13 @@ const BodyForm = () => {
                                     role="status"
                                     aria-hidden="true"
                                 />
-                                <span className="sr-only"> Atualizando... </span>
-                            </> : */}
+                                <span > Salvando... </span>
+                            </> :
                             <>
                                 <Theme.Icons.MdSaveAlt />
                                 <span>Salvar</span>
                             </>
-                        {/* } */}
+                        } 
                     </Button>                      
                 </S.WrapButtons>
             </Form>

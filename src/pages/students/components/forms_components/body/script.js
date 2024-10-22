@@ -37,6 +37,16 @@ export const CapitalizedValue = (fieldValue) => {
     return(newValue); // Atualiza o valor no React Hook Form
 };
 
+export const FormattedDate = (birthDate) => {
+    const newDate = new Date(birthDate);
+    const day = String(newDate.getDate()).padStart(2, '0');
+    const month = String(newDate.getMonth() + 1).padStart(2, '0'); // Mês começa em 0
+    const year = newDate.getFullYear();
+    
+    return `${day}/${month}/${year}`;
+}
+
+
 export const FetchCep = () => {
     
     const { fetchCep, isLoading: loadingCep} =  useSearchCep();
