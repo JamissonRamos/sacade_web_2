@@ -9,6 +9,7 @@ import { createStudentResponsible, updateStudentResponsible } from "../scripts";
 import { MaskInput, CapitalizedValue } from "../../../body/script";
 import { useEffect, useState } from "react";
 import { AlertCustom } from "../../../../../../../components/alert_custom";
+import { unMask } from 'remask';
 
 const ModalResponsible = ({showModal, handleClose, fetchDataResponsible, registeredModify} ) => {
     const [activeButton, setActiveButton] = useState(false);
@@ -18,6 +19,16 @@ const ModalResponsible = ({showModal, handleClose, fetchDataResponsible, registe
     const { register, handleSubmit, setValue, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.ModalResponsibleSchema)
     });
+
+    const formattedDate = (birthDate) => {
+        const newDate = new Date(birthDate);
+        const day = String(newDate.getDate()).padStart(2, '0');
+        const month = String(newDate.getMonth() + 1).padStart(2, '0'); // Mês começa em 0
+        const year = newDate.getFullYear();
+        
+        return `${day}/${month}/${year}`;
+    }
+    
 
     useEffect(() => {
         setMsgBox(null)
@@ -78,10 +89,14 @@ const ModalResponsible = ({showModal, handleClose, fetchDataResponsible, registe
     const handleOnSubmit = async (data) => {
 
         handleCloseAlert();
+        data.responsibleCellPhone = unMask(data.responsibleCellPhone);
+        data.responsibleBirthDate = formattedDate(data.responsibleBirthDate);
 
+        //Verifica se é para add ou update do cadastro
         if (activeButton){
             handleUpdate(registeredModify.id, data)
         }else{
+
             const result = await createStudentResponsible(data); 
             if (result) {
                 fetchDataResponsible();

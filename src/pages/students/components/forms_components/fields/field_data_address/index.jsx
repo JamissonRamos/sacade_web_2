@@ -2,19 +2,14 @@
 import * as S from './styled'
 import { Button, Col, Form, InputGroup, Row, Spinner } from "react-bootstrap";
 import { Theme } from "../../../../../../theme";
-// import { useSearchCep } from '../../../../../../services/cep';
 import { FetchCep } from '../../body/script';
 import { useState } from 'react';
 import { AlertCustom } from '../../../../../../components/alert_custom';
 import { CapitalizedValue } from '../../body/script';
 
 const DataAddress = ({register, setValue, getValues, errors, handleChange}) => {
-    const [cep, setCep] = useState(''); // Gerencia o estado do CEP
     const [msgBox, setMsgBox] = useState(null); // Gerencia o estado do CEP
     const [showAlert, setShowAlert] = useState(false);
-
-    // const [residenceNumber, setResidenceNumber] = useState(false); // Gerencia o estado do CEP
-    // const { fetchCep, isLoading: loadingCep} = useSearchCep()
     const {searchCep, loadingCep } = FetchCep()
 
     // Função para fechar o alerta e preparar para nova mensagem
@@ -28,65 +23,12 @@ const DataAddress = ({register, setValue, getValues, errors, handleChange}) => {
         let capitalized = CapitalizedValue(fieldValue)
         setValue(fieldName, capitalized)
     };
-
-    // const resetSelectedFields = () => {
-    //   // Obtém os valores atuais do formulário
-    //   const currentValues = getValues();
-    //   // Define os campos que devem ser resetados
-    //   reset({
-    //     ...currentValues, // Mantém os valores atuais dos campos
-    //     cep: '', // Reseta o campo 'cep'
-    //     residenceNumber: '', // Reseta o campo 'residenceNumber'
-    //     federativeUnit: '',
-    //     city: '', 
-    //     neighborhood: '',
-    //     logadouro: '',
-    //     // Adicione outros campos que deseja resetar
-    //   });
-    // };
-
-    // const capitalizedValue = (e) => {
-                                                        // const handleBlur = (e) => {
-                                                        //     let fieldName = e.target.name;
-                                                        //     let fieldValue = e.target.value;
-                                                        //     let capitalized = CapitalizedValue(fieldValue)
-                                                        //     setValue(fieldName, capitalized)
-                                                        // };
-    //     const inputValue = e.target.value;
-    //     // Capitaliza a primeira letra de cada palavra
-    //     const capitalizedWords = inputValue.split(' ').map(word => {
-    //         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    //     });
-    //     const newValue = capitalizedWords.join(' ');
-    //     // setValue(e.target.name, newValue); // Atualiza o valor no React Hook Form
-    // };
-  
-    // const handleChange = (e) => {
-    //     if (e.target.name === 'cep'){
-    //         setMsgBox(null)
-    //         const maskedValue = mask(e.target.value, ['99999-999']);
-    //         setValue('cep', maskedValue)
-    //         setCep(e.target.value); // Atualiza o estado com o valor do input
-    //     }else if(e.target.name === 'residenceNumber'){
-            
-    //         if (value)
-    //         setResidenceNumber(false)
-    //         else {
-    //         setResidenceNumber(true)
-    //         }   
-    //     }
-    // };
-
-
+    
     const handleOnClickCep = async () => {
         handleCloseAlert()
         const cep = getValues('cep');
-        console.log(cep);
-        
         const result = await searchCep(cep);
         const { success, data, message  } = result;
-        console.log(success);
-        console.log(message);
         if(success){
             console.log(data);
             // Atualiza os valores dos campos com os dados recebidos  
@@ -94,38 +36,12 @@ const DataAddress = ({register, setValue, getValues, errors, handleChange}) => {
             setValue('neighborhood', data.neighborhood);
             setValue('city', data.city);
             setValue('federativeUnit', data.federativeUnit);
-
-
-
             setMsgBox({variant: 'success', message: message})
             setShowAlert(true)
         }else{
             setMsgBox({variant: 'danger', message: message})
             setShowAlert(true)
         }
-
-        
-        // // try {  
-        //   // setIsLoading(true)
-        //   const response = await fetchCep(cep); // Chama a função do script e aguarda a resposta
-        // if (response.success) {
-        //     // Atualiza os valores dos campos com os dados recebidos  
-        //     setValue('logadouro', response.data.logadouro);
-        //     setValue('neighborhood', response.data.neighborhood);
-        //     setValue('city', response.data.city);
-        //     setValue('federativeUnit', response.data.federativeUnit);
-        //     setResidenceNumber(true)
-        //     setMsgBox({variant: 'warning', msg:'Endereço encontrado com sucesso!'});
-        // } else {
-        //     setMsgBox({variant: 'danger', msg: response.message});
-        //     resetSelectedFields()
-        // }
-        // // } catch (error) {
-        // setMsgBox({variant: 'danger', msg: "Erro ao busca cep: " +  error.message});
-        // console.error('Erro ao busca cep:' + error);
-        // // }finally {
-        // //   setIsLoading(false); // Garante que o estado seja atualizado no final
-        // // }
     }
     
     return (
