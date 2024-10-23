@@ -71,6 +71,9 @@ export const TableBodyCell = styled.div`
     gap: 1rem;
     flex: ${({$flex}) => $flex ? $flex : 1};    
     padding: .6rem 10px;
+    &.status {
+        text-transform: uppercase;
+    }
 `;
 export const CircleLetterName = styled.div`
     width: 40px;

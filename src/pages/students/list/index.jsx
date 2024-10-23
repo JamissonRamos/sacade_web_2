@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 const List = ({data}) => {
+  console.log('dados da lista: ', data);
+  
   const navigate = useNavigate();
 
   const handleBadge = (status) => 
@@ -67,7 +69,7 @@ const List = ({data}) => {
                     {firstName + " " + lastName}
                   </TextC.Body>
                 </S.TableBodyCell>
-                <S.TableBodyCell>
+                <S.TableBodyCell className='status'>
                     <Badge bg={handleBadge(status)} text="light">
                       {status}
                     </Badge>
