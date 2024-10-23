@@ -125,7 +125,6 @@ export const ErrorCount = styled.div `
     background-color: ${Theme.Colors.red400};
     font-size: 1em;
     color: ${Theme.Colors.red800};
-
 `;
 
 export const WrapButtons = styled.div`

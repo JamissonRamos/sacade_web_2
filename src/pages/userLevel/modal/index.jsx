@@ -3,6 +3,7 @@ import { Alert, Badge, Button, Form, Modal, Spinner } from 'react-bootstrap'
 import { TextC } from '../../../components/Typography'
 import * as S from './styled'
 import { useUsers } from '../../../hooks/users';
+import { Theme } from '../../../theme';
 
 const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) => {
     const [error, setError] = useState(null);
@@ -146,28 +147,38 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
                 }
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleCloseModal}>
-                    Fechar
-                </Button>
-                <Button 
-                    variant="primary" 
-                    type='submit' 
-                    disabled= { isLoadingUpdate ? true : false}
-                    onClick={handleSubmit}> 
-                        { isLoadingUpdate ?
-                            <>
-                                <Spinner
-                                    as="span"
-                                    animation="border"
-                                    size="sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                />
-                                <span className="sr-only"> Salvando Alterações... </span>
-                            </> :
-                            <span>Salvar Mudanças</span>
-                        }
-                </Button>
+                <S.WrapButtons>
+                    <Button 
+                        variant="outline-danger" 
+                        size='sm'
+                        onClick={handleCloseModal}>
+                            <Theme.Icons.MdCancel />
+                            <span> Cancelar </span>
+                    </Button>
+                    <Button 
+                        variant="success" 
+                        
+                        type='submit' 
+                        disabled= { isLoadingUpdate ? true : false}
+                        onClick={handleSubmit}> 
+                            { isLoadingUpdate ?
+                                <>
+                                    <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
+                                    <span className="sr-only"> Salvando Alterações... </span>
+                                </> :
+                                <>
+                                    <Theme.Icons.MdSaveAlt />
+                                    <span>Salvar</span>
+                                </>
+                            }
+                    </Button>
+                </S.WrapButtons>
             </Modal.Footer>
         </Modal>
     )
