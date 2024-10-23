@@ -1,4 +1,3 @@
-import React from 'react'
 import * as S from './style'
 import { TextC } from '../Typography'
 import { useAuth } from "../../contexts/authContext/AuthContex"
@@ -13,8 +12,8 @@ const Header = () => {
         <TextC.Title level={1}>Olá,</TextC.Title>
         <TextC.Title level={1}>{firstName}</TextC.Title> 
       </S.UserLogged> 
-      <S.StatusLogged >
 
+      <S.StatusLogged >
         {
           status === 'Visitante' ? 
             <Badge bg="warning" >
