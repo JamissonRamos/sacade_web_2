@@ -16,12 +16,14 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
         status: '',
         statusActive: '', 
     });
-
+    console.log(data);
+    
     // UseEffect para carregar o valor do status e preencher o formulário
     useEffect(() => {
         if (data) {
             setFormData({
                 //...formData,
+                uid: data.uid,
                 status: status || '', // Preenche o status recebido
                 statusActive: statusActive || false // Se houver um valor ativo, ele será atribuído
             });
@@ -157,7 +159,6 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
                     </Button>
                     <Button 
                         variant="success" 
-                        
                         type='submit' 
                         disabled= { isLoadingUpdate ? true : false}
                         onClick={handleSubmit}> 
