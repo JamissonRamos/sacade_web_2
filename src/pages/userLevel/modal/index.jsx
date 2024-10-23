@@ -15,9 +15,7 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
         uid: '',
         status: '',
         statusActive: '', 
-    });
-    console.log(data);
-    
+    });    
     // UseEffect para carregar o valor do status e preencher o formulário
     useEffect(() => {
         if (data) {
