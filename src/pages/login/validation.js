@@ -1,6 +1,5 @@
 import * as yup from "yup";
 
-
 const Schema = yup.object({
     email: yup
         .string()

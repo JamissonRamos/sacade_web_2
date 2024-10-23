@@ -39,7 +39,7 @@ export const useLoginIn = () => {
             }
             
         } catch (error) {
-            console.log('erro ao tenta fazer login: ', error) 
+            console.log('erro ao tenta fazer login: ', error.message) 
             let msgBox;
             switch (error.code) {
                 case "auth/wrong-password":

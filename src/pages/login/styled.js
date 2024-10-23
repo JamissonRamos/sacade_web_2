@@ -241,10 +241,8 @@ export const FormFields = styled.div`
         line-height: 1.5;
         color: ${Theme.Colors.green800};
     }
-    & input, select{
-        box-shadow: none;
-    };
-    & input:focus, select:focus {
+
+    & .input-group input:focus ,input:focus, select:focus {
         border-color: ${Theme.Colors.green800};
         box-shadow: none;
         & svg {

@@ -69,7 +69,7 @@ const Login = () => {
             <Form onSubmit={handleSubmit(onSubmit)} >
               <S.FormFields >
                 <Container >
-                  <Form.Group className="mb-3" controlId="formGridEmail">
+                  <Form.Group className="mb-3 p-1" controlId="formGridEmail">
                     <Form.Label >Email</Form.Label>
                       <Form.Control 
                         type="email" 
@@ -84,7 +84,7 @@ const Login = () => {
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formGridPassword">
                     <Form.Label className="mb-0">Senha</Form.Label>
-                    <InputGroup >
+                    <InputGroup className="p-1">
                       <Form.Control 
                         type={showPassword ? 'text' : 'password'}
                         name='password' 
