@@ -5,9 +5,7 @@ import { Theme } from '../../../theme';
 import { useNavigate } from 'react-router-dom';
 
 
-const List = ({data}) => {
-  console.log('dados da lista: ', data);
-  
+const List = ({data}) => {  
   const navigate = useNavigate();
 
   const handleBadge = (status) => 
@@ -33,7 +31,7 @@ const List = ({data}) => {
   }
 
   const handleShowFormUpdate = (uid) => { 
-    //navigate('/users/form_update', { state: { uid: uid } });
+    navigate('/students/form_update', { state: { uid: uid } });
   };
 
   return (
@@ -81,6 +79,7 @@ const List = ({data}) => {
                   
                     <Button
                       variant="outline-success"
+                      /* - Busca o uid da base pegar quando tras os dados do banco não esta trazendo ainda */
                       onClick={() => handleShowFormUpdate(uid)}
                     >
                       <Theme.Icons.MdModeEdit />

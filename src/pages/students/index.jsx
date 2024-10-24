@@ -65,11 +65,6 @@ const Students = () => {
           </S.Empty> 
         :   
           <S.Content>
-            {/* 
-              - passar variavel que vai indicar se é card ou list;
-              - passar o card quando for menor a page;
-            */}
-
             {
               isValueScreen ?  <CardList data={registered}/> : <List data={registered}/>
             }
