@@ -10,8 +10,8 @@ export const MenuItem = [
         title: 'Cadastros',
         path: '#',
         icon:  <Theme.Icons.MdAddCircle  />,
-        iconClosed:  <Theme.Icons.RiArrowDownSFill  />,
-        iconOpened: <Theme.Icons.RiArrowUpSFill  />,
+        iconClosed:  <Theme.Icons.RiArrowUpSFill />,
+        iconOpened: <Theme.Icons.RiArrowDownSFill  />,
         subNav: [
             {
                 title: 'Alunos',
@@ -34,8 +34,8 @@ export const MenuItem = [
         title: 'Configurações',
         path: '#',
         icon:  <Theme.Icons.MdSettings  />,
-        iconClosed:  <Theme.Icons.RiArrowDownSFill  />,
-        iconOpened: <Theme.Icons.RiArrowUpSFill  />,
+        iconClosed:  <Theme.Icons.RiArrowUpSFill />,
+        iconOpened: <Theme.Icons.RiArrowDownSFill />,
         subNav: [
             {
                 title: 'Alterar Senha',

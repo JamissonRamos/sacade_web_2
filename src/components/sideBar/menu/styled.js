@@ -14,7 +14,7 @@ export const Container = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 0 .2rem ;
+    padding: 0 0rem ;
     /* background-color: ${({$subnav}) => $subnav ? Theme.colors.blue300 : null  }; */
 `;
 
@@ -25,7 +25,7 @@ export const Navigator = styled(Link)`
     display: flex;
     align-items: center;
     justify-content: start;
-    padding: 0 .8rem;
+    padding: 0 1rem;
     border-radius: 8px 4px 4px 8px;
     transition: 350ms;
     cursor: pointer;
@@ -34,7 +34,7 @@ export const Navigator = styled(Link)`
         background-color: ${Theme.Colors.blue500}; 
     }
     @media (max-width: 768px) {
-        padding: 0 .2rem;
+        padding: 0 .4rem;
     }
 `;
 
@@ -91,7 +91,13 @@ export const SubMenu = styled.div`
     /* border: 1px solid red;  */
     display: flex;
     flex-direction: column;
-    gap: .4rem;  
+    gap: .4rem; 
+    padding: 0 .8rem;
+    background-color: ${Theme.Colors.black900};
+    @media (max-width: 768px) {
+        justify-content: center;
+        padding: 0;
+    }
 `;
 export const DropdownLink = styled(Link)`
     /* border: 1px solid blue; */
