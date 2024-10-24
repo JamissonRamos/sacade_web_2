@@ -71,7 +71,7 @@ export const BodyPage = styled.div`
 export const WrapButtonUpdateCancel = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 32px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: end;

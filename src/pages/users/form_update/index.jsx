@@ -343,7 +343,6 @@ const FormUpdate = () => {
                             <S.WrapButtonUpdateCancel>
                                 <Button
                                     variant="success"
-                                    size='sm'
                                     type='submit'
                                     disabled={isLoadingPostUpdate ? true : false}
                                 >
@@ -366,7 +365,6 @@ const FormUpdate = () => {
                                 </Button> 
                                 <Button
                                     variant="outline-danger"
-                                    size='sm'
                                     onClick={() => navigate('/users')}
                                 >
                                     <Theme.Icons.MdClose />
