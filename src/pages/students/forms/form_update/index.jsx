@@ -7,42 +7,58 @@ import { WrapPages } from '../../../../components/Wrappe/pages'
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useStudents } from '../../../../hooks/students'
-import { Spinner } from 'react-bootstrap';
+import { useResponsibleStudents } from '../../../../hooks/responsibleStudents'
+import { Alert, Spinner } from 'react-bootstrap';
 
 const FormUpdateStudents = () => {
     const [registered, setRegistered] = useState(null);
+    const [msgBox, setMsgBox] = useState(null);
 
-    const { documentsID, error, isLoading } = useStudents.useGetDocumentsID();
+    const { documentsID, isLoading } = useStudents.useGetDocumentsID();
+    const { getDocumentsByIdStudents, loading: loadingResponsibleStudent } = useResponsibleStudents.useGetDocumentsByIdStudents();
+
 
     const location = useLocation();  // Captura o UID da URL
     const { uid } = location.state || {};  // Captura o UID do estado de navegação
-    /* 
-        - Recuperar o dados do aluno;
-        - Recuperar os dados do responsavel do aluno;
-    */
+
     useEffect(() => {
         handleFetchDocument()
     }, []);
 
     const handleFetchDocument = async () => {
         const result = await documentsID(uid);  
+        const resultResponsibleStudent = await getDocumentsByIdStudents(uid);  
+        
         const {success, data, message} = result;
+        const {success: successRS, data: dataRS, message: messageRS} = resultResponsibleStudent;
+        console.log('dataRS: ', dataRS);
         if(success){
             setRegistered(data)
-            //await Script.fetchDocumentID(data, setValue); // por enquanto passei as funções de handleChange e convertDate mais a ideia é retirar 
-        }else{
+            if(successRS){
+                /* 
+                    - A criação da coleção no local storage teve que ser feita assim, passando a função esta dando adição dupla
+                */
+                // Salva o array atualizado de volta no localStorage
+                localStorage.setItem('studentResponsible', JSON.stringify(dataRS));
+            }else if(messageRS){
+                setMsgBox({variant: 'success', message: messageRS});
+            }
+        }else {
             console.log("Não recuperou o ID: ", message);
-            //setMsgBox({variant: 'danger', message: message});
+            setMsgBox({variant: 'danger', message: message});
         }
     };
 
-    
     return (
         <WrapPages>
+            {
+                msgBox && <Alert variant={msgBox.variant} > {msgBox.message} </Alert>
+            }
+            
             <S.Container> 
                 <HeaderForm />
                 {
-                    isLoading ? 
+                    isLoading || loadingResponsibleStudent ? 
                         <>
                             <Spinner
                                 variant="warning"
@@ -53,9 +69,8 @@ const FormUpdateStudents = () => {
                             />
                             <span>Carregando os dados...</span>
                         </>
-                    :
-                        <BodyForm data={registered}/>
-
+                    : 
+                        <BodyForm uid={uid} data={registered}  /> 
                 }
                 
             </S.Container>

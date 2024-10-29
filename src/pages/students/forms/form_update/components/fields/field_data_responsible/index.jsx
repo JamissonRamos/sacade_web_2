@@ -9,7 +9,7 @@ import DeleteData from "../../../../../../../components/alert_delete";
 import { AlertCustom } from "../../../../../../../components/alert_custom";
 
 
-const DataResponsible = () => {
+const DataResponsible = ({uid}) => {
     const [registered, setRegistered] = useState('');
     const [registeredModify, setRegisteredModify] = useState('');
     const [registeredDelete, setRegisteredDelete] = useState('');
@@ -17,6 +17,11 @@ const DataResponsible = () => {
     const [showModal, setShowModal] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
     const [msgBox, setMsgBox] = useState(null)
+    const uidStudent= uid || "";
+
+
+    // console.log('form Responsible: ', data);
+    
 
     // Função para fechar o alerta e preparar para nova mensagem
     const handleCloseAlert = () => {
@@ -33,13 +38,11 @@ const DataResponsible = () => {
         setShowModal(true)
     };
 
-
     const handleShowModalEdit = (id) => { 
         setShowModal(true)
         const filter = registered[id]
         setRegisteredModify({id: id, data: filter})
     };
-
 
     const handleShowDelete = (key, name) => {
         setRegisteredDelete({
@@ -70,14 +73,13 @@ const DataResponsible = () => {
         }
     }
     
-
     const fetchDataResponsible = async () => {
         const result = await getStudentResponsible();
         const { success, data } = result;
+        console.log(data);
+        
         if(success){
-            setRegistered(
-                data
-            )
+            setRegistered(data)
         }else{
             setRegistered(null)
         }
@@ -87,6 +89,8 @@ const DataResponsible = () => {
         fetchDataResponsible();  // Chama a função ao renderizar o componente
     }, []);
 
+    // console.log(registered);
+    
     return (
         <S.Container>
             {
@@ -104,7 +108,13 @@ const DataResponsible = () => {
                 </Button>                    
             </S.WrapButtons>
 
-            <ModalResponsible  showModal={showModal} handleClose={handleClose} fetchDataResponsible={fetchDataResponsible} registeredModify={registeredModify} />
+            <ModalResponsible  
+                uid={uidStudent}
+                showModal={showModal} 
+                handleClose={handleClose} 
+                fetchDataResponsible={fetchDataResponsible} 
+                registeredModify={registeredModify} 
+            />
             
             {
                 showDelete && <DeleteData registeredDelete={registeredDelete} handleDeleteData={handleDeleteData} handleShowDelete={handleShowDelete}/>

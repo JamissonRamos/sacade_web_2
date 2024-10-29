@@ -5,16 +5,25 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../../../../../../../validations'
 import { TextC } from "../../../../../../../../components/Typography";
-import { createStudentResponsible, updateStudentResponsible } from "../scripts";
 import { MaskInput, CapitalizedValue } from "../../../body/script";
 import { useEffect, useState } from "react";
 import { AlertCustom } from "../../../../../../../../components/alert_custom";
 import { unMask } from 'remask';
+import { useResponsibleStudents } from "../../../../../../../../hooks/responsibleStudents";
+import { useStudentResponsibleLocalStorage } from '../../../../../../../../hooks/localStorage/studentResponsible'
 
-const ModalResponsible = ({showModal, handleClose, fetchDataResponsible, registeredModify} ) => {
+const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, registeredModify} ) => {
     const [activeButton, setActiveButton] = useState(false);
     const [msgBox, setMsgBox] = useState(null)
     const [showAlert, setShowAlert] = useState(false);
+    const uidStudent = uid || "";
+
+    console.log(registeredModify);
+    
+    const { createResponsibleStudent, loading: loadingCreateResponsibleStudent} = useResponsibleStudents.usePostDocumentsCreate();
+    const {createStudentResponsible, loading: loadingCreate } = useStudentResponsibleLocalStorage.usePostDocumentCreate();
+    const {updateLocalStorageStudentResponsible, loading: loadingUpdate } = useStudentResponsibleLocalStorage.usePostDocumentUpdate();
+    const { updateResponsibleStudent, loading: loadingUpdateResponsibleStudent} = useResponsibleStudents.usePostDocumentsUpdate();
 
     const { register, handleSubmit, setValue, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.ModalResponsibleSchema)
@@ -74,8 +83,27 @@ const ModalResponsible = ({showModal, handleClose, fetchDataResponsible, registe
     }
 
     const handleUpdate = async (key, data) => {
+        /* 
+            - Colocar esse ponto a função de fazer atualização no firebase da coleção de Responsible
+        
+        */
+
+        data.uid = key
+
+        console.log(key);
+        console.log(data);
+        
+
+        const response = await updateResponsibleStudent(data);
+        const {success, message } = response;
+
+        if(!success){
+            console.log('Erro ao tenta atualizar dados no localStorage:');
+            setMsgBox({variant: 'danger', message: message})
+        }
+
         // Atualiza os dados no localStorage com a chave "responsavel"
-        const result = await updateStudentResponsible(key, data);
+        const result = await updateLocalStorageStudentResponsible(key, data);
         if(result){
             fetchDataResponsible();
             reset();
@@ -91,12 +119,24 @@ const ModalResponsible = ({showModal, handleClose, fetchDataResponsible, registe
         handleCloseAlert();
         data.responsibleCellPhone = unMask(data.responsibleCellPhone);
         data.responsibleBirthDate = formattedDate(data.responsibleBirthDate);
+        data.idStudent = uidStudent;
+
+        console.log(data);
 
         //Verifica se é para add ou update do cadastro
         if (activeButton){
-            handleUpdate(registeredModify.id, data)
+            handleUpdate(registeredModify.data.id, data)
         }else{
-
+            //Criando coleção no firebase
+            const response = await createResponsibleStudent(data)
+            const { success, message } = response;
+            if(!success){
+                console.log('Erro ao tenta criar coleção no firebase Responsible Student');
+                setMsgBox({variant: 'danger', message: message})
+                setShowAlert(true)
+            }
+            
+            //Criando coleção para o local storage
             const result = await createStudentResponsible(data); 
             if (result) {
                 fetchDataResponsible();
@@ -238,10 +278,6 @@ const ModalResponsible = ({showModal, handleClose, fetchDataResponsible, registe
                             </Row>
                         </S.WrapFields>
                     </Form>
-                    {/* {
-                        msgBox &&
-                        <Alert variant={msgBox.variant}> {msgBox.message} </Alert>
-                    } */}
                 </Modal.Body>
                 <Modal.Footer>
                     <S.WrapButtons>
@@ -255,6 +291,7 @@ const ModalResponsible = ({showModal, handleClose, fetchDataResponsible, registe
                                     variant="outline-success"
                                     size='sm' 
                                     form="responsibleForm"
+                                    disabled={loadingCreate || loadingCreateResponsibleStudent? true : false}
                                     onClick={handleSubmit(handleOnSubmit)}
                                 >
                                     <Theme.Icons.MdAdd />
@@ -264,6 +301,7 @@ const ModalResponsible = ({showModal, handleClose, fetchDataResponsible, registe
                                     variant="outline-success"
                                     size='sm' 
                                     form="responsibleForm"
+                                    disabled={loadingUpdate || loadingUpdateResponsibleStudent ? true : false} //Falta passar o loagin update do firabese
                                     onClick={handleSubmit(handleOnSubmit)}
                                 >
                                     <Theme.Icons.MdUpdate />

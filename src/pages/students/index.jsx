@@ -25,7 +25,6 @@ const Students = () => {
       
     }else{
       console.log(error);
-      
     };
 
   }

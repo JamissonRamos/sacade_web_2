@@ -16,69 +16,71 @@ import { Validations } from '../../../../../validations'
 import { FormattedDate, MaskInput, ConvertDate } from './script';
 import { unMask } from 'remask';
 import { useStudents } from '../../../../../../hooks/students'
-import { useResponsibleStudents } from '../../../../../../hooks/responsibleStudents'
+//import { useResponsibleStudents } from '../../../../../../hooks/responsibleStudents'
 import { AlertCustom } from '../../../../../../components/alert_custom';
 import { useNavigate } from 'react-router-dom';
 
 
-const BodyForm = ({data}) => {
+const BodyForm = ({uid, data}) => {
     const [basicActive, setBasicActive] = useState('tab1');
     const [msgBox, setMsgBox] = useState(null)
     const [showAlert, setShowAlert] = useState(false);
-    const registrados = data || [];
 
-    const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
-        resolver: yupResolver(Validations.StudentsSchema)
-    });
-    
     const navigate = useNavigate();
 
-    
-    /* 
-        - Verificar o compotamento quando o campo da base dados for vazio, como ele manipular para salva os dados;
-        - 
-    */
-
-    useEffect(() => {
-        if (registrados) {
-            Object.keys(registrados).forEach(key => {
-                if (key === 'cpf') {
-                    applyMascara('cpf', registrados[key]);
-                }else if (key === 'rg') {
-                    applyMascara('rg', registrados[key])
-                }else if (key === 'cellPhone') {
-                    applyMascara('cellPhone', registrados[key])
-                }else if (key === 'birthDate') {
-                    const newDate = ConvertDate( registrados[key])                   
-                    setValue(key, newDate);
-                }else{
-                    setValue(key, registrados[key]);
-                }
-            });
-        }
-
-    }, [])
-
+    const registered = data || [];
+    const uidStudent = uid || "";
 
     const applyMascara = (fieldName, fieldValue ) => {
         let maskedValue = MaskInput(fieldName, fieldValue)
         setValue(fieldName, maskedValue)
     }
 
-    /* 
-        - Mudar para função de fzer update dos arquivos;
-    */
-    const {createResponsibleStudent, isLoadingCreate: loadingResponsibleStudents, errorCreate: errorResponsibleStudents } = useResponsibleStudents.usePostDocumentsCreate();
-    const {createStudent, isLoadingCreate: loadingStudents, errorCreate: errorStudents } = useStudents.usePostDocumentsCreate();
+    const {UpdateStudents, isLoadingUpdate: loadingStudents, } = useStudents.usePostDocumentsUpdate();
+    // const {createResponsibleStudent, isLoadingCreate: loadingResponsibleStudents, errorCreate: errorResponsibleStudents } = useResponsibleStudents.usePostDocumentsCreate();
+    
 
+    const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
+        resolver: yupResolver(Validations.StudentsSchema)
+    });
+    
     //Contas os erro e mostra se tiver algum em qualquer form 
     const errorCount = Object.keys(errors).length;
+
+
+    useEffect(() => {
+        if (registered) {
+            Object.keys(registered).forEach(key => {
+                if (key === 'cpf') {
+                    applyMascara('cpf', registered[key]);
+                }else if (key === 'rg') {
+                    applyMascara('rg', registered[key])
+                }else if (key === 'cellPhone') {
+                    applyMascara('cellPhone', registered[key])
+                }else if (key === 'birthDate') {
+                    const newDate = ConvertDate( registered[key])                   
+                    setValue(key, newDate);
+                }else{
+                    setValue(key, registered[key]);
+                }
+            });
+        }
+
+    }, [])
+
+    console.log(registered);
     
+
     // Função para fechar o alerta e preparar para nova mensagem
     const handleCloseAlert = () => {
         setShowAlert(false);
-        setMsgBox(""); // Limpa a mensagem
+        setMsgBox(""); // Limpa a mensagem  
     };
+
+    // Exclui os dados do localStorage
+    const handleDeleteLocalStorage = () => {
+        localStorage.removeItem('studentResponsible');
+    }
 
     const handleBasicClick = (value) => {
         //Tabs nav
@@ -105,45 +107,38 @@ const BodyForm = ({data}) => {
         data.cpf = unMask(data.cpf);
         data.rg = unMask(data.rg);
         data.birthDate = FormattedDate(data.birthDate);
+        data.uid = uidStudent;
         
-        const result = await createStudent(data);
-        const { success, uid} = result;
+        const result = await UpdateStudents(data);
+        const { success, message } = result;
 
-        if(success){
-            const responsibleStudents = JSON.parse(localStorage.getItem('studentResponsible')) || [];
-            if (responsibleStudents.length > 0){
-                for (const responsible of responsibleStudents) {
-                    responsible.idStudent = uid;
-                    const result = await createResponsibleStudent(responsible);
-                    const {success} = result;
-                    if (success) {
-                        setMsgBox({variant: 'success', message: 'Cadastro Adicionado com sucesso!'})
-                        setShowAlert(true)
-                        reset()
-                        // Exclui os dados do localStorage
-                        localStorage.removeItem('studentResponsible');
-                        setTimeout(() => {
-                            navigate('/students');
-                        }, 4000);
-                    }
-                }
-            }
-        }else{
+        if (success) {
+            setMsgBox({variant: 'success', message: 'Cadastro Atualizado com sucesso!'})
+            setShowAlert(true)
+            reset()
             // Exclui os dados do localStorage
-            localStorage.removeItem('studentResponsible');
+            handleDeleteLocalStorage();
+            setTimeout(() => {
+                navigate('/students');
+            }, 4000);
+        }else{
+            setMsgBox({variant: 'danger', message: `Deu algum erro: ${message}`})
+            // Exclui os dados do localStorage
+            handleDeleteLocalStorage();
         }
+
     } 
 
     return (
         <S.Container>
-            {
+            {/* {
                 errorStudents || errorResponsibleStudents && <Alert variant={'danger'}> {errorStudents || errorResponsibleStudents} </Alert>
-            }
+            } */}
             {
                 showAlert &&                                            
                 <AlertCustom variant={msgBox.variant} handleCloseAlert={handleCloseAlert}> {msgBox.message} </AlertCustom>
             }
-            <Form  id={'formStudents'} onSubmit={handleSubmit(onSubmit)}>
+            <Form  onSubmit={handleSubmit(onSubmit)}>
                 <MDBTabs className='custom-tabs' >
                     <MDBTabsItem>
                         <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
@@ -179,7 +174,8 @@ const BodyForm = ({data}) => {
                         </MDBTabsPane>
 
                         <MDBTabsPane open={basicActive === 'tab2'}> 
-                            <FieldStudents.DataResponsible  
+                            <FieldStudents.DataResponsible
+                                uid={uidStudent}
                             />
                         </MDBTabsPane>
 
@@ -189,7 +185,6 @@ const BodyForm = ({data}) => {
                                 register={register} 
                                 setValue={setValue}
                                 getValues={getValues}
-
                                 errors={errors}
                                 handleChange={handleChange}
                             />
@@ -210,7 +205,7 @@ const BodyForm = ({data}) => {
                     <Button
                         variant="outline-danger"
                         size='sm'
-                        onClick={() => navigate('/students')}
+                        onClick={() => {handleDeleteLocalStorage(), navigate('/students')}}
                     >
                         <Theme.Icons.MdClose />
                         <span>Cancelar</span>
@@ -219,10 +214,9 @@ const BodyForm = ({data}) => {
                         variant="success"
                         size='sm'
                         type='submit'
-                        form='formStudents'
                         disabled={loadingStudents ? true : false}
                     >
-                        { loadingStudents || loadingResponsibleStudents ?
+                        { loadingStudents ?
                             <>
                                 <Spinner
                                     as="span"
@@ -246,3 +240,4 @@ const BodyForm = ({data}) => {
 }
 
 export default BodyForm
+

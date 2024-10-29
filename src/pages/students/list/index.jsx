@@ -7,6 +7,11 @@ import { useNavigate } from 'react-router-dom';
 
 const List = ({data}) => {  
   const navigate = useNavigate();
+  
+  // Exclui os dados do localStorage
+  const handleDeleteLocalStorage = () => {
+    localStorage.removeItem('studentResponsible');
+  }
 
   const handleBadge = (status) => 
   {
@@ -31,6 +36,7 @@ const List = ({data}) => {
   }
 
   const handleShowFormUpdate = (uid) => { 
+    handleDeleteLocalStorage();
     navigate('/students/form_update', { state: { uid: uid } });
   };
 

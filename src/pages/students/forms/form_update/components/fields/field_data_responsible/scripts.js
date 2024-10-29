@@ -24,47 +24,47 @@ export const getStudentResponsible = async () => {
 
 //Função para criar documents no local storage
 export const createStudentResponsible = async (data) => {
-    try {
-        // Obtém os cadastros existentes do localStorage ou inicializa um array vazio
-        let cadastros = JSON.parse(localStorage.getItem('studentResponsible')) || [];
+    // try {
+    //     // Obtém os cadastros existentes do localStorage ou inicializa um array vazio
+    //     let cadastros = JSON.parse(localStorage.getItem('studentResponsible')) || [];
 
-        // Adiciona o novo usuário ao array de cadastros
-        cadastros.push(data);
+    //     // Adiciona o novo usuário ao array de cadastros
+    //     cadastros.push(data);
 
-        // Salva o array atualizado de volta no localStorage
-        localStorage.setItem('studentResponsible', JSON.stringify(cadastros));
+    //     // Salva o array atualizado de volta no localStorage
+    //     localStorage.setItem('studentResponsible', JSON.stringify(cadastros));
 
-        // Retorna uma mensagem de sucesso
-        return { success: true };
-    } catch (error) {
-        // Retorna uma mensagem de erro em caso de falha
-        return { success: false, message: error.message };
-    }
+    //     // Retorna uma mensagem de sucesso
+    //     return { success: true };
+    // } catch (error) {
+    //     // Retorna uma mensagem de erro em caso de falha
+    //     return { success: false, message: error.message };
+    // }
 };
 
 // Função para atualizar os dados no localStorage
 export const updateStudentResponsible = async (key, data) => {
-    // Recupera os dados do localStorage
-    const storedData = localStorage.getItem('studentResponsible');
-    // Verifica se existem dados armazenados
-    if (storedData) {
-        // Converte os dados de volta para um array
-        const dataArray = JSON.parse(storedData);
-        // Atualiza o item no índice especificado
-        if (dataArray[key]) {
-            dataArray[key] = { ...dataArray[key], ...data };
-        }
-        // Salva o array atualizado de volta no localStorage
-        localStorage.setItem('studentResponsible', JSON.stringify(dataArray));
-        return{
-            success: true
-        }
-    } else {
-        console.log('Nenhum dado encontrado no localStorage.');
-        return{
-            success: false
-        }
-    }
+    // // Recupera os dados do localStorage
+    // const storedData = localStorage.getItem('studentResponsible');
+    // // Verifica se existem dados armazenados
+    // if (storedData) {
+    //     // Converte os dados de volta para um array
+    //     const dataArray = JSON.parse(storedData);
+    //     // Atualiza o item no índice especificado
+    //     if (dataArray[key]) {
+    //         dataArray[key] = { ...dataArray[key], ...data };
+    //     }
+    //     // Salva o array atualizado de volta no localStorage
+    //     localStorage.setItem('studentResponsible', JSON.stringify(dataArray));
+    //     return{
+    //         success: true
+    //     }
+    // } else {
+    //     console.log('Nenhum dado encontrado no localStorage.');
+    //     return{
+    //         success: false
+    //     }
+    // }
 };
 // Função para deletar os dados no localStorage
 export const deleteStudentResponsible = async (key) => {
