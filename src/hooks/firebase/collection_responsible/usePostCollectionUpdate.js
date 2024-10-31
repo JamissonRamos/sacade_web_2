@@ -10,7 +10,6 @@ export const usePostCollectionUpdate = () => {
             // Now, store additional user details in Firestore
             const docRef = doc(db, collectionName, uid);
             await setDoc(docRef, {
-                
                 ...otherData
             }, { merge: true });     
             return { success: true };

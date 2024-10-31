@@ -4,10 +4,14 @@ import { TextC } from '../Typography'
 import { Button } from 'react-bootstrap'
 
 const DeleteData =   ({registeredDelete, handleDeleteData, handleShowDelete }) => {
-    const {id, fullName } = registeredDelete;
+    const {id, uid, fullName } = registeredDelete;
+
+    console.log(id);
+    console.log(uid);
     
-    const handleDelete = async (id) => {
-        handleDeleteData(id);
+    
+    const handleDelete = async (id, uid) => {
+        handleDeleteData(id, uid);
         handleShowDelete()
     }
     return (
@@ -43,7 +47,7 @@ const DeleteData =   ({registeredDelete, handleDeleteData, handleShowDelete }) =
                         <S.WrapButton>
                             <Button  
                                 variant="success"
-                                onClick={() => handleDelete(id)}
+                                onClick={() => handleDelete(id, uid)}
                             >
                                 <span> Sim, Excluir Cadastro</span>
                             </Button>

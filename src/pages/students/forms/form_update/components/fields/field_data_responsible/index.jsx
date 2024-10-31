@@ -1,13 +1,14 @@
-import {Button} from "react-bootstrap";
+import {Button, Spinner} from "react-bootstrap";
 import { Theme } from "../../../../../../../theme";
 import * as S from './styled'
 import ModalResponsible from "./modal";
 import { useEffect, useState } from "react";
-import { getStudentResponsible, deleteStudentResponsible } from "./scripts";
+import { getStudentResponsible } from "./scripts";
 import { TextC } from "../../../../../../../components/Typography";
 import DeleteData from "../../../../../../../components/alert_delete";
 import { AlertCustom } from "../../../../../../../components/alert_custom";
-
+import { useStudentResponsibleLocalStorage } from "../../../../../../../hooks/localStorage/studentResponsible";
+import { useResponsibleStudents } from "../../../../../../../hooks/responsibleStudents";
 
 const DataResponsible = ({uid}) => {
     const [registered, setRegistered] = useState('');
@@ -17,11 +18,11 @@ const DataResponsible = ({uid}) => {
     const [showModal, setShowModal] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
     const [msgBox, setMsgBox] = useState(null)
-    const uidStudent= uid || "";
+    const uidStudent= uid || "";  
 
+    const {deleteResponsibleStudent, loading: loadingDelete} = useResponsibleStudents.usePostDocumentsDelete();
+    const {deleteLocalStorageStudentResponsible, loading: loadingLocalStorageDelete} = useStudentResponsibleLocalStorage.usePostDocumentDelete();
 
-    // console.log('form Responsible: ', data);
-    
 
     // Função para fechar o alerta e preparar para nova mensagem
     const handleCloseAlert = () => {
@@ -44,20 +45,32 @@ const DataResponsible = ({uid}) => {
         setRegisteredModify({id: id, data: filter})
     };
 
-    const handleShowDelete = (key, name) => {
+    const handleShowDelete = (key, id, name) => {
         setRegisteredDelete({
             id: key,
+            uid: id,
             fullName: name
         })
         setShowDelete((prevState) => !prevState);
         handleCloseAlert();
     }
 
-    const handleDeleteData = async(uid) => {
-        const result = await deleteStudentResponsible(uid)
-        const { success, message} = result;
+    const handleDeleteData = async(id, uid) => {
+        const response = await deleteResponsibleStudent(uid)
+        const { success, message} = response;
 
-        if(success){
+        if(!success){
+            setMsgBox({
+                variant: 'danger',
+                message: message
+            })
+            setShowAlert(true)
+        }
+
+        const result = await deleteLocalStorageStudentResponsible(id)
+        const { success: successLS, message: messageLS} = result;
+
+        if(successLS){
             setMsgBox({
                 variant: 'success',
                 message: 'Cadastro excluído com sucesso!'
@@ -67,7 +80,7 @@ const DataResponsible = ({uid}) => {
         }else{
             setMsgBox({
                 variant: 'danger',
-                message: message
+                message: messageLS
             })
             setShowAlert(true)
         }
@@ -89,14 +102,14 @@ const DataResponsible = ({uid}) => {
         fetchDataResponsible();  // Chama a função ao renderizar o componente
     }, []);
 
-    // console.log(registered);
+    console.log(registered);
     
     return (
         <S.Container>
-            {
+            {/* {
                 showAlert &&
                 <AlertCustom variant={msgBox.variant} handleCloseAlert={handleCloseAlert}> {msgBox.message} </AlertCustom>
-            }
+            } */}
             <S.WrapButtons>
                 <Button
                     variant="outline-primary"
@@ -125,7 +138,7 @@ const DataResponsible = ({uid}) => {
             <S.WrapListResponsible>
                 {
                     registered && 
-                    registered.map(({fullName, relationshipLevel }, i) => (
+                    registered.map(({id, fullName, relationshipLevel }, i) => (
                         <S.Content key={i}> 
                             <S.WrapData>
                                 <S.FullName> 
@@ -148,8 +161,21 @@ const DataResponsible = ({uid}) => {
                                 </Button>
                                 <Button 
                                     variant="outline-danger"
-                                    onClick={() => handleShowDelete(i, fullName)}>
-                                    <Theme.Icons.MdDelete />
+                                    disabled={loadingDelete || loadingLocalStorageDelete ? true : false}
+                                    onClick={() => handleShowDelete(i, id, fullName)}>
+                                        {
+                                            loadingDelete || loadingLocalStorageDelete 
+                                            ?
+                                                <Spinner
+                                                    as="span"
+                                                    animation="border"
+                                                    size="sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                />
+                                            :
+                                                <Theme.Icons.MdDelete />    
+                                        }
                                 </Button>
                             </S.WrapListButtons>
                         </S.Content>

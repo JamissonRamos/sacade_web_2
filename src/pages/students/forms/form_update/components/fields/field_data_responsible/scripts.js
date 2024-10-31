@@ -69,36 +69,36 @@ export const updateStudentResponsible = async (key, data) => {
 // Função para deletar os dados no localStorage
 export const deleteStudentResponsible = async (key) => {
 
-    try {
-        // Recupera os dados do localStorage
-        const storedData = localStorage.getItem('studentResponsible');
-        // Verifica se existem dados armazenados
-        if (storedData) {
-            // Converte os dados de volta para um array
-            const dataArray = JSON.parse(storedData);
-            // Verifica se o índice é válido
-            if (key < 0 || key >= dataArray.length) {
-                return { success: false, message: 'Índice inválido' };
-            }
-            // Filtra o array para remover o item no índice especificado
-            const updatedArray = dataArray.filter((_, i) => i !== key);
-            // Salva o array atualizado de volta no localStorage
-            localStorage.setItem('studentResponsible', JSON.stringify(updatedArray));
-            return { success: true };
-        }else {
-            console.log('Nenhum cadastro foi encontrado no localStorage.');
-            return{
-                success: false,
-                message: 'Nenhum cadastro foi encontrado no localStorage.'
-            }
-        }
+    // try {
+    //     // Recupera os dados do localStorage
+    //     const storedData = localStorage.getItem('studentResponsible');
+    //     // Verifica se existem dados armazenados
+    //     if (storedData) {
+    //         // Converte os dados de volta para um array
+    //         const dataArray = JSON.parse(storedData);
+    //         // Verifica se o índice é válido
+    //         if (key < 0 || key >= dataArray.length) {
+    //             return { success: false, message: 'Índice inválido' };
+    //         }
+    //         // Filtra o array para remover o item no índice especificado
+    //         const updatedArray = dataArray.filter((_, i) => i !== key);
+    //         // Salva o array atualizado de volta no localStorage
+    //         localStorage.setItem('studentResponsible', JSON.stringify(updatedArray));
+    //         return { success: true };
+    //     }else {
+    //         console.log('Nenhum cadastro foi encontrado no localStorage.');
+    //         return{
+    //             success: false,
+    //             message: 'Nenhum cadastro foi encontrado no localStorage.'
+    //         }
+    //     }
         
-    } catch (error) {
-        return{
-            success: false,
-            message: error.message
-        }
+    // } catch (error) {
+    //     return{
+    //         success: false,
+    //         message: error.message
+    //     }
         
-    }
+    // }
 };
 

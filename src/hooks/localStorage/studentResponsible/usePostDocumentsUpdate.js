@@ -2,7 +2,6 @@ import { useState, useCallback } from "react";
 
 export const usePostDocumentUpdate = () => {
     const [loading, setLoading] = useState(false);
-//     const [errorUpdate, setErrorUpdate] = useState(null);
     const collectionName = 'studentResponsible';
 
     const updateLocalStorageStudentResponsible = useCallback( async (key, userData) => {

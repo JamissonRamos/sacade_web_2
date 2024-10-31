@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../../../../../../../validations'
 import { TextC } from "../../../../../../../../components/Typography";
-import { MaskInput, CapitalizedValue } from "../../../body/script";
+import { MaskInput, CapitalizedValue, ConvertDate, FormattedDate } from "../../../body/script";
 import { useEffect, useState } from "react";
 import { AlertCustom } from "../../../../../../../../components/alert_custom";
 import { unMask } from 'remask';
@@ -16,47 +16,50 @@ const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, re
     const [activeButton, setActiveButton] = useState(false);
     const [msgBox, setMsgBox] = useState(null)
     const [showAlert, setShowAlert] = useState(false);
+    const registered = registeredModify.data || [];
     const uidStudent = uid || "";
 
-    console.log(registeredModify);
-    
-    const { createResponsibleStudent, loading: loadingCreateResponsibleStudent} = useResponsibleStudents.usePostDocumentsCreate();
+    const {createResponsibleStudent, loading: loadingCreateResponsibleStudent} = useResponsibleStudents.usePostDocumentsCreate();
     const {createStudentResponsible, loading: loadingCreate } = useStudentResponsibleLocalStorage.usePostDocumentCreate();
     const {updateLocalStorageStudentResponsible, loading: loadingUpdate } = useStudentResponsibleLocalStorage.usePostDocumentUpdate();
-    const { updateResponsibleStudent, loading: loadingUpdateResponsibleStudent} = useResponsibleStudents.usePostDocumentsUpdate();
+    const {updateResponsibleStudent, loading: loadingUpdateResponsibleStudent} = useResponsibleStudents.usePostDocumentsUpdate();
 
     const { register, handleSubmit, setValue, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.ModalResponsibleSchema)
     });
 
-    const formattedDate = (birthDate) => {
-        const newDate = new Date(birthDate);
-        const day = String(newDate.getDate()).padStart(2, '0');
-        const month = String(newDate.getMonth() + 1).padStart(2, '0'); // Mês começa em 0
-        const year = newDate.getFullYear();
-        
-        return `${day}/${month}/${year}`;
+    const applyMascara = (fieldName, fieldValue ) => {
+        let maskedValue = MaskInput(fieldName, fieldValue)
+        setValue(fieldName, maskedValue)
     }
-    
 
     useEffect(() => {
         setMsgBox(null)
-        if (registeredModify) {
-            const {fullName, relationshipLevel, responsibleBirthDate, responsibleCellPhone, responsibleEmail} = registeredModify.data
-            setValue('fullName', fullName);
-            setValue('relationshipLevel', relationshipLevel);
-            setValue('responsibleBirthDate', responsibleBirthDate && responsibleBirthDate.split('T')[0]); // Formato YYYY-MM-DD
-            setValue('responsibleCellPhone', responsibleCellPhone);
-            setValue('responsibleEmail', responsibleEmail);
-            setActiveButton(true)// Ativando o button de atualizar os dados 
-        }
-    }, [registeredModify, setValue]);
+        console.log(registered);
 
-    
+        if (registered.length >= 0) {
+            Object.keys(registered).forEach(key => {
+                if (key === 'responsibleCellPhone') {
+                    applyMascara('responsibleCellPhone', registered[key])
+                }else if (key === 'responsibleBirthDate') {
+                    const newDate = ConvertDate( registered[key])
+                    setValue(key, newDate);
+                }else{
+                    setValue(key, registered[key]);
+                }
+                setActiveButton(true)// Ativando o button de atualizar os dados
+            });
+
+        }
+
+
+    }, [registered, registeredModify]);
+
+
     // Função para fechar o alerta e preparar para nova mensagem
     const handleCloseAlert = () => {
         setShowAlert(false);
-        setMsgBox(""); // Limpa a mensagem
+        setMsgBox(null); // Limpa a mensagem
     };
 
     const handleBlur = (e) => {
@@ -75,24 +78,15 @@ const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, re
 
     const handleCloseModal = () => {
         reset();
-        //Mudar a variavel para atualizar o components que ativar o btn 
+        //Mudar a variavel para atualizar o components que ativar o btn
         setActiveButton(false);
-        setMsgBox(false);
+        setMsgBox(null);
         handleClose();
         handleCloseAlert();
     }
 
     const handleUpdate = async (key, data) => {
-        /* 
-            - Colocar esse ponto a função de fazer atualização no firebase da coleção de Responsible
-        
-        */
-
         data.uid = key
-
-        console.log(key);
-        console.log(data);
-        
 
         const response = await updateResponsibleStudent(data);
         const {success, message } = response;
@@ -102,8 +96,8 @@ const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, re
             setMsgBox({variant: 'danger', message: message})
         }
 
-        // Atualiza os dados no localStorage com a chave "responsavel"
-        const result = await updateLocalStorageStudentResponsible(key, data);
+        // Atualiza os dados no localStorage
+        const result = await updateLocalStorageStudentResponsible(registeredModify.id, data);
         if(result){
             fetchDataResponsible();
             reset();
@@ -118,10 +112,8 @@ const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, re
 
         handleCloseAlert();
         data.responsibleCellPhone = unMask(data.responsibleCellPhone);
-        data.responsibleBirthDate = formattedDate(data.responsibleBirthDate);
+        data.responsibleBirthDate = FormattedDate(data.responsibleBirthDate);
         data.idStudent = uidStudent;
-
-        console.log(data);
 
         //Verifica se é para add ou update do cadastro
         if (activeButton){
@@ -135,14 +127,16 @@ const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, re
                 setMsgBox({variant: 'danger', message: message})
                 setShowAlert(true)
             }
-            
+
             //Criando coleção para o local storage
-            const result = await createStudentResponsible(data); 
+            const result = await createStudentResponsible(data);
+            console.log(result);
+
             if (result) {
                 fetchDataResponsible();
-                reset()
                 setMsgBox({variant: 'success', message: 'Cadastro Adicionado com sucesso!'})
                 setShowAlert(true)
+                reset()
             }else{
                 console.log('Erro ao tenta criar dados no localStorage:');
                 setMsgBox({variant: 'danger', message: 'Erro ao tenta criar dados no localStorage'})
@@ -151,12 +145,15 @@ const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, re
         }
 
     }
-    
+
+    console.log(activeButton);
+    console.log(msgBox);
+
     return (
         <S.Container>
             <Modal show={showModal} onHide={handleClose}>
                 {
-                    showAlert &&                                            
+                    showAlert &&
                     <AlertCustom variant={msgBox.variant} handleCloseAlert={handleCloseAlert}> {msgBox.message} </AlertCustom>
                 }
                 <Modal.Header >
@@ -176,10 +173,10 @@ const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, re
                                 <Col>
                                     <Form.Group className="p-1" controlId="GroupFullName">
                                         <Form.Label className="m-0"> Nome Completo </Form.Label>
-                                        <Form.Control 
-                                            type="text" 
+                                        <Form.Control
+                                            type="text"
                                             name="fullName"
-                                            placeholder="Digite seu nome." 
+                                            placeholder="Digite seu nome."
                                             {...register("fullName")}
                                             isInvalid={!!errors.fullName}
                                             onBlur={(e) => handleBlur(e)}
@@ -226,10 +223,10 @@ const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, re
                                 <Col sm={6}>
                                     <Form.Group className="p-1" controlId="GroupResponsibleBirthDate">
                                         <Form.Label className="m-0"> Data Nascimento </Form.Label>
-                                        <Form.Control   
-                                            type="date" 
+                                        <Form.Control
+                                            type="date"
                                             name="responsibleBirthDate"
-                                            placeholder="Digite seu Data Nascimento." 
+                                            placeholder="Digite seu Data Nascimento."
                                             {...register("responsibleBirthDate")}
                                             isInvalid={!!errors.responsibleBirthDate}
                                         />
@@ -241,10 +238,10 @@ const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, re
                                 <Col sm={6} >
                                     <Form.Group className="p-1" controlId="GroupResponsibleCellPhone">
                                         <Form.Label className="m-0"> Celular </Form.Label>
-                                        <Form.Control 
-                                            type="tel" 
+                                        <Form.Control
+                                            type="tel"
                                             name="responsibleCellPhone"
-                                            placeholder="Digite seu Celular." 
+                                            placeholder="Digite seu Celular."
                                             inputMode="numeric" // Adiciona o teclado numérico
                                             pattern="[0-9]*"   // Limita a entrada apenas a números
                                             {...register("responsibleCellPhone")}
@@ -257,15 +254,15 @@ const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, re
                                     </Form.Group>
                                 </Col>
                             </Row>
-                            
+
                             <Row className="mb-2 px-2 ">
                                 <Col >
                                     <Form.Group className="p-1" controlId="GroupResponsibleEmail">
                                         <Form.Label className="m-0"> Email </Form.Label>
-                                        <Form.Control 
-                                            type="email" 
+                                        <Form.Control
+                                            type="email"
                                             name="responsibleEmail"
-                                            placeholder="Digite seu Email." 
+                                            placeholder="Digite seu Email."
                                             {...register("responsibleEmail")}
                                             isInvalid={!!errors.responsibleEmail}
                                         />
@@ -274,7 +271,7 @@ const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, re
                                         </Form.Control.Feedback>
                                     </Form.Group>
                                 </Col>
-                            
+
                             </Row>
                         </S.WrapFields>
                     </Form>
@@ -286,30 +283,32 @@ const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, re
                             <span>Cancelar</span>
                         </Button>
                         {
-                            !activeButton ? 
-                                <Button
-                                    variant="outline-success"
-                                    size='sm' 
-                                    form="responsibleForm"
-                                    disabled={loadingCreate || loadingCreateResponsibleStudent? true : false}
-                                    onClick={handleSubmit(handleOnSubmit)}
-                                >
-                                    <Theme.Icons.MdAdd />
-                                    <span>Adicionar</span>
-                                </Button> : 
-                                <Button
-                                    variant="outline-success"
-                                    size='sm' 
-                                    form="responsibleForm"
-                                    disabled={loadingUpdate || loadingUpdateResponsibleStudent ? true : false} //Falta passar o loagin update do firabese
-                                    onClick={handleSubmit(handleOnSubmit)}
-                                >
-                                    <Theme.Icons.MdUpdate />
-                                    <span>Atualizar</span>
-                                </Button>                    
+                            !activeButton
+                                ?
+                                    <Button
+                                        variant="outline-success"
+                                        size='sm'
+                                        form="responsibleForm"
+                                        disabled={loadingCreate || loadingCreateResponsibleStudent? true : false}
+                                        onClick={handleSubmit(handleOnSubmit)}
+                                    >
+                                        <Theme.Icons.MdAdd />
+                                        <span>Adicionar</span>
+                                    </Button>
+                                :
+                                    <Button
+                                        variant="outline-success"
+                                        size='sm'
+                                        form="responsibleForm"
+                                        disabled={loadingUpdate || loadingUpdateResponsibleStudent ? true : false} //Falta passar o loagin update do firabese
+                                        onClick={handleSubmit(handleOnSubmit)}
+                                    >
+                                        <Theme.Icons.MdUpdate />
+                                        <span>Atualizar</span>
+                                    </Button>
                         }
                     </S.WrapButtons>
-                    
+
                 </Modal.Footer>
             </Modal>
         </S.Container>
@@ -318,6 +317,6 @@ const ModalResponsible = ({uid, showModal, handleClose, fetchDataResponsible, re
 
 export default ModalResponsible;
 
-/* 
+/*
 
 */

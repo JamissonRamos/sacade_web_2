@@ -32,6 +32,8 @@ const ModalResponsible = ({showModal, handleClose, fetchDataResponsible, registe
 
     useEffect(() => {
         setMsgBox(null)
+        console.log(registeredModify);
+        
         if (registeredModify) {
             const {fullName, relationshipLevel, responsibleBirthDate, responsibleCellPhone, responsibleEmail} = registeredModify.data
             setValue('fullName', fullName);

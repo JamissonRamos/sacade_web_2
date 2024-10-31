@@ -3,7 +3,9 @@ import AlertSuccess from "./success";
 
 export const AlertCustom = ({variant, children, handleCloseAlert}) => {
 
+    console.log(variant);
 switch (variant) {
+    
     case 'success':
         return <AlertSuccess handleCloseAlert={handleCloseAlert}> {children} </AlertSuccess>;
     // case 'primary':

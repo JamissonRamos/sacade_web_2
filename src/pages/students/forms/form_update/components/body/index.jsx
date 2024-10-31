@@ -16,7 +16,6 @@ import { Validations } from '../../../../../validations'
 import { FormattedDate, MaskInput, ConvertDate } from './script';
 import { unMask } from 'remask';
 import { useStudents } from '../../../../../../hooks/students'
-//import { useResponsibleStudents } from '../../../../../../hooks/responsibleStudents'
 import { AlertCustom } from '../../../../../../components/alert_custom';
 import { useNavigate } from 'react-router-dom';
 
@@ -66,10 +65,7 @@ const BodyForm = ({uid, data}) => {
             });
         }
 
-    }, [])
-
-    console.log(registered);
-    
+    }, [])    
 
     // Função para fechar o alerta e preparar para nova mensagem
     const handleCloseAlert = () => {
@@ -191,7 +187,11 @@ const BodyForm = ({uid, data}) => {
                         </MDBTabsPane>
 
                         <MDBTabsPane open={basicActive === 'tab4'}>
-                            <FieldStudents.StudentMedicalDescription />
+                            <FieldStudents.StudentMedicalDescription 
+                                register={register} 
+                                setValue={setValue}
+                                errors={errors}
+                            />
                         </MDBTabsPane>
                     </MDBTabsContent>
                 </S.WrapFields>

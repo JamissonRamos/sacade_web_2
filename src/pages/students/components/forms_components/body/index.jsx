@@ -66,6 +66,8 @@ const BodyForm = () => {
         data.rg = unMask(data.rg);
         data.birthDate = FormattedDate(data.birthDate);
         
+
+
         const result = await createStudent(data);
         const { success, uid} = result;
 
@@ -156,7 +158,14 @@ const BodyForm = () => {
                         </MDBTabsPane>
 
                         <MDBTabsPane open={basicActive === 'tab4'}>
-                            <FieldStudents.StudentMedicalDescription />
+                            <FieldStudents.StudentMedicalDescription 
+                                register={register} 
+                                setValue={setValue}
+                                getValues={getValues}
+
+                                errors={errors}
+                            
+                            />
                         </MDBTabsPane>
                     </MDBTabsContent>
                 </S.WrapFields>

@@ -12,9 +12,11 @@ import { useScreenWidth } from '../../hooks/screenWidth';
 
 const Students = () => {
   const [registered, setRegistered] = useState(null);
-  const { getDocuments, loading: loadingAll , error: errorAll} = useStudents.useGetDocuments()
   
   const isValueScreen = useScreenWidth(590);
+  
+  const { getDocuments, loading: loadingAll , error: errorAll} = useStudents.useGetDocuments()
+  
 
   const fetchDocuments = async () => {
     const result = await getDocuments();

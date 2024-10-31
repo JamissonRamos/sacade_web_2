@@ -17,7 +17,6 @@ const FormUpdateStudents = () => {
     const { documentsID, isLoading } = useStudents.useGetDocumentsID();
     const { getDocumentsByIdStudents, loading: loadingResponsibleStudent } = useResponsibleStudents.useGetDocumentsByIdStudents();
 
-
     const location = useLocation();  // Captura o UID da URL
     const { uid } = location.state || {};  // Captura o UID do estado de navegação
 
@@ -31,13 +30,10 @@ const FormUpdateStudents = () => {
         
         const {success, data, message} = result;
         const {success: successRS, data: dataRS, message: messageRS} = resultResponsibleStudent;
-        console.log('dataRS: ', dataRS);
+
         if(success){
             setRegistered(data)
             if(successRS){
-                /* 
-                    - A criação da coleção no local storage teve que ser feita assim, passando a função esta dando adição dupla
-                */
                 // Salva o array atualizado de volta no localStorage
                 localStorage.setItem('studentResponsible', JSON.stringify(dataRS));
             }else if(messageRS){
