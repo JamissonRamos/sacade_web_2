@@ -66,6 +66,13 @@ const AppContent = () => {
                                         <Pages.FormUpdate /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/responsibleStudents" element={
+                                    <ProtectedRoute page='ResponsibleStudents'>
+                                        <Pages.ResponsibleStudents /> 
+                                    </ProtectedRoute>
+                                } />
+
+
                                 <Route path="/payments" element={
                                     <ProtectedRoute page='Payments'>
                                         <Pages.Payments /> 

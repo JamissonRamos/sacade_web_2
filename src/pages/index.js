@@ -5,6 +5,7 @@ import FormUpdateStudents from './students/forms/form_update';
 import Users  from './users';
 import FormUpdate from './users/form_update';
 import Register from './register';
+import ResponsibleStudents from './responsible_students';
 import Payments from './payments';
 import ChangePassword from './changePassword'
 import UserLevel from './userLevel';
@@ -20,6 +21,7 @@ export const Pages = {
     Users,
     FormUpdate,
     Register,
+    ResponsibleStudents,
     Payments,
     ChangePassword,
     UserLevel,

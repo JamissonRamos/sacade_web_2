@@ -18,6 +18,7 @@ const pages = {
     Home: [1, 2, 3],
     Students: [1, 2],
     Users: [1, 2], 
+    ResponsibleStudents: [1, 2], 
     Payments: [1, 2],
     ChangePassword: [1, 2, 3],
     UserLevel: [1],

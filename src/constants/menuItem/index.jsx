@@ -22,6 +22,11 @@ export const MenuItem = [
                 title: 'Usuários',
                 path: '/users',
                 icon: <Theme.Icons.MdSupervisedUserCircle  />,
+            },
+            {
+                title: 'Responsáveis Aluno',
+                path: '/responsibleStudents',
+                icon: <Theme.Icons.FaUsers  />,
             }
         ]
     },

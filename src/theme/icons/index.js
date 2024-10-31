@@ -44,4 +44,5 @@ export const Icons = {
     FaMapLocationDot:           Fa6.FaMapLocationDot,
     ImSwitch:                   IM.ImSwitch,
     FaDatabase:                 FA.FaDatabase,
+    FaUsers:                    FA.FaUsers,
 }
