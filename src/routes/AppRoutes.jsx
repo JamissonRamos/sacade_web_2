@@ -71,6 +71,11 @@ const AppContent = () => {
                                         <Pages.ResponsibleStudents /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/responsibleStudents/responsibleList/:uid?" element={
+                                    <ProtectedRoute page='ResponsibleStudents'>
+                                        <Pages.ResponsibleList /> 
+                                    </ProtectedRoute>
+                                } />
 
 
                                 <Route path="/payments" element={

@@ -48,6 +48,6 @@ export const Content = styled.div`
     width: 100%;
     min-width: 320px;
     max-height: 70%;
-    padding: 3rem 0 .8rem 0;
+    padding: 1rem 0 .8rem 0;
     overflow: auto;
 `;

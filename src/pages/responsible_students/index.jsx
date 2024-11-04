@@ -2,7 +2,7 @@
 import * as S from './styled'
 import { TextC } from '../../components/Typography'
 import { WrapPages } from '../../components/Wrappe/pages'
-import CardList from './cardList'
+import StudentsList from './studentsList'
 import { useEffect, useState } from 'react'
 import { useStudents } from '../../hooks/students'
 import { Alert, Spinner } from 'react-bootstrap'
@@ -25,6 +25,7 @@ const ResponsibleStudents = () => {
     
     useEffect(() => {
         fetchDocuments();  // Chama a função ao renderizar o componente
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -64,7 +65,7 @@ const ResponsibleStudents = () => {
                 :   
                     <S.Content>
                     {
-                        <CardList data={registered}/>
+                        <StudentsList data={registered}/>
                     }
                     </S.Content>
             }

@@ -4,7 +4,7 @@ import { Badge } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 // import ChangeRegistrationModal from '../modal'
 
-const CardList = ({data}) => {
+const StudentsList = ({data}) => {
     
     const navigate = useNavigate();
     
@@ -30,8 +30,19 @@ const CardList = ({data}) => {
         return bg 
     }
 
+    const handleDataStudentLocalStorage = (uid) => {
+        //Obtendo o obj do alunos que foi selecionado
+        const studentData = data.filter(obj => obj.uid === uid);
+        //Criando a coleção no local storage
+        localStorage.setItem('student', JSON.stringify(studentData));
+    }
+
     const handleShowFormUpdate = (uid) => { 
-        // navigate('/users/form_update', { state: { uid: uid } });
+        // Exclui os dados do localStorage
+        localStorage.removeItem('student');
+        //Criar coleção de aluno no local storage
+        handleDataStudentLocalStorage(uid)
+        navigate('/responsibleStudents/responsibleList/', { state: { uid: uid } });
     };
 
     return (
@@ -67,4 +78,4 @@ const CardList = ({data}) => {
     )
 }
 
-export default CardList
+export default StudentsList
