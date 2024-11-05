@@ -74,7 +74,7 @@ export const CardItem = styled.div`
     padding: 1rem; // definir um espaço de elemento;
     border: .75px solid ${Theme.Colors.grey400};
     border-radius: 12px;
-    background-color: ${Theme.Colors.grey200};
+    /* background-color: ${Theme.Colors.grey200}; */
     @media (max-width: 768px) {
         display: grid;
         grid-template-columns: repeat(1, 1fr);

@@ -35,4 +35,6 @@ export const ContentListResponsible = styled.div`
     width: 100%;
     min-width: 320px;
     height: 98%;
+    padding: .8rem 0;
+    overflow: auto;
 `;

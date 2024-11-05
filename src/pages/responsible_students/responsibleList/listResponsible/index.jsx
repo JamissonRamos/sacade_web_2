@@ -51,8 +51,6 @@ const ListResponsible = ({data}) => {
             </S.WrapButtons>
 
           </S.CardItem>
-
-
           ))
         }        
 
