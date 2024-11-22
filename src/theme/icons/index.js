@@ -3,6 +3,8 @@ import * as RiIcons from 'react-icons/ri';
 import * as Fa6     from "react-icons/fa6";
 import * as IM      from "react-icons/im";
 import * as FA      from "react-icons/fa";
+import * as AI      from "react-icons/ai";
+
 
 export const Icons = {  
 
@@ -38,6 +40,8 @@ export const Icons = {
     MdOutlineAlternateEmail:    MD.MdOutlineAlternateEmail,
     MdModeEdit:                 MD.MdModeEdit,
     MdSaveAlt:                  MD.MdSaveAlt,
+    MdList:                     MD.MdList,
+    MdCheckCircleOutline:       MD.MdCheckCircleOutline,
     RiArrowDownSFill:           RiIcons.RiArrowDownSFill,
     RiArrowUpSFill:             RiIcons.RiArrowUpSFill,
     RiSendPlaneFill:            RiIcons.RiSendPlaneFill,
@@ -45,4 +49,6 @@ export const Icons = {
     ImSwitch:                   IM.ImSwitch,
     FaDatabase:                 FA.FaDatabase,
     FaUsers:                    FA.FaUsers,
+    FaDollarSign:               FA.FaDollarSign,
+    AiOutlineProduct:           AI.AiOutlineProduct,
 }

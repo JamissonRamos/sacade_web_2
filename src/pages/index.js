@@ -7,12 +7,14 @@ import FormUpdate from './users/form_update';
 import Register from './register';
 import ResponsibleStudents from './responsible_students';
 import ResponsibleList from './responsible_students/responsibleList';
+import FormCreateResponsible from './responsible_students/responsibleList/forms/create';
 import Payments from './payments';
 import ChangePassword from './changePassword'
 import UserLevel from './userLevel';
 import Login from './login';
 import NoticeAuthorization from './notice_authorization';
 import Userblocked from './user_blocked';
+import NotificationsCreate from './notifications/create';
 
 export const Pages = {
     Home,
@@ -24,12 +26,14 @@ export const Pages = {
     Register,
     ResponsibleStudents,
     ResponsibleList,
+    FormCreateResponsible,
     Payments,
     ChangePassword,
     UserLevel,
     Login,
     NoticeAuthorization,
     Userblocked,
+    NotificationsCreate
 
 
 }

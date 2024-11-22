@@ -88,8 +88,6 @@ export const Wrap  = styled.div`
     margin-bottom: .4rem;
 `;
 
-
-
 export const Index = styled.div`
     /* border: 1px solid blue; */
     flex: .4;

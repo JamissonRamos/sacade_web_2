@@ -23,4 +23,5 @@ const pages = {
     ChangePassword: [1, 2, 3],
     UserLevel: [1],
     NoticeAuthorization: [1, 2, 3]
+    // NotificationsCreate: [1, 2, 3]
 };

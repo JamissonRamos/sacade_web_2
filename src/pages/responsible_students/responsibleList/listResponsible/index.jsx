@@ -15,7 +15,7 @@ const ListResponsible = ({data}) => {
   const navigate = useNavigate();
   
 
-  const handleShowFormUpdate = (uid) => { 
+  const handleNavForm = (uid) => { 
     navigate('/students/form_update', { state: { uid: uid } });
   };
 
@@ -28,11 +28,9 @@ const ListResponsible = ({data}) => {
               <S.CircleLetterName>
                 {fullName && fullName.charAt(0)}
               </S.CircleLetterName>
-
               <S.Name>
                 <TextC.Body level={2}>  {fullName} </TextC.Body>
               </S.Name>
-
               <S.Status>
                 <TextC.Body level={2}> {relationshipLevel} </TextC.Body>
               </S.Status>
@@ -60,53 +58,3 @@ const ListResponsible = ({data}) => {
 }
 
 export default ListResponsible
-
-
-
-/* 
-        <S.TableBody>
-          {
-            data && data.map(({uid, firstName, lastName, status }, i) => (
-              <S.TableRow key={i}>
-                <S.TableBodyCell $flex={.1}>
-                  <TextC.Body level={1}>{1 + i}</TextC.Body>
-                </S.TableBodyCell>
-                <S.TableBodyCell $flex={2}>
-                  <S.CircleLetterName>
-                      {firstName && firstName.charAt(0)}
-                  </S.CircleLetterName>
-                  <TextC.Body level={1} className='fullName'>
-                    {firstName + " " + lastName}
-                  </TextC.Body>
-                </S.TableBodyCell>
-                <S.TableBodyCell className='status'>
-                    <Badge bg={handleBadge(status)} text="light">
-                      {status}
-                    </Badge>
-                </S.TableBodyCell>
-
-                <S.TableBodyCell $flex={.4}>
-
-                  <S.WrapListButtons>
-                  
-                    <Button
-                      variant="outline-success"
-                      /* - Busca o uid da base pegar quando tras os dados do banco não esta trazendo ainda */
-        //               onClick={() => handleShowFormUpdate(uid)}
-        //             >
-        //               <Theme.Icons.MdModeEdit />
-        //             </Button>
-        //           </S.WrapListButtons>
-
-        //         </S.TableBodyCell>
-
-        //       </S.TableRow>
-        //     ))
-        //   }
-
-        // </S.TableBody>
-
-
-
-
-

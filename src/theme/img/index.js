@@ -8,6 +8,10 @@ import LogoLuta from '../../assets/logo_luta.png'
 import LogoLutaYellow from '../../assets/logoLutaYellow.png'
 import SecureLogin from '../../assets/secure_login.png'
 import SecurityRemoveBg from '../../assets/securityRemoveBg.png'
+import Success from '../../assets/success.png'
+import Error from '../../assets/error.png'
+import Update from '../../assets/update.png'
+import Delete from '../../assets/delete.png'
 
 
 export const ImgC = {
@@ -20,4 +24,8 @@ export const ImgC = {
     LogoLuta,
     LogoLutaYellow,
     SecureLogin,
+    Success,
+    Error,
+    Update,
+    Delete
 }

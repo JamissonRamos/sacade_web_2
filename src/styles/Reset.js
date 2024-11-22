@@ -42,5 +42,10 @@ const Reset =  createGlobalStyle `
 		/* Formatando controle de msg de erro dos campos */
 		margin-bottom: .2rem;
 	}
+
+
+
 `
 export default Reset;
+
+

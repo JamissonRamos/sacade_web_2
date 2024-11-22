@@ -76,6 +76,11 @@ const AppContent = () => {
                                         <Pages.ResponsibleList /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/responsibleStudents/form_create" element={
+                                    <ProtectedRoute page='ResponsibleStudents'>
+                                        <Pages.FormCreateResponsible /> 
+                                    </ProtectedRoute>
+                                } />
 
 
                                 <Route path="/payments" element={
@@ -98,6 +103,9 @@ const AppContent = () => {
                                 } />
                                 <Route path="/userblocked" element={
                                     <Pages.Userblocked /> 
+                                } />
+                                <Route path="/notifications/create" element={
+                                    <Pages.NotificationsCreate /> 
                                 } />
                             </Routes>
                         </main>

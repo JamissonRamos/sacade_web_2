@@ -7,12 +7,8 @@ export const useCollectionCreate = () => {
 
     /* Função para criar nova coleção */
     const collectionCreate = useCallback(async (data) => {
-        try {
-            // const docRef = await addDoc(collection(db, collectionName), data);
-            // console.log(docRef);
-            
-            await addDoc(collection(db, collectionName), data);
-            
+        try {            
+            await addDoc(collection(db, collectionName), data);            
             return { success: true};
         } catch (error) {
             console.error('Error ao criar documento na coleção responsável:', error.message);

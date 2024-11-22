@@ -14,7 +14,7 @@ const Header = ({fullFirstName}) => {
             <S.WrapButtonCreate>
                 <Button
                     variant="success"
-                    onClick={() => navigate("/students/form_create")}
+                    onClick={() => navigate("/responsibleStudents/form_create")}
                 >
                     <Theme.Icons.MdAdd />
                     <span>Novo Cadastro</span>

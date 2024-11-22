@@ -4,6 +4,7 @@ import { UserUpdateSchema } from "./usersUpdate";
 import { ChangePasswordSchema } from "./change_password";
 import { StudentsSchema } from "./students";
 import { ModalResponsibleSchema } from "./modal_responsible";
+import { ResponsibleStudents } from "./responsible_students";
 
 export const Validations = {
     UserSchema,
@@ -12,5 +13,7 @@ export const Validations = {
     ChangePasswordSchema,
     StudentsSchema,
     ModalResponsibleSchema,
+    ResponsibleStudents,
+    
 
 }

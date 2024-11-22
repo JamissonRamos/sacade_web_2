@@ -11,6 +11,7 @@ import Header from './header'
 import ListResponsible from './listResponsible'
 
 
+
 const ResponsibleList = () => {
     const [registered, setRegistered] = useState(false);
     const dataStudentLocalStorage = JSON.parse(localStorage.getItem('student')) || [];
