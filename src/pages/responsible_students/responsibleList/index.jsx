@@ -14,19 +14,23 @@ import ListResponsible from './listResponsible'
 
 const ResponsibleList = () => {
     const [registered, setRegistered] = useState(false);
-    const dataStudentLocalStorage = JSON.parse(localStorage.getItem('student')) || [];
-
+    
     const location = useLocation();  // Captura o UID da URL
     const { uid } = location.state || false;  // Captura o UID do estado de navegação
+
+    console.log('uid: ', uid);
+    
+    const dataStudentLocalStorage = JSON.parse(localStorage.getItem('student')) || [];
     const {firstName, lastName} = dataStudentLocalStorage[0] || "";
     const fillNameStudent = firstName + " " + lastName
-    
+
     const { getDocumentsByIdStudents, loading: loadingResponsible } = useResponsibleStudents.useGetDocumentsByIdStudents()
     
     const fetchDocuments = async () => {
         const result = await getDocumentsByIdStudents(uid);
+        console.log('result: ', result);
+        
         const { success, data} = result;
-
         if(success)
         {
             setRegistered(data)

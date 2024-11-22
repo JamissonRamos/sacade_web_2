@@ -24,17 +24,11 @@ const NotificationsError = () => {
                 </S.Body>
                 <S.Footer>
                     <S.ButtonOutline
-                        onClick={() =>  navigate('/home')}
+                        onClick={() =>  navigate('/')}
                     >
-                        <span>Lista Item</span>
-                        <Theme.Icons.MdList />
+                        <span>Home</span>
+                        <Theme.Icons.MdHome />
                     </S.ButtonOutline>
-                    <S.ButtonContainer
-                        onClick={() =>  navigate('/product/create')}
-                    >
-                        <span>Novo Cadastro</span>
-                        <Theme.Icons.MdAddCircle />
-                    </S.ButtonContainer>
                 </S.Footer>
             </S.Content>
         </S.Container>

@@ -90,9 +90,18 @@ export const GetAddressLocalStorage = () => {
     }else{
         return false;
     }
-    
-    
-
+}
+export const GetUidLocalStorage = () => {
+    // Obtendo os dados do local storage
+    const uidStudent = JSON.parse(localStorage.getItem('student'));
+    const { uid } = uidStudent[0]
+    // Verificando se os dados existem
+    if (uidStudent) {
+        // Convertendo a string JSON de volta para um objeto
+        return uid
+    }else{
+        return false;
+    }
 }
 
 

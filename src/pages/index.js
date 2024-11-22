@@ -15,6 +15,7 @@ import Login from './login';
 import NoticeAuthorization from './notice_authorization';
 import Userblocked from './user_blocked';
 import NotificationsCreate from './notifications/create';
+import NotificationsError from './notifications/error';
 
 export const Pages = {
     Home,
@@ -33,7 +34,8 @@ export const Pages = {
     Login,
     NoticeAuthorization,
     Userblocked,
-    NotificationsCreate
+    NotificationsCreate,
+    NotificationsError
 
 
 }

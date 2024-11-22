@@ -1,15 +1,13 @@
 import { Button, Form, Spinner } from 'react-bootstrap'
 import * as S from './styled'
-
 import FieldData from '../fields/field_data'
 import FieldAddress from '../fields/field_address'
 import { Theme } from '../../../../../../../theme'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../../../../../../validations'
-import { FormattedDate } from './script'
+import { FormattedDate, GetUidLocalStorage } from './script'
 import { unMask } from 'remask';
-
 import { useResponsibleStudents } from '../../../../../../../hooks/responsibleStudents'
 import { useNavigate } from 'react-router-dom'
 
@@ -23,11 +21,11 @@ const BodyForm = () => {
     });
     
 
-
     const handleOnSubmit = async (data) => {
         data.birthDate = FormattedDate(data.birthDate)
         data.phone = unMask(data.phone);
         data.cep = unMask(data.cep);
+        data.idStudent = GetUidLocalStorage();
 
         const result = await createResponsibleStudent(data);
         
@@ -35,11 +33,11 @@ const BodyForm = () => {
 
         if(success){
             console.log('Cadastro realizado com sucesso!');
-            navigate('/notifications/create')
-            
+            reset();
+            navigate('/notifications/create');
         }else{
             console.log('Erro: ', message);
-            
+            navigate('/notifications/error');
         }
     }
 
@@ -62,7 +60,7 @@ const BodyForm = () => {
                     <S.WrapButtonUpdateCancel>
                         <Button
                             variant="outline-danger"
-                            // onClick={() => navigate('/users')}
+                            onClick={() => navigate(-1)}
                         >
                             <Theme.Icons.MdClose />
                             <span>Cancelar</span>
