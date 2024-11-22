@@ -16,6 +16,7 @@ import NoticeAuthorization from './notice_authorization';
 import Userblocked from './user_blocked';
 import NotificationsCreate from './notifications/create';
 import NotificationsError from './notifications/error';
+import FormUpdateResponsible from './responsible_students/responsibleList/forms/update';
 
 export const Pages = {
     Home,
@@ -28,6 +29,7 @@ export const Pages = {
     ResponsibleStudents,
     ResponsibleList,
     FormCreateResponsible,
+    FormUpdateResponsible,
     Payments,
     ChangePassword,
     UserLevel,

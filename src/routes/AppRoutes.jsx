@@ -81,6 +81,11 @@ const AppContent = () => {
                                         <Pages.FormCreateResponsible /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/responsibleStudents/form_update/:uid?" element={
+                                    <ProtectedRoute page='ResponsibleStudents'>
+                                        <Pages.FormUpdateResponsible /> 
+                                    </ProtectedRoute>
+                                } />
 
 
                                 <Route path="/payments" element={

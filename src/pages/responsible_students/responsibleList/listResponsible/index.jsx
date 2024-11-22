@@ -16,39 +16,37 @@ const ListResponsible = ({data}) => {
   
 
   const handleNavForm = (uid) => { 
-    navigate('/students/form_update', { state: { uid: uid } });
+    navigate('/responsibleStudents/form_update', { state: { uid: uid } });
   };
 
   return (
       <S.Content>
         {
           registered && registered.map(({id, fullName, relationshipLevel,}) => (
-          <S.CardItem key={id}>
-            <S.Wrap>
-              <S.CircleLetterName>
-                {fullName && fullName.charAt(0)}
-              </S.CircleLetterName>
-              <S.Name>
-                <TextC.Body level={2}>  {fullName} </TextC.Body>
-              </S.Name>
-              <S.Status>
-                <TextC.Body level={2}> {relationshipLevel} </TextC.Body>
-              </S.Status>
-            </S.Wrap>
+            <S.WrapButtons 
+              key={id}
+              onClick={() => handleNavForm(id)}  
+            >
+              <S.CardItem >
+                <S.Wrap>
+                  <S.WrapNameCircule>
+                    <S.CircleLetterName>
+                      {fullName && fullName.charAt(0)}
+                    </S.CircleLetterName>
+                    <S.Name>
+                      <TextC.Body level={2}>  {fullName} </TextC.Body>
+                    </S.Name>
 
-            <S.WrapButtons>
 
-              <S.WrapButtonDelete>
-                <Theme.Icons.MdDelete />
-              </S.WrapButtonDelete>
+                  </S.WrapNameCircule>
 
-              <S.WrapButtonEdit>
-                <Theme.Icons.MdEdit />
-              </S.WrapButtonEdit>
+                  <S.Status>
+                    <TextC.Body level={2}> {relationshipLevel} </TextC.Body>
+                  </S.Status>
 
+                </S.Wrap>
+              </S.CardItem>
             </S.WrapButtons>
-
-          </S.CardItem>
           ))
         }        
 
