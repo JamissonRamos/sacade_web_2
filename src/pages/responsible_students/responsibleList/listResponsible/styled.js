@@ -10,8 +10,8 @@ const StyledButton = css`
     gap: 8px;
     padding: 9px 8px;
     border-radius: 4px;
+    border: .75px solid  ${Theme.Colors.yellow700};
     background-color: transparent;
-    border: .75px solid;
     cursor: pointer;
     transition: background-color 0.4s ease, color 0.4s;
     @media (max-width: 768px) {
@@ -22,7 +22,7 @@ const StyledButton = css`
 const StyledOutline = css`
     color: ${Theme.Colors.green800};
     &:hover{
-        background-color: ${Theme.Colors.green800};
+        background-color: ${Theme.Colors.yellow700};
         & span {
             color: ${Theme.Colors.white800};
         }
