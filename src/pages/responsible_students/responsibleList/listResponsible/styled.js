@@ -8,21 +8,19 @@ const StyledButton = css`
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 9px 8px;
+    padding: 14px 8px;
     border-radius: 4px;
-    border: .75px solid  ${Theme.Colors.yellow700};
+    border: .75px solid  ${Theme.Colors.grey600};
     background-color: transparent;
     cursor: pointer;
     transition: background-color 0.4s ease, color 0.4s;
-    @media (max-width: 768px) {
-        padding: 6px 8px;
-    }
+
 `;
 
 const StyledOutline = css`
     color: ${Theme.Colors.green800};
     &:hover{
-        background-color: ${Theme.Colors.yellow700};
+        background-color: ${Theme.Colors.yellow800};
         & span {
             color: ${Theme.Colors.white800};
         }
