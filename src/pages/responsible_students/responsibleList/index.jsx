@@ -17,8 +17,6 @@ const ResponsibleList = () => {
     
     const location = useLocation();  // Captura o UID da URL
     const { uid } = location.state || false;  // Captura o UID do estado de navegação
-
-    console.log('uid: ', uid);
     
     const dataStudentLocalStorage = JSON.parse(localStorage.getItem('student')) || [];
     const {firstName, lastName} = dataStudentLocalStorage[0] || "";
@@ -28,8 +26,6 @@ const ResponsibleList = () => {
     
     const fetchDocuments = async () => {
         const result = await getDocumentsByIdStudents(uid);
-        console.log('result: ', result);
-        
         const { success, data} = result;
         if(success)
         {

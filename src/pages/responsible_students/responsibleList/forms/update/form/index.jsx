@@ -61,12 +61,10 @@ const FormUpdate = ({registered}) => {
         const { success, message} = result;
 
         if(success){
-            console.log('excluiu com sucesso');
             handleShowModalDelete()
             navigate('/notifications/delete');
         }else{
             console.log('Deu erro: ', message);
-
             navigate('/notifications/error');
         }
     }
@@ -80,8 +78,6 @@ const FormUpdate = ({registered}) => {
         const { success, message } = result;
 
         if(success){
-
-            console.log('Cadastro realizado com sucesso!');
             reset();
             navigate('/notifications/update');
         }else{
@@ -109,7 +105,19 @@ const FormUpdate = ({registered}) => {
                         <Button
                             variant="danger"
                             onClick={handleShowModalDelete}
+                            disabled={loadingDelete ? true : false}
                         >
+                            {
+                                loadingDelete && 
+                                    <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
+                            }
+
                             <Theme.Icons.MdDelete />
                             <span>Excluir</span>
                         </Button> 

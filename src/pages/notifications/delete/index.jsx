@@ -18,12 +18,12 @@ const NotificationsDelete = () => {
                         Seu item foi excluído com sucesso!
                     </TextC.Body>
                     <S.WrapImg>
-                        <img src={Theme.ImgC.Delete} alt="sucesso" />
+                        <img src={Theme.ImgC.Delete} alt="delete" />
                     </S.WrapImg>
                 </S.Body>
                 <S.Footer>
                     <S.ButtonOutline
-                        onClick={() =>  navigate('/home')}
+                        onClick={() =>  navigate('/')}
                     >
                         <span>Home</span>
                         <Theme.Icons.MdHome />

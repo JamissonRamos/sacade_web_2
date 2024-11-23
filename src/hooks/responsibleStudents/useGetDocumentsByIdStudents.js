@@ -10,9 +10,7 @@ export const useGetDocumentsByIdStudents = () => {
         setLoading(true);
         setError(null);
         try {
-            const result = await getDocumentsByIdStudent(uidStudent);
-            console.log('result: ', result);
-            
+            const result = await getDocumentsByIdStudent(uidStudent);            
             const { success, data, message} = result;
             if(success){
                 return{
