@@ -6,22 +6,21 @@ import HeaderForm from './header'
 
 import { useResponsibleStudents } from '../../../../../hooks/responsibleStudents' 
 import { useEffect, useState } from 'react';
+import FormUpdate from './form';
+import { Spinner } from 'react-bootstrap';
 
 
 const FormUpdateResponsible = () => {
-    const [registered, setRegistered] = useState(null);
+    const [registered, setRegistered] = useState([]);
     const location = useLocation();  // Captura o UID da URL
     const { uid } = location.state || {};  // Captura o UID do estado de navegação
-
-    console.log('uid', uid);
 
     const {documentsID, loading } = useResponsibleStudents.useGetDocumentsID()
 
     const fetchDocuments = async () => {
-
         const result = await documentsID(uid);
         const { success, data, message} = result;
-
+        
         if(success)
         {
             setRegistered(data)
@@ -36,15 +35,23 @@ const FormUpdateResponsible = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-
-    console.log('registered: ', registered);
-    
-    
     return (
         <WrapPages>
             <S.Container>
                 <HeaderForm /> 
-                {/* <BodyForm /> */}
+                {
+                    loading ?
+
+                        <Spinner
+                            variant='warning'
+                            as="span"
+                            animation="border"
+                            role="status"
+                            aria-hidden="true"
+                        />
+                    :
+                        <FormUpdate registered={registered}/> 
+                }
             </S.Container>
         </WrapPages>
     )
