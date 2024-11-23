@@ -74,7 +74,7 @@ export const WrapButtonUpdateCancel = styled.div`
     }
 
     @media (max-width: 425px) {  
-        padding-bottom: 3rem;
+        padding-bottom: 4rem;
     }
 
 `;
