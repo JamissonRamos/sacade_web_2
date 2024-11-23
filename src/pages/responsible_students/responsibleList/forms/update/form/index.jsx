@@ -9,15 +9,19 @@ import { Validations } from '../../../../../validations'
 import { FormattedDate, ConvertDate, ApplyMask } from './script'
 import { unMask } from 'remask';
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import DeleteData from '../../../../../../components/alert_delete';
 
 import { useResponsibleStudents } from '../../../../../../hooks/responsibleStudents'
 
 const FormUpdate = ({registered}) => {
-    
+    const [showModalDelete, setShowModalDelete] = useState(false);
+    const [registeredDelete, setRegisteredDelete] = useState(null);
+
     const navigate = useNavigate();
 
-    const { updateResponsibleStudent, loading: loadingUpdate } = useResponsibleStudents.usePostDocumentsUpdate()
+    const { updateResponsibleStudent, loading: loadingUpdate } = useResponsibleStudents.usePostDocumentsUpdate();
+    const { deleteResponsibleStudent, loading: loadingDelete } = useResponsibleStudents.usePostDocumentsDelete();
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.ResponsibleStudents)
@@ -45,6 +49,28 @@ const FormUpdate = ({registered}) => {
     }, []); // Este useEffect depende de 'registered'
 
 
+    const handleShowModalDelete = () => { 
+        setShowModalDelete((prevState) => !prevState);
+        setRegisteredDelete({
+            fullName: registered.fullName
+        })
+    };
+
+    const handleDeleteItem = async () => {
+        const result = await deleteResponsibleStudent(registered.uid,)
+        const { success, message} = result;
+
+        if(success){
+            console.log('excluiu com sucesso');
+            handleShowModalDelete()
+            navigate('/notifications/delete');
+        }else{
+            console.log('Deu erro: ', message);
+
+            navigate('/notifications/error');
+        }
+    }
+
     const handleOnSubmit = async (data) => {        
         data.birthDate = FormattedDate(data.birthDate)
         data.phone = unMask(data.phone);
@@ -54,6 +80,7 @@ const FormUpdate = ({registered}) => {
         const { success, message } = result;
 
         if(success){
+
             console.log('Cadastro realizado com sucesso!');
             reset();
             navigate('/notifications/update');
@@ -78,7 +105,15 @@ const FormUpdate = ({registered}) => {
                         getValues={getValues}
                         errors={errors}
                     />
-
+                    <S.WrapButtonDelete>
+                        <Button
+                            variant="danger"
+                            onClick={handleShowModalDelete}
+                        >
+                            <Theme.Icons.MdDelete />
+                            <span>Excluir</span>
+                        </Button> 
+                    </S.WrapButtonDelete>
                     <S.WrapButtonUpdateCancel>
                         <Button
                             variant="outline-danger"
@@ -114,6 +149,19 @@ const FormUpdate = ({registered}) => {
                     </S.WrapButtonUpdateCancel>
                 </Form>
             </S.Form>
+
+            {
+                showModalDelete &&
+
+                    <DeleteData
+                        registeredDelete = {registeredDelete}
+                        handleShowDelete   =   {handleShowModalDelete}
+                        handleDeleteData        =   {handleDeleteItem}
+                    />
+            }
+
+
+
         </S.Container>
     )
 }

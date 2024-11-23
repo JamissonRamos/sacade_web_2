@@ -18,6 +18,8 @@ import Userblocked from './user_blocked';
 import NotificationsCreate from './notifications/create';
 import NotificationsError from './notifications/error';
 import NotificationsUpdate from './notifications/update';
+import NotificationsDelete from './notifications/delete';
+
 
 export const Pages = {
     Home,
@@ -39,7 +41,8 @@ export const Pages = {
     Userblocked,
     NotificationsCreate,
     NotificationsError,
-    NotificationsUpdate
+    NotificationsUpdate,
+    NotificationsDelete
 
 
 }

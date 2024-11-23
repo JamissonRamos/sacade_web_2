@@ -44,26 +44,6 @@ const slideIn = keyframes`
     }
 `;
 
-const containedStyles = css`
-    border: none;
-    transition: background-color 0.4s ease, color 0.4s;
-    background-color: ${Theme.Colors.green800};
-    & span, svg {
-        color: ${Theme.Colors.white800};
-    }
-
-    &:hover {
-        background-color: ${() => {
-        const color =  Theme.Colors.green800; 
-        const r = parseInt(color.slice(1, 3), 16);
-        const g = parseInt(color.slice(3, 5), 16);
-        const b = parseInt(color.slice(5, 7), 16);
-        
-        // Escurecendo a cor em 85 para cada canal RGB
-        return `rgb(${Math.max(r - 85, 0)}, ${Math.max(g - 85, 0)}, ${Math.max(b - 85, 0)})`;
-    }};
-    }
-`;
 const outlineStyles = css`
     background-color: transparent;
     transition: background-color 0.4s ease, color 0.4s;
@@ -92,20 +72,18 @@ const outlineStyles = css`
 export  const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-        max-width: 500px;
-        min-width: 320px;
     height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    
     overflow: auto;
-    
 `;
 export  const Content = styled.div`
     /* border: 1px solid red; */
-    padding: 1rem;
+    height: 100%;
+    max-width: 500px;
+    min-width: 320px;
+
     overflow: auto;
     
 `;
@@ -127,55 +105,45 @@ export  const Header = styled.div`
 export  const Body = styled.div`
     /* border: 1px solid red; */
     width: 100%;
+    height: 70%;
     display: flex;
-    /* height: 100%; */
     flex-direction: column;
     gap: 16px;
     align-items: center;
-    padding: .8rem;
     & span {
         text-align: center;
         color: ${Theme.Colors.grey800};
     }
-    overflow: auto;
 `;
 export  const WrapImg = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    /* height: 60%; */
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
     & img {
         max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
+        max-height: 80%;
+        object-fit: cover;
         animation: ${slideIn} 0.8s ease-out forwards; /* Aplica a animação à imagem */
     }
 
 `;
-
 export  const Footer = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     display: flex;
     /* height: 40%; */
-    gap: 16px;
     align-items: center;
     justify-content: center;
     gap: 16px;
-    padding: .8rem;
     @media (max-width: 400px) {
         flex-direction: column;
     }
 `;
-
 export const ButtonOutline = styled.button`
     ${StyledButton}
     ${outlineStyles}
 
-`;
-export const ButtonContainer = styled.button`
-    ${StyledButton}
-    ${containedStyles}
 `;

@@ -25,8 +25,8 @@ const NotificationsDelete = () => {
                     <S.ButtonOutline
                         onClick={() =>  navigate('/home')}
                     >
-                        <span>Lista Item</span>
-                        <Theme.Icons.MdList />
+                        <span>Home</span>
+                        <Theme.Icons.MdHome />
                     </S.ButtonOutline>
                 </S.Footer>
             </S.Content>

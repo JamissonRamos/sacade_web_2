@@ -1,8 +1,6 @@
-import React from 'react'
 import * as S from './styled'
 import { Badge } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
-// import ChangeRegistrationModal from '../modal'
 
 const StudentsList = ({data}) => {
     

@@ -11,6 +11,7 @@ const StyledButton = css`
     gap: 8px;
     padding: 8px 12px;
     border-radius: 4px;
+    box-shadow: none;
     transition: background-color 0.4s ease, color 0.4s;
     cursor: pointer;
     & span {
@@ -60,6 +61,21 @@ export const Form = styled.div`
         }
     }
     overflow: auto;
+`;
+export const WrapButtonDelete = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: .2rem 1rem;
+    margin-bottom: .8rem;
+    & button {
+        ${StyledButton};
+        width: 100%;
+    }
 `;
 
 export const WrapButtonUpdateCancel = styled.div`

@@ -1,19 +1,11 @@
 import * as S from './styled';
 import { TextC } from '../../../../components/Typography'
-import { Badge, Button} from 'react-bootstrap';
-import { Theme } from '../../../../theme';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-
 const ListResponsible = ({data}) => {  
   const [registered] = useState(data || []);
-
-  console.log(registered);
-  console.log(data);
-  
   const navigate = useNavigate();
-  
 
   const handleNavForm = (uid) => { 
     navigate('/responsibleStudents/form_update', { state: { uid: uid } });
