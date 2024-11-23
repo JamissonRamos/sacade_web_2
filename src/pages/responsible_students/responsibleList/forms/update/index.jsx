@@ -23,6 +23,7 @@ const FormUpdateResponsible = () => {
         
         if(success)
         {
+            data.uid = uid;
             setRegistered(data)
 
         }else{

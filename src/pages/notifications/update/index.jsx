@@ -9,7 +9,7 @@ const NotificationsUpdate = () => {
     return (
 
         <S.Container>
-            <div>
+            <S.Content>
                 <S.Header>
                     <Theme.Icons.MdUpdate />
                     <TextC.Title level={2}> Atualização </TextC.Title>
@@ -22,13 +22,13 @@ const NotificationsUpdate = () => {
                 </S.Body>
                 <S.Footer>
                     <S.ButtonOutline
-                        onClick={() =>  navigate('/home')}
+                        onClick={() =>  navigate('/')}
                     >
-                        <span>Lista Item</span>
-                        <Theme.Icons.MdList />
+                        <span>Home</span>
+                        <Theme.Icons.MdHome />
                     </S.ButtonOutline>
                 </S.Footer>
-            </div>
+            </S.Content>
         </S.Container>
     )
 }

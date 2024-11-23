@@ -4,7 +4,7 @@ import { db } from '../../../services/firebase/config';
 
 export const usePostCollectionUpdate = () => {
     const collectionName = 'responsible_students'
-    const collectionUpdate = useCallback(async (data) => {        
+    const collectionUpdate = useCallback(async (data) => {  
         try {
             const {uid, ...otherData } = data;
             // Now, store additional user details in Firestore

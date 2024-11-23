@@ -79,7 +79,13 @@ export  const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 1rem;
+`;
+export  const Content = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 100%;
+    padding: .8rem;
+    overflow: auto;
 `;
 export  const Header = styled.div`
     /* border: 1px solid red; */
@@ -96,24 +102,23 @@ export  const Header = styled.div`
         color: ${Theme.Colors.blue700};
     }
 `;
-export  const Body = styled.div`
+export const Body = styled.div`
     /* border: 1px solid red; */
     width: 100%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     gap: 16px;
     align-items: center;
-    padding: .8rem;
     & span {
         text-align: center;
         color: ${Theme.Colors.grey800};
     }
-    
 `;
 export  const WrapImg = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    max-height: 300px;
+    max-height: 70%;
     display: flex;
     align-items: center;
     justify-content: center;

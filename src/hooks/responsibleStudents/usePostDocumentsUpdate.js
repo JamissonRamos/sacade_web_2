@@ -6,7 +6,7 @@ export const usePostDocumentsUpdate = () => {
     const {collectionUpdate} = usePostCollectionUpdate();
 
     const updateResponsibleStudent = useCallback( async (userData) => {
-        seLoading(true);      
+        seLoading(true);              
         try {
             const result = await collectionUpdate(userData)
             const { success, message } = result;

@@ -8,6 +8,7 @@ import Register from './register';
 import ResponsibleStudents from './responsible_students';
 import ResponsibleList from './responsible_students/responsibleList';
 import FormCreateResponsible from './responsible_students/responsibleList/forms/create';
+import FormUpdateResponsible from './responsible_students/responsibleList/forms/update';
 import Payments from './payments';
 import ChangePassword from './changePassword'
 import UserLevel from './userLevel';
@@ -16,7 +17,7 @@ import NoticeAuthorization from './notice_authorization';
 import Userblocked from './user_blocked';
 import NotificationsCreate from './notifications/create';
 import NotificationsError from './notifications/error';
-import FormUpdateResponsible from './responsible_students/responsibleList/forms/update';
+import NotificationsUpdate from './notifications/update';
 
 export const Pages = {
     Home,
@@ -37,7 +38,8 @@ export const Pages = {
     NoticeAuthorization,
     Userblocked,
     NotificationsCreate,
-    NotificationsError
+    NotificationsError,
+    NotificationsUpdate
 
 
 }

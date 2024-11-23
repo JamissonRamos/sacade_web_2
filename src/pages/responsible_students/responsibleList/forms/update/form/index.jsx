@@ -11,21 +11,18 @@ import { unMask } from 'remask';
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
-// import { useResponsibleStudents } from '../../../../../../../hooks/responsibleStudents'
+import { useResponsibleStudents } from '../../../../../../hooks/responsibleStudents'
 
 const FormUpdate = ({registered}) => {
     
     const navigate = useNavigate();
 
-    // const { createResponsibleStudent, loading: loadingCrate } = useResponsibleStudents.usePostDocumentsCreate()
-    const loadingCrate = false;
+    const { updateResponsibleStudent, loading: loadingUpdate } = useResponsibleStudents.usePostDocumentsUpdate()
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.ResponsibleStudents)
     });
     
-
-
     //Passar os dados para os campos
     useEffect(() => {
         
@@ -48,26 +45,22 @@ const FormUpdate = ({registered}) => {
     }, []); // Este useEffect depende de 'registered'
 
 
-    const handleOnSubmit = async (data) => {
-        console.log(data);
-        
-        // data.birthDate = FormattedDate(data.birthDate)
-        // data.phone = unMask(data.phone);
-        // data.cep = unMask(data.cep);
-        // data.idStudent = GetUidLocalStorage();
+    const handleOnSubmit = async (data) => {        
+        data.birthDate = FormattedDate(data.birthDate)
+        data.phone = unMask(data.phone);
+        data.cep = unMask(data.cep);
 
-        // const result = await createResponsibleStudent(data);
-        
-        // const { success, message } = result;
+        const result = await updateResponsibleStudent(data);
+        const { success, message } = result;
 
-        // if(success){
-        //     console.log('Cadastro realizado com sucesso!');
-        //     reset();
-        //     navigate('/notifications/create');
-        // }else{
-        //     console.log('Erro: ', message);
-        //     navigate('/notifications/error');
-        // }
+        if(success){
+            console.log('Cadastro realizado com sucesso!');
+            reset();
+            navigate('/notifications/update');
+        }else{
+            console.log('Erro: ', message);
+            navigate('/notifications/error');
+        }
     }
 
     return (
@@ -98,9 +91,9 @@ const FormUpdate = ({registered}) => {
                         <Button
                             variant="success"
                             type='submit'
-                            disabled={loadingCrate ? true : false}
+                            disabled={loadingUpdate ? true : false}
                         >   
-                            { loadingCrate ?
+                            { loadingUpdate ?
                                 <>
                                     <Spinner
                                         as="span"
