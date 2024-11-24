@@ -1,6 +1,7 @@
 
 export const Shadow = 
 {
+    sh2100: '0px 2px 2px rgba(0, 0, 0, 0.25)',
     sh900: '0 1px 8px rgba(0, 0, 0, 0.25)',
     sh800: '0 6px 8px rgba(0, 0, 0, 0.25)',
     sh700: '0 4px 6px rgba(0, 0, 0, 0.25)',

@@ -12,6 +12,9 @@ import Success from '../../assets/success.png'
 import Error from '../../assets/error.png'
 import Update from '../../assets/update.png'
 import Delete from '../../assets/delete.png'
+import CardStudentActive from '../../assets/cardStudentActive.png'
+import CardTotalAtrasadoMes from '../../assets/cardTotalAtrasadoMes.png'
+import CardTotalRecebidoMes from '../../assets/cardTotalRecebidoMes.png'
 
 
 export const ImgC = {
@@ -27,5 +30,8 @@ export const ImgC = {
     Success,
     Error,
     Update,
-    Delete
+    Delete,
+    CardStudentActive,
+    CardTotalAtrasadoMes,
+    CardTotalRecebidoMes
 }
