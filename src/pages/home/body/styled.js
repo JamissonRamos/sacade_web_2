@@ -70,7 +70,7 @@ export const SubTitle = styled.div`
     display: flex;
     align-items: center;
     & span {
-        color: ${Theme.Colors.grey600};
+        color: ${Theme.Colors.grey700};
     }
     @media (max-width: 1024px) {
         & span {
