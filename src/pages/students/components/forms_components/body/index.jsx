@@ -16,7 +16,6 @@ import { Validations } from '../../../../validations'
 import { FormattedDate, MaskInput } from './script';
 import { unMask } from 'remask';
 import { useStudents } from '../../../../../hooks/students'
-import { useResponsibleStudents } from '../../../../../hooks/responsibleStudents'
 import { AlertCustom } from '../../../../../components/alert_custom';
 import { useNavigate } from 'react-router-dom';
 
@@ -31,7 +30,6 @@ const BodyForm = () => {
     });
     
     const navigate = useNavigate();
-    const {createResponsibleStudent, isLoadingCreate: loadingResponsibleStudents, errorCreate: errorResponsibleStudents } = useResponsibleStudents.usePostDocumentsCreate();
     const {createStudent, isLoadingCreate: loadingStudents, errorCreate: errorStudents } = useStudents.usePostDocumentsCreate();
 
     //Contas os erro e mostra se tiver algum em qualquer form 
@@ -66,40 +64,22 @@ const BodyForm = () => {
         data.rg = unMask(data.rg);
         data.birthDate = FormattedDate(data.birthDate);
         
-
-
         const result = await createStudent(data);
-        const { success, uid} = result;
+        const { success} = result;
 
         if(success){
-            const responsibleStudents = JSON.parse(localStorage.getItem('studentResponsible')) || [];
-            if (responsibleStudents.length > 0){
-                for (const responsible of responsibleStudents) {
-                    responsible.idStudent = uid;
-                    const result = await createResponsibleStudent(responsible);
-                    const {success} = result;
-                    if (success) {
-                        setMsgBox({variant: 'success', message: 'Cadastro Adicionado com sucesso!'})
-                        setShowAlert(true)
-                        reset()
-                        // Exclui os dados do localStorage
-                        localStorage.removeItem('studentResponsible');
-                        setTimeout(() => {
-                            navigate('/students');
-                        }, 4000);
-                    }
-                }
-            }
+            reset()
+            navigate('/notifications/create');
         }else{
-            // Exclui os dados do localStorage
-            localStorage.removeItem('studentResponsible');
+            console.log('success: ', success);
+            
         }
     } 
 
     return (
         <S.Container>
             {
-                errorStudents || errorResponsibleStudents && <Alert variant={'danger'}> {errorStudents || errorResponsibleStudents} </Alert>
+                errorStudents && <Alert variant={'danger'}> {errorStudents } </Alert>
             }
             {
                 showAlert &&                                            
@@ -110,11 +90,6 @@ const BodyForm = () => {
                     <MDBTabsItem>
                         <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
                             Dados Pessoais 
-                        </MDBTabsLink>
-                    </MDBTabsItem>
-                    <MDBTabsItem>
-                        <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
-                            Responsável
                         </MDBTabsLink>
                     </MDBTabsItem>
                     <MDBTabsItem>
@@ -139,13 +114,6 @@ const BodyForm = () => {
                                 handleChange={handleChange}
                             />  
                         </MDBTabsPane>
-
-                        <MDBTabsPane open={basicActive === 'tab2'}> 
-                            <FieldStudents.DataResponsible  
-                            />
-                        </MDBTabsPane>
-
-
                         <MDBTabsPane open={basicActive === 'tab3'}>
                             <FieldStudents.DataAddress 
                                 register={register} 
@@ -191,7 +159,7 @@ const BodyForm = () => {
                         form='formStudents'
                         disabled={loadingStudents ? true : false}
                     >
-                        { loadingStudents || loadingResponsibleStudents ?
+                        { loadingStudents ?
                             <>
                                 <Spinner
                                     as="span"
