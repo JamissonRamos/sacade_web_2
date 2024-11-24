@@ -21,7 +21,7 @@ export const usePostDocumentsCreate = () => {
                 return { success: true, uid: idStudent };
             }else{
                 setErrorCreate('Algo não sair como esperado tente novamente: ' + message)
-                return {success: false}
+                return {success: false, message:'Algo não sair como esperado tente novamente: ' +  message }
             }
 
         } catch (error) {

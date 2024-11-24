@@ -109,18 +109,12 @@ const BodyForm = ({uid, data}) => {
         const { success, message } = result;
 
         if (success) {
-            setMsgBox({variant: 'success', message: 'Cadastro Atualizado com sucesso!'})
-            setShowAlert(true)
             reset()
-            // Exclui os dados do localStorage
-            handleDeleteLocalStorage();
-            setTimeout(() => {
-                navigate('/students');
-            }, 4000);
+            navigate('/notifications/update');
         }else{
-            setMsgBox({variant: 'danger', message: `Deu algum erro: ${message}`})
-            // Exclui os dados do localStorage
-            handleDeleteLocalStorage();
+            reset()
+            navigate('/notifications/error');
+            console.log({message: `Deu algum erro: ${message}`})
         }
 
     } 
@@ -141,11 +135,11 @@ const BodyForm = ({uid, data}) => {
                             Dados Pessoais 
                         </MDBTabsLink>
                     </MDBTabsItem>
-                    <MDBTabsItem>
+                    {/* <MDBTabsItem>
                         <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
                             Responsável
                         </MDBTabsLink>
-                    </MDBTabsItem>
+                    </MDBTabsItem> */}
                     <MDBTabsItem>
                         <MDBTabsLink onClick={() => handleBasicClick('tab3')} active={basicActive === 'tab3'}>
                             Endereço
@@ -168,12 +162,12 @@ const BodyForm = ({uid, data}) => {
                                 handleChange={handleChange}
                             />  
                         </MDBTabsPane>
-
+{/* 
                         <MDBTabsPane open={basicActive === 'tab2'}> 
                             <FieldStudents.DataResponsible
                                 uid={uidStudent}
                             />
-                        </MDBTabsPane>
+                        </MDBTabsPane> */}
 
 
                         <MDBTabsPane open={basicActive === 'tab3'}>

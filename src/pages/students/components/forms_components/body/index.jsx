@@ -65,14 +65,15 @@ const BodyForm = () => {
         data.birthDate = FormattedDate(data.birthDate);
         
         const result = await createStudent(data);
-        const { success} = result;
+        const { success, message} = result;
 
         if(success){
             reset()
             navigate('/notifications/create');
         }else{
-            console.log('success: ', success);
-            
+            reset()
+            navigate('/notifications/error');
+            console.log({message: `Deu algum erro: ${message}`})
         }
     } 
 
