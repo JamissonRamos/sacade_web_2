@@ -87,12 +87,18 @@ const AppContent = () => {
                                     </ProtectedRoute>
                                 } />
 
-
                                 <Route path="/payments" element={
                                     <ProtectedRoute page='Payments'>
                                         <Pages.Payments /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/configuracaoParcelas" element={
+                                    <ProtectedRoute page='ConfigurationInstallments'>
+                                        <Pages.ConfigurationInstallments /> 
+                                    </ProtectedRoute>
+                                } />
+
+                                
                                 <Route path="/changePassword" element={
                                     <ProtectedRoute page='ChangePassword'>
                                         <Pages.ChangePassword /> 

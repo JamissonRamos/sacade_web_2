@@ -53,8 +53,8 @@ export const MenuItem = [
                 icon: <Theme.Icons.MdLockPerson  />,
             },
             {
-                title: 'Parcelas',
-                path: '/parcelas',
+                title: 'Configuração Parcelas',
+                path: '/configuracaoParcelas',
                 icon: <Theme.Icons.MdCreditCard  />,
             }
         ]

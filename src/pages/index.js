@@ -19,6 +19,7 @@ import NotificationsCreate from './notifications/create';
 import NotificationsError from './notifications/error';
 import NotificationsUpdate from './notifications/update';
 import NotificationsDelete from './notifications/delete';
+import ConfigurationInstallments from './configuration_installments';
 
 
 export const Pages = {
@@ -42,7 +43,8 @@ export const Pages = {
     NotificationsCreate,
     NotificationsError,
     NotificationsUpdate,
-    NotificationsDelete
+    NotificationsDelete,
+    ConfigurationInstallments
 
 
 }
