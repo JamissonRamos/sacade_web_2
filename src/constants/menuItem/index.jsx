@@ -51,6 +51,11 @@ export const MenuItem = [
                 title: 'Nível Usuário',
                 path: '/userLevel',
                 icon: <Theme.Icons.MdLockPerson  />,
+            },
+            {
+                title: 'Parcelas',
+                path: '/parcelas',
+                icon: <Theme.Icons.MdCreditCard  />,
             }
         ]
     },
