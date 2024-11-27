@@ -18,21 +18,21 @@ export const ConfigurationInstallmentsSchema = yup.object().shape({
             const unformattedValue = value.replace(/[^\d,]/g, '').replace(',', '.'); // Remove formatação para comparação numérica
             return parseFloat(unformattedValue) !== 0; // Verifica se o valor é diferente de zero
         }),
-    Fees: yup
+    fees: yup
         .string()
         // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
-        .required('Campo é obrigatório'),
+        .required('Campo não pode ser vazio'),
     interestDaily: yup
         .string()
         // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
-        .required('Campo é obrigatório'),
-    interestMonthl: yup
+        .required('Campo não pode ser vazio'),
+    interestMonthly: yup
         .string()
         // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
-        .required('Campo é obrigatório'),
+        .required('Campo não pode ser vazio'),
     interestAnnual: yup
         .string()
         // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
-        .required('Campo é obrigatório'),
+        .required('Campo não pode ser vazio'),
 
 });
