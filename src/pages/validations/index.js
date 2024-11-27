@@ -5,6 +5,7 @@ import { ChangePasswordSchema } from "./change_password";
 import { StudentsSchema } from "./students";
 import { ModalResponsibleSchema } from "./modal_responsible";
 import { ResponsibleStudents } from "./responsible_students";
+import { ConfigurationInstallmentsSchema } from "./configuration_installments";
 
 export const Validations = {
     UserSchema,
@@ -14,6 +15,7 @@ export const Validations = {
     StudentsSchema,
     ModalResponsibleSchema,
     ResponsibleStudents,
+    ConfigurationInstallmentsSchema
     
 
 }

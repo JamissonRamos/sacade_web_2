@@ -1,36 +1,38 @@
 import * as yup from "yup";
 
 
-export const UserSchema = yup.object().shape({
+export const ConfigurationInstallmentsSchema = yup.object().shape({
     
-    firstName: yup
+    dayGenerateInstallment: yup
+        .number()
+        .typeError('O campo deve ser um número') // Caso o valor não seja numérico
+        .min(1, 'O dia deve ser no mínimo 1')
+        .max(31, 'O dia deve ser no máximo 31')
+        .required('Campo é obrigatório'),
+    valueInstallment: yup
         .string()
-        .min(3, 'Campo Nome deve ter no mínimo 3 caracteres')
-        .required('Campo Nome é obrigatório'),
-    lastName: yup
+        // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
+        .required('Campo é obrigatório')
+        .test('not-zero', 'O valor deve ser diferente de R$ 0,00', (value) => {
+            if (!value) return false; // Verifica se o valor está vazio
+            const unformattedValue = value.replace(/[^\d,]/g, '').replace(',', '.'); // Remove formatação para comparação numérica
+            return parseFloat(unformattedValue) !== 0; // Verifica se o valor é diferente de zero
+        }),
+    Fees: yup
         .string()
-        .min(3, 'Campo Sobrenome deve ter no mínimo 3 caracteres.')
-        .required('Campo Sobrenome é obrigatório'),
-    emailUser: yup
+        // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
+        .required('Campo é obrigatório'),
+    interestDaily: yup
         .string()
-        .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'E-mail inválido')
-        .required('Campo Email é obrigatório'),
-    birthDate: yup
-        .date()
-        .min(new Date(1900, 0, 1), 'A data deve ser posterior a 01/01/1900')
-        .max(new Date(), 'A data não pode ser no futuro')
-        .required('Campo Data Nascimento é obrigatório'),
-    gender: yup
+        // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
+        .required('Campo é obrigatório'),
+    interestMonthl: yup
         .string()
-        .notOneOf([''], 'Selecione um Gênero válido')
-        .required('Campo Gênero é obrigatório'),
-    newPassword: yup
+        // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
+        .required('Campo é obrigatório'),
+    interestAnnual: yup
         .string()
-        .min(6, 'Campo Nova Senha deve ter no mínimo 6 caracteres.')
-        .required('Campo Nova Senha é obrigatório'),
-    confirmPassword: yup
-        .string()
-        .oneOf([yup.ref('newPassword'), null], 'As senhas devem ser iguais.')
-        .min(6, 'Campo Confirma Senha deve ter no mínimo 6 caracteres.')
-        .required('Campo Confirma Senha é obrigatório'),
+        // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
+        .required('Campo é obrigatório'),
+
 });
