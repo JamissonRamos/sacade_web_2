@@ -16,16 +16,12 @@ export const FormatCurrency = (value) => {
 export const FormatPercentage  = (value) => {
     if(value === 0) return
     if(value === '') return
-    console.log(value);
-    
 
     let inputValue = value.replace(/[^\d]/g, ""); // Remove tudo que não for número
 
     const numberValue = parseFloat(inputValue) / 100; // Converte para decimal
     return(numberValue.toFixed(2) + "%" ); // Define o valor formatado
 };
-
-
 
 export const FormatPercentageMoney = (valuePercentage, valueInstallment) => {
     if(valuePercentage === 0 || valueInstallment === 0) return

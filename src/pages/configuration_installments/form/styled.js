@@ -38,6 +38,7 @@ export const Container = styled.div`
     flex-direction: column;
     gap: .8rem;
 `;
+
 export const Form = styled.form`
     /* border: 1px solid blue; */
     min-width: 320px;
@@ -51,6 +52,14 @@ export const Form = styled.form`
         letter-spacing: 0.5px;
         line-height: 1.5;
         color: ${Theme.Colors.green800};
+        & .valueInterestRate {
+            margin-left: 8px;
+            font-size: 1em;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            line-height: 1.5;
+            color: ${Theme.Colors.blue2900};
+        }
     }
     & input:focus, .input-group input:focus,  select:focus {
         border-color: ${Theme.Colors.green800};
@@ -77,3 +86,10 @@ export const WrapButtons = styled.div`
     }
 
 `;
+
+export const WrapLabelValue = styled.div`
+    /* border: 1px solid red; */
+    
+
+`;
+

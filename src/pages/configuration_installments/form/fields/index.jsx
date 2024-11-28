@@ -4,10 +4,11 @@ import { useState } from "react";
 
 
 const Fields = ({register, setValue, getValues, errors}) => {
-    const [formatFees, setFormatFees] = useState(0);
-    const [formatInterestDaily, setFormatInterestDaily] = useState(0);
-    const [ formatInterestMonthly, setFormatInterestMonthly] = useState(0);
-    const [formatInterestAnnual, setFormatInterestAnnual] = useState(0);
+    const [formatFees, setFormatFees] = useState("");
+    const [formatInterestDaily, setFormatInterestDaily] = useState("");
+    const [ formatInterestMonthly, setFormatInterestMonthly] = useState("");
+    const [formatInterestAnnual, setFormatInterestAnnual] = useState("");
+    const [fieldDisabled, setFieldDisabled] = useState(true);
 
     const handleChange = (e) => {
         let fieldName = e.target.name;
@@ -15,23 +16,38 @@ const Fields = ({register, setValue, getValues, errors}) => {
         let maskedValue = 0;
 
         if (fieldName === 'valueInstallment'){
+            maskedValue = FormatCurrency(fieldValue)
+            const numberValue = parseInt(fieldValue, 10) / 100; // Divide por 100 para ajustar as casas decimais
+            if(numberValue === 0)
+            {
+                setFieldDisabled(true)
+            }else{
+                setFieldDisabled(false)
+            }
 
-            maskedValue =   FormatCurrency(fieldValue)
         }
         else if (fieldName !== 'dayGenerateInstallment' || fieldName !== 'valueInstallment' ){
             maskedValue = FormatPercentage(fieldValue)
         }
 
         setValue(fieldName, maskedValue)
+
     };
 
     const handleBlur = (e) => {
         let fieldValueInstallment = getValues('valueInstallment')
         let fieldName = e.target.name;
         let fieldValue = e.target.value;
-        let maskedValue = 0;
-        maskedValue = FormatPercentageMoney(fieldValue, fieldValueInstallment)
+        let maskedValue = FormatPercentageMoney(fieldValue, fieldValueInstallment)
 
+        if(maskedValue === 'R$ 0,00'){
+            setFormatFees("");
+            setFormatInterestDaily("");
+            setFormatInterestMonthly("");
+            setFormatInterestAnnual("");
+            return
+        }
+        
         if (fieldName === "fees")
             setFormatFees(maskedValue);
         else if(fieldName === "interestDaily"){
@@ -87,7 +103,8 @@ const Fields = ({register, setValue, getValues, errors}) => {
                         <Form.Label className="m-0"> 
                             Taxas Juros   
                             {
-                                formatFees
+                                formatFees == "R$ 0,00" ? null :
+                                    <span className="valueInterestRate">{formatFees}</span>
                             }
                         </Form.Label>
                         <Form.Control 
@@ -95,6 +112,7 @@ const Fields = ({register, setValue, getValues, errors}) => {
                             name="fees"
                             placeholder="Taxas de juros" 
                             {...register("fees")}
+                            disabled= {fieldDisabled}
                             isInvalid={!!errors.fees}
                             onChange={(e) => handleChange(e)}
                             onBlur={(e) => handleBlur(e)}
@@ -110,7 +128,8 @@ const Fields = ({register, setValue, getValues, errors}) => {
                         <Form.Label className="m-0"> 
                             Juros Diário 
                             {
-                                formatInterestDaily
+                                formatInterestDaily == "R$ 0,00" ? null :
+                                    <span className="valueInterestRate">{formatInterestDaily}</span>
                             }
                         </Form.Label>
                         <Form.Control 
@@ -118,6 +137,7 @@ const Fields = ({register, setValue, getValues, errors}) => {
                             name="interestDaily"
                             placeholder="Juros Diário" 
                             {...register("interestDaily")}
+                            disabled= {fieldDisabled}
                             isInvalid={!!errors.interestDaily}
                             onChange={(e) => handleChange(e)}
                             onBlur={(e) => handleBlur(e)}
@@ -134,7 +154,8 @@ const Fields = ({register, setValue, getValues, errors}) => {
                             <Form.Label className="m-0"> 
                                 Juros Mensal 
                                 {
-                                    formatInterestMonthly
+                                    formatInterestMonthly == "R$ 0,00" ? null :
+                                    <span className="valueInterestRate">{formatInterestMonthly}</span>
                                 }
                             </Form.Label>
                             <Form.Control 
@@ -142,6 +163,7 @@ const Fields = ({register, setValue, getValues, errors}) => {
                                 name="interestMonthly"
                                 placeholder="Juros Mensal" 
                                 {...register("interestMonthly")}
+                                disabled= {fieldDisabled}
                                 isInvalid={!!errors.interestMonthly}
                                 onChange={(e) => handleChange(e)}
                                 onBlur={(e) => handleBlur(e)}
@@ -156,7 +178,9 @@ const Fields = ({register, setValue, getValues, errors}) => {
                         <Form.Label className="m-0"> 
                             Juros Anual 
                             {
-                                formatInterestAnnual
+                                formatInterestAnnual == "R$ 0,00" ? null :
+                                    <span className="valueInterestRate">{formatInterestAnnual}</span>
+                                
                             }
                         </Form.Label>
                         <Form.Control 
@@ -164,6 +188,7 @@ const Fields = ({register, setValue, getValues, errors}) => {
                             name="interestAnnual"
                             placeholder="Juros Anual" 
                             {...register("interestAnnual")}
+                            disabled= {fieldDisabled}
                             isInvalid={!!errors.interestAnnual}
                             onChange={(e) => handleChange(e)}
                             onBlur={(e) => handleBlur(e)}
