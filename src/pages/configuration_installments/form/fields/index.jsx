@@ -69,6 +69,7 @@ const Fields = ({register, setValue, getValues, errors}) => {
                         <Form.Label className="m-0"> Dia Gerar Parcela </Form.Label>
                         <Form.Control 
                             type="text" 
+                            inputMode="numeric"
                             name="dayGenerateInstallment"
                             placeholder="Dia do mês" 
                             {...register("dayGenerateInstallment")}
@@ -109,8 +110,9 @@ const Fields = ({register, setValue, getValues, errors}) => {
                         </Form.Label>
                         <Form.Control 
                             type="text" 
+                            inputMode="numeric"
                             name="fees"
-                            placeholder="Taxas de juros" 
+                            placeholder="Taxas de Juros" 
                             {...register("fees")}
                             disabled= {fieldDisabled}
                             isInvalid={!!errors.fees}
@@ -134,6 +136,7 @@ const Fields = ({register, setValue, getValues, errors}) => {
                         </Form.Label>
                         <Form.Control 
                             type="text" 
+                            inputMode="numeric"
                             name="interestDaily"
                             placeholder="Juros Diário" 
                             {...register("interestDaily")}
@@ -160,6 +163,7 @@ const Fields = ({register, setValue, getValues, errors}) => {
                             </Form.Label>
                             <Form.Control 
                                 type="text" 
+                                inputMode="numeric"
                                 name="interestMonthly"
                                 placeholder="Juros Mensal" 
                                 {...register("interestMonthly")}
@@ -185,6 +189,7 @@ const Fields = ({register, setValue, getValues, errors}) => {
                         </Form.Label>
                         <Form.Control 
                             type="text" 
+                            inputMode="numeric"
                             name="interestAnnual"
                             placeholder="Juros Anual" 
                             {...register("interestAnnual")}

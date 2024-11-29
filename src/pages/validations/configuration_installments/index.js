@@ -6,11 +6,13 @@ export const ConfigurationInstallmentsSchema = yup.object().shape({
     dayGenerateInstallment: yup
         .number()
         .typeError('O campo deve ser um número') // Caso o valor não seja numérico
+        .integer('O dia deve ser um número inteiro') // Verifica se é um número inteiro
         .min(1, 'O dia deve ser no mínimo 1')
         .max(31, 'O dia deve ser no máximo 31')
         .required('Campo é obrigatório'),
     valueInstallment: yup
         .string()
+        .typeError('O campo deve ser um número') // Caso o valor não seja numérico
         // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
         .required('Campo é obrigatório')
         .test('not-zero', 'O valor deve ser diferente de R$ 0,00', (value) => {
@@ -20,18 +22,22 @@ export const ConfigurationInstallmentsSchema = yup.object().shape({
         }),
     fees: yup
         .string()
+        .typeError('O campo deve ser um número') // Caso o valor não seja numérico
         // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
         .required('Campo não pode ser vazio'),
     interestDaily: yup
         .string()
+        .typeError('O campo deve ser um número') // Caso o valor não seja numérico
         // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
         .required('Campo não pode ser vazio'),
     interestMonthly: yup
         .string()
+        .typeError('O campo deve ser um número') // Caso o valor não seja numérico
         // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
         .required('Campo não pode ser vazio'),
     interestAnnual: yup
         .string()
+        .typeError('O campo deve ser um número') // Caso o valor não seja numérico
         // Deve fica antes do teste, o teste vai cuida quando o valor for R$ 0,00 
         .required('Campo não pode ser vazio'),
 
