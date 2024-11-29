@@ -10,25 +10,27 @@ import { useNavigate } from 'react-router-dom';
 
 const ConfigurationInstallments = () => {
 
-    const {registered, setRegistered} = useState(null);
+    const [registered, setRegistered] = useState(null);
+
     const navigate = useNavigate();
 
     const {getDocuments, loading} = useConfigurationInstallments.useGetDocuments();
 
-    useEffect( () => {
-        const result = getDocuments();
+    const fetchDocuments = async () => {
+        const result = await getDocuments();
         const { success, data, message } = result;
         if(success){
             setRegistered(data);
         }else{
-            console.log('error: ', message)
-            /* 
-                passar a page de error
-            */
-            navigate('/notifications/error')
+            console.log('error: ', message);
+            navigate('/notifications/error');
         }
+    };
+    
+    useEffect(() => {
+      fetchDocuments();  // Chama a função ao renderizar o componente
+    }, []);
 
-    }, [])
 
     return (
         <WrapPages>

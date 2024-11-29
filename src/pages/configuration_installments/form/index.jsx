@@ -7,14 +7,23 @@ import { Button, Spinner } from "react-bootstrap";
 import { Theme } from "../../../theme";
 
 const Form = ({registered}) => {
+    
     console.log('registered: ', registered);
-    
-    
+
     let loadingCrate = false;
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.ConfigurationInstallmentsSchema)
     }); 
+
+
+    /* 
+    
+        - criar o useefect para alimenta os campos;
+
+    */
+
+
 
     const handleOnSubmit = (data) => {
         console.log(data);
