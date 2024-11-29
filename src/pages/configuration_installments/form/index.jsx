@@ -5,12 +5,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../../validations/index'
 import { Button, Spinner } from "react-bootstrap";
 import { Theme } from "../../../theme";
+import { useConfigurationInstallments } from "../../../hooks/configuration_installments";
+import { FormatPercentageNumber, FormatMoneyNumber } from "../scripts";
 
 const Form = ({registered}) => {
     
     console.log('registered: ', registered);
 
-    let loadingCrate = false;
+    const {createConfigurationInstallments, loading: loadingCrate} = useConfigurationInstallments.usePostDocumentsCreate();
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.ConfigurationInstallmentsSchema)
@@ -25,7 +27,23 @@ const Form = ({registered}) => {
 
 
 
-    const handleOnSubmit = (data) => {
+    const handleOnSubmit = async (data) => {
+        data.fees = FormatPercentageNumber(data.fees);
+        data.interestAnnual = FormatPercentageNumber(data.interestAnnual);
+        data.interestDaily = FormatPercentageNumber(data.interestDaily);
+        data.interestMonthly = FormatPercentageNumber(data.interestMonthly);
+        data.valueInstallment = FormatMoneyNumber(data.valueInstallment);
+
+        const result = await createConfigurationInstallments(data);
+        const {success, message } = result;
+
+        if(success){
+            console.log('Deu certo');
+            
+        }else{
+            console.log('error: ', message);
+            
+        }
         console.log(data);
         
     }
