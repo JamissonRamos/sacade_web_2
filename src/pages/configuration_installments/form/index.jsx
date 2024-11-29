@@ -6,7 +6,10 @@ import { Validations } from '../../validations/index'
 import { Button, Spinner } from "react-bootstrap";
 import { Theme } from "../../../theme";
 
-const Form = () => {
+const Form = ({registered}) => {
+    console.log('registered: ', registered);
+    
+    
     let loadingCrate = false;
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({

@@ -19,11 +19,7 @@ export const useGetCollection = () => {
             return {success: true, data: documents };
         }catch (error) {
             console.error("Erro ao recuperar todos os documento:", error.message);
-<<<<<<< HEAD
             return { success: false, message: error.message };
-=======
-            return { success: false, error: error.message };
->>>>>>> 2c3bd9a311530df20a38897e3e3a6c1ea32d6ff0
         }
     };
 
