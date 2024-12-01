@@ -3,12 +3,12 @@ import { FormatCurrency, FormatPercentage, FormatPercentageMoney} from "../../sc
 import { useState } from "react";
 
 
-const Fields = ({register, setValue, getValues, errors}) => {
+const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldDisabled}) => {
     const [formatFees, setFormatFees] = useState("");
     const [formatInterestDaily, setFormatInterestDaily] = useState("");
-    const [ formatInterestMonthly, setFormatInterestMonthly] = useState("");
+    const [formatInterestMonthly, setFormatInterestMonthly] = useState("");
     const [formatInterestAnnual, setFormatInterestAnnual] = useState("");
-    const [fieldDisabled, setFieldDisabled] = useState(true);
+    // const [fieldDisabled, setFieldDisabled] = useState(true);
 
     const handleChange = (e) => {
         let fieldName = e.target.name;
@@ -25,13 +25,10 @@ const Fields = ({register, setValue, getValues, errors}) => {
                 setFieldDisabled(false)
             }
 
-        }
-        else if (fieldName !== 'dayGenerateInstallment' || fieldName !== 'valueInstallment' ){
+        }else if (fieldName !== 'dayGenerateInstallment' || fieldName !== 'valueInstallment' ){
             maskedValue = FormatPercentage(fieldValue)
         }
-
         setValue(fieldName, maskedValue)
-
     };
 
     const handleBlur = (e) => {
@@ -59,7 +56,6 @@ const Fields = ({register, setValue, getValues, errors}) => {
         }
 
     }
-
 
     return (
         <>

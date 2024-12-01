@@ -1,7 +1,7 @@
 
 export const FormatCurrency = (value) => {   
     /* 
-        - Função para converter em Dinheiro R$ 0,00;
+        - Função para converter em Dinheiro  mais valor como string R$ 0,00;
     */
     if(value === 0) return
     if(value === '') return
@@ -15,8 +15,20 @@ export const FormatCurrency = (value) => {
         currency: 'BRL',
     }).format(numberValue);
 };
+export const FormatNumberCurrency = (value) => {   
+    /* 
+        - Função para converter em Dinheiro, value esta como number R$ 0,00;
+    */
+    if(value === 0) return
+    if(value === '') return
 
+    return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    }).format(value);
+};
 export const FormatPercentage  = (value) => {
+    /* Formata string em porcentagem */
     if(value === 0) return
     if(value === '') return
 
@@ -25,6 +37,13 @@ export const FormatPercentage  = (value) => {
     const numberValue = parseFloat(inputValue) / 100; // Converte para decimal
     return(numberValue.toFixed(2) + "%" ); // Define o valor formatado
 };
+export const FormatNumberPercentage  = (value) => {
+    /* Função para converter de numero para porcentagem */
+    if(value === 0) return
+    if(value === '') return
+    const numberValue = parseFloat(value) / 100; // Converte para decimal
+    return (numberValue * 100).toFixed(2) + "%"; // Define o valor formatado
+};
 export const FormatPercentageNumber = (valuePercentage) => {
     /* 
         - Função para converter porcentagem em Número;
@@ -32,9 +51,7 @@ export const FormatPercentageNumber = (valuePercentage) => {
     if(valuePercentage === 0) return
     
     // Converte a porcentagem para decimal
-    const percentageDecimal = parseFloat(valuePercentage) / 100;
-    console.log(percentageDecimal);
-    
+    const percentageDecimal = parseFloat(valuePercentage) / 100;    
     return percentageDecimal
 };
 export const FormatMoneyNumber = (valueInstallment) => {
@@ -45,10 +62,7 @@ export const FormatMoneyNumber = (valueInstallment) => {
     
     let inputValue = valueInstallment.replace(/[^\d]/g, ""); // Remove tudo que não for número
     const numberValue = parseFloat(inputValue) / 100; // Converte para decimal
-    
-    console.log(numberValue);
-    
-    
+
     return numberValue
 };
 export const FormatPercentageMoney = (valuePercentage, valueInstallment) => {
