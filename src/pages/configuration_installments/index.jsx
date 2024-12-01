@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as S from './styled';
 import { useConfigurationInstallments } from '../../hooks/configuration_installments';
 import { useEffect, useState } from 'react';
