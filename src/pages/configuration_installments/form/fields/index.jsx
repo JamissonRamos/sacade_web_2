@@ -2,6 +2,8 @@ import { Col, Row, Form } from "react-bootstrap"
 import { FormatCurrency, FormatPercentage, FormatPercentageMoney} from "../../scripts";
 import { useState } from "react";
 
+import { mask } from 'remask';
+import { MaskList } from '../../../../constants/mask';
 
 const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldDisabled}) => {
     const [formatFees, setFormatFees] = useState("");
@@ -15,7 +17,10 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
         let fieldValue = e.target.value;
         let maskedValue = 0;
 
-        if (fieldName === 'valueInstallment'){
+        if(fieldName === 'dayGenerateInstallment'){
+            maskedValue = mask(fieldValue, MaskList.onlyNumber )
+
+        }else if (fieldName === 'valueInstallment'){
             maskedValue = FormatCurrency(fieldValue)
             const numberValue = parseInt(fieldValue, 10) / 100; // Divide por 100 para ajustar as casas decimais
             if(numberValue === 0)
@@ -70,6 +75,7 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
                             placeholder="Dia do mês" 
                             {...register("dayGenerateInstallment")}
                             isInvalid={!!errors.dayGenerateInstallment}
+                            onChange={handleChange}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.dayGenerateInstallment && errors.dayGenerateInstallment.message}
