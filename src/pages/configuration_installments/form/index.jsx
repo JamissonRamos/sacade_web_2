@@ -56,7 +56,10 @@ const Form = ({registered}) => {
                 maskedValue = value
             }
             setValue(key, maskedValue);
-            setFieldDisabled(false)
+            //Liberar os campos
+            setFieldDisabled(false);
+            //Mudar o button para Update
+            setChooseButton(true);
 
         }
     };
@@ -77,16 +80,16 @@ const Form = ({registered}) => {
         if(chooseButton){
             result = 'Atualizar dados '
         }else{
-
-            result = await createConfigurationInstallments(data);
+            result = 'Salvar dados '
+            //result = await createConfigurationInstallments(data);
         }
 
         const {success, message } = result;
 
         if(success){
             chooseButton 
-                ? console.log('page create')
-                : console.log('page update')
+                ? console.log('page update')
+                : console.log('page create') 
             
         }else{
             console.log('error: ', message);
