@@ -46,7 +46,7 @@ export const WrapText = styled.div`
 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: .2rem;
 `;
 export const Title = styled.div`
@@ -55,6 +55,7 @@ export const Title = styled.div`
     display: flex;
     align-items: center;
     & span {
+        /* font-size: 2em; */
         color: ${Theme.Colors.green800};
     }
     @media (max-width: 1024px) {

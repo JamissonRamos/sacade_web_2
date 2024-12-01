@@ -1,9 +1,38 @@
 import * as S from "./styled";
 import {TextC} from "../../../components/Typography";
 import { Theme } from "../../../theme";
+import { useEffect, useState } from "react";
+import { useStudents } from "../../../hooks/students";
+import { Spinner } from "react-bootstrap";
 
 
 const Body = () => {
+    const [accountantStudents, setAccountantStudents] = useState(0);
+
+    const {getDocuments, error: errorStudents, loading: loadingStudents} = useStudents.useGetDocuments();
+
+    const fetchDocuments = async () => {
+        const result = await getDocuments();
+        const { success, data, message } = result;
+        
+        if(success){
+            console.log(data.length);
+            setAccountantStudents(data.length);
+        }else{
+            console.log('error: ', message);
+            setAccountantStudents(`#Error`);
+        }
+    };
+    
+    useEffect(() => {
+      fetchDocuments();  // Chama a função ao renderizar o componente
+    
+
+    }, []);
+
+
+
+
     return (
         <S.Container>
             <S.SectionCards>
@@ -14,7 +43,18 @@ const Body = () => {
 
                     <S.WrapText>
                         <S.Title >
-                            <TextC.Label level={2}>57 Alunos</TextC.Label>
+                        {
+                            loadingStudents 
+                                ?  <Spinner
+                                        variant='success'
+                                        size="sm"
+                                        as="span"
+                                        animation="border"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
+                                :   <TextC.Label level={4}>{accountantStudents}</TextC.Label>
+                            }
                         </S.Title>
 
                         <S.SubTitle >
