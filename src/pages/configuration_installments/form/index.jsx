@@ -1,14 +1,16 @@
 import * as S from "./styled"
-import Fields from "./fields"
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../../validations/index'
-import { Button, Spinner } from "react-bootstrap";
 import { Theme } from "../../../theme";
 import { useConfigurationInstallments } from "../../../hooks/configuration_installments";
 import { FormatPercentageNumber, FormatMoneyNumber, FormatNumberCurrency, FormatNumberPercentage } from "../scripts";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+import Fields from "./fields"
+import { Button, Spinner } from "react-bootstrap";
 
 const Form = ({registered}) => {
     const [fieldDisabled, setFieldDisabled] = useState(true);
@@ -18,29 +20,21 @@ const Form = ({registered}) => {
     */
     const [chooseButton, setChooseButton] = useState(false);
 
-
     //Verificar quando não tiver dados;
     const data = Array.isArray(registered) && registered.length > 0 ? registered[0] : null;
+    const navigate = useNavigate();
 
+    const {updateConfigurationInstallments, loading: loadingUpdate } = useConfigurationInstallments.usePostDocumentsUpdate();
     const {createConfigurationInstallments, loading: loadingCrate} = useConfigurationInstallments.usePostDocumentsCreate();
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.ConfigurationInstallmentsSchema)
     }); 
 
-
-
-    /* 
-    
-        - criar o useefect para alimenta os campos;
-        - mudar o button se tiver data para salvar ou atualizar
-    */
-
     const handleFetchDocument = async () => {
         /* Função para alimentar os campos */
         let maskedValue = null;
         if(typeof data !== 'object' || data === null) return
-        
         for(const [key, value] of Object.entries(data)){
             if(key === 'valueInstallment'){
                 maskedValue = FormatNumberCurrency(value)
@@ -60,7 +54,6 @@ const Form = ({registered}) => {
             setFieldDisabled(false);
             //Mudar o button para Update
             setChooseButton(true);
-
         }
     };
 
@@ -78,25 +71,23 @@ const Form = ({registered}) => {
         data.valueInstallment = FormatMoneyNumber(data.valueInstallment);
 
         if(chooseButton){
-            result = 'Atualizar dados '
+            result = await updateConfigurationInstallments(data);
         }else{
-            result = 'Salvar dados '
-            //result = await createConfigurationInstallments(data);
+            result = await createConfigurationInstallments(data);
         }
 
         const {success, message } = result;
 
         if(success){
             chooseButton 
-                ? console.log('page update')
-                : console.log('page create') 
+                ? navigate('/notifications/update')
+                : navigate('/notifications/create');
             
         }else{
             console.log('error: ', message);
-            
+            navigate('/notifications/error');
         }
-        console.log(data);
-        
+        reset()
     }
     return (
         <S.Form onSubmit={handleSubmit(handleOnSubmit)} >
@@ -112,19 +103,19 @@ const Form = ({registered}) => {
             <S.WrapButtons>
                 <Button
                     variant="outline-danger"
-                    onClick={() => console.log(-1)}
+                    onClick={() =>  navigate('/')}
                 >
                     <Theme.Icons.MdClose />
                     <span>Cancelar</span>
                 </Button>  
                 {
-                    chooseButton ?
-                        <Button
+                    chooseButton 
+                        ? <Button
                             variant="success"
                             type='submit'
-                            // disabled={loadingCrate ? true : false}
+                            disabled={loadingUpdate ? true : false}
                         >   
-                            { loadingCrate ?
+                            { loadingUpdate ?
                                 <>
                                     <Spinner
                                         as="span"
@@ -141,11 +132,10 @@ const Form = ({registered}) => {
                                 </>
                             } 
                         </Button> 
-                    :
-                        <Button
+                        : <Button
                             variant="success"
                             type='submit'
-                            // disabled={loadingCrate ? true : false}
+                            disabled={loadingCrate ? true : false}
                         >   
                             { loadingCrate ?
                                 <>
