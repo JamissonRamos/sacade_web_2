@@ -15,9 +15,9 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
     const handleChange = (e) => {
         let fieldName = e.target.name;
         let fieldValue = e.target.value;
-        let maskedValue = 0;
+        let maskedValue = fieldValue;
 
-        if(fieldName === 'dayGenerateInstallment'){
+        if (/[a-zA-Z]/.test(fieldValue) && fieldName !== 'valueInstallment' ) {
             maskedValue = mask(fieldValue, MaskList.onlyNumber )
 
         }else if (fieldName === 'valueInstallment'){
@@ -26,23 +26,52 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
             if(numberValue === 0)
             {
                 setFieldDisabled(true)
+                
             }else{
                 setFieldDisabled(false)
             }
 
-        }else if (fieldName !== 'dayGenerateInstallment' || fieldName !== 'valueInstallment' ){
+        }else if (fieldName !== 'dayGenerateInstallment' ){
             maskedValue = FormatPercentage(fieldValue)
         }
-        setValue(fieldName, maskedValue)
+            setValue(fieldName, maskedValue)
     };
+
+
+    const applyAmountMoneyPercentage = () => {
+        /* Função para aplicar a regras de mostra valores quando alterar o valor da parcela */
+        const fields = ['fees', 'interestDaily', 'interestMonthly', 'interestAnnual'];
+        const fieldValueInstallment = getValues('valueInstallment');
+        let fieldValue = '';
+
+        fields.map((field)=>{
+            fieldValue = getValues(field)
+
+            if(!fieldValue > 0)  return
+
+            let maskedValue = FormatPercentageMoney(fieldValue, fieldValueInstallment)
+
+            if (field === "fees")
+                setFormatFees(maskedValue);
+            else if(field === "interestDaily"){
+                setFormatInterestDaily(maskedValue);
+            }else if(field === "interestMonthly"){
+                setFormatInterestMonthly(maskedValue);
+            }else if(field === "interestAnnual"){
+                setFormatInterestAnnual(maskedValue);
+            }
+        })
+
+    }
 
     const handleBlur = (e) => {
         let fieldValueInstallment = getValues('valueInstallment')
         let fieldName = e.target.name;
         let fieldValue = e.target.value;
-        let maskedValue = FormatPercentageMoney(fieldValue, fieldValueInstallment)
 
-        if(maskedValue === 'R$ 0,00'){
+        let maskedValue = FormatPercentageMoney(fieldValue, fieldValueInstallment);
+
+        if(fieldValueInstallment === 'R$ 0,00'){
             setFormatFees("");
             setFormatInterestDaily("");
             setFormatInterestMonthly("");
@@ -93,6 +122,7 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
                             {...register("valueInstallment")}
                             isInvalid={!!errors.valueInstallment}
                             onChange={(e) => handleChange(e)}
+                            onBlur={applyAmountMoneyPercentage}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.valueInstallment && errors.valueInstallment.message}

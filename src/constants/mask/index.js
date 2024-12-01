@@ -8,5 +8,5 @@ export const MaskList = {
     date: ['99/99/9999'],          // Máscara para data
     time: ['99:99'],               // Máscara para hora
     currency: ['R$ 999.999,99'],   // Máscara para valores monetários
-    onlyNumber: ['9999999999']     //Ajuste conforme o número máximo de dígitos
+    onlyNumber: ['9999999999999999999']     //Ajuste conforme o número máximo de dígitos
 };

@@ -89,6 +89,7 @@ const Form = ({registered}) => {
         }
         reset()
     }
+    
     return (
         <S.Form onSubmit={handleSubmit(handleOnSubmit)} >
             <Fields 

@@ -29,20 +29,20 @@ export const FormatNumberCurrency = (value) => {
 };
 export const FormatPercentage  = (value) => {
     /* Formata string em porcentagem */
-    if(value === 0) return
-    if(value === '') return
+    if(value === 0) return 0
+    if(value === '') return 0
 
     let inputValue = value.replace(/[^\d]/g, ""); // Remove tudo que não for número
 
     const numberValue = parseFloat(inputValue) / 100; // Converte para decimal
-    return(numberValue.toFixed(2) + "%" ); // Define o valor formatado
+    return(numberValue.toFixed(2)  ); // Define o valor formatado
 };
 export const FormatNumberPercentage  = (value) => {
     /* Função para converter de numero para porcentagem */
-    if(value === 0) return
-    if(value === '') return
-    const numberValue = parseFloat(value) / 100; // Converte para decimal
-    return (numberValue * 100).toFixed(2) + "%"; // Define o valor formatado
+    if(value === 0) return 0
+    if(value === '') return 0
+    //const numberValue = parseFloat(value) / 100; // Converte para decimal
+    return (value * 100).toFixed(2) ; // Define o valor formatado
 };
 export const FormatPercentageNumber = (valuePercentage) => {
     /* 
