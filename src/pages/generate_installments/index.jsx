@@ -5,10 +5,30 @@ import Header from './header';
 import { LoadingOverlay } from '../../components/spinner/global/styled';
 import { Spinner } from 'react-bootstrap';
 import { TextC } from '../../components/Typography';
+import { useEffect, useState } from 'react';
+import { useStudents } from '../../hooks/students';
 
 const GenerateInstallments = () => {
-    const loading = false;
+    const [registered, setRegistered] = useState(null);
+    const { getDocuments, loading} = useStudents.useGetDocuments()
+    
+    const fetchDocuments = async () => {
+        const result = await getDocuments();
+        const { success, data, error} = result;
+        if(success){
+            setRegistered( data )
+        }else{
+            console.log('Error:', error);
+        };
+    }
+    
+    useEffect(() => {
+        fetchDocuments();  // Chama a função ao renderizar o componente
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
+    console.log('registered:', registered);
+    
     return (
         <WrapPages>
             <S.Content>
@@ -30,7 +50,7 @@ const GenerateInstallments = () => {
                     :   null 
                 }
 
-                
+
                 {/* Colocar msg sem cadastro ou a lista */}
 
                 <S.Empty>
