@@ -4,6 +4,7 @@ import * as Fa6     from "react-icons/fa6";
 import * as IM      from "react-icons/im";
 import * as FA      from "react-icons/fa";
 import * as AI      from "react-icons/ai";
+import * as RX      from "react-icons/rx";
 
 
 export const Icons = {  
@@ -52,4 +53,5 @@ export const Icons = {
     FaUsers:                    FA.FaUsers,
     FaDollarSign:               FA.FaDollarSign,
     AiOutlineProduct:           AI.AiOutlineProduct,
+    RxCardStackPlus:            RX.RxCardStackPlus,
 }

@@ -9,7 +9,7 @@ import { Spinner } from "react-bootstrap";
 const Body = () => {
     const [accountantStudents, setAccountantStudents] = useState(0);
 
-    const {getDocuments, error: errorStudents, loading: loadingStudents} = useStudents.useGetDocuments();
+    const {getDocuments, loading: loadingStudents} = useStudents.useGetDocuments();
 
     const fetchDocuments = async () => {
         const result = await getDocuments();
