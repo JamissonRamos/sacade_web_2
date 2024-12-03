@@ -6,7 +6,8 @@ export const Content = styled.div`
     width: 100%;
     min-width: 320px;
     height: 100%;
-    overflow: auto;
+    /* overflow: auto; */
+    
 `;
 export const Empty = styled.div`
     /* border: 1px solid blue; */
@@ -28,6 +29,17 @@ export const Empty = styled.div`
             font-size: 1rem;
         }
     }
+`;
+
+export const SectionList = styled.div`
+    border: 1px solid blue;
+    width: 100%;
+    height: 80%;
+
+    padding-bottom: 1rem;
+    margin-top: 1rem;
+    overflow: auto;
+
 `;
 
 

@@ -7,6 +7,7 @@ import { Spinner } from 'react-bootstrap';
 import { TextC } from '../../components/Typography';
 import { useEffect, useState } from 'react';
 import { useStudents } from '../../hooks/students';
+import List from './list';
 
 const GenerateInstallments = () => {
     const [registered, setRegistered] = useState(null);
@@ -50,18 +51,22 @@ const GenerateInstallments = () => {
                     :   null 
                 }
 
+                {
+                    registered && registered.length == 0
+                    ?   <S.Empty>
+                            <TextC.Display level={2} >
+                            Nenhum cadastro
+                            </TextC.Display>
+                            <TextC.Body level={2}>
+                                Não encontramos nenhum cadastro em nossa base de dados.
+                            </TextC.Body>
+                        </S.Empty>
 
-                {/* Colocar msg sem cadastro ou a lista */}
+                    :   <S.SectionList > 
+                            <List data={registered}/>    
+                        </S.SectionList> 
 
-                <S.Empty>
-                    <TextC.Display level={2} >
-                    Nenhum cadastro
-                    </TextC.Display>
-                    <TextC.Body level={2}>
-                        Não encontramos nenhum cadastro em nossa base de dados.
-                    </TextC.Body>
-                </S.Empty>
-
+                }
 
             </S.Content>
         </WrapPages>
