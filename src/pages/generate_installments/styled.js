@@ -1,8 +1,21 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Theme } from "../../theme";
 
+const StyledButton = css`
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.4s ease, color 0.4s;
+`;
+
 export const Content = styled.div`
-    /* border: 1px solid red; */
+    border: 1px solid red;
     width: 100%;
     min-width: 320px;
     height: 100%;
@@ -34,12 +47,28 @@ export const Empty = styled.div`
 export const SectionList = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
-    height: 80%;
+    height: 70%;
 
     padding-bottom: 1rem;
     margin-top: 1rem;
     overflow: auto;
 
+`;
+
+export const WrapButtons = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    & button {
+        ${StyledButton}
+    } 
+
+    
 `;
 
 

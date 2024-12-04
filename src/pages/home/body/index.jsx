@@ -16,7 +16,6 @@ const Body = () => {
         const { success, data, message } = result;
         
         if(success){
-            console.log(data.length);
             setAccountantStudents(data.length);
         }else{
             console.log('error: ', message);

@@ -1,18 +1,7 @@
 import styled, { css } from "styled-components";
 import { Theme } from "../../../theme";
 
-const StyledButton = css`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 0;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.4s ease, color 0.4s;
-`;
+
 
 const StyledText = css`
     @media (max-width: 768px) {
@@ -129,18 +118,4 @@ export const WrapStatus = styled.div`
         ${StyledText};
     }
 `;
-export const WrapListButtons = styled.div`
-    /* border: 1px solid red; */
-    width: 100%;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
 
-    & button {
-        ${StyledButton}
-    } 
-
-    
-`;

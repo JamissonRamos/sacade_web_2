@@ -5,9 +5,9 @@ import { Theme } from '../../../theme';
 import { useState } from 'react';
 
 
-const List = ({data}) => { 
+const List = ({data, setStoreUid}) => { 
   const [checkedItems, setCheckedItems] = useState({});
-  const [storesUid, setStoreUid] = useState([])
+  
   
   const handleCheckboxChange = (uid) => {
     /* Manipular o meu checkBox */    
@@ -39,7 +39,7 @@ const List = ({data}) => {
       case 'inativo':
         bg = "warning"
         break;
-      case 'bloqueado ':
+      case 'bloqueado':
         bg = "danger"
         break;
       case 'ativo':

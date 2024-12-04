@@ -3,7 +3,7 @@ import * as S from './styled';
 import { WrapPages } from "../../components/Wrappe/pages";
 import Header from './header';
 import { LoadingOverlay } from '../../components/spinner/global/styled';
-import { Spinner } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import { TextC } from '../../components/Typography';
 import { useEffect, useState } from 'react';
 import { useStudents } from '../../hooks/students';
@@ -11,13 +11,17 @@ import List from './list';
 
 const GenerateInstallments = () => {
     const [registered, setRegistered] = useState(null);
+    const [storesUid, setStoreUid] = useState([])
     const { getDocuments, loading} = useStudents.useGetDocuments()
     
     const fetchDocuments = async () => {
         const result = await getDocuments();
         const { success, data, error} = result;
         if(success){
-            setRegistered( data )
+            //Passando para list gerar parcelas soemnte ativos e bloqueado
+            const newData = data.filter(obj => obj.status === 'ativo' || obj.status === 'bloqueado');
+            setRegistered( newData )
+
         }else{
             console.log('Error:', error);
         };
@@ -28,7 +32,6 @@ const GenerateInstallments = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    console.log('registered:', registered);
     
     return (
         <WrapPages>
@@ -63,10 +66,25 @@ const GenerateInstallments = () => {
                         </S.Empty>
 
                     :   <S.SectionList > 
-                            <List data={registered}/>    
+                            <List data={registered} setStoreUid={setStoreUid}/>    
                         </S.SectionList> 
 
                 }
+
+                <S.WrapButtons>
+                    <Button
+                        variant='success'
+                        disabled={storesUid.length <= 0 ? true : false}
+                    >
+                        <span>
+                            gerar parcelas {storesUid.length <= 0 
+                            ? null : storesUid.length} 
+                            
+                        </span>
+
+                    </Button>
+                </S.WrapButtons>
+                
 
             </S.Content>
         </WrapPages>
