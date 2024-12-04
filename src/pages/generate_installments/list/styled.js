@@ -13,86 +13,120 @@ const StyledButton = css`
     cursor: pointer;
     transition: background-color 0.4s ease, color 0.4s;
 `;
+
+const StyledText = css`
+    @media (max-width: 768px) {
+        & span {
+            font-size: 1em;
+        }
+    }
+    @media (max-width: 425px) {
+        & span {
+            font-size: .8em;
+        }
+    }
+
+`;
+
 export const Content = styled.div`
     /* border: 1px solid red; */
     width: 100%;
+    min-width: 350px;
     height: 100%;
-    /* max-height: 340px;   */
-    
+    padding-right:  1rem;
+    overflow: auto;
+
 `;
-export const TableHeader = styled.div`
-    /* border: 1px solid blue; */
-    width: 100%;
-    height: 30px;
-    background-color: transparent;
-`;
-export const TableRow = styled.div`
+export const Cards = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    display: flex;
-    border-bottom: 1px solid ${Theme.Colors.grey400};
-    &:nth-child(even) {
-        background-color: transparent;
-    }
-    @media (max-width: 768px) {
-        & .flex-Colum {
-            flex-direction: column;
-        }
-    }
+    height: 100%;
+
+    overflow: auto;
 `;
-export const TableHeaderCell = styled.div`
+
+export const Card = styled.div`
+    /* border: 1px solid red; */
+
+
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .8rem .6rem;
+    margin-bottom: .6rem;
+    margin: 0 auto 12px auto;
+    /* border-left: 5px solid  ${Theme.Colors.grey500}; */
+    border-left: 5px solid ${props => props.checkedItems 
+            ? Theme.Colors.green800 
+            : Theme.Colors.grey500};
+    border-radius: 4px;
+    box-shadow: ${Theme.Shadow.sh900};
+    & .form-check-inline {
+        margin: 0;
+    }
+    cursor: pointer;
+`;
+
+export const WrapContent = styled.div`
     /* border: 1px solid red; */
     display: flex;
     align-items: center;
-    flex: ${({$flex}) => $flex ? $flex : 1};    
-    padding: 8px;
-    /* border-bottom: 1px solid ${Theme.Colors.grey300}; */
-    & > span {
-        font-style: normal;
-        font-weight: 800;
-        font-size: 12.8px;
-        line-height: 13px;
-        text-align: left;
-        text-transform: uppercase;
-        color: ${Theme.Colors.grey500};
-    }
 `;
-export const TableBody = styled.div`
-    /* border: 1px solid blue; */
-    width: 100%;
-    height: calc(100% - 30px);
-    padding-bottom: 1rem;
-    overflow-y: auto;
+
+export const WrapIndex = styled.div`
+    margin-right: 6px;
+    ${StyledText};
 `;
-export const TableBodyCell = styled.div`
-    /* border: 1px solid red; */
+
+export const WrapName = styled.div`
     display: flex;
     align-items: center;
-    justify-content: start;
-    gap: 1rem;
-    flex: ${({$flex}) => $flex ? $flex : 1};    
-    padding: .6rem 10px;
-    &.status {
-        text-transform: uppercase;
-    }
+    gap: 8px;
+    ${StyledText};
 `;
+
 export const CircleLetterName = styled.div`
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: ${Theme.Colors.blue100};
     border-radius: 20px;
-    font-weight: 900;
-    font-size: 21.1px;
-    line-height: 25px;
-    text-transform: uppercase;
-    color: ${Theme.Colors.blue800};
+    & span {
+        font-weight: 900;
+        font-size: 18.1px;
+        text-transform: uppercase;
+        color: ${Theme.Colors.blue800};
+    }
+
     @media (max-width: 768px) {
         width: 30px;
         height: 30px;
-        font-size: 16.1px;
+        & span {
+            font-size: 16.1px;
+        }
+    }
+    @media (max-width: 425px) {
+        width: 20px;
+        height: 20px;
+        & span {
+            font-size: 12px;
+        }
+    }
+`;
+
+export const WrapStatus = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    & span{
+        text-align: center;
+        text-transform: uppercase; 
+        font-weight: 500;
+        font-size: 0.65em;
+        ${StyledText};
     }
 `;
 export const WrapListButtons = styled.div`
