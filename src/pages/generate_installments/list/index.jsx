@@ -2,15 +2,12 @@ import * as S from './styled';
 import { TextC } from '../../../components/Typography'
 import { Badge, Button, Form} from 'react-bootstrap';
 import { Theme } from '../../../theme';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 
 const List = ({data}) => { 
   const [checkedItems, setCheckedItems] = useState({});
   const [storesUid, setStoreUid] = useState([])
-  
-  const navigate = useNavigate();
   
   const handleCheckboxChange = (uid) => {
     /* Manipular o meu checkBox */    
@@ -57,22 +54,17 @@ const List = ({data}) => {
     return bg 
   }
 
-  const handleShowFormUpdate = (uid) => { 
-    // navigate('/students/form_update', { state: { uid: uid } });
-  };
-  
-  console.log('checkedItems: ', checkedItems);
-  console.log('storesUid: ', storesUid);
   return (
       <S.Content>
       
-
         <S.Cards>
           {
             data && data.map(({uid, firstName, lastName, status }, i) => (
 
               <S.Card key={i} checkedItems={checkedItems[uid]} onClick={() => handleCardClick(uid)}>
+
                 <S.WrapContent>
+
                   <S.WrapIndex>
                     <TextC.Body level={2}> {i + 1} </TextC.Body>
                   </S.WrapIndex>
@@ -93,9 +85,9 @@ const List = ({data}) => {
                     </S.CircleLetterName>
                     <TextC.Body level={2}>{firstName + " " + lastName}</TextC.Body>
                   </S.WrapName>
-                </S.WrapContent>
-                
 
+                </S.WrapContent>
+              
                 <S.WrapStatus>
                       <Badge bg={handleBadge(status)} text="light">
                         {status}

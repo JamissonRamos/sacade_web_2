@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 // import ChangeRegistrationModal from '../modal'
 
 const CardList = ({data}) => {
-    console.log('dados do card: ', data);
     
     const navigate = useNavigate();
     
@@ -31,8 +30,13 @@ const CardList = ({data}) => {
         return bg 
     }
 
+    // Exclui os dados do localStorage
+    const handleDeleteLocalStorage = () => {
+        localStorage.removeItem('studentResponsible');
+    }
     const handleShowFormUpdate = (uid) => { 
-        // navigate('/users/form_update', { state: { uid: uid } });
+        handleDeleteLocalStorage();
+        navigate('/students/form_update', { state: { uid: uid } });
     };
 
     return (
@@ -44,6 +48,7 @@ const CardList = ({data}) => {
                     <S.WrapButton 
                         key={uid}
                         onClick={() => handleShowFormUpdate(uid)}>
+                            
                             <S.Card>
                                 <S.CircleFirstLetterNome>
                                     {firstName && firstName.charAt(0)}
