@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { Theme } from "../../theme";
 
 const StyledButton = css`
-    width: 60%;
+    width: 40%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -12,13 +12,17 @@ const StyledButton = css`
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.4s ease, color 0.4s;
+    @media (max-width: 768px) {
+        width: 60%;
+    }
 `;
 
 export const Content = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
     min-width: 320px;
     height: 100%;
+    padding-bottom: .8rem;
     /* overflow: auto; */
     
 `;
@@ -58,7 +62,7 @@ export const SectionList = styled.div`
 export const WrapButtons = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 32px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
