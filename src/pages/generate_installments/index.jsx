@@ -3,7 +3,7 @@ import * as S from './styled';
 import { WrapPages } from "../../components/Wrappe/pages";
 import Header from './header';
 import { LoadingOverlay } from '../../components/spinner/global/styled';
-import { Button, Spinner } from 'react-bootstrap';
+import { Button, Form, Spinner } from 'react-bootstrap';
 import { TextC } from '../../components/Typography';
 import { useEffect, useState } from 'react';
 import { useStudents } from '../../hooks/students';
@@ -12,6 +12,7 @@ import List from './list';
 const GenerateInstallments = () => {
     const [registered, setRegistered] = useState(null);
     const [storesUid, setStoreUid] = useState([])
+    const [selectAll, setSelectAll] = useState(false) //CheckBox All Students
     const { getDocuments, loading} = useStudents.useGetDocuments()
     
     const fetchDocuments = async () => {
@@ -33,6 +34,19 @@ const GenerateInstallments = () => {
     }, []);
 
     
+    const handleSelectAllChange = () => {
+        /* Função para manipular o status do checkBox all */
+        const newCheckedStatus = !selectAll;
+        setSelectAll(newCheckedStatus);
+        
+        const newCheckedItems = {};
+        registered.forEach(item => {
+            newCheckedItems[item.uid] = newCheckedStatus;
+        });
+        
+        setStoreUid(newCheckedStatus ? registered.map(item => item.uid) : []);
+    };
+
     return (
         <WrapPages>
             <S.Content>
@@ -66,20 +80,30 @@ const GenerateInstallments = () => {
                         </S.Empty>
 
                     :   <S.SectionList > 
-                            <List data={registered} setStoreUid={setStoreUid}/>    
+                            <Form.Check 
+                                className="px-1"
+                                label={'Todos Alunos'}
+                                type={'checkbox'}
+                                id={'checkAll'}
+                                checked={selectAll}
+                                onChange={handleSelectAllChange} // Atualiza o estado ao mudar
+                            />
+                            <List data={registered} setStoreUid={setStoreUid} selectAll={selectAll}/>    
                         </S.SectionList> 
 
                 }
 
                 <S.WrapButtons>
+
                     <Button
                         variant='success'
                         disabled={storesUid.length <= 0 ? true : false}
                     >
                         <span>
-                            gerar parcelas {storesUid.length <= 0 
-                            ? null : storesUid.length} 
-                            
+                            {
+                                storesUid.length <= 0 ? 'Selecione Aluno(s)' : 
+                                `Gerar ${storesUid.length} Parcela(s)`
+                            }                            
                         </span>
 
                     </Button>

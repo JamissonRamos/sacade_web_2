@@ -51,12 +51,17 @@ export const Empty = styled.div`
 export const SectionList = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
-    height: 70%;
-
-    padding-bottom: 1rem;
-    margin-top: 1rem;
-    overflow: auto;
-
+    height: 74%;
+    padding-bottom: 3rem;
+    margin-top: .4rem;
+    & .form-check .form-check-input {
+        /* Modificando o checkBox  */
+        float: none;
+        margin-left: 0;
+    }
+    & label {
+        color: ${Theme.Colors.blue700};
+    }
 `;
 
 export const WrapButtons = styled.div`

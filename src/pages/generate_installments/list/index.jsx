@@ -1,14 +1,22 @@
 import * as S from './styled';
 import { TextC } from '../../../components/Typography'
-import { Badge, Button, Form} from 'react-bootstrap';
-import { Theme } from '../../../theme';
-import { useState } from 'react';
+import { Badge, Form} from 'react-bootstrap';
+import { useEffect, useState } from 'react';
 
 
-const List = ({data, setStoreUid}) => { 
+const List = ({data, setStoreUid, selectAll}) => { 
   const [checkedItems, setCheckedItems] = useState({});
   
-  
+  useEffect(() => {
+    const newCheckedItems = {};
+    data && data.forEach(item => {
+      newCheckedItems[item.uid] = selectAll;
+    });
+    setCheckedItems(newCheckedItems);
+    setStoreUid(selectAll ? data.map(item => item.uid) : []);
+  }, [selectAll, data, setStoreUid]);
+
+
   const handleCheckboxChange = (uid) => {
     /* Manipular o meu checkBox */    
     setCheckedItems((prev) => ({
@@ -92,10 +100,7 @@ const List = ({data, setStoreUid}) => {
                       <Badge bg={handleBadge(status)} text="light">
                         {status}
                       </Badge>
-
                 </S.WrapStatus>
-                
-
               </S.Card>
             ))
           }
