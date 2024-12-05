@@ -53,11 +53,6 @@ export const MenuItem = [
                 icon: <Theme.Icons.MdLockPerson  />,
             },
             {
-                title: 'Configuração Parcelas',
-                path: '/configuracaoParcelas',
-                icon: <Theme.Icons.MdCreditCard  />,
-            },
-            {
                 title: 'Gerar Parcelas',
                 path: '/generateInstallments',
                 icon: <Theme.Icons.RxCardStackPlus  />,
