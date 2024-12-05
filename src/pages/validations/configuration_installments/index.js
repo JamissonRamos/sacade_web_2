@@ -2,13 +2,16 @@ import * as yup from "yup";
 
 
 export const ConfigurationInstallmentsSchema = yup.object().shape({
-    
-    dayGenerateInstallment: yup
+    firstDateInstallments: yup
+        .date()
+        .nullable()
+        .min(new Date(), 'A data deve ser no futuro')
+        .required('Campo é obrigatório'),
+    quantityInstallments: yup
         .number()
         .typeError('O campo deve ser um número') // Caso o valor não seja numérico
-        .integer('O dia deve ser um número inteiro') // Verifica se é um número inteiro
+        .integer('Deve ser um número inteiro') // Verifica se é um número inteiro
         .min(1, 'O dia deve ser no mínimo 1')
-        .max(31, 'O dia deve ser no máximo 31')
         .required('Campo é obrigatório'),
     valueInstallment: yup
         .string()

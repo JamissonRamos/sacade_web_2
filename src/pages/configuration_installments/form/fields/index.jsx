@@ -95,8 +95,27 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
         <>
             <Row className="mb-2 px-2 ">
                 <Col sm={6} md={6} lg={6}>
-                    <Form.Group className="p-1" controlId="GroupDayGenerateInstallment">
-                        <Form.Label className="m-0"> Dia Gerar Parcela </Form.Label>
+                    <Form.Group className="p-1" controlId="GroupFirstInstallmentDate">
+                        <Form.Label className="m-0"> Data 1 Parcela </Form.Label>
+                        <Form.Control 
+                            type="text" 
+                            inputMode="numeric"
+                            name="dayGenerateInstallment"
+                            placeholder="Dia do mês" 
+                            {...register("dayGenerateInstallment")}
+                            isInvalid={!!errors.dayGenerateInstallment}
+                            onChange={handleChange}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.dayGenerateInstallment && errors.dayGenerateInstallment.message}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
+            </Row>
+            <Row className="mb-2 px-2 ">
+                <Col sm={6} md={6} lg={6}>
+                    <Form.Group className="p-1" controlId="GroupFirstInstallmentDate">
+                        <Form.Label className="m-0"> Data 1 Parcela </Form.Label>
                         <Form.Control 
                             type="text" 
                             inputMode="numeric"
