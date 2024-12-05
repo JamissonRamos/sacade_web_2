@@ -8,14 +8,30 @@ import { TextC } from '../../components/Typography';
 import { useEffect, useState } from 'react';
 import { useStudents } from '../../hooks/students';
 import List from './list';
+import { useNavigate } from 'react-router-dom';
 
 const GenerateInstallments = () => {
     const [registered, setRegistered] = useState(null);
     const [storesUid, setStoreUid] = useState([])
     const [selectAll, setSelectAll] = useState(false) //CheckBox All Students
+
+    
+    const navigate = useNavigate();
+
     const { getDocuments, loading} = useStudents.useGetDocuments()
     
+    const postCreateLocalStorage = (data) => {
+        // Armazenando o array no Local Storage
+        localStorage.setItem("uisStudents", JSON.stringify(data));
+    }
+
+    const postRemoveLocalStorage = (name) => {
+        // Exclui os dados do localStorage
+        localStorage.removeItem(name);
+    }
+
     const fetchDocuments = async () => {
+        postRemoveLocalStorage('uisStudents')
         const result = await getDocuments();
         const { success, data, error} = result;
         if(success){
@@ -46,6 +62,11 @@ const GenerateInstallments = () => {
         
         setStoreUid(newCheckedStatus ? registered.map(item => item.uid) : []);
     };
+
+    const handleClick =  (data) => {
+        postCreateLocalStorage(data);
+        navigate('/configurationInstallments');
+    }
 
     return (
         <WrapPages>
@@ -98,6 +119,7 @@ const GenerateInstallments = () => {
                     <Button
                         variant='success'
                         disabled={storesUid.length <= 0 ? true : false}
+                        onClick={() => handleClick(storesUid)}
                     >
                         <span>
                             {
