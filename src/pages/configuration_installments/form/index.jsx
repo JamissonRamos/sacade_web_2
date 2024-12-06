@@ -5,90 +5,89 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../../validations/index'
 import { Theme } from "../../../theme";
-import { useConfigurationInstallments } from "../../../hooks/configuration_installments";
-import { FormatPercentageNumber, FormatMoneyNumber, FormatNumberCurrency, FormatNumberPercentage } from "../scripts";
-import { useEffect, useState } from "react";
+
+import { FormatPercentageNumber, FormatMoneyNumber, FormattedDate, GenerateInstallments} from "../scripts";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Fields from "./fields"
 import { Button, Spinner } from "react-bootstrap";
 
-const Form = ({registered}) => {
+const Form = () => {
     const [fieldDisabled, setFieldDisabled] = useState(true);
-    /* 
-        - False => Button create (Salva) 
-        - True => Button update (Atualizar)
-    */
-    const [chooseButton, setChooseButton] = useState(false);
+    let loadingCrate = false;
 
-    //Verificar quando não tiver dados;
-    const data = Array.isArray(registered) && registered.length > 0 ? registered[0] : null;
     const navigate = useNavigate();
-
-    const {updateConfigurationInstallments, loading: loadingUpdate } = useConfigurationInstallments.usePostDocumentsUpdate();
-    const {createConfigurationInstallments, loading: loadingCrate} = useConfigurationInstallments.usePostDocumentsCreate();
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.ConfigurationInstallmentsSchema)
     }); 
 
-    const handleFetchDocument = async () => {
-        /* Função para alimentar os campos */
-        let maskedValue = null;
-        if(typeof data !== 'object' || data === null) return
-        for(const [key, value] of Object.entries(data)){
-            if(key === 'valueInstallment'){
-                maskedValue = FormatNumberCurrency(value)
-            }else if(key === 'fees' ){
-                maskedValue = FormatNumberPercentage(value)
-            }else if(key === 'interestDaily' ){
-                maskedValue = FormatNumberPercentage(value)
-            }else if(key === 'interestMonthly' ){
-                maskedValue = FormatNumberPercentage(value)
-            }else if(key === 'interestAnnual' ){
-                maskedValue = FormatNumberPercentage(value)
-            }else{
-                maskedValue = value
-            }
-            setValue(key, maskedValue);
-            //Liberar os campos
-            setFieldDisabled(false);
-            //Mudar o button para Update
-            setChooseButton(true);
-        }
-    };
-
-    useEffect(() => {
-        handleFetchDocument()  // Chama a função ao renderizar o componente
-    }, []);
 
     const handleOnSubmit = async (data) => {
         let result = null;
+        
 
         data.fees = FormatPercentageNumber(data.fees);
         data.interestAnnual = FormatPercentageNumber(data.interestAnnual);
         data.interestDaily = FormatPercentageNumber(data.interestDaily);
         data.interestMonthly = FormatPercentageNumber(data.interestMonthly);
         data.valueInstallment = FormatMoneyNumber(data.valueInstallment);
+        data.firstDateInstallments = FormattedDate(data.firstDateInstallments);
 
-        if(chooseButton){
-            result = await updateConfigurationInstallments(data);
-        }else{
-            result = await createConfigurationInstallments(data);
-        }
+        console.log('Data: ', data);
+        
+            // Recuperar o documento do local storage
+            const studentsUid = JSON.parse(localStorage.getItem('uisStudents')) || [];
+            // Verificar se o documento foi encontrado
+            if (!studentsUid) {
+                console.log('Erro ao tenta busca Uid de estudantes');
+                //navigate('/notifications/error');
+            }
 
-        const {success, message } = result;
+            studentsUid && studentsUid.forEach((uid) => {
+                console.log('uid: ', uid);
+                
 
-        if(success){
-            chooseButton 
-                ? navigate('/notifications/update')
-                : navigate('/notifications/create');
+                
+            })
+
+
+
+       //let resultGenerateInstallments = GenerateInstallments(data)
+
+       // console.log(resultGenerateInstallments);
+        // const {success, installments, message }= resultGenerateInstallments
+        
+        //console.log('installments: ', installments);
+        
+        // if(success){
+        //     console.log('Gerou as PArcelas');
             
-        }else{
-            console.log('error: ', message);
-            navigate('/notifications/error');
-        }
-        reset()
+        //     //navigate('/notifications/create');
+            
+        // }else{
+        //     console.log('error: ', message);
+        //     //navigate('/notifications/error');
+        // }
+        
+
+
+        
+        // result = {success: true, message: false }
+
+        // const {success, message } = result;
+
+        // if(success){
+        //     console.log('Gerou as PArcelas');
+            
+        //     //navigate('/notifications/create');
+            
+        // }else{
+        //     console.log('error: ', message);
+        //     navigate('/notifications/error');
+        // }
+        //reset()
     }
     
     return (
@@ -111,30 +110,8 @@ const Form = ({registered}) => {
                     <span>Cancelar</span>
                 </Button>  
                 {
-                    chooseButton 
-                        ? <Button
-                            variant="success"
-                            type='submit'
-                            disabled={loadingUpdate ? true : false}
-                        >   
-                            { loadingUpdate ?
-                                <>
-                                    <Spinner
-                                        as="span"
-                                        animation="border"
-                                        size="sm"
-                                        role="status"
-                                        aria-hidden="true"
-                                    />
-                                    <span > Atualizando... </span>
-                                </> :
-                                <>
-                                    <Theme.Icons.MdSaveAlt />
-                                    <span>Atualizar</span>
-                                </>
-                            } 
-                        </Button> 
-                        : <Button
+        
+                        <Button
                             variant="success"
                             type='submit'
                             disabled={loadingCrate ? true : false}
@@ -148,11 +125,11 @@ const Form = ({registered}) => {
                                         role="status"
                                         aria-hidden="true"
                                     />
-                                    <span > Salvando... </span>
+                                    <span > Gerando Parcelas... </span>
                                 </> :
                                 <>
-                                    <Theme.Icons.MdSaveAlt />
-                                    <span>Salvar</span>
+                                    <Theme.Icons.MdAddCard />
+                                    <span>Gerar Parcelas</span>
                                 </>
                             } 
                         </Button>  

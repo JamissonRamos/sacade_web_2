@@ -31,7 +31,7 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
                 setFieldDisabled(false)
             }
 
-        }else if (fieldName !== 'dayGenerateInstallment' ){
+        }else if (fieldName !== 'quantityInstallments' ){
             maskedValue = FormatPercentage(fieldValue)
         }
             setValue(fieldName, maskedValue)
@@ -96,40 +96,37 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
             <Row className="mb-2 px-2 ">
                 <Col sm={6} md={6} lg={6}>
                     <Form.Group className="p-1" controlId="GroupFirstInstallmentDate">
-                        <Form.Label className="m-0"> Data 1 Parcela </Form.Label>
+                        <Form.Label className="m-0"> Data 1º Parcela </Form.Label>
+                        <Form.Control   
+                            type="date" 
+                            name="firstDateInstallments"
+                            {...register("firstDateInstallments")}
+                            isInvalid={!!errors.firstDateInstallments}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.firstDateInstallments && errors.firstDateInstallments.message}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
+                <Col sm={6} md={6} lg={6}>
+                    <Form.Group className="p-1" controlId="GroupQuantityInstallments">
+                        <Form.Label className="m-0"> Quantidade Parcela </Form.Label>
                         <Form.Control 
                             type="text" 
                             inputMode="numeric"
-                            name="dayGenerateInstallment"
-                            placeholder="Dia do mês" 
-                            {...register("dayGenerateInstallment")}
-                            isInvalid={!!errors.dayGenerateInstallment}
+                            name="quantityInstallments"
+                            placeholder="Quantidade Parcela" 
+                            {...register("quantityInstallments")}
+                            isInvalid={!!errors.quantityInstallments}
                             onChange={handleChange}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.dayGenerateInstallment && errors.dayGenerateInstallment.message}
+                            {errors.quantityInstallments && errors.quantityInstallments.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
             </Row>
             <Row className="mb-2 px-2 ">
-                <Col sm={6} md={6} lg={6}>
-                    <Form.Group className="p-1" controlId="GroupFirstInstallmentDate">
-                        <Form.Label className="m-0"> Data 1 Parcela </Form.Label>
-                        <Form.Control 
-                            type="text" 
-                            inputMode="numeric"
-                            name="dayGenerateInstallment"
-                            placeholder="Dia do mês" 
-                            {...register("dayGenerateInstallment")}
-                            isInvalid={!!errors.dayGenerateInstallment}
-                            onChange={handleChange}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            {errors.dayGenerateInstallment && errors.dayGenerateInstallment.message}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                </Col>
                 <Col  sm={6} md={6} lg={6}>
                     <Form.Group className="p-1" controlId="GroupValueInstallment">
                         <Form.Label className="m-0"> Valor Parcela </Form.Label>

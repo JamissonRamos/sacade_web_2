@@ -5,6 +5,10 @@ export const ConfigurationInstallmentsSchema = yup.object().shape({
     firstDateInstallments: yup
         .date()
         .nullable()
+        .transform((value, originalValue) => {
+            // Se o campo for uma string vazia, transforma em null para não gerar erro de cast
+            return originalValue === '' ? null : value;
+        })
         .min(new Date(), 'A data deve ser no futuro')
         .required('Campo é obrigatório'),
     quantityInstallments: yup

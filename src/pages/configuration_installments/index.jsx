@@ -11,27 +11,27 @@ import {WrapPages} from '../../components/Wrappe/pages'
 
 const ConfigurationInstallments = () => {
 
-    const [registered, setRegistered] = useState(null);
+    //const [registered, setRegistered] = useState(null);
 
     const navigate = useNavigate();
 
-    const {getDocuments, loading} = useConfigurationInstallments.useGetDocuments();
+    ///const {getDocuments, loading} = useConfigurationInstallments.useGetDocuments();
 
-    const fetchDocuments = async () => {
-        const result = await getDocuments();
-        const { success, data, message } = result;
+    // const fetchDocuments = async () => {
+    //     const result = await getDocuments();
+    //     const { success, data, message } = result;
         
-        if(success){
-            setRegistered(data);
-        }else{
-            console.log('error: ', message);
-            navigate('/notifications/error');
-        }
-    };
+    //     if(success){
+    //         setRegistered(data);
+    //     }else{
+    //         console.log('error: ', message);
+    //         navigate('/notifications/error');
+    //     }
+    // };
     
-    useEffect(() => {
-      fetchDocuments();  // Chama a função ao renderizar o componente
-    }, []);
+    // useEffect(() => {
+    //   fetchDocuments();  // Chama a função ao renderizar o componente
+    // }, []);
 
 
     return (
@@ -39,20 +39,21 @@ const ConfigurationInstallments = () => {
             <S.Content>
                 <Header />
                 {
-                    loading ?
-                    <>
-                        <LoadingOverlay>
-                                <Spinner
-                                    variant='warning'
-                                    as="span"
-                                    animation="border"
-                                    role="status"
-                                    aria-hidden="true"
-                                />
-                                <span className="sr-only">Carregando os dados...</span>
-                            </LoadingOverlay> 
-                    </> :
-                    <Form registered={registered}/>
+                    //loading ?
+                    // <>
+                    //     <LoadingOverlay>
+                    //             <Spinner
+                    //                 variant='warning'
+                    //                 as="span"
+                    //                 animation="border"
+                    //                 role="status"
+                    //                 aria-hidden="true"
+                    //             />
+                    //             <span className="sr-only">Carregando os dados...</span>
+                    //         </LoadingOverlay> 
+                    // </> :
+                    // <Form registered={registered}/>
+                    <Form />
                 }
             </S.Content>
         </WrapPages>
