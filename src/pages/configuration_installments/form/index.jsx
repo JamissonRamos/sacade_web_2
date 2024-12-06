@@ -47,6 +47,12 @@ const Form = () => {
 
             studentsUid && studentsUid.forEach((uid) => {
                 console.log('uid: ', uid);
+
+                /* 
+                    - 2 for para gerar a parcela e criar o docuento no bnaco;
+                    - passar o uid do estudante;
+                
+                */
                 
 
                 
