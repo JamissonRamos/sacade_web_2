@@ -6,18 +6,20 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../../validations/index'
 import { Theme } from "../../../theme";
 
-import { FormatPercentageNumber, FormatMoneyNumber, FormattedDate, GenerateInstallments} from "../scripts";
+import { FormatPercentageNumber, FormatMoneyNumber, FormattedDate, GenerateInstallments, AddDaysToDate} from "../scripts";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Fields from "./fields"
 import { Button, Spinner } from "react-bootstrap";
+import { useInstallments } from "../../../hooks/installments";
 
 const Form = () => {
     const [fieldDisabled, setFieldDisabled] = useState(true);
-    let loadingCrate = false;
 
     const navigate = useNavigate();
+
+    const { createDocuments, loading: loadingCrate} = useInstallments.usePostDocumentsCreate();
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.ConfigurationInstallmentsSchema)
@@ -51,9 +53,35 @@ const Form = () => {
                 /* 
                     - 2 for para gerar a parcela e criar o docuento no bnaco;
                     - passar o uid do estudante;
-                
                 */
-                
+
+                for (let i = 0; i < data.quantityInstallments; i++) {
+                    console.log('parcelas: ', i);
+                    let resultDueDate = 0;
+
+                    // 1 loop sempre a data da parcela normal 2 loop em diante sempre colocar 30 dias
+                    i === 0 
+                        ? resultDueDate = data.firstDateInstallments
+                        : resultDueDate = AddDaysToDate( data.firstDateInstallments, i)
+
+                    const installment = {
+                        uid,
+                        installmentNumber: `${i + 1}/${data.quantityInstallments}`,
+                        dueDate: resultDueDate,
+                        value: data.valueInstallment,
+                        fees: data.fees,
+                        interestAnnual: data.interestAnnual,
+                        interestMonthly: data.interestMonthly,
+                        interestDaily: data.interestDaily,
+                    };
+
+                        console.log(installment);
+                            
+                    // result = createDocuments();
+
+                    // const {success, message } = result;
+
+                }
 
                 
             })

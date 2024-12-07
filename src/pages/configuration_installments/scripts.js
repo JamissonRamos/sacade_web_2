@@ -96,58 +96,19 @@ export const FormattedDate = (birthDate) => {
     return `${day}/${month}/${year}`;
 }
 
-// Função para adicionar dias a uma data
-// function addDaysToDate(date, days) {
-//     const result = new Date(date);
-//     result.setDate(result.getDate() + days);
-//     return result;
-// }
-export const GenerateInstallments = (dataForm) => {
-    const { interestAnnual, interestMonthly, interestDaily, fees, valueInstallment, firstDateInstallments, quantityInstallments } = dataForm;
-
-    const installments = [];
-
-    // // Recuperar o documento do local storage
-    // const studentsUid = JSON.parse(localStorage.getItem('uisStudents')) || [];
-    // // Verificar se o documento foi encontrado
-    // if (!studentsUid) {
-    //     return{success: false, message: 'Erro ao recuperar uid de alunos'}
-    // }
-
-    //console.log(studentsUid);
-    // Converter a data de string para objeto Date
-
-
-    //studentsUid && studentsUid.forEach((uid) => {
-        // console.log(uid);
-        // const studentInstallments = [];
-        // let currentDate = new Date(firstDateInstallments.split('/').reverse().join('-'));
-
-        // // for (let i = 0; i < quantityInstallments; i++) {
-        //     const installment = {
-        //         uid,
-        //         installmentNumber: i + 1,
-        //         dueDate:  FormattedDate(currentDate),
-        //         value: valueInstallment,
-        //         fees,
-        //         interestAnnual,
-        //         interestMonthly,
-        //         interestDaily,
-        //     };
-        //     studentInstallments.push(installment);
-
-        //     // Próxima parcela após 30 dias
-        //     currentDate = addDaysToDate(currentDate, 30);
-        // }
-        // console.log('studentInstallments: ', studentInstallments);
-        
-      
-        //     installments.push(...studentInstallments);
-    //});
-
- 
+export const AddDaysToDate = (date, counter) => {
+/* 
+    - Função para adicionar dias nas parcelas;
+    - date, data inicial, data da primeira parcela
+    - counter, como se fosse o mês, no loop tem o contador de vezes; 
+*/
+    const [day, month, year] = date.split('/').map(Number);
+    const result = new Date(year, month - 1 + counter, day);
     
-
-
-    return{success: true, installments: installments}
+    // Ajusta o dia para evitar problemas com meses mais curtos
+    if (result.getDate() !== day) {
+        result.setDate(0); // Define para o último dia do mês anterior
+    }
+    
+    return FormattedDate(result);
 }
