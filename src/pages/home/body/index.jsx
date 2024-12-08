@@ -3,16 +3,26 @@ import {TextC} from "../../../components/Typography";
 import { Theme } from "../../../theme";
 import { useEffect, useState } from "react";
 import { useStudents } from "../../../hooks/students";
+import { useInstallments } from "../../../hooks/installments";
 import { Spinner } from "react-bootstrap";
+import { TotalInDelay } from "../script";
+
+/* 
+    Cria o hooks para pegar todoas as parcelas e mostra no home;
 
 
+*/
 const Body = () => {
     const [accountantStudents, setAccountantStudents] = useState(0);
+    const [totalDelayedInstallments, setTotalDelayedInstallments] = useState(0);
 
     const {getDocuments, loading: loadingStudents} = useStudents.useGetDocuments();
+    const {getDocuments: documentsInstallments, loading: loadingInstallments} = useInstallments.useGetDocuments();
 
     const fetchDocuments = async () => {
         const result = await getDocuments();
+       
+
         const { success, data, message } = result;
         
         if(success){
@@ -20,6 +30,18 @@ const Body = () => {
         }else{
             console.log('error: ', message);
             setAccountantStudents(`#Error`);
+        }
+
+        const resultInstallments = await documentsInstallments();
+        
+        
+        if(resultInstallments.success){
+            let result = TotalInDelay(resultInstallments.data)
+            setTotalDelayedInstallments(result);
+
+        }else{
+            console.log('error: ',resultInstallments.message);
+            setTotalDelayedInstallments(`#Error`);
         }
     };
     
@@ -70,7 +92,7 @@ const Body = () => {
 
                     <S.WrapText>
                         <S.Title >
-                            <TextC.Label level={3}>R$ 1000.000.000,00</TextC.Label>
+                            <TextC.Label level={3}>0</TextC.Label>
                         </S.Title>
 
                         <S.SubTitle >
@@ -87,7 +109,7 @@ const Body = () => {
 
                     <S.WrapText>
                         <S.Title >
-                            <TextC.Label level={3}>R$ 100.000.000,00</TextC.Label>
+                            <TextC.Label level={3}>{totalDelayedInstallments}</TextC.Label>
                         </S.Title>
 
                         <S.SubTitle >
