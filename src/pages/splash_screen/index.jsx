@@ -22,6 +22,7 @@ const SplashScreen = () => {
                             <S.WrapButton>
                                 <Button 
                                     variant='outline-success'
+                                    onClick={() => navigate('/students/form_create')}
                                 > Novo Aluno</Button>
                             </S.WrapButton>
                         </S.SectionSecondary>
@@ -38,6 +39,7 @@ const SplashScreen = () => {
                                 <Button 
                                     id='buttonLogin'
                                     variant='outline-warning'
+                                    onClick={() => navigate('/login')}
                                 > Fazer login </Button>
                             </S.WrapButton>
                         </S.SectionSecondary>
