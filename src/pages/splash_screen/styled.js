@@ -25,9 +25,9 @@ export const Container = styled.div`
     @media (max-width: 768px) {
         padding: .8rem;
     }
-    /* @media (max-width: 425px) {
-        padding: 0;
-    } */
+    @media (max-width: 425px) {
+        padding: 1rem 0;
+    }
     overflow: auto;
 `;
 
@@ -35,7 +35,7 @@ export const Content = styled.div`
     /* border: 1px solid red; */
     padding: .8rem ;
     @media (max-width: 425px) {
-        padding: 0;
+        padding: 2rem ;
     }
 `;
 export const Cards = styled.div`
