@@ -12,7 +12,7 @@ const styledCard = css`
         width: 100%;
     }
     @media (max-width: 425px) {
-        width: 200px;
+        width: 240px;
     }
 
 `;
@@ -23,7 +23,6 @@ export const Container = styled.div`
     height: 100vh;
     min-width: 320px;
     padding: .8rem;
-    /* background-color:  ${Theme.Colors.grey400}; */
     @media (max-width: 768px) {
         padding: .8rem;
     }
@@ -35,10 +34,10 @@ export const Container = styled.div`
 
 export const Content = styled.div`
     /* border: 1px solid red; */
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: .8rem;
+    /* height: 100%; */
+    /* display: flex; */
+    /* align-items: center; */
+    padding: .8rem ;
     @media (max-width: 425px) {
         padding: 0;
     }
@@ -57,7 +56,7 @@ export const Cards = styled.div`
         padding: .8rem 1rem;
     }
     @media (max-width: 425px) {
-        /* flex-direction: column; */
+        flex-direction: column;
     }
     
 `;
@@ -101,8 +100,8 @@ export const WrapImg = styled.div`
     }
 
     @media (max-width: 425px) {
-        min-height: 100px;
-        max-height: 100px;
+        max-height: 130px;
+        min-height: 130px;
     }
 
 
@@ -120,7 +119,7 @@ export const WrapText = styled.div`
 
     @media (max-width: 425px) {
         & span {
-            font-size: .7em;
+            font-size: .8em;
         }
     }
 `;
