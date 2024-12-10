@@ -3,7 +3,6 @@ import { Theme } from "../../theme"
 
 const styledCard = css`
     width: 300px;
-    
     padding: 1rem .8rem;
     border-radius: 4px;
     box-shadow: ${Theme.Shadow.sh900}; 
@@ -34,9 +33,6 @@ export const Container = styled.div`
 
 export const Content = styled.div`
     /* border: 1px solid red; */
-    /* height: 100%; */
-    /* display: flex; */
-    /* align-items: center; */
     padding: .8rem ;
     @media (max-width: 425px) {
         padding: 0;
@@ -55,15 +51,13 @@ export const Cards = styled.div`
     @media (max-width: 768px) {
         padding: .8rem 1rem;
     }
-    @media (max-width: 425px) {
+    @media (max-width: 500px) {
         flex-direction: column;
     }
     
 `;
 export const Card = styled.div`
     /* border: 1px solid red; */
-    /* width: 100%;
-    max-width: 300px; */
 
     display: flex;
     flex-direction: column;
@@ -88,35 +82,27 @@ export const WrapImg = styled.div`
 
     min-height: 200px;
     max-height: 200px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     & > img {
         max-width: 90%;
         max-height: 90%;
         object-fit: fill;
     }
-
     @media (max-width: 425px) {
         max-height: 130px;
         min-height: 130px;
     }
-
-
 `;
 export const WrapText = styled.div`
     /* border: 1px solid red; */
     min-height: 100px;
     max-height: 100px;
     text-align: center;
-
     & span {
         color: ${Theme.Colors.grey500};
-        
     }
-
     @media (max-width: 425px) {
         & span {
             font-size: .8em;
