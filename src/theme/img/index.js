@@ -15,6 +15,8 @@ import Delete from '../../assets/delete.png'
 import CardStudentActive from '../../assets/cardStudentActive.png'
 import CardTotalAtrasadoMes from '../../assets/cardTotalAtrasadoMes.png'
 import CardTotalRecebidoMes from '../../assets/cardTotalRecebidoMes.png'
+import Avatars from '../../assets/avatars.png'
+import AvatarsRemovebg from '../../assets/avatars-removebg.png'
 
 
 export const ImgC = {
@@ -33,5 +35,7 @@ export const ImgC = {
     Delete,
     CardStudentActive,
     CardTotalAtrasadoMes,
-    CardTotalRecebidoMes
+    CardTotalRecebidoMes,
+    Avatars,
+    AvatarsRemovebg,
 }

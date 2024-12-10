@@ -15,7 +15,6 @@ const GenerateInstallments = () => {
     const [storesUid, setStoreUid] = useState([])
     const [selectAll, setSelectAll] = useState(false) //CheckBox All Students
 
-    
     const navigate = useNavigate();
 
     const { getDocuments, loading} = useStudents.useGetDocuments()

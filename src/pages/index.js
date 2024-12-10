@@ -21,6 +21,7 @@ import NotificationsUpdate from './notifications/update';
 import NotificationsDelete from './notifications/delete';
 import ConfigurationInstallments from './configuration_installments';
 import GenerateInstallments from './generate_installments';
+import SplashScreen from './splash_screen';
 
 
 export const Pages = {
@@ -46,7 +47,8 @@ export const Pages = {
     NotificationsUpdate,
     NotificationsDelete,
     ConfigurationInstallments,
-    GenerateInstallments
+    GenerateInstallments,
+    SplashScreen
 
 
 }

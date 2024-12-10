@@ -14,7 +14,7 @@ const AppContent = () => {
 
     //Verifica a url atual 
     const location = useLocation();
-    const isLoginPage = location.pathname === "/login" || location.pathname === "/register";
+    const isLoginPage = location.pathname === "/login" || location.pathname === "/register" || location.pathname === "/splashScreen";
 
     return (
         <>  
@@ -28,6 +28,10 @@ const AppContent = () => {
                         <Route 
                             path='/register'
                             element={<Pages.Register />}
+                        /> 
+                        <Route 
+                            path='/splashScreen'
+                            element={<Pages.SplashScreen />}
                         /> 
                     </Routes>
                 :
@@ -47,9 +51,9 @@ const AppContent = () => {
                                     </ProtectedRoute>
                                 } />
                                 <Route path="/students/form_create" element={
-                                    <ProtectedRoute page='Students'>
+                                    // <ProtectedRoute page='Students'>
                                         <Pages.FormCreateStudents /> 
-                                    </ProtectedRoute>
+                                    // </ProtectedRoute>
                                 } />
                                 <Route path="/students/form_update/:uid?" element={
                                     <ProtectedRoute page='Students'>
