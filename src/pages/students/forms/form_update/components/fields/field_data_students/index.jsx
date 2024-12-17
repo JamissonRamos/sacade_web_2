@@ -66,6 +66,22 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
                     </Form.Group>
                 </Col>
                 <Col  sm={7} md={7} lg={8}>
+                    <Form.Group className="p-1" controlId="GroupCellPhone">
+                        <Form.Label className="m-0"> Celular </Form.Label>
+                        <Form.Control 
+                            type="cellPhone" 
+                            name="cellPhone"
+                            placeholder="Digite seu Celular." 
+                            {...register("cellPhone")}
+                            isInvalid={!!errors.cellPhone}
+                            onChange={handleChange}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.cellPhone && errors.cellPhone.message}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
+                {/* <Col  sm={7} md={7} lg={8}>
                     <Form.Group className="p-1" controlId="GroupStatus">
                         <Form.Label className="m-0"> Status </Form.Label>
                         <Form.Select
@@ -83,7 +99,7 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
                             {errors.status && errors.status.message}
                         </Form.Control.Feedback>
                     </Form.Group>
-                </Col>
+                </Col> */}
                 
             </Row>
             <Row className="mb-2 px-2">
@@ -121,23 +137,7 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
-                <Col  lg={4}>
-                    <Form.Group className="p-1" controlId="GroupCellPhone">
-                        <Form.Label className="m-0"> Celular </Form.Label>
-                        <Form.Control 
-                            type="cellPhone" 
-                            name="cellPhone"
-                            placeholder="Digite seu Celular." 
-                            {...register("cellPhone")}
-                            isInvalid={!!errors.cellPhone}
-                            // onBlur={(e) => handleOnBlur(e)}
-                            onChange={handleChange}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            {errors.cellPhone && errors.cellPhone.message}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                </Col>
+                
             </Row>
             <Row className="mb-2 px-2 ">
                 <Col  >

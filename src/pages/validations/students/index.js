@@ -52,10 +52,10 @@ export const StudentsSchema = yup.object().shape({
             const cleanedValue = value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
             return cleanedValue.length === 11; // Verifica se tem 11 dígitos
         }),
-    status: yup
-        .string()
-        .notOneOf([''], 'Selecione um Status válido')
-        .required('Campo Status é obrigatório'),
+    // status: yup
+    //     .string()
+    //     .notOneOf([''], 'Selecione um Status válido')
+    //     .required('Campo Status é obrigatório'),
     cep: yup
         .string()
         .nullable() // Campo pode ser null ou vazio

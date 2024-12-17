@@ -62,7 +62,8 @@ const BodyForm = () => {
         data.cpf = unMask(data.cpf);
         data.rg = unMask(data.rg);
         data.birthDate = FormattedDate(data.birthDate);
-        
+        data.status = "ativo";
+
         const result = await createStudent(data);
         const { success, message} = result;
 

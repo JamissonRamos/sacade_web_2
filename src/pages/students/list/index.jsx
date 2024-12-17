@@ -20,7 +20,7 @@ const List = ({data}) => {
       case 'inativo':
         bg = "warning"
         break;
-      case 'bloqueado ':
+      case 'bloqueado':
         bg = "danger"
         break;
       case 'ativo':
