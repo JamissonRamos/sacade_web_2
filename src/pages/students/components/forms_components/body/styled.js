@@ -36,7 +36,7 @@ const CustomTabs = css`
     @media (max-width: 425px) {
         height: 50px;
     }
-    @media (max-width: 412px) {
+    @media (max-width: 411px) {
         height: 90px;
     }
 `;
