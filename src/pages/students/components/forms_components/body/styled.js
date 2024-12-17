@@ -28,39 +28,16 @@ const CustomTabs = css`
             font-size: .7em;
         }
     }
-    @media (max-width: 520px) {
-        height: 100px;
+    @media (max-width: 530px) {
+        height: 120px;
     }
-`;
-const StyledButton = css`
-    /* width: 100%; */
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background-color 0.4s ease, color 0.4s;
-    cursor: pointer;
-    & span {
-        font-size: .8rem;
-        font-weight: 500;
-        line-height: 18px;
-        text-align: center;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-    }
-    & svg {
-        font-size: 1.2rem;
-    }
-    
     @media (max-width: 425px) {
-        width: 50%;
+        height: 50px;
+    }
+    @media (max-width: 412px) {
+        height: 90px;
     }
 `;
-
-
 
 export const Container = styled.div`
     /* border: 1px solid red; */
@@ -127,22 +104,4 @@ export const ErrorCount = styled.div `
     color: ${Theme.Colors.red800};
 `;
 
-export const WrapButtons = styled.div`
-    /* border: 1px solid red; */
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    gap: 12px;
-    padding: 0 1rem;
-    margin-top: 1rem;
-    & button {
-        ${StyledButton}
-    }
-    @media (max-width: 425px) {
-        height: 48px;
-        justify-content: center;
-    }
-`;
 

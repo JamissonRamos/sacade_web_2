@@ -7,8 +7,7 @@ import {
     MDBTabsPane
 }   from 'mdb-react-ui-kit';
 import { useState } from 'react';
-import { Alert, Button, Form, Spinner } from 'react-bootstrap'
-import { Theme } from '../../../../../theme'
+import { Alert, Form } from 'react-bootstrap'
 import { FieldStudents } from '../fields'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -103,6 +102,11 @@ const BodyForm = () => {
                             OBS Medica
                         </MDBTabsLink>
                     </MDBTabsItem>
+                    <MDBTabsItem>
+                        <MDBTabsLink onClick={() => handleBasicClick('tab5')} active={basicActive === 'tab5'}>
+                            Finalizar
+                        </MDBTabsLink>
+                    </MDBTabsItem>
                 </MDBTabs>
                     
                 <S.WrapFields>
@@ -136,6 +140,11 @@ const BodyForm = () => {
                             
                             />
                         </MDBTabsPane>
+                        <MDBTabsPane open={basicActive === 'tab5'}>
+                            <FieldStudents.EndRegister 
+                                loadingStudents={loadingStudents}
+                            />
+                        </MDBTabsPane>
                     </MDBTabsContent>
                 </S.WrapFields>
                 {
@@ -144,40 +153,6 @@ const BodyForm = () => {
                         {'Foi detectados alguns erros no cadastro: ' + errorCount}
                     </S.ErrorCount> : null
                 }
-                <S.WrapButtons>
-                    <Button
-                        variant="outline-danger"
-                        size='sm'
-                        onClick={() => navigate('/students')}
-                    >
-                        <Theme.Icons.MdClose />
-                        <span>Cancelar</span>
-                    </Button> 
-                    <Button
-                        variant="success"
-                        size='sm'
-                        type='submit'
-                        form='formStudents'
-                        disabled={loadingStudents ? true : false}
-                    >
-                        { loadingStudents ?
-                            <>
-                                <Spinner
-                                    as="span"
-                                    animation="border"
-                                    size="sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                />
-                                <span > Salvando... </span>
-                            </> :
-                            <>
-                                <Theme.Icons.MdSaveAlt />
-                                <span>Salvar</span>
-                            </>
-                        } 
-                    </Button>                      
-                </S.WrapButtons>
             </Form>
         </S.Container>
     )
