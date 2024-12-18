@@ -64,13 +64,12 @@ const BodyForm = () => {
         data.birthDate = FormattedDate(data.birthDate);
         data.status = "ativo";
 
-        const result =   { success: true, message: 'erro de teste'} ///await createStudent(data);
+        const result =  await createStudent(data); //{ success: true, message: 'erro de teste'} 
         const { success, message} = result;
         if(success){
             const adult = AgeCalculation(data.birthDate)
-            //reset()
+            reset()
             navigate('/notifications/studentCreate', { state: { adult: adult } });
-            //navigate('/users/form_update', { state: { uid: uid } });
         }else{
             reset()
             navigate('/notifications/error');

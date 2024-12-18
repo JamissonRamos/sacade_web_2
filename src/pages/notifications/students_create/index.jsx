@@ -45,7 +45,6 @@ const NotificationsStudentCreate = () => {
 
                     </S.WrapButtonResponsible>
 
-
                     <S.WrapImg>
                         <img src={Theme.ImgC.Success} alt="sucesso" />
                     </S.WrapImg>
@@ -58,8 +57,8 @@ const NotificationsStudentCreate = () => {
                             <S.ButtonOutline
                                 onClick={() =>  navigate('/')}
                             >
+                                <Theme.Icons.MdLogout />
                                 <span>Sair</span>
-                                <Theme.Icons.MdHome />
                             </S.ButtonOutline>
                             <S.ButtonContainer
                                 onClick={() =>  navigate(-1)}

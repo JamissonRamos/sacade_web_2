@@ -1,7 +1,6 @@
 import styled, { css, keyframes } from "styled-components";
 import { Theme } from "../../../theme";
 
-
 const StyledButton = css`
     min-width: 100px;
     max-width: 200px;
@@ -51,7 +50,6 @@ const containedStyles = css`
     & span, svg {
         color: ${Theme.Colors.white800};
     }
-
     &:hover {
         background-color: ${() => {
         const color =  Theme.Colors.green800; 
@@ -72,7 +70,6 @@ const outlineStyles =  (color) => css`
     & span, svg {
         color:  ${color};
     }
-
     &:hover, span:hover {
         background-color: ${() => {
             const hoverColor = color || Theme.Colors.red800;
@@ -101,8 +98,6 @@ export  const Container = styled.div`
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-
-    
 `;
 
 export  const Content = styled.div`
@@ -119,7 +114,6 @@ export  const Header = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
-    /* padding: 0 .8rem; */
     & svg {
         font-size: 1.5em;
         color: ${Theme.Colors.green800};
@@ -132,7 +126,6 @@ export  const Header = styled.div`
 export  const Body = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    /* height: 100%; */
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -150,17 +143,15 @@ export  const WrapButtonResponsible = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-
     & button {
         max-width: 100%;
         max-height: 100%;
     }
-
 `;
+
 export  const WrapImg = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    /* max-height: 4%; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -170,7 +161,6 @@ export  const WrapImg = styled.div`
         object-fit: contain;
         animation: ${slideIn} 0.8s ease-out forwards; /* Aplica a animação à imagem */
     }
-
 `;
 
 export  const Footer = styled.div`
@@ -196,8 +186,8 @@ export const ButtonResponsible = styled.button`
 export const ButtonOutline = styled.button`
     ${StyledButton}
     ${outlineStyles (Theme.Colors.red600)}
-
 `;
+
 export const ButtonContainer = styled.button`
     ${StyledButton}
     ${containedStyles}

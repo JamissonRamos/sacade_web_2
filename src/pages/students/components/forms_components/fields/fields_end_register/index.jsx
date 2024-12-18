@@ -2,10 +2,9 @@ import * as S from './styled'
 import { Button, Spinner } from 'react-bootstrap'
 import { TextC } from '../../../../../../components/Typography'
 import { Theme } from '../../../../../../theme'
-import { useNavigate } from 'react-router-dom'
 
 const EndRegister = ({loadingStudents}) => {
-      const navigate = useNavigate();
+
   return (
     <S.Container>
         <S.WrapTitleStepper>
@@ -23,7 +22,6 @@ const EndRegister = ({loadingStudents}) => {
               variant='success'
               type='submit'
               disabled={loadingStudents ? true : false}
-              //onClick={() => navigate('/notifications/studentCreate')}
             >
                 { loadingStudents ?
                   <>
