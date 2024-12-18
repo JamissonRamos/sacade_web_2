@@ -127,6 +127,9 @@ const AppContent = () => {
                                 <Route path="/notifications/create" element={
                                     <Pages.NotificationsCreate /> 
                                 } />
+                                <Route path="/notifications/studentCreate/:adult?" element={
+                                    <Pages.NotificationsStudentCreate /> 
+                                } />
                                 <Route path="/notifications/error" element={
                                     <Pages.NotificationsError /> 
                                 } />

@@ -22,6 +22,7 @@ import NotificationsDelete from './notifications/delete';
 import ConfigurationInstallments from './configuration_installments';
 import GenerateInstallments from './generate_installments';
 import SplashScreen from './splash_screen';
+import NotificationsStudentCreate from './notifications/students_create';
 
 
 export const Pages = {
@@ -43,6 +44,7 @@ export const Pages = {
     NoticeAuthorization,
     Userblocked,
     NotificationsCreate,
+    NotificationsStudentCreate,
     NotificationsError,
     NotificationsUpdate,
     NotificationsDelete,

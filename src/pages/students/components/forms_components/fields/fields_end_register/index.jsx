@@ -2,13 +2,14 @@ import * as S from './styled'
 import { Button, Spinner } from 'react-bootstrap'
 import { TextC } from '../../../../../../components/Typography'
 import { Theme } from '../../../../../../theme'
+import { useNavigate } from 'react-router-dom'
 
 const EndRegister = ({loadingStudents}) => {
-
+      const navigate = useNavigate();
   return (
     <S.Container>
         <S.WrapTitleStepper>
-          <TextC.Title level={1} >Pronto! Salve seu cadastro para finalizar o processo.</TextC.Title>
+          <TextC.Title level={1} > Pronto! Salve seu cadastro para finalizar o processo. </TextC.Title>
         </S.WrapTitleStepper>
         
         <S.Panels>
@@ -22,6 +23,7 @@ const EndRegister = ({loadingStudents}) => {
               variant='success'
               type='submit'
               disabled={loadingStudents ? true : false}
+              //onClick={() => navigate('/notifications/studentCreate')}
             >
                 { loadingStudents ?
                   <>

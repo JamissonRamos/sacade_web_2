@@ -37,6 +37,12 @@ export const CapitalizedValue = (fieldValue) => {
     return(newValue); // Atualiza o valor no React Hook Form
 };
 
+export const ConvertDate = (dateString) => {
+    // Função para converter a data YYYY-MM-DD
+    const parts = dateString.split("/");
+    return `${parts[2]}-${parts[1]}-${parts[0]}`; // Retorna no formato "YYYY-MM-DD"
+};
+
 export const FormattedDate = (birthDate) => {
     const newDate = new Date(birthDate);
     const day = String(newDate.getDate()).padStart(2, '0');
@@ -44,6 +50,24 @@ export const FormattedDate = (birthDate) => {
     const year = newDate.getFullYear();
     
     return `${day}/${month}/${year}`;
+}
+
+export const AgeCalculation = (birth) => {
+    //Função para calcular idade, retorna true >= 18 e false < 18
+    const currentDate = new Date(); // Data atual
+    const birthDate = new Date(ConvertDate(birth)); // Converter a data recebida em objeto Date
+
+    // Calcular a idade
+    let age = currentDate.getFullYear() - birthDate.getFullYear();
+    const monthDifference = currentDate.getMonth() - birthDate.getMonth();
+
+    // Ajustar a idade caso o mês ou dia atual seja antes do aniversário
+    if (monthDifference < 0 || (monthDifference === 0 && currentDate.getDate() < birthDate.getDate())) {
+        age--;
+    }
+
+    // Retornar true se maior ou igual a 18, false caso contrário
+    return age >= 18;
 }
 
 

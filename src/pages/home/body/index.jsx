@@ -21,7 +21,6 @@ const Body = () => {
 
     const fetchDocuments = async () => {
         const result = await getDocuments();
-       
 
         const { success, data, message } = result;
         
