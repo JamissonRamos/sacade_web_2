@@ -6,7 +6,7 @@ import { Theme } from '../../../../../../../theme'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../../../../../../validations'
-import { FormattedDate, GetUidLocalStorage } from './script'
+import { AddUidResponsibleStudentArray, FormattedDate, GetUidLocalStorage } from './script'
 import { unMask } from 'remask';
 import { useResponsibleStudents } from '../../../../../../../hooks/responsibleStudents'
 import { useNavigate } from 'react-router-dom'
@@ -29,10 +29,12 @@ const BodyForm = () => {
 
         const result = await createResponsibleStudent(data);
         
-        const { success, message } = result;
+        const { success, uidResponsibleStudents, message } = result;
 
+        console.log('uidResponsibleStudents', uidResponsibleStudents);
+        
         if(success){
-            console.log('Cadastro realizado com sucesso!');
+            AddUidResponsibleStudentArray('uidsResponsibleStudent', uidResponsibleStudents)
             reset();
             navigate('/notifications/create');
         }else{

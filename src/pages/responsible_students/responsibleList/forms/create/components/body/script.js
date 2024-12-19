@@ -91,6 +91,7 @@ export const GetAddressLocalStorage = () => {
         return false;
     }
 }
+
 export const GetUidLocalStorage = () => {
     // Obtendo os dados do local storage
     const uidStudent = JSON.parse(localStorage.getItem('student'));
@@ -101,6 +102,22 @@ export const GetUidLocalStorage = () => {
         return uid
     }else{
         return false;
+    }
+}
+
+export const AddUidResponsibleStudentArray = (key, value) => {
+
+    console.log('value: ', value);
+    
+    // Verifica se já existe um array no localStorage
+    const storedArray = JSON.parse(localStorage.getItem(key)) || [];
+    
+    // Adiciona o novo valor ao array apenas se ele ainda não existir
+    if (!storedArray.includes(value)) {
+        storedArray.push(value);
+        localStorage.setItem(key, JSON.stringify(storedArray));
+    } else {
+        console.log(`O valor "${value}" já existe no array.`);
     }
 }
 
