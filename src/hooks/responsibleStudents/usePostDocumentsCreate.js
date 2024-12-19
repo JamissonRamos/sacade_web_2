@@ -15,11 +15,9 @@ export const usePostDocumentsCreate = () => {
         try {
             const result = await collectionCreate(responsibleStudentsData ); 
             const {success, uid, message } = result;
-
             if(success){
                 return { success: true, uidResponsibleStudents: uid };
             }else{
-                // setError('Algo não sair como esperado tente novamente: ' + message)
                 return {success: false, message: `'Erro ao tenta criar coleção no firebase Responsible Student': ${message}`}
             }
 

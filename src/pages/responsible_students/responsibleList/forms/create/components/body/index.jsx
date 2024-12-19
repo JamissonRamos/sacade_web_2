@@ -28,10 +28,7 @@ const BodyForm = () => {
         data.idStudent = GetUidLocalStorage();
 
         const result = await createResponsibleStudent(data);
-        
         const { success, uidResponsibleStudents, message } = result;
-
-        console.log('uidResponsibleStudents', uidResponsibleStudents);
         
         if(success){
             AddUidResponsibleStudentArray('uidsResponsibleStudent', uidResponsibleStudents)

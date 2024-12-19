@@ -8,9 +8,6 @@ export const useCollectionCreate = () => {
     /* Função para criar nova coleção */
     const collectionCreate = useCallback(async (data) => {
         try {            
-            //await addDoc(collection(db, collectionName), data);            
-            //return { success: true};
-            //return { success: true, idStudent: docRef.id };
             const docRef = await addDoc(collection(db, collectionName), data);
             return { success: true, uid: docRef.id };
         } catch (error) {

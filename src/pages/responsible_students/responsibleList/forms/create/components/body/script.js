@@ -106,8 +106,6 @@ export const GetUidLocalStorage = () => {
 }
 
 export const AddUidResponsibleStudentArray = (key, value) => {
-
-    console.log('value: ', value);
     
     // Verifica se já existe um array no localStorage
     const storedArray = JSON.parse(localStorage.getItem(key)) || [];
