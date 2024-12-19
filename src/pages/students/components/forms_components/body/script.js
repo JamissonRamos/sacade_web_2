@@ -117,3 +117,9 @@ export const FetchCep = () => {
     }
 
 };
+
+export const CreateDataStudentLocalStorage = (data) => {
+    
+    //Obtendo o obj do alunos que foi selecionado
+    localStorage.setItem('student', JSON.stringify([data]));
+}

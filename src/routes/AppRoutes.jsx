@@ -76,19 +76,19 @@ const AppContent = () => {
                                     </ProtectedRoute>
                                 } />
                                 <Route path="/responsibleStudents/responsibleList/:uid?" element={
-                                    <ProtectedRoute page='ResponsibleStudents'>
+                                    // <ProtectedRoute page='ResponsibleStudents'>
                                         <Pages.ResponsibleList /> 
-                                    </ProtectedRoute>
+                                    // </ProtectedRoute>
                                 } />
                                 <Route path="/responsibleStudents/form_create" element={
-                                    <ProtectedRoute page='ResponsibleStudents'>
+                                    // <ProtectedRoute page='ResponsibleStudents'>
                                         <Pages.FormCreateResponsible /> 
-                                    </ProtectedRoute>
+                                    // </ProtectedRoute>
                                 } />
                                 <Route path="/responsibleStudents/form_update/:uid?" element={
-                                    <ProtectedRoute page='ResponsibleStudents'>
+                                    // <ProtectedRoute page='ResponsibleStudents'>
                                         <Pages.FormUpdateResponsible /> 
-                                    </ProtectedRoute>
+                                    // </ProtectedRoute>
                                 } />
 
                                 <Route path="/payments" element={

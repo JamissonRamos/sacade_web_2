@@ -6,8 +6,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const NotificationsStudentCreate = () => {
     const navigate = useNavigate();
     const location = useLocation();  // Captura o UID da URL
-    const { adult } = location.state || {};  // Captura o UID do estado de navegação
+    const { uid, adult } = location.state || {};  // Captura o UID do estado de navegação
 
+    const handleRemoveDataStudent = () => { 
+        // Exclui os dados do localStorage
+        localStorage.removeItem('student');
+    };
+    
     return (
 
         <S.Container>
@@ -33,7 +38,7 @@ const NotificationsStudentCreate = () => {
                     }
                     <S.WrapButtonResponsible>
                         <S.ButtonResponsible
-                            onClick={() =>  navigate('/')}
+                            onClick={() =>  navigate('/responsibleStudents/responsibleList/', { state: { uid: uid} })} ///responsibleStudents/form_update/:uid?
                         >
                             { 
                                 adult 
@@ -55,13 +60,20 @@ const NotificationsStudentCreate = () => {
                     ? <S.Footer>
                         <>
                             <S.ButtonOutline
-                                onClick={() =>  navigate('/')}
+                                onClick={() => {
+                                    handleRemoveDataStudent
+                                    navigate('/')}
+                                }
                             >
                                 <Theme.Icons.MdLogout />
                                 <span>Sair</span>
                             </S.ButtonOutline>
+                            
                             <S.ButtonContainer
-                                onClick={() =>  navigate(-1)}
+                                onClick={() => {
+                                    handleRemoveDataStudent
+                                    navigate(-1)}
+                                }
                             >
                                 <span>Novo Cadastro</span>
                                 <Theme.Icons.MdAddCircle />

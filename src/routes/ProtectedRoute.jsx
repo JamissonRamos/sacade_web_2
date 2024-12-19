@@ -7,7 +7,15 @@ const ProtectedRoute =  ({children, page }) => {
     const { status, statusActive } = currentUser  || { status: 'defaultStatus', statusActive: 'defaultStatus' }
     
     // Status for defaultStatus pq não tem user logado HasAccess nesse caso vai retorna false 
-    if (status === 'defaultStatus' || statusActive === 'defaultStatus' ) return <Navigate to="/splashScreen" />;
+    if (status === 'defaultStatus' || statusActive === 'defaultStatus' )
+    {   
+        //Caso tenho uma ação de perder o login do user apagar base dados do local storage
+        // Exclui os dados do localStorage
+        sessionStorage.removeItem('userLogged'); // Limpa o sessionStorage se não houver usuário
+        localStorage.removeItem('uisStudents');
+        localStorage.removeItem('student');
+        return <Navigate to="/splashScreen" />;
+    }
     
     if (!statusActive) {
          // Redireciona para uma página de "Acesso Negado"          

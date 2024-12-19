@@ -12,7 +12,7 @@ import { FieldStudents } from '../fields'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../../../../validations'
-import { AgeCalculation, FormattedDate, MaskInput } from './script';
+import { AgeCalculation, CreateDataStudentLocalStorage, FormattedDate, MaskInput } from './script';
 import { unMask } from 'remask';
 import { useStudents } from '../../../../../hooks/students'
 import { AlertCustom } from '../../../../../components/alert_custom';
@@ -64,12 +64,15 @@ const BodyForm = () => {
         data.birthDate = FormattedDate(data.birthDate);
         data.status = "ativo";
 
-        const result =  await createStudent(data); //{ success: true, message: 'erro de teste'} 
-        const { success, message} = result;
+        const result = await createStudent(data); //{ success: true, message: 'erro de teste'} 
+        const { success, uid, message} = result;
         if(success){
+            //Passar uid para local storage
+            data.uid = uid;
+            CreateDataStudentLocalStorage(data)
             const adult = AgeCalculation(data.birthDate)
             reset()
-            navigate('/notifications/studentCreate', { state: { adult: adult } });
+            navigate('/notifications/studentCreate', { state: { uid: uid, adult: adult } });
         }else{
             reset()
             navigate('/notifications/error');
