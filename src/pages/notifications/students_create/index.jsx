@@ -42,8 +42,8 @@ const NotificationsStudentCreate = () => {
                         >
                             { 
                                 adult 
-                                ? <span>Sim, quero cadastrar responsável(is)</span>
-                                : <span>Vamos cadastrar responsável(is)</span>
+                                ? <span>Sim, quero cadastrar Responsáveis</span>
+                                : <span>Vamos cadastrar Responsáveis</span>
                             }
                             <Theme.Icons.MdPerson />
                         </S.ButtonResponsible>

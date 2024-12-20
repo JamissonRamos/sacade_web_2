@@ -64,7 +64,7 @@ const BodyForm = () => {
         data.birthDate = FormattedDate(data.birthDate);
         data.status = "ativo";
 
-        const result = await createStudent(data); //{ success: true, message: 'erro de teste'} 
+        const result =  await createStudent(data); // { success: true, message: 'erro de teste'} 
         const { success, uid, message} = result;
         if(success){
             //Passar uid para local storage

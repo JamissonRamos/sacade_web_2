@@ -1,13 +1,14 @@
 import * as S from './styled';
 import { TextC } from '../../../components/Typography';
 import { Theme } from '../../../theme';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const NotificationsCreate = () => {
     const navigate = useNavigate();
-
+    const location = useLocation();
+    const { url, uid, valueButton } = location.state || false; // Garante que `state` não seja undefined
+    const {value: buttonValue, icon: buttonIcon} = valueButton;
     return (
-
         <S.Container>
             <S.Content>
                 <S.Header>
@@ -22,10 +23,10 @@ const NotificationsCreate = () => {
                 </S.Body>
                 <S.Footer>
                     <S.ButtonOutline
-                        onClick={() =>  navigate('/')}
+                        onClick={() => navigate(url, { state: { uid } })}
                     >
-                        <span>Home</span>
-                        <Theme.Icons.MdHome />
+                        <span>{buttonValue}</span>
+                        <>{Theme.Icons[buttonIcon]()}</>
                     </S.ButtonOutline>
                     <S.ButtonContainer
                         onClick={() =>  navigate(-1)}

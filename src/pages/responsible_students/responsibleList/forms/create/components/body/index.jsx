@@ -20,6 +20,18 @@ const BodyForm = () => {
         resolver: yupResolver(Validations.ResponsibleStudents)
     });
     
+    const handleNavigate = () => {
+        //Recuperando id do aluno cadastrado
+        const uidStudent = GetUidLocalStorage();        
+        const path = `/responsibleStudents/responsibleList/ `
+        navigate('/notifications/create', {
+            state: {
+                url: path,
+                uid: uidStudent,
+                valueButton: {value: 'Lista Responsáveis', icon: 'MdPerson'},
+            },
+        });
+    }
 
     const handleOnSubmit = async (data) => {
         data.birthDate = FormattedDate(data.birthDate)
@@ -27,13 +39,13 @@ const BodyForm = () => {
         data.cep = unMask(data.cep);
         data.idStudent = GetUidLocalStorage();
 
-        const result = await createResponsibleStudent(data);
+        const result = await createResponsibleStudent(data); // { success: true, uidResponsibleStudents:'Rf098aopEf5Q3NlFuiqI' , message: 'teste de erro' }
         const { success, uidResponsibleStudents, message } = result;
         
         if(success){
             AddUidResponsibleStudentArray('uidsResponsibleStudent', uidResponsibleStudents)
             reset();
-            navigate('/notifications/create');
+            handleNavigate()
         }else{
             console.log('Erro: ', message);
             navigate('/notifications/error');

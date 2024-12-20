@@ -124,7 +124,7 @@ const AppContent = () => {
                                 <Route path="/userblocked" element={
                                     <Pages.Userblocked /> 
                                 } />
-                                <Route path="/notifications/create" element={
+                                <Route path="/notifications/create/:url?" element={
                                     <Pages.NotificationsCreate /> 
                                 } />
                                 <Route path="/notifications/studentCreate/:adult?" element={
