@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import { Theme } from "../../../../../theme";
 
 
-
 const StyledText = css`
     @media (max-width: 768px) {
         & span {
@@ -24,20 +23,17 @@ export const Content = styled.div`
     height: 100%;
     padding-right:  1rem;
     overflow: auto;
-
 `;
+
 export const Cards = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     height: 100%;
-
     overflow: auto;
 `;
 
 export const Card = styled.div`
     /* border: 1px solid red; */
-
-
     width: 98%;
     display: flex;
     align-items: center;
@@ -46,7 +42,7 @@ export const Card = styled.div`
     margin-bottom: .6rem;
     margin: 0 auto 12px auto;
     /* border-left: 5px solid  ${Theme.Colors.grey500}; */
-    border-left: 5px solid ${props => props.checkedItems 
+    border-left: 5px solid ${props => props.$checkedItems 
             ? Theme.Colors.green800 
             : Theme.Colors.grey500};
     border-radius: 4px;

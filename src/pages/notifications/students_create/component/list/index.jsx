@@ -1,45 +1,35 @@
 import * as S from './styled';
 import { TextC } from '../../../../../components/Typography'
 import { Badge, Form} from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 
-const List = ({data, setStoreUid, selectAll}) => { 
+const List = ({data, setStoreUid}) => { 
+
   const [checkedItems, setCheckedItems] = useState({});
-  
-  // useEffect(() => {
-  //   const newCheckedItems = {};
-  //   data && data.forEach(item => {
-  //     newCheckedItems[item.uid] = selectAll;
-  //   });
-  //   setCheckedItems(newCheckedItems);
-  //   setStoreUid(selectAll ? data.map(item => item.uid) : []);
-  // }, [selectAll, data, setStoreUid]);
 
+  const handleCheckboxChange = (uid) => {
+    /* Manipular o meu checkBox */    
+    setCheckedItems((prev) => ({
+      ...prev,
+      [uid]: !prev[uid],
+    }));
 
-  // const handleCheckboxChange = (uid) => {
-  //   /* Manipular o meu checkBox */    
-  //   setCheckedItems((prev) => ({
-  //     ...prev,
-  //     [uid]: !prev[uid],
-  //   }));
+    /* Manipular array com os uids */
+    setStoreUid((prev) => {
+      if (prev.includes(uid)) {
+        // Se o uid já estiver no array, remove-o
+        return prev.filter((id) => id !== uid);
+      } else {
+        // Se não estiver, adiciona-o
+        return [...prev, uid];
+      }
+    });
+  };
 
-  //   /* Manipular array com os uids */
-  //   setStoreUid((prev) => {
-  //     if (prev.includes(uid)) {
-  //       // Se o uid já estiver no array, remove-o
-  //       return prev.filter((id) => id !== uid);
-  //     } else {
-  //       // Se não estiver, adiciona-o
-  //       return [...prev, uid];
-  //     }
-  //   });
-  // };
-
-  // const handleCardClick = (uid) => {
-  //   handleCheckboxChange(uid);
-  // };
-
+  const handleCardClick = (uid) => {
+    handleCheckboxChange(uid);
+  };
 
   return (
       <S.Content>
@@ -48,7 +38,7 @@ const List = ({data, setStoreUid, selectAll}) => {
           {
             data && data.map(({uid, fullName, relationshipLevel }, i) => (
 
-              <S.Card key={i} checkedItems={checkedItems[uid]} onClick={() => handleCardClick(uid)}>
+              <S.Card key={i} $checkedItems={checkedItems[uid]} onClick={() => handleCardClick(uid)}>
 
                 <S.WrapContent>
 

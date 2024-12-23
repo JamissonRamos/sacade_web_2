@@ -1,9 +1,11 @@
-import styled, { css, keyframes } from "styled-components";
-import { Theme } from "../../../theme";
+import styled, { css } from "styled-components";
+import { Theme } from "../../../../../theme";
+
+
 
 const StyledButton = css`
     min-width: 100px;
-    max-width: 200px;
+    max-width: 250px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -18,7 +20,7 @@ const StyledButton = css`
         font-weight: 500;
         line-height: 18px;
         text-align: center;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
     }
     & svg {
@@ -35,7 +37,7 @@ const outlineStyles =  (color) => css`
     }
     &:hover, span:hover {
         background-color: ${() => {
-            const hoverColor = color || Theme.Colors.red800;
+            const hoverColor = color || Theme.Colors.blue500;
             const r = parseInt(hoverColor.slice(1, 3), 16);
             const g = parseInt(hoverColor.slice(3, 5), 16);
             const b = parseInt(hoverColor.slice(5, 7), 16);
@@ -50,82 +52,58 @@ const outlineStyles =  (color) => css`
     }
 `;
 
-export  const Container = styled.div`
+export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-        max-width: 500px;
-        min-width: 320px;
-    height: 100%;
+
+`;
+export const WrapContent = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
+    gap: 8px;
 `;
 
-export  const Content = styled.div`
-    /* border: 1px solid blue; */
+export const WrapTex = styled.div`
+    /* border: 1px solid red; */
     width: 100%;
-    height: 100%;
-    padding: 0 1rem;
+    padding: .2rem 0;
+        
+    & span {
+        color: ${Theme.Colors.grey800};
+    }
+    
+    @media (max-width: 475px) {
+        & span {
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 0;
+            letter-spacing: 0.65px;
+            color: ${Theme.Colors.grey800};
+        }
+    }
+`;
+
+export const WrapList = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 150px;
     overflow: auto;
 `;
-
-export  const Header = styled.div`
+export const WrapButton = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    & svg {
-        font-size: 1.5em;
-        color: ${Theme.Colors.green800};
-    }
-    & span {
-        color: ${Theme.Colors.green800};
-    }
-`;
-
-export  const Body = styled.div`
-    /* border: 1px solid red; */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: center;
-    padding: .8rem 0;
-
-`;
-
-export  const WrapButton = styled.div`
-    /* border: 1px solid red; */
-    width: 100%;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: .2rem 0;
     & button {
-        max-width: 100%;
-        max-height: 100%;
+        &.btn:disabled{
+            border: 0.075px solid ${Theme.Colors.blue500};
+        }
+        ${StyledButton}
+        ${outlineStyles(Theme.Colors.blue500)}
     }
-`;
-
-export  const Footer = styled.div`
-    /* border: 1px solid red; */
-    width: 100%;
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    padding: .8rem;
-    margin-top: 1rem;
-    @media (max-width: 320px) {
-        flex-direction: column;
-    }
-`;
-
-export const ButtonResponsible = styled.button`
-    ${StyledButton}
-    ${outlineStyles(Theme.Colors.yellow800)}
-
 `;

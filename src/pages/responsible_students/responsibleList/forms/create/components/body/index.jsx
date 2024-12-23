@@ -39,7 +39,8 @@ const BodyForm = () => {
         data.cep = unMask(data.cep);
         data.idStudent = GetUidLocalStorage();
 
-        const result = await createResponsibleStudent(data); // { success: true, uidResponsibleStudents:'Rf098aopEf5Q3NlFuiqI' , message: 'teste de erro' }
+        const result = await createResponsibleStudent(data);
+        //const result = { success: true, uidResponsibleStudents:'Rf098aopEf5Q3NlFuiqI' , message: 'teste de erro' }
         const { success, uidResponsibleStudents, message } = result;
         
         if(success){

@@ -34,7 +34,7 @@ const GenerateInstallments = () => {
         const result = await getDocuments();
         const { success, data, error} = result;
         if(success){
-            //Passando para list gerar parcelas soemnte ativos e bloqueado
+            //Passando para list gerar parcelas somente ativos e bloqueado
             const newData = data.filter(obj => obj.status === 'ativo' || obj.status === 'bloqueado');
             setRegistered( newData )
 

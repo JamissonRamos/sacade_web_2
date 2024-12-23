@@ -7,6 +7,8 @@ import { useResponsibleStudents } from '../../../hooks/responsibleStudents';
 import { Spinner } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import Title from './component/title';
+import WrapAdult from './component/wrap_adult';
+import WrapResponsible from './component/wrap_responsible';
 
 const NotificationsStudentCreate = () => {
     const [registered, setRegistered] = useState(null);
@@ -24,9 +26,7 @@ const NotificationsStudentCreate = () => {
 
     const handleGetUidResponsible = async () => { 
         // 1. Recuperar o array
-        let responsibleStudent = await JSON.parse(localStorage.getItem("uidsResponsibleStudent"));
-        console.log('responsibleStudent', responsibleStudent);
-        
+        let responsibleStudent = await JSON.parse(localStorage.getItem("uidsResponsibleStudent"));        
         return responsibleStudent
     }
 
@@ -61,56 +61,14 @@ const NotificationsStudentCreate = () => {
                     <TextC.Title level={2}> Sucesso </TextC.Title>
                 </S.Header>
                 <S.Body>
-
+                    {/* Informativo da tela */}
                     <Title />
-                    
-                    {
-                        //False menor de idade, True Maior de idade
-                        adult 
-                        ? <TextC.Body level={1}> 
-                                É possível adicionar responsáveis para este aluno. Assim, em caso de emergência, poderemos entrar em contato com essas pessoas.  
-                            </TextC.Body>
 
-                        : <TextC.Body level={1}> 
-                                O sistema identificou que o aluno cadastrado é menor de idade. Por isso, solicitamos o cadastro de responsável(is) pelo aluno, para que, em caso de emergência, possamos entrar em contato.  
-                            </TextC.Body>
-                    }
+                    {/* Informativo de text de menor ou maior de idade */}
+                    <WrapAdult isAdult={adult}/>
 
-                    {
-                        loadingResponsible 
-                        ? <>
-                            <Spinner
-                                variant="warning"
-                                as="span"
-                                animation="border"
-                                size="sm"
-                                role="status"
-                                aria-hidden="true"
-                            />
-                            <span > Carregando dados... </span>
-                        </> 
-                        : null
-                    }
-                        {/* 
-                            - 1 fazer uma condição para veirficar se tem lista de responsavel 
-                            -  2 caso contrario não mostra buton e nem lista e nem msg 
-                            
-                        
-                        */}
-                        <>
-                            <TextC.Body level={1}> 
-                                Foram realizados cadastros anteriores de responsáveis. Para adicionar esses responsáveis ao cadastro do aluno, basta selecioná-los e clicar em "Adicionar Responsável".                            </TextC.Body>
-                            <List data={registered} />
-                        
-                        </>
-                    <S.WrapButtonResponsible>
-                        {/* Pegar pegar o uid dos responsaveis que foi selecionado e e add no cadastro do aluno recem cadastrado */}
-                        <S.ButtonResponsible
-                            onClick={() =>  navigate('/responsibleStudents/responsibleList/', { state: { uid: uid} })} ///responsibleStudents/form_update/:uid?
-                        >
-                            <span>Adicionar Responsável</span>
-                            <Theme.Icons.MdPerson />
-                        </S.ButtonResponsible>
+                    <S.WrapButton>
+
                         <S.ButtonResponsible
                             onClick={() =>  navigate('/responsibleStudents/responsibleList/', { state: { uid: uid} })} ///responsibleStudents/form_update/:uid?
                         >
@@ -122,18 +80,14 @@ const NotificationsStudentCreate = () => {
                             <Theme.Icons.MdPerson />
                         </S.ButtonResponsible>
 
-                    </S.WrapButtonResponsible>
-
-                    {/*                     
-                        <S.WrapImg>
-                            <img src={Theme.ImgC.Success} alt="sucesso" />
-                        </S.WrapImg>
-                     */}
+                    </S.WrapButton> 
+                    
+                    <WrapResponsible isRegistered={registered} isLoadingResponsible={loadingResponsible}/>
 
                 </S.Body>
                 {
                     adult
-                    ? <S.Footer>
+                    ?   <S.Footer>
                         <>
                             <S.ButtonOutline
                                 onClick={() => {
@@ -155,8 +109,9 @@ const NotificationsStudentCreate = () => {
                                 <Theme.Icons.MdAddCircle />
                             </S.ButtonContainer>
                         </>
-                    </S.Footer>
-                    : null
+                        </S.Footer>
+                        
+                    :   null
                 }
             </S.Content>
         </S.Container>
