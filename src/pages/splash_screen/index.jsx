@@ -22,7 +22,7 @@ const SplashScreen = () => {
                             <S.WrapButton>
                                 <Button 
                                     variant='outline-success'
-                                    onClick={() => navigate('/students/form_create')}
+                                    onClick={() => navigate('/students')}
                                 > Novo Aluno</Button>
                             </S.WrapButton>
                         </S.SectionSecondary>

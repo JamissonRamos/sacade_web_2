@@ -46,9 +46,9 @@ const AppContent = () => {
                                     </ProtectedRoute>
                                 } />
                                 <Route path="/students" element={
-                                    <ProtectedRoute page='Students'>
+                                    // <ProtectedRoute page='Students'>
                                         <Pages.Students /> 
-                                    </ProtectedRoute>
+                                    // </ProtectedRoute>
                                 } />
                                 <Route path="/students/form_create" element={
                                     // <ProtectedRoute page='Students'>

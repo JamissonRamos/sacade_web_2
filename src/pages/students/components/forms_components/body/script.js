@@ -118,8 +118,23 @@ export const FetchCep = () => {
 
 };
 
-export const CreateDataStudentLocalStorage = (data) => {
+export const CreateDataStudentLocalStorage = (nameDocument, data) => {
     
     //Obtendo o obj do alunos que foi selecionado
-    localStorage.setItem('student', JSON.stringify([data]));
+    localStorage.setItem(nameDocument, JSON.stringify([data]));
 }
+
+export const AddUidResponsibleStudentArray = (key, value) => {
+    
+    // Verifica se já existe um array no localStorage
+    const storedArray = JSON.parse(localStorage.getItem(key)) || [];
+    
+    // Adiciona o novo valor ao array apenas se ele ainda não existir
+    if (!storedArray.includes(value)) {
+        storedArray.push(value);
+        localStorage.setItem(key, JSON.stringify(storedArray));
+    } else {
+        console.log(`O valor "${value}" já existe no array.`);
+    }
+}
+

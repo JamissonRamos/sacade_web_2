@@ -38,7 +38,7 @@ const List = ({data, setStoreUid}) => {
           {
             data && data.map(({uid, fullName, relationshipLevel }, i) => (
 
-              <S.Card key={i} $checkedItems={checkedItems[uid]} onClick={() => handleCardClick(uid)}>
+              <S.Card key={i} checkedItems={checkedItems[uid]} onClick={() => handleCardClick(uid)}>
 
                 <S.WrapContent>
 

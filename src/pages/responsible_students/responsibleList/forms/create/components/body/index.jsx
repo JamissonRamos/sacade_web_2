@@ -34,10 +34,12 @@ const BodyForm = () => {
     }
 
     const handleOnSubmit = async (data) => {
+        const uidStudent =  GetUidLocalStorage();
+
         data.birthDate = FormattedDate(data.birthDate)
         data.phone = unMask(data.phone);
         data.cep = unMask(data.cep);
-        data.idStudent = GetUidLocalStorage();
+        data.idStudent = [uidStudent];
 
         const result = await createResponsibleStudent(data);
         //const result = { success: true, uidResponsibleStudents:'Rf098aopEf5Q3NlFuiqI' , message: 'teste de erro' }
