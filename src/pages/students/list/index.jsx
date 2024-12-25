@@ -3,10 +3,53 @@ import { TextC } from '../../../components/Typography'
 import { Badge, Button} from 'react-bootstrap';
 import { Theme } from '../../../theme';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../contexts/authContext/AuthContex';
+import { useEffect, useState } from 'react';
 
 
-const List = ({data}) => {  
+const List = ({data}) => { 
+  const [filteredData, setFilteredData] = useState([]);
+    //Recuperando o user logado para verificar 
+    const { currentUser } = useAuth()
+
+    console.log('currentUser', currentUser);
+
+    console.log('data', data);
+    
   const navigate = useNavigate();
+
+  // const recoverUidStudentsLocalStoragePermanently = () => {
+  //   // Recuperar uidStudentPermanently do localStorage
+  //   const uidStudentPermanently = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
+
+  //   console.log('uidStudentPermanently', uidStudentPermanently);
+
+  //   const filteredData = data && data.filter(obj => uidStudentPermanently.includes(obj.uid));
+
+  //   console.log('filteredData', filteredData);
+
+
+
+  // }
+
+  useEffect(() => {
+    // Recuperar uidStudentPermanently do localStorage
+    const storedUids  = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
+
+    // Filtra os dados
+    const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
+
+    // Atualiza o estado com os dados filtrados
+    setFilteredData(filtered);
+
+
+
+
+    // recoverUidStudentsLocalStoragePermanently();
+  }, []);
+
+
+
   
   // Exclui os dados do localStorage
   const handleDeleteLocalStorage = () => {
@@ -60,7 +103,7 @@ const List = ({data}) => {
         </S.TableHeader>
         <S.TableBody>
           {
-            data && data.map(({uid, firstName, lastName, status }, i) => (
+            filteredData && filteredData.map(({uid, firstName, lastName, status }, i) => (
               <S.TableRow key={i}>
                 <S.TableBodyCell $flex={.1}>
                   <TextC.Body level={1}>{1 + i}</TextC.Body>
