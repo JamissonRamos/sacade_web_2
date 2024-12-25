@@ -1,31 +1,10 @@
 import * as S from './styled'
 import { Badge } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../contexts/authContext/AuthContex';
-import { useEffect, useState } from 'react';
-// import ChangeRegistrationModal from '../modal'
 
 const CardList = ({data}) => {
-    // const [filteredData, setFilteredData] = useState([]);
-    // //Recuperando o user logado para verificar 
-    // const { currentUser } = useAuth()
     
     const navigate = useNavigate();
-    
-    // useEffect(() => {
-    // // Recuperar uidStudentPermanently do localStorage
-    // const storedUids = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
-
-    // console.log('storedUids', storedUids);
-    
-    // // Filtra os dados
-    // const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
-
-    // // Atualiza o estado com os dados filtrados
-    // setFilteredData(filtered);
-
-    // // recoverUidStudentsLocalStoragePermanently();
-    // }, [data]);
     
     const handleBadge = (status) => 
     {
@@ -85,8 +64,6 @@ const CardList = ({data}) => {
                             </S.Card>
 
                     </S.WrapButton>
-
-
                 ))
             }
         </S.Container>

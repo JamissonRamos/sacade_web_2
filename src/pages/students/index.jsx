@@ -14,13 +14,13 @@ const Students = () => {
   const [registered, setRegistered] = useState(null);
   
   const isValueScreen = useScreenWidth(590);
+
+  // Recuperar uidStudentPermanently do localStorage
   const storedUids = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
   
   const { getDocuments, loading: loadingAll , error: errorAll} = useStudents.useGetDocuments()
   
-
   const fetchDocuments = async () => {
-    
     const result = await getDocuments();
     const { success, data, error} = result;
 
@@ -28,15 +28,11 @@ const Students = () => {
       {
 
         /* -1 veirifia se tem user logado e passar o todos ou filter  */
-        // Recuperar uidStudentPermanently do localStorage
+
         // Filtra os dados
         const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
 
-        setRegistered( filtered )
-
-        console.log('storedUids', storedUids);
-        console.log('filtered', filtered);
-        
+        setRegistered( filtered )       
       
     }else{
       console.log(error);

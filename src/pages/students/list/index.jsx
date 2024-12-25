@@ -3,51 +3,10 @@ import { TextC } from '../../../components/Typography'
 import { Badge, Button} from 'react-bootstrap';
 import { Theme } from '../../../theme';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../../contexts/authContext/AuthContex';
-import { useEffect, useState } from 'react';
-
 
 const List = ({data}) => { 
-  //const [filteredData, setFilteredData] = useState([]);
-  //Recuperando o user logado para verificar 
-  //const { currentUser } = useAuth()
 
-    // console.log('currentUser', currentUser);
-
-    // console.log('data', data);
-    
   const navigate = useNavigate();
-
-  // const recoverUidStudentsLocalStoragePermanently = () => {
-  //   // Recuperar uidStudentPermanently do localStorage
-  //   const uidStudentPermanently = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
-
-  //   console.log('uidStudentPermanently', uidStudentPermanently);
-
-  //   const filteredData = data && data.filter(obj => uidStudentPermanently.includes(obj.uid));
-
-  //   console.log('filteredData', filteredData);
-
-
-
-  // }
-
-  // useEffect(() => {
-  //   // Recuperar uidStudentPermanently do localStorage
-  //   const storedUids  = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
-
-  //   console.log('storedUids', storedUids);
-    
-  //   // Filtra os dados
-  //   const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
-
-  //   // Atualiza o estado com os dados filtrados
-  //   setFilteredData(filtered);
-
-  //   // recoverUidStudentsLocalStoragePermanently();
-  // }, [data]);
-
-
 
   const handleBadge = (status) => 
     {
