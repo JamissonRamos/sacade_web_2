@@ -6,26 +6,26 @@ import { useEffect, useState } from 'react';
 // import ChangeRegistrationModal from '../modal'
 
 const CardList = ({data}) => {
-    const [filteredData, setFilteredData] = useState([]);
-    //Recuperando o user logado para verificar 
-    const { currentUser } = useAuth()
+    // const [filteredData, setFilteredData] = useState([]);
+    // //Recuperando o user logado para verificar 
+    // const { currentUser } = useAuth()
     
     const navigate = useNavigate();
     
-    useEffect(() => {
-    // Recuperar uidStudentPermanently do localStorage
-    const storedUids  = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
+    // useEffect(() => {
+    // // Recuperar uidStudentPermanently do localStorage
+    // const storedUids = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
 
-    console.log('storedUids', storedUids);
+    // console.log('storedUids', storedUids);
     
-    // Filtra os dados
-    const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
+    // // Filtra os dados
+    // const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
 
-    // Atualiza o estado com os dados filtrados
-    setFilteredData(filtered);
+    // // Atualiza o estado com os dados filtrados
+    // setFilteredData(filtered);
 
-    // recoverUidStudentsLocalStoragePermanently();
-    }, [data]);
+    // // recoverUidStudentsLocalStoragePermanently();
+    // }, [data]);
     
     const handleBadge = (status) => 
     {
@@ -63,7 +63,7 @@ const CardList = ({data}) => {
         <S.Container>
             
             {
-                filteredData && filteredData.map(({uid, firstName, lastName, status}) => (
+                data && data.map(({uid, firstName, lastName, status}) => (
 
                     <S.WrapButton 
                         key={uid}

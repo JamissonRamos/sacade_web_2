@@ -8,13 +8,13 @@ import { useEffect, useState } from 'react';
 
 
 const List = ({data}) => { 
-  const [filteredData, setFilteredData] = useState([]);
+  //const [filteredData, setFilteredData] = useState([]);
   //Recuperando o user logado para verificar 
-  const { currentUser } = useAuth()
+  //const { currentUser } = useAuth()
 
-    console.log('currentUser', currentUser);
+    // console.log('currentUser', currentUser);
 
-    console.log('data', data);
+    // console.log('data', data);
     
   const navigate = useNavigate();
 
@@ -32,20 +32,20 @@ const List = ({data}) => {
 
   // }
 
-  useEffect(() => {
-    // Recuperar uidStudentPermanently do localStorage
-    const storedUids  = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
+  // useEffect(() => {
+  //   // Recuperar uidStudentPermanently do localStorage
+  //   const storedUids  = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
 
-    console.log('storedUids', storedUids);
+  //   console.log('storedUids', storedUids);
     
-    // Filtra os dados
-    const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
+  //   // Filtra os dados
+  //   const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
 
-    // Atualiza o estado com os dados filtrados
-    setFilteredData(filtered);
+  //   // Atualiza o estado com os dados filtrados
+  //   setFilteredData(filtered);
 
-    // recoverUidStudentsLocalStoragePermanently();
-  }, [data]);
+  //   // recoverUidStudentsLocalStoragePermanently();
+  // }, [data]);
 
 
 
@@ -101,7 +101,7 @@ const List = ({data}) => {
         </S.TableHeader>
         <S.TableBody>
           {
-            filteredData && filteredData.map(({uid, firstName, lastName, status }, i) => (
+            data && data.map(({uid, firstName, lastName, status }, i) => (
               <S.TableRow key={i}>
                 <S.TableBodyCell $flex={.1}>
                   <TextC.Body level={1}>{1 + i}</TextC.Body>
