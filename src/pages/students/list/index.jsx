@@ -9,8 +9,8 @@ import { useEffect, useState } from 'react';
 
 const List = ({data}) => { 
   const [filteredData, setFilteredData] = useState([]);
-    //Recuperando o user logado para verificar 
-    const { currentUser } = useAuth()
+  //Recuperando o user logado para verificar 
+  const { currentUser } = useAuth()
 
     console.log('currentUser', currentUser);
 
@@ -44,40 +44,36 @@ const List = ({data}) => {
     // Atualiza o estado com os dados filtrados
     setFilteredData(filtered);
 
-
-
-
     // recoverUidStudentsLocalStoragePermanently();
   }, [data]);
 
 
 
+  const handleBadge = (status) => 
+    {
+      let bg
+      switch (status) {
+        case 'inativo':
+          bg = "warning"
+          break;
+        case 'bloqueado':
+          bg = "danger"
+          break;
+        case 'ativo':
+          bg = "success"
+          break;
   
+        default:
+          bg = "primary"
+          break;
+      }
+  
+      return bg 
+  }
+
   // Exclui os dados do localStorage
   const handleDeleteLocalStorage = () => {
     localStorage.removeItem('studentResponsible');
-  }
-
-  const handleBadge = (status) => 
-  {
-    let bg
-    switch (status) {
-      case 'inativo':
-        bg = "warning"
-        break;
-      case 'bloqueado':
-        bg = "danger"
-        break;
-      case 'ativo':
-        bg = "success"
-        break;
-
-      default:
-        bg = "primary"
-        break;
-    }
-
-    return bg 
   }
 
   const handleShowFormUpdate = (uid) => { 

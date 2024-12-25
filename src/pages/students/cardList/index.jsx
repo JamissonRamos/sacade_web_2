@@ -1,12 +1,31 @@
-import React from 'react'
 import * as S from './styled'
 import { Badge } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../contexts/authContext/AuthContex';
+import { useEffect, useState } from 'react';
 // import ChangeRegistrationModal from '../modal'
 
 const CardList = ({data}) => {
+    const [filteredData, setFilteredData] = useState([]);
+    //Recuperando o user logado para verificar 
+    const { currentUser } = useAuth()
     
     const navigate = useNavigate();
+    
+    useEffect(() => {
+    // Recuperar uidStudentPermanently do localStorage
+    const storedUids  = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
+
+    console.log('storedUids', storedUids);
+    
+    // Filtra os dados
+    const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
+
+    // Atualiza o estado com os dados filtrados
+    setFilteredData(filtered);
+
+    // recoverUidStudentsLocalStoragePermanently();
+    }, [data]);
     
     const handleBadge = (status) => 
     {
@@ -34,6 +53,7 @@ const CardList = ({data}) => {
     const handleDeleteLocalStorage = () => {
         localStorage.removeItem('studentResponsible');
     }
+
     const handleShowFormUpdate = (uid) => { 
         handleDeleteLocalStorage();
         navigate('/students/form_update', { state: { uid: uid } });
@@ -43,7 +63,7 @@ const CardList = ({data}) => {
         <S.Container>
             
             {
-                data && data.map(({uid, firstName, lastName, status}) => (
+                filteredData && filteredData.map(({uid, firstName, lastName, status}) => (
 
                     <S.WrapButton 
                         key={uid}
@@ -74,29 +94,3 @@ const CardList = ({data}) => {
 }
 
 export default CardList
-
-
-/* 
-                        <S.WrapButton 
-                        key={uid}
-                        onClick={() => handleShowFormUpdate(uid)}>
-                        <S.Card>
-                            <S.CircleFirstLetterNome>
-                                {firstName && firstName.charAt(0)}
-                            </S.CircleFirstLetterNome>
-
-                            <S.Name>
-                                {firstName + ' ' + lastName}
-                            </S.Name>
-                            <S.Status>
-                                <Badge bg={handleBadge(status)} text="light">
-                                    {status}
-                                </Badge>
-                            </S.Status>
-                        </S.Card>
-
-                    </S.WrapButton>
-
-
-
-*/
