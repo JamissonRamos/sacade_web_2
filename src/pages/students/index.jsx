@@ -14,12 +14,12 @@ const Students = () => {
   const [registered, setRegistered] = useState(null);
   
   const isValueScreen = useScreenWidth(590);
+  const storedUids = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
   
   const { getDocuments, loading: loadingAll , error: errorAll} = useStudents.useGetDocuments()
   
 
   const fetchDocuments = async () => {
-    const storedUids = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
     
     const result = await getDocuments();
     const { success, data, error} = result;

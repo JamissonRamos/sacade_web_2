@@ -38,7 +38,7 @@ const NotificationsStudentCreate = () => {
         const {success, data, message} = result;
 
         if (success){
-            const filteredData = data.filter(item => uidResponsible.includes(item.uid));
+            const filteredData = data && data.filter(item => uidResponsible.includes(item.uid));
             setRegistered(filteredData)
         }else{
             console.log(message);

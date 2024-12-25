@@ -71,7 +71,7 @@ const BodyForm = () => {
             //Passar uid para local storage
             data.uid = uid;
             CreateDataStudentLocalStorage('student', data)
-            AddUidResponsibleStudentArray('uidStudentPermanently ', uid)
+            AddUidResponsibleStudentArray('uidStudentPermanently', uid)
 
             const adult = AgeCalculation(data.birthDate)
             reset()
