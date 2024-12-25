@@ -36,6 +36,8 @@ const List = ({data}) => {
     // Recuperar uidStudentPermanently do localStorage
     const storedUids  = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
 
+    console.log('storedUids', storedUids);
+    
     // Filtra os dados
     const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
 
@@ -46,7 +48,7 @@ const List = ({data}) => {
 
 
     // recoverUidStudentsLocalStoragePermanently();
-  }, []);
+  }, [data]);
 
 
 
