@@ -1,44 +1,31 @@
 import * as S from './styled';
-
-
 import HeaderForm  from './components/header'
 import BodyForm from './components/body'
 import { WrapPages } from '../../../../components/Wrappe/pages'
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useStudents } from '../../../../hooks/students'
-import { useResponsibleStudents } from '../../../../hooks/responsibleStudents'
 import { Alert, Spinner } from 'react-bootstrap';
 
 const FormUpdateStudents = () => {
     const [registered, setRegistered] = useState(null);
     const [msgBox, setMsgBox] = useState(null);
-
-    const { documentsID, isLoading } = useStudents.useGetDocumentsID();
-    const { getDocumentsByIdStudents, loading: loadingResponsibleStudent } = useResponsibleStudents.useGetDocumentsByIdStudents();
-
+    
     const location = useLocation();  // Captura o UID da URL
     const { uid } = location.state || {};  // Captura o UID do estado de navegação
+    
+    const { documentsID, isLoading } = useStudents.useGetDocumentsID();
 
     useEffect(() => {
         handleFetchDocument()
     }, []);
 
     const handleFetchDocument = async () => {
-        const result = await documentsID(uid);  
-        const resultResponsibleStudent = await getDocumentsByIdStudents(uid);  
-        
+        const result = await documentsID(uid);         
         const {success, data, message} = result;
-        const {success: successRS, data: dataRS, message: messageRS} = resultResponsibleStudent;
-
+    
         if(success){
             setRegistered(data)
-            if(successRS){
-                // Salva o array atualizado de volta no localStorage
-                localStorage.setItem('studentResponsible', JSON.stringify(dataRS));
-            }else if(messageRS){
-                setMsgBox({variant: 'success', message: messageRS});
-            }
         }else {
             console.log("Não recuperou o ID: ", message);
             setMsgBox({variant: 'danger', message: message});
@@ -54,8 +41,8 @@ const FormUpdateStudents = () => {
             <S.Container> 
                 <HeaderForm />
                 {
-                    isLoading || loadingResponsibleStudent ? 
-                        <>
+                    isLoading   
+                    ?   <>
                             <Spinner
                                 variant="warning"
                                 as="span"
@@ -65,8 +52,8 @@ const FormUpdateStudents = () => {
                             />
                             <span>Carregando os dados...</span>
                         </>
-                    : 
-                        <BodyForm uid={uid} data={registered}  /> 
+                        
+                    :   <BodyForm uid={uid} data={registered}  /> 
                 }
                 
             </S.Container>

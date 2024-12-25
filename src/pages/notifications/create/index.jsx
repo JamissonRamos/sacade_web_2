@@ -6,8 +6,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const NotificationsCreate = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { url, uid, valueButton } = location.state || false; // Garante que `state` não seja undefined
-    const {value: buttonValue, icon: buttonIcon} = valueButton;
+    const { url = '/', uid = '', valueButton = { value: 'Home', icon: 'MdHome' } } = location.state || {};
+    const { value: buttonValue = 'Default Value', icon: buttonIcon = 'Default Icon' } = valueButton;
+
     return (
         <S.Container>
             <S.Content>

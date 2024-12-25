@@ -100,20 +100,21 @@ const BodyForm = () => {
                         </MDBTabsLink>
                     </MDBTabsItem>
                     <MDBTabsItem>
-                        <MDBTabsLink onClick={() => handleBasicClick('tab3')} active={basicActive === 'tab3'}>
+                        <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
                             Endereço
                         </MDBTabsLink>
                     </MDBTabsItem>
                     <MDBTabsItem>
-                        <MDBTabsLink onClick={() => handleBasicClick('tab4')} active={basicActive === 'tab4'}>
+                        <MDBTabsLink onClick={() => handleBasicClick('tab3')} active={basicActive === 'tab3'}>
                             OBS Medica
                         </MDBTabsLink>
                     </MDBTabsItem>
                     <MDBTabsItem>
-                        <MDBTabsLink onClick={() => handleBasicClick('tab5')} active={basicActive === 'tab5'}>
+                        <MDBTabsLink onClick={() => handleBasicClick('tab4')} active={basicActive === 'tab4'}>
                             Finalizar
                         </MDBTabsLink>
                     </MDBTabsItem>
+                    
                 </MDBTabs>
                     
                 <S.WrapFields>
@@ -126,28 +127,25 @@ const BodyForm = () => {
                                 handleChange={handleChange}
                             />  
                         </MDBTabsPane>
-                        <MDBTabsPane open={basicActive === 'tab3'}>
+                        <MDBTabsPane open={basicActive === 'tab2'}>
                             <FieldStudents.DataAddress 
                                 register={register} 
                                 setValue={setValue}
                                 getValues={getValues}
-
                                 errors={errors}
                                 handleChange={handleChange}
                             />
                         </MDBTabsPane>
 
-                        <MDBTabsPane open={basicActive === 'tab4'}>
+                        <MDBTabsPane open={basicActive === 'tab3'}>
                             <FieldStudents.StudentMedicalDescription 
                                 register={register} 
                                 setValue={setValue}
                                 getValues={getValues}
-
                                 errors={errors}
-                            
                             />
                         </MDBTabsPane>
-                        <MDBTabsPane open={basicActive === 'tab5'}>
+                        <MDBTabsPane open={basicActive === 'tab4'}>
                             <FieldStudents.EndRegister 
                                 loadingStudents={loadingStudents}
                             />

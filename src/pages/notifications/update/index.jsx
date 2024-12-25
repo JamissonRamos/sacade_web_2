@@ -1,10 +1,14 @@
 import * as S from './styled';
 import { TextC } from '../../../components/Typography';
 import { Theme } from '../../../theme';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const NotificationsUpdate = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const { url = '/', uid = '', valueButton = { value: 'Home', icon: 'MdHome' } } = location.state || {};
+    const { value: buttonValue = 'Default Value', icon: buttonIcon = 'Default Icon' } = valueButton;
 
     return (
 
@@ -22,10 +26,10 @@ const NotificationsUpdate = () => {
                 </S.Body>
                 <S.Footer>
                     <S.ButtonOutline
-                        onClick={() =>  navigate('/')}
+                        onClick={() => navigate(url, { state: { uid } })}
                     >
-                        <span>Home</span>
-                        <Theme.Icons.MdHome />
+                        <span>{buttonValue}</span>
+                        <>{Theme.Icons[buttonIcon]()}</>
                     </S.ButtonOutline>
                 </S.Footer>
             </S.Content>

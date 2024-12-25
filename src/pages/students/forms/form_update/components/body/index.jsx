@@ -7,8 +7,8 @@ import {
     MDBTabsPane
 }   from 'mdb-react-ui-kit';
 import { useEffect, useState } from 'react';
-import { Alert, Button, Form, Spinner } from 'react-bootstrap'
-import { Theme } from '../../../../../../theme'
+import { Form } from 'react-bootstrap'
+// import { Theme } from '../../../../../../theme'
 import { FieldStudents } from '../fields'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -36,8 +36,6 @@ const BodyForm = ({uid, data}) => {
     }
 
     const {UpdateStudents, isLoadingUpdate: loadingStudents, } = useStudents.usePostDocumentsUpdate();
-    // const {createResponsibleStudent, isLoadingCreate: loadingResponsibleStudents, errorCreate: errorResponsibleStudents } = useResponsibleStudents.usePostDocumentsCreate();
-    
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.StudentsSchema)
@@ -73,11 +71,6 @@ const BodyForm = ({uid, data}) => {
         setMsgBox(""); // Limpa a mensagem  
     };
 
-    // Exclui os dados do localStorage
-    const handleDeleteLocalStorage = () => {
-        localStorage.removeItem('studentResponsible');
-    }
-
     const handleBasicClick = (value) => {
         //Tabs nav
         if (value === basicActive) {
@@ -110,7 +103,14 @@ const BodyForm = ({uid, data}) => {
 
         if (success) {
             reset()
-            navigate('/notifications/update');
+            const path = `/students `
+            navigate('/notifications/update', {
+                state: {
+                    url: path,
+                    valueButton: {value: 'Lista Alunos', icon: 'MdPerson'},
+                },
+            });
+
         }else{
             reset()
             navigate('/notifications/error');
@@ -121,9 +121,6 @@ const BodyForm = ({uid, data}) => {
 
     return (
         <S.Container>
-            {/* {
-                errorStudents || errorResponsibleStudents && <Alert variant={'danger'}> {errorStudents || errorResponsibleStudents} </Alert>
-            } */}
             {
                 showAlert &&                                            
                 <AlertCustom variant={msgBox.variant} handleCloseAlert={handleCloseAlert}> {msgBox.message} </AlertCustom>
@@ -135,21 +132,25 @@ const BodyForm = ({uid, data}) => {
                             Dados Pessoais 
                         </MDBTabsLink>
                     </MDBTabsItem>
-                    {/* <MDBTabsItem>
-                        <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
-                            Responsável
-                        </MDBTabsLink>
-                    </MDBTabsItem> */}
+
                     <MDBTabsItem>
-                        <MDBTabsLink onClick={() => handleBasicClick('tab3')} active={basicActive === 'tab3'}>
+                        <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
                             Endereço
                         </MDBTabsLink>
                     </MDBTabsItem>
+
                     <MDBTabsItem>
-                        <MDBTabsLink onClick={() => handleBasicClick('tab4')} active={basicActive === 'tab4'}>
+                        <MDBTabsLink onClick={() => handleBasicClick('tab3')} active={basicActive === 'tab3'}>
                             OBS Medica
                         </MDBTabsLink>
                     </MDBTabsItem>
+
+                    <MDBTabsItem>
+                        <MDBTabsLink onClick={() => handleBasicClick('tab4')} active={basicActive === 'tab4'}>
+                            Finalizar
+                        </MDBTabsLink>
+                    </MDBTabsItem>
+
                 </MDBTabs>
                     
                 <S.WrapFields>
@@ -162,15 +163,10 @@ const BodyForm = ({uid, data}) => {
                                 handleChange={handleChange}
                             />  
                         </MDBTabsPane>
-{/* 
-                        <MDBTabsPane open={basicActive === 'tab2'}> 
-                            <FieldStudents.DataResponsible
-                                uid={uidStudent}
-                            />
-                        </MDBTabsPane> */}
 
 
-                        <MDBTabsPane open={basicActive === 'tab3'}>
+
+                        <MDBTabsPane open={basicActive === 'tab2'}>
                             <FieldStudents.DataAddress 
                                 register={register} 
                                 setValue={setValue}
@@ -180,11 +176,17 @@ const BodyForm = ({uid, data}) => {
                             />
                         </MDBTabsPane>
 
-                        <MDBTabsPane open={basicActive === 'tab4'}>
+                        <MDBTabsPane open={basicActive === 'tab3'}>
                             <FieldStudents.StudentMedicalDescription 
                                 register={register} 
                                 setValue={setValue}
                                 errors={errors}
+                            />
+                        </MDBTabsPane>
+
+                        <MDBTabsPane open={basicActive === 'tab4'}>
+                            <FieldStudents.EndRegister
+                                loadingStudents={loadingStudents}
                             />
                         </MDBTabsPane>
                     </MDBTabsContent>
@@ -195,39 +197,6 @@ const BodyForm = ({uid, data}) => {
                         {'Foi detectados alguns erros no cadastro: ' + errorCount}
                     </S.ErrorCount> : null
                 }
-                <S.WrapButtons>
-                    <Button
-                        variant="outline-danger"
-                        size='sm'
-                        onClick={() => {handleDeleteLocalStorage(), navigate('/students')}}
-                    >
-                        <Theme.Icons.MdClose />
-                        <span>Cancelar</span>
-                    </Button> 
-                    <Button
-                        variant="success"
-                        size='sm'
-                        type='submit'
-                        disabled={loadingStudents ? true : false}
-                    >
-                        { loadingStudents ?
-                            <>
-                                <Spinner
-                                    as="span"
-                                    animation="border"
-                                    size="sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                />
-                                <span > Atualizando... </span>
-                            </> :
-                            <>
-                                <Theme.Icons.MdUpdate />    
-                                <span>Atualizar</span>
-                            </>
-                        } 
-                    </Button>                      
-                </S.WrapButtons>
             </Form>
         </S.Container>
     )
