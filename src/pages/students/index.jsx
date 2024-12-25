@@ -19,18 +19,24 @@ const Students = () => {
   
 
   const fetchDocuments = async () => {
+    const storedUids = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
+    
     const result = await getDocuments();
     const { success, data, error} = result;
+
     if(success)
       {
 
         /* -1 veirifia se tem user logado e passar o todos ou filter  */
         // Recuperar uidStudentPermanently do localStorage
-        const storedUids  = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
-         // Filtra os dados
+        // Filtra os dados
         const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
 
         setRegistered( filtered )
+
+        console.log('storedUids', storedUids);
+        console.log('filtered', filtered);
+        
       
     }else{
       console.log(error);
