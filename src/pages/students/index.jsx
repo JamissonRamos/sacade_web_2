@@ -9,10 +9,13 @@ import { TextC } from '../../components/Typography'
 import List from './list'
 import CardList from './cardList'
 import { useScreenWidth } from '../../hooks/screenWidth';
+import { useAuth } from '../../contexts/authContext/AuthContex';
 
 const Students = () => {
   const [registered, setRegistered] = useState(null);
   
+  const { currentUser } = useAuth();
+
   const isValueScreen = useScreenWidth(590);
 
   // Recuperar uidStudentPermanently do localStorage
@@ -26,14 +29,18 @@ const Students = () => {
 
     if(success)
       {
-
-        /* -1 veirifia se tem user logado e passar o todos ou filter  */
-
-        // Filtra os dados
-        const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
-
-        setRegistered( filtered )       
-      
+        /*
+          -1 verificar se tem user logado;
+          -2 caso tenha mostrar todos os alunos;
+          -3 caso não mostrar alunos cadastro e armazenado no local storage;
+        */
+        if (currentUser === null){
+          // Filtra os dados
+          const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
+          setRegistered(filtered);       
+        }else{
+          setRegistered(data);      
+        }
     }else{
       console.log(error);
     };
