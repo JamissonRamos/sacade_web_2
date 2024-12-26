@@ -1,6 +1,25 @@
 import styled, { css } from "styled-components"
 import { Theme } from "../../theme"
 
+const styledButton = css`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 16px;
+    & span {
+        font-size: .8em;
+        font-weight: 500;
+    }
+    & svg {
+        font-size: 1em;
+    }
+
+
+
+`;
 const styledCard = css`
     width: 300px;
     padding: 1rem .8rem;
@@ -112,17 +131,19 @@ export const WrapText = styled.div`
 export const SectionSecondary = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
-    padding: .2rem;
+
 `;
 export const WrapButton = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: .2rem;
     & button {
-        font-size: .6em;
-        font-weight: 500;
+        ${styledButton};
+        
     }
     & button#buttonLogin{
         border-color: ${Theme.Colors.yellow700};

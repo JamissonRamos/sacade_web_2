@@ -40,7 +40,10 @@ const SplashScreen = () => {
                                     id='buttonLogin'
                                     variant='outline-warning'
                                     onClick={() => navigate('/login')}
-                                > Fazer login </Button>
+                                > 
+                                    <Theme.Icons.MdLogout />
+                                    <span>Fazer login </span>
+                                </Button>
                             </S.WrapButton>
                         </S.SectionSecondary>
 
