@@ -8,8 +8,10 @@ const Header = () => {
     const navigate = useNavigate();
     return (
         <S.Container>
-            <TextC.Title level={2}> Lista de Alunos</TextC.Title>
-            <TextC.Body level={1}> Cadastro de alunos no sistema. </TextC.Body>
+            <S.WrapText>
+                <TextC.Title level={2}> Lista de Alunos </TextC.Title>
+                <TextC.Body level={1}> Cadastro de alunos no sistema. </TextC.Body>
+            </S.WrapText>
             <S.WrapButtonCreate>
                 <Button
                     variant="success"

@@ -3,6 +3,10 @@ import { Theme } from "../../../../theme";
 
 const containedStyles = css`
     width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
     padding: 8px 12px;
     border-radius: 8px;
     box-shadow: none;
@@ -12,14 +16,13 @@ const containedStyles = css`
     & span {
         font-size: .8rem;
         font-weight: 500;
-        line-height: 18px;
         text-align: center;
         letter-spacing: 0.05em;
         text-transform: uppercase;
         color: ${Theme.Colors.white800};
     }
     & svg {
-        margin-right: 8px;
+        font-size: 1.2rem;
         color: ${Theme.Colors.white800};
     }
     &:hover {
@@ -40,9 +43,8 @@ export const Container = styled.div`
     min-width: 320px;
     display: flex;
     flex-direction: column;
-    gap: .4rem;
-    padding: .2rem 0;
-    margin-bottom: .4rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
     & span {
         color: ${Theme.Colors.grey500}
     }
@@ -50,11 +52,17 @@ export const Container = styled.div`
         color: ${Theme.Colors.green800}
     }
 `;
-
+export const WrapText = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    padding: .2rem 0;
+`;
 export const WrapButtonCreate = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,5 +70,4 @@ export const WrapButtonCreate = styled.div`
     & button {
         ${containedStyles};
     }
-
 `;
