@@ -14,7 +14,7 @@ const styledButton = css`
         font-weight: 500;
     }
     & svg {
-        font-size: 1em;
+        font-size: 1.2em;
     }
 
 
@@ -32,9 +32,7 @@ const styledCard = css`
     @media (max-width: 425px) {
         width: 240px;
     }
-
 `;
-
 export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100vw;
@@ -49,7 +47,6 @@ export const Container = styled.div`
     }
     overflow: auto;
 `;
-
 export const Content = styled.div`
     /* border: 1px solid red; */
     padding: .8rem ;
@@ -59,7 +56,6 @@ export const Content = styled.div`
 `;
 export const Cards = styled.div`
     /* border: 1px solid blue; */
-
     width: 100%;
     display: flex;
     align-items: center;
@@ -72,12 +68,10 @@ export const Cards = styled.div`
     }
     @media (max-width: 500px) {
         flex-direction: column;
-    }
-    
+    }  
 `;
 export const Card = styled.div`
     /* border: 1px solid red; */
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,19 +80,15 @@ export const Card = styled.div`
     background-color:  ${Theme.Colors.grey200};
     ${styledCard}
 `;
-
 export const SectionPrime = styled.div`
     /* border: 1px solid red; */
-
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 8px;
-
 `;
 export const WrapImg = styled.div`
     /* border: 1px solid red; */
-
     min-height: 200px;
     max-height: 200px;
     display: flex;
@@ -124,19 +114,18 @@ export const WrapText = styled.div`
     }
     @media (max-width: 425px) {
         & span {
-            font-size: .8em;
+            font-size: .9em;
         }
     }
 `;
 export const SectionSecondary = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
-
 `;
 export const WrapButton = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
-    height: 42px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -154,6 +143,3 @@ export const WrapButton = styled.div`
         }
     }
 `;
-
-
-

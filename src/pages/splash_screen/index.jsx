@@ -1,6 +1,5 @@
 import * as S from './styled'
 import { useNavigate } from "react-router-dom";
-import { WrapPages } from "../../components/Wrappe/pages";
 import { TextC } from '../../components/Typography';
 import { Theme } from '../../theme';
 import { Button } from 'react-bootstrap';
@@ -23,7 +22,10 @@ const SplashScreen = () => {
                                 <Button 
                                     variant='outline-success'
                                     onClick={() => navigate('/students')}
-                                > Novo Aluno</Button>
+                                > 
+                                    <Theme.Icons.MdPerson />
+                                    <span>Novo Aluno </span>
+                                </Button>
                             </S.WrapButton>
                         </S.SectionSecondary>
                     </S.Card>
@@ -52,7 +54,6 @@ const SplashScreen = () => {
             </S.Content>
 
         </S.Container>
-
     )
 }
 
