@@ -7,8 +7,7 @@ export const Container = styled.div`
     min-width: 320px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    gap: .2rem;
+    gap: .4rem;
     & span {
         color: ${Theme.Colors.grey500};
     }

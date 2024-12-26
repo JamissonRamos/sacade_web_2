@@ -43,8 +43,6 @@ const EndRegister = ({loadingStudents}) => {
 
           </S.Right>
         </S.Panels>
-        
-        
     </S.Container>
   )
 }
