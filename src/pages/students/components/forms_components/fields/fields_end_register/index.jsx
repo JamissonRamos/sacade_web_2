@@ -7,44 +7,38 @@ const EndRegister = ({loadingStudents}) => {
 
   return (
     <S.Container>
-        <S.WrapTitleStepper>
-          <TextC.Title level={1} > Pronto! Salve seu cadastro para finalizar o processo. </TextC.Title>
-        </S.WrapTitleStepper>
-        
-        <S.Panels>
-          <S.Left>
-            <img src={Theme.ImgC.SecureLogin} alt="Logo de segurança"  />
-          </S.Left>
+      
+      <S.SectionPrime>
+        <TextC.Title level={1} > Pronto! Salve seu cadastro para finalizar o processo. </TextC.Title>
+      </S.SectionPrime>
 
-          <S.Right>
-
-            <Button
-              variant='success'
-              type='submit'
-              disabled={loadingStudents ? true : false}
-            >
-                { loadingStudents ?
-                  <>
-                      <Spinner
-                          as="span"
-                          animation="border"
-                          size="sm"
-                          role="status"
-                          aria-hidden="true"
-                      />
-                      <span > Salvando... </span>
-                  </> :
-                  <>
-                      <Theme.Icons.MdSaveAlt />
-                      <span>Salvar</span>
-                  </>
-              } 
-            </Button>
-
-          </S.Right>
-        </S.Panels>
-        
-        
+      <S.SectionSecondary>
+        <S.WrapButton>
+          <Button
+            variant='success'
+            type='submit'
+            disabled={loadingStudents ? true : false}
+          >
+              { loadingStudents ?
+                <>
+                    <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                    />
+                    <span > Salvando... </span>
+                </> :
+                <>
+                    <Theme.Icons.MdSaveAlt />
+                    <span>Salvar</span>
+                </>
+            } 
+          </Button>
+        </S.WrapButton>
+      </S.SectionSecondary>
+      
     </S.Container>
   )
 }

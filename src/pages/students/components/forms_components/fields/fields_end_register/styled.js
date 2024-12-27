@@ -2,93 +2,50 @@ import styled from "styled-components";
 import { Theme } from "../../../../../../theme";
 
 export const Container = styled.div`
-    /* border: 1px solid green; */
+    /* border: 1px solid red; */
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: .2rem 0;
 `;
-export const WrapTitleStepper = styled.div`
-    /* border: 1px solid green; */
-    width: 100%;
-    padding: .2rem .4rem;
-    text-align: center;
-    margin-bottom: 1rem;
-    & span {
+export const SectionPrime = styled.div`
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & span {text-align: center;
         color: ${Theme.Colors.green800};
     }
-    @media (max-width: 768px) {
-        & > span {
-            font-size: 1em;
-        }
-    }
+
     @media (max-width: 425px) {
         & > span {
             font-size: .8em;
         }
     }
 `;
-export const Panels = styled.div`
-    /* border: 1px solid green; */
-    width: 100%;
+export const SectionSecondary = styled.div`
+    /* border: 1px solid blue; */
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-`;
-
-export const Left = styled.div`
-    /* border: 1px solid red;  */
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    & img {
-        max-width: 60%;
-        max-height: 60%;
-        object-fit: contain;
-        animation: moveUpDown 5s ease-in-out infinite;
-    }
-    @keyframes moveUpDown {
-        0% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-10px);
-        }
-        100% {
-            transform: translateY(0);
-        }
-    }
-
-    @media (max-width: 768px) {
-        & img {
-            max-width: 90%;
-            max-height: 80%;
-        }
-    }
 `;
 
-export const Right = styled.div`
-    /* border: 1px solid green; */
+export const WrapButton = styled.div`
+    /* border: 1px solid blue; */
     width: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    padding: .4rem 0;
+    padding: .2rem 0;
+    margin-top: 2rem;
     & button {
         width: 40%;
-        height: 100%;
+        /* height: 100%; */
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 8px;
-        padding: 8px 12px;
+        padding: 9px 12px;
         border-radius: 4px;
         transition: background-color 0.4s ease, color 0.4s;
         cursor: pointer;
@@ -115,13 +72,11 @@ export const Right = styled.div`
             }};
         }
     }
-    @media (max-width: 768px) {
-        width: 100%;
-        & > span {
-            padding: .2rem 0;
-            font-size: .8em;
+
+    @media (max-width: 425px) {
+
+        & button {
+            width: 70%;
         }
     }
-    
 `;
-
