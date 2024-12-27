@@ -17,10 +17,10 @@ const NotificationsStudentCreate = () => {
 
     const { getDocuments, loading: loadingResponsible } = useResponsibleStudents.useGetDocuments()
 
-    const handleRemoveDataStudent = () => { 
-        // Exclui os dados do localStorage
-        localStorage.removeItem('student');
-    };
+    // const handleRemoveDataStudent = () => { 
+    //     // Exclui os dados do localStorage
+    //     localStorage.removeItem('student');
+    // };
 
     const handleGetUidResponsible = async () => { 
         // 1. Recuperar o array
@@ -72,45 +72,28 @@ const NotificationsStudentCreate = () => {
                         >
                             { 
                                 adult 
-                                ? <span>Sim, quero cadastrar Responsáveis</span>
+                                ? <span>Sim, quero cadastrar novos Responsáveis</span>
                                 : <span>Vamos cadastrar Responsáveis</span>
                             }
                             <Theme.Icons.MdPerson />
                         </S.ButtonResponsible>
-
+                        
+                        {
+                            adult 
+                            ?    <S.ButtonListStudent
+                                    onClick={() =>  navigate('/students')}
+                                >
+                                    <span>Não, quero volta para lista de alunos</span>
+                                    <Theme.Icons.MdList />
+                                </S.ButtonListStudent>
+                            : null
+                        }
                     </S.WrapButton> 
                     
                     <WrapResponsible isRegistered={registered} isLoadingResponsible={loadingResponsible}/>
 
                 </S.Body>
-                {
-                    adult
-                    ?   <S.Footer>
-                        <>
-                            <S.ButtonOutline
-                                onClick={() => {
-                                    handleRemoveDataStudent
-                                    navigate('/')}
-                                }
-                            >
-                                <Theme.Icons.MdLogout />
-                                <span>Sair</span>
-                            </S.ButtonOutline>
-                            
-                            <S.ButtonContainer
-                                onClick={() => {
-                                    handleRemoveDataStudent
-                                    navigate(-1)}
-                                }
-                            >
-                                <span>Novo Cadastro</span>
-                                <Theme.Icons.MdAddCircle />
-                            </S.ButtonContainer>
-                        </>
-                        </S.Footer>
-                        
-                    :   null
-                }
+                
             </S.Content>
         </S.Container>
     )

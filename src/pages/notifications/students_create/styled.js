@@ -101,31 +101,21 @@ export  const WrapButton = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     & button {
         max-width: 100%;
         max-height: 100%;
     }
 `;
 
-export  const Footer = styled.div`
-    /* border: 1px solid red; */
-    width: 100%;
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    padding: .8rem;
-    margin-top: 1rem;
-    @media (max-width: 320px) {
-        flex-direction: column;
-    }
-`;
-
 export const ButtonResponsible = styled.button`
     ${StyledButton}
     ${outlineStyles(Theme.Colors.yellow800)}
-
+`;
+export const ButtonListStudent = styled.button`
+    ${StyledButton}
+    ${outlineStyles(Theme.Colors.blue900)}
 `;

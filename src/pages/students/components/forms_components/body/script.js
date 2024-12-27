@@ -124,7 +124,8 @@ export const CreateDataStudentLocalStorage = (nameDocument, data) => {
     localStorage.setItem(nameDocument, JSON.stringify([data]));
 }
 
-export const AddUidResponsibleStudentArray = (key, value) => {
+export const AddUidArray = (key, value) => {
+    /* Função para add uid de quem foi cadastrado */
     
     // Verifica se já existe um array no localStorage
     const storedArray = JSON.parse(localStorage.getItem(key)) || [];

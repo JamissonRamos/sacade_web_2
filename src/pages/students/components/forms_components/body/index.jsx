@@ -12,18 +12,20 @@ import { FieldStudents } from '../fields'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../../../../validations'
-import { AddUidResponsibleStudentArray, AgeCalculation, CreateDataStudentLocalStorage, FormattedDate, MaskInput } from './script';
+import { AddUidArray, AgeCalculation, CreateDataStudentLocalStorage, FormattedDate, MaskInput } from './script';
 import { unMask } from 'remask';
 import { useStudents } from '../../../../../hooks/students'
 import { AlertCustom } from '../../../../../components/alert_custom';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../../../contexts/authContext/AuthContex';
 
 
 const BodyForm = () => {
     const [basicActive, setBasicActive] = useState('tab1');
     const [msgBox, setMsgBox] = useState(null)
     const [showAlert, setShowAlert] = useState(false);
-    
+    const { currentUser } = useAuth();
+
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.StudentsSchema)
     });
@@ -48,6 +50,17 @@ const BodyForm = () => {
         setBasicActive(value);
     };
 
+    const handleAddUidStudentLocalStorage = (uid) => {
+        /* User logado não precisa add uid student local storage  */
+        if (currentUser === null){
+            AddUidArray('uidStudentPermanently', uid)      
+        }else if (localStorage.getItem('uidStudentPermanently')) {
+            // Remove o item do localStorage
+            localStorage.removeItem('uidStudentPermanently');
+        }
+    }
+
+
     const handleChange = (e) => {
         let fieldName = e.target.name;
         let fieldValue = e.target.value;
@@ -71,8 +84,7 @@ const BodyForm = () => {
             //Passar uid para local storage
             data.uid = uid;
             CreateDataStudentLocalStorage('student', data)
-            AddUidResponsibleStudentArray('uidStudentPermanently', uid)
-
+            handleAddUidStudentLocalStorage(uid)
             const adult = AgeCalculation(data.birthDate)
             reset()
             navigate('/notifications/studentCreate', { state: { uid: uid, adult: adult } });
