@@ -1,6 +1,7 @@
 import * as S from './styled'
 import { Badge } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
+import { TextC } from '../../../components/Typography';
 
 const CardList = ({data}) => {
     
@@ -39,28 +40,34 @@ const CardList = ({data}) => {
     };
 
     return (
-        <S.Container>
-            
+        <S.Container> 
             {
-                data && data.map(({uid, firstName, lastName, status}) => (
-
+                data && data.map(({uid, firstName, lastName, status}, i) => (
                     <S.WrapButton 
                         key={uid}
                         onClick={() => handleShowFormUpdate(uid)}>
                             
                             <S.Card>
-                                <S.CircleFirstLetterNome>
-                                    {firstName && firstName.charAt(0)}
-                                </S.CircleFirstLetterNome>
+                                <S.SectionPrime>
+                                    <S.WrapIndex>
+                                        <TextC.Body level={3}> {i + 1} </TextC.Body>
+                                    </S.WrapIndex>
+                                    <S.CircleFirstLetterNome>
+                                        {firstName && firstName.charAt(0)}
+                                    </S.CircleFirstLetterNome>
+                                    <S.Name>
+                                        {firstName + ' ' + lastName} 
+                                    </S.Name>
 
-                                <S.Name>
-                                    {firstName + ' ' + lastName}
-                                </S.Name>
-                                <S.Status>
-                                    <Badge bg={handleBadge(status)} text="light">
-                                        {status}
-                                    </Badge>
-                                </S.Status>
+                                </S.SectionPrime>
+                                <S.SectionSecondary>
+
+                                    <S.Status>
+                                        <Badge bg={handleBadge(status)} text="light">
+                                            {status}
+                                        </Badge>
+                                    </S.Status>
+                                </S.SectionSecondary>
                             </S.Card>
 
                     </S.WrapButton>
