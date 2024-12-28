@@ -36,13 +36,11 @@ export const Container = styled.div`
     min-width: 320px;
     height: 90%;
     display: flex;
-    /* flex-direction: column; */
-    /* gap: .8rem; */
 `;
 
 export const FormCreate = styled.div`
     /* border: 1px solid red; */
-    padding-bottom: 2.5rem;
+    padding-bottom: 3.8rem;
     & label {
         display: inline-block;
         margin: 0;
