@@ -8,7 +8,6 @@ import {
 }   from 'mdb-react-ui-kit';
 import { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap'
-// import { Theme } from '../../../../../../theme'
 import { FieldStudents } from '../fields'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -63,6 +62,7 @@ const BodyForm = ({uid, data}) => {
             });
         }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])    
 
     // Função para fechar o alerta e preparar para nova mensagem
@@ -163,9 +163,6 @@ const BodyForm = ({uid, data}) => {
                                 handleChange={handleChange}
                             />  
                         </MDBTabsPane>
-
-
-
                         <MDBTabsPane open={basicActive === 'tab2'}>
                             <FieldStudents.DataAddress 
                                 register={register} 
