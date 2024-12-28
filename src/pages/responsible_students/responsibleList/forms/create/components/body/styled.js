@@ -9,7 +9,7 @@ const StyledButton = css`
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 8px 12px;
+    padding: 9px 16px;
     border-radius: 4px;
     transition: background-color 0.4s ease, color 0.4s;
     cursor: pointer;
@@ -26,7 +26,7 @@ const StyledButton = css`
     }
     
     @media (max-width: 425px) {
-        width: 50%;
+        width: 40%;
     }
 `;
 
@@ -40,7 +40,7 @@ export const Container = styled.div`
 
 export const FormCreate = styled.div`
     /* border: 1px solid red; */
-    padding-bottom: 3.8rem;
+    padding-bottom: .2rem;
     & label {
         display: inline-block;
         margin: 0;
@@ -58,6 +58,9 @@ export const FormCreate = styled.div`
         }
     }
     overflow: auto;
+    @media (max-width: 425px) {
+        padding-bottom: 3.8rem;
+    }
 `;
 
 export const WrapButtonUpdateCancel = styled.div`
@@ -66,9 +69,12 @@ export const WrapButtonUpdateCancel = styled.div`
     display: flex;
     justify-content: flex-end;
     gap: 16px;
-    padding-right: .2rem;
+    padding: .2rem .4rem;
     & button {
         ${StyledButton};
+    }
+    @media (max-width: 425px) {
+        justify-content: center;
     }
 
 `;
