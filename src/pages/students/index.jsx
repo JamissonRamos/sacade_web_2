@@ -82,12 +82,7 @@ const Students = () => {
           </S.Empty> 
         :   
           <S.Content>
-            {/* {
-              isValueScreen ?  <CardList data={registered}/> : <List data={registered}/>
-            } */}
-            
             <CardList data={registered}/> 
-            
           </S.Content>
       }
     </WrapPages>
