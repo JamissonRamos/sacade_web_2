@@ -31,7 +31,7 @@ const StyledButton = css`
 `;
 
 export const Container = styled.div`
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 100%;
     min-width: 320px;
     height: 90%;
@@ -41,8 +41,8 @@ export const Container = styled.div`
 `;
 
 export const FormCreate = styled.div`
-    border: 1px solid red;
-    padding-bottom: 1.5rem;
+    /* border: 1px solid red; */
+    padding-bottom: 2.5rem;
     & label {
         display: inline-block;
         margin: 0;
