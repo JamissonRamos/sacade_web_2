@@ -28,8 +28,8 @@ const CustomTabs = css`
             font-size: .7em;
         }
     }
-    @media (max-width: 520px) {
-        height: 100px;
+    @media (max-width: 528px) {
+        height: 120px;
     }
 `;
 
