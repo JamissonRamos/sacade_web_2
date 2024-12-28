@@ -31,18 +31,18 @@ const StyledButton = css`
 `;
 
 export const Container = styled.div`
-    /* border: 1px solid blue; */
+    border: 1px solid blue;
     width: 100%;
     min-width: 320px;
-    height: 100%;
+    height: 90%;
     display: flex;
-    flex-direction: column;
-    gap: .8rem;
+    /* flex-direction: column; */
+    /* gap: .8rem; */
 `;
 
 export const FormCreate = styled.div`
-    /* border: 1px solid red; */
-    padding-bottom: .8rem;
+    border: 1px solid red;
+    padding-bottom: 1.5rem;
     & label {
         display: inline-block;
         margin: 0;

@@ -5,15 +5,19 @@ export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     min-width: 320px;
-    /* height: 20%; */
+    padding: .2rem 0;
+`;
+
+export const WrapText = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: .4rem;    
+    gap: .2rem;
     & span {
         color: ${Theme.Colors.grey500}; 
     }
     & span:first-child {
         color: ${Theme.Colors.green800};
     }
-    padding-bottom: .8rem;
 `;

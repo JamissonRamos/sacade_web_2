@@ -31,6 +31,12 @@ const CustomTabs = css`
     @media (max-width: 528px) {
         height: 120px;
     }
+    @media (max-width: 425px) {
+        height: 50px;
+    }
+    @media (max-width: 409px) {
+        height: 90px;
+    }
 `;
 
 export const Container = styled.div`
