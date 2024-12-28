@@ -33,6 +33,7 @@ const progress = keyframes`
 `;
 
 export const AlertCustom = styled.div`
+    width: 250px;
     max-width: 300px;
     max-height: 200px;
     position: absolute;
@@ -40,7 +41,7 @@ export const AlertCustom = styled.div`
     right: 2%;
     display: flex;
     gap: 1rem;
-    padding: 2rem .8rem 1rem .8rem;
+    padding: 1rem  ;
     border: 1px solid;
     border-radius: 8px;
     font-size: .8em;
@@ -48,7 +49,7 @@ export const AlertCustom = styled.div`
     line-height: 16px;
     letter-spacing: .7px;  
     animation: ${slideRight} 0.5s ease-in-out both; 
-    z-index: 100;
+    z-index: 1000;
     &::before {
         content: '';
         width: 100%;
@@ -68,6 +69,26 @@ export const Closse = styled.button`
         top: 4px;
         right: 10px;
         font-size: 1.2rem;
+        color: ${Theme.Colors.red500};
         cursor: pointer;
+    }
+`;
+
+export const WrapContent = styled.button`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1rem;
+    background-color: transparent;
+    color: ${Theme.Colors.red500};
+    & > span {
+        font-size: 1em;
+        font-weight: 500;
+        color: ${Theme.Colors.red500};
+    }
+    & > svg {
+        font-size: 2em;
+        color: ${Theme.Colors.red500};
     }
 `;

@@ -3,7 +3,6 @@ import AlertSuccess from "./success";
 
 export const AlertCustom = ({variant, children, handleCloseAlert}) => {
 
-    console.log(variant);
 switch (variant) {
     
     case 'success':

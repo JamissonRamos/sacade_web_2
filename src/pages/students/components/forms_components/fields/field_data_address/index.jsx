@@ -30,7 +30,6 @@ const DataAddress = ({register, setValue, getValues, errors, handleChange}) => {
         const result = await searchCep(cep);
         const { success, data, message  } = result;
         if(success){
-            console.log(data);
             // Atualiza os valores dos campos com os dados recebidos  
             setValue('logadouro', data.logadouro);
             setValue('neighborhood', data.neighborhood);

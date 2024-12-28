@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import * as S from './styled'
+import { TextC } from '../../../components/Typography'
 import { Theme } from '../../../theme'
 
 const AlertSuccess = ({children, handleCloseAlert}) => {
@@ -28,7 +29,13 @@ const AlertSuccess = ({children, handleCloseAlert}) => {
                     <S.Closse onClick={handleOnclick}>
                         { <Theme.Icons.MdClose  />}
                     </S.Closse>
-                    {children}
+                    <S.WrapContent>
+                        <Theme.Icons.MdCheckCircleOutline/>
+                        <TextC.Body level={2}>
+                            {children}
+                        </TextC.Body>  
+
+                    </S.WrapContent>
                 </S.AlertCustom>
         }
     </>
