@@ -5,19 +5,15 @@ import { Theme } from '../../../../../../../theme'
 
 const EndRegister = ({loadingStudents}) => {
 
-  return (
-    <S.Container>
-        <S.WrapTitleStepper>
-          <TextC.Title level={1} > Pronto! Atualize seu cadastro para finalizar o processo. </TextC.Title>
-        </S.WrapTitleStepper>
+    return (
+      <S.Container>
         
-        <S.Panels>
-          <S.Left>
-            <img src={Theme.ImgC.SecureLogin} alt="Logo de segurança"  />
-          </S.Left>
-
-          <S.Right>
-
+        <S.SectionPrime>
+          <TextC.Title level={1} > Pronto! Clique no botão para finalizar o processo. </TextC.Title>
+        </S.SectionPrime>
+  
+        <S.SectionSecondary>
+          <S.WrapButton>
             <Button
               variant='success'
               type='submit'
@@ -40,11 +36,11 @@ const EndRegister = ({loadingStudents}) => {
                   </>
               } 
             </Button>
-
-          </S.Right>
-        </S.Panels>
-    </S.Container>
-  )
+          </S.WrapButton>
+        </S.SectionSecondary>
+        
+      </S.Container>
+    )
 }
 
 export default EndRegister
