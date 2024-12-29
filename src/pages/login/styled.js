@@ -48,7 +48,7 @@ export const Container = styled.div`
     justify-content: center;
     padding: 1rem 2rem;
     transition: padding 0.4s; 
-    @media (max-width: 320px) {
+    @media (max-width: 425px) {
         padding: 0;
     }
 `;
