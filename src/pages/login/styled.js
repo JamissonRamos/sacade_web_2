@@ -268,18 +268,20 @@ export const WrapHeader = styled.div`
 export const WrapForm = styled.div`
     border: 1px solid blue;
     width: 100%;
+    height: 100%;
     flex: 3;
-    display: flex;
+    /* display: flex; */
     flex-direction: column; 
     justify-content: space-evenly;
     overflow: auto;
     & form {
         border: 1px solid blue;
         width: 100%;
-        /* height: 100%; */
+        min-height: 70%;
+        max-height: 80%;
         display: flex;
         flex-direction: column; 
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         gap: 2rem;    
     }
@@ -290,7 +292,7 @@ export const FormFields = styled.div`
     /* height: 100%; */
     
     padding: .2rem 0;
-    overflow: auto;
+    /* overflow: auto; */
     & label {
         display: inline-block;
         margin: 0;
@@ -320,8 +322,8 @@ export const WrapFooterForm = styled.div`
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: .2rem 0;
-    overflow: auto;
+    padding: .4rem 0;
+    /* overflow: auto; */
 `;
 export const WrapButtonLogin = styled.div`
     /* border: 1px solid red; */
