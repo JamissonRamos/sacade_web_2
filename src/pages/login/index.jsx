@@ -80,8 +80,8 @@ const Login = () => {
           <S.WrapForm>
             <Form onSubmit={handleSubmit(onSubmit)} >
               <S.FormFields >
-                <Container >
-                  <Form.Group className="mb-3 p-1" controlId="formGridEmail">
+                <Container className="mb-5"  >
+                  <Form.Group className="mb-4 p-1" controlId="formGridEmail">
                     <Form.Label >Email</Form.Label>
                       <Form.Control 
                         type="email" 
@@ -94,7 +94,7 @@ const Login = () => {
                         {errors.email && errors.email.message}
                       </Form.Control.Feedback>
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="formGridPassword">
+                  <Form.Group className="mb-4" controlId="formGridPassword">
                     <Form.Label className="mb-0">Senha</Form.Label>
                     <InputGroup className="p-1">
                       <Form.Control 
@@ -115,50 +115,48 @@ const Login = () => {
                 </Container>
               </S.FormFields>
 
-              <S.WrapFooterForm>
-
-                <S.WrapButtonLogin>
-                  <Button
-                    type='submit'
-                    variant="outline-success"
-                    disabled={isLoadingLogin ? true : false}
-                  >
-                    {
-                      isLoadingLogin ?  
-                        <>
-                          <Spinner
-                            as="span"
-                            animation="border"
-                            size="sm"
-                            role="status"
-                            aria-hidden="true"
-                          />
-                          <span className="sr-only">Carregando...</span>
-                        </> :
-                        <>
-                          <Theme.Icons.MdLogout />
-                          <span>Login</span>
-                        </>
-                    }
-                    
-                  </Button>
-
-                </S.WrapButtonLogin>
-
-                {/* <S.Divider> OU </S.Divider> */}
-
-                <S.WrapButtonScreen>
-                  <Button 
-                    variant='outline-success'
-                    onClick={() => navigate('/splashScreen')}
-                  >
-                    <span> Ir para a Página Inicial </span>
-                  </Button>
-                </S.WrapButtonScreen>
-
-              </S.WrapFooterForm>
 
             </Form>
+            <S.WrapFooterForm>
+
+              <S.WrapButtonLogin>
+                <Button
+                  type='submit'
+                  variant="outline-success"
+                  disabled={isLoadingLogin ? true : false}
+                >
+                  {
+                    isLoadingLogin ?  
+                      <>
+                        <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                        <span className="sr-only">Carregando...</span>
+                      </> :
+                      <>
+                        <Theme.Icons.MdLogout />
+                        <span>Login</span>
+                      </>
+                  }
+                  
+                </Button>
+
+              </S.WrapButtonLogin>
+
+              <S.WrapButtonScreen>
+                <Button 
+                  variant='outline-success'
+                  onClick={() => navigate('/splashScreen')}
+                >
+                  <span> Ir para a Página Inicial </span>
+                </Button>
+              </S.WrapButtonScreen>
+
+            </S.WrapFooterForm>
 
           </S.WrapForm>
 

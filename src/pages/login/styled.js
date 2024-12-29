@@ -37,15 +37,6 @@ const ButtonStyles = css`
     }
 `;
 
-
-
-
-
-
-
-
-
-
 export const Container = styled.div`
     /* border: 1px solid green; */
     width: 100vw;
@@ -71,10 +62,10 @@ export const WrapPages = styled.div`
     border-radius: 8px;
     box-shadow: ${Theme.Shadow.sh800};  
     @media (max-width: 768px) {
-        width: 60%;
+        width: 80%;
         flex-direction: column; 
     }
-    @media (max-width: 320px) {
+    @media (max-width: 425px) {
         width: 100%;
         border-radius: 0;
     }
@@ -82,7 +73,7 @@ export const WrapPages = styled.div`
 export const LeftPanel = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     position: relative;
     flex: 1.2;
     display: flex;
@@ -102,12 +93,14 @@ export const LeftPanel = styled.div`
         z-index: -1;
     }
     @media (max-width: 768px) {
-        flex: .4;
-        justify-content: start;
+        /* height: 0; */
+        flex: .3;
+        justify-content: center;
+        gap: 8px;
         padding: .2rem;
+        padding-bottom: .6rem;
         border-radius: 0 0 20% 20%;
         box-shadow: ${Theme.Shadow.sh700}; 
-        
     }
 `;
 export const TitleOne = styled.div`
@@ -229,10 +222,16 @@ export const WrapButtonRegister = styled.div`
 `;
 export const PanelRight = styled.div`
     /* border: 1px solid blue; */
+    height: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+    @media (max-width: 768px) {
+        padding: 0;
+    }
 `;
 export const WrapHeader = styled.div`
     /* border: 1px solid red; */
@@ -267,33 +266,30 @@ export const WrapHeader = styled.div`
 
 `;
 export const WrapForm = styled.div`
-    /* border: 1px solid blue; */
+    border: 1px solid blue;
     width: 100%;
-    /* max-height: 400px; */
-    /* display: flex; */
-    /* flex-direction: column;
-    align-items: center; */
     flex: 3;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-evenly;
     overflow: auto;
     & form {
-        /* border: 1px solid blue; */
+        border: 1px solid blue;
         width: 100%;
         /* height: 100%; */
         display: flex;
         flex-direction: column; 
         justify-content: space-between;
         align-items: center;
-        gap: .8rem;    
+        gap: 2rem;    
     }
 `;
 export const FormFields = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    /* max-height: 280px; */
-    gap: 1rem;
-    /* flex: 1; */
+    /* height: 100%; */
+    
     padding: .2rem 0;
-    /* margin-bottom: 1rem; */
     overflow: auto;
     & label {
         display: inline-block;
@@ -325,7 +321,7 @@ export const WrapFooterForm = styled.div`
     justify-content: center;
     gap: 8px;
     padding: .2rem 0;
-
+    overflow: auto;
 `;
 export const WrapButtonLogin = styled.div`
     /* border: 1px solid red; */
@@ -335,7 +331,6 @@ export const WrapButtonLogin = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     & button {
         ${ButtonStyles}
     }
@@ -350,13 +345,6 @@ export const WrapButtonLogin = styled.div`
         }
     }
 `;
-
-export const Divider = styled.div`
-    /* border:1px solid red; */
-    width: 100%;
-
-`;
-
 export const WrapButtonScreen = styled.div`
     /* border:1px solid red; */
     width: 100%;
@@ -364,7 +352,6 @@ export const WrapButtonScreen = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    
     & button {
         border: none;
         cursor: pointer;
@@ -383,10 +370,7 @@ export const WrapButtonScreen = styled.div`
             }
         }
     }
-
-
 `;
-
 export const Error = styled.div`
     position: absolute;
     top: 20px;
@@ -396,5 +380,4 @@ export const Error = styled.div`
         top: 10px;
         right: 0px;
     }
-
 `;
