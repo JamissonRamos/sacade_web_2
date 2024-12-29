@@ -1,7 +1,6 @@
 import styled, {css} from "styled-components";
 import { Theme } from "../../../../../../../theme";
 
-
 const StyledButton = css`
     /* width: 100%; */
     height: 100%;
@@ -76,5 +75,4 @@ export const WrapButtonUpdateCancel = styled.div`
     @media (max-width: 425px) {
         justify-content: center;
     }
-
 `;

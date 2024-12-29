@@ -40,15 +40,23 @@ const Login = () => {
   return (
     <S.Container>
       <S.WrapPages>
+
         <S.LeftPanel>
+
           <S.TitleOne>
             <TextC.Display level={2}>Seja bem-vindo!</TextC.Display>
           </S.TitleOne>
+
           <S.WrapImg>
             <img src={Theme.ImgC.LogoLutaYellow} alt="Logo de Segurança" />
           </S.WrapImg>
+
           <S.WrapRegister>
-            <TextC.Body level={2}>Se você ainda não está cadastrado, não se preocupe! Basta clicar no botão abaixo para se registrar.</TextC.Body>
+
+            <S.WrapTextRegister>
+              <TextC.Body level={2}>Se você ainda não está cadastrado, não se preocupe! Basta clicar no botão abaixo para se registrar.</TextC.Body>
+            </S.WrapTextRegister>
+
             <S.WrapButtonRegister>
               <Button 
                 variant="warning"
@@ -57,14 +65,18 @@ const Login = () => {
                   Fazer Cadastro
               </Button>
             </S.WrapButtonRegister>
+
           </S.WrapRegister>
+
         </S.LeftPanel>
+
         <S.PanelRight >
         
           <S.WrapHeader>
             <img src={Theme.ImgC.AvatarMan} alt="Logo" />
-            <TextC.Headline level={2}>Faça seu login</TextC.Headline>
+            <TextC.Headline level={1}>Faça seu login</TextC.Headline>
           </S.WrapHeader>
+
           <S.WrapForm>
             <Form onSubmit={handleSubmit(onSubmit)} >
               <S.FormFields >
@@ -102,36 +114,58 @@ const Login = () => {
                   </Form.Group >
                 </Container>
               </S.FormFields>
+
               <S.WrapFooterForm>
-                <Button
-                  type='submit'
-                  variant="outline-success"
-                  disabled={isLoadingLogin ? true : false}
-                >
-                  {
-                    isLoadingLogin ?  
-                      <>
-                        <Spinner
-                          as="span"
-                          animation="border"
-                          size="sm"
-                          role="status"
-                          aria-hidden="true"
-                        />
-                        <span className="sr-only">Carregando...</span>
-                      </> :
-                      <>
-                        <Theme.Icons.MdLogout />
-                        <span>Login</span>
-                      </>
-                  }
-                  
-                </Button>
+
+                <S.WrapButtonLogin>
+                  <Button
+                    type='submit'
+                    variant="outline-success"
+                    disabled={isLoadingLogin ? true : false}
+                  >
+                    {
+                      isLoadingLogin ?  
+                        <>
+                          <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                          />
+                          <span className="sr-only">Carregando...</span>
+                        </> :
+                        <>
+                          <Theme.Icons.MdLogout />
+                          <span>Login</span>
+                        </>
+                    }
+                    
+                  </Button>
+
+                </S.WrapButtonLogin>
+
+                {/* <S.Divider> OU </S.Divider> */}
+
+                <S.WrapButtonScreen>
+                  <Button 
+                    variant='outline-success'
+                    onClick={() => navigate('/splashScreen')}
+                  >
+                    <span> Ir para a Página Inicial </span>
+                  </Button>
+                </S.WrapButtonScreen>
+
               </S.WrapFooterForm>
+
             </Form>
+
           </S.WrapForm>
+
         </S.PanelRight>
+
       </S.WrapPages>
+
       <S.Error>
         {
           errorLogin && <Alert variant={'danger'}> {errorLogin} </Alert>

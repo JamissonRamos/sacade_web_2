@@ -1,5 +1,50 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Theme } from "../../theme";
+
+const ButtonStyles = css`
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: none;
+    background-color: ${Theme.Colors.green800};
+    border: none;
+    transition: background-color 0.4s ease, color 0.4s;
+    & span {
+        font-size: .8rem;
+        font-weight: 500;
+        text-align: center;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: ${Theme.Colors.white800};
+    }
+    & svg {
+        font-size: 1.2rem;
+        color: ${Theme.Colors.white800};
+    }
+    &:hover {
+        box-shadow: none;
+        background-color: ${props => {
+            const color = props.color || Theme.Colors.green800;
+            const r = parseInt(color.slice(1, 3), 16);
+            const g = parseInt(color.slice(3, 5), 16);
+            const b = parseInt(color.slice(5, 7), 16);
+            return `rgb(${r - 35}, ${g - 35}, ${b - 35})`;
+        }};
+    }
+`;
+
+
+
+
+
+
+
+
+
 
 export const Container = styled.div`
     /* border: 1px solid green; */
@@ -8,21 +53,12 @@ export const Container = styled.div`
     height: 100vh;
     position: relative;
     display: flex;
+    align-items: center;
     justify-content: center;
     padding: 1rem 2rem;
     transition: padding 0.4s; 
-    @media (max-width: 768px) {
-        padding: .6rem;
-    }
-    @media (max-width: 425px) {
-        height: 94vh;
-    }
-    @media (max-width: 375px) {
-        padding: .4rem;
-    }
     @media (max-width: 320px) {
-        padding: .4rem 1rem;
-        
+        padding: 0;
     }
 `;
 export const WrapPages = styled.div`
@@ -35,7 +71,12 @@ export const WrapPages = styled.div`
     border-radius: 8px;
     box-shadow: ${Theme.Shadow.sh800};  
     @media (max-width: 768px) {
-        flex-direction: column;
+        width: 60%;
+        flex-direction: column; 
+    }
+    @media (max-width: 320px) {
+        width: 100%;
+        border-radius: 0;
     }
 `;
 export const LeftPanel = styled.div`
@@ -63,32 +104,37 @@ export const LeftPanel = styled.div`
     @media (max-width: 768px) {
         flex: .4;
         justify-content: start;
-        padding: 0;
+        padding: .2rem;
         border-radius: 0 0 20% 20%;
         box-shadow: ${Theme.Shadow.sh700}; 
+        
     }
 `;
 export const TitleOne = styled.div`
     /* border: 1px solid red; */
     display: flex;
     justify-content: center;
-    padding: .2rem 0;
+    padding:  0;
     & span {
         color: ${Theme.Colors.white800};
     }
     @media (max-width: 768px) {
         & span {
-            
             font-size: 1.2em;
+            line-height: 30px;
         } 
     }
-
+    @media (max-width: 425px) {
+        & span {
+            font-size: 1.1em;
+            line-height: 25px;
+        } 
+    }
 `;
 export const WrapImg = styled.div`
     /* border: 1px solid red;    */
     max-width: 300px;
     max-height: 300px;
-
     & > img {
         max-width: 100%;
         max-height: 100%;
@@ -131,6 +177,19 @@ export const WrapRegister = styled.div`
     }
 
 `;
+export const WrapTextRegister = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    padding: .2rem;
+    text-align: center;
+    line-height: 0px;
+    @media (max-width: 768px) {
+        & span {
+            font-size: .7rem;
+            color: ${Theme.Colors.white800};
+        }
+    }
+`;
 export const WrapButtonRegister = styled.div`
     /* border: 1px solid red; */
     width: 100%;
@@ -139,13 +198,13 @@ export const WrapButtonRegister = styled.div`
     justify-content: center;
     padding: .2rem 0;
     & button {
-        width: 80%;
+        width: 60%;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 8px;
         border: none;
-        font-size: 1em;
+        font-size: .8em;
         font-weight: 500;
         color: ${Theme.Colors.white800};
         background-color: ${Theme.Colors.yellow500}; //yellow500
@@ -153,7 +212,7 @@ export const WrapButtonRegister = styled.div`
             color: ${Theme.Colors.white800};
         }
         & svg{
-            font-size: 1.2em;
+            font-size: 1.5em;
         }
     }
     @media (max-width: 768px) {
@@ -181,19 +240,19 @@ export const WrapHeader = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .4rem;
-    flex: 1.2;
-    padding: .8rem 0;
+    gap: .2rem;
+    flex: 1;
+    padding: .2rem 0;
     & > img {
-        max-width: 70%;
-        max-height: 70%;
+        max-width: 60%;
+        max-height: 60%;
         object-fit: fill;
     }
     & span {
         color: ${Theme.Colors.green800}
     }
     @media (max-width: 768px) {
-        flex: 1;
+        flex: .8;
         gap: 0rem;
         padding: 0;
         & > img {
@@ -203,7 +262,6 @@ export const WrapHeader = styled.div`
         & span {
             font-size: 1em;
             line-height: 20px;
-            /* display: none; */
         }
     }
 
@@ -211,26 +269,31 @@ export const WrapHeader = styled.div`
 export const WrapForm = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
-    max-height: 400px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 4;
+    /* max-height: 400px; */
+    /* display: flex; */
+    /* flex-direction: column;
+    align-items: center; */
+    flex: 3;
+    overflow: auto;
     & form {
         /* border: 1px solid blue; */
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
         display: flex;
         flex-direction: column; 
+        justify-content: space-between;
+        align-items: center;
         gap: .8rem;    
     }
 `;
 export const FormFields = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    max-height: 280px;
+    /* max-height: 280px; */
     gap: 1rem;
-    flex: 1;
+    /* flex: 1; */
+    padding: .2rem 0;
+    /* margin-bottom: 1rem; */
     overflow: auto;
     & label {
         display: inline-block;
@@ -250,30 +313,31 @@ export const FormFields = styled.div`
         };
     }
     @media (max-width: 768px) {
-        max-height: 220px;
+        /* margin-bottom: 0; */
     }
 `;
 export const WrapFooterForm = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 42px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     padding: .2rem 0;
-    transition: color 0.9s;
+
+`;
+export const WrapButtonLogin = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 38px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     & button {
-        width: 80%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        color: ${Theme.Colors.green800};
-        border-color: ${Theme.Colors.green800};
-        &:hover{
-            color: ${Theme.Colors.white800}
-        }
+        ${ButtonStyles}
     }
     @media (max-width: 768px) {
         & button {
@@ -286,6 +350,43 @@ export const WrapFooterForm = styled.div`
         }
     }
 `;
+
+export const Divider = styled.div`
+    /* border:1px solid red; */
+    width: 100%;
+
+`;
+
+export const WrapButtonScreen = styled.div`
+    /* border:1px solid red; */
+    width: 100%;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    & button {
+        border: none;
+        cursor: pointer;
+        & span {
+            font-size: .7rem;
+            font-weight: 500;
+            text-align: center;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: ${Theme.Colors.grey600};
+        }
+        &:hover {
+            background-color: transparent;
+            & span{
+                color: ${Theme.Colors.blue400};
+            }
+        }
+    }
+
+
+`;
+
 export const Error = styled.div`
     position: absolute;
     top: 20px;
