@@ -96,7 +96,7 @@ export const LeftPanel = styled.div`
         /* height: 0; */
         flex: .3;
         justify-content: center;
-        gap: 8px;
+        gap: 0;
         padding: .2rem;
         padding-bottom: .6rem;
         border-radius: 0 0 20% 20%;
@@ -107,20 +107,20 @@ export const TitleOne = styled.div`
     /* border: 1px solid red; */
     display: flex;
     justify-content: center;
-    padding:  0;
+    padding: 0;
     & span {
         color: ${Theme.Colors.white800};
     }
     @media (max-width: 768px) {
         & span {
-            font-size: 1.2em;
-            line-height: 30px;
+            font-size: 1.1em;
+            /* line-height: 30px; */
         } 
     }
     @media (max-width: 425px) {
         & span {
             font-size: 1.1em;
-            line-height: 25px;
+            /* line-height: 25px; */
         } 
     }
 `;
@@ -144,23 +144,22 @@ export const WrapRegister = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1rem;
-    padding: 1rem 0;
+    /* padding: 1rem 0; */
     & span {
         text-align: center;
         color: ${Theme.Colors.grey400};
     }
     @media (max-width: 768px) {
         padding: .2rem 0;
-        gap: .4rem;
+        /* gap: .4rem; */
         & span {
-            padding: 0 1rem;
+            /* padding: 0 1rem; */
             font-size: .8em;
         }
     }
     @media (max-width: 425px) {
         & span {
-            padding: 0 .8rem;;
+            padding: 0 .8rem;
         }
     }
     @media (max-width: 375px) {
@@ -173,7 +172,7 @@ export const WrapRegister = styled.div`
 export const WrapTextRegister = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    padding: .2rem;
+    /* padding: .2rem; */
     text-align: center;
     line-height: 0px;
     @media (max-width: 768px) {
@@ -186,7 +185,7 @@ export const WrapTextRegister = styled.div`
 export const WrapButtonRegister = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 42px;
+    height: 48px;
     display: flex;
     justify-content: center;
     padding: .2rem 0;
@@ -209,7 +208,7 @@ export const WrapButtonRegister = styled.div`
         }
     }
     @media (max-width: 768px) {
-        height: 36px;
+        height: 42px;
         & button {
             width: 60%;
             font-size: .8em;
@@ -266,31 +265,30 @@ export const WrapHeader = styled.div`
 
 `;
 export const WrapForm = styled.div`
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 100%;
     height: 100%;
     flex: 3;
     /* display: flex; */
-    flex-direction: column; 
-    justify-content: space-evenly;
+    /* flex-direction: column; 
+    justify-content: space-evenly; */
     overflow: auto;
     & form {
-        border: 1px solid blue;
+        /* border: 1px solid blue; */
         width: 100%;
         min-height: 70%;
         max-height: 80%;
-        display: flex;
-        flex-direction: column; 
+        /* display: flex; */
+        /* flex-direction: column; 
         justify-content: center;
         align-items: center;
-        gap: 2rem;    
+        gap: .2rem;     */
     }
 `;
 export const FormFields = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     /* height: 100%; */
-    
     padding: .2rem 0;
     /* overflow: auto; */
     & label {
@@ -328,7 +326,7 @@ export const WrapFooterForm = styled.div`
 export const WrapButtonLogin = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 38px;
+    height: 42px;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -80,7 +80,7 @@ const Login = () => {
           <S.WrapForm>
             <Form onSubmit={handleSubmit(onSubmit)} >
               <S.FormFields >
-                <Container className="mb-5"  >
+                <Container className="mb-4"  >
                   <Form.Group className="mb-4 p-1" controlId="formGridEmail">
                     <Form.Label >Email</Form.Label>
                       <Form.Control 
@@ -114,8 +114,6 @@ const Login = () => {
                   </Form.Group >
                 </Container>
               </S.FormFields>
-
-
             </Form>
             <S.WrapFooterForm>
 
