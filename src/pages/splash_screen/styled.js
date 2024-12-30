@@ -16,9 +16,6 @@ const styledButton = css`
     & svg {
         font-size: 1.2em;
     }
-
-
-
 `;
 const styledCard = css`
     width: 300px;
@@ -34,22 +31,20 @@ const styledCard = css`
     }
 `;
 export const Container = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100vw;
     min-width: 320px;
     height: 96vh;
 `;
 export const Content = styled.div`
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 100%;
     height: 100%;
-    /* display: flex; */
-    align-items: center;
     padding: 1rem ;
     overflow: auto;
 `;
 export const Cards = styled.div`
-    border: 1px solid yellow;
+    /* border: 1px solid yellow; */
     width: 100%;
     display: flex;
     align-items: center;
@@ -63,7 +58,6 @@ export const Cards = styled.div`
     @media (max-width: 500px) {
         flex-direction: column;
     }  
-
 `;
 export const Card = styled.div`
     /* border: 1px solid red; */
