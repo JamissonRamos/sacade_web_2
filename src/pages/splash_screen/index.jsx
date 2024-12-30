@@ -52,7 +52,6 @@ const SplashScreen = () => {
                     </S.Card>
                 </S.Cards>
             </S.Content>
-
         </S.Container>
     )
 }

@@ -36,7 +36,6 @@ const ButtonStyles = css`
         }};
     }
 `;
-
 export const Container = styled.div`
     /* border: 1px solid green; */
     width: 100vw;
@@ -73,7 +72,6 @@ export const WrapPages = styled.div`
 export const LeftPanel = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    /* height: 100%; */
     position: relative;
     flex: 1.2;
     display: flex;
@@ -93,7 +91,6 @@ export const LeftPanel = styled.div`
         z-index: -1;
     }
     @media (max-width: 768px) {
-        /* height: 0; */
         flex: .3;
         justify-content: center;
         gap: 0;
@@ -114,13 +111,11 @@ export const TitleOne = styled.div`
     @media (max-width: 768px) {
         & span {
             font-size: 1.1em;
-            /* line-height: 30px; */
         } 
     }
     @media (max-width: 425px) {
         & span {
             font-size: 1.1em;
-            /* line-height: 25px; */
         } 
     }
 `;
@@ -144,16 +139,13 @@ export const WrapRegister = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* padding: 1rem 0; */
     & span {
         text-align: center;
         color: ${Theme.Colors.grey400};
     }
     @media (max-width: 768px) {
         padding: .2rem 0;
-        /* gap: .4rem; */
         & span {
-            /* padding: 0 1rem; */
             font-size: .8em;
         }
     }
@@ -172,7 +164,6 @@ export const WrapRegister = styled.div`
 export const WrapTextRegister = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    /* padding: .2rem; */
     text-align: center;
     line-height: 0px;
     @media (max-width: 768px) {
@@ -217,7 +208,6 @@ export const WrapButtonRegister = styled.div`
             }
         }
     }
-
 `;
 export const PanelRight = styled.div`
     /* border: 1px solid blue; */
@@ -269,28 +259,18 @@ export const WrapForm = styled.div`
     width: 100%;
     height: 100%;
     flex: 3;
-    /* display: flex; */
-    /* flex-direction: column; 
-    justify-content: space-evenly; */
     overflow: auto;
     & form {
         /* border: 1px solid blue; */
         width: 100%;
         min-height: 70%;
         max-height: 80%;
-        /* display: flex; */
-        /* flex-direction: column; 
-        justify-content: center;
-        align-items: center;
-        gap: .2rem;     */
     }
 `;
 export const FormFields = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    /* height: 100%; */
     padding: .2rem 0;
-    /* overflow: auto; */
     & label {
         display: inline-block;
         margin: 0;
@@ -321,7 +301,6 @@ export const WrapFooterForm = styled.div`
     justify-content: center;
     gap: 8px;
     padding: .4rem 0;
-    /* overflow: auto; */
 `;
 export const WrapButtonLogin = styled.div`
     /* border: 1px solid red; */
