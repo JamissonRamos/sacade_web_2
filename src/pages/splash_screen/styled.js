@@ -36,35 +36,20 @@ const styledCard = css`
 export const Container = styled.div`
     border: 1px solid red;
     width: 100vw;
-    height: 100vh;
     min-width: 320px;
-        display: flex;
-        align-items: center;
-    justify-content: center;
-    /* padding: .8rem;
-    @media (max-width: 768px) {
-        padding: 1rem;
-    }
-    @media (max-width: 425px) {
-        padding: 1rem 0;
-    } */
-
+    height: 96vh;
 `;
 export const Content = styled.div`
-    border: 1px solid red;
+    border: 1px solid blue;
     width: 100%;
     height: 100%;
     /* display: flex; */
     align-items: center;
-    justify-content: center;
     padding: 1rem ;
     overflow: auto;
-    /* @media (max-width: 425px) {
-        padding: 2rem ;
-    } */
 `;
 export const Cards = styled.div`
-    border: 1px solid blue;
+    border: 1px solid yellow;
     width: 100%;
     display: flex;
     align-items: center;
@@ -78,6 +63,7 @@ export const Cards = styled.div`
     @media (max-width: 500px) {
         flex-direction: column;
     }  
+
 `;
 export const Card = styled.div`
     /* border: 1px solid red; */
