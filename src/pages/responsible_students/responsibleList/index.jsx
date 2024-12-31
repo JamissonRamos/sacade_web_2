@@ -29,8 +29,6 @@ const ResponsibleList = () => {
         const { success, data} = result;
         if(success)
         {
-            console.log('data', data);
-            
             setRegistered(data)
         }
     }

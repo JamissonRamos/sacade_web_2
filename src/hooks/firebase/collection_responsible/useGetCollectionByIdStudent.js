@@ -16,9 +16,7 @@ export const useGetCollectionByIdStudent = () => {
                 return { success: false, message: "Nenhum documento encontrado!" };
             }
 
-            const documents = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            console.log('documents', documents);
-            
+            const documents = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));          
             return { success: true, data: documents }; // Retorna todos os documentos encontrados
 
         } catch (error) {

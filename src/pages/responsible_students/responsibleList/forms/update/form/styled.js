@@ -1,7 +1,6 @@
 import styled, {css} from "styled-components";
 import { Theme } from "../../../../../../theme";
 
-
 const StyledButton = css`
     /* width: 100%; */
     height: 100%;
@@ -24,10 +23,6 @@ const StyledButton = css`
     }
     & svg {
         font-size: 1.2rem;
-    }
-    
-    @media (max-width: 425px) {
-        width: 50%;
     }
 `;
 
