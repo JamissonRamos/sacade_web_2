@@ -34,7 +34,7 @@ export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100vw;
     min-width: 320px;
-    height: 96vh;
+    height: 90vh;
 `;
 export const Content = styled.div`
     /* border: 1px solid blue; */
@@ -55,8 +55,9 @@ export const Cards = styled.div`
     @media (max-width: 768px) {
         padding: .8rem 1rem;
     }
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
         flex-direction: column;
+        padding-bottom: 2rem;
     }  
 `;
 export const Card = styled.div`

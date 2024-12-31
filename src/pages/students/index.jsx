@@ -6,9 +6,9 @@ import Header from './components/header'
 import { useEffect, useState } from 'react'
 import * as S from './styled'
 import { TextC } from '../../components/Typography'
-import List from './list'
+// import List from './list'
 import CardList from './cardList'
-import { useScreenWidth } from '../../hooks/screenWidth';
+// import { useScreenWidth } from '../../hooks/screenWidth';
 import { useAuth } from '../../contexts/authContext/AuthContex';
 
 const Students = () => {
@@ -16,7 +16,7 @@ const Students = () => {
   
   const { currentUser } = useAuth();
 
-  const isValueScreen = useScreenWidth(590);
+  // const isValueScreen = useScreenWidth(590);
 
   // Recuperar uidStudentPermanently do localStorage
   const storedUids = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
