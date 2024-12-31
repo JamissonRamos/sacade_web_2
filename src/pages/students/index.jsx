@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Alert, Spinner } from 'react-bootstrap'
 import { LoadingOverlay } from '../../components/spinner/global/styled'
 import { WrapPages } from '../../components/Wrappe/pages'
