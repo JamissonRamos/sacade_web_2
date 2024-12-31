@@ -255,16 +255,21 @@ export const WrapHeader = styled.div`
 
 `;
 export const WrapForm = styled.div`
-    /* border: 1px solid blue; */
+    border: 1px solid blue;
     width: 100%;
     height: 100%;
-    flex: 3;
+    flex: 4;
     overflow: auto;
     & form {
-        /* border: 1px solid blue; */
+        border: 1px solid blue;
         width: 100%;
-        min-height: 70%;
-        max-height: 80%;
+        min-height: 80%;
+        /* max-height: 80%; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        overflow: auto;
     }
 `;
 export const FormFields = styled.div`
@@ -295,15 +300,15 @@ export const FormFields = styled.div`
 export const WrapFooterForm = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
+    justify-content: center; */
+    /* gap: 8px; */
     padding: .4rem 0;
 `;
 export const WrapButtonLogin = styled.div`
-    /* border: 1px solid red; */
+    border: 1px solid red;
     width: 100%;
     height: 42px;
     display: flex;

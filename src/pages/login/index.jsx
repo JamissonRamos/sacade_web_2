@@ -27,6 +27,8 @@ const Login = () => {
   };
 
   const onSubmit = async (data) => {
+    console.log('clicou');
+    
     let result;
     result = await loginIn(data)
 
@@ -80,7 +82,7 @@ const Login = () => {
           <S.WrapForm>
             <Form onSubmit={handleSubmit(onSubmit)} >
               <S.FormFields >
-                <Container className="mb-4"  >
+                <Container className="mb-1"  >
                   <Form.Group className="mb-4 p-1" controlId="formGridEmail">
                     <Form.Label >Email</Form.Label>
                       <Form.Control 
@@ -114,14 +116,13 @@ const Login = () => {
                   </Form.Group >
                 </Container>
               </S.FormFields>
-            </Form>
-            <S.WrapFooterForm>
 
               <S.WrapButtonLogin>
                 <Button
                   type='submit'
                   variant="outline-success"
                   disabled={isLoadingLogin ? true : false}
+                  // onClick={() => handleSubmit(onSubmit)}
                 >
                   {
                     isLoadingLogin ?  
@@ -144,15 +145,17 @@ const Login = () => {
                 </Button>
 
               </S.WrapButtonLogin>
+            </Form>
+            <S.WrapFooterForm>
 
-              <S.WrapButtonScreen>
-                <Button 
-                  variant='outline-success'
-                  onClick={() => navigate('/splashScreen')}
-                >
-                  <span> Ir para a Página Inicial </span>
-                </Button>
-              </S.WrapButtonScreen>
+            <S.WrapButtonScreen>
+              <a 
+                
+                onClick={() => navigate('/splashScreen')}
+              >
+                <span> Ir para a Página Inicial </span>
+              </a>
+            </S.WrapButtonScreen>
 
             </S.WrapFooterForm>
 
