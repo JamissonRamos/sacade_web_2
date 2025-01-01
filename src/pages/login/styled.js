@@ -3,6 +3,7 @@ import { Theme } from "../../theme";
 
 const ButtonStyles = css`
     width: 60%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -93,7 +94,7 @@ export const LeftPanel = styled.div`
     @media (max-width: 768px) {
         flex: .3;
         justify-content: center;
-        gap: 0;
+        gap: 8px;
         padding: .2rem;
         padding-bottom: .6rem;
         border-radius: 0 0 20% 20%;
@@ -138,7 +139,8 @@ export const WrapRegister = styled.div`
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    gap: 8px;
     & span {
         text-align: center;
         color: ${Theme.Colors.grey400};
@@ -255,13 +257,13 @@ export const WrapHeader = styled.div`
 
 `;
 export const WrapForm = styled.div`
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 100%;
     height: 100%;
     flex: 4;
     overflow: auto;
     & form {
-        border: 1px solid blue;
+        /* border: 1px solid blue; */
         width: 100%;
         min-height: 80%;
         /* max-height: 80%; */
@@ -270,6 +272,11 @@ export const WrapForm = styled.div`
         align-items: center;
         justify-content: space-around;
         overflow: auto;
+        @media (max-width: 768px) {
+            min-height: 56%;
+            display: block;
+            padding-bottom: .1rem 0;
+        }
     }
 `;
 export const FormFields = styled.div`
@@ -308,9 +315,9 @@ export const WrapFooterForm = styled.div`
     padding: .4rem 0;
 `;
 export const WrapButtonLogin = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
-    height: 42px;
+    height: 48px;
     display: flex;
     flex-direction: column;
     align-items: center;
