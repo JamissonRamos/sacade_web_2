@@ -27,19 +27,19 @@ const styledCard = css`
         width: 100%;
     }
     @media (max-width: 425px) {
-        width: 240px;
+        width: 280px;
+        padding: 1rem;
     }
 `;
 export const Container = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100vw;
     min-width: 320px;
     height: 100vh;
     overflow: auto;
-
 `;
 export const Content = styled.div`
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 100%;
     height: 100%;
     /* overflow: auto; */
@@ -50,10 +50,9 @@ export const Content = styled.div`
         height: auto;
         padding: 2rem 0;
     }
-
 `;
 export const Cards = styled.div`
-    /* border: 1px solid yellow; */
+    /* border: 5px solid yellow; */
     width: 100%;
     height: 100%;
     display: flex;
@@ -61,7 +60,6 @@ export const Cards = styled.div`
     justify-content: center;
     gap: 24px;
     padding: 1rem 0;
-
     overflow: auto;
     @media (max-width: 768px) {
         padding: .8rem 1rem;
@@ -77,8 +75,8 @@ export const Card = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    background-color:  ${Theme.Colors.grey200};
+    gap: 24px;
+    background-color: ${Theme.Colors.grey200};
     ${styledCard}
     
 `;
@@ -87,7 +85,7 @@ export const SectionPrime = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 16px;
 `;
 export const WrapImg = styled.div`
     /* border: 1px solid red; */
@@ -102,21 +100,23 @@ export const WrapImg = styled.div`
         object-fit: fill;
     }
     @media (max-width: 425px) {
-        max-height: 130px;
-        min-height: 130px;
+        max-height: 140px;
+        min-height: 140px;
     }
 `;
 export const WrapText = styled.div`
     /* border: 1px solid red; */
     min-height: 100px;
-    max-height: 100px;
+    /* max-height: 150px; */
     text-align: center;
+
     & span {
         color: ${Theme.Colors.grey500};
     }
     @media (max-width: 425px) {
         & span {
-            font-size: .9em;
+            font-size: 1em;
+            font-weight: 500;
         }
     }
 `;
