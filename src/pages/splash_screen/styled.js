@@ -36,9 +36,7 @@ export const Container = styled.div`
     min-width: 320px;
     height: 100vh;
     overflow: auto;
-    @media (max-width: 600px) {
-        padding-bottom: 60px;
-    }
+
 `;
 export const Content = styled.div`
     border: 1px solid blue;
@@ -50,6 +48,7 @@ export const Content = styled.div`
     justify-content: center;
     @media (max-width: 600px) {
         height: auto;
+        padding: 2rem 0;
     }
 
 `;
