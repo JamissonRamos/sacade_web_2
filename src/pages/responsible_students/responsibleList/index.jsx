@@ -4,7 +4,7 @@ import { TextC } from '../../../components/Typography'
 import { WrapPages } from '../../../components/Wrappe/pages'
 import { useEffect, useState } from 'react'
 import { useResponsibleStudents } from '../../../hooks/responsibleStudents'
-import { Alert, Spinner } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 import { LoadingOverlay } from '../../../components/spinner/global/styled'
 import { useLocation } from 'react-router-dom'
 import Header from './header'
@@ -21,9 +21,6 @@ const ResponsibleList = () => {
     const dataStudentLocalStorage = JSON.parse(localStorage.getItem('student')) || [];
     const {firstName, lastName} = dataStudentLocalStorage[0] || "";
     const fillNameStudent = firstName + " " + lastName
-
-    console.log('dataStudentLocalStorage', dataStudentLocalStorage);
-
 
     const { getDocumentsByIdStudents, loading: loadingResponsible } = useResponsibleStudents.useGetDocumentsByIdStudents()
     

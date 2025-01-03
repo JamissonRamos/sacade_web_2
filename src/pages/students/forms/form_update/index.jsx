@@ -31,8 +31,7 @@ const FormUpdateStudents = () => {
             setMsgBox({variant: 'danger', message: message});
         }
     };
-    console.log('registered', registered);
-    
+        
     return (
         <WrapPages>
             {
