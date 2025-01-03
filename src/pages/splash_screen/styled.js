@@ -34,23 +34,26 @@ export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100vw;
     min-width: 320px;
-    height: 90vh;
+    height: 96vh;
+    overflow: auto;
 `;
 export const Content = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
-    height: 100%;
-    padding: 1rem ;
+    /* height: 100%; */
     overflow: auto;
+    
 `;
 export const Cards = styled.div`
     /* border: 1px solid yellow; */
     width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 24px;
     padding: 1rem 0;
+
     overflow: auto;
     @media (max-width: 768px) {
         padding: .8rem 1rem;
@@ -69,6 +72,7 @@ export const Card = styled.div`
     gap: 16px;
     background-color:  ${Theme.Colors.grey200};
     ${styledCard}
+    
 `;
 export const SectionPrime = styled.div`
     /* border: 1px solid red; */

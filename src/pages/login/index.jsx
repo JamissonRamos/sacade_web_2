@@ -26,9 +26,7 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const onSubmit = async (data) => {
-    console.log('clicou');
-    
+  const onSubmit = async (data) => {    
     let result;
     result = await loginIn(data)
 
