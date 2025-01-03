@@ -31,18 +31,27 @@ const styledCard = css`
     }
 `;
 export const Container = styled.div`
-    /* border: 1px solid red; */
+    border: 1px solid red;
     width: 100vw;
     min-width: 320px;
-    height: 96vh;
+    height: 100vh;
     overflow: auto;
+    @media (max-width: 600px) {
+        padding-bottom: 60px;
+    }
 `;
 export const Content = styled.div`
-    /* border: 1px solid blue; */
+    border: 1px solid blue;
     width: 100%;
-    /* height: 100%; */
-    overflow: auto;
-    
+    height: 100%;
+    /* overflow: auto; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 600px) {
+        height: auto;
+    }
+
 `;
 export const Cards = styled.div`
     /* border: 1px solid yellow; */
