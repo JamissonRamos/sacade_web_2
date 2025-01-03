@@ -161,7 +161,6 @@ export const WrapRegister = styled.div`
             padding: 0rem;;
         }
     }
-
 `;
 export const WrapTextRegister = styled.div`
     /* border: 1px solid red; */
@@ -254,7 +253,6 @@ export const WrapHeader = styled.div`
             line-height: 20px;
         }
     }
-
 `;
 export const WrapForm = styled.div`
     /* border: 1px solid blue; */
@@ -266,7 +264,6 @@ export const WrapForm = styled.div`
         /* border: 1px solid blue; */
         width: 100%;
         min-height: 80%;
-        /* max-height: 80%; */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -292,7 +289,6 @@ export const FormFields = styled.div`
         line-height: 1.5;
         color: ${Theme.Colors.green800};
     }
-
     & .input-group input:focus ,input:focus, select:focus {
         border-color: ${Theme.Colors.green800};
         box-shadow: none;
@@ -307,11 +303,6 @@ export const FormFields = styled.div`
 export const WrapFooterForm = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
-    /* gap: 8px; */
     padding: .4rem 0;
 `;
 export const WrapButtonLogin = styled.div`

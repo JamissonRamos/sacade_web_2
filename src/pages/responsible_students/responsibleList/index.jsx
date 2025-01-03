@@ -22,6 +22,9 @@ const ResponsibleList = () => {
     const {firstName, lastName} = dataStudentLocalStorage[0] || "";
     const fillNameStudent = firstName + " " + lastName
 
+    console.log('dataStudentLocalStorage', dataStudentLocalStorage);
+
+
     const { getDocumentsByIdStudents, loading: loadingResponsible } = useResponsibleStudents.useGetDocumentsByIdStudents()
     
     const fetchDocuments = async () => {

@@ -70,7 +70,6 @@ export const AgeCalculation = (birth) => {
     return age >= 18;
 }
 
-
 export const FetchCep = () => {
     
     const { fetchCep, isLoading: loadingCep} =  useSearchCep();

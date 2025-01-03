@@ -10,7 +10,7 @@ import { Alert, Spinner } from 'react-bootstrap';
 const FormUpdateStudents = () => {
     const [registered, setRegistered] = useState(null);
     const [msgBox, setMsgBox] = useState(null);
-    
+
     const location = useLocation();  // Captura o UID da URL
     const { uid } = location.state || {};  // Captura o UID do estado de navegação
     
@@ -31,7 +31,8 @@ const FormUpdateStudents = () => {
             setMsgBox({variant: 'danger', message: message});
         }
     };
-
+    console.log('registered', registered);
+    
     return (
         <WrapPages>
             {
@@ -39,7 +40,7 @@ const FormUpdateStudents = () => {
             }
             
             <S.Container> 
-                <HeaderForm />
+                <HeaderForm uid={uid} data={registered}  />
                 {
                     isLoading   
                     ?   <>

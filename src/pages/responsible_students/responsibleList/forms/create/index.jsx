@@ -1,6 +1,6 @@
 import * as S from './styled'
 import { WrapPages } from "../../../../../components/Wrappe/pages"
-import HeaderForm from './components/heade'
+import HeaderForm from './components/header'
 import BodyForm from './components/body'
 
 const FormCreateResponsible = () => {
