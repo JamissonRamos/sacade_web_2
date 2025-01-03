@@ -334,7 +334,7 @@ export const WrapButtonScreen = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    & button {
+    & a {
         border: none;
         cursor: pointer;
         & span {

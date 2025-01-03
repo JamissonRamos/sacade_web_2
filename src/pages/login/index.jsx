@@ -150,7 +150,6 @@ const Login = () => {
 
             <S.WrapButtonScreen>
               <a 
-                
                 onClick={() => navigate('/splashScreen')}
               >
                 <span> Ir para a Página Inicial </span>
