@@ -58,8 +58,8 @@ export const WrapIndex = styled.div`
 
 export const CircleFirstLetterNome = styled.div`
     /* border: 1px solid red; */
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,10 +68,13 @@ export const CircleFirstLetterNome = styled.div`
     background: ${Theme.Colors.blue100};
     border-radius: 20px;
     font-weight: 900;
-    font-size: 14.1px;
+    font-size: 20.1px;
     line-height: 25px;
     text-transform: uppercase;
     color: ${Theme.Colors.blue800};
+    @media (max-width: 425px) {
+        font-size: 18.1px;
+    }
 `;
 export const Name = styled.div`
     /* border: 1px solid blue; */
@@ -79,11 +82,15 @@ export const Name = styled.div`
     align-items: center;
     justify-content: start;
     padding: .2rem 0;
+    text-align: start;
     font-size: 1rem;
     letter-spacing: 0.4px;
     font-weight: 500;
     line-height: 16px;
     color: ${Theme.Colors.grey800};
+    @media (max-width: 425px) {
+        font-size: .9rem;
+    }
 `;
 export const Status = styled.div`
     /* border: 1px solid blue; */

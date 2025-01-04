@@ -1,23 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Alert, Spinner } from 'react-bootstrap'
-import { LoadingOverlay } from '../../components/spinner/global/styled'
-import { WrapPages } from '../../components/Wrappe/pages'
-import { useStudents } from '../../hooks/students'
-import Header from './components/header'
-import { useEffect, useState } from 'react'
-import * as S from './styled'
-import { TextC } from '../../components/Typography'
-// import List from './list'
-import CardList from './cardList'
-// import { useScreenWidth } from '../../hooks/screenWidth';
-import { useAuth } from '../../contexts/authContext/AuthContex';
+import * as S                   from './styled'
+import CardList                 from './cardList'
+import Header                   from './components/header'
+import { TextC }                from '../../components/Typography'
+import { WrapPages }            from '../../components/Wrappe/pages'
+import { Alert, Spinner }       from 'react-bootstrap'
+import { LoadingOverlay }       from '../../components/spinner/global/styled'
+import { useStudents }          from '../../hooks/students'
+import { useEffect, useState }  from 'react'
+import { useAuth }              from '../../contexts/authContext/AuthContex';
 
 const Students = () => {
   const [registered, setRegistered] = useState(null);
-  
   const { currentUser } = useAuth();
-
-  // const isValueScreen = useScreenWidth(590);
 
   // Recuperar uidStudentPermanently do localStorage
   const storedUids = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
@@ -38,7 +33,9 @@ const Students = () => {
         if (currentUser === null){
           // Filtra os dados
           const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
-          setRegistered(filtered);       
+          setRegistered(filtered);   
+          // Limpa o array de dados students
+          data && data.splice(0, data.length);
         }else{
           setRegistered(data);      
         }
