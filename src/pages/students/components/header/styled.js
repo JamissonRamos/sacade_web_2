@@ -1,14 +1,15 @@
 import styled, { css } from "styled-components";
 import { Theme } from "../../../../theme";
 
-const containedStyles = css`
+const ButtonContainedStyles = css`
     width: 80%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 16px;
     padding: 8px 12px;
-    border-radius: 8px;
+    border-radius: 6px;
     box-shadow: none;
     background-color: ${Theme.Colors.green800};
     border: none;
@@ -62,11 +63,11 @@ export const WrapText = styled.div`
 export const WrapButtonCreate = styled.div`
     /* border: 1px solid red; */
     width: 100%;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: .2rem ;
     & button {
-        ${containedStyles};
+        ${ButtonContainedStyles};
     }
 `;

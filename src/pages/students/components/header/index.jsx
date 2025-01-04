@@ -10,7 +10,7 @@ const Header = () => {
         <S.Container>
             <S.WrapText>
                 <TextC.Title level={2}> Lista de Alunos </TextC.Title>
-                <TextC.Body level={1}> Cadastro de alunos no sistema. </TextC.Body>
+                <TextC.Body level={2}> Cadastro de alunos no sistema. </TextC.Body>
             </S.WrapText>
             <S.WrapButtonCreate>
                 <Button
