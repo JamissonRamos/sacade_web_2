@@ -19,7 +19,7 @@ const styledButton = css`
 `;
 const styledCard = css`
     width: 300px;
-    padding: 1rem .8rem;
+    padding: 2rem .8rem;
     border-radius: 4px;
     box-shadow: ${Theme.Shadow.sh900}; 
     transition: padding 0.4s; 
@@ -28,7 +28,7 @@ const styledCard = css`
     }
     @media (max-width: 425px) {
         width: 280px;
-        padding: 1rem;
+        padding: 2.4rem 1rem;
     }
 `;
 export const Container = styled.div`
@@ -42,7 +42,6 @@ export const Content = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
     height: 100%;
-    /* overflow: auto; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,7 +77,6 @@ export const Card = styled.div`
     gap: 24px;
     background-color: ${Theme.Colors.grey200};
     ${styledCard}
-    
 `;
 export const SectionPrime = styled.div`
     /* border: 1px solid red; */
@@ -107,9 +105,7 @@ export const WrapImg = styled.div`
 export const WrapText = styled.div`
     /* border: 1px solid red; */
     min-height: 100px;
-    /* max-height: 150px; */
     text-align: center;
-
     & span {
         color: ${Theme.Colors.grey500};
     }
@@ -134,7 +130,6 @@ export const WrapButton = styled.div`
     padding: .2rem;
     & button {
         ${styledButton};
-        
     }
     & button#buttonLogin{
         border-color: ${Theme.Colors.yellow700};
