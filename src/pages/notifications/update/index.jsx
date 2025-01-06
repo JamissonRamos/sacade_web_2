@@ -9,11 +9,8 @@ const NotificationsUpdate = () => {
 
     const { url = '/', uid = '', valueButton = { value: 'Home', icon: 'MdHome' } } = location.state || {};
     const { value: buttonValue = 'Default Value', icon: buttonIcon = 'Default Icon' } = valueButton;
-
-    console.log('uid',uid);
     
     return (
-
         <S.Container>
             <S.Content>
                 <S.Header>

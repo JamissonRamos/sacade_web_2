@@ -79,6 +79,7 @@ export  const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 0 auto
 `;
 export  const Content = styled.div`
     /* border: 1px solid red; */
