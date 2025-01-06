@@ -30,7 +30,7 @@ const StyledButton = css`
 `;
 
 export const Container = styled.div`
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 100%;
     min-width: 320px;
     height: 90%;
