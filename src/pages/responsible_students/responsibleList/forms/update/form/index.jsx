@@ -79,8 +79,15 @@ const FormUpdate = ({registered}) => {
         const { success, message } = result;
 
         if(success){
+            const path = `/responsibleStudents/responsibleList/`
+            navigate('/notifications/update', {
+                state: {
+                    uid: data.idStudent[0],
+                    url: path,
+                    valueButton: {value: 'Lista Responsáveis', icon: 'MdPerson'},
+                },
+            });
             reset();
-            navigate('/notifications/update');
         }else{
             console.log('Erro: ', message);
             navigate('/notifications/error');

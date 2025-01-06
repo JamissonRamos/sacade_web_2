@@ -5,7 +5,7 @@ import { Theme } from '../../../../../../theme';
 import { useNavigate } from 'react-router-dom';
 
 const HeaderForm = ({uid, data}) => {
-    const {firstName, lastName } = data || '';
+    // const {firstName, lastName } = data || '';
     const navigate = useNavigate();
 
     const handleDataStudentLocalStorage = () => {
