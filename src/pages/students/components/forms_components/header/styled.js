@@ -14,5 +14,4 @@ export const Container = styled.div`
     & span:first-child {
         color: ${Theme.Colors.green800};
     }
-
 `;
