@@ -9,12 +9,12 @@ const StyledButton = css`
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 8px 12px;
+    padding: 9px 16px;
     border-radius: 4px;
     transition: background-color 0.4s ease, color 0.4s;
     cursor: pointer;
     & span {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 500;
         line-height: 18px;
         text-align: center;
@@ -84,6 +84,7 @@ export  const Header = styled.div`
     & span {
         color: ${Theme.Colors.green800};
     }
+    
 `;
 
 export  const Body = styled.div`
@@ -94,7 +95,6 @@ export  const Body = styled.div`
     gap: 8px;
     align-items: center;
     padding: .8rem 0;
-
 `;
 
 export  const WrapButton = styled.div`
@@ -114,8 +114,10 @@ export  const WrapButton = styled.div`
 export const ButtonResponsible = styled.button`
     ${StyledButton}
     ${outlineStyles(Theme.Colors.yellow800)}
+    margin-bottom: 1rem;
 `;
 export const ButtonListStudent = styled.button`
     ${StyledButton}
     ${outlineStyles(Theme.Colors.blue900)}
+    margin-bottom: 1.2rem;
 `;

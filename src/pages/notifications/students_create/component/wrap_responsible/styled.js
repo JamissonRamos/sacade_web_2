@@ -4,19 +4,20 @@ import { Theme } from "../../../../../theme";
 
 
 const StyledButton = css`
-    min-width: 100px;
-    max-width: 250px;
+    width: 300px;
+    min-width: 250px;
+    max-width: 350px;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 8px 12px;
+    padding: 9px 12px;
     border-radius: 4px;
     transition: background-color 0.4s ease, color 0.4s;
     cursor: pointer;
     & span {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 500;
         line-height: 18px;
         text-align: center;
@@ -24,7 +25,7 @@ const StyledButton = css`
         text-transform: uppercase;
     }
     & svg {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 `;
 

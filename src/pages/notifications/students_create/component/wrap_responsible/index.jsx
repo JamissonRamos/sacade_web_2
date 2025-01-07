@@ -97,7 +97,7 @@ const WrapResponsible = ({isRegistered, isLoadingResponsible}) => {
                 ?   <S.WrapContent>
 
                         <S.WrapTex>
-                            <TextC.Body level={1}> 
+                            <TextC.Body level={2}> 
                                 Foram realizados cadastros anteriores de responsáveis. Para adicionar esses responsáveis ao cadastro do aluno, basta selecioná-los e clicar em "Adicionar Responsável".   
                             </TextC.Body>
                         </S.WrapTex>
