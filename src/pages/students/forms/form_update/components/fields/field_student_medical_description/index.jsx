@@ -1,5 +1,5 @@
-import { Col, Form, Row } from "react-bootstrap";
 import * as S from './styled'
+import { Col, Form, Row } from "react-bootstrap";
 
 const StudentMedicalDescription = ({register, errors, setValue}) => {
     return (
@@ -15,6 +15,7 @@ const StudentMedicalDescription = ({register, errors, setValue}) => {
                             {...register("medicalDescription")}
                             isInvalid={!!errors.medicalDescription}
                             setValue={setValue}
+                            onBlur={(e) =>  e.target.value = e.target.value.trim()}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.medicalDescription && errors.medicalDescription.message}

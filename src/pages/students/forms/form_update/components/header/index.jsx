@@ -26,14 +26,14 @@ const HeaderForm = ({uid, data}) => {
     return (
         <S.Container>
             <TextC.Title level={2}> Atualizar Cadastro</TextC.Title>
-            <TextC.Body level={1}> Realizar a atualização dos dados dos alunos </TextC.Body>
+            <TextC.Body level={2}> Realizar a atualizações nos dados do alunos </TextC.Body>
             <S.WrapButton>
                 <Button
                     variant="success"
                     onClick={() =>  handleOnClick() }
                 >
                     <Theme.Icons.MdList />
-                    <span>Lisa de Responsável</span>
+                    <span>Lista de Responsável</span>
                 </Button>
             </S.WrapButton>
         </S.Container>

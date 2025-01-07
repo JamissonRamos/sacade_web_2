@@ -6,7 +6,7 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
 
     const handleBlur = (e) => {
         let fieldName = e.target.name;
-        let fieldValue = e.target.value;
+        let fieldValue = e.target.value.trim();
         let capitalized = CapitalizedValue(fieldValue)
         setValue(fieldName, capitalized)
     };
@@ -58,7 +58,6 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
                             placeholder="Digite seu Data Nascimento." 
                             {...register("birthDate")}
                             isInvalid={!!errors.birthDate}
-                            // onBlur={(e) => handleOnBlur(e)}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.birthDate && errors.birthDate .message}
@@ -93,7 +92,6 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
                             {...register("cpf")}
                             isInvalid={!!errors.cpf}
                             onChange={handleChange}
-                            // onBlur={(e) => handleOnBlur(e)}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.cpf && errors.cpf.message}
@@ -110,7 +108,6 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
                             {...register("rg")}
                             isInvalid={!!errors.rg}
                             onChange={handleChange}
-                            // onBlur={(e) => handleOnBlur(e)}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.rg && errors.rg .message}
@@ -129,7 +126,7 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
                             placeholder="Digite seu Email." 
                             {...register("email")}
                             isInvalid={!!errors.email}
-                            // onBlur={(e) => handleOnBlur(e)}
+                            onBlur={(e) => e.target.value = e.target.value.trim()}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.email && errors.email.message}

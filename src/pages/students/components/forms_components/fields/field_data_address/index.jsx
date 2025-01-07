@@ -19,7 +19,7 @@ const DataAddress = ({register, setValue, getValues, errors, handleChange}) => {
     };
     const handleBlur = (e) => {
         let fieldName = e.target.name;
-        let fieldValue = e.target.value;
+        let fieldValue = e.target.value.trim();
         let capitalized = CapitalizedValue(fieldValue)
         setValue(fieldName, capitalized)
     };
@@ -168,6 +168,20 @@ const DataAddress = ({register, setValue, getValues, errors, handleChange}) => {
                             <Form.Control.Feedback type="invalid" >
                                 {errors.federativeUnit && errors.federativeUnit.message}
                             </Form.Control.Feedback>
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Row className="mb-2 px-1">
+                    <Col className="mb-2" lg={8}>
+                        <Form.Group className="p-1" controlId="GroupReference">
+                            <Form.Label>Referência</Form.Label>
+                            <Form.Control 
+                                type="text"  
+                                name='reference' 
+                                placeholder="Ponto de referência" 
+                                {...register("reference")}
+                                onBlur={(e) => handleBlur(e)}
+                            />
                         </Form.Group>
                     </Col>
                 </Row>

@@ -44,7 +44,7 @@ const BodyForm = ({uid, data}) => {
     const errorCount = Object.keys(errors).length;
 
 
-    useEffect(() => {
+    useEffect(() => {        
         if (registered) {
             Object.keys(registered).forEach(key => {
                 if (key === 'cpf') {
@@ -85,7 +85,7 @@ const BodyForm = ({uid, data}) => {
             - criando outra função para manipular a função que faz as mascara;
         */
         let fieldName = e.target.name;
-        let fieldValue = e.target.value;
+        let fieldValue = e.target.value.trim();
         applyMascara(fieldName, fieldValue);
     }
 
