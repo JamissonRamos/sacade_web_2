@@ -5,8 +5,8 @@ export const BodyPage = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     min-width: 320px;
-    height: 100%;
-    max-height: 68%;
+    height: 74%;
+    max-height: 74%; 
     @media (max-width: 425px) {  
         max-height: 66%;
     }
@@ -34,7 +34,7 @@ export const ContentListResponsible = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     min-width: 320px;
-    height: 98%;
+    height: 100%;
     padding: .8rem 0;
     overflow: auto;
 `;
