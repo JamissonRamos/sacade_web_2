@@ -9,7 +9,7 @@ const StyledButton = css`
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 9px 16px;
+    padding: 12px 16px;
     border-radius: 4px;
     transition: background-color 0.4s ease, color 0.4s;
     cursor: pointer;
@@ -22,7 +22,7 @@ const StyledButton = css`
         text-transform: uppercase;
     }
     & svg {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 `;
 
@@ -60,6 +60,7 @@ export  const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 1rem 0;
     margin: 0 auto;
 `;
 
