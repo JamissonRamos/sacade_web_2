@@ -91,7 +91,7 @@ export const WrapFields = styled.div `
     padding-bottom: .4rem;
     overflow: auto;
     @media (max-width: 425px) {
-            height: 68%;
+        padding-bottom: 3rem;
     }
     
 `;
