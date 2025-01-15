@@ -10,6 +10,7 @@ export const Empty = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 1rem;
     text-align: center;
     color: ${Theme.Colors.green800};
     @media (max-width: 425px) {
