@@ -6,7 +6,7 @@ const HeaderForm = () => {
         <S.Container>
             <S.WrapText>
                 <TextC.Title level={2}> Cadastro de Responsáveis</TextC.Title>
-                <TextC.Body level={1}> Fazer o cadastro de responsáveis pelo aluno.</TextC.Body>
+                <TextC.Body level={2}> Fazer o cadastro de responsáveis pelo aluno.</TextC.Body>
             </S.WrapText>
         </S.Container>
     )

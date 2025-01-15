@@ -10,7 +10,7 @@ const Header = ({fullFirstName}) => {
     return (
         <S.Container>
             <TextC.Title level={2}> Lista de Responsáveis </TextC.Title>
-            <TextC.Body level={1}> Todos os Reesposáveis pelo aluno: {nameStudent} </TextC.Body>
+            <TextC.Body level={2}> Todos os Reesposáveis pelo aluno: <strong>{nameStudent}</strong> </TextC.Body>
             <S.WrapButtonCreate>
                 <Button
                     variant="success"

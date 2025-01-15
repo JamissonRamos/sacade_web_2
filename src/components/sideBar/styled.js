@@ -16,9 +16,10 @@ export const Container = styled.div`
     @media (max-width: 425px) {
         width: 100%;
         height: 72px;
+        padding: 0;
         border-radius: 30px 30px 0 0;
-        /* box-shadow: ${Theme.Shadow.sh501}; */
         z-index: 10;
+        overflow: auto;
     }   
     ${({$isValueScreen}) => $isValueScreen ? 
         css` bottom: 0; ` : 

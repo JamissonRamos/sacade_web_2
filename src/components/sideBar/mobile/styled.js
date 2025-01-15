@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { Theme } from "../../../theme";
 import { Link } from "react-router-dom";
 
-
-
 export const Container = styled.div`
+    /* border: 1px solid blue; */
     width: 100vw;
+    min-width: 320px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -13,8 +13,8 @@ export const Container = styled.div`
     gap: 8px;
     padding: 0 1rem;
     z-index: 1000;
+    overflow: auto;
 `;
-
 export const WrapMenu = styled.div`
     /* border: 1px solid red; */
     height: 100%;
@@ -56,12 +56,14 @@ export const WrapNavigationCircule = styled(Link)`
     box-shadow: ${Theme.Shadow.sh300};
     transition: .4s;
     @media (max-width: 375px) {
-        width: 60px;
-        height: 60px;        
+        width: 70px;
+        height: 50px; 
+        position: relative;
+        bottom: 2px;
+        border-radius: 10%;   
+        box-shadow: none;    
     }
 `;
-
-
 export const IconNavCircule = styled.div`
     /* border: 1px solid red; */
     width: 100%;
@@ -88,7 +90,6 @@ export const IconNav = styled.div`
         color: ${Theme.Colors.grey500};   
     }
 `;
-
 export const LabelNav = styled.div`
     /* border: 1px solid red; */
     display: flex;

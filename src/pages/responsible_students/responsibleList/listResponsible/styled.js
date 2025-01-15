@@ -8,7 +8,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: .8rem;
-    padding: .2rem .4rem 1rem;
+    padding: .2rem .8rem 1rem;
     overflow-y: auto;
 `;
 export const WrapButton = styled.button`

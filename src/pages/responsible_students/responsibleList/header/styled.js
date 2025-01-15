@@ -37,7 +37,7 @@ const containedStyles = css`
 export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    min-width: 320px;
+    min-width: 310px;
     display: flex;
     flex-direction: column;
     gap: .4rem;

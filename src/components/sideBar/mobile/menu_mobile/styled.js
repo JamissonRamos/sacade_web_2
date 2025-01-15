@@ -3,7 +3,7 @@ import { Theme } from "../../../../theme";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-    /* border: 1px solid ; */
+    /* border: 10px solid red; */
     width: 100vw;
     height: 90vh;
     position: fixed;
