@@ -4,6 +4,7 @@ import { Theme } from "../../../theme";
 export const WrapPages = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
+    min-width: 320px;
     height: 100%; 
     padding: 1.4rem .8rem;
     border-radius: 8px;

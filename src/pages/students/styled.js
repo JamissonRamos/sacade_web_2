@@ -4,6 +4,7 @@ import { Theme } from "../../theme";
 export const Empty = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
+    min-width: 320px;
     /* height: 80%; */
     flex: 1;
     display: flex;
