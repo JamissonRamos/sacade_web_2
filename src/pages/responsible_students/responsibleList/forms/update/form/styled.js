@@ -29,16 +29,17 @@ const StyledButton = css`
 export const Container = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
-    min-width: 320px;
-    height: 100%;
+    min-width: 300px;
+    height: 90%;
     display: flex;
     flex-direction: column;
     gap: .8rem;
+    padding: 0 .2rem;
 `;
 
 export const Form = styled.div`
     /* border: 1px solid red; */
-    padding-bottom: .8rem;
+    padding-bottom: .4rem;
     & label {
         display: inline-block;
         margin: 0;

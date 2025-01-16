@@ -5,7 +5,7 @@ const HeaderForm = () => {
     return (
         <S.Container>
             <TextC.Title level={2}> Atualizar Responsáveis</TextC.Title>
-            <TextC.Body level={1}>Fazer atualização do cadastro do responsáveis pelo aluno.</TextC.Body>
+            <TextC.Body level={2}>Fazer atualização do cadastro do responsáveis pelo aluno.</TextC.Body>
         </S.Container>
     )
 }
