@@ -23,7 +23,7 @@ const FieldData = ({register, setValue, errors}) => {
             <Row className="mb-2 px-2 ">
                 <Col>
                     <Form.Group className="p-1" controlId="GroupFullName">
-                        <Form.Label className="m-0"> Nome Completo </Form.Label>
+                        <Form.Label className="m-0"> Nome Completo * </Form.Label>
                         <Form.Control 
                             type="text" 
                             name="fullName"
@@ -41,7 +41,7 @@ const FieldData = ({register, setValue, errors}) => {
             <Row className="mb-2 px-2 ">
                 <Col >
                     <Form.Group className="p-1" controlId="GroupRelationshipLevel">
-                        <Form.Label className="m-0"> Nível de Parentesco </Form.Label>
+                        <Form.Label className="m-0"> Nível de Parentesco * </Form.Label>
                         <Form.Select
                             name='relationshipLevel'
                             {...register("relationshipLevel")}

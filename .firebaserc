@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "sacade-9bf38"
-  }
+    "default": "sacade-9bf38",
+    "dev": "sacade-9bf38",
+    "prod": "sacade-ricado"
+  },
+  "targets": {},
+  "etags": {}
 }

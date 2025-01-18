@@ -16,7 +16,7 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
             <Row className="mb-2 px-2 ">
                 <Col sm={5} md={5} lg={4}>
                     <Form.Group className="p-1" controlId="GroupFirstName">
-                        <Form.Label className="m-0"> Nome </Form.Label>
+                        <Form.Label className="m-0"> Nome * </Form.Label>
                         <Form.Control 
                             type="text" 
                             name="firstName"
@@ -33,7 +33,7 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
                 </Col>
                 <Col sm={7} md={7} lg={8}>
                     <Form.Group className="p-1" controlId="GroupFirstLastName">
-                        <Form.Label className="m-0"> Sobrenome </Form.Label>
+                        <Form.Label className="m-0"> Sobrenome * </Form.Label>
                         <Form.Control 
                             type="text" 
                             name="lastName"
@@ -51,7 +51,7 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
             <Row className="mb-2 px-2">
                 <Col  sm={5} md={5} lg={4}>
                     <Form.Group className="p-1" controlId="GrouDate">
-                        <Form.Label className="m-0"> Data Nascimento </Form.Label>
+                        <Form.Label className="m-0"> Data Nascimento * </Form.Label>
                         <Form.Control   
                             type="date" 
                             name="birthDate"
