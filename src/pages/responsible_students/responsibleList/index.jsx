@@ -28,7 +28,7 @@ const ResponsibleList = () => {
         const result = await getDocumentsByIdStudents(uid);
         const { success, data} = result;
         if(success)
-        {
+        {            
             setRegistered(data)
         }
     }

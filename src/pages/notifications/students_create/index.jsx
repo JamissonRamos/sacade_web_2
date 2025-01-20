@@ -17,11 +17,6 @@ const NotificationsStudentCreate = () => {
 
     const { getDocuments, loading: loadingResponsible } = useResponsibleStudents.useGetDocuments()
 
-    // const handleRemoveDataStudent = () => { 
-    //     // Exclui os dados do localStorage
-    //     localStorage.removeItem('student');
-    // };
-
     const handleGetUidResponsible = async () => { 
         // 1. Recuperar o array
         let responsibleStudent = await JSON.parse(localStorage.getItem("uidsResponsibleStudent"));        

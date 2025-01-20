@@ -19,6 +19,23 @@ const Students = () => {
   
   const { getDocuments, loading: loadingAll , error: errorAll} = useStudents.useGetDocuments()
   
+  const isUnderage = (birthDate) => {
+    if (!birthDate) return false; // Caso a data seja inválida ou não fornecida
+    const today = new Date();
+    const birth = new Date(birthDate);
+
+    const age = today.getFullYear() - birth.getFullYear();
+    const monthDiff = today.getMonth() - birth.getMonth();
+    const dayDiff = today.getDate() - birth.getDate();
+
+    // Ajuste caso o aniversário ainda não tenha acontecido este ano
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+        return age - 1 < 18;
+    }
+    return age < 18;
+};
+
+
   const fetchDocuments = async () => {
     const result = await getDocuments();
     const { success, data, error} = result;
@@ -33,7 +50,17 @@ const Students = () => {
         if (currentUser === null){
           // Filtra os dados
           const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
-          setRegistered(filtered);   
+          /*  adicionar um novo campo ao objeto verificando se é menor ou de maior */
+          const newFilter = filtered.map((item) => {
+            const { birthDate } = item;
+            const isMinor = isUnderage(birthDate)
+            return {
+              ...item,
+              isMinor,
+            }
+
+          })
+          setRegistered(newFilter);   
           // Limpa o array de dados students
           data && data.splice(0, data.length);
         }else{
@@ -48,7 +75,7 @@ const Students = () => {
   useEffect(() => {
     fetchDocuments();  // Chama a função ao renderizar o componente
   }, []);
-
+  
   return (
     <WrapPages>
       {
