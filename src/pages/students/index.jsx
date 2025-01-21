@@ -41,7 +41,7 @@ const Students = () => {
     const { success, data, error} = result;
 
     /*  adicionar um novo campo ao objeto verificando se é menor ou de maior */
-    const newData =  data.map((item) => {
+    const newData = data && data.map((item) => {
       const { birthDate } = item;
       const isMinor = isUnderage(birthDate)
       return {
