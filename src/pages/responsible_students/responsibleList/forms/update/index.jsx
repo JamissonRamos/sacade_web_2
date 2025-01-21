@@ -30,7 +30,6 @@ const FormUpdateResponsible = () => {
             console.log("Error: ", message);
         }
     }
-    console.log('registered:', registered);
     
     useEffect(() => {
         fetchDocuments();  // Chama a função ao renderizar o componente
