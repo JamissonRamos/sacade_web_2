@@ -1,11 +1,14 @@
 import * as S from './styled';
 import { TextC } from '../../../components/Typography';
 import { Theme } from '../../../theme';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const NotificationsDelete = () => {
     const navigate = useNavigate();
-
+    const location = useLocation();
+    const { url = '/', uid = '', valueButton = { value: 'Home', icon: 'MdHome' } } = location.state || {};
+    const { value: buttonValue = 'Default Value', icon: buttonIcon = 'Default Icon' } = valueButton;
+    
     return (
         <S.Container>
             <S.Content>
@@ -14,7 +17,7 @@ const NotificationsDelete = () => {
                     <TextC.Title level={2}> Excluído </TextC.Title>
                 </S.Header>
                 <S.Body>
-                    <TextC.Body level={1}> 
+                    <TextC.Body level={2}> 
                         Seu item foi excluído com sucesso!
                     </TextC.Body>
                     <S.WrapImg>
@@ -23,10 +26,10 @@ const NotificationsDelete = () => {
                 </S.Body>
                 <S.Footer>
                     <S.ButtonOutline
-                        onClick={() =>  navigate('/')}
+                        onClick={() => navigate(url, { state: { uid } })}
                     >
-                        <span>Home</span>
-                        <Theme.Icons.MdHome />
+                        <span>{buttonValue}</span>
+                        <>{Theme.Icons[buttonIcon]()}</>
                     </S.ButtonOutline>
                 </S.Footer>
             </S.Content>

@@ -14,7 +14,7 @@ const FormUpdateResponsible = () => {
     const [registered, setRegistered] = useState([]);
     const location = useLocation();  // Captura o UID da URL
     const { uid } = location.state || {};  // Captura o UID do estado de navegação
-
+    
     const {documentsID, loading } = useResponsibleStudents.useGetDocumentsID()
 
     const fetchDocuments = async () => {
@@ -30,6 +30,7 @@ const FormUpdateResponsible = () => {
             console.log("Error: ", message);
         }
     }
+    console.log('registered:', registered);
     
     useEffect(() => {
         fetchDocuments();  // Chama a função ao renderizar o componente

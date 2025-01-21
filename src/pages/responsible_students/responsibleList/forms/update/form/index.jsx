@@ -58,12 +58,18 @@ const FormUpdate = ({registered}) => {
     };
 
     const handleDeleteItem = async () => {
-        const result = await deleteResponsibleStudent(registered.uid,)
-        const { success, message} = result;
-
+        const result = await deleteResponsibleStudent(registered.uid)
+        const { success, message} = result; 
         if(success){
             handleShowModalDelete()
-            navigate('/notifications/delete');
+            const path = `/responsibleStudents/responsibleList/`
+            navigate('/notifications/delete', {
+                state: {
+                    uid: registered.idStudent[0],
+                    url: path,
+                    valueButton: {value: 'Lista Responsáveis', icon: 'MdPerson'},
+                },
+            });
         }else{
             console.log('Deu erro: ', message);
             navigate('/notifications/error');
@@ -171,13 +177,10 @@ const FormUpdate = ({registered}) => {
 
                     <DeleteData
                         registeredDelete = {registeredDelete}
-                        handleShowDelete   =   {handleShowModalDelete}
-                        handleDeleteData        =   {handleDeleteItem}
+                        handleShowDelete = {handleShowModalDelete}
+                        handleDeleteData = {handleDeleteItem}
                     />
             }
-
-
-
         </S.Container>
     )
 }
