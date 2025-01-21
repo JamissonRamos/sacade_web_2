@@ -7,12 +7,13 @@ import { useResponsibleStudents } from '../../../hooks/responsibleStudents';
 
 
 const CardList = ({data}) => {
-    // Estado para armazenar os resultados de verificação de responsáveis
-    const [responsibleStatus, setResponsibleStatus] = useState({});
-
-    const { getDocumentsByIdStudents } = useResponsibleStudents.useGetDocumentsByIdStudents()
+    // Estado para armazenar os resultados de verificação de responsáveis, se tem ou não 
+    const [storesStudent, setStoresStudent] = useState({});
     const navigate = useNavigate();
 
+    const { getDocumentsByIdStudents } = useResponsibleStudents.useGetDocumentsByIdStudents()
+
+    //Buscar os responsavel pelo aluno
     const fetchDocuments = async (uid) => {
         const result = await getDocumentsByIdStudents(uid);
         const { success, data } = result;
@@ -21,6 +22,19 @@ const CardList = ({data}) => {
         }
         return [];
     }
+
+    // Função para verificar se um estudante menor de idade tem responsável
+    const checkResponsibleStudent = async (uid, isMinor) => {
+        if (!isMinor) {
+            // Se não for menor de idade, não precisa verificar
+            setStoresStudent((prev) => ({ ...prev, [uid]: false }));
+            return false;
+        }
+        const documents = await fetchDocuments(uid);
+        const hasResponsible = documents.length > 0; // Verifica se há algum responsável cadastrado
+        setStoresStudent((prev) => ({ ...prev, [uid]: hasResponsible }));
+        return hasResponsible;
+    };
 
     const handleBadge = (status) => 
     {
@@ -49,29 +63,16 @@ const CardList = ({data}) => {
         navigate('/students/form_update', { state: { uid: uid } });
     };
 
-    // Função para verificar se um estudante menor de idade tem responsável
-    const handleResponsible = async (uid, isMinor) => {
-        if (!isMinor) {
-            // Se não for menor de idade, não precisa verificar
-            setResponsibleStatus((prev) => ({ ...prev, [uid]: false }));
-            return false;
-        }
-
-        const documents = await fetchDocuments(uid);
-        const hasResponsible = documents.length > 0; // Verifica se há algum responsável cadastrado
-        setResponsibleStatus((prev) => ({ ...prev, [uid]: hasResponsible }));
-        return hasResponsible;
-    };
-        // Dispara a verificação de responsáveis ao montar o componente
-        useEffect(() => {
-            const checkResponsibles = async () => {
-                for (const student of data) {
-                    await handleResponsible(student.uid, student.isMinor);
-                }
-            };
-            if (data) checkResponsibles();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [data]);
+    // Dispara a verificação de responsáveis ao montar o componente
+    useEffect(() => {
+        const checkResponsibles = async () => {
+            for (const student of data) {
+                await checkResponsibleStudent(student.uid, student.isMinor);
+            }
+        };
+        if (data) checkResponsibles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [data]);
 
     return (
         <S.Container> 
@@ -79,7 +80,7 @@ const CardList = ({data}) => {
 
             data && data.map(({uid, firstName, lastName, status, isMinor}, i) => {
                 // Chame a função aqui
-                const statusMinor = responsibleStatus[uid] === false && isMinor; // Se for menor e não tiver responsável
+                const statusMinor = storesStudent[uid] === false && isMinor; // Se for menor e não tiver responsável
 
                 return(
                     <>
