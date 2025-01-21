@@ -40,6 +40,17 @@ const Students = () => {
     const result = await getDocuments();
     const { success, data, error} = result;
 
+    /*  adicionar um novo campo ao objeto verificando se é menor ou de maior */
+    const newData =  data.map((item) => {
+      const { birthDate } = item;
+      const isMinor = isUnderage(birthDate)
+      return {
+        ...item,
+        isMinor,
+      }
+    })
+    
+
     if(success)
       {
         /*
@@ -49,22 +60,13 @@ const Students = () => {
         */
         if (currentUser === null){
           // Filtra os dados
-          const filtered = data && data.filter(obj => storedUids.includes(obj.uid));
-          /*  adicionar um novo campo ao objeto verificando se é menor ou de maior */
-          const newFilter = filtered.map((item) => {
-            const { birthDate } = item;
-            const isMinor = isUnderage(birthDate)
-            return {
-              ...item,
-              isMinor,
-            }
-
-          })
-          setRegistered(newFilter);   
+          const filtered = newData && newData.filter(obj => storedUids.includes(obj.uid));
+          setRegistered(filtered);   
           // Limpa o array de dados students
+          newData && newData.splice(0, newData.length);
           data && data.splice(0, data.length);
         }else{
-          setRegistered(data);      
+          setRegistered(newData);      
         }
     }else{
       console.log(error);
