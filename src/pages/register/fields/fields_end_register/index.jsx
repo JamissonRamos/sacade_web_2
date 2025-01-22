@@ -16,6 +16,7 @@ const EndRegister = ({isLoadingCreate}) => {
           </S.Left>
           <S.Right>
             <Button
+              variant='success'
               type='submit'
               disabled={isLoadingCreate ? true : false}
             >
@@ -23,6 +24,7 @@ const EndRegister = ({isLoadingCreate}) => {
                 isLoadingCreate ? 
                   <Spinner as="span" size="sm" /> : null
               }
+              <Theme.Icons.MdSaveAlt />
               Finalizar Cadastro
             </Button>
             <TextC.Body level={2} >

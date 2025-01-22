@@ -91,7 +91,7 @@ export const WrapTextInfo = styled.div`
     }
     @media (max-width: 425px) {
         & > span {
-            font-size: .7em;
+            font-size: .8em;
         }
     }
 `;
@@ -105,11 +105,19 @@ export const WrapButtonHeader = styled.div`
     padding: .1rem 0;
     transition: background-color 0.4s ease, color 0.4s;
     & > Button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 9px 16px;
         color: ${Theme.Colors.white800};
         background-color: ${Theme.Colors.yellow800};
         &:hover {
             color: ${Theme.Colors.white800};
             background-color: ${handleHoverBackground(Theme.Colors.yellow800)};
+        }
+        & svg {
+            font-size: 1.2em;
         }
     }
     @media (max-width: 768px) {

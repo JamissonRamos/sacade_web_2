@@ -78,8 +78,10 @@ const Register = () => {
           <S.WrapButtonHeader>
             <Button  
               variant="warning"
-              onClick={() => navigate(`/login`)}> 
-                <span> Fazer Login </span>
+              onClick={() => navigate(`/login`)}
+            >   
+              <Theme.Icons.MdLock />
+              <span> Fazer Login </span>
             </Button>
           </S.WrapButtonHeader>
           <S.WrapImg>

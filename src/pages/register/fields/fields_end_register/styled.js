@@ -73,15 +73,23 @@ export const Right = styled.div`
         color: ${Theme.Colors.grey600}
     }
     & button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 9px 16px;
         background-color: ${Theme.Colors.green800};
         &:hover {
             background-color: ${props => {
-                const color = props.color || Theme.Colors.green800 ;
+                const color = props.color || Theme.Colors.green800;
                 const r = parseInt(color.slice(1, 3), 16);
                 const g = parseInt(color.slice(3, 5), 16);
                 const b = parseInt(color.slice(5, 7), 16);
                 return `rgb(${r - 85}, ${g - 85}, ${b - 85})`;
             }};
+        }
+        & svg {
+            font-size: 1.2em;
         }
     }
     @media (max-width: 768px) {
