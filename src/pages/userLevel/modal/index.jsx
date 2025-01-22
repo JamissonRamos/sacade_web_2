@@ -9,6 +9,8 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
     const [error, setError] = useState(null);
     const [labelChecked, setLabelChecked] = useState('');
     const {uid, firstName, lastName, status, statusActive} = data || " ";
+    console.log('statusActive', statusActive);
+    
 
     const { UpdateUser, errorUpdate, isLoadingUpdate } = useUsers.usePostDocumentsID();
     const [formData, setFormData] = useState({
@@ -26,7 +28,7 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
                 statusActive: statusActive || false // Se houver um valor ativo, ele será atribuído
             });
             setLabelChecked(
-                statusActive ? 'Ativado' : 'Bloqueado'
+                statusActive ? 'Bloqueado' : 'Ativado'
             );
         }
     }, [data, status, statusActive]); // Executa o efeito quando os dados são recebidos
@@ -63,7 +65,7 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
         }));
         if(name === "statusActive") {
             setLabelChecked(
-                formData.statusActive ? 'Bloqueado' : 'Ativado'
+                formData.statusActive ? 'Ativado' : 'Bloqueado'
             )
         }
     };
@@ -133,10 +135,11 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
                         </Form.Control.Feedback>
                     </Form.Group >
                     <Form.Group className="p-1">
+                        
                         <Form.Check 
                             type="switch"
                             name="statusActive"
-                            label={'Usuário ' + labelChecked}
+                            label={'O usuário encontra-se ' + labelChecked}
                             checked={formData.statusActive}
                             onChange={handleChange}
                         />

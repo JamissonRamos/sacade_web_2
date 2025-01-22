@@ -77,7 +77,6 @@ const CardList = ({data}) => {
     return (
         <S.Container> 
         {
-
             data && data.map(({uid, firstName, lastName, status, isMinor}, i) => {
                 // Chame a função aqui
                 const statusMinor = storesStudent[uid] === false && isMinor; // Se for menor e não tiver responsável

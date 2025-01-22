@@ -2,6 +2,7 @@ import React from 'react'
 import * as S from './styled'
 import { Badge } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
+import { TextC } from '../../../components/Typography';
 // import ChangeRegistrationModal from '../modal'
 
 const CardList = ({data}) => {
@@ -36,23 +37,39 @@ const CardList = ({data}) => {
     return (
         <S.Container>
             {
-                data && data.map(({uid, firstName, lastName, status}) => (
+                data && data.map(({uid, firstName, lastName, status, statusActive}, i) => (
                     <S.WrapButton 
                         key={uid}
+                        $isActive={statusActive}
                         onClick={() => handleShowFormUpdate(uid)}>
+                        {statusActive && 
+                            <S.WrapText>
+                                <TextC.Body level={1}>Este usuário está bloqueado.</TextC.Body>
+                            </S.WrapText>
+                        }
                         <S.Card>
-                            <S.CircleFirstLetterNome>
-                                {firstName && firstName.charAt(0)}
-                            </S.CircleFirstLetterNome>
+                            <S.SectionPrime>
+                                <S.WrapIndex>
+                                    <TextC.Body level={3}> {i + 1} </TextC.Body>
+                                </S.WrapIndex>
 
-                            <S.Name>
-                                {firstName + ' ' + lastName}
-                            </S.Name>
-                            <S.Status>
-                                <Badge bg={handleBadge(status)} text="light">
-                                    {status}
-                                </Badge>
-                            </S.Status>
+                                <S.CircleFirstLetterNome>
+                                    {firstName && firstName.charAt(0)}
+                                </S.CircleFirstLetterNome>
+                                <S.Name>
+                                    {firstName + ' ' + lastName} 
+                                </S.Name>
+                            </S.SectionPrime>
+
+                            <S.SectionSecondary>
+
+                                <S.Status>
+                                    <Badge bg={handleBadge(status)} text="light">
+                                        {status}
+                                    </Badge>
+                                </S.Status>
+                            </S.SectionSecondary>
+
                         </S.Card>
 
                     </S.WrapButton>

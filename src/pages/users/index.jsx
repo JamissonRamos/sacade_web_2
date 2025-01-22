@@ -66,7 +66,7 @@ const Users = () => {
           </S.Empty> 
         :
           <S.BodyPage>
-            { isValueScreen ?  <CardList data={registered.data}/> : <List data={registered.data}/>  }
+            <CardList data={registered.data}/>
           </S.BodyPage>
       } 
     </WrapPages>
