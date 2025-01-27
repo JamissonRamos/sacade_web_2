@@ -36,6 +36,11 @@ export const MenuItem = [
         icon: <Theme.Icons.MdAttachMoney  />
     },
     {
+        title: 'Ficha',
+        path: '/registerStudent',
+        icon: <Theme.Icons.PiAddressBookFill  />
+    },
+    {
         title: 'Configurações',
         path: '#',
         icon:  <Theme.Icons.MdSettings  />,

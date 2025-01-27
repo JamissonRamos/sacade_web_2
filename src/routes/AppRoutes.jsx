@@ -96,6 +96,11 @@ const AppContent = () => {
                                         <Pages.Payments /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/registerStudent" element={
+                                    <ProtectedRoute page='RegisterStudent'>
+                                        <Pages.RegisterStudent /> 
+                                    </ProtectedRoute>
+                                } />
                                 <Route path="/configurationInstallments" element={
                                     <ProtectedRoute page='ConfigurationInstallments'>
                                         <Pages.ConfigurationInstallments /> 

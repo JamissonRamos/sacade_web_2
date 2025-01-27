@@ -23,6 +23,7 @@ import ConfigurationInstallments from './configuration_installments';
 import GenerateInstallments from './generate_installments';
 import SplashScreen from './splash_screen';
 import NotificationsStudentCreate from './notifications/students_create';
+import RegisterStudent from './register_student';
 
 
 export const Pages = {
@@ -38,6 +39,7 @@ export const Pages = {
     FormCreateResponsible,
     FormUpdateResponsible,
     Payments,
+    RegisterStudent,
     ChangePassword,
     UserLevel,
     Login,

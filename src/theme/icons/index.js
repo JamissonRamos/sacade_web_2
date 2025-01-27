@@ -5,6 +5,7 @@ import * as IM      from "react-icons/im";
 import * as FA      from "react-icons/fa";
 import * as AI      from "react-icons/ai";
 import * as RX      from "react-icons/rx";
+import * as PI      from "react-icons/pi";
 
 
 export const Icons = {  
@@ -52,7 +53,8 @@ export const Icons = {
     ImSwitch:                   IM.ImSwitch,
     FaDatabase:                 FA.FaDatabase,
     FaUsers:                    FA.FaUsers,
-    FaDollarSign:               FA.FaDollarSign,
+    FaDollarSign:               FA.FaDollarSign,             
     AiOutlineProduct:           AI.AiOutlineProduct,
     RxCardStackPlus:            RX.RxCardStackPlus,
+    PiAddressBookFill:          PI.PiAddressBookFill,
 }
