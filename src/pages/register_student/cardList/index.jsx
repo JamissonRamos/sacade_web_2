@@ -58,9 +58,8 @@ const CardList = ({data}) => {
         return bg 
     }
 
-    const handleShowFormUpdate = (uid) => { 
-        // handleDeleteLocalStorage();
-        navigate('/registerStudent/formsController', { state: { uid: uid } });
+    const handleShowFormUpdate = (uid, fullname) => { 
+        navigate('/registerStudent/formsController', { state: { uid: uid, fullname: fullname } });
     };
 
     // Dispara a verificação de responsáveis ao montar o componente
@@ -85,7 +84,7 @@ const CardList = ({data}) => {
                     <>
                         <S.WrapButton 
                             key={uid}
-                            onClick={() => handleShowFormUpdate(uid)}
+                            onClick={() => handleShowFormUpdate(uid,  firstName + ' ' + lastName )}
                             $isMinor={statusMinor}
                         >
                             {statusMinor && 

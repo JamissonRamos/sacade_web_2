@@ -5,7 +5,7 @@ import { useGetDocumentsByIdRegisterStudent } from "./useGetDocumentsByIdRegiste
 // import { usePostDocumentsUpdate } from "./usePostDocumentsUpdate";
 // import { usePostDocumentsDelete } from "./usePostDocumentsDelete";
 
-export const useResponsibleStudents = {
+export const useRegisterStudents = {
     // useGetDocuments,
     // useGetDocumentsID,
     useGetDocumentsByIdRegisterStudent,

@@ -3,12 +3,12 @@ import { useGetCollectionByIdRegisterStudent } from "../firebase/collection_regi
 
 export const useGetDocumentsByIdRegisterStudent = () => {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    //const [error, setError] = useState(null);
     const { getDocumentsByIdRegisterStudent } = useGetCollectionByIdRegisterStudent();
 
     const getDocumentsById = useCallback(async (uidStudent) => {
         setLoading(true);
-        setError(null);
+        //setError(null);
         try {
             const result = await getDocumentsByIdRegisterStudent(uidStudent);            
             const { success, data, message} = result;
@@ -18,14 +18,13 @@ export const useGetDocumentsByIdRegisterStudent = () => {
                     data: data,
                 }
             }else{
-                setError({ success: false, message: message })
                 return {
-                    success: false,
+                    success: false, message: message 
                 }
             }
         } catch (error) {
             console.log('Error ao buscas coleção: ', error.message)
-            setError({success: false, message: 'Todo mundo erra, e desta vez foi a nossa vez. Por favor, tente novamente.'})
+            return({success: false, message: 'Todo mundo erra, e desta vez foi a nossa vez. Por favor, tente novamente.'})
         }finally {
             setLoading(false);
         }
@@ -34,7 +33,7 @@ export const useGetDocumentsByIdRegisterStudent = () => {
     }, [])
     return {
         getDocumentsById,
-        error,
+        //error,
         loading
     }
 }
