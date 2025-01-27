@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as S                   from './styled'
 import CardList                 from './cardList'
-import Header                   from './components/header'
+import Header                   from './header'
 import { TextC }                from '../../components/Typography'
 import { WrapPages }            from '../../components/Wrappe/pages'
 import { Alert, Spinner }       from 'react-bootstrap'
