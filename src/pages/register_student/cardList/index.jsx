@@ -60,7 +60,7 @@ const CardList = ({data}) => {
 
     const handleShowFormUpdate = (uid) => { 
         // handleDeleteLocalStorage();
-        navigate('/students/form_update', { state: { uid: uid } });
+        navigate('/registerStudent/formsController', { state: { uid: uid } });
     };
 
     // Dispara a verificação de responsáveis ao montar o componente
