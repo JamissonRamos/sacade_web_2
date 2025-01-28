@@ -11,7 +11,7 @@ import FormCreateResponsible from './responsible_students/responsibleList/forms/
 import FormUpdateResponsible from './responsible_students/responsibleList/forms/update';
 import Payments from './payments';
 import RegisterStudent from './register_student';
-import FormsController from './register_student/forms';
+// import FormsController from './register_student/forms';
 import ChangePassword from './changePassword'
 import UserLevel from './userLevel';
 import Login from './login';
@@ -25,6 +25,7 @@ import ConfigurationInstallments from './configuration_installments';
 import GenerateInstallments from './generate_installments';
 import SplashScreen from './splash_screen';
 import NotificationsStudentCreate from './notifications/students_create';
+
 
 
 export const Pages = {
@@ -41,7 +42,7 @@ export const Pages = {
     FormUpdateResponsible,
     Payments,
     RegisterStudent,
-    FormsController,
+    // FormsController,
     ChangePassword,
     UserLevel,
     Login,
@@ -55,6 +56,4 @@ export const Pages = {
     ConfigurationInstallments,
     GenerateInstallments,
     SplashScreen
-
-
 }
