@@ -98,7 +98,7 @@ const AppContent = () => {
                                 } />
                                 <Route path="/registerStudent" element={
                                     <ProtectedRoute page='RegisterStudent'>
-                                        <Pages.RegisterStudent /> 
+                                        <Pages.NotificationsMaintenance /> 
                                     </ProtectedRoute>
                                 } />
                                 <Route path="/registerStudent/formsController/:uid?" element={

@@ -17,6 +17,7 @@ import CardTotalAtrasadoMes from '../../assets/cardTotalAtrasadoMes.png'
 import CardTotalRecebidoMes from '../../assets/cardTotalRecebidoMes.png'
 import Avatars from '../../assets/avatars.png'
 import AvatarsRemovebg from '../../assets/avatars-removebg.png'
+import Maintenance from '../../assets/maintenance.png'
 
 
 export const ImgC = {
@@ -38,4 +39,5 @@ export const ImgC = {
     CardTotalRecebidoMes,
     Avatars,
     AvatarsRemovebg,
+    Maintenance,
 }

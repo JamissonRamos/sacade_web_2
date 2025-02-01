@@ -11,6 +11,9 @@ const CardList = ({data}) => {
     const [storesStudent, setStoresStudent] = useState({});
     const navigate = useNavigate();
 
+    console.log('data', data);
+    
+
     const { getDocumentsByIdStudents } = useResponsibleStudents.useGetDocumentsByIdStudents()
 
     //Buscar os responsavel pelo aluno
