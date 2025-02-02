@@ -75,7 +75,7 @@ export const Container = styled.div`
             };
         }
         & ::placeholder {
-            font-size: .9em;
+            font-size: 1em;
         }
         & .custom-tabs{
             ${CustomTabs}

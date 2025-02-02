@@ -97,7 +97,7 @@ const DataStudents = ({register, errors, setValue, handleChange}) => {
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
-                <Col lg={4}>
+                <Col lg={8}>
                     <Form.Group className="p-1" controlId="GroupRg">
                         <Form.Label className="m-0"> RG </Form.Label>
                         <Form.Control 
@@ -115,6 +115,24 @@ const DataStudents = ({register, errors, setValue, handleChange}) => {
                 </Col>
             </Row>
             <Row className="mb-2 px-2 ">
+                <Col lg={4}>
+                    <Form.Group className="p-1" controlId="GroupSex">
+                        <Form.Label className="m-0"> Sexo *</Form.Label>
+                        <Form.Select
+                            name='sex'
+                            {...register("sex")}
+                            isInvalid={!!errors.sex}
+                        >
+                        <option value="">Selecione Sexo</option>
+                        <option value="homem">Homem</option>
+                        <option value="mulher">Mulher</option>
+                        <option value="outro">Outro</option>
+                        </Form.Select>
+                        <Form.Control.Feedback type="invalid">
+                            {errors.relationshipLevel && errors.relationshipLevel.message}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
                 <Col >
                     <Form.Group className="p-1" controlId="GroupEmail">
                         <Form.Label className="m-0"> Email </Form.Label>

@@ -44,6 +44,10 @@ export const StudentsSchema = yup.object().shape({
         if (!value) return true; // Se o campo for vazio ou null, não validar
         return yup.string().email().isValidSync(value); // Verifica se o valor segue o formato de e-mail
         }),
+    sex: yup
+            .string()
+            .notOneOf(['Selecione Sexo'], 'Selecione um sexo válido.')
+            .required('Campo sexo é obrigatório'),
     cellPhone: yup
         .string()
         .nullable() // Campo pode ser null ou vazio
