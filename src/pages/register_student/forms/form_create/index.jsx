@@ -5,17 +5,11 @@ const FormCreate = () => {
 /* 
     - Receber todo código relacionado ao banco de dados;
     - Passar aki tudo relacionado ao banco de dados;
-
-
-
 */
     return (
         
         <S.Container>
-            FormCreate
             <BodyForm />
-
-
         </S.Container>
     )
 }

@@ -30,15 +30,15 @@ const CustomTabs = css`
 `;
 
 export const Container = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     & form {
-        border: 1px solid blue;
+        /* border: 1px solid blue; */
         width: 100%;
-        min-width: 320px;
+        /* min-width: 320px; */
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -71,9 +71,9 @@ export const Container = styled.div`
         & .custom-tabs{
             ${CustomTabs}
         }
-        /* @media (max-width: 425px) {
+        @media (max-width: 500px) {
             height: 100%;
-        } */
+        }
     }
 `;
 
