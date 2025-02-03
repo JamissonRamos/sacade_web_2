@@ -11,6 +11,12 @@ export const MaskInput = (fieldName, fieldValue) => {
         case 'degreesRange':
             maskedValue = mask(fieldValue, MaskList.onlyNumber);
             break;
+        case 'studentHeight':
+            maskedValue = mask(fieldValue, MaskList.weight);
+            break;
+        case 'studentWeight':
+            maskedValue = mask(fieldValue, MaskList.height);
+            break;
         default:
             break;
     }

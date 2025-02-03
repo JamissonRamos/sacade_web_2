@@ -68,6 +68,15 @@ const BodyForm = () => {
                                 handleChange={handleChange}
                             />  
                         </MDBTabsPane>
+                        <MDBTabsPane open={basicActive === 'tab2'}> 
+                            <FieldRegisterStudent.RegisterCurrent 
+                                register={register} 
+                                setValue={setValue}
+                                getValues={getValues}
+                                errors={errors}
+                                handleChange={handleChange}
+                            />  
+                        </MDBTabsPane>
                     </MDBTabsContent>
                 </S.WrapFields>
             </Form>

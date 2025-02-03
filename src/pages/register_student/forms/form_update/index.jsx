@@ -12,7 +12,6 @@ const FormUpdate = ({dataRegister}) => {
     return (
         
         <S.Container>
-            update
             <BodyForm />
         </S.Container>
     )

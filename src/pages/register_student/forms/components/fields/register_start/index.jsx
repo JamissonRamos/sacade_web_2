@@ -97,6 +97,7 @@ const RegisterStat = ({register, setValue, getValues, errors, handleChange}) => 
                             placeholder="Digite a altura do aluno" 
                             {...register("studentHeight")}
                             isInvalid={!!errors.studentHeight}
+                            onChange={handleChange}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.studentHeight && errors.studentHeight.message}
@@ -112,6 +113,7 @@ const RegisterStat = ({register, setValue, getValues, errors, handleChange}) => 
                             placeholder="Digite o peso do aluno" 
                             {...register("studentWeight")}
                             isInvalid={!!errors.studentWeight}
+                            onChange={handleChange}
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.studentWeight && errors.studentWeight.message}
