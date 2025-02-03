@@ -40,7 +40,7 @@ const FormsController = () => {
     return (
 
         <WrapPages>
-            <HeaderForm fullname={fullname} />
+            <HeaderForm fullname={fullname}  checkForm={checkForm.check} />
 
             { 
                 loadingRegisterStudent 
