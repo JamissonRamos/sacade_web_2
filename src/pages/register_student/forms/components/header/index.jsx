@@ -1,9 +1,9 @@
 import * as S from './styled';
 import { TextC } from '../../../../../components/Typography';
-import { useState } from 'react';
 
 const HeaderForm = ({fullname,  checkForm}) => {
-    const [tipeForm] = useState(!checkForm ? "Cadastrar" : "Atualizar")
+    
+    const tipeForm = checkForm ? "Atualizar" : "Cadastrar"
 
     return (
         <S.Container>
