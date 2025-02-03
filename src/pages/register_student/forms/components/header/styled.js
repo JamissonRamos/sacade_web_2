@@ -8,10 +8,12 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: .4rem;
+    margin-bottom: 2rem;
     & span {
         color: ${Theme.Colors.grey500};
     }
     & span:first-child {
         color: ${Theme.Colors.green800};
     }
+
 `;
