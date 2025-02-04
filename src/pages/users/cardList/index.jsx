@@ -40,9 +40,9 @@ const CardList = ({data}) => {
                 data && data.map(({uid, firstName, lastName, status, statusActive}, i) => (
                     <S.WrapButton 
                         key={uid}
-                        $isActive={statusActive}
+                        $isActive={!statusActive}
                         onClick={() => handleShowFormUpdate(uid)}>
-                        {statusActive && 
+                        {!statusActive && 
                             <S.WrapText>
                                 <TextC.Body level={1}>Este usuário está bloqueado.</TextC.Body>
                             </S.WrapText>

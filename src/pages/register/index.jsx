@@ -50,7 +50,7 @@ const Register = () => {
       data.birthDate = formattedDate(data.birthDate);
       data.cep = unMask(data.cep);
       data.status = "Visitante";
-      data.statusActive = true;
+      data.statusActive = false;
       delete data.confirmPassword;
       
       let result;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import * as S from './styled'
 import { Badge } from 'react-bootstrap'
 import ChangeRegistrationModal from '../modal'
@@ -8,6 +8,8 @@ const CardList = ({data, onUserUpdate}) => {
     const [showModal, setShowModal] = useState(false);
     const [dataUserModal, setDataUserModal] = useState(null);
 
+
+    
     const handleBadge = (status) => 
     {
         let bg
@@ -40,9 +42,9 @@ const CardList = ({data, onUserUpdate}) => {
                 data && data.map(({uid, firstName, lastName, status, statusActive}, i) => (
                     <S.WrapButton 
                         key={uid}
-                        $isActive={statusActive}
+                        $isActive={!statusActive}
                         onClick={() => {setDataUserModal({uid,firstName,lastName,status,statusActive}), handleShow()}}>
-                        {statusActive && 
+                        {!statusActive && 
                             <S.WrapText>
                                 <TextC.Body level={1}>Este usuário está bloqueado.</TextC.Body>
                             </S.WrapText>
