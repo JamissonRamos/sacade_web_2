@@ -8,8 +8,6 @@ const CardList = ({data, onUserUpdate}) => {
     const [showModal, setShowModal] = useState(false);
     const [dataUserModal, setDataUserModal] = useState(null);
 
-
-    
     const handleBadge = (status) => 
     {
         let bg

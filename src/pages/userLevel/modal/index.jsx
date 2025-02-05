@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Alert, Badge, Button, Form, Modal, Spinner } from 'react-bootstrap'
 import { TextC } from '../../../components/Typography'
 import * as S from './styled'
