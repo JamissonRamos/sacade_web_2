@@ -1,8 +1,9 @@
 import BodyForm from '../components/body';
 import * as S from './styled';
 
-const FormUpdate = ({dataRegister}) => {
+const FormUpdate = ({dataRegister, checkForm}) => {
     console.log('dataRegister', dataRegister);
+    console.log('checkForm', checkForm);
 
 
 
@@ -12,7 +13,7 @@ const FormUpdate = ({dataRegister}) => {
     return (
         
         <S.Container>
-            <BodyForm />
+            <BodyForm  checkForm={checkForm}/>
         </S.Container>
     )
 }

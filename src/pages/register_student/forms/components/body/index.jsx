@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 import { MaskInput } from './script';
 
 
-const BodyForm = () => {
+const BodyForm = ({checkForm}) => {
     const [basicActive, setBasicActive] = useState('tab1');
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
@@ -75,6 +75,11 @@ const BodyForm = () => {
                                 getValues={getValues}
                                 errors={errors}
                                 handleChange={handleChange}
+                            />  
+                        </MDBTabsPane>
+                        <MDBTabsPane open={basicActive === 'tab3'}> 
+                            <FieldRegisterStudent.EndRegister 
+                                checkForm={checkForm}
                             />  
                         </MDBTabsPane>
                     </MDBTabsContent>

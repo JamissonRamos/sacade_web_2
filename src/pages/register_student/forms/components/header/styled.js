@@ -8,7 +8,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: .4rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.4rem;
     & span {
         color: ${Theme.Colors.grey500};
     }

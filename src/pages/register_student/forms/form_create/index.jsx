@@ -1,7 +1,7 @@
 import * as S from './styled';
 import BodyForm from "../components/body"
 
-const FormCreate = () => {
+const FormCreate = ({checkForm}) => {
 /* 
     - Receber todo código relacionado ao banco de dados;
     - Passar aki tudo relacionado ao banco de dados;
@@ -9,7 +9,7 @@ const FormCreate = () => {
     return (
         
         <S.Container>
-            <BodyForm />
+            <BodyForm checkForm={checkForm}/>
         </S.Container>
     )
 }
