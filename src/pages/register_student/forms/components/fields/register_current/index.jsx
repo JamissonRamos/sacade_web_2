@@ -9,7 +9,9 @@ const RegisterCurrent  = ({register, setValue, getValues, errors}) => {
 
     // Função para atualizar o estado quando o valor do range muda
     const handleRangeChange = (event) => {
-        setRangeValue(event.target.value);
+        const valueRange = parseInt(event.target.value, 10);
+        setRangeValue(valueRange);
+        setValue("degreesCurrent", valueRange); // Atualiza o valor no formulário
     };
 
     return (
@@ -67,6 +69,8 @@ const RegisterCurrent  = ({register, setValue, getValues, errors}) => {
                             step='1'
                             id='degreesCurrent'
                             label='Graus Atual'
+                            name='degreesCurrent'
+                            {...register("degreesCurrent")}
                             onChange={handleRangeChange} // Atualiza o estado quando o valor muda
                         />
                         <span>Total de Graus Atual: {rangeValue}</span>

@@ -9,7 +9,9 @@ const RegisterStat = ({register, setValue, getValues, errors, handleChange}) => 
 
     // Função para atualizar o estado quando o valor do range muda
     const handleRangeChange = (event) => {
-        setRangeValue(event.target.value);
+        const valueRange = parseInt(event.target.value, 10);        
+        setRangeValue(valueRange);
+        setValue("degreesRange", valueRange); // Atualiza o valor no formulário
     };
 
     return (
@@ -67,19 +69,24 @@ const RegisterStat = ({register, setValue, getValues, errors, handleChange}) => 
                                 min='0'
                                 max='10'
                                 step='1'
-                                id='customRange3'
                                 label='Selecione os Graus'
+                                id='customRange3'
+                                name='degreesRange'
+                                {...register("degreesRange")}
                                 onChange={handleRangeChange} // Atualiza o estado quando o valor muda
                             />
-                            <span>Total de Graus: {rangeValue}</span>
+                            <span
+                                // name="degreesRange"
+                                // {...register("degreesRange")}
+                            >Total de Graus: {rangeValue}</span>
                         {/* <Form.Control 
                             type="text" 
                             name="degreesRange"
                             placeholder="Digite a quantidade de graus" 
                             {...register("degreesRange")}
                             isInvalid={!!errors.degreesRange}
-                            onChange={handleChange}
-                        /> */}
+                            // onChange={handleChange}
+                        />  */}
                         {/* <Form.Control.Feedback type="invalid">
                             {errors.degreesRange && errors.degreesRange.message}
                         </Form.Control.Feedback>

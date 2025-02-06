@@ -6,10 +6,10 @@ import { FieldRegisterStudent } from '../fields';
 import { Validations } from '../../../../validations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { MaskInput } from './script';
+import { FormattedDate, MaskInput } from './script';
 
 
-const BodyForm = ({checkForm}) => {
+const BodyForm = ({handleOnSubmit, checkForm}) => {
     const [basicActive, setBasicActive] = useState('tab1');
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
@@ -31,6 +31,30 @@ const BodyForm = ({checkForm}) => {
         setValue(fieldName, maskedValue)
     }
 
+
+    const handleSubmitBody = (data) => {
+        console.log('submit body');
+        // console.log('data', data);
+        data.startDate = FormattedDate(data.startDate)
+        data.lastGraduationDate = FormattedDate(data.lastGraduationDate)
+
+
+
+
+
+
+
+
+
+
+
+
+        handleOnSubmit(data)
+
+        
+
+    }
+
     return (
 
         <S.Container>
@@ -38,7 +62,7 @@ const BodyForm = ({checkForm}) => {
                 // Ficou de trazer as variaveis no componete pai do form
                 // errorStudents && <Alert variant={'danger'}> {errorStudents } </Alert>
             }
-            <Form>
+            <Form onSubmit={handleSubmit(handleSubmitBody)}>
                 <MDBTabs className='custom-tabs' >
                     <MDBTabsItem>
                         <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>

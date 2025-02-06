@@ -16,7 +16,4 @@ export const RegisterStudentSchema = yup.object().shape({
         .string()
         .notOneOf(['Selecione Faixa'], 'Selecione uma Faixa válido.')
         .required('Campo Selecione Faixa é obrigatório'),
-    degreesRange: yup
-        .string()
-        .required('Campo Graus Faixa é obrigatório'),
 });

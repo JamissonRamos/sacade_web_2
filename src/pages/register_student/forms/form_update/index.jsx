@@ -7,13 +7,19 @@ const FormUpdate = ({dataRegister, checkForm}) => {
 
 
 
+    const handleOnSubmit = (data) => {
+        console.log('update ');
+        console.log('update data ', data);
 
+
+        
+    }
 
     
     return (
         
         <S.Container>
-            <BodyForm  checkForm={checkForm}/>
+            <BodyForm handleOnSubmit={handleOnSubmit} checkForm={checkForm}/>
         </S.Container>
     )
 }
