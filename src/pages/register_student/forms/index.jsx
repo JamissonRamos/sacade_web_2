@@ -22,10 +22,11 @@ const FormsController = () => {
     const fetchDocuments = async () => {
         const result = await getDocumentsById(uid);
         const { success, data, message} = result;
+
         if(success)
-        {            
+        {                 
             //Verificar se data é diferente de undefined
-            data ? setCheckForm({check: true, data: data}) : setCheckForm({check: false, data: false});
+            data ? setCheckForm({check: true, data: data}) : setCheckForm({check: false, data: data});
         }else
         {
             console.log('error:', message);
@@ -57,8 +58,8 @@ const FormsController = () => {
                     <S.WrapForms>
                         { 
                             checkForm.check
-                            ? <FormUpdate dataRegister={checkForm.data} checkForm={checkForm.check}/>
-                            : <FormCreate checkForm={checkForm.check}/> 
+                            ? <FormUpdate idStudent={uid} dataRegister={checkForm.data} checkForm={checkForm.check}/>
+                            : <FormCreate idStudent={uid} checkForm={checkForm.check}/> 
                         }
                     </S.WrapForms>
             }

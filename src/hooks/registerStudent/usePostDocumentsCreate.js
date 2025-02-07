@@ -1,37 +1,31 @@
-// import { useState, useCallback } from "react";
-// import { useCollectionCreate } from "../firebase/collection_responsible/usePostCollectionCreate";
+import { useState, useCallback } from "react";
+import { useCollectionCreate } from "../firebase/collection_register_students/usePostCollectionCreate";
 
-// export const usePostDocumentsCreate = () => {
-//     const [loading, setLoading] = useState(false);
-//     // const [error, setError] = useState(null);
+export const usePostDocumentsCreate = () => {
+    const [loading, setLoading] = useState(false);
 
-//     const {collectionCreate} = useCollectionCreate();
+    const {collectionCreate} = useCollectionCreate();
     
-//     const createResponsibleStudent = useCallback(async (responsibleStudentsData) => {
+    const createRegisterStudent = useCallback(async (data) => {
+        setLoading(true);
+        try {
+            const result = await collectionCreate(data); 
+            const {success, message } = result;
+            if(success){
+                return { success: true };
+            }else{
+                return {success: false, message: `'Erro ao tenta criar coleção no firebase Ficha aluno controlador': ${message}`}
+            }
 
-//         setLoading(true);
-//         // setError(null);
+        } catch (error) {
+            return {success: false, message: `Erro ao criar coleção: ${error.message}`}
 
-//         try {
-//             const result = await collectionCreate(responsibleStudentsData ); 
-//             const {success, uid, message } = result;
-//             if(success){
-//                 return { success: true, uidResponsibleStudents: uid };
-//             }else{
-//                 return {success: false, message: `'Erro ao tenta criar coleção no firebase Responsible Student': ${message}`}
-//             }
-
-//         } catch (error) {
-//             // setError('Erro ao criar coleção: ' + error.message)
-//             return {success: false, message: `Erro ao criar coleção: ${error.message}`}
-
-
-//         } finally {
-//             setLoading(false);
-//         }
-//     }, [collectionCreate]);
+        } finally {
+            setLoading(false);
+        }
+    }, [collectionCreate]);
     
-//     return {
-//         createResponsibleStudent, loading
-//     }
-// }
+    return {
+        createRegisterStudent, loading
+    }
+}

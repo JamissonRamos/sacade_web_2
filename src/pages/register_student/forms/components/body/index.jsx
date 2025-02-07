@@ -7,13 +7,21 @@ import { Validations } from '../../../../validations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { FormattedDate, MaskInput } from './script';
+import { useNavigate } from 'react-router-dom';
 
 
-const BodyForm = ({handleOnSubmit, checkForm}) => {
+const BodyForm = ({handleOnSubmit, checkForm, loading}) => {
+
     const [basicActive, setBasicActive] = useState('tab1');
+    
+    const navigate = useNavigate();
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
-        resolver: yupResolver(Validations.RegisterStudentSchema)
+        resolver: yupResolver(Validations.RegisterStudentSchema),
+        defaultValues: {
+            degreesRange: 0, // Valor inicial para degreesRange
+            degreesCurrent: 0, // Valor inicial para degreesRange
+        },
     });
 
     const handleBasicClick = (value) => {
@@ -32,26 +40,29 @@ const BodyForm = ({handleOnSubmit, checkForm}) => {
     }
 
 
-    const handleSubmitBody = (data) => {
-        console.log('submit body');
-        // console.log('data', data);
+    const handleSubmitBody = async (data) => {
         data.startDate = FormattedDate(data.startDate)
         data.lastGraduationDate = FormattedDate(data.lastGraduationDate)
 
+        const result =  await handleOnSubmit(data)
+        const {success, message} = result;
+    
+        if(success){
+            const path = `/registerStudent`
+            navigate('/notifications/create', {
+                state: {
+                    url: path,
+                    valueButton: {value: 'Ficha do Aluno', icon: 'PiAddressBookFill'},
+                    buttonNewRegister: false,
+                },
+            });
 
-
-
-
-
-
-
-
-
-
-
-        handleOnSubmit(data)
-
-        
+            
+        }else{
+            reset()
+            navigate('/notifications/error');
+            console.log({message: `Deu algum erro na ficha do aluno: ${message}`})
+        }
 
     }
 
@@ -104,6 +115,7 @@ const BodyForm = ({handleOnSubmit, checkForm}) => {
                         <MDBTabsPane open={basicActive === 'tab3'}> 
                             <FieldRegisterStudent.EndRegister 
                                 checkForm={checkForm}
+                                loading={loading}
                             />  
                         </MDBTabsPane>
                     </MDBTabsContent>

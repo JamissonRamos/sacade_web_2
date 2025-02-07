@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const NotificationsCreate = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { url = '/', uid = '', valueButton = { value: 'Home', icon: 'MdHome' } } = location.state || {};
+    const { url = '/', uid = '', valueButton = { value: 'Home', icon: 'MdHome' }, buttonNewRegister = true } = location.state || {};
     const { value: buttonValue = 'Default Value', icon: buttonIcon = 'Default Icon' } = valueButton;
 
     return (
@@ -30,12 +30,16 @@ const NotificationsCreate = () => {
                         <span>{buttonValue}</span>
                         <>{Theme.Icons[buttonIcon]()}</>
                     </S.ButtonOutline>
-                    <S.ButtonContainer
-                        onClick={() =>  navigate(-1)}
-                    >
-                        <span>Novo Cadastro</span>
-                        <Theme.Icons.MdAddCircle />
-                    </S.ButtonContainer>
+                    {
+                        buttonNewRegister &&
+
+                        <S.ButtonContainer
+                            onClick={() =>  navigate(-1)}
+                        >
+                            <span>Novo Cadastro</span>
+                            <Theme.Icons.MdAddCircle />
+                        </S.ButtonContainer>
+                    }
                 </S.Footer>
             </S.Content>
         </S.Container>

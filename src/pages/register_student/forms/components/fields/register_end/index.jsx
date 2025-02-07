@@ -3,10 +3,8 @@ import { Button, Spinner } from 'react-bootstrap'
 import { TextC } from '../../../../../../components/Typography'
 import { Theme } from '../../../../../../theme'
 
-const EndRegister = ({loadingStudents, checkForm}) => {
-  console.log('checkForm', checkForm);
+const EndRegister = ({checkForm, loading}) => {
   
-
   return (
     <S.Container>
       
@@ -19,9 +17,9 @@ const EndRegister = ({loadingStudents, checkForm}) => {
           <Button
             variant='success'
             type='submit'
-            disabled={loadingStudents ? true : false}
+            disabled={loading ? true : false}
           >
-              { loadingStudents 
+              { loading 
                 ? <>
                     <Spinner
                         as="span"
@@ -30,7 +28,10 @@ const EndRegister = ({loadingStudents, checkForm}) => {
                         role="status"
                         aria-hidden="true"
                     />
-                    <span > Finalizar... </span>
+
+                    { 
+                      checkForm ? <span>Atualizando...</span> : <span>Salvando...</span>
+                    }
                 </> 
                 : <>
                     {

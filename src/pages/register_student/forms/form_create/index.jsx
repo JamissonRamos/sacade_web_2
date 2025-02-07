@@ -1,22 +1,35 @@
 import * as S from './styled';
 import BodyForm from "../components/body"
+import { useRegisterStudents } from '../../../../hooks/registerStudent';
 
-const FormCreate = ({checkForm}) => {
-/* 
-    - Receber todo código relacionado ao banco de dados;
-    - Passar aki tudo relacionado ao banco de dados;
-*/
-    const handleOnSubmit = (data) => {
-        console.log('create ');
-        console.log('create data ', data);
+const FormCreate = ({idStudent, checkForm}) => {
 
+    const {createRegisterStudent, loading: loadingCreate } = useRegisterStudents.usePostDocumentsCreate();
 
-        
+    const handleOnSubmit = async (data) => {
+        //Passando o id do aluno
+        data.idStudent = idStudent
+        const result =  await createRegisterStudent(data)
+        const {success, message} = result;
+
+        if(success){
+            return {
+                success: true
+            }
+        }else{
+            return {
+                success: false,
+                message: message
+            }
+        }
     }
     return (
         
         <S.Container>
-            <BodyForm handleOnSubmit={handleOnSubmit} checkForm={checkForm}/>
+            <BodyForm
+                handleOnSubmit={handleOnSubmit} 
+                checkForm={checkForm} 
+                loading={loadingCreate}/>
         </S.Container>
     )
 }
