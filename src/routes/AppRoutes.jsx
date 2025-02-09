@@ -117,8 +117,6 @@ const AppContent = () => {
                                         <Pages.GenerateInstallments /> 
                                     </ProtectedRoute>
                                 } />
-
-                                
                                 <Route path="/changePassword" element={
                                     <ProtectedRoute page='ChangePassword'>
                                         <Pages.ChangePassword /> 

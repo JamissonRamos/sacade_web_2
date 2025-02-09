@@ -9,15 +9,18 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
     const [error, setError] = useState(null);
     const [labelChecked, setLabelChecked] = useState('');
     const {uid, firstName, lastName, status, statusActive} = data || " ";
+
     console.log('statusActive', statusActive);
     
 
     const { UpdateUser, errorUpdate, isLoadingUpdate } = useUsers.usePostDocumentsID();
+
     const [formData, setFormData] = useState({
         uid: '',
         status: '',
         statusActive: '', 
-    });    
+    });   
+    
     // UseEffect para carregar o valor do status e preencher o formulário
     useEffect(() => {
         if (data) {
@@ -28,7 +31,7 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
                 statusActive: statusActive || false // Se houver um valor ativo, ele será atribuído
             });
             setLabelChecked(
-                statusActive ? 'Bloqueado' : 'Ativado'
+                !statusActive ? 'Bloqueado' : 'Ativado'
             );
         }
     }, [data, status, statusActive]); // Executa o efeito quando os dados são recebidos
@@ -56,16 +59,20 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
     }
 
     const handleChange = (e) => {
+        
         const { name, value, type, checked } = e.target;
+        console.log('checked:', checked);
+        
         setError(null);
         setFormData(prevFormData => ({
             ...prevFormData,
             [name]: type === 'checkbox' ? checked : value,
             uid: uid // Adiciona o uid aqui
         }));
+
         if(name === "statusActive") {
             setLabelChecked(
-                formData.statusActive ? 'Ativado' : 'Bloqueado'
+                checked ? 'Ativado' : 'Bloqueado'
             )
         }
     };

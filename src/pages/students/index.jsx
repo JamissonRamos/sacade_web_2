@@ -14,6 +14,9 @@ const Students = () => {
   const [registered, setRegistered] = useState(null);
   const { currentUser } = useAuth();
 
+  console.log('currentUser', currentUser);
+  
+
   // Recuperar uidStudentPermanently do localStorage
   const storedUids = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
   
@@ -58,7 +61,7 @@ const Students = () => {
           -2 caso tenha mostrar todos os alunos;
           -3 caso não mostrar alunos cadastro e armazenado no local storage;
         */
-        if (currentUser === null){
+        if (currentUser === null || currentUser.statusActive === false){
           // Filtra os dados
           const filtered = newData && newData.filter(obj => storedUids.includes(obj.uid));
           setRegistered(filtered);   
