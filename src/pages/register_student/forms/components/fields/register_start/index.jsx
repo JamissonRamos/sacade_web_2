@@ -14,6 +14,8 @@ const RegisterStat = ({register, setValue, getValues, errors, handleChange}) => 
         setValue("degreesRange", valueRange); // Atualiza o valor no formulário
     };
 
+
+
     return (
         <S.Container>
             <Row className="mb-2 px-2">
@@ -61,36 +63,20 @@ const RegisterStat = ({register, setValue, getValues, errors, handleChange}) => 
                 </Col>
                 <Col md={6} lg={6} >
                     <Form.Group className="p-2" controlId="GroupDegreesRange">
-                        
-                        {/* <Form.Label className="m-0"> Graus *</Form.Label> */}
-                            <MDBRange
-                                className="p-1"
-                                defaultValue={0}
-                                min='0'
-                                max='10'
-                                step='1'
-                                label='Selecione os Graus'
-                                id='customRange3'
-                                name='degreesRange'
-                                {...register("degreesRange")}
-                                onChange={handleRangeChange} // Atualiza o estado quando o valor muda
-                            />
-                            <span
-                                // name="degreesRange"
-                                // {...register("degreesRange")}
-                            >Total de Graus: {rangeValue}</span>
-                        {/* <Form.Control 
-                            type="text" 
-                            name="degreesRange"
-                            placeholder="Digite a quantidade de graus" 
+                    
+                        <MDBRange
+                            className="p-1"
+                            defaultValue={0}
+                            min='0'
+                            max='10'
+                            step='1'
+                            label='Selecione os Graus'
+                            id='customRange3'
+                            name='degreesRange'
                             {...register("degreesRange")}
-                            isInvalid={!!errors.degreesRange}
-                            // onChange={handleChange}
-                        />  */}
-                        {/* <Form.Control.Feedback type="invalid">
-                            {errors.degreesRange && errors.degreesRange.message}
-                        </Form.Control.Feedback>
-                            */}
+                            onChange={handleRangeChange} // Atualiza o estado quando o valor muda
+                        />
+                        <span> Total de Graus: {rangeValue}</span>
                     </Form.Group> 
                 </Col>
             </Row>
@@ -98,22 +84,6 @@ const RegisterStat = ({register, setValue, getValues, errors, handleChange}) => 
                 <Col md={6} lg={6}>
                     <Form.Group className="p-1" controlId="GroupStudentHeight">
                         <Form.Label className="m-0"> Peso Aluno </Form.Label>
-                        <Form.Control 
-                            type="text" 
-                            name="studentHeight"
-                            placeholder="Digite a altura do aluno" 
-                            {...register("studentHeight")}
-                            isInvalid={!!errors.studentHeight}
-                            onChange={handleChange}
-                        />
-                        <Form.Control.Feedback type="invalid">
-                            {errors.studentHeight && errors.studentHeight.message}
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                </Col>
-                <Col md={6} lg={6}>
-                    <Form.Group className="p-1" controlId="GroupStudentWeight">
-                        <Form.Label className="m-0"> Altura Aluno </Form.Label>
                         <Form.Control 
                             type="text" 
                             name="studentWeight"
@@ -124,6 +94,22 @@ const RegisterStat = ({register, setValue, getValues, errors, handleChange}) => 
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.studentWeight && errors.studentWeight.message}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
+                <Col md={6} lg={6}>
+                    <Form.Group className="p-1" controlId="GroupStudentWeight">
+                        <Form.Label className="m-0"> Altura Aluno </Form.Label>
+                        <Form.Control 
+                            type="text" 
+                            name="studentHeight"
+                            placeholder="Digite a altura do aluno" 
+                            {...register("studentHeight")}
+                            isInvalid={!!errors.studentHeight}
+                            onChange={(e) => handleChange(e)}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.studentHeight && errors.studentHeight.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>

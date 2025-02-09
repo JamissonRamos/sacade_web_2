@@ -47,7 +47,7 @@ export const WrapButton = styled.div`
         gap: 8px;
         padding: 9px 12px;
         border: none;
-        box-shadow: none;
+        box-shadow: none !important ; 
         border-radius: 4px;
         transition: background-color 0.4s ease, color 0.4s;
         cursor: pointer;

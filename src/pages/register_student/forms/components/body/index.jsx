@@ -18,10 +18,10 @@ const BodyForm = ({handleOnSubmit, checkForm, loading}) => {
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.RegisterStudentSchema),
-        defaultValues: {
-            degreesRange: 0, // Valor inicial para degreesRange
-            degreesCurrent: 0, // Valor inicial para degreesRange
-        },
+        // defaultValues: {
+        //     degreesRange: 0, // Valor inicial para degreesRange
+        //     degreesCurrent: 0, // Valor inicial para degreesRange
+        // },
     });
 
     const handleBasicClick = (value) => {
@@ -32,11 +32,21 @@ const BodyForm = ({handleOnSubmit, checkForm, loading}) => {
         setBasicActive(value);
     };
 
-    const handleChange = (e) => {
-        let fieldName = e.target.name;
-        let fieldValue = e.target.value;
-        let maskedValue = MaskInput(fieldName, fieldValue)
-        setValue(fieldName, maskedValue)
+    const handleChange =  (e) => {
+
+        let fieldName = e.target.name || false;
+        let fieldValue = e.target.value || false;
+
+        console.log('fieldName body:', fieldName );
+        console.log('fieldValue body:', fieldValue );
+
+        if (!fieldName || !fieldValue) return; // Verifique se os valores estão definidos
+        
+        let maskedValue = MaskInput(fieldName, fieldValue);
+        console.log('maskedValue:', maskedValue); // Verifique o valor mascarado
+        
+       // setValue(fieldName, maskedValue);
+
     }
 
 

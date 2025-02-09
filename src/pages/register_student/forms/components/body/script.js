@@ -4,22 +4,26 @@ import { MaskList } from '../../../../../constants/mask';
 
 export const MaskInput = (fieldName, fieldValue) => {
     let maskedValue;
-    console.log('fieldName', fieldName);
-    console.log('fieldValue', fieldValue);
+    console.log('fieldName script', fieldName);
+    console.log('fieldValue script', fieldValue);
+
+    if (fieldName === false || fieldValue === false) return;
     
     switch (fieldName) {
-        case 'degreesRange':
-            maskedValue = mask(fieldValue, MaskList.onlyNumber);
-            break;
         case 'studentHeight':
-            maskedValue = mask(fieldValue, MaskList.weight);
+            console.log('pasosou');
+            // console.log('fieldValue', fieldValue);
+            maskedValue = mask(fieldValue, MaskList.height);
             break;
         case 'studentWeight':
-            maskedValue = mask(fieldValue, MaskList.height);
+            maskedValue = mask(fieldValue, MaskList.weight);
             break;
         default:
             break;
     }
+
+    console.log('pasosou');
+    console.log('maskedValue:', maskedValue);
     return maskedValue;
 }
 

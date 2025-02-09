@@ -12,7 +12,13 @@ import { FieldStudents } from '../fields'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../../../../validations'
-import { AddUidArray, AgeCalculation, CreateDataStudentLocalStorage, FormattedDate, MaskInput } from './script';
+import { 
+            AddUidArray, 
+            AgeCalculation, 
+            CreateDataStudentLocalStorage, 
+            FormattedDate, 
+            MaskInput 
+        } from './script';
 import { unMask } from 'remask';
 import { useStudents } from '../../../../../hooks/students'
 import { AlertCustom } from '../../../../../components/alert_custom';
