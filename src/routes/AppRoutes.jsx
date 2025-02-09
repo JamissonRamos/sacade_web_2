@@ -98,8 +98,8 @@ const AppContent = () => {
                                 } />
                                 <Route path="/registerStudent" element={
                                     <ProtectedRoute page='RegisterStudent'>
-                                        {/* <Pages.NotificationsMaintenance />  */}
-                                        <Pages.RegisterStudent /> 
+                                        <Pages.NotificationsMaintenance /> 
+                                        {/* <Pages.RegisterStudent />  */}
                                     </ProtectedRoute>
                                 } />
                                 <Route path="/registerStudent/formsController/:uid?" element={

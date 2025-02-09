@@ -18,10 +18,10 @@ const BodyForm = ({handleOnSubmit, checkForm, loading}) => {
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.RegisterStudentSchema),
-        // defaultValues: {
-        //     degreesRange: 0, // Valor inicial para degreesRange
-        //     degreesCurrent: 0, // Valor inicial para degreesRange
-        // },
+        defaultValues: {
+            degreesRange: 0, // Valor inicial para degreesRange
+            degreesCurrent: 0, // Valor inicial para degreesRange
+        },
     });
 
     const handleBasicClick = (value) => {
