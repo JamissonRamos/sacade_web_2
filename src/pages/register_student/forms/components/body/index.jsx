@@ -41,12 +41,11 @@ const BodyForm = ({handleOnSubmit, checkForm, loading}) => {
         setValue(fieldName, maskedValue);
     }
 
-
     const handleSubmitBody = async (data) => {
         data.startDate = FormattedDate(data.startDate)
         data.lastGraduationDate = FormattedDate(data.lastGraduationDate)
 
-        const result =  await handleOnSubmit(data)
+        const result = await handleOnSubmit(data)
         const {success, message} = result;
     
         if(success){
@@ -67,6 +66,16 @@ const BodyForm = ({handleOnSubmit, checkForm, loading}) => {
         }
 
     }
+
+
+
+
+
+
+
+
+
+    
 
     return (
 

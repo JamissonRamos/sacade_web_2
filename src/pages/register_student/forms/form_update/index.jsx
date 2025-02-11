@@ -7,6 +7,20 @@ const FormUpdate = ({idStudent, dataRegister, checkForm}) => {
 
     console.log('update idStudent ', idStudent);
 
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
     const handleOnSubmit = (data) => {
         console.log('update ');
         console.log('update data ', data);
