@@ -6,8 +6,8 @@ import { FieldRegisterStudent } from '../fields';
 import { Validations } from '../../../../validations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { FormattedDate, MaskInput } from './script';
 import { useNavigate } from 'react-router-dom';
+import { ApplyChew, FormattedDate } from './script';
 
 
 const BodyForm = ({handleOnSubmit, checkForm, loading}) => {
@@ -32,21 +32,13 @@ const BodyForm = ({handleOnSubmit, checkForm, loading}) => {
         setBasicActive(value);
     };
 
-    const handleChange =  (e) => {
-
+    const handleApplyChewChange = (e) => {
         let fieldName = e.target.name || false;
         let fieldValue = e.target.value || false;
 
-        console.log('fieldName body:', fieldName );
-        console.log('fieldValue body:', fieldValue );
-
-        if (!fieldName || !fieldValue) return; // Verifique se os valores estão definidos
+        let maskedValue = ApplyChew(fieldName, fieldValue);   
         
-        let maskedValue = MaskInput(fieldName, fieldValue);
-        console.log('maskedValue:', maskedValue); // Verifique o valor mascarado
-        
-       // setValue(fieldName, maskedValue);
-
+        setValue(fieldName, maskedValue);
     }
 
 
@@ -110,7 +102,7 @@ const BodyForm = ({handleOnSubmit, checkForm, loading}) => {
                                 setValue={setValue}
                                 getValues={getValues}
                                 errors={errors}
-                                handleChange={handleChange}
+                                handleApplyChewChange={handleApplyChewChange}
                             />  
                         </MDBTabsPane>
                         <MDBTabsPane open={basicActive === 'tab2'}> 
@@ -119,7 +111,7 @@ const BodyForm = ({handleOnSubmit, checkForm, loading}) => {
                                 setValue={setValue}
                                 getValues={getValues}
                                 errors={errors}
-                                handleChange={handleChange}
+                                handleApplyChewChange={handleApplyChewChange}
                             />  
                         </MDBTabsPane>
                         <MDBTabsPane open={basicActive === 'tab3'}> 

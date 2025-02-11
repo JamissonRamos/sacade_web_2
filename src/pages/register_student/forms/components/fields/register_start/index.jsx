@@ -3,7 +3,8 @@ import * as S from '../styled'
 import { MDBRange } from 'mdb-react-ui-kit'
 import { useState } from 'react';
 
-const RegisterStat = ({register, setValue, getValues, errors, handleChange}) => {
+
+const RegisterStat = ({register, setValue, getValues, errors, handleApplyChewChange}) => {
     // Estado para armazenar o valor selecionado
     const [rangeValue, setRangeValue] = useState(0);
 
@@ -13,8 +14,6 @@ const RegisterStat = ({register, setValue, getValues, errors, handleChange}) => 
         setRangeValue(valueRange);
         setValue("degreesRange", valueRange); // Atualiza o valor no formulário
     };
-
-
 
     return (
         <S.Container>
@@ -89,12 +88,8 @@ const RegisterStat = ({register, setValue, getValues, errors, handleChange}) => 
                             name="studentWeight"
                             placeholder="Digite o peso do aluno" 
                             {...register("studentWeight")}
-                            isInvalid={!!errors.studentWeight}
-                            onChange={handleChange}
+                            onChange={handleApplyChewChange}
                         />
-                        <Form.Control.Feedback type="invalid">
-                            {errors.studentWeight && errors.studentWeight.message}
-                        </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
                 <Col md={6} lg={6}>
@@ -105,12 +100,8 @@ const RegisterStat = ({register, setValue, getValues, errors, handleChange}) => 
                             name="studentHeight"
                             placeholder="Digite a altura do aluno" 
                             {...register("studentHeight")}
-                            isInvalid={!!errors.studentHeight}
-                            onChange={(e) => handleChange(e)}
+                            onChange={handleApplyChewChange}
                         />
-                        <Form.Control.Feedback type="invalid">
-                            {errors.studentHeight && errors.studentHeight.message}
-                        </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
             </Row>
