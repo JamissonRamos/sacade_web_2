@@ -15,7 +15,7 @@ export const useGetCollectionByIdRegisterStudent = () => {
                 return { success: true, data: false };
             }
 
-            const documents = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));          
+            const documents = querySnapshot.docs.map(doc => ({ uid: doc.id, ...doc.data() }));          
             return { success: true, data: documents }; // Retorna todos os documentos encontrados
 
         } catch (error) {

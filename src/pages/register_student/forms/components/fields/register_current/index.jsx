@@ -1,9 +1,9 @@
-import { Col, Row, Form } from 'react-bootstrap'
 import * as S from '../styled'
+import { Col, Row, Form } from 'react-bootstrap'
 import { MDBRange } from 'mdb-react-ui-kit'
 import { useState } from 'react';
 
-const RegisterCurrent  = ({register, setValue, getValues, errors}) => {
+const RegisterCurrent  = ({register, setValue, watch, errors}) => {
     // Estado para armazenar o valor selecionado
     const [rangeValue, setRangeValue] = useState(0);
 
@@ -13,6 +13,8 @@ const RegisterCurrent  = ({register, setValue, getValues, errors}) => {
         setRangeValue(valueRange);
         setValue("degreesCurrent", valueRange); // Atualiza o valor no formulário
     };
+
+    const degreesRangeValue = watch('degreesCurrent');
 
     return (
         <S.Container>
@@ -70,10 +72,11 @@ const RegisterCurrent  = ({register, setValue, getValues, errors}) => {
                             id='degreesCurrent'
                             label='Graus Atual'
                             name='degreesCurrent'
+                            value={degreesRangeValue}
                             {...register("degreesCurrent")}
                             onChange={handleRangeChange} // Atualiza o estado quando o valor muda
                         />
-                        <span>Total de Graus Atual: {rangeValue}</span>
+                        <span>Total de Graus Atual: {rangeValue || degreesRangeValue}</span>
                     </Form.Group> 
                 </Col>
             </Row>

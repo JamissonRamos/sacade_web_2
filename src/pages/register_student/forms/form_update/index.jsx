@@ -1,39 +1,43 @@
-import BodyForm from '../components/body';
 import * as S from './styled';
+import BodyForm from '../components/body';
+import { usePostDocumentsUpdate } from '../../../../hooks/registerStudent/usePostDocumentsUpdate';
 
-const FormUpdate = ({idStudent, dataRegister, checkForm}) => {
-    console.log('dataRegister', dataRegister);
-    console.log('checkForm', checkForm);
+const FormUpdate = ({dataRegister, checkForm}) => {
 
-    console.log('update idStudent ', idStudent);
+    //Deixa como obj, sem array
+    const newDataRegister = dataRegister[0];
 
+    const {updateData, loading } = usePostDocumentsUpdate()
 
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    const handleOnSubmit = (data) => {
+    const handleOnSubmit = async (data) => {
         console.log('update ');
         console.log('update data ', data);
 
+        const result =  await updateData(data)
+        const {success, message} = result;
 
-        
+        if(success){
+            return {
+                success: true
+            }
+        }else{
+            return {
+                success: false,
+                message: message
+            }
+        }
     }
 
     
     return (
         
         <S.Container>
-            <BodyForm handleOnSubmit={handleOnSubmit} checkForm={checkForm}/>
+            <BodyForm 
+                handleOnSubmit={handleOnSubmit} 
+                checkForm={checkForm}
+                loading={loading}
+                dataRecovered={newDataRegister}
+            />
         </S.Container>
     )
 }

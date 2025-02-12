@@ -4,7 +4,7 @@ import { MDBRange } from 'mdb-react-ui-kit'
 import { useState } from 'react';
 
 
-const RegisterStat = ({register, setValue, getValues, errors, handleApplyChewChange}) => {
+const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}) => {
     // Estado para armazenar o valor selecionado
     const [rangeValue, setRangeValue] = useState(0);
 
@@ -14,6 +14,8 @@ const RegisterStat = ({register, setValue, getValues, errors, handleApplyChewCha
         setRangeValue(valueRange);
         setValue("degreesRange", valueRange); // Atualiza o valor no formulário
     };
+
+    const degreesRangeValue = watch('degreesRange');
 
     return (
         <S.Container>
@@ -72,10 +74,11 @@ const RegisterStat = ({register, setValue, getValues, errors, handleApplyChewCha
                             label='Selecione os Graus'
                             id='customRange3'
                             name='degreesRange'
+                            value={degreesRangeValue}
                             {...register("degreesRange")}
                             onChange={handleRangeChange} // Atualiza o estado quando o valor muda
                         />
-                        <span> Total de Graus: {rangeValue}</span>
+                        <span> Total de Graus: {rangeValue || degreesRangeValue}</span>
                     </Form.Group> 
                 </Col>
             </Row>

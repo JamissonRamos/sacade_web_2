@@ -58,7 +58,7 @@ const FormsController = () => {
                     <S.WrapForms>
                         { 
                             checkForm.check
-                            ? <FormUpdate idStudent={uid} dataRegister={checkForm.data} checkForm={checkForm.check}/>
+                            ? <FormUpdate dataRegister={checkForm.data} checkForm={checkForm.check}/>
                             : <FormCreate idStudent={uid} checkForm={checkForm.check}/> 
                         }
                     </S.WrapForms>

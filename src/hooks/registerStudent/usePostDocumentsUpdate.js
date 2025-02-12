@@ -1,34 +1,34 @@
-// import { useState, useCallback } from "react";
-// import { usePostCollectionUpdate } from "../firebase/collection_responsible/usePostCollectionUpdate";
+import { useState, useCallback } from "react";
+import { usePostCollectionUpdate } from "../firebase/collection_register_students/usePostCollectionUpdate";
 
-// export const usePostDocumentsUpdate = () => {
-//     const [loading, seLoading] = useState(false);
-//     const {collectionUpdate} = usePostCollectionUpdate();
+export const usePostDocumentsUpdate = () => {
+    const [loading, setLoading] = useState(false);
+    const {collectionUpdate} = usePostCollectionUpdate();
 
-//     const updateResponsibleStudent = useCallback( async (userData) => {
-//         seLoading(true);              
-//         try {
-//             const result = await collectionUpdate(userData)
-//             const { success, message } = result;
-//             if(success)
-//             {
-//                 return { success: true };
-//             }else {
-//                 return { success: false,  message: message };
-//             }
+    const updateData = useCallback( async (data) => {
+        setLoading(true);              
+        try {
+            const result = await collectionUpdate(data)
+            const { success, message } = result;
+            if(success)
+            {
+                return { success: true };
+            }else {
+                return { success: false,  message: message };
+            }
             
-//         } catch (error) {
-//             console.log('Erro ao atualizar os dados: ', error.message);
-//             return { success: false,  message: error.message };
-//         } finally {
-//             seLoading(false);
-//         }
+        } catch (error) {
+            console.log('Erro ao atualizar os dados: ', error.message);
+            return { success: false,  message: error.message };
+        } finally {
+            setLoading(false);
+        }
 
-//     }, [collectionUpdate])
+    }, [collectionUpdate])
 
-//     return {
-//         updateResponsibleStudent,
-//         loading 
-//     }
+    return {
+        updateData,
+        loading 
+    }
 
-// }
+}
