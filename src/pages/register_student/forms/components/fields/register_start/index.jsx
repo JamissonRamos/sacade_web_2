@@ -92,7 +92,11 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
                             placeholder="Digite o peso do aluno" 
                             {...register("studentWeight")}
                             onChange={handleApplyChewChange}
+                            isInvalid={!!errors.studentWeight}
                         />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.studentWeight && errors.studentWeight.message}
+                        </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
                 <Col md={6} lg={6}>
@@ -103,8 +107,12 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
                             name="studentHeight"
                             placeholder="Digite a altura do aluno" 
                             {...register("studentHeight")}
+                            isInvalid={!!errors.studentHeight}
                             onChange={handleApplyChewChange}
                         />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.studentHeight && errors.studentHeight.message}
+                        </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
             </Row>
@@ -119,6 +127,7 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
                             {...register("studentDescription")}
                             isInvalid={!!errors.studentDescription}
                             onBlur={(e) => e.target.value = e.target.value.trim()}
+
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.studentDescription && errors.studentDescription.message}

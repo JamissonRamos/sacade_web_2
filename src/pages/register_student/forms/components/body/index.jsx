@@ -7,7 +7,7 @@ import { Validations } from '../../../../validations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { ApplyChew, ConvertDate, FormattedDate } from './script';
+import { ApplyChew, ConvertDate, FormatStringNumber, FormattedDate } from './script';
 
 
 const BodyForm = ({handleOnSubmit, checkForm, loading, dataRecovered}) => {
@@ -51,6 +51,11 @@ const BodyForm = ({handleOnSubmit, checkForm, loading, dataRecovered}) => {
     const handleSubmitBody = async (data) => {
         data.startDate = FormattedDate(data.startDate)
         data.lastGraduationDate = FormattedDate(data.lastGraduationDate)
+        data.studentWeight = FormatStringNumber(data.studentWeight)
+        data.studentHeight = FormatStringNumber(data.studentHeight)
+
+
+        
 
         const result = await handleOnSubmit(data)
         const {success, message} = result;
@@ -74,6 +79,9 @@ const BodyForm = ({handleOnSubmit, checkForm, loading, dataRecovered}) => {
         }
 
     }
+
+    //Contas os erro e mostra se tiver algum em qualquer form 
+    const errorCount = Object.keys(errors).length;
 
     useEffect(() => {        
         if (checkForm && dataRecovered) {
@@ -156,6 +164,12 @@ const BodyForm = ({handleOnSubmit, checkForm, loading, dataRecovered}) => {
                         </MDBTabsPane>
                     </MDBTabsContent>
                 </S.WrapFields>
+                {
+                    errorCount > 0 ? 
+                    <S.ErrorCount>
+                        {'Foi detectados alguns erros no cadastro: ' + errorCount}
+                    </S.ErrorCount> : null
+                }
             </Form>
         </S.Container>
     )

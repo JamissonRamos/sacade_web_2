@@ -15,6 +15,7 @@ export const FormatCurrency = (value) => {
         currency: 'BRL',
     }).format(numberValue);
 };
+
 export const FormatNumberCurrency = (value) => {   
     /* 
         - Função para converter em Dinheiro, value esta como number R$ 0,00;

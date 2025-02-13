@@ -2,9 +2,10 @@ import * as S from './styled'
 import { Button, Spinner } from 'react-bootstrap'
 import { TextC } from '../../../../../../components/Typography'
 import { Theme } from '../../../../../../theme'
+import { useNavigate } from 'react-router-dom'
 
 const EndRegister = ({checkForm, loading}) => {
-  
+  const navigate = useNavigate();
   return (
     <S.Container>
       
@@ -13,48 +14,65 @@ const EndRegister = ({checkForm, loading}) => {
       </S.SectionPrime>
 
       <S.SectionSecondary>
+
         <S.WrapButton>
-          <Button
-            variant='success'
-            type='submit'
-            disabled={loading ? true : false}
-          >
-              { loading 
-                ? <>
-                    <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                    />
+          
+          <S.WrapButtonContained>
+            <Button
+              variant='success'
+              type='submit'
+              disabled={loading ? true : false}
+            >
+                { loading 
+                  ? <>
+                      <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                      />
 
-                    { 
-                      checkForm ? <span>Atualizando...</span> : <span>Salvando...</span>
-                    }
-                </> 
-                : <>
-                    {
-                        checkForm 
-                        ?
-                          <>
-                            <Theme.Icons.MdUpdate />
-                            <span>Atualizar</span>
-                        
-                          </>
-                        :
-                          <>
-                            <Theme.Icons.MdSaveAlt />
-                            <span>Salvar</span>
-                          </>
+                      { 
+                        checkForm ? <span>Atualizando...</span> : <span>Salvando...</span>
                       }
-                  </>
+                  </> 
+                  : <>
+                      {
+                          checkForm 
+                          ?
+                            <>
+                              <Theme.Icons.MdUpdate />
+                              <span>Atualizar</span>
+                          
+                            </>
+                          :
+                            <>
+                              <Theme.Icons.MdSaveAlt />
+                              <span>Salvar</span>
+                            </>
+                        }
+                    </>
 
-            } 
+              } 
+            </Button>
+
+          </S.WrapButtonContained>
+            
+          <S.WrapButtonOutline>
+          <Button
+            variant="outline-danger" 
+            onClick={() => navigate(-1)}
+          >
+            <Theme.Icons.MdCancel />
+            <span>Cancelar</span>
           </Button>
+            
+            
+          </S.WrapButtonOutline>
+        
         </S.WrapButton>
       </S.SectionSecondary>
-      
     </S.Container>
   )
 }

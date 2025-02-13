@@ -16,4 +16,10 @@ export const RegisterStudentSchema = yup.object().shape({
         .string()
         .notOneOf(['Selecione Faixa'], 'Selecione uma Faixa válido.')
         .required('Campo Selecione Faixa é obrigatório'),
+    studentWeight: yup
+        .string()
+        .required('O campo Peso do Aluno é obrigatório e não pode ficar vazio'),
+    studentHeight: yup
+        .string()
+        .required('Campo Altura Aluno é obrigatório e não pode ficar vazio.'),
 });
