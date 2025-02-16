@@ -14,13 +14,13 @@ const CardListRegisterStudents = () => {
     const [registered, setRegistered] = useState(false);
 
     const location = useLocation();  // Captura o UID da URL
-    const { uid, fullname } = location.state || {};  // Captura o UID do estado de navegação
+    const { idStudent, fullname } = location.state || {};  // Captura o UID do estado de navegação
   
   //Recuperando as Fichas do aluno;
   const {getDocumentsById, loading: loadingRegisterStudent} = useRegisterStudents.useGetDocumentsByIdRegisterStudent();
       
   const fetchDocuments = async () => {
-      const result = await getDocumentsById(uid);
+      const result = await getDocumentsById(idStudent);
       const { success, data, message} = result;
 
       if(success)
@@ -40,7 +40,7 @@ const CardListRegisterStudents = () => {
           
   return (
     <WrapPages>
-      <Header fullname={fullname}/>
+      <Header idStudent={idStudent} fullname={fullname}/>
       {
         loadingRegisterStudent &&
           <LoadingOverlay>

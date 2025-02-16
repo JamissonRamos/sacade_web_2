@@ -102,6 +102,11 @@ const AppContent = () => {
                                         <Pages.RegisterStudent /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/registerStudent/listRegisterStudents/:idStudent?" element={
+                                    <ProtectedRoute page='RegisterStudent'>
+                                        <Pages.CardListRegisterStudents /> 
+                                    </ProtectedRoute>
+                                } />
                                 <Route path="/registerStudent/formsController/:uid?" element={
                                     <ProtectedRoute page='RegisterStudent'>
                                         <Pages.FormsController /> 

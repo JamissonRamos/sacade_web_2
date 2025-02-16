@@ -54,16 +54,13 @@ const BodyForm = ({handleOnSubmit, checkForm, loading, dataRecovered}) => {
         data.studentWeight = FormatStringNumber(data.studentWeight)
         data.studentHeight = FormatStringNumber(data.studentHeight)
 
-
-        
-
         const result = await handleOnSubmit(data)
         const {success, message} = result;
     
         if(success){
             const path = `/registerStudent`;
             //Coloca dinamico a page de notificação, atualiação ou create
-            navigate(`/notifications/${checkForm ? 'update' : 'create'} `, {
+            navigate(`/notifications/${checkForm ? 'create' : 'update' } `, {
                 state: {
                     url: path,
                     valueButton: {value: 'Ficha do Aluno', icon: 'PiAddressBookFill'},
@@ -84,7 +81,7 @@ const BodyForm = ({handleOnSubmit, checkForm, loading, dataRecovered}) => {
     const errorCount = Object.keys(errors).length;
 
     useEffect(() => {        
-        if (checkForm && dataRecovered) {
+        if (!checkForm && dataRecovered) {
             Object.keys(dataRecovered).forEach(key => {
                 if (key === 'startDate') {
                     const newDate = ConvertDate( dataRecovered[key]) 

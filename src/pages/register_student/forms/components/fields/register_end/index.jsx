@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const EndRegister = ({checkForm, loading}) => {
   const navigate = useNavigate();
+
   return (
     <S.Container>
       
@@ -34,7 +35,7 @@ const EndRegister = ({checkForm, loading}) => {
                       />
 
                       { 
-                        checkForm ? <span>Atualizando...</span> : <span>Salvando...</span>
+                        checkForm ?  <span>Salvando...</span> : <span>Atualizando...</span>
                       }
                   </> 
                   : <>
@@ -42,14 +43,14 @@ const EndRegister = ({checkForm, loading}) => {
                           checkForm 
                           ?
                             <>
-                              <Theme.Icons.MdUpdate />
-                              <span>Atualizar</span>
-                          
+                              <Theme.Icons.MdSaveAlt />
+                              <span>Salvar</span>
                             </>
                           :
                             <>
-                              <Theme.Icons.MdSaveAlt />
-                              <span>Salvar</span>
+                              <Theme.Icons.MdUpdate />
+                              <span>Atualizar</span>
+                          
                             </>
                         }
                     </>
@@ -60,13 +61,14 @@ const EndRegister = ({checkForm, loading}) => {
           </S.WrapButtonContained>
             
           <S.WrapButtonOutline>
-          <Button
-            variant="outline-danger" 
-            onClick={() => navigate(-1)}
-          >
-            <Theme.Icons.MdCancel />
-            <span>Cancelar</span>
-          </Button>
+            
+            <Button
+              variant="outline-danger" 
+              onClick={() => navigate(-1)}
+            >
+              <Theme.Icons.MdCancel />
+              <span>Cancelar</span>
+            </Button>
             
             
           </S.WrapButtonOutline>

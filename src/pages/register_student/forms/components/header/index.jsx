@@ -3,7 +3,7 @@ import { TextC } from '../../../../../components/Typography';
 
 const HeaderForm = ({fullname,  checkForm}) => {
     
-    const tipeForm = checkForm ? "Atualizar" : "Cadastrar"
+    const tipeForm = checkForm ? "Cadastrar" : "Atualizar"
 
     return (
         <S.Container>

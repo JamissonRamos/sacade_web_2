@@ -38,23 +38,18 @@ const CardList = ({data}) => {
         }
     };
 
-
-
-
     return (
         <S.Container>
 
             {data && data.map(({uid, startDate, trackStart, degreesRange, studentDescription}, i) => {
                 
-                
                 const colors = handleBadgeColor(trackStart) // Obter cores para o badge
                 
                 return (
 
-                    <S.WrapButton key={uid}>
+                    <S.WrapButton key={uid} $colors={trackStart === 'branca' ? '#f3f4f4' : colors.bg}>
 
                         <S.Card > 
-
                             <S.SectionPrime>
 
                                 <S.WrapIndexDataUpdate>
@@ -79,22 +74,19 @@ const CardList = ({data}) => {
                                     <BadgeCustom bg={colors.bg} textColor={colors.textColor} borderColor={colors.borderColor}>
                                         <TextC.Body level={3}> {trackStart} <strong> {degreesRange} </strong> </TextC.Body>
                                 </BadgeCustom>
-                                
+
                                 </S.WrapTrackDegrees>
 
                             </S.SectionPrime>
-
                             <S.SectionSecondary>
 
-                                <TextC.Body level={3}> {studentDescription} </TextC.Body>
+                                <TextC.Body level={2}> {studentDescription} </TextC.Body>
 
                             </S.SectionSecondary>
-                            <hr />
                         </S.Card>
 
                     </S.WrapButton>
-                )
-    })  
+                )})  
             }
         </S.Container>
     )

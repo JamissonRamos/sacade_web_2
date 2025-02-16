@@ -11,39 +11,39 @@ import FormUpdate from "./form_update";
 
 
 const FormsController = () => {
-    const [checkForm, setCheckForm] = useState(false) //False Create : True Update
+   // const [checkForm, setCheckForm] = useState(false) //False Create : True Update
     
     const location = useLocation();  // Captura o UID da URL
-    const { uid, fullname } = location.state || {};  // Captura o UID do estado de navegação
+    const { idStudent, fullname, checkForm  } = location.state || {};  // Captura o UID do estado de navegação checkForm = true para cadastro false para atualizar
 
     //Verificar se aluno tem ficha;
-    const {getDocumentsById, loading: loadingRegisterStudent} = useRegisterStudents.useGetDocumentsByIdRegisterStudent();
+    //const {getDocumentsById, loading: loadingRegisterStudent} = useRegisterStudents.useGetDocumentsByIdRegisterStudent();
 
-    const fetchDocuments = async () => {
-        const result = await getDocumentsById(uid);
-        const { success, data, message} = result;
+    // const fetchDocuments = async () => {
+    //     const result = await getDocumentsById(uid);
+    //     const { success, data, message} = result;
 
-        if(success)
-        {                 
-            //Verificar se data é diferente de undefined
-            data ? setCheckForm({check: true, data: data}) : setCheckForm({check: false, data: data});
-        }else
-        {
-            console.log('error:', message);
-        }
-    }
+    //     if(success)
+    //     {                 
+    //         //Verificar se data é diferente de undefined
+    //         data ? setCheckForm({check: true, data: data}) : setCheckForm({check: false, data: data});
+    //     }else
+    //     {
+    //         console.log('error:', message);
+    //     }
+    // }
         
-    useEffect(() => {
-        fetchDocuments(); //Chama a função ao renderizar o componente
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //     fetchDocuments(); //Chama a função ao renderizar o componente
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
     
     return (
 
         <WrapPages>
-            <HeaderForm fullname={fullname}  checkForm={checkForm.check} />
+            <HeaderForm fullname={fullname}  checkForm={checkForm} />
 
-            { 
+            {/* { 
                 loadingRegisterStudent 
                 ? <LoadingOverlay>
                         <Spinner
@@ -55,15 +55,16 @@ const FormsController = () => {
                         <span >Carregando os dados...</span>
                     </LoadingOverlay> 
                 :
-                    <S.WrapForms>
-                        { 
-                            checkForm.check
-                            ? <FormUpdate dataRegister={checkForm.data} checkForm={checkForm.check}/>
-                            : <FormCreate idStudent={uid} checkForm={checkForm.check}/> 
-                        }
-                    </S.WrapForms>
-            }
+                } */}
 
+                <S.WrapForms>
+                    { 
+                        checkForm
+                        ?   <FormCreate idStudent={idStudent} checkForm={checkForm}/>
+                        :   'update' //<FormUpdate dataRegister={checkForm.data} checkForm={checkForm}/>
+
+                    }
+                </S.WrapForms>
         </WrapPages>
     )
 }

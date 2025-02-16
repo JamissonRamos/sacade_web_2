@@ -59,7 +59,7 @@ const CardList = ({data}) => {
     }
 
     const handleShowFormUpdate = (uid, fullname) => { 
-        navigate('/registerStudent/formsController', { state: { uid: uid, fullname: fullname } });
+        navigate('/registerStudent/listRegisterStudents', { state: { idStudent: uid, fullname: fullname } });
     };
 
     // Dispara a verificação de responsáveis ao montar o componente
@@ -75,50 +75,50 @@ const CardList = ({data}) => {
 
     return (
         <S.Container> 
-        {
-            data && data.map(({uid, firstName, lastName, status, isMinor}, i) => {
-                // Chame a função aqui
-                const statusMinor = storesStudent[uid] === false && isMinor; // Se for menor e não tiver responsável
+            {
+                data && data.map(({uid, firstName, lastName, status, isMinor}, i) => {
+                    // Chame a função aqui
+                    const statusMinor = storesStudent[uid] === false && isMinor; // Se for menor e não tiver responsável
 
-                return(
-                    <>
-                        <S.WrapButton 
-                            key={uid}
-                            onClick={() => handleShowFormUpdate(uid,  firstName + ' ' + lastName )}
-                            $isMinor={statusMinor}
-                        >
-                            {statusMinor && 
-                                <S.WrapText>
-                                    <TextC.Body level={1}>É necessário cadastrar um responsável para este aluno.</TextC.Body>
-                                </S.WrapText>
-                            }
-                            <S.Card>
-                                <S.SectionPrime>
-                                    <S.WrapIndex>
-                                        <TextC.Body level={3}> {i + 1} </TextC.Body>
-                                    </S.WrapIndex>
+                    return(
+                        <>
+                            <S.WrapButton 
+                                key={uid}
+                                onClick={() => handleShowFormUpdate(uid,  firstName + ' ' + lastName )}
+                                $isMinor={statusMinor}
+                            >
+                                {statusMinor && 
+                                    <S.WrapText>
+                                        <TextC.Body level={1}>É necessário cadastrar um responsável para este aluno.</TextC.Body>
+                                    </S.WrapText>
+                                }
+                                <S.Card>
+                                    <S.SectionPrime>
+                                        <S.WrapIndex>
+                                            <TextC.Body level={3}> {i + 1} </TextC.Body>
+                                        </S.WrapIndex>
 
-                                    <S.CircleFirstLetterNome>
-                                        {firstName && firstName.charAt(0)}
-                                    </S.CircleFirstLetterNome>
-                                    <S.Name>
-                                        {firstName + ' ' + lastName} 
-                                    </S.Name>
-                                </S.SectionPrime>
-                                <S.SectionSecondary>
+                                        <S.CircleFirstLetterNome>
+                                            {firstName && firstName.charAt(0)}
+                                        </S.CircleFirstLetterNome>
+                                        <S.Name>
+                                            {firstName + ' ' + lastName} 
+                                        </S.Name>
+                                    </S.SectionPrime>
+                                    <S.SectionSecondary>
 
-                                    <S.Status>
-                                        <Badge bg={handleBadge(status)} text="light">
-                                            {status}
-                                        </Badge>
-                                    </S.Status>
-                                </S.SectionSecondary>
-                            </S.Card>
-                        </S.WrapButton>
-                    </>
-                )
-            })
-        }
+                                        <S.Status>
+                                            <Badge bg={handleBadge(status)} text="light">
+                                                {status}
+                                            </Badge>
+                                        </S.Status>
+                                    </S.SectionSecondary>
+                                </S.Card>
+                            </S.WrapButton>
+                        </>
+                    )
+                })
+            }
         </S.Container>
     )
 }
