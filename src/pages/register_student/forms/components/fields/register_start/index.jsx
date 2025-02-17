@@ -21,28 +21,46 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
         <S.Container>
             <Row className="mb-2 px-2">
                 <Col md={6} lg={6}>
-                    <Form.Group className="p-1" controlId="GrouStartDate">
-                        <Form.Label className="m-0"> Data Inicial * </Form.Label>
+                    <Form.Group className="p-1" controlId="GroupDateUpdate">
+                        <Form.Label className="m-0"> Data Atualização * </Form.Label>
                         <Form.Control   
                             type="date" 
-                            name="startDate" 
-                            {...register("startDate")}
-                            isInvalid={!!errors.startDate}
+                            name="dateUpdate" 
+                            {...register("dateUpdate")}
+                            isInvalid={!!errors.dateUpdate}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.startDate && errors.startDate .message}
+                            {errors.dateUpdate && errors.dateUpdate .message}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
+                <Col md={6} lg={6}>
+                    <Form.Group className="p-1" controlId="GroupGraduation">
+                        <Form.Label className="m-0"> Graduação * </Form.Label>
+                        <Form.Select
+                            name='graduation'
+                            {...register("graduation")}
+                            isInvalid={!!errors.graduation}
+                        >
+                            <option value="">Selecione graduação</option>
+                            <option value="faixa">Faixa</option>
+                            <option value="graus">Graus</option>
+                            <option value="faixa_graus">Faixa e Graus</option>
+                        </Form.Select>
+                        <Form.Control.Feedback type="invalid">
+                            {errors.graduation && errors.graduation.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
             </Row>
             <Row className="mb-2 px-2">
                 <Col md={6} lg={6}>
-                    <Form.Group className="p-1" controlId="GroupTrackStart">
-                        <Form.Label className="m-0"> Iniciou Faixa * </Form.Label>
+                    <Form.Group className="p-1" controlId="GroupRange">
+                        <Form.Label className="m-0"> Faixa * </Form.Label>
                         <Form.Select
-                            name='trackStart'
-                            {...register("trackStart")}
-                            isInvalid={!!errors.trackStart}
+                            name='range'
+                            {...register("range")}
+                            isInvalid={!!errors.range}
                         >
                             <option value="">Selecione Faixa</option>
                             <option value="branca">Branca</option>
@@ -58,13 +76,12 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
                             <option value="vermelha e preta">Vermelha e Preta</option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
-                            {errors.trackStart && errors.trackStart.message}
+                            {errors.range && errors.range.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
                 <Col md={6} lg={6} >
-                    <Form.Group className="p-2" controlId="GroupDegreesRange">
-                    
+                    <Form.Group className="p-2" controlId="GroupDegrees">
                         <MDBRange
                             className="p-1"
                             defaultValue={0}
@@ -72,10 +89,9 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
                             max='10'
                             step='1'
                             label='Selecione os Graus'
-                            id='customRange3'
-                            name='degreesRange'
+                            name='degrees'
                             value={degreesRangeValue}
-                            {...register("degreesRange")}
+                            {...register("degrees")}
                             onChange={handleRangeChange} // Atualiza o estado quando o valor muda
                         />
                         <span> Total de Graus: {rangeValue || degreesRangeValue}</span>
@@ -118,19 +134,19 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
             </Row>
             <Row className=" px-2 ">
                 <Col>
-                    <Form.Group className="p-1" controlId="GroupStudentDescription">
-                        <Form.Label className="m-0"> Descrição Aluno </Form.Label>
+                    <Form.Group className="p-1" controlId="GroupObservation">
+                        <Form.Label className="m-0"> Observação </Form.Label>
                         <Form.Control 
                             as="textarea"
-                            name="studentDescription"
-                            placeholder="Descreva sobre o aluno." 
-                            {...register("studentDescription")}
-                            isInvalid={!!errors.studentDescription}
+                            name="observation"
+                            placeholder="Colocar alguma obs a mais." 
+                            {...register("observation")}
+                            isInvalid={!!errors.observation}
                             onBlur={(e) => e.target.value = e.target.value.trim()}
 
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.studentDescription && errors.studentDescription.message}
+                            {errors.observation && errors.observation.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
