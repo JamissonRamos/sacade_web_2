@@ -68,7 +68,6 @@ export const WrapIndex = styled.div`
         color: ${Theme.Colors.grey800};
     }
 `;
-
 export const CircleFirstLetterNome = styled.div`
     /* border: 1px solid red; */
     width: 40px;

@@ -1,13 +1,10 @@
-import * as S                       from './styled';
-import { TextC }                    from '../../../../components/Typography';
-import BadgeCustom from '../../../../components/badge_custom';
-// import { useLocation, useNavigate }              from 'react-router-dom';
-// import { useEffect, useState }      from 'react';
-// import { useResponsibleStudents }   from '../../../../hooks/responsibleStudents';
-// import { useRegisterStudents } from '../../../../hooks/registerStudent';
+import * as S           from './styled';
+import { TextC }        from '../../../../components/Typography';
+import BadgeCustom      from '../../../../components/badge_custom';
+import { useNavigate }  from 'react-router-dom';
 
-
-const CardList = ({data}) => {
+const CardList = ({data, fullname}) => {
+    const navigate = useNavigate();
 
     const handleBadgeColor = (track) => {
         switch (track) {
@@ -38,6 +35,10 @@ const CardList = ({data}) => {
         }
     };
 
+    const handleShowFormUpdate = (uid) => { 
+        navigate('/registerStudent/formsController', { state: { idRegister: uid, fullname: fullname,  checkForm: false } });
+    };
+
     return (
         <S.Container>
 
@@ -47,8 +48,12 @@ const CardList = ({data}) => {
                 
                 return (
 
-                    <S.WrapButton key={uid} $colors={trackStart === 'branca' ? '#f3f4f4' : colors.bg}>
-
+                    <S.WrapButton 
+                        key={uid} 
+                        $colors={trackStart === 'branca' ? '#f3f4f4' : colors.bg}
+                        onClick={() => handleShowFormUpdate(uid)}
+                    >
+                        
                         <S.Card > 
                             <S.SectionPrime>
 
@@ -93,5 +98,3 @@ const CardList = ({data}) => {
 }
 
 export default CardList
-
-

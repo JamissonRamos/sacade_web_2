@@ -1,15 +1,16 @@
 // import { useGetDocuments } from "./useGetDocuments";
-// import { useGetDocumentsID } from "./useGetDocumentsID";
+
+import { useGetDocumentsID } from "./useGetDocumentsID";
 import { useGetDocumentsByIdRegisterStudent } from "./useGetDocumentsByIdRegisterStudents";
 import { usePostDocumentsCreate } from "./usePostDocumentsCreate";
-// import { usePostDocumentsUpdate } from "./usePostDocumentsUpdate";
-// import { usePostDocumentsDelete } from "./usePostDocumentsDelete";
+import { usePostDocumentsUpdate } from "./usePostDocumentsUpdate";
+import { usePostDocumentsDelete } from "./usePostDocumentsDelete";
 
 export const useRegisterStudents = {
     // useGetDocuments,
-    // useGetDocumentsID,
+    useGetDocumentsID,
     useGetDocumentsByIdRegisterStudent,
     usePostDocumentsCreate,
-    // usePostDocumentsUpdate,
-    // usePostDocumentsDelete,
+    usePostDocumentsUpdate,
+    usePostDocumentsDelete,
 }

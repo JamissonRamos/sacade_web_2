@@ -64,7 +64,6 @@ export const WrapText = styled.div`
         color: ${Theme.Colors.yellow500}
     }
 `;
-
 export const WrapButtonCreate = styled.div`
     /* border: 1px solid red; */
     width: 100%;

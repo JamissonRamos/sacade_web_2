@@ -1,18 +1,16 @@
 import * as S from './styled';
 import BodyForm from '../components/body';
-import { usePostDocumentsUpdate } from '../../../../hooks/registerStudent/usePostDocumentsUpdate';
+import { useRegisterStudents } from '../../../../hooks/registerStudent';
 
 const FormUpdate = ({dataRegister, checkForm}) => {
 
     //Deixa como obj, sem array
-    const newDataRegister = dataRegister[0];
+    const newDataRegister = dataRegister;
 
-    const {updateData, loading } = usePostDocumentsUpdate()
+    const {updateData, loading: loadingUpdate } = useRegisterStudents.usePostDocumentsUpdate()
+    const {deleteDate, loading: loadingDelete } = useRegisterStudents.usePostDocumentsDelete()
 
     const handleOnSubmit = async (data) => {
-        console.log('update ');
-        console.log('update data ', data);
-
         const result =  await updateData(data)
         const {success, message} = result;
 
@@ -28,14 +26,30 @@ const FormUpdate = ({dataRegister, checkForm}) => {
         }
     }
 
-    
+    const handleDeleteData =  async (uid) => {
+        const result =  await deleteDate(uid)
+        const {success, message} = result;
+
+        if(success){
+            return {
+                success: true
+            }
+        }else{
+            return {
+                success: false,
+                message: message
+            }
+        }
+    }
+
     return (
         
         <S.Container>
             <BodyForm 
                 handleOnSubmit={handleOnSubmit} 
+                handleDeleteData={handleDeleteData}
                 checkForm={checkForm}
-                loading={loading}
+                loading={loadingUpdate || loadingDelete}
                 dataRecovered={newDataRegister}
             />
         </S.Container>

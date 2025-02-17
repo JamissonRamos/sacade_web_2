@@ -5,16 +5,16 @@ export const useGetCollectionByIdRegisterStudent = () => {
     const collectionName = 'register_student';
 
     const getDocumentsByIdRegisterStudent = async (idStudent) => {
+        
         try {
             const q = query(collection(db, collectionName), where("idStudent", "==", idStudent));
-            //const q = query(collection(db, collectionName), where("idStudent", "array-contains", idStudent));
 
             const querySnapshot = await getDocs(q);
             
             if (querySnapshot.empty) {
                 return { success: true, data: false };
             }
-
+            
             const documents = querySnapshot.docs.map(doc => ({ uid: doc.id, ...doc.data() }));          
             return { success: true, data: documents }; // Retorna todos os documentos encontrados
 
@@ -23,6 +23,7 @@ export const useGetCollectionByIdRegisterStudent = () => {
             return { success: false, message: error.message };
         }
     };
+
     return { getDocumentsByIdRegisterStudent };
 };
 

@@ -83,6 +83,14 @@ export const WrapButtonContained = styled.div`
         background-color: ${Theme.Colors.green800};
     }
 `;
+export const WrapButtonContainedDanger = styled.div`
+    /* border: 1px solid blue; */
+    width: 40%;
+    & button{
+        ${StyledButton}
+        background-color: ${Theme.Colors.red800};
+    }
+`;
 export const WrapButtonOutline = styled.div`
     /* border: 1px solid blue; */
     width: 40%;

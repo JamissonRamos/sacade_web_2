@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { ApplyChew, ConvertDate, FormatStringNumber, FormattedDate } from './script';
 
 
-const BodyForm = ({handleOnSubmit, checkForm, loading, dataRecovered}) => {
+const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRecovered}) => {
 
     const [basicActive, setBasicActive] = useState('tab1');
     
@@ -48,6 +48,32 @@ const BodyForm = ({handleOnSubmit, checkForm, loading, dataRecovered}) => {
         setValue(fieldName, maskedValue);
     }
 
+    const handleDeleteDataBody = async () => {
+        const uid = dataRecovered.uid;
+
+        const result = await handleDeleteData(uid)
+        const {success, message} = result;
+
+        if(success){
+            const path = `/registerStudent`;
+            //Coloca dinamico a page de notificação, atualiação ou create
+            navigate(`/notifications/delete`, {
+                state: {
+                    url: path,
+                    valueButton: {value: 'Ficha do Aluno', icon: 'PiAddressBookFill'},
+                    buttonNewRegister: false,
+                },
+            });
+
+            
+        }else{
+            reset()
+            navigate('/notifications/error');
+            console.log({message: `Deu algum erro na ficha do aluno: ${message}`})
+        }
+
+    }
+
     const handleSubmitBody = async (data) => {
         data.startDate = FormattedDate(data.startDate)
         data.lastGraduationDate = FormattedDate(data.lastGraduationDate)
@@ -74,14 +100,14 @@ const BodyForm = ({handleOnSubmit, checkForm, loading, dataRecovered}) => {
             navigate('/notifications/error');
             console.log({message: `Deu algum erro na ficha do aluno: ${message}`})
         }
-
     }
 
     //Contas os erro e mostra se tiver algum em qualquer form 
     const errorCount = Object.keys(errors).length;
 
-    useEffect(() => {        
-        if (!checkForm && dataRecovered) {
+    useEffect(() => {  
+        
+        if (!checkForm && dataRecovered ) {
             Object.keys(dataRecovered).forEach(key => {
                 if (key === 'startDate') {
                     const newDate = ConvertDate( dataRecovered[key]) 
@@ -102,16 +128,12 @@ const BodyForm = ({handleOnSubmit, checkForm, loading, dataRecovered}) => {
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])  
+    }, [dataRecovered])  
     
 
     return (
 
         <S.Container>
-            {
-                // Ficou de trazer as variaveis no componete pai do form
-                // errorStudents && <Alert variant={'danger'}> {errorStudents } </Alert>
-            }
             <Form onSubmit={handleSubmit(handleSubmitBody)}>
                 <MDBTabs className='custom-tabs' >
                     <MDBTabsItem>
@@ -155,6 +177,7 @@ const BodyForm = ({handleOnSubmit, checkForm, loading, dataRecovered}) => {
                         </MDBTabsPane>
                         <MDBTabsPane open={basicActive === 'tab3'}> 
                             <FieldRegisterStudent.EndRegister 
+                                handleDeleteDataBody={handleDeleteDataBody}
                                 checkForm={checkForm}
                                 loading={loading}
                             />  

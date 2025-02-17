@@ -33,9 +33,8 @@ const CardListRegisterStudents = () => {
   }
               
   useEffect(() => {
-      fetchDocuments(); //Chama a função ao renderizar o componente
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-
+    fetchDocuments(); //Chama a função ao renderizar o componente
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
           
   return (
@@ -66,7 +65,7 @@ const CardListRegisterStudents = () => {
           </S.Empty> 
         :   
           <S.Content>
-            <CardList data={registered}/> 
+            <CardList data={registered} fullname={fullname}/> 
           </S.Content>
       }
 

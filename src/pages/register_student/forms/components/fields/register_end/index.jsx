@@ -4,7 +4,7 @@ import { TextC } from '../../../../../../components/Typography'
 import { Theme } from '../../../../../../theme'
 import { useNavigate } from 'react-router-dom'
 
-const EndRegister = ({checkForm, loading}) => {
+const EndRegister = ({handleDeleteDataBody, checkForm, loading}) => {
   const navigate = useNavigate();
 
   return (
@@ -59,7 +59,38 @@ const EndRegister = ({checkForm, loading}) => {
             </Button>
 
           </S.WrapButtonContained>
-            
+          
+          {
+            !checkForm &&
+              <S.WrapButtonContainedDanger>
+                <Button
+                  variant='danger'
+                  disabled={loading ? true : false}
+                  onClick={() => handleDeleteDataBody()}
+                >
+                    { loading 
+                      ? <>
+                          <Spinner
+                              as="span"
+                              animation="border"
+                              size="sm"
+                              role="status"
+                              aria-hidden="true"
+                          />
+
+                          <span>Excluindo...</span>
+                      </> 
+                      : <>
+                          <Theme.Icons.MdDelete />
+                          <span>Excluir</span>
+                        </>
+
+                  } 
+                </Button>
+
+              </S.WrapButtonContainedDanger>
+          }
+
           <S.WrapButtonOutline>
             
             <Button
