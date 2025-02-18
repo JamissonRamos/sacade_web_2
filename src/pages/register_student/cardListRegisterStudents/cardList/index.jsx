@@ -2,6 +2,7 @@ import * as S           from './styled';
 import { TextC }        from '../../../../components/Typography';
 import BadgeCustom      from '../../../../components/badge_custom';
 import { useNavigate }  from 'react-router-dom';
+import { Theme } from '../../../../theme';
 
 const CardList = ({data, fullname}) => {
     const navigate = useNavigate();
@@ -42,15 +43,15 @@ const CardList = ({data, fullname}) => {
     return (
         <S.Container>
 
-            {data && data.map(({uid, startDate, trackStart, degreesRange, studentDescription}, i) => {
+            {data && data.map(({uid, dateUpdate, graduation, range, degrees, observation}, i) => {
                 
-                const colors = handleBadgeColor(trackStart) // Obter cores para o badge
+                const colors = handleBadgeColor(range) // Obter cores para o badge
                 
                 return (
 
                     <S.WrapButton 
                         key={uid} 
-                        $colors={trackStart === 'branca' ? '#f3f4f4' : colors.bg}
+                        $colors={range === 'branca' ? '#f3f4f4' : colors.bg}
                         onClick={() => handleShowFormUpdate(uid)}
                     >
                         
@@ -61,15 +62,16 @@ const CardList = ({data, fullname}) => {
 
                                     <S.WrapIndex>
 
-                                        <TextC.Body level={3}> {i + 1} </TextC.Body>
+                                        <TextC.Body level={4}> {i + 1} </TextC.Body>
 
                                     </S.WrapIndex>
 
-                                    <S.WrapDataUpdate>
+                                    <S.WrapGraduation
+                                        $Colors={range === 'branca' ? '#f3f4f4' : colors.bg}
+                                    >
+                                        <TextC.Title level={1}>  {graduation}  </TextC.Title>
 
-                                        <TextC.Body level={2}> {startDate} </TextC.Body>
-
-                                    </S.WrapDataUpdate>
+                                    </S.WrapGraduation>
 
 
                                 </S.WrapIndexDataUpdate>
@@ -77,16 +79,23 @@ const CardList = ({data, fullname}) => {
                                 <S.WrapTrackDegrees>   
 
                                     <BadgeCustom bg={colors.bg} textColor={colors.textColor} borderColor={colors.borderColor}>
-                                        <TextC.Body level={3}> {trackStart} <strong> {degreesRange} </strong> </TextC.Body>
+                                        <TextC.Body level={3}> {range} <strong> {degrees} </strong> </TextC.Body>
                                 </BadgeCustom>
 
                                 </S.WrapTrackDegrees>
 
                             </S.SectionPrime>
+
                             <S.SectionSecondary>
+                                <TextC.Body level={2}> {observation} </TextC.Body>
 
-                                <TextC.Body level={2}> {studentDescription} </TextC.Body>
+                                <S.WrapDataUpdate
+                                    $Colors={range === 'branca' ? '#f3f4f4' : colors.bg}
+                                >
+                                    <Theme.Icons.MdCalendarMonth />
+                                    <TextC.Body level={2}> {dateUpdate} </TextC.Body>
 
+                                </S.WrapDataUpdate>
                             </S.SectionSecondary>
                         </S.Card>
 

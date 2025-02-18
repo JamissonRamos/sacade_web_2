@@ -33,7 +33,7 @@ export const Card = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    gap: .6rem;
+    gap: .2rem;
 `;
 export const SectionPrime = styled.div`
     /* border: 1px solid red; */
@@ -48,11 +48,15 @@ export const SectionSecondary = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .8rem;
     padding: .2rem 0;
 `;
 export const WrapIndexDataUpdate = styled.div`
     /* border: 1px solid blue;  */
     display: flex;
+    align-items: center;
     gap: .8rem;
 `;
 export const WrapIndex = styled.div`
@@ -62,11 +66,15 @@ export const WrapIndex = styled.div`
         color: ${Theme.Colors.grey800};
     }
 `;
-export const WrapDataUpdate = styled.div`
+export const WrapGraduation = styled.div`
     /* border: 1px solid blue;  */
     & span {
+        font-size: 1em;
         font-weight: 500;
-        color: ${Theme.Colors.grey800};
+        color: ${(props) => props.$Colors || "transparent"}; 
+        text-transform: uppercase
+
+
     }
 `;
 export const WrapTrackDegrees = styled.div`
@@ -82,5 +90,21 @@ export const WrapTrackDegrees = styled.div`
     }
     & strong {
         font-size: 12px;
+    }
+`;
+
+export const WrapDataUpdate = styled.div`
+    /* border: 1px solid blue;  */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    & span {
+        font-size: .8em;
+        font-weight: 600;
+    }
+    & svg {
+        font-size: 1.2em;
+        color: ${(props) => props.$Colors || "transparent"}; 
     }
 `;

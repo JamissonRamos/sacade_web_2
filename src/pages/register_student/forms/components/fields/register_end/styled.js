@@ -42,42 +42,28 @@ export const SectionPrime = styled.div`
     /* border: 1px solid red; */
     display: flex;
     align-items: center;
-    justify-content: center;
-    & span {text-align: center;
-        color: ${Theme.Colors.green800};
-    }
-
+    justify-content: flex-end;
     @media (max-width: 425px) {
         & > span {
             font-size: .8em;
         }
     }
 `;
-export const SectionSecondary = styled.div`
-    /* border: 1px solid blue; */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`;
-
 
 export const WrapButton = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
+    justify-content: flex-end;;
+    gap: .8rem;
     padding: .2rem 0;
     margin-top: 2rem;
 `;
 
 export const WrapButtonContained = styled.div`
     /* border: 1px solid blue; */
-    width: 40%;
+    width: 20%;
     & button{
         ${StyledButton}
         background-color: ${Theme.Colors.green800};
@@ -85,7 +71,7 @@ export const WrapButtonContained = styled.div`
 `;
 export const WrapButtonContainedDanger = styled.div`
     /* border: 1px solid blue; */
-    width: 40%;
+    width: 20%;
     & button{
         ${StyledButton}
         background-color: ${Theme.Colors.red800};
@@ -93,7 +79,7 @@ export const WrapButtonContainedDanger = styled.div`
 `;
 export const WrapButtonOutline = styled.div`
     /* border: 1px solid blue; */
-    width: 40%;
+    width: 20%;
     & button{
         ${StyledButton}
         border: 1px solid  ${Theme.Colors.red600}; 

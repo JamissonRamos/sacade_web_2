@@ -46,6 +46,7 @@ export const Icons = {
     MdCheckCircleOutline:       MD.MdCheckCircleOutline,
     MdCreditCard:               MD.MdCreditCard,
     MdAddCard:                  MD.MdAddCard,
+    MdCalendarMonth:            MD.MdCalendarMonth,
     RiArrowDownSFill:           RiIcons.RiArrowDownSFill,
     RiArrowUpSFill:             RiIcons.RiArrowUpSFill,
     RiSendPlaneFill:            RiIcons.RiSendPlaneFill,

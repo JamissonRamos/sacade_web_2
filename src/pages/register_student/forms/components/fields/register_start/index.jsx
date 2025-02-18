@@ -12,10 +12,10 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
     const handleRangeChange = (event) => {
         const valueRange = parseInt(event.target.value, 10);        
         setRangeValue(valueRange);
-        setValue("degreesRange", valueRange); // Atualiza o valor no formulário
+        setValue("degrees", valueRange); // Atualiza o valor no formulário
     };
 
-    const degreesRangeValue = watch('degreesRange');
+    const degreesRangeValue = watch('degrees');
 
     return (
         <S.Container>
@@ -45,7 +45,8 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
                             <option value="">Selecione graduação</option>
                             <option value="faixa">Faixa</option>
                             <option value="graus">Graus</option>
-                            <option value="faixa_graus">Faixa e Graus</option>
+                            <option value="faixa e graus">Faixa e Graus</option>
+                            <option value="outro">Outro</option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
                             {errors.graduation && errors.graduation.message}

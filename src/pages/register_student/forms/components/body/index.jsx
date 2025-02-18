@@ -1,6 +1,6 @@
 import * as S from './styled'
 import { Form } from 'react-bootstrap'
-import { MDBTabs, MDBTabsItem, MDBTabsLink, MDBTabsContent, MDBTabsPane }  from 'mdb-react-ui-kit';
+//import { MDBTabs, MDBTabsItem, MDBTabsLink, MDBTabsContent, MDBTabsPane }  from 'mdb-react-ui-kit';
 import { useEffect, useState } from 'react';
 import { FieldRegisterStudent } from '../fields';
 import { Validations } from '../../../../validations';
@@ -12,7 +12,7 @@ import { ApplyChew, ConvertDate, FormatStringNumber, FormattedDate } from './scr
 
 const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRecovered}) => {
 
-    const [basicActive, setBasicActive] = useState('tab1');
+    //const [basicActive, setBasicActive] = useState('tab1');
     
     const navigate = useNavigate();
 
@@ -21,18 +21,17 @@ const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRec
         defaultValues: {
             studentWeight: 0,
             studentHeight: 0,
-            degreesRange: 0, // Valor inicial para degreesRange
-            degreesCurrent: 0, // Valor inicial para degreesRange
+            degrees: 0, // Valor inicial para degreesRange
         },
     });
 
-    const handleBasicClick = (value) => {
-        //Tabs nav
-        if (value === basicActive) {
-            return;
-        }
-        setBasicActive(value);
-    };
+    // const handleBasicClick = (value) => {
+    //     //Tabs nav
+    //     if (value === basicActive) {
+    //         return;
+    //     }
+    //     setBasicActive(value);
+    // };
 
     const applyMascara = (fieldName, fieldValue ) => {
         let maskedValue = ApplyChew(fieldName, fieldValue)
@@ -75,8 +74,7 @@ const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRec
     }
 
     const handleSubmitBody = async (data) => {
-        data.startDate = FormattedDate(data.startDate)
-        data.lastGraduationDate = FormattedDate(data.lastGraduationDate)
+        data.dateUpdate = FormattedDate(data.dateUpdate)
         data.studentWeight = FormatStringNumber(data.studentWeight)
         data.studentHeight = FormatStringNumber(data.studentHeight)
 
@@ -103,24 +101,21 @@ const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRec
     }
 
     //Contas os erro e mostra se tiver algum em qualquer form 
-    const errorCount = Object.keys(errors).length;
+    //const errorCount = Object.keys(errors).length;
 
     useEffect(() => {  
         
         if (!checkForm && dataRecovered ) {
             Object.keys(dataRecovered).forEach(key => {
-                if (key === 'startDate') {
+                if (key === 'dateUpdate') {
                     const newDate = ConvertDate( dataRecovered[key]) 
                     setValue(key, newDate);
-                }else if (key === 'degreesRange') {
+                }else if (key === 'degrees') {
                     setValue(key, dataRecovered[key]);
                 }else if (key === 'studentWeight') {
                     applyMascara(key, dataRecovered[key]);
                 }else if (key === 'studentHeight') {
                     applyMascara(key, dataRecovered[key]);
-                }else if (key === 'lastGraduationDate') {
-                    const newDate = ConvertDate( dataRecovered[key]) 
-                    setValue(key, newDate);                
                 }else{
                     setValue(key, dataRecovered[key]);
                 }
@@ -135,61 +130,21 @@ const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRec
 
         <S.Container>
             <Form onSubmit={handleSubmit(handleSubmitBody)}>
-                <MDBTabs className='custom-tabs' >
-                    <MDBTabsItem>
-                        <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
-                            Início
-                        </MDBTabsLink>
-                    </MDBTabsItem>
-                    <MDBTabsItem>
-                        <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
-                            Atual
-                        </MDBTabsLink>
-                    </MDBTabsItem>
-                    <MDBTabsItem>
-                        <MDBTabsLink onClick={() => handleBasicClick('tab3')} active={basicActive === 'tab3'}>
-                            Finalizar 
-                        </MDBTabsLink>
-                    </MDBTabsItem>
-                </MDBTabs>
-
                 <S.WrapFields>
-                    <MDBTabsContent>
-                        <MDBTabsPane open={basicActive === 'tab1'}> 
-                            <FieldRegisterStudent.RegisterStat 
-                                register={register} 
-                                setValue={setValue}
-                                getValues={getValues}
-                                watch={watch}
-                                errors={errors}
-                                handleApplyChewChange={handleApplyChewChange}
-                            />  
-                        </MDBTabsPane>
-                        <MDBTabsPane open={basicActive === 'tab2'}> 
-                            <FieldRegisterStudent.RegisterCurrent 
-                                register={register} 
-                                setValue={setValue}
-                                getValues={getValues}
-                                watch={watch}
-                                errors={errors}
-                                handleApplyChewChange={handleApplyChewChange}
-                            />  
-                        </MDBTabsPane>
-                        <MDBTabsPane open={basicActive === 'tab3'}> 
-                            <FieldRegisterStudent.EndRegister 
+                    <FieldRegisterStudent.RegisterStat 
+                        register={register} 
+                        setValue={setValue}
+                        getValues={getValues}
+                        watch={watch}
+                        errors={errors}
+                        handleApplyChewChange={handleApplyChewChange}
+                    />  
+                    <FieldRegisterStudent.EndRegister 
                                 handleDeleteDataBody={handleDeleteDataBody}
                                 checkForm={checkForm}
                                 loading={loading}
                             />  
-                        </MDBTabsPane>
-                    </MDBTabsContent>
                 </S.WrapFields>
-                {
-                    errorCount > 0 ? 
-                    <S.ErrorCount>
-                        {'Foi detectados alguns erros no cadastro: ' + errorCount}
-                    </S.ErrorCount> : null
-                }
             </Form>
         </S.Container>
     )

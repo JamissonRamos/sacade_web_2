@@ -1,6 +1,5 @@
 import * as S from './styled'
 import { Button, Spinner } from 'react-bootstrap'
-import { TextC } from '../../../../../../components/Typography'
 import { Theme } from '../../../../../../theme'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,12 +8,8 @@ const EndRegister = ({handleDeleteDataBody, checkForm, loading}) => {
 
   return (
     <S.Container>
-      
-      <S.SectionPrime>
-        <TextC.Title level={1}> Pronto! Clique no botão para finalizar o processo. </TextC.Title>
-      </S.SectionPrime>
 
-      <S.SectionSecondary>
+      <S.SectionPrime>
 
         <S.WrapButton>
           
@@ -105,7 +100,8 @@ const EndRegister = ({handleDeleteDataBody, checkForm, loading}) => {
           </S.WrapButtonOutline>
         
         </S.WrapButton>
-      </S.SectionSecondary>
+
+      </S.SectionPrime>
     </S.Container>
   )
 }
