@@ -1,7 +1,6 @@
 import * as S from './styled'
 import { Form } from 'react-bootstrap'
-//import { MDBTabs, MDBTabsItem, MDBTabsLink, MDBTabsContent, MDBTabsPane }  from 'mdb-react-ui-kit';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { FieldRegisterStudent } from '../fields';
 import { Validations } from '../../../../validations';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,8 +10,6 @@ import { ApplyChew, ConvertDate, FormatStringNumber, FormattedDate } from './scr
 
 
 const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRecovered}) => {
-
-    //const [basicActive, setBasicActive] = useState('tab1');
     
     const navigate = useNavigate();
 
@@ -24,14 +21,6 @@ const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRec
             degrees: 0, // Valor inicial para degreesRange
         },
     });
-
-    // const handleBasicClick = (value) => {
-    //     //Tabs nav
-    //     if (value === basicActive) {
-    //         return;
-    //     }
-    //     setBasicActive(value);
-    // };
 
     const applyMascara = (fieldName, fieldValue ) => {
         let maskedValue = ApplyChew(fieldName, fieldValue)
@@ -99,9 +88,6 @@ const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRec
             console.log({message: `Deu algum erro na ficha do aluno: ${message}`})
         }
     }
-
-    //Contas os erro e mostra se tiver algum em qualquer form 
-    //const errorCount = Object.keys(errors).length;
 
     useEffect(() => {  
         

@@ -3,10 +3,12 @@ import { TextC }        from '../../../../components/Typography';
 import BadgeCustom      from '../../../../components/badge_custom';
 import { useNavigate }  from 'react-router-dom';
 import { Theme } from '../../../../theme';
+import { useEffect, useState } from 'react';
 
 const CardList = ({data, fullname}) => {
+    const [ newData, setNewData] = useState(false);
     const navigate = useNavigate();
-
+    
     const handleBadgeColor = (track) => {
         switch (track) {
             case 'branca':
@@ -40,10 +42,23 @@ const CardList = ({data, fullname}) => {
         navigate('/registerStudent/formsController', { state: { idRegister: uid, fullname: fullname,  checkForm: false } });
     };
 
+
+    useEffect(() => {
+        // Função para converter a data no formato "dd/MM/yyyy" para um objeto Date
+        const parseDate = (dateString) => {
+            const [day, month, year] = dateString.split('/');
+            return new Date(year, month - 1, day); // Mês é 0-indexado no JavaScript
+        }
+        // Ordenando o array pelo campo dateUpdate
+        data.sort((a, b) => parseDate(b.dateUpdate) - parseDate(a.dateUpdate));
+        setNewData(data)
+        
+    }, [data])
+
     return (
         <S.Container>
-
-            {data && data.map(({uid, dateUpdate, graduation, range, degrees, observation}, i) => {
+            {
+                newData && newData.map(({uid, dateUpdate, graduation, range, degrees, observation}, i) => {
                 
                 const colors = handleBadgeColor(range) // Obter cores para o badge
                 
@@ -59,7 +74,6 @@ const CardList = ({data, fullname}) => {
                             <S.SectionPrime>
 
                                 <S.WrapIndexDataUpdate>
-
                                     <S.WrapIndex>
 
                                         <TextC.Body level={4}> {i + 1} </TextC.Body>
@@ -72,14 +86,11 @@ const CardList = ({data, fullname}) => {
                                         <TextC.Title level={1}>  {graduation}  </TextC.Title>
 
                                     </S.WrapGraduation>
-
-
                                 </S.WrapIndexDataUpdate>
 
                                 <S.WrapTrackDegrees>   
-
                                     <BadgeCustom bg={colors.bg} textColor={colors.textColor} borderColor={colors.borderColor}>
-                                        <TextC.Body level={3}> {range} <strong> {degrees} </strong> </TextC.Body>
+                                        <TextC.Body level={4}> {range} <span> {degrees} </span> </TextC.Body>
                                 </BadgeCustom>
 
                                 </S.WrapTrackDegrees>

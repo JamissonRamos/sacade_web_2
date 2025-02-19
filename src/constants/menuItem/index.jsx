@@ -33,19 +33,24 @@ export const MenuItem = [
     {
         title: 'Pagamentos',
         path: '/payments',
-        icon: <Theme.Icons.MdAttachMoney  />
+        icon: <Theme.Icons.MdAttachMoney/>
+    },
+    {
+        title: 'Status Alunos',
+        path: '/statusStudents',
+        icon: <Theme.Icons.MdPerson/>
     },
     {
         title: 'Ficha',
         path: '/registerStudent',
-        icon: <Theme.Icons.PiAddressBookFill  />
+        icon: <Theme.Icons.PiAddressBookFill/>
     },
     {
         title: 'Configurações',
         path: '#',
-        icon:  <Theme.Icons.MdSettings  />,
-        iconClosed:  <Theme.Icons.RiArrowUpSFill />,
-        iconOpened: <Theme.Icons.RiArrowDownSFill />,
+        icon:  <Theme.Icons.MdSettings/>,
+        iconClosed:  <Theme.Icons.RiArrowUpSFill/>,
+        iconOpened: <Theme.Icons.RiArrowDownSFill/>,
         subNav: [
             {
                 title: 'Alterar Senha',

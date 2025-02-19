@@ -14,9 +14,6 @@ const Students = () => {
   const [registered, setRegistered] = useState(null);
   const { currentUser } = useAuth();
 
-  console.log('currentUser', currentUser);
-  
-
   // Recuperar uidStudentPermanently do localStorage
   const storedUids = JSON.parse(localStorage.getItem("uidStudentPermanently")) || [];
   

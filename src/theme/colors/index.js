@@ -11,6 +11,7 @@ export const Colors =
     blue200: '#1d2028 ',
     blue100: '#E5EDFF ',
     blue2900: '#003CC7 ',
+    blue2800: '#007bff ',
     green800: '#00A791',
     green700: '#d9fbd0',
     green600: '#1c6c09',

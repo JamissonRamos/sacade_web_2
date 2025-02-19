@@ -27,6 +27,7 @@ import ConfigurationInstallments from './configuration_installments';
 import GenerateInstallments from './generate_installments';
 import SplashScreen from './splash_screen';
 import CardListRegisterStudents from './register_student/cardListRegisterStudents';
+import StatusStudents from './status_students';
 
 
 
@@ -59,5 +60,6 @@ export const Pages = {
     NotificationsMaintenance,
     ConfigurationInstallments,
     GenerateInstallments,
-    SplashScreen
+    SplashScreen,
+    StatusStudents
 }
