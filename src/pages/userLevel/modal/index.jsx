@@ -10,9 +10,6 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
     const [labelChecked, setLabelChecked] = useState('');
     const {uid, firstName, lastName, status, statusActive} = data || " ";
 
-    console.log('statusActive', statusActive);
-    
-
     const { UpdateUser, errorUpdate, isLoadingUpdate } = useUsers.usePostDocumentsID();
 
     const [formData, setFormData] = useState({
@@ -61,7 +58,6 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
     const handleChange = (e) => {
         
         const { name, value, type, checked } = e.target;
-        console.log('checked:', checked);
         
         setError(null);
         setFormData(prevFormData => ({

@@ -98,14 +98,14 @@ const AppContent = () => {
                                 } />
                                 <Route path="/statusStudents" element={
                                     <ProtectedRoute page='StatusStudents'>
-                                        <Pages.NotificationsMaintenance /> 
-                                        {/* <Pages.StatusStudents />  */}
+                                        {/* <Pages.NotificationsMaintenance />  */}
+                                        <Pages.StatusStudents /> 
                                     </ProtectedRoute>
                                 } />
                                 <Route path="/registerStudent" element={
                                     <ProtectedRoute page='RegisterStudent'>
-                                        <Pages.NotificationsMaintenance /> 
-                                        {/* <Pages.RegisterStudent />  */}
+                                        {/* <Pages.NotificationsMaintenance />  */}
+                                        <Pages.RegisterStudent /> 
                                     </ProtectedRoute>
                                 } />
                                 <Route path="/registerStudent/listRegisterStudents/:idStudent?" element={
