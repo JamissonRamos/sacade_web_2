@@ -35,7 +35,7 @@ export const Content = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     min-width: 310px;
-    max-height: 76%;
+    max-height: 86%;
     padding-bottom: .8rem;
     overflow: auto;
 `;
