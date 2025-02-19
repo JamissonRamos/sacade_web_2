@@ -1,6 +1,5 @@
 import * as S                       from './styled';
 import { TextC }                    from '../../../components/Typography';
-import { Badge }                    from 'react-bootstrap';
 import { useNavigate }              from 'react-router-dom';
 import { useEffect, useState }      from 'react';
 import { useResponsibleStudents }   from '../../../hooks/responsibleStudents';

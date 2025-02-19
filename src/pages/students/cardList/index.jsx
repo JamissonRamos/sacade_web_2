@@ -1,10 +1,9 @@
 import * as S           from './styled';
 import { TextC }        from '../../../components/Typography';
-import { Badge }        from 'react-bootstrap';
 import { useNavigate }  from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useResponsibleStudents } from '../../../hooks/responsibleStudents';
-
+import ListPrimary from '../../../components/lists_custom/students/list_primary';
 
 const CardList = ({data}) => {
     // Estado para armazenar os resultados de verificação de responsáveis, se tem ou não 
@@ -35,28 +34,6 @@ const CardList = ({data}) => {
         setStoresStudent((prev) => ({ ...prev, [uid]: hasResponsible }));
         return hasResponsible;
     };
-
-    const handleBadge = (status) => 
-    {
-        let bg
-        switch (status) {
-        case 'inativo':
-            bg = "warning"
-            break;
-        case 'bloqueado ':
-            bg = "danger"
-            break;
-        case 'ativo':
-            bg = "success"
-            break;
-    
-        default:
-            bg = "primary"
-            break;
-        }
-    
-        return bg 
-    }
 
     const handleShowFormUpdate = (uid) => { 
         // handleDeleteLocalStorage();
@@ -93,28 +70,13 @@ const CardList = ({data}) => {
                                     <TextC.Body level={1}>É necessário cadastrar um responsável para este aluno.</TextC.Body>
                                 </S.WrapText>
                             }
-                            <S.Card>
-                                <S.SectionPrime>
-                                    <S.WrapIndex>
-                                        <TextC.Body level={3}> {i + 1} </TextC.Body>
-                                    </S.WrapIndex>
-
-                                    <S.CircleFirstLetterNome>
-                                        {firstName && firstName.charAt(0)}
-                                    </S.CircleFirstLetterNome>
-                                    <S.Name>
-                                        {firstName + ' ' + lastName} 
-                                    </S.Name>
-                                </S.SectionPrime>
-                                <S.SectionSecondary>
-
-                                    <S.Status>
-                                        <Badge bg={handleBadge(status)} text="light">
-                                            {status}
-                                        </Badge>
-                                    </S.Status>
-                                </S.SectionSecondary>
-                            </S.Card>
+                                <ListPrimary 
+                                    index={i}
+                                    firstName={firstName}
+                                    lastName={lastName}
+                                    status={status}
+                                />
+                            
                         </S.WrapButton>
                     </>
                 )
