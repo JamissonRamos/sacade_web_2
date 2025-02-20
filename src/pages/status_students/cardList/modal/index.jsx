@@ -12,7 +12,6 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
     const {uid, fillName, status } = data || false;
     const [formData, setFormData] = useState({
         uid: uid,
-        fillName: fillName,
         status: status,
     });   
 
@@ -64,8 +63,11 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
             return; // Interrompe o envio do formulário
         }
 
+        console.log('formtData', formData);
+        
         let result = await UpdateStudents(formData);
         const {success, message } = result;
+
 
         if (success) {
             onUserUpdate() //função que vem do index

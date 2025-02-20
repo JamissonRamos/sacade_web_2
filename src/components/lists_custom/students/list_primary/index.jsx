@@ -8,22 +8,22 @@ const ListPrimary = ({index, firstName, lastName, status}) => {
         {
             let bg
             switch (status) {
-            case 'inativo':
-                bg = "warning"
-                break;
-            case 'bloqueado ':
-                bg = "danger"
-                break;
-            case 'ativo':
-                bg = "success"
-                break;
-        
-            default:
-                bg = "primary"
-                break;
+                case 'ativo':
+                    bg = "success"
+                    break;
+                case 'bloqueado':
+                    bg = "warning"
+                    break;
+                case 'inativo':
+                    bg = "danger"
+                    break;
+    
+                default:
+                    bg = "primary"
+                    break;
             }
             return bg 
-    }
+        }
 
     return (
         <S.Card>
