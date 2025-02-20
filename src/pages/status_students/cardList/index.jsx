@@ -4,14 +4,18 @@ import { useNavigate }              from 'react-router-dom';
 import { useEffect, useState }      from 'react';
 import { useResponsibleStudents }   from '../../../hooks/responsibleStudents';
 import {ListsStudent} from '../../../components/lists_custom/students';
+import ChangeRegistrationModal from './modal';
 
 
-const CardList = ({data}) => {
-    const { ListPrimary } = ListsStudent;
+const CardList = ({data, onUserUpdate}) => {
+    const [showModal, setShowModal] = useState(false);
+    const [dataUserModal, setDataUserModal] = useState(null);
+
     // Estado para armazenar os resultados de verificação de responsáveis, se tem ou não 
     const [storesStudent, setStoresStudent] = useState({});
-    const navigate = useNavigate();
 
+    //Component de Lista
+    const { ListPrimary } = ListsStudent;
     const { getDocumentsByIdStudents } = useResponsibleStudents.useGetDocumentsByIdStudents()
 
     //Buscar os responsavel pelo aluno
@@ -37,9 +41,20 @@ const CardList = ({data}) => {
         return hasResponsible;
     };
 
-    const handleShowFormUpdate = (uid, fullname) => { 
-        navigate('/registerStudent/listRegisterStudents', { state: { idStudent: uid, fullname: fullname } });
-    };
+    const handleShow = () => setShowModal(true);
+
+    const handleClose = () => setShowModal(false);
+
+
+    const handlePassDataModal = (uid, fillName, status) => {
+
+        setDataUserModal({
+            uid,
+            fillName,
+            status
+        })
+            handleShow()
+    }
 
     // Dispara a verificação de responsáveis ao montar o componente
     useEffect(() => {
@@ -61,9 +76,9 @@ const CardList = ({data}) => {
 
                     return(
                         <S.WrapButton 
-                        key={uid}
-                        onClick={() => handleShowFormUpdate(uid,  firstName + ' ' + lastName )}
-                        $isMinor={statusMinor}
+                            key={uid}
+                            onClick={() => handlePassDataModal(uid,  firstName + " " + lastName, status )}
+                            $isMinor={statusMinor}
                         >
                             {statusMinor && 
                                 <S.WrapText>
@@ -81,6 +96,13 @@ const CardList = ({data}) => {
                     )
                 })
             }
+
+            <ChangeRegistrationModal 
+                data={dataUserModal} 
+                showModal={showModal} 
+                handleClose={handleClose} 
+                onUserUpdate={onUserUpdate}
+            />
         </S.Container>
     )
 }

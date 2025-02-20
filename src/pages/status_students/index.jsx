@@ -92,7 +92,7 @@ const StatusStudents = () => {
                     </S.Empty> 
                 :   
                     <S.Content>
-                        <CardList data={registered}/> 
+                        <CardList data={registered} onUserUpdate={fetchDocuments}/> 
                     </S.Content>
             }
 

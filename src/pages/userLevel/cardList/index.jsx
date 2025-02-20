@@ -75,7 +75,11 @@ const CardList = ({data, onUserUpdate}) => {
                     </S.WrapButton>
                 ))
             }
-        <ChangeRegistrationModal data={dataUserModal} showModal={showModal} handleClose={handleClose}  onUserUpdate={onUserUpdate}/>
+        <ChangeRegistrationModal 
+            data={dataUserModal} 
+            showModal={showModal} 
+            handleClose={handleClose} 
+            onUserUpdate={onUserUpdate}/>
 
         </S.Container>
     )

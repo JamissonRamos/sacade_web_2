@@ -15,6 +15,8 @@ const UserLevel = () => {
 
   const fetchDocuments = async () => {
       const result = await documents();
+      console.log(result.data);
+      
       if(result.success){
         setRegistered({
           success: result.success,
