@@ -62,8 +62,6 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
             setError("Por favor, selecione um Status diferente do atual.");
             return; // Interrompe o envio do formulário
         }
-
-        console.log('formtData', formData);
         
         let result = await UpdateStudents(formData);
         const {success, message } = result;
