@@ -78,14 +78,16 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
     const handleCloseModal = () => {
         setFormData({
             uid: '',
-            fillName,
             status: '',
         });
         handleClose()
     }
 
     return (
-        <Modal show={showModal} onHide={handleClose}>
+        <Modal 
+            show={showModal} 
+            onHide={handleClose}
+        >
             <Modal.Header closeButton>
                 <Modal.Title>
                     <TextC.Headline level={1}>
@@ -154,7 +156,7 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
                                 role="status"
                                 aria-hidden="true"
                                 />
-                                    <span className="sr-only"> Atualizando... </span>
+                                <span > Atualizando... </span>
                             </> 
                         :
                             <>

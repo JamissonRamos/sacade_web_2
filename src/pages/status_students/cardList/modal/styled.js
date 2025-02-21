@@ -6,7 +6,6 @@ export const WrapDescription = styled.div`
     & span {
         color: ${Theme.Colors.grey600}
     }
-
 `;
 
 export const WrapFormLabel = styled.div`

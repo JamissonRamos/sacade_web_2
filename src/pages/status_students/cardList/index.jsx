@@ -5,7 +5,6 @@ import { useResponsibleStudents }   from '../../../hooks/responsibleStudents';
 import {ListsStudent} from '../../../components/lists_custom/students';
 import ChangeRegistrationModal from './modal';
 
-
 const CardList = ({data, onUserUpdate}) => {
     const [showModal, setShowModal] = useState(false);
     const [dataUserModal, setDataUserModal] = useState(null);
@@ -22,6 +21,7 @@ const CardList = ({data, onUserUpdate}) => {
         const result = await getDocumentsByIdStudents(uid);
         const { success, data } = result;
         if (success) {
+            
             return data || []; // Retorna um array vazio caso não haja dados
         }
         return [];
@@ -29,6 +29,7 @@ const CardList = ({data, onUserUpdate}) => {
 
     // Função para verificar se um estudante menor de idade tem responsável
     const checkResponsibleStudent = async (uid, isMinor) => {
+        
         if (!isMinor) {
             // Se não for menor de idade, não precisa verificar
             setStoresStudent((prev) => ({ ...prev, [uid]: false }));
@@ -36,7 +37,7 @@ const CardList = ({data, onUserUpdate}) => {
         }
         const documents = await fetchDocuments(uid);
         const hasResponsible = documents.length > 0; // Verifica se há algum responsável cadastrado
-        setStoresStudent((prev) => ({ ...prev, [uid]: hasResponsible }));
+        setStoresStudent((prev) => ({ ...prev, [uid]: hasResponsible }));        
         return hasResponsible;
     };
 
@@ -52,20 +53,31 @@ const CardList = ({data, onUserUpdate}) => {
             fillName,
             status
         })
-            handleShow()
+        handleShow()
     }
 
     // Dispara a verificação de responsáveis ao montar o componente
     useEffect(() => {
+        
         const checkResponsibles = async () => {
+
+            data.sort((a, b) => {
+                const nameA = a.firstName ? a.firstName.toLowerCase() : ''; // Garante uma string válida
+                const nameB = b.firstName ? b.firstName.toLowerCase() : '';
+                return nameA.localeCompare(nameB);
+            });
+
             for (const student of data) {
                 await checkResponsibleStudent(student.uid, student.isMinor);
             }
         };
+
         if (data) checkResponsibles();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
 
+    
+    //console.log(data);
     return (
         <S.Container> 
             {

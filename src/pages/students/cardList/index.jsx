@@ -43,6 +43,12 @@ const CardList = ({data}) => {
     // Dispara a verificação de responsáveis ao montar o componente
     useEffect(() => {
         const checkResponsibles = async () => {
+            //Ordenando Lista 
+            data.sort((a, b) => {
+                const nameA = a.firstName ? a.firstName.toLowerCase() : ''; // Garante uma string válida
+                const nameB = b.firstName ? b.firstName.toLowerCase() : '';
+                return nameA.localeCompare(nameB);
+            });
             for (const student of data) {
                 await checkResponsibleStudent(student.uid, student.isMinor);
             }

@@ -6,11 +6,13 @@ export const usePostCollectionUpdate = () => {
     const collectionName = 'students'
     const collectionUpdate = useCallback(async (data) => {        
         try {
+            console.log('data', data);
             const {uid, ...otherData } = data;
+            
             // Now, store additional user details in Firestore
             const docRef = doc(db, collectionName, uid);
             await setDoc(docRef, {
-                uid: uid,
+                //uid: uid, aqui são os campos que vai ser alterar dentro da coeleção
                 ...otherData
             }, { merge: true });     
             return { success: true };
