@@ -13,7 +13,7 @@ const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRec
     
     const navigate = useNavigate();
 
-    const { register, handleSubmit, setValue, getValues, watch, reset, formState:{ errors } } = useForm({
+    const { register, handleSubmit, setValue, watch, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.RegisterStudentSchema),
         defaultValues: {
             studentWeight: 0,
@@ -120,16 +120,15 @@ const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRec
                     <FieldRegisterStudent.RegisterStat 
                         register={register} 
                         setValue={setValue}
-                        getValues={getValues}
                         watch={watch}
                         errors={errors}
                         handleApplyChewChange={handleApplyChewChange}
                     />  
                     <FieldRegisterStudent.EndRegister 
-                                handleDeleteDataBody={handleDeleteDataBody}
-                                checkForm={checkForm}
-                                loading={loading}
-                            />  
+                        handleDeleteDataBody={handleDeleteDataBody}
+                        checkForm={checkForm}
+                        loading={loading}
+                    />  
                 </S.WrapFields>
             </Form>
         </S.Container>

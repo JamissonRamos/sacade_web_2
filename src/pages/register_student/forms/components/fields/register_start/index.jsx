@@ -1,5 +1,5 @@
-import { Col, Row, Form } from 'react-bootstrap'
 import * as S from '../styled'
+import { Col, Row, Form } from 'react-bootstrap'
 import { MDBRange } from 'mdb-react-ui-kit'
 import { useState } from 'react';
 
