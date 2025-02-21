@@ -1,7 +1,3 @@
-// import React from 'react'
-// import { WarapperMainPage } from '../../components/Wrapper/pages'
-// import { Typography } from '../../components/Typography'
-// import Buttons from '../../components/buttons'
 import { useNavigate } from 'react-router-dom'
 import * as S from './styled'
 import { WrapPages } from '../../components/Wrappe/pages'
