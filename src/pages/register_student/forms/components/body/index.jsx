@@ -9,7 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { ApplyChew, ConvertDate, FormatStringNumber, FormattedDate } from './script';
 
 
-const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRecovered}) => {
+//handleDeleteData
+const BodyForm = ({handleOnSubmit, handleShowModalDelete, checkForm, loading, dataRecovered}) => {
     
     const navigate = useNavigate();
 
@@ -27,6 +28,7 @@ const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRec
         setValue(fieldName, maskedValue)
     }
 
+
     const handleApplyChewChange = (e) => {
         let fieldName = e.target.name || false;
         let fieldValue = e.target.value || false;
@@ -34,32 +36,6 @@ const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRec
         let maskedValue = ApplyChew(fieldName, fieldValue);   
         
         setValue(fieldName, maskedValue);
-    }
-
-    const handleDeleteDataBody = async () => {
-        const uid = dataRecovered.uid;
-
-        const result = await handleDeleteData(uid)
-        const {success, message} = result;
-
-        if(success){
-            const path = `/registerStudent`;
-            //Coloca dinamico a page de notificação, atualiação ou create
-            navigate(`/notifications/delete`, {
-                state: {
-                    url: path,
-                    valueButton: {value: 'Ficha do Aluno', icon: 'PiAddressBookFill'},
-                    buttonNewRegister: false,
-                },
-            });
-
-            
-        }else{
-            reset()
-            navigate('/notifications/error');
-            console.log({message: `Deu algum erro na ficha do aluno: ${message}`})
-        }
-
     }
 
     const handleSubmitBody = async (data) => {
@@ -125,12 +101,13 @@ const BodyForm = ({handleOnSubmit, handleDeleteData, checkForm, loading, dataRec
                         handleApplyChewChange={handleApplyChewChange}
                     />  
                     <FieldRegisterStudent.EndRegister 
-                        handleDeleteDataBody={handleDeleteDataBody}
+                        handleShowModalDelete={handleShowModalDelete}
                         checkForm={checkForm}
                         loading={loading}
                     />  
                 </S.WrapFields>
             </Form>
+            
         </S.Container>
     )
 }

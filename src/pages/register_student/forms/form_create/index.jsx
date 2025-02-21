@@ -7,7 +7,6 @@ const FormCreate = ({idStudent, checkForm}) => {
     const {createRegisterStudent, loading: loadingCreate } = useRegisterStudents.usePostDocumentsCreate();
 
     const handleOnSubmit = async (data) => {
-        console.log('data form create:', data);
         
         //Passando o id do aluno
         data.idStudent = idStudent

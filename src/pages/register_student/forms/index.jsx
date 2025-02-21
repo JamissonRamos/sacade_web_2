@@ -60,9 +60,10 @@ const FormsController = () => {
                 { 
                     checkForm
                     ?   <FormCreate idStudent={idStudent} checkForm={checkForm}/>
-                    :   <FormUpdate dataRegister={registered} checkForm={checkForm}/>
+                    :   <FormUpdate dataRegister={registered} checkForm={checkForm} fullname={fullname}/>
                 }
             </S.WrapForms>
+            
         </WrapPages>
     )
 }

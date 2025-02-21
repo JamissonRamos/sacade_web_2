@@ -12,7 +12,7 @@ const CardList = ({data, fullname}) => {
     const handleBadgeColor = (track) => {
         switch (track) {
             case 'branca':
-                return { bg: "#FFFFFF", textColor:"#52575C",  borderColor: "#cccccc" }; // Branca com borda cinza
+                return { bg: "#FFFFFF", textColor:"#7c7c7c",  borderColor: "#cccccc" }; // Branca com borda cinza
             case 'cinza':
                 return { bg: "#9D9D9D", borderColor: "transparent" }; // Cinza sem borda
             case 'amarela':
@@ -34,7 +34,7 @@ const CardList = ({data, fullname}) => {
             case 'vermelha e preta':
                 return { bg: "#dc3545", borderColor: "#000000" }; // Vermelha e Preta com borda preta
             default:
-                return { bg: "#FFFFFF", textColor:"#52575C",  borderColor: "#cccccc" }; // Padrão (azul sem borda)
+                return { bg: "#FFFFFF", textColor:"#7c7c7c",  borderColor: "#cccccc" }; // Padrão (azul sem borda)
         }
     };
 
@@ -81,7 +81,7 @@ const CardList = ({data, fullname}) => {
                                     </S.WrapIndex>
 
                                     <S.WrapGraduation
-                                        $Colors={range === 'branca' ? '#f3f4f4' : colors.bg}
+                                        $Colors={range === 'branca' ? '#7c7c7c' : colors.bg}
                                     >
                                         <TextC.Title level={1}>  {graduation}  </TextC.Title>
 
@@ -101,7 +101,7 @@ const CardList = ({data, fullname}) => {
                                 <TextC.Body level={2}> {observation} </TextC.Body>
 
                                 <S.WrapDataUpdate
-                                    $Colors={range === 'branca' ? '#f3f4f4' : colors.bg}
+                                    $Colors={range === 'branca' ? '#7c7c7c' : colors.bg}
                                 >
                                     <Theme.Icons.MdCalendarMonth />
                                     <TextC.Body level={2}> {dateUpdate} </TextC.Body>

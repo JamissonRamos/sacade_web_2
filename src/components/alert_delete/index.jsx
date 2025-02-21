@@ -4,7 +4,7 @@ import { TextC } from '../Typography'
 import { Button } from 'react-bootstrap'
 
 const DeleteData =   ({registeredDelete, handleDeleteData, handleShowDelete }) => {
-    const {fullName } = registeredDelete;
+    const {fullName} = registeredDelete;
     
     
     const handleDelete = async () => {

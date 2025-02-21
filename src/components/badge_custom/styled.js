@@ -24,7 +24,7 @@ export const StyledBadge = styled.div`
             font-size: 1.4em;
             font-weight: 500;
             text-align: center;
-            color: ${(props) => props.bg || Theme.Colors.white800};
+            color: ${(props) => props.textColor || Theme.Colors.grey600};
         }
     }
 `;

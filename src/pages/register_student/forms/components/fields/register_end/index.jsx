@@ -3,91 +3,89 @@ import { Button, Spinner } from 'react-bootstrap'
 import { Theme } from '../../../../../../theme'
 import { useNavigate } from 'react-router-dom'
 
-const EndRegister = ({handleDeleteDataBody, checkForm, loading}) => {
+const EndRegister = ({handleShowModalDelete, checkForm, loading, }) => {
   const navigate = useNavigate();
+
+
+
+
+
 
   return (
     <S.Container>
-
       <S.SectionPrime>
-
         <S.WrapButton>
-          
           <S.WrapButtonContained>
             <Button
               variant='success'
               type='submit'
               disabled={loading ? true : false}
             >
-                { loading 
-                  ? <>
-                      <Spinner
-                          as="span"
-                          animation="border"
-                          size="sm"
-                          role="status"
-                          aria-hidden="true"
-                      />
+              { loading 
+                ? <>
+                    <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                    />
 
-                      { 
-                        checkForm ?  <span>Salvando...</span> : <span>Atualizando...</span>
+                    { 
+                      checkForm ?  <span>Salvando...</span> : <span>Atualizando...</span>
+                    }
+                </> 
+                : <>
+                    {
+                        checkForm 
+                        ?
+                          <>
+                            <Theme.Icons.MdSaveAlt />
+                            <span>Salvar</span>
+                          </>
+                        :
+                          <>
+                            <Theme.Icons.MdUpdate />
+                            <span>Atualizar</span>
+                        
+                          </>
                       }
-                  </> 
-                  : <>
-                      {
-                          checkForm 
-                          ?
-                            <>
-                              <Theme.Icons.MdSaveAlt />
-                              <span>Salvar</span>
-                            </>
-                          :
-                            <>
-                              <Theme.Icons.MdUpdate />
-                              <span>Atualizar</span>
-                          
-                            </>
-                        }
-                    </>
+                  </>
 
               } 
             </Button>
 
           </S.WrapButtonContained>
-          
           {
             !checkForm &&
               <S.WrapButtonContainedDanger>
                 <Button
                   variant='danger'
                   disabled={loading ? true : false}
-                  onClick={() => handleDeleteDataBody()}
+                  onClick={() => handleShowModalDelete()}
                 >
-                    { loading 
-                      ? <>
-                          <Spinner
-                              as="span"
-                              animation="border"
-                              size="sm"
-                              role="status"
-                              aria-hidden="true"
-                          />
+                  { loading 
+                    ? <>
+                        <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />
 
-                          <span>Excluindo...</span>
-                      </> 
-                      : <>
-                          <Theme.Icons.MdDelete />
-                          <span>Excluir</span>
-                        </>
-
+                        <span>Excluindo...</span>
+                    </> 
+                    : <>
+                        <Theme.Icons.MdDelete />
+                        <span>Excluir</span>
+                      </>
                   } 
                 </Button>
-
               </S.WrapButtonContainedDanger>
           }
 
           <S.WrapButtonOutline>
-            
             <Button
               variant="outline-danger" 
               onClick={() => navigate(-1)}
