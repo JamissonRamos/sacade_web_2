@@ -31,10 +31,6 @@ const firebaseConfigs = {
 // Obtenha a configuração correta com base no ambiente
 const config = firebaseConfigs[environment];
 
-console.log('environment', environment);
-console.log('firebaseConfigs: environment',  firebaseConfigs[environment]);
-
-
 // Initialize Firebase
 const app = initializeApp(config);
 const analytics = getAnalytics(app);

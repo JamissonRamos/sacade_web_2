@@ -70,8 +70,8 @@ export const WrapGraduation = styled.div`
     /* border: 1px solid blue;  */
     & span {
         font-size: 1em;
-        font-weight: 500;
-        color: ${(props) => props.$Colors || "transparent"}; 
+        font-weight: 600;
+        color: ${(props) => props.$colors || "transparent"}; 
         text-transform: uppercase
 
 
@@ -93,6 +93,16 @@ export const WrapTrackDegrees = styled.div`
     }
 `;
 
+export const WrapObservation = styled.div`
+    /* border: 1px solid blue;  */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1.4rem;
+    & span {
+        font-size: 1em;
+    }
+`;
 export const WrapDataUpdate = styled.div`
     /* border: 1px solid blue;  */
     display: flex;
@@ -105,6 +115,6 @@ export const WrapDataUpdate = styled.div`
     }
     & svg {
         font-size: 1.2em;
-        color: ${(props) => props.$Colors || "transparent"}; 
+        color: ${(props) => props.$colors || "transparent"}; 
     }
 `;

@@ -81,7 +81,7 @@ const CardList = ({data, fullname}) => {
                                     </S.WrapIndex>
 
                                     <S.WrapGraduation
-                                        $Colors={range === 'branca' ? '#7c7c7c' : colors.bg}
+                                        $colors={range === 'branca' ? '#7c7c7c' : colors.bg}
                                     >
                                         <TextC.Title level={1}>  {graduation}  </TextC.Title>
 
@@ -98,10 +98,14 @@ const CardList = ({data, fullname}) => {
                             </S.SectionPrime>
 
                             <S.SectionSecondary>
-                                <TextC.Body level={2}> {observation} </TextC.Body>
+                                <S.WrapObservation>
+                                    <TextC.Body level={2}>
+                                        {observation}
+                                    </TextC.Body>
+                                </S.WrapObservation>
 
                                 <S.WrapDataUpdate
-                                    $Colors={range === 'branca' ? '#7c7c7c' : colors.bg}
+                                    $colors={range === 'branca' ? '#7c7c7c' : colors.bg}
                                 >
                                     <Theme.Icons.MdCalendarMonth />
                                     <TextC.Body level={2}> {dateUpdate} </TextC.Body>
