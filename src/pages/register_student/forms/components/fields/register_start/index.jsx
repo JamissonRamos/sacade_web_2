@@ -2,6 +2,7 @@ import * as S from '../styled'
 import { Col, Row, Form } from 'react-bootstrap'
 import { MDBRange } from 'mdb-react-ui-kit'
 import { useState } from 'react';
+import { CapitalizedValue } from '../../body/script';
 
 
 const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}) => {
@@ -12,10 +13,16 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
     const handleRangeChange = (event) => {
         const valueRange = parseInt(event.target.value, 10);        
         setRangeValue(valueRange);
-        setValue("degrees", valueRange); // Atualiza o valor no formulário
+        setValue("degrees", valueRange, { shouldValidate: true }); // Atualiza o valor no formulário
+    };
+    
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        const newValue = CapitalizedValue(value);
+        setValue(name, newValue);
     };
 
-    const degreesRangeValue = watch('degrees');
+    const degreesRangeValue = watch('degrees', 0); // Define 0 como valor padrão
 
     return (
         <S.Container>
@@ -92,7 +99,6 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
                             label='Selecione os Graus'
                             name='degrees'
                             value={degreesRangeValue}
-                            {...register("degrees")}
                             onChange={handleRangeChange} // Atualiza o estado quando o valor muda
                         />
                         <span> Total de Graus: {rangeValue || degreesRangeValue}</span>
@@ -143,6 +149,7 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
                             placeholder="Colocar alguma obs a mais." 
                             {...register("observation")}
                             isInvalid={!!errors.observation}
+                            onChange={(e) => handleChange(e)}
                             onBlur={(e) => e.target.value = e.target.value.trim()}
 
                         />
