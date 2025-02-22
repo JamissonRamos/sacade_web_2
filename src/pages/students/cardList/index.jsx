@@ -36,7 +36,6 @@ const CardList = ({data}) => {
     };
 
     const handleShowFormUpdate = (uid) => { 
-        // handleDeleteLocalStorage();
         navigate('/students/form_update', { state: { uid: uid } });
     };
 
@@ -65,26 +64,24 @@ const CardList = ({data}) => {
                 const statusMinor = storesStudent[uid] === false && isMinor; // Se for menor e não tiver responsável
 
                 return(
-                    <>
-                        <S.WrapButton 
-                            key={uid}
-                            onClick={() => handleShowFormUpdate(uid)}
-                            $isMinor={statusMinor}
-                        >
-                            {statusMinor && 
-                                <S.WrapText>
-                                    <TextC.Body level={1}>É necessário cadastrar um responsável para este aluno.</TextC.Body>
-                                </S.WrapText>
-                            }
-                                <ListPrimary 
-                                    index={i}
-                                    firstName={firstName}
-                                    lastName={lastName}
-                                    status={status}
-                                />
-                            
-                        </S.WrapButton>
-                    </>
+                    <S.WrapButton 
+                        key={uid}
+                        onClick={() => handleShowFormUpdate(uid)}
+                        $isMinor={statusMinor}
+                    >
+                        {statusMinor && 
+                            <S.WrapText>
+                                <TextC.Body level={1}>É necessário cadastrar um responsável para este aluno.</TextC.Body>
+                            </S.WrapText>
+                        }
+                            <ListPrimary 
+                                index={i}
+                                firstName={firstName}
+                                lastName={lastName}
+                                status={status}
+                            />
+                        
+                    </S.WrapButton>
                 )
             })
         }

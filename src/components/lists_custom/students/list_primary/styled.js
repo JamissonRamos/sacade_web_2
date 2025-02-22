@@ -15,6 +15,9 @@ export const SectionPrime = styled.div`
     align-items: center;
     gap: 8px;
     padding: .2rem 0;
+    @media (max-width: 375px) {
+        flex: auto;
+    }
 `;
 export const SectionSecondary = styled.div`
     /* border: 1px solid red; */
@@ -22,9 +25,14 @@ export const SectionSecondary = styled.div`
     display: flex;
     justify-content: flex-end;
     padding: .2rem 0;
+    @media (max-width: 375px) {
+        flex: auto;
+    }
 `;
 export const WrapIndex = styled.div`
-    width: 10px;
+    /* border: 1px solid red; */
+    width: auto;
+    padding: .2rem;
     margin-right: .4rem;
     & span {
         font-weight: 500;
@@ -50,6 +58,13 @@ export const CircleFirstLetterNome = styled.div`
     @media (max-width: 425px) {
         font-size: 18.1px;
     }
+    @media (max-width: 375px) {
+        width: 20px;
+        height: 20px;
+        padding: .8rem;
+        margin-right: .6rem;
+        font-size: 14.75px;
+    }
 `;
 export const Name = styled.div`
     /* border: 1px solid blue; */
@@ -65,6 +80,11 @@ export const Name = styled.div`
     color: ${Theme.Colors.grey800};
     @media (max-width: 425px) {
         font-size: .9rem;
+    }
+    @media (max-width: 375px) {
+        font-size: .8em;
+        letter-spacing: 0.6px;
+        line-height: 16px;
     }
 `;
 export const Status = styled.div`

@@ -29,7 +29,7 @@ const ListPrimary = ({index, firstName, lastName, status}) => {
         <S.Card>
             <S.SectionPrime>
                 <S.WrapIndex>
-                    <TextC.Body level={3}> {index + 1} </TextC.Body>
+                    <TextC.Body level={3}> {index + 10} </TextC.Body>
                 </S.WrapIndex>
 
                 <S.CircleFirstLetterNome>
