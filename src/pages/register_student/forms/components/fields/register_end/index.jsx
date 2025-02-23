@@ -6,15 +6,52 @@ import { useNavigate } from 'react-router-dom'
 const EndRegister = ({handleShowModalDelete, checkForm, loading, }) => {
   const navigate = useNavigate();
 
-
-
-
-
-
   return (
     <S.Container>
       <S.SectionPrime>
-        <S.WrapButton>
+        {
+          !checkForm &&
+            <S.WrapButtonContainedDanger>
+              <Button
+                variant='danger'
+                disabled={loading ? true : false}
+                onClick={() => handleShowModalDelete()}
+              >
+                { loading 
+                  ? <>
+                      <Spinner
+                          as="span"
+                          animation="border"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                      />
+
+                      <span>Excluindo...</span>
+                  </> 
+                  : <>
+                      <Theme.Icons.MdDelete />
+                      <span>Excluir</span>
+                    </>
+                } 
+              </Button>
+            </S.WrapButtonContainedDanger>
+        }
+      </S.SectionPrime>
+
+      <S.SectionSecondary>
+      <S.WrapButtonOutline>
+            <Button
+              variant="outline-danger" 
+              onClick={() => navigate(-1)}
+            >
+              <Theme.Icons.MdCancel />
+              <span>Cancelar</span>
+            </Button>
+            
+            
+          </S.WrapButtonOutline>
+
           <S.WrapButtonContained>
             <Button
               variant='success'
@@ -56,50 +93,9 @@ const EndRegister = ({handleShowModalDelete, checkForm, loading, }) => {
             </Button>
 
           </S.WrapButtonContained>
-          {
-            !checkForm &&
-              <S.WrapButtonContainedDanger>
-                <Button
-                  variant='danger'
-                  disabled={loading ? true : false}
-                  onClick={() => handleShowModalDelete()}
-                >
-                  { loading 
-                    ? <>
-                        <Spinner
-                            as="span"
-                            animation="border"
-                            size="sm"
-                            role="status"
-                            aria-hidden="true"
-                        />
+      </S.SectionSecondary>
 
-                        <span>Excluindo...</span>
-                    </> 
-                    : <>
-                        <Theme.Icons.MdDelete />
-                        <span>Excluir</span>
-                      </>
-                  } 
-                </Button>
-              </S.WrapButtonContainedDanger>
-          }
 
-          <S.WrapButtonOutline>
-            <Button
-              variant="outline-danger" 
-              onClick={() => navigate(-1)}
-            >
-              <Theme.Icons.MdCancel />
-              <span>Cancelar</span>
-            </Button>
-            
-            
-          </S.WrapButtonOutline>
-        
-        </S.WrapButton>
-
-      </S.SectionPrime>
     </S.Container>
   )
 }

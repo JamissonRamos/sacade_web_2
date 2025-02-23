@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { Theme } from "../../../../../../theme";
 
+
 const StyledButton = css`
     width: 100%;
     display: flex;
@@ -33,55 +34,65 @@ const StyledButton = css`
     }
 `;
 
+
 export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    padding: .2rem 0;
-`;
-export const SectionPrime = styled.div`
-    /* border: 1px solid red; */
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    @media (max-width: 425px) {
-        & > span {
-            font-size: .8em;
-        }
-    }
+    /* margin-top: 1rem; */
 `;
 
-export const WrapButton = styled.div`
+export const SectionPrime = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: flex-end;;
+    justify-content: center;
+    padding: .2rem ;
+    margin: .4rem 0;
+`;
+export const SectionSecondary = styled.div`
+    /* border: 1px solid blue; */
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
     gap: .8rem;
-    padding: .2rem 0;
-    margin-top: 2rem;
+    padding: .2rem;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+        gap: .4rem;
+    }
 `;
 
 export const WrapButtonContained = styled.div`
     /* border: 1px solid blue; */
-    width: 20%;
+    width: 30%;
     & button{
         ${StyledButton}
         background-color: ${Theme.Colors.green800};
     }
+    @media (max-width: 768px) {
+        width: 60%;
+    }
 `;
 export const WrapButtonContainedDanger = styled.div`
     /* border: 1px solid blue; */
-    width: 20%;
+    width: 50%;
     & button{
         ${StyledButton}
         background-color: ${Theme.Colors.red800};
     }
+    @media (max-width: 768px) {
+        width: 60%;
+    }
 `;
 export const WrapButtonOutline = styled.div`
     /* border: 1px solid blue; */
-    width: 20%;
+    width: 30%;
     & button{
         ${StyledButton}
         border: 1px solid  ${Theme.Colors.red600}; 
+    }
+    @media (max-width: 768px) {
+        width: 60%;
     }
 `;
