@@ -2,7 +2,7 @@
 import * as S from './styled'
 import { TextC } from '../../components/Typography'
 import { WrapPages } from '../../components/Wrappe/pages'
-import StudentsList from './studentsList'
+import CardList from './studentsList'
 import { useEffect, useState } from 'react'
 import { useStudents } from '../../hooks/students'
 import { Alert, Spinner } from 'react-bootstrap'
@@ -10,16 +10,41 @@ import { LoadingOverlay } from '../../components/spinner/global/styled'
 
 
 const ResponsibleStudents = () => {
-    const [registered, setRegistered] = useState(null);
+    const [registered, setRegistered] = useState(false);
 
     const { getDocuments, loading: loadingStudents , error: errorStudents} = useStudents.useGetDocuments()
+
+    const isUnderage = (birthDate) => {
+        if (!birthDate) return false; // Caso a data seja inválida ou não fornecida
+        const today = new Date();
+        const birth = new Date(birthDate);
+    
+        const age = today.getFullYear() - birth.getFullYear();
+        const monthDiff = today.getMonth() - birth.getMonth();
+        const dayDiff = today.getDate() - birth.getDate();
+    
+        // Ajuste caso o aniversário ainda não tenha acontecido este ano
+        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+            return age - 1 < 18;
+        }
+        return age < 18;
+    };
 
     const fetchDocuments = async () => {
         const result = await getDocuments();
         const { success, data} = result;
+         /*  adicionar um novo campo ao objeto verificando se é menor ou de maior */
+        const newData = data && data.map((item) => {
+            const { birthDate } = item;
+            const isMinor = isUnderage(birthDate)
+            return {
+            ...item,
+            isMinor,
+            }
+        })
         if(success)
         {
-            setRegistered( data )
+            setRegistered( newData )
         }
     }
     
@@ -65,7 +90,7 @@ const ResponsibleStudents = () => {
                 :   
                     <S.Content>
                     {
-                        <StudentsList data={registered}/>
+                        <CardList data={registered}/>
                     }
                     </S.Content>
             }

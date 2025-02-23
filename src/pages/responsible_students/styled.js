@@ -47,7 +47,7 @@ export const Content = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     min-width: 320px;
-    max-height: 70%;
+    max-height: 86%;
     padding: 1rem 0 .8rem 0;
     overflow: auto;
 `;

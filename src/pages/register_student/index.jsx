@@ -29,7 +29,7 @@ const RegisterStudent = () => {
         return age - 1 < 18;
     }
     return age < 18;
-};
+  };
 
   const fetchDocuments = async () => {
     const result = await getDocuments();

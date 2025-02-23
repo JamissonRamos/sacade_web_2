@@ -23,7 +23,6 @@ const DataStudents = ({register, setValue, errors, handleChange}) => {
                             placeholder="Digite seu nome." 
                             {...register("firstName")}
                             isInvalid={!!errors.firstName}
-                            setValue={setValue}
                             onBlur={(e) => handleBlur(e)}
                         />
                         <Form.Control.Feedback  type="invalid">

@@ -1,34 +1,13 @@
 import * as S from './styled'
-import { Badge } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 
-const StudentsList = ({data}) => {
-    
+import ListTeste from '../../../components/lists_custom/students/list_teste';
+
+const CardList = ({data}) => {
     const navigate = useNavigate();
     
-    const handleBadge = (status) => 
-    {
-        let bg
-        switch (status) {
-        case 'inativo':
-            bg = "warning"
-            break;
-        case 'bloqueado ':
-            bg = "danger"
-            break;
-        case 'ativo':
-            bg = "success"
-            break;
-    
-        default:
-            bg = "primary"
-            break;
-        }
-    
-        return bg 
-    }
-
     const handleDataStudentLocalStorage = (uid) => {
+        
         //Obtendo o obj do alunos que foi selecionado
         const studentData = data.filter(obj => obj.uid === uid);
         //Criando a coleção no local storage
@@ -45,35 +24,16 @@ const StudentsList = ({data}) => {
 
     return (
         <S.Container>
-            
+
             {
-                data && data.map(({uid, firstName, lastName, status}) => (
-
-                    <S.WrapButton 
-                        key={uid}
-                        onClick={() => handleShowFormUpdate(uid)}>
-                            <S.Card>
-                                <S.CircleFirstLetterNome>
-                                    {firstName && firstName.charAt(0)}
-                                </S.CircleFirstLetterNome>
-
-                                <S.Name>
-                                    {firstName + ' ' + lastName}
-                                </S.Name>
-                                <S.Status>
-                                    <Badge bg={handleBadge(status)} text="light">
-                                        {status}
-                                    </Badge>
-                                </S.Status>
-                            </S.Card>
-
-                    </S.WrapButton>
-
-
-                ))
+                data && 
+                    <ListTeste 
+                        data={data} 
+                        navigateOnClick={handleShowFormUpdate}
+                    />
             }
         </S.Container>
     )
 }
 
-export default StudentsList
+export default CardList
