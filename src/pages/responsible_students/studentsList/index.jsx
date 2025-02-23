@@ -1,10 +1,11 @@
 import * as S from './styled'
 import { useNavigate } from 'react-router-dom';
 
-import ListTeste from '../../../components/lists_custom/students/list_teste';
+import {ListsStudent} from '../../../components/lists_custom/students';
 
 const CardList = ({data}) => {
     const navigate = useNavigate();
+    const { ListPrimary } = ListsStudent;
     
     const handleDataStudentLocalStorage = (uid) => {
         
@@ -27,7 +28,7 @@ const CardList = ({data}) => {
 
             {
                 data && 
-                    <ListTeste 
+                    <ListPrimary 
                         data={data} 
                         navigateOnClick={handleShowFormUpdate}
                     />
