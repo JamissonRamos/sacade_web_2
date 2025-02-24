@@ -70,6 +70,7 @@ const DataStudents = ({register, errors, setValue, handleChange}) => {
                             type="cellPhone" 
                             name="cellPhone"
                             placeholder="Digite seu Celular." 
+                            inputMode="numeric" // Adiciona o teclado numérico
                             {...register("cellPhone")}
                             isInvalid={!!errors.cellPhone}
                             onChange={handleChange}
@@ -88,6 +89,7 @@ const DataStudents = ({register, errors, setValue, handleChange}) => {
                             type="text" 
                             name="cpf"
                             placeholder="Digite seu CPF." 
+                            inputMode="numeric" // Adiciona o teclado numérico
                             {...register("cpf")}
                             isInvalid={!!errors.cpf}
                             onChange={handleChange}
@@ -104,6 +106,7 @@ const DataStudents = ({register, errors, setValue, handleChange}) => {
                             type="text" 
                             name="rg"
                             placeholder="Digite seu rg." 
+                            inputMode="numeric" // Adiciona o teclado numérico
                             {...register("rg")}
                             isInvalid={!!errors.rg}
                             onChange={handleChange}

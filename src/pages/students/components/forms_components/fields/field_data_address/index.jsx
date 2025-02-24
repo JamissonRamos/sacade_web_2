@@ -59,6 +59,7 @@ const DataAddress = ({register, setValue, getValues, errors, handleChange}) => {
                                     type="text"  
                                     name='cep' 
                                     placeholder="Digite seu cep" 
+                                    inputMode="numeric" // Adiciona o teclado numérico
                                     {...register("cep")}
                                     isInvalid={!!errors.cep}
                                     onChange={handleChange}
