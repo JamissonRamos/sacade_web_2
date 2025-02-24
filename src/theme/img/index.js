@@ -20,6 +20,7 @@ import AvatarsRemovebg from '../../assets/avatars-removebg.png'
 import Maintenance from '../../assets/maintenance.png'
 
 
+
 export const ImgC = {
     Logo,
     GolpeQueda,
