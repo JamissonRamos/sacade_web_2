@@ -3,17 +3,20 @@ import { Theme } from "../../../../theme";
 
 export const Card = styled.div`
     /* border: 1px solid red; */
-    
+    width: 250px;
     max-width: 300px;
     display: flex;
     align-items: center;
-    
     gap: .2rem;
     padding: 1rem .8rem;
     background: ${Theme.Colors.white800};
     box-shadow: ${Theme.Shadow.sh600};
     border-radius: 8px;
-    @media (max-width: 575px) {
+    @media (max-width: 840px) and (min-width: 768px){
+        width: 100%;
+        gap: 1rem
+    }
+    @media (max-width: 630px) {
         width: 100%;
         gap: 1rem
     }
@@ -30,17 +33,24 @@ export const WrapImg = styled.div`
 `;
 export const WrapText = styled.div`
     /* border: 1px solid red; */
-
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: .2rem;
+    @media (max-width: 840px) and (min-width: 768px){
+        width: 80%;
+    }
+    @media (max-width: 630px) {
+        width: 80%;
+    }
 `;
 export const Title = styled.div`
     /* border: 1px solid red; */
 
     display: flex;
     align-items: center;
+    justify-content: center;
     & span {
         font-size: 1em;
         font-weight: 700;

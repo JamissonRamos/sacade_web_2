@@ -31,7 +31,7 @@ const CardStudentsBlocked = ({totalItem, loading}) => {
                 </S.Title>
 
                 <S.SubTitle >
-                    <TextC.Body level={1}>Total alunos Bloqueados </TextC.Body>
+                    <TextC.Body level={1}>alunos Bloqueados </TextC.Body>
                 </S.SubTitle>
 
             </S.WrapText>

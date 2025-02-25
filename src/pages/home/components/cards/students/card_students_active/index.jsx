@@ -5,11 +5,8 @@ import { Spinner } from 'react-bootstrap';
 
 const CardStudentActive = ({totalItem, loading}) => {
     
-
     return (
-
         <S.Card>
-
             <S.WrapImg>
                 <img src={Theme.ImgC.CardStudentActive} alt="Alunos Ativos"/>
             </S.WrapImg>
@@ -32,7 +29,7 @@ const CardStudentActive = ({totalItem, loading}) => {
                 </S.Title>
 
                 <S.SubTitle >
-                    <TextC.Body level={1}>Total alunos ativos </TextC.Body>
+                    <TextC.Body level={1}>alunos ativos </TextC.Body>
                 </S.SubTitle>
 
             </S.WrapText>

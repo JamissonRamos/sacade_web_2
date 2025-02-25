@@ -11,17 +11,11 @@ const Body = () => {
     return (
         <S.Container>
             <S.SectionCards>
-                <S.WrapStudents>
+
                     <Students />
-                </S.WrapStudents>
-
-                <S.WrapPayments>
+                    
                     pagamentos
-                </S.WrapPayments>
 
-                <S.WrapRanges>
-                    faixas
-                </S.WrapRanges>
             </S.SectionCards>
         </S.Container>
     ) 

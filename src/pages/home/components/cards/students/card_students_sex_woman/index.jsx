@@ -3,14 +3,14 @@ import { Theme } from "../../../../../../theme";
 import { TextC } from '../../../../../../components/Typography';
 import { Spinner } from 'react-bootstrap';
 
-const CardStudentsInactive = ({totalItem, loading}) => {
+const CardStudentsSexWoman = ({totalItem, loading}) => {
 
     return (
 
         <S.Card>  
 
             <S.WrapImg>
-                <img src={Theme.ImgC.CardTotalAtrasadoMes} alt="Alunos Inativos"/>
+                <img src={Theme.ImgC.CardTotalAtrasadoMes} alt="Alunos Feminino"/>
             </S.WrapImg>
 
             <S.WrapText>
@@ -31,7 +31,7 @@ const CardStudentsInactive = ({totalItem, loading}) => {
                 </S.Title>
 
                 <S.SubTitle >
-                    <TextC.Body level={1}>alunos Inativos </TextC.Body>
+                    <TextC.Body level={1}> Sexo Feminino </TextC.Body>
                 </S.SubTitle>
 
             </S.WrapText>
@@ -39,4 +39,4 @@ const CardStudentsInactive = ({totalItem, loading}) => {
     )
 }
 
-export default CardStudentsInactive
+export default CardStudentsSexWoman
