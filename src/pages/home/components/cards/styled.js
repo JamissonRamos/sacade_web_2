@@ -3,28 +3,40 @@ import { Theme } from "../../../../theme";
 
 export const Card = styled.div`
     /* border: 1px solid red; */
-    width: 250px;
-    max-width: 300px;
+    width: 100px;
+    max-width: 100px;
+    height: 100px;
+    position: relative;
     display: flex;
     align-items: center;
     gap: .2rem;
-    padding: 1rem .8rem;
+    padding: 1rem .4rem;
     background: ${Theme.Colors.white800};
     box-shadow: ${Theme.Shadow.sh600};
-    border-radius: 8px;
-    @media (max-width: 840px) and (min-width: 768px){
+    border-radius: 100px;
+    /* @media (max-width: 840px) and (min-width: 768px){
         width: 100%;
         gap: 1rem
-    }
-    @media (max-width: 630px) {
+    } */
+    /* @media (max-width: 1440px) {
+        width: 150px;
+        gap: 1rem
+    } */
+    /* @media (max-width: 630px) {
         width: 100%;
         gap: 1rem
-    }
+    } */
+    overflow: visible;
 `;
 export const WrapImg = styled.div`
     /* border: 1px solid red; */
     width: 36px;
     height: 36px;
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-30%);
+    z-index: 10;
     & img {
         max-width: 100%;
         max-height: 100%;
@@ -37,13 +49,14 @@ export const WrapText = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: .2rem;
-    @media (max-width: 840px) and (min-width: 768px){
+    /* @media (max-width: 840px) and (min-width: 768px){
         width: 80%;
     }
     @media (max-width: 630px) {
         width: 80%;
-    }
+    } */
 `;
 export const Title = styled.div`
     /* border: 1px solid red; */
@@ -60,12 +73,14 @@ export const Title = styled.div`
 `;
 export const SubTitle = styled.div`
     /* border: 1px solid red; */
+    width: 100%;
     display: flex;
     align-items: center;
     & span {
-        font-size: .8em;
-        font-weight: 500;
+        font-size: .7em;
+        font-weight: 900;
         text-transform: uppercase;
+        text-align: center;
         color: ${Theme.Colors.grey600};
     }
 `;

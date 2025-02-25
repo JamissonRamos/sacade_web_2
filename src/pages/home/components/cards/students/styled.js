@@ -4,8 +4,17 @@ const StyledWrapCards = css`
     display: flex;
     flex-wrap: wrap; /* Permite que os itens quebrem para baixo */
     justify-content: flex-start; /* Centraliza os itens */
-    gap: 10px; /* Espaço entre os cards */
-    padding: .4rem ;
+    gap: 1.4rem; /* Espaço entre os cards */
+    padding: 1rem ;
+
+    /* @media (max-width: 880px) and (min-width: 768px){
+        width: 100%;
+        justify-content: center; 
+    }
+    @media (max-width: 680px) {
+        width: 100%;
+        justify-content: center; 
+    } */
 `;
 
 export const Container = styled.div`
@@ -13,21 +22,17 @@ export const Container = styled.div`
     width: 100%;
     min-width: 320px;
     display: flex;
-    flex-direction: column;
-    padding: .2rem ;
+    padding: .2rem 0;
+    @media (max-width: 1024px) {
+        width: 100%;
+        /* flex-direction: column; */
+        justify-content: center; 
+    } 
 `;
 
 export const WrapStudents = styled.div`
     /* border: 1px solid red; */
     ${StyledWrapCards}
-    @media (max-width: 840px) and (min-width: 768px){
-        width: 100%;
-        justify-content: center; 
-    }
-    @media (max-width: 630px) {
-        width: 100%;
-        justify-content: center; 
-    }
 `;
 
 export const WrapPayments = styled.div`
@@ -38,4 +43,5 @@ export const WrapPayments = styled.div`
 export const WrapRanges = styled.div`
     /* border: 1px solid red; */
     ${StyledWrapCards}
+
 `;

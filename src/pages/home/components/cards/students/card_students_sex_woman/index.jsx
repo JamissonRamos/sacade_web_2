@@ -10,7 +10,7 @@ const CardStudentsSexWoman = ({totalItem, loading}) => {
         <S.Card>  
 
             <S.WrapImg>
-                <img src={Theme.ImgC.CardTotalAtrasadoMes} alt="Alunos Feminino"/>
+                <img src={Theme.ImgC.studentsWoman} alt="Alunos Feminino"/>
             </S.WrapImg>
 
             <S.WrapText>

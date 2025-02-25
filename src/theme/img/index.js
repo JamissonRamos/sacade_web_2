@@ -18,8 +18,9 @@ import CardTotalRecebidoMes from '../../assets/cardTotalRecebidoMes.png'
 import Avatars from '../../assets/avatars.png'
 import AvatarsRemovebg from '../../assets/avatars-removebg.png'
 import Maintenance from '../../assets/maintenance.png'
-
-
+import studentsMan from '../../assets/studentsMan.png'
+import studentsWoman from '../../assets/studentsWoman.png'
+import studentWomanMan from '../../assets/studentWomanMan.png'
 
 export const ImgC = {
     Logo,
@@ -41,4 +42,7 @@ export const ImgC = {
     Avatars,
     AvatarsRemovebg,
     Maintenance,
+    studentsMan,
+    studentsWoman,
+    studentWomanMan,
 }
