@@ -12,20 +12,8 @@ export const Card = styled.div`
     gap: .2rem;
     padding: 1rem .4rem;
     background: ${Theme.Colors.white800};
-    box-shadow: ${Theme.Shadow.sh600};
+    box-shadow: ${Theme.Shadow.sh900};
     border-radius: 100px;
-    /* @media (max-width: 840px) and (min-width: 768px){
-        width: 100%;
-        gap: 1rem
-    } */
-    /* @media (max-width: 1440px) {
-        width: 150px;
-        gap: 1rem
-    } */
-    /* @media (max-width: 630px) {
-        width: 100%;
-        gap: 1rem
-    } */
     overflow: visible;
 `;
 export const WrapImg = styled.div`
@@ -51,12 +39,6 @@ export const WrapText = styled.div`
     align-items: center;
     justify-content: center;
     gap: .2rem;
-    /* @media (max-width: 840px) and (min-width: 768px){
-        width: 80%;
-    }
-    @media (max-width: 630px) {
-        width: 80%;
-    } */
 `;
 export const Title = styled.div`
     /* border: 1px solid red; */

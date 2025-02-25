@@ -11,12 +11,12 @@ const Body = () => {
     return (
         <S.Container>
             <S.SectionCards>
-
-                    <Students />
+                <Students />
                     
-                    pagamentos
-
+                {/* card de pagamentos pagamentos */}
             </S.SectionCards>
+
+            {/* Outra seção de demostrativos */}
         </S.Container>
     ) 
 }

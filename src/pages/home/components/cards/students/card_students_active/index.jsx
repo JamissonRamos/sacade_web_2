@@ -8,7 +8,6 @@ const CardStudentActive = ({totalItem, loading}) => {
     return (
         <S.Card>
             <S.WrapImg>
-                
                 <img src={Theme.ImgC.CardStudentActive} alt="Alunos Ativos"/>
             </S.WrapImg>
 

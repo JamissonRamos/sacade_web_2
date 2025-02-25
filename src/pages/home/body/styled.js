@@ -1,14 +1,10 @@
-import styled, { css } from "styled-components";
-
-
+import styled from "styled-components";
 
 export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     min-width: 320px;
     display: flex;
-    padding: .2rem 0;
-    margin-bottom: .4rem;
 `;
 
 export const SectionCards = styled.div`
@@ -17,5 +13,4 @@ export const SectionCards = styled.div`
     flex-direction: column;
     justify-content: flex-start; 
     gap: 10px;
-    padding: .4rem ;
 `;

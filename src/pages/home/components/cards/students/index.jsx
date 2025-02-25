@@ -71,7 +71,7 @@ const Students = () => {
                 <CardStudentsBlocked totalItem={totalItemBlocked} loading={loading}/>
                 <CardStudentsInactive totalItem={totalItemInactive} loading={loading}/>
             </S.WrapStudents>
-
+            
             <S.WrapRanges>
                 <CardStudentsSexMan totalItem={totalItemSexMan} loading={loading}/>
                 <CardStudentsSexWoman totalItem={totalItemSexWoman} loading={loading}/>
