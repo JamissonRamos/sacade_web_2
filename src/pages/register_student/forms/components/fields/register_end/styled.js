@@ -63,20 +63,10 @@ export const SectionSecondary = styled.div`
     }
 `;
 
-export const WrapButtonContained = styled.div`
-    /* border: 1px solid blue; */
-    width: 30%;
-    & button{
-        ${StyledButton}
-        background-color: ${Theme.Colors.green800};
-    }
-    @media (max-width: 768px) {
-        width: 60%;
-    }
-`;
 export const WrapButtonContainedDanger = styled.div`
     /* border: 1px solid blue; */
     width: 50%;
+    margin-bottom: 1rem;
     & button{
         ${StyledButton}
         background-color: ${Theme.Colors.red800};
@@ -85,9 +75,23 @@ export const WrapButtonContainedDanger = styled.div`
         width: 60%;
     }
 `;
+export const WrapButtonContained = styled.div`
+    /* border: 1px solid blue; */
+    width: 30%;
+    max-width: 250px;
+    & button{
+        ${StyledButton}
+        background-color: ${Theme.Colors.green800};
+    }
+    @media (max-width: 768px) {
+        width: 60%;
+    }
+`;
+
 export const WrapButtonOutline = styled.div`
     /* border: 1px solid blue; */
     width: 30%;
+    max-width: 250px;
     & button{
         ${StyledButton}
         border: 1px solid  ${Theme.Colors.red600}; 

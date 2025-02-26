@@ -72,6 +72,7 @@ const Students = () => {
                 <CardStudentsInactive totalItem={totalItemInactive} loading={loading}/>
             </S.WrapStudents>
             
+            {/* Mudar esse nome, range vem de faixa, aqui são dados pessoais do aluno */}
             <S.WrapRanges>
                 <CardStudentsSexMan totalItem={totalItemSexMan} loading={loading}/>
                 <CardStudentsSexWoman totalItem={totalItemSexWoman} loading={loading}/>
