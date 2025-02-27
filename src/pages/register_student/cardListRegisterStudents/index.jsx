@@ -11,14 +11,26 @@ import { useRegisterStudents }  from '../../../hooks/registerStudent';
 import { useEffect, useState }  from 'react';
 
 const CardListRegisterStudents = () => {
-    const [registered, setRegistered] = useState(false);
+  const [registered, setRegistered] = useState(false);
 
-    const location = useLocation();  // Captura o UID da URL
-    const { idStudent, fullname } = location.state || {};  // Captura o UID do estado de navegação
-  
+  const location = useLocation();  // Captura o UID da URL
+  const { idStudent, fullname } = location.state || {};  // Captura o UID do estado de navegação
+
   //Recuperando as Fichas do aluno;
   const {getDocumentsById, loading: loadingRegisterStudent} = useRegisterStudents.useGetDocumentsByIdRegisterStudent();
-      
+  
+  const fetchDocumentsLocalStorage = () => { 
+    /* Função para selecionar obj que esta com o currentHistory true e recuperar alguns dados e passar para local storage */
+    const localStorageHistory = registered .filter(obj => obj.currentHistory === true) // Filtra
+      .map(obj => ({
+        uid: obj.uid,
+        range: obj.range,
+        dateUpdate: obj.dateUpdate
+    })); // Mapeia para selecionar campos específicos
+
+    localStorage.setItem('currentHistory', JSON.stringify(localStorageHistory));
+  }
+
   const fetchDocuments = async () => {
       const result = await getDocumentsById(idStudent);
       const { success, data, message} = result;
@@ -33,13 +45,14 @@ const CardListRegisterStudents = () => {
   }
               
   useEffect(() => {
+    
     fetchDocuments(); //Chama a função ao renderizar o componente
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-          
+            
   return (
     <WrapPages>
-      <Header idStudent={idStudent} fullname={fullname}/>
+      <Header idStudent={idStudent} fullname={fullname} fetchDocumentsLocalStorage={fetchDocumentsLocalStorage}/>
       {
         loadingRegisterStudent &&
           <LoadingOverlay>
@@ -65,7 +78,7 @@ const CardListRegisterStudents = () => {
           </S.Empty> 
         :   
           <S.Content>
-            <CardList data={registered} fullname={fullname}/> 
+            <CardList data={registered} fullname={fullname} fetchDocumentsLocalStorage={fetchDocumentsLocalStorage}/> 
           </S.Content>
       }
 

@@ -71,17 +71,29 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
                             isInvalid={!!errors.range}
                         >
                             <option value="">Selecione Faixa</option>
+                            {/* <!-- Faixas para Crianças e Adolescentes --> */}
                             <option value="branca">Branca</option>
+                            <option value="cinza_branca">Cinza e Branca</option>
                             <option value="cinza">Cinza</option>
+                            <option value="cinza_preta">Cinza e Preta</option>
+                            <option value="amarela_branca">Amarela e Branca</option>
                             <option value="amarela">Amarela</option>
+                            <option value="amarela_preta">Amarela e Preta</option>
+                            <option value="laranja_branca">Laranja e Branca</option>
                             <option value="laranja">Laranja</option>
+                            <option value="laranja_preta">Laranja e Preta</option>
+                            <option value="verde_branca">Verde e Branca</option>
                             <option value="verde">Verde</option>
+                            <option value="verde e preta">Verde e Preta</option>
+
+                            {/* <!-- Faixas para Adultos --> */}
                             <option value="azul">Azul</option>
                             <option value="roxa">Roxa</option>
                             <option value="marrom">Marrom</option>
                             <option value="preta">Preta</option>
-                            <option value="vermelha">Vermelha</option>
-                            <option value="vermelha e preta">Vermelha e Preta</option>
+                            <option value="coral">Coral</option>
+                            <option value="vermelha_preta">Vermelha e Preta</option>
+                            <option value="vermelha">Vermelha</option>                        
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
                             {errors.range && errors.range.message}

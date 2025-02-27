@@ -6,6 +6,11 @@ import { useNavigate } from 'react-router-dom'
 const EndRegister = ({handleShowModalDelete, checkForm, loading, }) => {
   const navigate = useNavigate();
 
+  const handleOnClickCancel = () => {
+    localStorage.removeItem('currentHistory');
+    navigate(-1)
+
+  }
   return (
     <S.Container>
       <S.SectionPrime>
@@ -43,7 +48,7 @@ const EndRegister = ({handleShowModalDelete, checkForm, loading, }) => {
       <S.WrapButtonOutline>
             <Button
               variant="outline-danger" 
-              onClick={() => navigate(-1)}
+              onClick={() => handleOnClickCancel()}
             >
               <Theme.Icons.MdCancel />
               <span>Cancelar</span>

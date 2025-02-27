@@ -4,8 +4,22 @@ import { Button }       from "react-bootstrap"
 import { Theme }        from "../../../../theme"
 import { useNavigate }  from "react-router-dom"
 
-const Header = ({idStudent, fullname}) => {
+const Header = ({idStudent, fullname, fetchDocumentsLocalStorage}) => {
     const navigate = useNavigate();
+
+    const handleOnClick = async () => {
+        await fetchDocumentsLocalStorage()
+        navigate(
+            '/registerStudent/formsController', 
+            { state: 
+                { 
+                    idStudent: idStudent, 
+                    fullname: fullname, 
+                    checkForm: true
+                } 
+            })
+
+    }
     return (
         <S.Container>
             <S.WrapText>
@@ -17,7 +31,7 @@ const Header = ({idStudent, fullname}) => {
             <S.WrapButtonCreate>
                 <Button
                     variant="success" 
-                    onClick={() => navigate('/registerStudent/formsController', { state: { idStudent: idStudent, fullname: fullname, checkForm: true} })}
+                    onClick={() => handleOnClick()}
                 >
                     <Theme.Icons.MdAdd />
                     <span>Novo Cadastro</span>

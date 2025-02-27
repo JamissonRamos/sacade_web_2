@@ -9,8 +9,10 @@ import { LoadingOverlay }       from '../../components/spinner/global/styled'
 import { useStudents }          from '../../hooks/students'
 import { useEffect, useState }  from 'react'
 
-
 const RegisterStudent = () => {
+  //Toda vez que entra limpar o currentHistory
+  localStorage.removeItem('currentHistory');
+  
   const [registered, setRegistered] = useState(null);
   
   const { getDocuments, loading: loadingAll , error: errorAll} = useStudents.useGetDocuments()

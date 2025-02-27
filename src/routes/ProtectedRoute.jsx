@@ -14,6 +14,7 @@ const ProtectedRoute =  ({children, page}) => {
         sessionStorage.removeItem('userLogged'); // Limpa o sessionStorage se não houver usuário
         localStorage.removeItem('uisStudents');
         localStorage.removeItem('student');
+        localStorage.removeItem('currentHistory');
         return <Navigate to="/splashScreen" />;
     }
     

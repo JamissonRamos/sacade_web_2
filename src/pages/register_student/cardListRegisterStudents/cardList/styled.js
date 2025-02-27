@@ -53,6 +53,29 @@ export const SectionSecondary = styled.div`
     gap: .8rem;
     padding: .2rem 0;
 `;
+export const WrapCurrentHistory = styled.div`
+    /* border: 1px solid blue; */
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .2rem ;
+    border-radius: 20px;
+    background-color: ${Theme.Colors.green700};
+    svg {
+        font-weight: 900;
+        text-align: center;
+        color: ${Theme.Colors.red700};
+    }
+    &.star{
+        svg{
+            color: ${Theme.Colors.green800};
+        }
+    }
+    
+    /* text-align: center; */
+`;
 export const WrapIndexDataUpdate = styled.div`
     /* border: 1px solid blue;  */
     display: flex;
@@ -61,6 +84,9 @@ export const WrapIndexDataUpdate = styled.div`
 `;
 export const WrapIndex = styled.div`
     /* border: 1px solid blue;  */
+    display: flex;
+    align-items: center;
+    gap: .8rem;
     & span {
         font-weight: 500;
         color: ${Theme.Colors.grey800};

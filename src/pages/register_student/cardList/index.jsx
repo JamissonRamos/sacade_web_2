@@ -1,6 +1,6 @@
-import * as S from './styled';
-import { useNavigate } from 'react-router-dom';
-import ListPrimary from '../../../components/lists_custom/students/list_primary';
+import * as S           from './styled';
+import ListPrimary      from '../../../components/lists_custom/students/list_primary';
+import { useNavigate }  from 'react-router-dom';
 
 const CardList = ({data}) => {
     const navigate = useNavigate();
