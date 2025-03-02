@@ -30,7 +30,6 @@ const FormUpdate = ({dataRegister, checkForm, fullname}) => {
 
         if(success){
             const path = `/registerStudent`;
-            //Coloca dinamico a page de notificação, atualiação ou create
             navigate(`/notifications/delete`, {
                 state: {
                     url: path,
@@ -46,11 +45,12 @@ const FormUpdate = ({dataRegister, checkForm, fullname}) => {
     }
 
     const handleOnSubmit = async (data) => {
-        const result =  await updateData(data)
-        const {success, message} = result;
 
+        const result = await updateData(data)
+        //const result = {success: true, message: 'teste'}
+        const {success, message} = result;
         if(success){
-            return {
+            return {    
                 success: true
             }
         }else{

@@ -84,7 +84,7 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
                             <option value="laranja_preta">Laranja e Preta</option>
                             <option value="verde_branca">Verde e Branca</option>
                             <option value="verde">Verde</option>
-                            <option value="verde e preta">Verde e Preta</option>
+                            <option value="verde_preta">Verde e Preta</option>
 
                             {/* <!-- Faixas para Adultos --> */}
                             <option value="azul">Azul</option>

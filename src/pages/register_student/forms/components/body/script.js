@@ -21,7 +21,7 @@ export const FormatHeight = (value) => {
         - Limita o valor a 2 dígitos antes da vírgula e 2 dígitos depois.
     */
 
-    if (value === 0) return;
+    if (value === 0) return 'm 0,00';
     if (value === '') return;
 
     // Converte o número para string com 2 casas decimais e substitui o ponto por vírgula
@@ -59,9 +59,9 @@ export const FormatWeight = (value) => {
         - Função para converter o peso em formato de quilogramas (kg) com duas casas decimais;
         - O usuário começa a digitar de trás para frente, por exemplo: 22, 001 para 1,23 kg.
     */
-    if (value === 0) return;
+    if (value === 0) return 'kg 0,00';
     if (value === '') return;
-
+    
     // Converte o número para string com 2 casas decimais e substitui o ponto por vírgula
     const valueFormat = value.toLocaleString('pt-BR', {
         minimumFractionDigits: 2,

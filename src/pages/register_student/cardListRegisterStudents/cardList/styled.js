@@ -43,6 +43,11 @@ export const SectionPrime = styled.div`
     justify-content: space-between;
     gap: 8px;
     padding: .2rem 0;
+    @media (max-width: 540px) {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px
+    }
 `;
 export const SectionSecondary = styled.div`
     /* border: 1px solid blue; */
@@ -54,7 +59,7 @@ export const SectionSecondary = styled.div`
     padding: .2rem 0;
 `;
 export const WrapCurrentHistory = styled.div`
-    /* border: 1px solid blue; */
+    border: 1px solid blue;
     width: 24px;
     height: 24px;
     display: flex;
@@ -73,8 +78,6 @@ export const WrapCurrentHistory = styled.div`
             color: ${Theme.Colors.green800};
         }
     }
-    
-    /* text-align: center; */
 `;
 export const WrapIndexDataUpdate = styled.div`
     /* border: 1px solid blue;  */
@@ -82,16 +85,29 @@ export const WrapIndexDataUpdate = styled.div`
     align-items: center;
     gap: .8rem;
 `;
+
 export const WrapIndex = styled.div`
     /* border: 1px solid blue;  */
     display: flex;
     align-items: center;
-    gap: .8rem;
+    gap: 1rem;
+`;
+
+export const WrapValueIndex = styled.div`
+    /* border: 1px solid blue;  */
     & span {
-        font-weight: 500;
+        font-size: 1em;
+        font-weight: 700;
         color: ${Theme.Colors.grey800};
     }
+    @media (max-width: 600px) {
+        & span {
+            font-size: .9em;
+            font-weight: 900;
+        }
+    }
 `;
+
 export const WrapGraduation = styled.div`
     /* border: 1px solid blue;  */
     & span {
@@ -100,7 +116,13 @@ export const WrapGraduation = styled.div`
         color: ${(props) => props.$colors || "transparent"}; 
         text-transform: uppercase
 
-
+        
+    }
+    @media (max-width: 600px) {
+        & span {
+            font-size: .9em;
+            font-weight: 900;
+        }
     }
 `;
 export const WrapTrackDegrees = styled.div`
@@ -108,8 +130,8 @@ export const WrapTrackDegrees = styled.div`
     display: flex;
     align-items: center;
     & span {
-        font-size: 10px;
-        letter-spacing: 0.4px;
+        font-size: 11px;
+        letter-spacing: 1px;
         font-weight: 500;
         line-height: 16px;
         text-transform: uppercase;

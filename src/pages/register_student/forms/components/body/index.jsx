@@ -17,24 +17,23 @@ const BodyForm = ({handleOnSubmit, handleShowModalDelete, checkForm, loading, da
     const { register, handleSubmit, setValue, watch, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.RegisterStudentSchema),
         defaultValues: {
-            studentWeight: 0,
-            studentHeight: 0,
+            studentWeight: 'kg 0,00',
+            studentHeight: 'm 0,00',
             degrees: 0, // Valor inicial para degreesRange
         },
     });
 
     const applyMascara = (fieldName, fieldValue ) => {
-        let maskedValue = ApplyChew(fieldName, fieldValue)
-        setValue(fieldName, maskedValue)
+        let maskedValue = ApplyChew(fieldName, fieldValue);
+        setValue(fieldName, maskedValue);
     }
-
 
     const handleApplyChewChange = (e) => {
         let fieldName = e.target.name || false;
         let fieldValue = e.target.value || false;
-
-        let maskedValue = ApplyChew(fieldName, fieldValue);   
         
+        let maskedValue = ApplyChew(fieldName, fieldValue);   
+
         setValue(fieldName, maskedValue);
     }
 
@@ -56,8 +55,6 @@ const BodyForm = ({handleOnSubmit, handleShowModalDelete, checkForm, loading, da
                     buttonNewRegister: false,
                 },
             });
-
-            
         }else{
             reset()
             navigate('/notifications/error');

@@ -4,11 +4,10 @@ import { Button }       from "react-bootstrap"
 import { Theme }        from "../../../../theme"
 import { useNavigate }  from "react-router-dom"
 
-const Header = ({idStudent, fullname, fetchDocumentsLocalStorage}) => {
+const Header = ({idStudent, fullname}) => {
     const navigate = useNavigate();
 
     const handleOnClick = async () => {
-        await fetchDocumentsLocalStorage()
         navigate(
             '/registerStudent/formsController', 
             { state: 
