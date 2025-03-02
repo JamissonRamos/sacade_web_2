@@ -24,7 +24,7 @@ export const WrapImg = styled.div`
     top: -18px;
     left: 50%;
     transform: translateX(-30%);
-    z-index: 10;
+    z-index: 9;
     & img {
         max-width: 100%;
         max-height: 100%;

@@ -59,7 +59,7 @@ export const SectionSecondary = styled.div`
     padding: .2rem 0;
 `;
 export const WrapCurrentHistory = styled.div`
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 24px;
     height: 24px;
     display: flex;
