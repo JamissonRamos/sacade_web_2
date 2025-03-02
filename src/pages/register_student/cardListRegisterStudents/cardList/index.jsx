@@ -58,7 +58,7 @@ const CardList = ({data, fullname }) => {
                                                 </S.WrapCurrentHistory>
                                         }
                                         <S.WrapValueIndex>
-                                            <TextC.Body level={4}> {i + 10} </TextC.Body>
+                                            <TextC.Body level={4}> {i + 1} </TextC.Body>
                                         </S.WrapValueIndex>
 
                                     </S.WrapIndex>
