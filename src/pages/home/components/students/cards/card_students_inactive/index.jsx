@@ -1,16 +1,16 @@
-import * as S from '../../styled';
+import * as S from '../styled';
 import { Theme } from "../../../../../../theme";
 import { TextC } from '../../../../../../components/Typography';
 import { Spinner } from 'react-bootstrap';
 
-const CardStudentsTotal = ({totalItem, loading}) => {
+const CardStudentsInactive = ({totalItem, loading}) => {
 
     return (
 
         <S.Card>  
 
             <S.WrapImg>
-                <img src={Theme.ImgC.studentWomanMan} alt="Total Alunos"/>
+                <img src={Theme.ImgC.CardTotalAtrasadoMes} alt="Alunos Inativos"/>
             </S.WrapImg>
 
             <S.WrapText>
@@ -19,7 +19,7 @@ const CardStudentsTotal = ({totalItem, loading}) => {
                     {
                         loading 
                         ?   <Spinner
-                                variant='success'
+                                variant='danger'
                                 size="sm"
                                 as="span"
                                 animation="border"
@@ -31,7 +31,7 @@ const CardStudentsTotal = ({totalItem, loading}) => {
                 </S.Title>
 
                 <S.SubTitle >
-                    <TextC.Body level={1}> Total de Alunos </TextC.Body>
+                    <TextC.Body level={1}>alunos Inativos </TextC.Body>
                 </S.SubTitle>
 
             </S.WrapText>
@@ -39,4 +39,4 @@ const CardStudentsTotal = ({totalItem, loading}) => {
     )
 }
 
-export default CardStudentsTotal
+export default CardStudentsInactive

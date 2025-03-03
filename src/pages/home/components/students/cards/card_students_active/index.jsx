@@ -1,4 +1,4 @@
-import * as S from '../../styled';
+import * as S from '../styled';
 import { Theme } from "../../../../../../theme";
 import { TextC } from '../../../../../../components/Typography';
 import { Spinner } from 'react-bootstrap';

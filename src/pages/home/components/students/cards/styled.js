@@ -1,5 +1,6 @@
+
 import styled from "styled-components";
-import { Theme } from "../../../../theme";
+import { Theme } from "../../../../../theme";
 
 export const Card = styled.div`
     /* border: 1px solid red; */

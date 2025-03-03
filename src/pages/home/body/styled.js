@@ -5,9 +5,17 @@ export const Container = styled.div`
     width: 100%;
     min-width: 320px;
     display: flex;
+    flex-direction: column;
 `;
 
-export const SectionCards = styled.div`
+export const SectionStudents = styled.div`
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    gap: 10px;
+`;
+export const SectionRegisterStudents = styled.div`
     /* border: 1px solid red; */
     display: flex;
     flex-direction: column;

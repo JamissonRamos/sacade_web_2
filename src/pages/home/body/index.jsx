@@ -1,5 +1,6 @@
+import RegisterStudent from "../components/register_stuedent";
+import Students from "../components/students";
 import * as S from "./styled";
-import Cards from "../components/cards";
 
 /* 
     Cria o hooks para pegar todoas as parcelas e mostra no home;
@@ -7,14 +8,15 @@ import Cards from "../components/cards";
 
 */
 const Body = () => {
-    const {Students } = Cards;
     return (
         <S.Container>
-            <S.SectionCards>
+            <S.SectionStudents>
                 <Students />
-                    
-                {/* card de pagamentos pagamentos */}
-            </S.SectionCards>
+            </S.SectionStudents>
+
+            <S.SectionRegisterStudents>
+                <RegisterStudent />
+            </S.SectionRegisterStudents>
 
             {/* Outra seção de demostrativos */}
         </S.Container>

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import CardStudentActive from './card_students_active'
-import CardStudentsBlocked from './card_students_blocked'
-import CardStudentsInactive from './card_students_inactive';
-import { useStudents } from '../../../../../hooks/students';
+import CardStudentActive from './cards/card_students_active'
+import CardStudentsBlocked from './cards/card_students_blocked'
+import CardStudentsInactive from './cards/card_students_inactive';
+import { useStudents } from '../../../../hooks/students';
 import * as S from './styled';
-import CardStudentsSexMan from './card_students_sex_man';
-import CardStudentsSexWoman from './card_students_sex_woman';
-import CardStudentsTotal from './card_students_total';
+import CardStudentsSexMan from './cards/card_students_sex_man';
+import CardStudentsSexWoman from './cards/card_students_sex_woman';
+import CardStudentsTotal from './cards/card_students_total';
 
 const Students = () => {
     const [totalItemActive, setTotalItemActive] = useState(0);

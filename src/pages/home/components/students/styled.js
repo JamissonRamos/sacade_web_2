@@ -1,3 +1,4 @@
+
 import styled, { css } from "styled-components";
 
 const StyledWrapCards = css`
@@ -33,5 +34,4 @@ export const WrapPayments = styled.div`
 export const WrapRanges = styled.div`
     /* border: 1px solid red; */
     ${StyledWrapCards}
-
 `;
