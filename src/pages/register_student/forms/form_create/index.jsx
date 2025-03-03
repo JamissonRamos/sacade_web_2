@@ -25,6 +25,7 @@ const FormCreate = ({idStudent, checkForm}) => {
             }
         }
     }
+    
     return (
         
         <S.Container>

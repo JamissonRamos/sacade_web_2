@@ -59,10 +59,10 @@ const Students = () => {
         }
     };
         
-        useEffect(() => {
-          fetchDocuments();  // Chama a função ao renderizar o componente
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
+    useEffect(() => {
+        fetchDocuments();  // Chama a função ao renderizar o componente
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <S.Container>
