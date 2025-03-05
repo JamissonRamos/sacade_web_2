@@ -24,7 +24,7 @@ const FormsController = () => {
         const { success, data, message} = result;
 
         if(success)
-        {                 
+        {          
             //Verificar se data é diferente de undefined
             data ? setRegistered(data) : setRegistered(false)
         }else

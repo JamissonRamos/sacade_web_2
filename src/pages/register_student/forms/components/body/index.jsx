@@ -6,13 +6,21 @@ import { Validations } from '../../../../validations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { ApplyChew, ConvertDate, FormatStringNumber, FormattedDate } from './script';
+import { ApplyChew, ConvertDate, FormatStringNumber, FormattedDate, RecoverUidRanger} from './script';
+import { useRegisterStudents }  from '../../../../../hooks/registerStudent';
+import DeleteData from '../../../../../components/alert_delete';
 
 
-//handleDeleteData
-const BodyForm = ({handleOnSubmit, handleShowModalDelete, checkForm, loading, dataRecovered}) => {
-    
+const BodyForm = ({handleOnSubmit, 
+    handleShowModalDelete, checkForm, loadingCreate, loadingUpdate, loadingDelete,  dataRecovered, showModalDelete, registeredDelete, handleDeleteData}) => {
+        
     const navigate = useNavigate();
+
+    //Recuperando as Fichas do aluno;
+    const {getDocumentsById, loading: loadingRegisterStudent} = useRegisterStudents.useGetDocumentsByIdRegisterStudent();
+
+    //Atualizar a ficha com a maior faixa
+    const {updateData } = useRegisterStudents.usePostDocumentsUpdate()
 
     const { register, handleSubmit, setValue, watch, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.RegisterStudentSchema),
@@ -37,15 +45,80 @@ const BodyForm = ({handleOnSubmit, handleShowModalDelete, checkForm, loading, da
         setValue(fieldName, maskedValue);
     }
 
+    const updateCurrentHistory = async (uidActual, uidNew) => {
+    /*  
+        * Função para atualizar o campo currentHistory; 
+    */
+        //Obj da ficha atual
+        const updateActual = {
+            currentHistory: false,
+            uid: uidActual
+        }
+
+        //Obj da ficha que vai ser atual
+        const updateNew = {
+            currentHistory: true,
+            uid: uidNew
+        }
+
+        try {
+            /* esse bloco so funcionar se uid actual for true caso cntrario não precisa, pois o actual não exixtir foi gerado uma ficha com o campo false  */
+            if (uidActual){
+                // Atualiza o primeiro uid
+                const result1 = await updateData(updateActual);
+                if (!result1.success) {
+                    console.log('Erro na atualização da ficha atual: ', result1.message);
+                    return { success: false, message: result1.message };
+                }
+            }
+            // Atualiza o segundo uid
+            const result2 = await updateData(updateNew);
+            if (!result2.success) {
+                console.log('Erro na atualização da nova ficha atual: ', result2.message);
+                return { success: false, message: result2.message };
+            }
+        } catch (error) {
+            console.log('Erro durante a atualização: ', error);
+            return { success: false, message: error.message };
+        }
+    }
+
+    const handleFetchDocuments = async (idStudent) => {
+        const result = await getDocumentsById(idStudent);
+        const { success, data, message} = result;        
+        if(success)
+        {    
+            //Caso a busca seja sucesso, mas o data seja false, não tem nada cadastrado
+            if(data === false) return;
+
+            const result = await RecoverUidRanger(data);
+            const {rangerActualUid, highestRankObjUid } = result;
+
+            //Caso os uids seja mesmo não precisa muda a ficha
+            if (rangerActualUid === false && highestRankObjUid === false) return
+            await updateCurrentHistory(rangerActualUid, highestRankObjUid)
+            
+        }else
+        {
+            console.log('error:', message);
+        }
+    } 
+
     const handleSubmitBody = async (data) => {
+        
         data.dateUpdate = FormattedDate(data.dateUpdate)
         data.studentWeight = FormatStringNumber(data.studentWeight)
         data.studentHeight = FormatStringNumber(data.studentHeight)
 
         const result = await handleOnSubmit(data)
+        //const result = {success: true, message: 'error'}
         const {success, message} = result;
-    
         if(success){
+            //Pegando id student caso seja um create 
+            const idStudent = data && data.idStudent;
+            //Recuperar todos fichas do aluno
+            await handleFetchDocuments(idStudent);
+
             const path = `/registerStudent`;
             //Coloca dinamico a page de notificação, atualiação ou create
             navigate(`/notifications/${checkForm ? 'create' : 'update' } `, {
@@ -60,6 +133,36 @@ const BodyForm = ({handleOnSubmit, handleShowModalDelete, checkForm, loading, da
             navigate('/notifications/error');
             console.log({message: `Deu algum erro na ficha do aluno: ${message}`})
         }
+    }
+
+    const handleDeleteBody = async () => {
+        /* 
+            * Função para chamar a função que deleta o historico do aluno;
+            * Retorna se excluir ou se deu erro;
+            * Sucess redirecionar para page de notificação;
+        */
+        const result = await handleDeleteData()
+        const {success, message} = result;
+        if(success){
+
+            //Pegando id student caso seja um create 
+            const idStudent = dataRecovered && dataRecovered.idStudent;
+            //Recuperar todos fichas do aluno
+            await handleFetchDocuments(idStudent);
+
+            const path = `/registerStudent`;
+            navigate(`/notifications/delete`, {
+                state: {
+                    url: path,
+                    valueButton: {value: 'Ficha do Aluno', icon: 'PiAddressBookFill'},
+                    buttonNewRegister: false,
+                },
+            });
+        }else{
+            navigate('/notifications/error');
+            console.log({message: `Deu algum erro na ficha do aluno: ${message}`})
+        }
+
     }
 
     useEffect(() => {  
@@ -100,11 +203,20 @@ const BodyForm = ({handleOnSubmit, handleShowModalDelete, checkForm, loading, da
                     <FieldRegisterStudent.EndRegister 
                         handleShowModalDelete={handleShowModalDelete}
                         checkForm={checkForm}
-                        loading={loading}
+                        loadingCreate={loadingCreate}
+                        loadingUpdate={loadingUpdate}
+                        loadingDelete={loadingDelete}
                     />  
                 </S.WrapFields>
             </Form>
-            
+            {
+                showModalDelete &&
+                <DeleteData
+                    registeredDelete = {registeredDelete}
+                    handleShowDelete = {handleShowModalDelete}
+                    handleDeleteData = {handleDeleteBody}
+                />
+            }
         </S.Container>
     )
 }

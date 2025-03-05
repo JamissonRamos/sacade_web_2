@@ -1,3 +1,28 @@
+const tracksHierarchy = {
+    //Dicionários das faixas, todas as fixas na sua hierarquia
+    //Faixas para Adultos
+    "branca": 1,
+    "cinza_branca": 2,
+    "cinza": 3,
+    "cinza_preta": 4,
+    "amarela_branca": 5,
+    "amarela": 6,
+    "amarela_preta": 7,
+    "laranja_branca": 8,
+    "laranja": 9,
+    "laranja_preta": 10,
+    "verde_branca": 11,
+    "verde": 12,
+    "verde_preta": 13,
+    // Faixas para Adultos
+    "azul": 14,
+    "roxa": 15,
+    "marrom": 16,
+    "preta": 17,
+    "coral": 18,
+    "vermelha_preta": 19,
+    "vermelha": 20
+}
 
 export const ApplyChew = (fieldName, fieldValue) => {
     let maskedValue;
@@ -144,4 +169,54 @@ export const AgeCalculation = (birth) => {
 
     // Retornar true se maior ou igual a 18, false caso contrário
     return age >= 18;
+};
+
+export const RecoverUidRanger = async (allRegister) => {
+    /* 
+        * Função para mapear todas as fichas;
+        * Recupera a maior faixa cadastrada;
+        * Recuperar a faixa que esta como atual (currentHistory true);
+    */
+    const obj = allRegister || false;
+    if (!obj) return;
+
+    //Retorna a maior faixa cadastrada
+    const highestRankObj = obj.reduce((max, obj) => {       
+        const currentRank = tracksHierarchy[obj.range] || 0; // Se não tiver `range`, assume 0
+        const maxRank = tracksHierarchy[max.range] || 0;
+
+        // Se as faixas forem iguais, compara os degrees
+        if (currentRank === maxRank) {
+            return obj.degrees > max.degrees ? obj : max;
+        }
+
+        return currentRank > maxRank ? obj : max;
+    }, { range: '' }); // Inicia com um objeto vazio para evitar erros
+
+    //Filtra a ficha atual cadastrada
+    let rangeActual = obj.find(obj => obj.currentHistory === true) || false// Filtra
+
+    if (rangeActual === undefined || rangeActual === false){
+        /* 
+            * Quando se gerar a 1 ficha do aluno o campo currentHistory é false
+            * Nesse caso o rangeActual fica undefine ou false
+        */
+        return {
+            rangerActualUid: false,
+            highestRankObjUid: highestRankObj.uid,
+        } 
+    }
+
+    //Comparar os Uids se não é a mesma ficha
+    if( highestRankObj.uid === rangeActual.uid ){
+        return {
+            rangerActualUid: false,
+            highestRankObjUid: false
+        }
+    }else{
+        return {
+            rangerActualUid: rangeActual.uid,
+            highestRankObjUid:  highestRankObj.uid
+        }
+    };
 };

@@ -3,11 +3,11 @@ import { Button, Spinner } from 'react-bootstrap'
 import { Theme } from '../../../../../../theme'
 import { useNavigate } from 'react-router-dom'
 
-const EndRegister = ({handleShowModalDelete, checkForm, loading, }) => {
+const EndRegister = ({handleShowModalDelete, checkForm, loadingCreate, loadingUpdate, loadingDelete }) => {
   const navigate = useNavigate();
 
   const handleOnClickCancel = () => {
-    localStorage.removeItem('currentHistory');
+    //localStorage.removeItem('currentHistory');
     navigate(-1)
 
   }
@@ -19,10 +19,10 @@ const EndRegister = ({handleShowModalDelete, checkForm, loading, }) => {
             <S.WrapButtonContainedDanger>
               <Button
                 variant='danger'
-                disabled={loading ? true : false}
+                disabled={loadingDelete ? true : false}
                 onClick={() => handleShowModalDelete()}
               >
-                { loading 
+                { loadingDelete 
                   ? <>
                       <Spinner
                           as="span"
@@ -61,9 +61,9 @@ const EndRegister = ({handleShowModalDelete, checkForm, loading, }) => {
             <Button
               variant='success'
               type='submit'
-              disabled={loading ? true : false}
+              disabled={loadingUpdate || loadingCreate ? true : false}
             >
-              { loading 
+              { loadingUpdate || loadingCreate
                 ? <>
                     <Spinner
                         as="span"
@@ -93,7 +93,6 @@ const EndRegister = ({handleShowModalDelete, checkForm, loading, }) => {
                           </>
                       }
                   </>
-
               } 
             </Button>
 

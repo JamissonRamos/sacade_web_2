@@ -32,7 +32,7 @@ const FormCreate = ({idStudent, checkForm}) => {
             <BodyForm
                 handleOnSubmit={handleOnSubmit} 
                 checkForm={checkForm} 
-                loading={loadingCreate}/>
+                loadingCreate={loadingCreate}/>
         </S.Container>
     )
 }

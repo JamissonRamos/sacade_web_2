@@ -2,15 +2,12 @@ import * as S from './styled';
 import BodyForm from '../components/body';
 import { useRegisterStudents } from '../../../../hooks/registerStudent';
 import { useState } from 'react';
-import DeleteData from '../../../../components/alert_delete';
-import { useNavigate } from 'react-router-dom';
+
 
 const FormUpdate = ({dataRegister, checkForm, fullname}) => {
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [registeredDelete, setRegisteredDelete] = useState(null);
 
-    const navigate = useNavigate();
-    
     //Deixa como obj, sem array
     const newDataRegister = dataRegister;  
 
@@ -25,22 +22,22 @@ const FormUpdate = ({dataRegister, checkForm, fullname}) => {
     };
 
     const handleDeleteData =  async () => {
+        /* 
+            * Função para excluir historico de aluno
+        */
         const result =  await deleteDate(newDataRegister.uid)
         const {success, message} = result;
 
         if(success){
-            const path = `/registerStudent`;
-            navigate(`/notifications/delete`, {
-                state: {
-                    url: path,
-                    valueButton: {value: 'Ficha do Aluno', icon: 'PiAddressBookFill'},
-                    buttonNewRegister: false,
-                },
-            });
+
+            return {    
+                success: true
+            }
         }else{
-            //reset()
-            navigate('/notifications/error');
-            console.log({message: `Deu algum erro na ficha do aluno: ${message}`})
+            return {
+                success: false,
+                message: message
+            }
         }
     }
 
@@ -68,18 +65,14 @@ const FormUpdate = ({dataRegister, checkForm, fullname}) => {
                 handleOnSubmit={handleOnSubmit} 
                 handleShowModalDelete={handleShowModalDelete}
                 checkForm={checkForm}
-                loading={loadingUpdate || loadingDelete}
+                loadingUpdate={loadingUpdate}
+                loadingDelete={loadingDelete}
                 dataRecovered={newDataRegister}
-            />
-            {
-                showModalDelete &&
-                    <DeleteData
-                        registeredDelete = {registeredDelete}
-                        handleShowDelete = {handleShowModalDelete}
-                        handleDeleteData = {handleDeleteData}
-                    />
-            }
 
+                showModalDelete={showModalDelete}
+                registeredDelete={registeredDelete}
+                handleDeleteData={handleDeleteData}
+            />
         </S.Container>
     )
 }

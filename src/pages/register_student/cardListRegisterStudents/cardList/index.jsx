@@ -15,9 +15,7 @@ const CardList = ({data, fullname }) => {
     };
 
     useEffect(() => {
-
         const processedData = FilterSortDate(data);
-    
         // Atualiza o estado com os dados processados
         setNewData(processedData);
         
