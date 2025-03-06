@@ -32,26 +32,20 @@ const RegisterStudent = () => {
         const { success, data, message } = result;
 
         if(success){
-            console.log('data', data);
             countRange(data);
             // Exibir o resultado
-            
-            
         }else{
             console.log('error: ', message);
         }
     };
 
-
     useEffect(() => {
         fetchDocuments();  // Chama a função ao renderizar o componente
     }, []);
-
-    console.log('rangeCount', rangeCount);
     
     return (
         <S.Container>
-            <StatisticsRegisterStudentsRangerList loading={loading}/>
+            <StatisticsRegisterStudentsRangerList data={rangeCount} loading={loading}/>
 
         </S.Container>
     )

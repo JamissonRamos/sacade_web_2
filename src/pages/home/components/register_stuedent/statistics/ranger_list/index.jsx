@@ -1,14 +1,25 @@
+import * as S from './styled'
 import { Spinner } from 'react-bootstrap'
-import { TextC } from '../../../../../../components/Typography'
+import GraphicRangeList from './components/graphic_range_list'
 
-const StatisticsRegisterStudentsRangerList = ({loading}) => {
+const StatisticsRegisterStudentsRangerList = ({data, loading}) => {
+
+    // Soma todos os valores
+    const total = Object.values(data).reduce((acc, value) => acc + value, 0);
+    const countRanger = Object.keys(data).length;
+    
+    // Transformar o objeto em um array de objetos com label e value
+    const formattedData = Object.entries(data).map(([label, value]) => ({
+        label,
+        value
+    }));
 
     return (
 
-        <div>
+        <S.Container>
             { 
-                loading 
-                ?   <Spinner
+                loading &&
+                    <Spinner
                         variant='success'
                         size="sm"
                         as="span"
@@ -16,9 +27,18 @@ const StatisticsRegisterStudentsRangerList = ({loading}) => {
                         role="status"
                         aria-hidden="true"
                     />
-                :   <TextC.Label level={4}>555</TextC.Label>
             }
-        </div>
+
+            <S.GraphicBar> 
+                <GraphicRangeList 
+                    data={formattedData}
+                    countRanger={countRanger}
+                /> 
+            </S.GraphicBar>
+            
+            <S.GraphicPizza> Grafico de pizza </S.GraphicPizza>
+
+        </S.Container>
     )
 }
 
