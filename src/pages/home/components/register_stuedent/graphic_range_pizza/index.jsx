@@ -12,31 +12,56 @@ const GraphicPizza = ({data}) => {
         value
     }));
 
-    const labels = formattedData.map(item => item.label.replace(/_/g, ' e ')); // Extrai as labels
+    // const labels = formattedData.map(item => item.label.replace(/_/g, ' e ') // Extrai as labels
+    //                                             .replace(' e ', '\n')); // Quebra a linha em " e "
+
+    const labels = formattedData.map((item) => 
+        item.label.replace(/_/g, ' e ') // Substitui "_" por " e "
+                    .replace(' e ', '\n') // Quebra a linha em " e "
+    );
+
     const series = formattedData.map(item => item.value); // Extrai os valores
     const colors = formattedData.map(item => item.label === 'branca' ? Theme.Colors.grey100 : StyledBadgeColor(item.label).bg); // StyledBadgeColor(label) // Obter cores para o badge
-
-    console.log('labels', labels);
-    console.log('colors', colors);
+    
+    console.log('labels',labels);
     
       // Configurações do gráfico
     const options = {
+        series: [{
+            data: series
+        }],
         chart: {
-            type: 'pie',
-        },
-        labels: labels, 
-        colors: colors, 
-        responsive: [{
-            breakpoint: 1440,
-            options: {
-                chart: {
-                    width: 400
-                },
-                legend: {
-                    position: 'bottom'
+            height: 350,
+            type: 'bar',
+            events: {
+                click: function(chart, w, e) {
+                // console.log(chart, w, e)
                 }
             }
-        }]
+        },
+        colors: colors,
+        plotOptions: {
+            bar: {
+                columnWidth: '35%',
+                distributed: true,
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            show: false
+        },
+        xaxis: {
+            categories: labels,
+            
+            labels: {
+                style: {
+                    colors: Theme.Colors.grey500,
+                    fontSize: '8px'
+                }
+            }
+        }
     };
 
     return (
@@ -44,10 +69,10 @@ const GraphicPizza = ({data}) => {
             {/* <h4>Gráfico de Faixas</h4> */}
             <Chart
                 options={options}
-                series={series}
-                type="pie"
-                width="300"
-                height="300"
+                series={options.series}
+                type="bar"
+                height={350}
+                width='100%'
             />
         </S.Container>
     );

@@ -31,12 +31,12 @@ export const Container = styled.div`
 
 export const WrapGraphicBar = styled.div`
     /* border: 1px solid red; */
-    width: 60%;
+    width: 100%;
     ${StyledGraphic}
 `;
 
 export const WrapGraphicPizza = styled.div`
     /* border: 1px solid blue; */
-    width: 40%;
+    width: 60%;
     ${StyledGraphic}
 `;

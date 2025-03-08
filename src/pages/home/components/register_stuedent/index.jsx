@@ -50,10 +50,10 @@ const RegisterStudent = () => {
             <S.WrapGraphicBar>
                 <GraphicBar data={rangeCount} />
             </S.WrapGraphicBar>
-
+{/* 
             <S.WrapGraphicPizza>
                 <GraphicPizza data={rangeCount}/>
-            </S.WrapGraphicPizza>
+            </S.WrapGraphicPizza> */}
 
         </S.Container>
     )

@@ -33,8 +33,9 @@ const GraphicBar = ({data}) => {
                                 <S.Bar 
                                     percentage={widthBar} bgColor={colors.bg} 
                                 />
-
                             </S.BarContainer>
+                            <TextC.Label level={3}> {widthBar}% </TextC.Label>
+                            
 
                         </S.Row>
                     )
