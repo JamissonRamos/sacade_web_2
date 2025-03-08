@@ -14,6 +14,7 @@ export const Container = styled.div`
     width: 100%;
     min-width: 320px;
     display: flex;
+    justify-content: center;
     padding: .2rem 0;
     @media (max-width: 1024px) {
         width: 100%;

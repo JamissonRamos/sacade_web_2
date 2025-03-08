@@ -18,9 +18,9 @@ export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     min-width: 320px;
-    max-height: 250px;
+    /* max-height: 250px; */
     display: flex;
-    gap: .8rem;
+    justify-content: center;
     padding: .6rem .4rem;
     overflow: auto;
     @media (max-width: 1024px) {
@@ -31,12 +31,12 @@ export const Container = styled.div`
 
 export const WrapGraphicBar = styled.div`
     /* border: 1px solid red; */
-    width: 100%;
-    ${StyledGraphic}
-`;
-
-export const WrapGraphicPizza = styled.div`
-    /* border: 1px solid blue; */
-    width: 60%;
-    ${StyledGraphic}
+    width: 90%;
+    min-width: 320px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-shadow: ${Theme.Shadow.sh900};
 `;

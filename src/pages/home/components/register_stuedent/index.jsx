@@ -4,8 +4,6 @@ import { useRegisterStudents } from '../../../../hooks/registerStudent';
 // import StatisticsRegisterStudentsRangerList from './statistics/ranger_list';
 import * as S from './styled';
 import GraphicBar from './graphic_range_bar';
-import GraphicPizza from './graphic_range_pizza';
-
 
 const RegisterStudent = () => {
     const [rangeCount, setRangeCount] = useState(0);
@@ -50,10 +48,6 @@ const RegisterStudent = () => {
             <S.WrapGraphicBar>
                 <GraphicBar data={rangeCount} />
             </S.WrapGraphicBar>
-{/* 
-            <S.WrapGraphicPizza>
-                <GraphicPizza data={rangeCount}/>
-            </S.WrapGraphicPizza> */}
 
         </S.Container>
     )
