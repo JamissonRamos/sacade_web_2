@@ -57,7 +57,7 @@ export const SectionSecondary = styled.div`
     gap: .8rem;
     padding: .2rem;
     @media (max-width: 768px) {
-        flex-direction: column;
+        /* flex-direction: column; */
         align-items: center;
         gap: .4rem;
     }
@@ -72,7 +72,7 @@ export const WrapButtonContainedDanger = styled.div`
         background-color: ${Theme.Colors.red800};
     }
     @media (max-width: 768px) {
-        width: 60%;
+        width: 80%;
     }
 `;
 export const WrapButtonContained = styled.div`
