@@ -4,9 +4,11 @@ import { useRegisterStudents } from '../../../../hooks/registerStudent';
 // import StatisticsRegisterStudentsRangerList from './statistics/ranger_list';
 import * as S from './styled';
 import GraphicBar from './graphic_range_bar';
+import { Spinner } from 'react-bootstrap';
+import { TextC } from '../../../../components/Typography';
 
 const RegisterStudent = () => {
-    const [rangeCount, setRangeCount] = useState(0);
+    const [rangeCount, setRangeCount] = useState([]);
 
     const {getDocuments, loading} = useRegisterStudents.useGetDocuments();
 
@@ -33,6 +35,8 @@ const RegisterStudent = () => {
 
         if(success){
             countRange(data);
+            console.log('data', data);
+            
             // Exibir o resultado
         }else{
             console.log('error: ', message);
@@ -42,11 +46,46 @@ const RegisterStudent = () => {
     useEffect(() => {
         fetchDocuments();  // Chama a função ao renderizar o componente
     }, []);
+
+    console.log('rangeCount', rangeCount);
+    
     
     return (
         <S.Container>
             <S.WrapGraphicBar>
-                <GraphicBar data={rangeCount} />
+                <TextC.Headline level={3} >
+                    Lista das Faixas Cadastradas
+                </TextC.Headline>
+                {
+                    loading ?
+                        <>
+                            <Spinner
+                                variant="warning"
+                                as="span"
+                                animation="border"
+                                role="status"
+                                aria-hidden="true"
+                            />
+                            <span className="sr-only">Carregando os dados...</span>
+                        </>
+                        : null
+                }
+
+                {   
+
+                    rangeCount && rangeCount.length == 0
+                        ?   <S.Empty>
+                                <TextC.Display level={2} >
+                                    Nenhum cadastro
+                                </TextC.Display>
+                                <TextC.Body level={2}>
+                                    Até o momento, não há cadastro de fichas de alunos.
+                                </TextC.Body>
+                            </S.Empty> 
+                        :   <GraphicBar data={rangeCount} />
+                        
+                }
+
             </S.WrapGraphicBar>
 
         </S.Container>
