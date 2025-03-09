@@ -1,18 +1,5 @@
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 import { Theme } from "../../../../theme";
-
-const StyledGraphic = css`
-    min-width: 320px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    box-shadow: ${Theme.Shadow.sh900};
-    @media (max-width: 1024px) {
-        width: 100%;
-        justify-content: center;
-    }
-`;
 
 export const Container = styled.div`
     /* border: 1px solid red; */
@@ -31,7 +18,7 @@ export const Container = styled.div`
 
 export const WrapGraphicBar = styled.div`
     /* border: 1px solid red; */
-    width: 90%;
+    width: 100%;
     min-width: 320px;
     height: 100%;
     display: flex;

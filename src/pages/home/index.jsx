@@ -5,7 +5,6 @@ import Body from './body'
 const Home = () => {
 
   return (
-    
     <WrapPages>
       <Header />
       <Body />

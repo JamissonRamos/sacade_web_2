@@ -6,6 +6,7 @@ export const Container = styled.div`
     min-width: 320px;
     display: flex;
     flex-direction: column;
+    padding-bottom: 2rem;
 `;
 
 export const SectionStudents = styled.div`
