@@ -4,8 +4,7 @@ import { Theme } from "../../../../../theme";
 
 export const Card = styled.div`
     /* border: 1px solid red; */
-    width: 100px;
-    max-width: 100px;
+    width: 120px;
     height: 100px;
     position: relative;
     display: flex;
@@ -14,9 +13,10 @@ export const Card = styled.div`
     padding: 1rem .4rem;
     background: ${Theme.Colors.white800};
     box-shadow: ${Theme.Shadow.sh900};
-    border-radius: 100px;
+    border-radius: 8px;
     overflow: visible;
 `;
+
 export const WrapImg = styled.div`
     /* border: 1px solid red; */
     width: 36px;
@@ -32,6 +32,7 @@ export const WrapImg = styled.div`
         object-fit: contain;
     }
 `;
+
 export const WrapText = styled.div`
     /* border: 1px solid red; */
     width: 100%;
@@ -39,11 +40,11 @@ export const WrapText = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: .2rem;
+    gap: .4rem;
 `;
+
 export const Title = styled.div`
     /* border: 1px solid red; */
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,13 +53,14 @@ export const Title = styled.div`
         font-weight: 700;
         color: ${Theme.Colors.green800};
     }
-
 `;
+
 export const SubTitle = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     & span {
         font-size: .7em;
         font-weight: 900;

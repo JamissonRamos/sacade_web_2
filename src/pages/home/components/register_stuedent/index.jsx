@@ -58,8 +58,7 @@ const RegisterStudent = () => {
                         Faixas dos Alunos
                     </TextC.Title>
                 </S.WrapTitle>
-                {
-                    loading 
+                { loading 
                     ?   <>
                             <Spinner
                                 variant="warning"
@@ -73,9 +72,7 @@ const RegisterStudent = () => {
                     :   null
                 }
 
-                {   
-
-                    rangeCount && rangeCount.length == 0
+                { rangeCount && rangeCount.length == 0
                         ?   <S.Empty>
                                 <TextC.Display level={2} >
                                     Nenhum cadastro
@@ -84,8 +81,7 @@ const RegisterStudent = () => {
                                     Até o momento, não há cadastro de fichas de alunos.
                                 </TextC.Body>
                             </S.Empty> 
-                        :   <GraphicBar data={rangeCount} />
-                        
+                        :   <GraphicBar data={rangeCount} />     
                 }
 
             </S.WrapGraphicBar>

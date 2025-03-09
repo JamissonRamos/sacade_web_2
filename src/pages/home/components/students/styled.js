@@ -4,9 +4,10 @@ import styled, { css } from "styled-components";
 const StyledWrapCards = css`
     display: flex;
     flex-wrap: wrap; /* Permite que os itens quebrem para baixo */
-    justify-content:center;
+    align-items: center;
+    justify-content: center;
     gap: 1.4rem; 
-    padding: 1rem ;
+    padding: 1.6rem 0 .8rem 0;
 `;
 
 export const Container = styled.div`
@@ -17,22 +18,12 @@ export const Container = styled.div`
     justify-content: center;
     padding: .2rem 0;
     @media (max-width: 1024px) {
-        width: 100%;
         justify-content: center; 
     } 
 `;
 
 export const WrapStudents = styled.div`
     /* border: 1px solid red; */
-    ${StyledWrapCards}
-`;
-
-export const WrapPayments = styled.div`
-    /* border: 1px solid red; */
-    ${StyledWrapCards}
-`;
-
-export const WrapRanges = styled.div`
-    /* border: 1px solid red; */
-    ${StyledWrapCards}
+    width: 100%;
+    ${StyledWrapCards};
 `;

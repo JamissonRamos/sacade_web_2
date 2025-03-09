@@ -12,7 +12,6 @@ const CardStudentActive = ({totalItem, loading}) => {
             </S.WrapImg>
 
             <S.WrapText>
-
                 <S.Title >
                     {
                         loading 
