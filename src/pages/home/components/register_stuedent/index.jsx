@@ -53,12 +53,14 @@ const RegisterStudent = () => {
     return (
         <S.Container>
             <S.WrapGraphicBar>
-                <TextC.Headline level={3} >
-                    Lista das Faixas Cadastradas
-                </TextC.Headline>
+                <S.WrapTitle>
+                    <TextC.Title level={2} >
+                        Faixas dos Alunos
+                    </TextC.Title>
+                </S.WrapTitle>
                 {
-                    loading ?
-                        <>
+                    loading 
+                    ?   <>
                             <Spinner
                                 variant="warning"
                                 as="span"
@@ -68,7 +70,7 @@ const RegisterStudent = () => {
                             />
                             <span className="sr-only">Carregando os dados...</span>
                         </>
-                        : null
+                    :   null
                 }
 
                 {   

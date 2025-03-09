@@ -28,6 +28,19 @@ export const WrapGraphicBar = styled.div`
     padding: 1rem;
     box-shadow: ${Theme.Shadow.sh900};
 `;
+export const WrapTitle = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    min-width: 320px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: .4rem 0 1rem 0;
+    & span {
+        color: ${Theme.Colors.green800};
+    }
+`;
 
 export const Empty = styled.div`
     /* border: 1px solid blue; */

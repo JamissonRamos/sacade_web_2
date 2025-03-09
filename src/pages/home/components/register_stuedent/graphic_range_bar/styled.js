@@ -1,5 +1,13 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import { Theme } from "../../../../../theme";
+
+
+const StyledLabel = css`
+    font-size: .8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: ${Theme.Colors.grey700};
+`;
 
 export const Container = styled.div`
     width: 100%;
@@ -21,11 +29,8 @@ export const Label = styled.span`
     align-items: center;
     justify-content: space-between;
     padding: .2rem;
-    font-size: .7em;
-    font-weight: 700;
-    text-transform: uppercase;
     & span {
-        color: ${Theme.Colors.grey700};
+        ${StyledLabel}
     }
 `;
 
@@ -54,5 +59,15 @@ export const Bar = styled.div`
         to {
             width: ${({ percentage }) => percentage}%;
         }
+    }
+`;
+
+export const WrapPercentage = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 100%;
+    padding: 0 .2rem;
+    & span {
+        ${StyledLabel}
     }
 `;

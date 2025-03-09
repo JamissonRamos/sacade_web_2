@@ -1,6 +1,6 @@
-import * as S from './styled';
+import * as S               from './styled';
+import { TextC }            from '../../../../../components/Typography';
 import { StyledBadgeColor } from '../script';
-import { TextC } from '../../../../../components/Typography';
 
 
 const GraphicBar = ({data}) => {
@@ -25,18 +25,19 @@ const GraphicBar = ({data}) => {
                             <S.Label>
                                 <TextC.Label level={3}> {updatedRange} </TextC.Label>
                                 <TextC.Label level={3}> {value} </TextC.Label>
-                                
                             </S.Label>
 
                             <S.BarContainer>
-
                                 <S.Bar 
                                     percentage={widthBar} bgColor={colors.bg} 
                                 />
                             </S.BarContainer>
-                            <TextC.Label level={3}> {widthBar}% </TextC.Label>
-                            
 
+                            <S.WrapPercentage>
+                                <TextC.Label level={3}> {widthBar}% </TextC.Label>
+
+                            </S.WrapPercentage>
+                            
                         </S.Row>
                     )
                 })
