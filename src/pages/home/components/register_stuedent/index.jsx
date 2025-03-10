@@ -34,7 +34,8 @@ const RegisterStudent = () => {
         const { success, data, message } = result;
 
         if(success){
-            countRange(data);
+            console.log('data', data);
+            data.length > 0 && countRange(data);
         }else{
             console.log('error: ', message);
         }
@@ -44,14 +45,19 @@ const RegisterStudent = () => {
         fetchDocuments();  // Chama a função ao renderizar o componente
     }, []);
     
+    console.log('rangeCount', rangeCount);
+    
     return (
         <S.Container>
+            
             <S.WrapGraphicBar>
+
                 <S.WrapTitle>
                     <TextC.Title level={2} >
                         Faixas dos Alunos
                     </TextC.Title>
                 </S.WrapTitle>
+
                 { loading 
                     ?   <>
                             <Spinner
