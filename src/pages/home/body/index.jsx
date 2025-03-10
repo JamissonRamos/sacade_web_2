@@ -1,4 +1,3 @@
-import { useState } from "react";
 import RegisterStudent from "../components/register_stuedent";
 import Students from "../components/students";
 import * as S from "./styled";
