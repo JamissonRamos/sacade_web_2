@@ -54,7 +54,7 @@ const RegisterStudent = () => {
 
                 <S.WrapTitle>
                     <TextC.Title level={2} >
-                        Faixas dos Alunos
+                        Indicador de Faixas
                     </TextC.Title>
                 </S.WrapTitle>
 

@@ -1,6 +1,7 @@
 import * as S               from './styled';
 import { TextC }            from '../../../../../components/Typography';
 import { StyledBadgeColor } from '../script';
+import { Theme } from '../../../../../theme';
 
 
 const GraphicBar = ({data}) => {
@@ -22,10 +23,18 @@ const GraphicBar = ({data}) => {
 
                     return (
                         <S.Row key={i}>
+                          
+                            
                             <S.Label>
                                 <TextC.Label level={3}> {updatedRange} </TextC.Label>
-                                <TextC.Label level={3}> {value} </TextC.Label>
+
+                                {/* <TextC.Label level={3}> {value} </TextC.Label> */}
                             </S.Label>
+
+                            <S.WrapRangeQuantityIndicator  percentage={widthBar}>
+                                <TextC.Label level={3}> {value} </TextC.Label>
+                                {/* <Theme.Icons.FaMapMarkerAlt /> */}
+                            </S.WrapRangeQuantityIndicator>
 
                             <S.BarContainer>
                                 <S.Bar 
