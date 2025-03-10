@@ -103,21 +103,18 @@ export const WrapRangeQuantityIndicator = styled.div`
         z-index: 10;
         transform: rotate(218deg); //Rotaciona para parecer um marcador
     }
+  
+    transition: width 0.3s ease-in-out;
 
-    @keyframes indicador {
-        from {
-            left: 0%;
-        }
-        10%{
-            left: 20%;
-        }
-        80%{
-            left: 100%;
-        }
-        
-        to {
-            left: calc(${({ $percentage }) => $percentage}% - 14px);
-        }
+animation: load 0.5s ease-in-out;
+
+@keyframes load {
+    from {
+        left: 0%;
     }
+    to {
+        left: calc(${({ percentage }) => percentage}% - 14px);
+    }
+}
 
 `;
