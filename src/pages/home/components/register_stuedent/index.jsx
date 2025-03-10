@@ -34,7 +34,6 @@ const RegisterStudent = () => {
         const { success, data, message } = result;
 
         if(success){
-            console.log('data', data);
             data.length > 0 && countRange(data);
         }else{
             console.log('error: ', message);
@@ -44,8 +43,6 @@ const RegisterStudent = () => {
     useEffect(() => {
         fetchDocuments();  // Chama a função ao renderizar o componente
     }, []);
-    
-    console.log('rangeCount', rangeCount);
     
     return (
         <S.Container>
