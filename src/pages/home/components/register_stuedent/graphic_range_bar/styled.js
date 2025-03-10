@@ -1,7 +1,6 @@
 import styled, {css} from "styled-components";
 import { Theme } from "../../../../../theme";
 
-
 const StyledLabel = css`
     font-size: .8 em;
     font-weight: 700;
@@ -50,18 +49,23 @@ export const BarContainer = styled.div`
 export const Bar = styled.div`
     /* border: 1px solid red; */
     height: 100%;
-    background-color:  ${({ bgColor }) => bgColor};
-    width: ${({ percentage }) => percentage}%;
+    background-color:  ${({ $bgColor }) => $bgColor};
+    width: ${({ $percentage }) => $percentage}%;
     transition: width 0.3s ease-in-out;
-
-    animation: load 0.5s ease-in-out;
+    animation: load 0.8s ease-in-out;
 
     @keyframes load {
         from {
+            width: 0%;
+        }
+        10%{
+            width: 20%;
+        }
+        80%{
             width: 100%;
         }
         to {
-            width: ${({ percentage }) => percentage}%;
+            width: ${({ $percentage }) => $percentage}%;
         }
     }
 `;
@@ -78,36 +82,42 @@ export const WrapPercentage = styled.div`
 
 export const WrapRangeQuantityIndicator = styled.div`
     /* border: 1px solid red; */
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
     position: absolute;
-    top: -10px;
-    left: calc(${({ percentage }) => percentage}% - 14px);
+    top: 34px;
+    left: calc(${({ $percentage }) => $percentage}% - 12px);
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: ${Theme.Colors.green800};
     border-radius: 50% 50% 50% 0%; /* Forma arredondada com uma ponta */
-    transform: rotate(-40deg); //Rotaciona para parecer um marcador
-    
+    transform: rotate(140deg); //Rotaciona para parecer um marcador
+    transition: left 0.3s ease-in-out;
+    animation: indicador 0.8s ease-in-out;
+
     & span {
         ${StyledLabel}
+        font-size: .6em;
         color: ${Theme.Colors.white800};
         z-index: 10;
-        transform: rotate(40deg); //Rotaciona para parecer um marcador
+        transform: rotate(218deg); //Rotaciona para parecer um marcador
     }
-  
-    transition: width 0.3s ease-in-out;
 
-animation: load 0.5s ease-in-out;
-
-@keyframes load {
-    from {
-        left: 0%;
+    @keyframes indicador {
+        from {
+            left: 0%;
+        }
+        10%{
+            left: 20%;
+        }
+        80%{
+            left: 100%;
+        }
+        
+        to {
+            left: calc(${({ $percentage }) => $percentage}% - 14px);
+        }
     }
-    to {
-        left: calc(${({ percentage }) => percentage}% - 14px);
-    }
-}
 
 `;

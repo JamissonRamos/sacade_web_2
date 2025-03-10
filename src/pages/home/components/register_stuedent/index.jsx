@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useRegisterStudents } from '../../../../hooks/registerStudent';
-// import StatisticsRegisterStudentsRangerList from './statistics/ranger_list';
 import * as S from './styled';
 import GraphicBar from './graphic_range_bar';
 import { Spinner } from 'react-bootstrap';
@@ -34,7 +33,6 @@ const RegisterStudent = () => {
         const { success, data, message } = result;
 
         if(success){
-            console.log('data', data);
             data.length > 0 && countRange(data);
         }else{
             console.log('error: ', message);
@@ -44,8 +42,6 @@ const RegisterStudent = () => {
     useEffect(() => {
         fetchDocuments();  // Chama a função ao renderizar o componente
     }, []);
-    
-    console.log('rangeCount', rangeCount);
     
     return (
         <S.Container>

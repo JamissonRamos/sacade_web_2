@@ -4,10 +4,12 @@ export const HasAccess = (page, status) => {
     const statusIndex = getStatusIndex(status);
     result = pages[page]?.includes(statusIndex) || false; // Verifica se o status tem permissão    
     return result
-}
+};
+
 const getStatusIndex = (status) => {
     return statusMap[status] || null; // Retorna o índice ou null se o status não for encontrado
-}
+};
+
 const statusMap = {
     Administrador: 1,
     Assistente: 2,
