@@ -1,6 +1,6 @@
 import { WrapPages } from '../../components/Wrappe/pages'
 import * as S from './styled'
-import List from './list';
+// import List from './list';
 import { TextC } from '../../components/Typography';
 import CardList from './cardList';
 import { useUsers } from '../../hooks/users';
@@ -14,9 +14,7 @@ const UserLevel = () => {
   const { documents, isLoading, error } = useUsers.useGetDocuments()
 
   const fetchDocuments = async () => {
-      const result = await documents();
-      console.log(result.data);
-      
+      const result = await documents();      
       if(result.success){
         setRegistered({
           success: result.success,

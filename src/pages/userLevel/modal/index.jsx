@@ -107,7 +107,7 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
                         {firstName + " " + lastName }
                     </TextC.Headline>
                     <S.Name>
-                        <TextC.Body level={1}>Fazer mudanças no cadastro do usuário</TextC.Body>
+                        <TextC.Body level={2}>Fazer mudanças no cadastro do usuário</TextC.Body>
                     </S.Name>
                 </Modal.Title>
             </Modal.Header>

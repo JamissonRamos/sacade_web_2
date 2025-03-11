@@ -3,18 +3,18 @@ import * as S from './styled'
 //Hooks
 import { useEffect, useState } from 'react';
 import { WrapPages } from '../../components/Wrappe/pages'
-import { useScreenWidth } from '../../hooks/screenWidth';
+// import { useScreenWidth } from '../../hooks/screenWidth';
 import { useUsers } from '../../hooks/users';
 import { Alert, Spinner } from 'react-bootstrap';
 //Components
-import List from './list';
+// import List from './list';
 import { TextC } from '../../components/Typography';
 import CardList from './cardList';
 import { LoadingOverlay } from '../../components/spinner/global/styled';
 
 const Users = () => {
   const [registered, setRegistered] = useState({})
-  const isValueScreen = useScreenWidth(590);
+  // const isValueScreen = useScreenWidth(590);
 
   const { documents, isLoading, error } = useUsers.useGetDocuments()
 
