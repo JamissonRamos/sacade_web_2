@@ -9,7 +9,7 @@ export const HeaderPage = styled.div`
     flex-direction: column;
     gap: .4rem;
     padding: .2rem 0;
-    margin-bottom: .4rem;
+    margin-bottom: 1rem;
     & span {
         color: ${Theme.Colors.grey500}
     }

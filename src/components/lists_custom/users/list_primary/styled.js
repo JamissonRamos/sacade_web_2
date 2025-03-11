@@ -10,7 +10,8 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: .8rem;
-    overflow-y: auto;
+    /* overflow-y: auto; */
+    padding: .2rem;
 
 `;
 

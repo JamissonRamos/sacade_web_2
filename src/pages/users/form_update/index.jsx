@@ -1,7 +1,7 @@
 //CSS
     import * as S from './styled';
 //Hooks
-    import React, { useEffect, useState } from 'react'
+    import { useEffect, useState } from 'react'
     import { useUsers } from '../../../hooks/users';
     import { useForm } from 'react-hook-form';
     import { yupResolver } from '@hookform/resolvers/yup';
@@ -113,7 +113,7 @@ const FormUpdate = () => {
             }
             <S.HeaderPage>
                 <TextC.Title level={2}>Atualizar Cadastro de Usuário</TextC.Title>
-                <TextC.Body level={1}> Realizar a atualização dos dados dos usuário.</TextC.Body>
+                <TextC.Body level={2}> Realizar a atualização dos dados dos usuário.</TextC.Body>
             </S.HeaderPage>
             {
                 loadingFetchDocument &&
@@ -140,7 +140,7 @@ const FormUpdate = () => {
                                     placeholder="Digite seu primeiro nome" 
                                     {...register("firstName")}
                                     isInvalid={!!errors.firstName}
-                                    setValue={setValue}
+                                    //setValue={setValue}
                                     onBlur={(e) => handleOnBlur(e)}
                                 />
                                 <Form.Control.Feedback type="invalid">
@@ -157,7 +157,7 @@ const FormUpdate = () => {
                                     placeholder="Digite seu segundo nome" 
                                     {...register("lastName")}
                                     isInvalid={!!errors.lastName} 
-                                    setValue={setValue}
+                                    //setValue={setValue}
                                     onBlur={(e) =>  handleOnBlur(e)}
                                 />
                             <Form.Control.Feedback type="invalid" >
@@ -342,6 +342,14 @@ const FormUpdate = () => {
                         <Row className="mt-2 ">
                             <S.WrapButtonUpdateCancel>
                                 <Button
+                                    variant="outline-danger"
+                                    onClick={() => navigate('/users')}
+                                >
+                                    <Theme.Icons.MdClose />
+                                    <span>Cancelar</span>
+                                </Button>
+                                
+                                <Button
                                     variant="success"
                                     type='submit'
                                     disabled={isLoadingPostUpdate ? true : false}
@@ -362,14 +370,7 @@ const FormUpdate = () => {
                                             <span>Atualizar</span>
                                         </>
                                     }
-                                </Button> 
-                                <Button
-                                    variant="outline-danger"
-                                    onClick={() => navigate('/users')}
-                                >
-                                    <Theme.Icons.MdClose />
-                                    <span>Cancelar</span>
-                                </Button>                        
+                                </Button>                  
                             </S.WrapButtonUpdateCancel>
                         </Row>                
                     </Form>

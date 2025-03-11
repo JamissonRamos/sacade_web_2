@@ -30,7 +30,7 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
             setLabelChecked(
                 !statusActive ? 'Bloqueado' : 'Ativado'
             );
-        }
+        }else{ return }
     }, [data, status, statusActive]); // Executa o efeito quando os dados são recebidos
 
     const handleBadge = (status) => 
@@ -87,14 +87,15 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
 
         if (result.success) {
             onUserUpdate() //função que vem do index
-            handleCloseModal()
+                ()
         }
     };
 
     const handleCloseModal = () => {
         setFormData({
+            uid: '',
             status: '', 
-            activeUser: '',
+            statusActive: false,
         });
         handleClose()
     }
@@ -128,10 +129,10 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
                             onChange={handleChange}
                             isInvalid={!!error} //!!error
                             >
-                            <option value="">Selecione um Status</option>
-                            <option value="Administrador">Administrador</option>
-                            <option value="Assistente">Assistente</option>
-                            <option value="Visitante">Visitante</option>
+                                <option value="">Selecione um Status</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Assistente">Assistente</option>
+                                <option value="Visitante">Visitante</option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid" >
                             {error}

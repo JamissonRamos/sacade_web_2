@@ -7,7 +7,8 @@ const ListPrimary = ({data, navigateOnClick}) => {
     const handleBadge = (status) => 
     {
         let bg
-        switch (status) {
+        switch (status) 
+        {
             case 'Visitante':
                 bg = "warning"
                 break;

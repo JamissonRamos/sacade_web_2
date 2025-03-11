@@ -37,7 +37,7 @@ const UserLevel = () => {
         <TextC.Title level={2}> 
           Lista de Usuários
         </TextC.Title>
-        <TextC.Body level={1}> Controle de Nível de Usuário no Sistema. </TextC.Body>
+        <TextC.Body level={2}> Controle de Nível de Usuário no Sistema. </TextC.Body>
       </S.HeaderPage>
       {
         isLoading &&
