@@ -100,18 +100,24 @@ const ListPrimary = ({data, navigateOnClick}) => {
                                 <S.CircleFirstLetterNome>
                                     {firstName && firstName.charAt(0)}
                                 </S.CircleFirstLetterNome>
+
                                 <S.Name>
                                     {firstName + ' ' + lastName} 
                                 </S.Name>
+
                             </S.SectionPrime>
                             <S.SectionSecondary>
                 
                                 <S.Status>
+                                    
                                     <Badge bg={handleBadge(status)} text="light">
                                         {status}
                                     </Badge>
+
                                 </S.Status>
+
                             </S.SectionSecondary>
+
                         </S.Card>
                         
                     </S.WrapButton>

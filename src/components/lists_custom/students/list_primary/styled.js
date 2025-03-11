@@ -44,6 +44,9 @@ export const Card = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: 375px) {
+        flex: auto;
+    }
 `;
 export const SectionPrime = styled.div`
     /* border: 1px solid red; */
@@ -58,12 +61,12 @@ export const SectionPrime = styled.div`
 `;
 export const SectionSecondary = styled.div`
     /* border: 1px solid red; */
-    flex: 1;
+    /* flex: 1; */
     display: flex;
     justify-content: flex-end;
     padding: .2rem 0;
-    @media (max-width: 375px) {
-        flex: auto;
+    @media (max-width: 475px) {
+        padding: .2rem ;
     }
 `;
 export const WrapIndex = styled.div`
@@ -129,9 +132,9 @@ export const Status = styled.div`
     display: flex;
     align-items: center;
     & span {
-        font-size: 9px;
-        letter-spacing: 0.4px;
+        font-size: 10.75px;
         font-weight: 500;
+        letter-spacing: 1px;
         line-height: 16px;
         text-transform: uppercase;
     }

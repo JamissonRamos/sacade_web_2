@@ -17,7 +17,6 @@ export const WrapButton = styled.button`
     padding: 1rem .6rem;
     margin-bottom: .6rem;
     border-left: 5px solid ${(props) => props.$colors || "transparent"}; 
-    //border-left: 5px solid ${Theme.Colors.green800};
     border-radius: 4px;
     box-shadow: ${Theme.Shadow.sh900};
     background-color: transparent;
