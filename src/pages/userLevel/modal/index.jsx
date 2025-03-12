@@ -83,11 +83,11 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
             return; // Interrompe o envio do formulário
         }
 
-        let result =  await UpdateUser(formData);
+        let result = await UpdateUser(formData);
 
         if (result.success) {
             onUserUpdate() //função que vem do index
-                ()
+            handleCloseModal()
         }
     };
 
