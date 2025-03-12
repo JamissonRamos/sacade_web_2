@@ -68,21 +68,9 @@ export const BodyPage = styled.div`
         max-height: 80%;
     }
 `;
-export const WrapButtonUpdateCancel = styled.div`
+
+export const WrapFields = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    gap: 12px;
-    padding: 0 1rem;
-    margin-top: 2rem;
-    & button {
-        ${StyledButton}
-    }
-    @media (max-width: 768px) {
-        width: 100%;
-        justify-content: center;
-    }
+    padding: 1rem 0;
 `;

@@ -9,7 +9,7 @@ export const fetchDocumentID = async (data, setValue) => {
         {
             setValue('birthDate', formattedDate); // Define o valor do campo com base nos dados recuperados
         }else {
-            maskedValue = applyMask(key, value);
+            maskedValue = ApplyMask(key, value);
             setValue(key, maskedValue); // Define o valor do campo com base nos dados recuperados
         }
     }
@@ -31,7 +31,7 @@ export const formattedDate = (birthDate) => {
     return `${day}/${month}/${year}`;
 }
 
-export const applyMask = (key, value) => {
+export const ApplyMask = (key, value) => {
     //Função para aplicar as mascara nos campos
     let maskedValue = value;
     let field = key;
@@ -45,8 +45,11 @@ export const applyMask = (key, value) => {
     return(field, maskedValue)
 }
 
-export const capitalizedValue = (event) => {
-    const inputValue = event.target.value;
+export const CapitalizedValue = (value) => {
+    const inputValue = value || false
+
+    if (!inputValue) return;
+
     // Capitaliza a primeira letra de cada palavra
     const capitalizedWords = inputValue.split(' ').map(word => {
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
