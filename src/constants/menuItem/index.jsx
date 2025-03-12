@@ -19,11 +19,6 @@ export const MenuItem = [
                 icon: <Theme.Icons.MdPerson  />,
             },
             {
-                title: 'Usuários',
-                path: '/users',
-                icon: <Theme.Icons.MdSupervisedUserCircle  />,
-            },
-            {
                 title: 'Responsáveis Aluno',
                 path: '/responsibleStudents',
                 icon: <Theme.Icons.FaUsers  />,
@@ -52,6 +47,11 @@ export const MenuItem = [
         iconClosed:  <Theme.Icons.RiArrowUpSFill/>,
         iconOpened: <Theme.Icons.RiArrowDownSFill/>,
         subNav: [
+            {
+                title: 'Usuários',
+                path: '/users',
+                icon: <Theme.Icons.MdSupervisedUserCircle  />,
+            },
             {
                 title: 'Alterar Senha',
                 path: '/changePassword',
