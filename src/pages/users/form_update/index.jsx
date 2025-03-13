@@ -1,68 +1,65 @@
 //CSS
     import * as S from './styled';
 //Hooks
-    import { useEffect, useState } from 'react'
+    import { useEffect } from 'react'
     import { useUsers } from '../../../hooks/users';
     import { useForm } from 'react-hook-form';
     import { yupResolver } from '@hookform/resolvers/yup';
     import { Validations } from '../../validations/index';
     import { useLocation, useNavigate } from 'react-router-dom';
     import { unMask } from 'remask';
-    import { Theme } from '../../../theme';
 //Service
     import { useSearchCep } from '../../../services/cep';
 //Components
-    import { Alert, Button, Col, Container, Form, InputGroup, Row, Spinner } from 'react-bootstrap';
+    import { Container, Form, Spinner } from 'react-bootstrap';
     import { WrapPages } from '../../../components/Wrappe/pages';
     import { LoadingOverlay } from '../../../components/spinner/global/styled';
     import { TextC } from '../../../components/Typography';
+    import FieldDataPersonal from './fields/field_data_personal';
+    import FieldDataAddress from './fields/field_data_address';
+    import FieldsButton from './fields/fields_button';
 //Script
-    import * as Script from './script';
-
-
-import FieldDataPersonal from './fields/field_data_personal';
-import FieldDataAddress from './fields/field_data_address';
-import FieldsButton from './fields/fields_button';
-
+    import {FetchDocumentID, FormattedDate} from './script';
 
 const FormUpdate = () => {
-    const [msgBox, setMsgBox] = useState(null);
-    
+    const navigate = useNavigate();
     const location = useLocation();  // Captura o UID da URL
     const { uid } = location.state || {};  // Captura o UID do estado de navegação
-    const navigate = useNavigate();
 
-    const { documentsID, isLoading: loadingFetchDocument, error: fetchError  } = useUsers.useGetDocumentsID();
+    const { documentsID, isLoading: loadingFetchDocument } = useUsers.useGetDocumentsID();
+
+    const {fetchCep, isLoading: loadingCep } = useSearchCep();
+
+    const { UpdateUser, loading: loadingUpdate } = useUsers.usePostDocumentsID();
     
     const { register, handleSubmit, setValue, reset, getValues, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.UserUpdateSchema)
     }); 
 
-    const {fetchCep, isLoading: loadingCep } = useSearchCep();
-    const { UpdateUser, errorUpdate, isLoadingUpdate: isLoadingPostUpdate } = useUsers.usePostDocumentsID();
-
     useEffect(() => {
         handleFetchDocument()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleFetchDocument = async () => {
         const result = await documentsID(uid);  
         const {success, data, message} = result;
         if(success){
-            await Script.fetchDocumentID(data, setValue); // por enquanto passei as funções de handleChange e convertDate mais a ideia é retirar 
+            await FetchDocumentID(data, setValue); // por enquanto passei as funções de handleChange e convertDate mais a ideia é retirar 
         }else{
-            setMsgBox({variant: 'danger', message: message});
+            reset()
+            navigate('/notifications/error');
+            console.log({message: `Deu algum erro na ficha do aluno: ${message}`})
         }
     };
-    const handleOnClickCep = async () => {
-        setMsgBox(null)
-        const cepValue = getValues('cep');
 
-        if (!cepValue){
-            setMsgBox({variant: 'danger', message: 'CEP não fornecido.'});
-            return;
-        }
-        const response = await fetchCep(cepValue); // Chama a função do script e aguarda a resposta
+    const handleOnClickCep = async (value) => {
+
+        if (!value) return{success: false, message: "Cep não foi fornecido."}
+        if (value.length <= 8) return{success: false, message: "Cep não foi digitado corretamente."}
+
+        const response = await fetchCep(value); // Chama a função do script e aguarda a resposta
+
         const { success, data, message} = response;
         
         if (success) {
@@ -71,40 +68,41 @@ const FormUpdate = () => {
             setValue('neighborhood', data.neighborhood);
             setValue('city', data.city);
             setValue('federativeUnit', data.federativeUnit);
-        } else {
-            setMsgBox({variant: 'danger', message: message});
+            return{success: true};
+        } else { 
+            return{success: false, message: message};
         }
-}
+    }
+
     const onSubmitForm = async (data) => { 
         data.uid = uid;
-        data.birthDate = Script.formattedDate(data.birthDate);
+        data.birthDate = FormattedDate(data.birthDate);
         data.cep = unMask(data.cep);
         data.phoneUsers = unMask(data.phoneUsers);
 
-        const resultPost = await UpdateUser(data);
+        const result = await UpdateUser(data);
+        const { success, message} = result;
 
-        if (resultPost.success){
-                setMsgBox({variant: 'success', message: 'Dados Atualizado com sucesso!'});
-                setTimeout(() => {
-                    reset()
-                    navigate(`/users`)
-                }, 1000);
+        if(success){
+            const path = `/users`;
+            //Coloca dinamico a page de notificação, atualiação ou create
+            navigate(`/notifications/update `, {
+                state: {
+                    url: path,
+                    valueButton: {value: 'Lista de Usuários', icon: 'MdSupervisedUserCircle'},
+                    buttonNewRegister: false,
+                },
+            });
+        }else{
+            reset()
+            navigate('/notifications/error');
+            console.log({message: `Deu algum erro na ficha do aluno: ${message}`})
         }
     } 
-
 
     return (
         
         <WrapPages>
-            {
-                fetchError && <Alert variant={'danger'}> {fetchError} </Alert>
-            }
-            {
-                errorUpdate && <Alert variant={'danger'}> {errorUpdate} </Alert>
-            }
-            {
-                msgBox && <Alert variant={msgBox.variant}> {msgBox.message} </Alert>
-            }
             <S.HeaderPage>
                 <TextC.Title level={2}>Atualizar Cadastro de Usuário</TextC.Title>
                 <TextC.Body level={2}> Realizar a atualização dos dados dos usuário.</TextC.Body>
@@ -136,6 +134,7 @@ const FormUpdate = () => {
                                 register={register}
                                 errors={errors}
                                 setValue={setValue}
+                                getValues={getValues}
                                 handleOnClickCep={handleOnClickCep}
                                 loading={loadingCep}
 
@@ -143,7 +142,7 @@ const FormUpdate = () => {
 
                             <FieldsButton 
                                 navigate={navigate}
-                                loading={isLoadingPostUpdate}
+                                loading={loadingUpdate}
                             />
                         </S.WrapFields>
                     </Form>

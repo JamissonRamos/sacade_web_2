@@ -1,6 +1,13 @@
 import { mask } from 'remask';
 
-export const fetchDocumentID = async (data, setValue) => {
+
+const convertDate = (dateString) => {
+    // Função para converter a data YYYY-MM-DD
+    const parts = dateString.split("/");
+    return `${parts[2]}-${parts[1]}-${parts[0]}`; // Retorna no formato "YYYY-MM-DD"
+};
+
+export const FetchDocumentID = async (data, setValue) => {
     //função para passar os valores para os campos;
     let maskedValue = null;
     for (const [key, value] of Object.entries(data)) {
@@ -15,13 +22,7 @@ export const fetchDocumentID = async (data, setValue) => {
     }
 };
 
-export const convertDate = (dateString) => {
-    // Função para converter a data YYYY-MM-DD
-    const parts = dateString.split("/");
-    return `${parts[2]}-${parts[1]}-${parts[0]}`; // Retorna no formato "YYYY-MM-DD"
-};
-
-export const formattedDate = (birthDate) => {
+export const FormattedDate = (birthDate) => {
     //Formata data em DD/MM/AAAA
     const newDate = new Date(birthDate);
     const day = String(newDate.getDate()).padStart(2, '0');

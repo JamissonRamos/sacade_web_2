@@ -30,7 +30,7 @@ const FieldsButton = ({navigate, loading}) => {
                                         role="status"
                                         aria-hidden="true"
                                     />
-                                    <span className="sr-only"> Atualizando... </span>
+                                    <span > Atualizando... </span>
                                 </>
                             :
                                 <>
