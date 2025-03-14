@@ -40,7 +40,7 @@ const DataUser = ({register, setValue, errors}) => {
         </S.WrapTitleStepper>
         <Container className="my-2">
           <Form.Group className="mb-4 shadow-none" controlId="formGridFirstName">
-            <Form.Label  >Nome</Form.Label>
+            <Form.Label > Nome *</Form.Label>
             <Form.Control 
               type="text" 
               name="firstName"
@@ -54,7 +54,7 @@ const DataUser = ({register, setValue, errors}) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-4" controlId="formGridLastName">
-            <Form.Label>Sobrenome</Form.Label>
+            <Form.Label> Sobrenome *</Form.Label>
             <Form.Control 
               type="text"  
               name='lastName' 
@@ -68,7 +68,7 @@ const DataUser = ({register, setValue, errors}) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-4" controlId="formGridEmail">
-            <Form.Label>Email</Form.Label>
+            <Form.Label> Email *</Form.Label>
             <Form.Control 
               type="email" 
               name='emailUser' 
@@ -91,7 +91,7 @@ const DataUser = ({register, setValue, errors}) => {
             />
           </Form.Group>
           <Form.Group className="mb-4" controlId="formGridBirthDate">
-            <Form.Label>Data Nascimento</Form.Label>
+            <Form.Label>Data Nascimento *</Form.Label>
             <Form.Control 
               type="date" 
               name='birthDate' 
@@ -104,7 +104,7 @@ const DataUser = ({register, setValue, errors}) => {
               </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-4" controlId="formGridGender">
-            <Form.Label>Gênero</Form.Label>
+            <Form.Label> Gênero *</Form.Label>
             <Form.Select
               name='gender' 
               {...register("gender")}
@@ -121,7 +121,7 @@ const DataUser = ({register, setValue, errors}) => {
               </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-4" controlId="formGridNewPassword">
-            <Form.Label>Nova Senha</Form.Label>
+            <Form.Label> Nova Senha *</Form.Label>
             <InputGroup>
               <Form.Control 
                 type={showPassword ? 'text' : 'password'}
@@ -139,7 +139,7 @@ const DataUser = ({register, setValue, errors}) => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-4" controlId="formGridConfirmPassword">
-            <Form.Label>Confirma Senha</Form.Label>
+            <Form.Label> Confirma Senha *</Form.Label>
             <InputGroup>
               <Form.Control 
                 type={showPasswordConfirm ? 'text' : 'password'} 
