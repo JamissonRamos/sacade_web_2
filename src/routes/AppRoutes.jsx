@@ -161,6 +161,9 @@ const AppContent = () => {
                                 <Route path="/notifications/delete" element={
                                     <Pages.NotificationsDelete /> 
                                 } />
+                                <Route path="/helps" element={
+                                    <Pages.Helps /> 
+                                } />
                             </Routes>
                         </main>
                     </> 

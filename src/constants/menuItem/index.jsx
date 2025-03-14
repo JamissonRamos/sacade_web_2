@@ -70,6 +70,11 @@ export const MenuItem = [
         ]
     },
     {
+        title: 'Central Ajuda',
+        path: '/helps',
+        icon: <Theme.Icons.MdHelp />,
+    },
+    {
         title: 'Sair',
         path: '#',
         icon: <Theme.Icons.MdLogout />,
