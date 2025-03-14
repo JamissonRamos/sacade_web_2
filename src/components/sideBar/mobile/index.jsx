@@ -23,7 +23,7 @@ const Mobile = () => {
 
 const itemHome = filterSubItem('Home');
 const itemStudents = filterSubItem('Cadastros', 'Alunos');
-const itemUsers = filterSubItem('Cadastros', 'Usuários');
+const itemUsers = filterSubItem('Configurações', 'Usuários');
 const itemPayments = filterSubItem('Pagamentos');
 
 const handleShowMenu = () => { setSideBarMenu(!sideBarMenu);}
