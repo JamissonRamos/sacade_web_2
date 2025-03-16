@@ -39,7 +39,7 @@ const DataUser = ({register, setValue, errors}) => {
           <TextC.Title level={1} >Vamos preencher alguns dados pessoais. </TextC.Title>
         </S.WrapTitleStepper>
         <Container className="my-2">
-          <Form.Group className="mb-4 shadow-none" controlId="formGridFirstName">
+          <Form.Group className="mb-4 p-1" controlId="formGridFirstName">
             <Form.Label > Nome *</Form.Label>
             <Form.Control 
               type="text" 
@@ -53,7 +53,8 @@ const DataUser = ({register, setValue, errors}) => {
               {errors.firstName && errors.firstName.message}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-4" controlId="formGridLastName">
+
+          <Form.Group className="mb-4 p-1" controlId="formGridLastName">
             <Form.Label> Sobrenome *</Form.Label>
             <Form.Control 
               type="text"  
@@ -67,7 +68,8 @@ const DataUser = ({register, setValue, errors}) => {
               {errors.lastName && errors.lastName.message}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-4" controlId="formGridEmail">
+
+          <Form.Group className="mb-4 p-1" controlId="formGridEmail">
             <Form.Label> Email *</Form.Label>
             <Form.Control 
               type="email" 
@@ -80,30 +82,36 @@ const DataUser = ({register, setValue, errors}) => {
                 {errors.emailUser && errors.emailUser.message}
               </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-4" controlId="formGridPhoneUsers">
+
+          <Form.Group className="mb-4 p-1" controlId="formGridPhoneUsers">
             <Form.Label>Celular</Form.Label>
             <Form.Control 
               type="text" 
               name='phoneUsers' 
-              placeholder="Digite seu phoneUsers" 
+              placeholder="Digite seu número celular" 
               {...register("phoneUsers")}
+              isInvalid={!!errors.phoneUsers}
               onChange={handleChange}
             />
+            <Form.Control.Feedback type="invalid" >
+              {errors.phoneUsers && errors.phoneUsers.message}
+            </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-4" controlId="formGridBirthDate">
-            <Form.Label>Data Nascimento *</Form.Label>
+
+          <Form.Group className="mb-4 p-1" controlId="formGridBirthDate">
+            <Form.Label> Data Nascimento *</Form.Label>
             <Form.Control 
               type="date" 
               name='birthDate' 
-              // placeholder="Digite seu email" 
               {...register("birthDate")}
-              isInvalid={!!errors.birthDate} //!!errors.lastName
+              isInvalid={!!errors.birthDate}
               />
               <Form.Control.Feedback type="invalid" >
                 {errors.birthDate && errors.birthDate.message}
               </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-4" controlId="formGridGender">
+
+          <Form.Group className="mb-4 p-1" controlId="formGridGender">
             <Form.Label> Gênero *</Form.Label>
             <Form.Select
               name='gender' 
@@ -120,7 +128,8 @@ const DataUser = ({register, setValue, errors}) => {
                 {errors.gender && errors.gender.message}
               </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-4" controlId="formGridNewPassword">
+
+          <Form.Group className="mb-4 p-1" controlId="formGridNewPassword">
             <Form.Label> Nova Senha *</Form.Label>
             <InputGroup>
               <Form.Control 
@@ -138,7 +147,8 @@ const DataUser = ({register, setValue, errors}) => {
               {errors.newPassword && errors.newPassword.message}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mb-4" controlId="formGridConfirmPassword">
+
+          <Form.Group className="mb-4 p-1" controlId="formGridConfirmPassword">
             <Form.Label> Confirma Senha *</Form.Label>
             <InputGroup>
               <Form.Control 
@@ -168,7 +178,5 @@ export default DataUser
   - fazer um teste {errors.lastName && errors.lastName.message} retirar o errors.lastName &&
     ja que dentro do control tem o isInvalid={!!errors.lastName} que valida ou não o erro;
 
-  - campo celular ver a opção de colocar a validação quando user digitar o número, caso conrario não aplicar 
-    regra de validação;
 
 */
