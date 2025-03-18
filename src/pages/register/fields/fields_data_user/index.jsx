@@ -47,7 +47,7 @@ const DataUser = ({register, setValue, errors}) => {
               placeholder="Digite seu primeiro nome" 
               {...register("firstName")}
               isInvalid={!!errors.firstName}
-              onChange={(e) => capitalizedValue(e)}
+              onBlur={(e) => capitalizedValue(e)}
             />
             <Form.Control.Feedback type="invalid">
               {errors.firstName && errors.firstName.message}
@@ -62,7 +62,7 @@ const DataUser = ({register, setValue, errors}) => {
               placeholder="Digite seu segundo nome" 
               {...register("lastName")}
               isInvalid={!!errors.lastName} 
-              onChange={(e) => capitalizedValue(e)}
+              onBlur={(e) => capitalizedValue(e)}
             />
             <Form.Control.Feedback type="invalid" >
               {errors.lastName && errors.lastName.message}

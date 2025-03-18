@@ -51,12 +51,6 @@ export const WrapPages = styled.div`
             display: none;
         }
     }
-    @media (max-width: 425px) {
-        padding: .4rem .8rem;
-    }
-    @media (max-width: 375px) {
-        padding: .4rem .8rem;
-    }
 `;
 export const HeaderPage = styled.div`
     /* border: 1px solid red; */
@@ -156,6 +150,9 @@ export const BodyPage = styled.div`
         gap: .2rem;
         flex: 3;
     }
+    @media (max-width: 468px) {
+        padding: .4rem;
+    }
     & form {
         /* border: 1px solid blue; */
         width: 100%;
@@ -163,9 +160,13 @@ export const BodyPage = styled.div`
         display: flex;
         flex-direction: column; 
         justify-content: space-between;
-        gap: .8rem;   
-    }
+        gap: .8rem;
+        @media (max-width: 768px) {
+            align-items: center;
+        }
+    }      
 `;
+
 export const FormFields = styled.div`
     /* border: 1px solid red; */
     width: 100%;
@@ -173,14 +174,35 @@ export const FormFields = styled.div`
     display: flex;
     flex-direction: column;
 `;
+
+export const WrapFooterBody = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 18%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: .2rem;
+    @media (max-width: 768px) {
+        width: 80%;
+        height: 26%;
+    }
+    @media (max-width: 468px) {
+        width: 80%;
+        height: 40%;
+    }
+`;
+
 export const WrapButtonCounterPage = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 14%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: .2rem .4rem;
 `;
+
 export const ButtonsStep = styled.div`
     /* border: 1px solid red; */
     width: 100%;
@@ -189,8 +211,7 @@ export const ButtonsStep = styled.div`
     align-items: center;
     justify-content: start;
     gap: 2rem;
-    flex: 1;
-    padding-left: 1rem;
+    /* padding-left: 1rem; */
     & > button {
         width: 38px;
         height: 38px;
@@ -203,38 +224,28 @@ export const ButtonsStep = styled.div`
         background-color: ${Theme.Colors.green800}
     }
 `;
+
 export const CounterPage = styled.div`
     /* border: 1px solid blue; */
+    width: 20%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: end;
-    flex: 1;
-    padding-right: 1rem;
+    margin-right: 1rem;
     & span {
         color: ${Theme.Colors.yellow700}
     }
 `;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export const ErrorCount = styled.div `
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .4rem 0;
+    background-color: ${Theme.Colors.red400};
+    font-size: 1em;
+    color: ${Theme.Colors.red800};
+`;

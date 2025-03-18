@@ -15,7 +15,7 @@ export const Container = styled.div`
         line-height: 1.5;
         color: ${Theme.Colors.green800};
     }
-    & input:focus, select:focus {
+    & .input-group input:focus, select:focus {
         border-color: ${Theme.Colors.green800};
         box-shadow: none;
         & svg {

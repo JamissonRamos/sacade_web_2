@@ -10,44 +10,52 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../validations/index'
 import { unMask } from 'remask';
 import { useUsers } from '../../hooks/users';
+import { FormattedDate } from './scripts';
+import { useSearchCep } from '../../services/cep';
 
 const Register = () => {
 
   const navigate = useNavigate();
 
+  const { createUser, isLoadingCreate, errorCreate } = useUsers.useCreate();
+  const {fetchCep, isLoading: loadingCep } = useSearchCep();
+
   const { register, handleSubmit, setValue, reset, getValues, formState:{ errors } } = useForm({
     resolver: yupResolver(Validations.UserSchema)
   }); 
 
-  const { createUser, isLoadingCreate, errorCreate } = useUsers.useCreate();
+    //Contas os erro e mostra se tiver algum em qualquer form 
+    const errorCount = Object.keys(errors).length;
 
-  const formFields = [
-    <FieldUsers.DataUser 
-      key={'DataUser'} 
-      register={register} setValue={setValue} getValues={getValues} reset={reset}  errors={errors} />,
-    <FieldUsers.Address 
-      key={'Address'} 
-      register={register} setValue={setValue} getValues={getValues} reset={reset} errors={errors} />,
+  const handleOnClickCep = async (value) => {
 
-    <FieldUsers.EndRegister key={'EndRegister'} isLoadingCreate={isLoadingCreate}/>
-  ]
-  const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep} = useStepper(formFields)
+    if (!value) return{success: false, message: "Cep não foi fornecido."}
+    if (value.length <= 8) return{success: false, message: "  ."}
 
-  const formattedDate = (birthDate) => {
-    const newDate = new Date(birthDate);
-    const day = String(newDate.getDate()).padStart(2, '0');
-    const month = String(newDate.getMonth() + 1).padStart(2, '0'); // Mês começa em 0
-    const year = newDate.getFullYear();
+    const response = await fetchCep(value); // Chama a função do script e aguarda a resposta
+
+    const { success, data, message} = response;
     
-    return `${day}/${month}/${year}`;
-
-  }
+    if (success) {
+        // Atualiza os valores dos campos com os dados recebidos  
+        setValue('logadouro', data.logadouro);
+        setValue('neighborhood', data.neighborhood);
+        setValue('city', data.city);
+        setValue('federativeUnit', data.federativeUnit);
+        return{success: true};
+    } else { 
+        return{success: false, message: message};
+    }
+  };
 
   const onSubmitForm = async (data) => { 
+    
     changeStep(currentStep + 1)
+
     if(currentStep + 1 === formFields.length){
+
       data.phoneUsers = unMask(data.phoneUsers);
-      data.birthDate = formattedDate(data.birthDate);
+      data.birthDate = FormattedDate(data.birthDate);
       data.cep = unMask(data.cep);
       data.status = "Visitante";
       data.statusActive = false;
@@ -56,14 +64,33 @@ const Register = () => {
       let result;
       result = await createUser(data);
 
-      if (result.success){
+      if (result.success) {
           navigate(`/`)
-      }
+      }      
     }
+  }   
 
-  }    
-      
+  //Components para renderizar os components de campo do form, deve ser passado no fim
+  const formFields = [
+    <FieldUsers.DataUser 
+      key={'DataUser'} 
+      register={register} setValue={setValue} getValues={getValues} reset={reset}  errors={errors} />,
   
+    <FieldUsers.Address 
+      key={'Address'} 
+      register={register} 
+      setValue={setValue} 
+      getValues={getValues} 
+      reset={reset} 
+      errors={errors} 
+      handleOnClickCep={handleOnClickCep} 
+      loadingCep={loadingCep}/>,
+
+    <FieldUsers.EndRegister key={'EndRegister'} isLoadingCreate={isLoadingCreate}/>
+  ];
+
+  const { currentStep, currentComponent, changeStep, isLastStep, isFirstStep} = useStepper(formFields)
+
   return (
     <S.Container>
       {
@@ -90,36 +117,55 @@ const Register = () => {
         </S.HeaderPage>
         <S.BodyPage>
           <Form onSubmit={handleSubmit(onSubmitForm)}>
+
             <S.FormFields>
               { currentComponent }
             </S.FormFields>
-            <S.WrapButtonCounterPage>
-              <S.ButtonsStep>
-                {!isFirstStep &&
-                  <Button
-                    type="button"
-                    variant="success"
-                    size="sm"
-                    onClick={() => changeStep(currentStep - 1)}>
-                      <Theme.Icons.MdOutlineArrowBackIos />
-                  </Button>
-                }
-                {!isLastStep &&
-                    <Button
-                      type="submit"
-                      variant="success"
-                      size="sm">
-                      
-                        <Theme.Icons.MdOutlineArrowForwardIos />
-                    </Button>
-                }
-              </S.ButtonsStep>
-              <S.CounterPage>
-                <TextC.Label level={5}>
-                  {currentStep + 1}/{formFields.length}
-                </TextC.Label>
-              </S.CounterPage>
-            </S.WrapButtonCounterPage>
+
+            <S.WrapFooterBody>
+
+              <S.WrapButtonCounterPage>
+
+                <S.ButtonsStep>
+                  {
+                    !isFirstStep &&
+                      <Button
+                        type="button"
+                        variant="success"
+                        size="sm"
+                        onClick={() => changeStep(currentStep - 1)}>
+                          <Theme.Icons.MdOutlineArrowBackIos />
+                      </Button>
+                  }
+                  {
+                    !isLastStep &&
+                      <Button
+                        type= "button" 
+                        variant="success"
+                        onClick={() => changeStep(currentStep + 1)}
+                        size="sm">
+                        
+                          <Theme.Icons.MdOutlineArrowForwardIos />
+                      </Button>
+                  }
+                </S.ButtonsStep>
+
+                <S.CounterPage>
+                  <TextC.Label level={5}>
+                    {currentStep + 1}/{formFields.length}
+                  </TextC.Label>
+                </S.CounterPage>
+
+              </S.WrapButtonCounterPage>
+
+              {
+                  errorCount > 0 ? 
+                  <S.ErrorCount>
+                      {'Foram detectados erros no cadastro: ' + errorCount}
+                  </S.ErrorCount> : null
+              }
+            </S.WrapFooterBody>
+            
           </Form>
         </S.BodyPage>
       </S.WrapPages>

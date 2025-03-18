@@ -79,6 +79,7 @@ export const Right = styled.div`
         gap: 8px;
         padding: 9px 16px;
         background-color: ${Theme.Colors.green800};
+        border: none;
         &:hover {
             background-color: ${props => {
                 const color = props.color || Theme.Colors.green800;

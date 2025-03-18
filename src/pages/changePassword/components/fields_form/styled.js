@@ -6,7 +6,7 @@ export const Container = styled.div`
     width: 100%;
     /* height: 100%; */
     
-        & label {
+    & label {
         display: inline-block;
         margin: 0;
         font-size: .8em;
