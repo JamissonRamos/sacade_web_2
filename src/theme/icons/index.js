@@ -54,6 +54,7 @@ export const Icons = {
     RiArrowUpSFill:             RiIcons.RiArrowUpSFill,
     RiSendPlaneFill:            RiIcons.RiSendPlaneFill,
     FaMapLocationDot:           Fa6.FaMapLocationDot,
+    FaMagnifyingGlass:          Fa6.FaMagnifyingGlass,             
     ImSwitch:                   IM.ImSwitch,
     FaDatabase:                 FA.FaDatabase,
     FaUsers:                    FA.FaUsers,
