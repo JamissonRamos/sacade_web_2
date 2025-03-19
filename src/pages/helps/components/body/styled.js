@@ -48,7 +48,6 @@ export const CardSvg = styled.div`
         height: 100%;
         color: ${Theme.Colors.green800};
     }
-
 `;
 export const CardName = styled.div`
     /* border: 1px solid red; */
@@ -59,5 +58,36 @@ export const CardName = styled.div`
         width: 100%;
         padding: .2rem;
         color: ${Theme.Colors.grey700};
+    }
+`;
+
+export const Empty = styled.div`
+    /* border: 1px solid blue; */
+    width: 80%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+    padding: 0 .1rem;
+    text-align: center;
+    color: ${Theme.Colors.green800};
+    @media (max-width: 768px) {
+        width: 100%;
+        margin-top: 2rem;
+        & span:first-child{
+            font-size: 1.6em;
+            font-weight: 500;
+        }
+        & span:last-child{
+            font-size: 1em;
+        }
+    }
+    @media (max-width: 425px) {
+        & span:first-child{
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
     }
 `;

@@ -1,16 +1,14 @@
 import { TextC } from '../../../../components/Typography';
-import { Theme } from '../../../../theme';
-import { DataItemMenu } from './dataItem';
+
 import * as S from './styled';
 
-const Body = () => {
-
+const Body = ({ItemsMenu}) => {
+    
     return (
-
         <S.Container>
             {
-                DataItemMenu &&
-                DataItemMenu.map(({title, icon, path}, i) =>{
+                ItemsMenu &&
+                ItemsMenu.map(({title, icon, path}, i) =>{
                     return (
                         <S.Card
                             key={i}
@@ -30,12 +28,19 @@ const Body = () => {
 
                     )
                 })
-
             }
 
-
-
-
+            {
+                ItemsMenu.length === 0 &&
+                <S.Empty>
+                    <TextC.Display level={2} >
+                        Ops! Desculpe!
+                    </TextC.Display>
+                    <TextC.Body level={2}>
+                        Nada foi encontrado com essa palavra. Por favor, entre em contato com o administrador do sistema para obter ajuda.
+                    </TextC.Body>
+                </S.Empty> 
+            }
         </S.Container>
     )
 }

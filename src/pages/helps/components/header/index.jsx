@@ -2,7 +2,13 @@ import { Theme } from '../../../../theme';
 import { TextC } from '../../../../components/Typography'
 import * as S from './styled';
 
-const Header = () => {
+const Header = ({handleSearch}) => {
+
+    const hanleOnChange = (event) => {
+        const inputValue = event.target.value;
+        handleSearch(inputValue);
+    }
+
     return (
         <S.Container>
             <S.WrapTitleIcone>
@@ -19,6 +25,7 @@ const Header = () => {
                 <input 
                     type="text" 
                     placeholder='Pesquise artigo de Ajuda...'
+                    onChange={(e) => hanleOnChange(e)}
                 />
             </S.WrapSearchBar>
 
