@@ -13,7 +13,7 @@ const Header = ({handleSearch}) => {
         <S.Container>
             <S.WrapTitleIcone>
                 <Theme.Icons.MdHelp />
-                <TextC.Display level={2}> Central de Ajuda </TextC.Display>
+                <TextC.Headline level={4}> Central de Ajuda </TextC.Headline>
             </S.WrapTitleIcone>
 
             <S.WrapSubTitle>

@@ -10,11 +10,13 @@ export const Container = styled.div`
     justify-content: space-around;
     gap: 1rem;
     padding: 2rem 0;
+    margin-bottom: 1rem;
     @media (max-width: 700px) {
         padding: .4rem .2rem;
         gap: .2rem;
     }
 `;
+
 export const WrapTitleIcone = styled.div`
     /* border: 1px solid red; */
     width: 100%;
@@ -33,10 +35,11 @@ export const WrapTitleIcone = styled.div`
     @media (max-width: 700px) {
         gap: .4rem;
         & svg {
-            font-size: 1.4em;
+            font-size: 1.6em;
         }
         & span {
-            font-size: 1em;
+            font-size: 1.4em;
+            font-weight: 400;
         }
     }
 `;
@@ -54,6 +57,7 @@ export const WrapSubTitle = styled.div`
     @media (max-width: 700px) {
         & span {
             font-size: 1.2em;
+            font-weight: 400;
         }
     }
 `;
@@ -82,11 +86,11 @@ export const WrapSearchBar = styled.div`
     }
     @media (max-width: 700px) {
         width: 90%;
-        height: 40px;
+        height: 60px;
         gap: .4rem;
         & svg {
             width: 10%;
-            font-size: 1rem;
+            font-size: 1.2rem;
         }
         & input {
             height: 100%;
