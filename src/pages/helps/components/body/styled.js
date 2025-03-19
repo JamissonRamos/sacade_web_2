@@ -8,9 +8,9 @@ export const Container = styled.div`
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
-    padding: .8rem 2rem;
-
+    padding: .8rem .2rem;
 `;
+
 export const Card = styled.a`
     /* border: 1px solid red; */
     width: 240px;
@@ -21,19 +21,13 @@ export const Card = styled.a`
     gap: .8rem;
     padding: .8rem;
     background-color: ${Theme.Colors.grey100};
-    //box-shadow: ${Theme.Shadow.sh700};
-
     border-radius: 8px;
     transition: 350ms;
     &:hover {
         width: 250px;
         height: 58px;
-       // box-shadow: ${Theme.Shadow.sh502};
         border-bottom: 4px solid ${Theme.Colors.blue400} ;
-        /* background-color: ${Theme.Colors.blue500};  */
     }
-
-
 `;
 export const CardSvg = styled.div`
     /* border: 1px solid red; */
@@ -60,7 +54,6 @@ export const CardName = styled.div`
         color: ${Theme.Colors.grey700};
     }
 `;
-
 export const Empty = styled.div`
     /* border: 1px solid blue; */
     width: 80%;
