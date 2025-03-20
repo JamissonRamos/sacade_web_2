@@ -48,8 +48,8 @@ export const MenuItem = [
         iconOpened: <Theme.Icons.RiArrowDownSFill/>,
         subNav: [
             {
-                title: 'Usuários',
-                path: '/users',
+                title: 'Usuário',
+                path: '/user/form_update',
                 icon: <Theme.Icons.MdSupervisedUserCircle  />,
             },
             {

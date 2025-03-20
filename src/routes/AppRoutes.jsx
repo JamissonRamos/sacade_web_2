@@ -60,15 +60,10 @@ const AppContent = () => {
                                         <Pages.FormUpdateStudents /> 
                                     // </ProtectedRoute>
                                 } />
-                                <Route path="/users" element={
-                                    <ProtectedRoute page='Users'>
-                                        <Pages.Users /> 
-                                    </ProtectedRoute>
-                                } />
-                                <Route path="/users/form_update/:uid?" element={
-                                    <ProtectedRoute page='Users'>
+                                <Route path="/user/form_update" element={
+                                    // <ProtectedRoute page='Users'>
                                         <Pages.FormUpdate /> 
-                                    </ProtectedRoute>
+                                    // </ProtectedRoute>
                                 } />
                                 <Route path="/responsibleStudents" element={
                                     <ProtectedRoute page='ResponsibleStudents'>

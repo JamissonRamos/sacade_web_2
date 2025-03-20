@@ -9,10 +9,10 @@ const FieldsButton = ({navigate, loading}) => {
                 <S.WrapButtons>
                     <Button
                         variant="outline-danger"
-                        onClick={() => navigate('/users')}
+                        onClick={() => navigate('/')}
                     >
                         <Theme.Icons.MdClose />
-                        <span>Cancelar</span>
+                        <span> Cancelar </span>
                     </Button>
 
                     <Button

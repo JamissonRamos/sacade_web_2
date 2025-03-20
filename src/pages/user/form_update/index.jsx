@@ -6,7 +6,7 @@
     import { useForm } from 'react-hook-form';
     import { yupResolver } from '@hookform/resolvers/yup';
     import { Validations } from '../../validations/index';
-    import { useLocation, useNavigate } from 'react-router-dom';
+    import { useNavigate } from 'react-router-dom';
     import { unMask } from 'remask';
 //Service
     import { useSearchCep } from '../../../services/cep';
@@ -20,11 +20,12 @@
     import FieldsButton from './fields/fields_button';
 //Script
     import {FetchDocumentID, FormattedDate} from './script';
+import { useAuth } from '../../../contexts/authContext/AuthContex';
 
 const FormUpdate = () => {
     const navigate = useNavigate();
-    const location = useLocation();  // Captura o UID da URL
-    const { uid } = location.state || {};  // Captura o UID do estado de navegação
+    const { currentUser } = useAuth();
+    const  { id: uid } = currentUser;
 
     const { documentsID, isLoading: loadingFetchDocument } = useUsers.useGetDocumentsID();
 
@@ -84,12 +85,12 @@ const FormUpdate = () => {
         const { success, message} = result;
 
         if(success){
-            const path = `/users`;
+            const path = `/`;
             //Coloca dinamico a page de notificação, atualiação ou create
             navigate(`/notifications/update `, {
                 state: {
                     url: path,
-                    valueButton: {value: 'Lista de Usuários', icon: 'MdSupervisedUserCircle'},
+                    valueButton: {value: 'Home', icon: 'MdHome'},
                     buttonNewRegister: false,
                 },
             });
