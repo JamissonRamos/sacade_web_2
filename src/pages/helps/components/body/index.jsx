@@ -15,7 +15,6 @@ const Body = ({ItemsMenu}) => {
                             href={path}
                             target={path === "#" ? "_self" : "_blank" }    
                         >
-
                             <S.CardSvg>
                                 {icon}
                             </S.CardSvg>
