@@ -53,11 +53,11 @@ export const DataItemMenu = [
     //     path: '#',
     //     icon: <Theme.Icons.RxCardStackPlus  />,
     // },
-    // {
-    //     title: 'Central Ajuda',
-    //     path: '#',
-    //     icon: <Theme.Icons.MdHelp/>
-    // },
+    {
+        title: 'Central Ajuda',
+        path: 'https://accessible-storm-0f5.notion.site/Central-Ajuda-1bc7ce9f30c18077a6d8c04e138b701b?pvs=4',
+        icon: <Theme.Icons.MdHelp/>
+    },
     // {
     //     title: 'Sair',
     //     path: '#',
