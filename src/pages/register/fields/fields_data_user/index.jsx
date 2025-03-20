@@ -13,7 +13,7 @@ const DataUser = ({register, setValue, errors}) => {
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
 
   const capitalizedValue = (e) => {
-      const inputValue = e.target.value;
+      const inputValue = e.target.value.trim();
       // Capitaliza a primeira letra de cada palavra
       const capitalizedWords = inputValue.split(' ').map(word => {
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
