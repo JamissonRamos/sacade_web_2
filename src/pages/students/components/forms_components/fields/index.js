@@ -8,7 +8,6 @@ import EndRegister from './fields_end_register';
 export const FieldStudents = {
     DataStudents,
     DataAddress,
-    // DataResponsible,
     StudentMedicalDescription,
     EndRegister
 }

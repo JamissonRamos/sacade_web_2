@@ -5,7 +5,7 @@ const FieldDataPersonal  = ({register, errors, setValue}) => {
     
         const handleOnBlur = (event) => {
             let fieldName = event.target.name;
-            let fieldValue = event.target.value;
+            let fieldValue = event.target.value.trim();
 
             let newFieldValue = CapitalizedValue(fieldValue);
 
