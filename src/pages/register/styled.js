@@ -106,6 +106,7 @@ export const WrapButtonHeader = styled.div`
         padding: 9px 16px;
         color: ${Theme.Colors.white800};
         background-color: ${Theme.Colors.yellow800};
+
         &:hover {
             color: ${Theme.Colors.white800};
             background-color: ${handleHoverBackground(Theme.Colors.yellow800)};
@@ -211,11 +212,12 @@ export const ButtonsStep = styled.div`
     align-items: center;
     justify-content: start;
     gap: 2rem;
-    padding: .4rem;
+    padding: .2rem;
     & > button {
         width: 38px;
         height: 38px;
         border: none;
+        box-shadow: none;
         border-radius: 100%;
         background-color: ${Theme.Colors.green800}
     }
