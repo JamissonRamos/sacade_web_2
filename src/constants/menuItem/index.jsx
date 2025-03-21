@@ -26,9 +26,23 @@ export const MenuItem = [
         ]
     },
     {
-        title: 'Pagamentos',
-        path: '/payments',
-        icon: <Theme.Icons.MdAttachMoney/>
+        title: 'Financeiro',
+        path: '#',
+        icon:  <Theme.Icons.FaMoneyCheckAlt  />,
+        iconClosed:  <Theme.Icons.RiArrowUpSFill />,
+        iconOpened: <Theme.Icons.RiArrowDownSFill  />,
+        subNav: [
+            {
+                title: 'Pagar Parcelas',
+                path: '/payments',
+                icon: <Theme.Icons.MdAttachMoney/>
+            },
+            {
+                title: 'Gerar Parcelas',
+                path: '/generateInstallments',
+                icon: <Theme.Icons.RxCardStackPlus  />,
+            }
+        ]
     },
     {
         title: 'Status Alunos',
@@ -62,11 +76,6 @@ export const MenuItem = [
                 path: '/userLevel',
                 icon: <Theme.Icons.MdLockPerson  />,
             },
-            {
-                title: 'Gerar Parcelas',
-                path: '/generateInstallments',
-                icon: <Theme.Icons.RxCardStackPlus  />,
-            }
         ]
     },
     {

@@ -24,7 +24,7 @@ const Mobile = () => {
 const itemHome = filterSubItem('Home');
 const itemStudents = filterSubItem('Cadastros', 'Alunos');
 const itemUsers = filterSubItem('Configurações', 'Usuário');
-const itemPayments = filterSubItem('Pagamentos');
+const itemPayments = filterSubItem('Financeiro', 'Pagar Parcelas');
 
 const handleShowMenu = () => { setSideBarMenu(!sideBarMenu);}
 
