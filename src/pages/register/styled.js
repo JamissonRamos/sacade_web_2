@@ -131,6 +131,7 @@ export const WrapButtonHeader = styled.div`
         }
     }
 `;
+
 export const WrapImg = styled.div`
     /* border: 1px solid red; */
     & > img {
@@ -142,6 +143,7 @@ export const WrapImg = styled.div`
         display: none;
     }
 `;
+
 export const BodyPage = styled.div`
     /* border: 1px solid red; */
     display: flex;
@@ -206,24 +208,27 @@ export const WrapButtonCounterPage = styled.div`
 
 export const ButtonsStep = styled.div`
     /* border: 1px solid red; */
-    /* width: 100%; */
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: start;
     gap: 2rem;
     padding: .2rem;
-    & > button {
-        width: 38px;
-        height: 38px;
-        border: none;
-        box-shadow: none;
-        border-radius: 100%;
-        background-color: ${Theme.Colors.green800}
-    }
-    & > div > button {
-        border: none;
-        background-color: ${Theme.Colors.green800}
+`;
+
+export const ButtonStep = styled.button`
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: none;
+    border-radius: 100%;
+    background-color: ${Theme.Colors.green800};
+    & svg {
+        font-size: 1em;
+        color:  ${Theme.Colors.white800};
     }
 `;
 

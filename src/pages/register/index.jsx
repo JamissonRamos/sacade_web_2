@@ -129,24 +129,24 @@ const Register = () => {
                 <S.ButtonsStep>
                   {
                     !isFirstStep &&
-                      <Button
+                      <S.ButtonStep
                         type="button"
                         variant="success"
                         size="sm"
                         onClick={() => changeStep(currentStep - 1)}>
                           <Theme.Icons.MdOutlineArrowBackIos />
-                      </Button>
+                      </S.ButtonStep>
                   }
                   {
                     !isLastStep &&
-                      <Button
+                      <S.ButtonStep
                         type= "button" 
                         variant="success"
                         onClick={() => changeStep(currentStep + 1)}
                         size="sm">
                         
                           <Theme.Icons.MdOutlineArrowForwardIos />
-                      </Button>
+                      </S.ButtonStep>
                   }
                 </S.ButtonsStep>
 
