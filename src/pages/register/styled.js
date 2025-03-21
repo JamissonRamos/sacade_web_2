@@ -205,13 +205,13 @@ export const WrapButtonCounterPage = styled.div`
 
 export const ButtonsStep = styled.div`
     /* border: 1px solid red; */
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: start;
     gap: 2rem;
-    /* padding-left: 1rem; */
+    padding: .4rem;
     & > button {
         width: 38px;
         height: 38px;

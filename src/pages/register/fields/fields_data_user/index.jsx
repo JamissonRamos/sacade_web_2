@@ -17,7 +17,7 @@ const DataUser = ({register, setValue, errors}) => {
       const capitalizedWords = inputValue.split(' ').map(word => {
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
       });
-      const newValue = capitalizedWords.join('');
+      const newValue = capitalizedWords.join(' ');
       setValue(e.target.name, newValue); // Atualiza o valor no React Hook Form
   };
 

@@ -65,7 +65,7 @@ const Register = () => {
       result = await createUser(data);
 
       if (result.success) {
-          navigate(`/`)
+          navigate(`/login`)
       }      
     }
   }   
