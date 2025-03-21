@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Theme } from '../../../../../theme';
+import { Theme } from '../../../../theme';
 import { ApplyMask, CapitalizedValue } from '../../script';
 import { Button, Col, Form, InputGroup, Row, Spinner } from 'react-bootstrap';
-import { AlertCustom } from '../../../../../components/alert_custom';
+import { AlertCustom } from '../../../../components/alert_custom';
 
 const FieldDataAddress  = ({register, errors, setValue, getValues, handleOnClickCep, loading}) => {
     const [msgBox, setMsgBox] = useState(null); 

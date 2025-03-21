@@ -2,25 +2,25 @@
     import * as S from './styled';
 //Hooks
     import { useEffect } from 'react'
-    import { useUsers } from '../../../hooks/users';
+    import { useUsers } from '../../hooks/users';
     import { useForm } from 'react-hook-form';
     import { yupResolver } from '@hookform/resolvers/yup';
-    import { Validations } from '../../validations/index';
+    import { Validations } from '../validations/index';
     import { useNavigate } from 'react-router-dom';
     import { unMask } from 'remask';
+    import { useAuth } from '../../contexts/authContext/AuthContex';
 //Service
-    import { useSearchCep } from '../../../services/cep';
+    import { useSearchCep } from '../../services/cep';
 //Components
     import { Container, Form, Spinner } from 'react-bootstrap';
-    import { WrapPages } from '../../../components/Wrappe/pages';
-    import { LoadingOverlay } from '../../../components/spinner/global/styled';
-    import { TextC } from '../../../components/Typography';
+    import { WrapPages } from '../../components/Wrappe/pages';
+    import { LoadingOverlay } from '../../components/spinner/global/styled';
+    import { TextC } from '../../components/Typography';
     import FieldDataPersonal from './fields/field_data_personal';
     import FieldDataAddress from './fields/field_data_address';
     import FieldsButton from './fields/fields_button';
 //Script
     import {FetchDocumentID, FormattedDate} from './script';
-import { useAuth } from '../../../contexts/authContext/AuthContex';
 
 const FormUpdate = () => {
     const navigate = useNavigate();

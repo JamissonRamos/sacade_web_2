@@ -60,7 +60,7 @@ const AppContent = () => {
                                         <Pages.FormUpdateStudents /> 
                                     // </ProtectedRoute>
                                 } />
-                                <Route path="/user/form_update" element={
+                                <Route path="/user" element={
                                     // <ProtectedRoute page='Users'>
                                         <Pages.FormUpdate /> 
                                     // </ProtectedRoute>

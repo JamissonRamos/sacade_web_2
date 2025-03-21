@@ -2,7 +2,7 @@ import  Home  from './home';
 import Students from './students';
 import FormCreateStudents from './students/forms/form_create';
 import FormUpdateStudents from './students/forms/form_update';
-import FormUpdate from './user/form_update';
+import FormUpdate from './user';
 import Register from './register';
 import ResponsibleStudents from './responsible_students';
 import ResponsibleList from './responsible_students/responsibleList';

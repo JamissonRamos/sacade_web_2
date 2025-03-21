@@ -49,7 +49,7 @@ export const MenuItem = [
         subNav: [
             {
                 title: 'Usuário',
-                path: '/user/form_update',
+                path: '/user',
                 icon: <Theme.Icons.MdSupervisedUserCircle  />,
             },
             {

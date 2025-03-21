@@ -1,5 +1,5 @@
 import * as S from './styled';
-import { Theme } from '../../../../../theme';
+import { Theme } from '../../../../theme';
 import { Button, Row, Spinner } from 'react-bootstrap';
 
 const FieldsButton = ({navigate, loading}) => {
