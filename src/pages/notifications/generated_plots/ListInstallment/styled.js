@@ -22,34 +22,32 @@ export const Card = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     display: flex;
-    padding: 1rem .6rem;
-    border-bottom: 3px solid ${Theme.Colors.green800};
+    flex-direction: column;
+    gap: .4rem;
+    padding: .2rem .6rem 1.4rem .6rem;
+    border-bottom: 2px solid ${Theme.Colors.grey600};
     background-color: ${props => props.$alternate ? Theme.Colors.grey200 : Theme.Colors.white};
-    @media (max-width: 768px) {
-        flex-direction: column;
-        gap: .8rem;
-    }
 `;
 
 export const SectionFirst = styled.div`
     /* border: 1px solid red; */
-    width: 40%;
+    width: 100%;
     display: flex;
     align-items: center;
     gap: .4rem;
-    @media (max-width: 768px) {
-        width: 100%;
-    }
 `;
+
 export const WrapIndex = styled.div`
     /* border: 1px solid red; */
     width: auto;
     padding: .2rem;
     margin-right: .4rem;
     & span {
+        font-weight: 900;
         color: ${Theme.Colors.grey800};
     }
 `;
+
 export const WrapName = styled.div`
     /* border: 1px solid blue; */
     display: flex;
@@ -57,21 +55,18 @@ export const WrapName = styled.div`
     justify-content: start;
     padding: .2rem 0;
     & span{
+        font-weight: 500;
         color: ${Theme.Colors.grey800};
     }
 `;
 
 export const SectionSecond = styled.div`
     /* border: 1px solid red; */
-    width: 60%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: .4rem;
-    @media (max-width: 768px) {
-        width: 100%;
-    }
-
 `;
 
 export const CarddDtaInstallment = styled.div`
@@ -79,13 +74,10 @@ export const CarddDtaInstallment = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: .8rem;
-    border-bottom: 2px solid ${Theme.Colors.grey100};
-    @media (max-width: 768px) {
-        justify-content: space-around;
-    }
 `;
+
 export const WrapError = styled.div`
     /* border: 1px solid red; */
     display: flex;
@@ -93,11 +85,14 @@ export const WrapError = styled.div`
     justify-content: center;
     gap: .8rem;
     & svg {
-        width: 20px;
-        height: 20px;
+        padding: 2px;
         border-radius: 100px;
         background-color: ${(props) => (props.$error ? Theme.Colors.red800 : Theme.Colors.green800)};
+        font-size: 1.2em;
         color: ${Theme.Colors.white800};
+    }
+    @media (max-width: 475px) {
+        font-size: .8em;
     }
 `;
 

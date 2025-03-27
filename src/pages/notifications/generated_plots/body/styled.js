@@ -4,7 +4,7 @@ import { Theme } from "../../../../theme";
 export const Body = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 80%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -12,6 +12,9 @@ export const Body = styled.div`
     & span {
         text-align: start;
         color: ${Theme.Colors.grey800};
+    }
+    @media (max-width: 475px) {
+        height: 60%;
     }
 `;
 

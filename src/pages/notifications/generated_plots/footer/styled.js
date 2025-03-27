@@ -75,14 +75,12 @@ const outlineStyles = css`
 export const Footer = styled.div`
     /* border: 1px solid red; */
     width: 100%;
+    min-width: 320px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 16px;
-    @media (max-width: 320px) {
-        flex-direction: column;
-    }
 `;
 
 export const WrapButtons = styled.div`
@@ -92,9 +90,6 @@ export const WrapButtons = styled.div`
     align-items: center;
     justify-content: center;
     gap: 16px;
-    @media (max-width: 320px) {
-        flex-direction: column;
-    }
 `;
 
 export const ButtonOutline = styled.button`

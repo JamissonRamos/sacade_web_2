@@ -16,8 +16,6 @@ const NotificationsGeneratedPlots = () => {
     const getStoredInstallments = () => {
         const generatedInstallments = JSON.parse(localStorage.getItem("generatedInstallments")) || [];
         setAllInstallments([...generatedInstallments]);
-        
-        //console.log("Recuperando array.", generatedInstallments);
     };
 
     // Função para limpar os dados do localStorage ao sair da página
@@ -35,7 +33,9 @@ const NotificationsGeneratedPlots = () => {
 
     return (
         <S.Container>
+
             <S.Content>
+
                 <Header />
 
                 <Body allInstallments={allInstallments}/>
@@ -50,6 +50,7 @@ const NotificationsGeneratedPlots = () => {
                 />
                 
             </S.Content>
+
         </S.Container>
     )
 }

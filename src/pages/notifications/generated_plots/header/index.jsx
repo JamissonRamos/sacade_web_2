@@ -6,8 +6,36 @@ const Header = () => {
     
     return (
         <S.Header>
-            <Theme.Icons.MdCheckCircleOutline />
-            <TextC.Title level={3}> Sucesso </TextC.Title>
+            <S.WrapTitle>
+                <Theme.Icons.FaMoneyCheckAlt />
+                <TextC.Title level={4}> Lista das Parcelas </TextC.Title>
+            </S.WrapTitle>
+
+            <S.WrapSubTitle>
+                <S.WrapError
+                    $error={true}
+                >
+                    <Theme.Icons.MdClose />
+                    <TextC.Body level={2}> 
+                        As parcelas com este ícone não foram geradas.
+                    </TextC.Body>
+                </S.WrapError>
+
+                <S.WrapError>
+                    <Theme.Icons.MdCheck 
+                        $error={false}
+                    />
+                    <TextC.Body level={2}> 
+                        As parcelas com este ícone foram geradas com sucesso. 
+                    </TextC.Body>
+                </S.WrapError>
+
+
+
+
+
+            </S.WrapSubTitle>
+
         </S.Header>
     )
 }
