@@ -1,8 +1,10 @@
 import * as S from './styled';
-import { useLocation } from 'react-router-dom';
+
 import Header from './header';
 import Body from './body';
 import Footer from './footer';
+
+import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 

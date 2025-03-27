@@ -1,7 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import * as S from './styled';
+
 import { Theme } from '../../../../theme';
-import { TextC } from '../../../../components/Typography';
+
+import { useNavigate } from 'react-router-dom';
 
 const Footer = ({url, uid, buttonValue, buttonIcon, buttonNewRegister, clearStoredInstallments}) => {
 

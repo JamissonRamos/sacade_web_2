@@ -34,8 +34,6 @@ const Form = () => {
             - O installment é obj para gerar as parcelas;
         */
         const {uid, name, installmentNumber, dueDate, value } = installment;
-
-        //console.log('installment', installment);
         
         let installmentObjAdd = {
             uid: uid,
@@ -48,12 +46,13 @@ const Form = () => {
 
         try {
             
-            ///let result = await createDocuments(installment);
+            let result = await createDocuments(installment);
     
-            const result = {success: true, message: 'error teste' }
+            //const result = {success: true, message: 'error teste' }
+
             const {success, message } = result;
 
-            if(!success || uid === "8OlknLrraKECunVYffFF"){       
+            if(!success){       
                 installmentObjAdd.error = true;    
                 console.error('Error ao criar parcela: ', message);
                 console.error('uid: ', installment.uid);
@@ -134,8 +133,6 @@ const Form = () => {
                     buttonNewRegister: true,
                 },
             });
-
-            //console.log('Salvando');
             
         } catch (error) {
             console.log('error: ', error.message);
