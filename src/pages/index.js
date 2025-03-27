@@ -22,6 +22,7 @@ import NotificationsUpdate from './notifications/update';
 import NotificationsDelete from './notifications/delete';
 import NotificationsStudentCreate from './notifications/students_create';
 import NotificationsMaintenance from './notifications/maintenance';
+import NotificationsGeneratedPlots from './notifications/generated_plots';
 import ConfigurationInstallments from './configuration_installments';
 import GenerateInstallments from './generate_installments';
 import SplashScreen from './splash_screen';
@@ -57,6 +58,7 @@ export const Pages = {
     NotificationsUpdate,
     NotificationsDelete,
     NotificationsMaintenance,
+    NotificationsGeneratedPlots,
     ConfigurationInstallments,
     GenerateInstallments,
     SplashScreen,

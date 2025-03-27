@@ -10,19 +10,20 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
     const [formatInterestDaily, setFormatInterestDaily] = useState("");
     const [formatInterestMonthly, setFormatInterestMonthly] = useState("");
     const [formatInterestAnnual, setFormatInterestAnnual] = useState("");
-    // const [fieldDisabled, setFieldDisabled] = useState(true);
 
     const handleChange = (e) => {
         let fieldName = e.target.name;
         let fieldValue = e.target.value;
         let maskedValue = fieldValue;
 
-        if (/[a-zA-Z]/.test(fieldValue) && fieldName !== 'valueInstallment' ) {
+        if (/[a-zA-Z]/.test(fieldValue) && fieldName !== 'valueInstallment' ) 
+        {
             maskedValue = mask(fieldValue, MaskList.onlyNumber )
 
-        }else if (fieldName === 'valueInstallment'){
+        }else if (fieldName === 'valueInstallment'){            
             maskedValue = FormatCurrency(fieldValue)
             const numberValue = parseInt(fieldValue, 10) / 100; // Divide por 100 para ajustar as casas decimais
+            
             if(numberValue === 0)
             {
                 setFieldDisabled(true)
@@ -36,7 +37,6 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
         }
             setValue(fieldName, maskedValue)
     };
-
 
     const applyAmountMoneyPercentage = () => {
         /* Função para aplicar a regras de mostra valores quando alterar o valor da parcela */
@@ -88,7 +88,6 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
         }else if(fieldName === "interestAnnual"){
             setFormatInterestAnnual(maskedValue);
         }
-
     }
 
     return (
@@ -96,7 +95,7 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
             <Row className="mb-2 px-2 ">
                 <Col sm={6} md={6} lg={6}>
                     <Form.Group className="p-1" controlId="GroupFirstInstallmentDate">
-                        <Form.Label className="m-0"> Data 1º Parcela </Form.Label>
+                        <Form.Label className="m-0"> Data 1º Parcela * </Form.Label>
                         <Form.Control   
                             type="date" 
                             name="firstDateInstallments"
@@ -110,12 +109,12 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
                 </Col>
                 <Col sm={6} md={6} lg={6}>
                     <Form.Group className="p-1" controlId="GroupQuantityInstallments">
-                        <Form.Label className="m-0"> Quantidade Parcela </Form.Label>
+                        <Form.Label className="m-0"> Quantidade Parcela * </Form.Label>
                         <Form.Control 
                             type="text" 
                             inputMode="numeric"
                             name="quantityInstallments"
-                            placeholder="Quantidade Parcela" 
+                            placeholder="Número de parcelas a serem geradas." 
                             {...register("quantityInstallments")}
                             isInvalid={!!errors.quantityInstallments}
                             onChange={handleChange}
@@ -129,7 +128,7 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
             <Row className="mb-2 px-2 ">
                 <Col  sm={6} md={6} lg={6}>
                     <Form.Group className="p-1" controlId="GroupValueInstallment">
-                        <Form.Label className="m-0"> Valor Parcela </Form.Label>
+                        <Form.Label className="m-0"> Valor Parcela * </Form.Label>
                         <Form.Control 
                             type="text" 
                             inputMode="numeric"

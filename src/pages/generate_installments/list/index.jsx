@@ -13,11 +13,13 @@ const List = ({data, setStoreUid, selectAll}) => {
       newCheckedItems[item.uid] = selectAll;
     });
     setCheckedItems(newCheckedItems);
-    setStoreUid(selectAll ? data.map(item => item.uid) : []);
+    setStoreUid(selectAll ? data.map(item => ({ uid: item.uid, name: `${item.firstName} ${item.lastName}` })) : []);
+
   }, [selectAll, data, setStoreUid]);
 
 
-  const handleCheckboxChange = (uid) => {
+  const handleCheckboxChange = (uid, name) => {
+
     /* Manipular o meu checkBox */    
     setCheckedItems((prev) => ({
       ...prev,
@@ -26,18 +28,21 @@ const List = ({data, setStoreUid, selectAll}) => {
 
     /* Manipular array com os uids */
     setStoreUid((prev) => {
-      if (prev.includes(uid)) {
-        // Se o uid já estiver no array, remove-o
-        return prev.filter((id) => id !== uid);
+      if (prev.some((item) => item.uid === uid)) {
+        
+        // Filtra apenas os objetos cujo uid NÃO seja igual ao selecionado
+        const newStoreUid = prev.filter((item) => item.uid !== uid);
+        return newStoreUid;
+
       } else {
         // Se não estiver, adiciona-o
-        return [...prev, uid];
+        return [...prev, { uid: uid, name: name}];
       }
     });
   };
 
-  const handleCardClick = (uid) => {
-    handleCheckboxChange(uid);
+  const handleCardClick = (uid, name ) => {
+    handleCheckboxChange(uid, name);
   };
 
   const handleBadge = (status) => 
@@ -69,7 +74,7 @@ const List = ({data, setStoreUid, selectAll}) => {
           {
             data && data.map(({uid, firstName, lastName, status }, i) => (
 
-              <S.Card key={i} checkedItems={checkedItems[uid]} onClick={() => handleCardClick(uid)}>
+              <S.Card key={i} checkedItems={checkedItems[uid]} onClick={() => handleCardClick(uid, `${firstName} ${lastName}`)}>
 
                 <S.WrapContent>
 
@@ -83,7 +88,7 @@ const List = ({data, setStoreUid, selectAll}) => {
                     type={'checkbox'}
                     id={i}
                     checked={!!checkedItems[uid]} // Verifica se o checkbox deve estar marcado
-                    onChange={() => handleCheckboxChange(uid)} // Atualiza o estado ao mudar
+                    onChange={() => handleCheckboxChange(uid, `${firstName} ${lastName}` )} // Atualiza o estado ao mudar
                     onClick={(e) => e.stopPropagation()} // Impede que o clique no checkbox dispare o clique do card
                   />
 
@@ -113,45 +118,3 @@ const List = ({data, setStoreUid, selectAll}) => {
 }
 
 export default List
-
-
-/* 
-
- <S.TableRow key={i}>
-                <S.TableBodyCell $flex={.1}>
-                  <TextC.Body level={1}>{1 + i}</TextC.Body>
-                </S.TableBodyCell>
-                <S.TableBodyCell $flex={2}>
-                  <S.CircleLetterName>
-                      {firstName && firstName.charAt(0)}
-                  </S.CircleLetterName>
-                  <TextC.Body level={1} className='fullName'>
-                    {firstName + " " + lastName}
-                  </TextC.Body>
-                </S.TableBodyCell>
-                <S.TableBodyCell className='status'>
-                    <Badge bg={handleBadge(status)} text="light">
-                      {status}
-                    </Badge>
-                </S.TableBodyCell>
-
-                <S.TableBodyCell $flex={.4}>
-
-                  <S.WrapListButtons>
-                  
-                    <Button
-                      variant="outline-success"
-                     
-                      onClick={() => handleShowFormUpdate(uid)}
-                    >
-                      <Theme.Icons.MdModeEdit />
-                    </Button>
-                  </S.WrapListButtons>
-
-                </S.TableBodyCell>
-
-              </S.TableRow>
-
-
-
-*/

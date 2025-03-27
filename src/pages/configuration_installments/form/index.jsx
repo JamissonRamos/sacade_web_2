@@ -17,7 +17,6 @@ import { LoadingOverlay } from "../../../components/spinner/global/styled"
 
 const Form = () => {
     const [fieldDisabled, setFieldDisabled] = useState(true);
-    // const [errorProcess, setErrorProcess] = useState(false);
     const [loadingProcess, setLoadingProcess] = useState(false);
 
     const navigate = useNavigate();
@@ -34,31 +33,46 @@ const Form = () => {
             - Função para gerar parcelas;
             - O installment é obj para gerar as parcelas;
         */
+        const {uid, name, installmentNumber, dueDate, value } = installment;
+
+        //console.log('installment', installment);
+        
+        let installmentObjAdd = {
+            uid: uid,
+            name: name,
+            installmentNumber: installmentNumber,
+            dueDate: dueDate,
+            value: value,
+            error: false // Inicializa como erro, muda para false se sucesso
+        };
+
         try {
             
-            let result = await createDocuments(installment);
+            ///let result = await createDocuments(installment);
     
+            const result = {success: true, message: 'error teste' }
             const {success, message } = result;
-    
-            if(success){
-                console.log(`Parcela ${installment.installmentNumber} foi gerada`);
-                
-            }else{
+
+            if(!success || uid === "8OlknLrraKECunVYffFF"){       
+                installmentObjAdd.error = true;    
                 console.error('Error ao criar parcela: ', message);
                 console.error('uid: ', installment.uid);
             }
         } catch (error) {
             console.error('Erro no fetchPostCreate: ', error.message);
+        }finally{
+            // Atualiza o localStorage de forma segura
+            const currentInstallments = JSON.parse(localStorage.getItem("generatedInstallments") || "[]");
+            currentInstallments.push(installmentObjAdd);
+            // Atualiza o localStorage com o novo array
+            localStorage.setItem("generatedInstallments", JSON.stringify(currentInstallments));
         }
-
     };
 
     const handleOnSubmit = async (data) => {
         setLoadingProcess(true);
 
         try {
-            console.log('iniciou');
-            
             data.fees = FormatPercentageNumber(data.fees);
             data.interestAnnual = FormatPercentageNumber(data.interestAnnual);
             data.interestDaily = FormatPercentageNumber(data.interestDaily);
@@ -68,6 +82,7 @@ const Form = () => {
             
             // Recuperar o documento do local storage
             const studentsUid = JSON.parse(localStorage.getItem('uisStudents')) || [];
+            
             // Verificar se o documento foi encontrado
             if (!studentsUid) {
                 console.log('Erro ao tenta busca Uid de estudantes');
@@ -77,12 +92,11 @@ const Form = () => {
             // Lista para armazenar todas as Promises
             const allPromises = [];
 
-            studentsUid && studentsUid.forEach((uid) => {
-    
+            studentsUid && studentsUid.forEach(({uid, name}) => {
+                
                 for (let i = 0; i < data.quantityInstallments; i++) {
-                    // console.log('parcelas: ', i);
                     let resultDueDate = 0;
-    
+
                     // 1 loop sempre a data da parcela normal 2 loop em diante sempre colocar 30 dias
                     i === 0 
                         ? resultDueDate = data.firstDateInstallments
@@ -90,6 +104,7 @@ const Form = () => {
     
                     const installment = {
                         uid,
+                        name,
                         installmentNumber: `${i + 1}/${data.quantityInstallments}`,
                         dueDate: resultDueDate,
                         value: data.valueInstallment,
@@ -98,9 +113,9 @@ const Form = () => {
                         interestMonthly: data.interestMonthly,
                         interestDaily: data.interestDaily,
                     };
-    
-                    // installment && fetchPostCreate(installment)
-                      // Adiciona a Promise de criação à lista
+
+                    // Adiciona a Promise de criação à lista
+                    
                     if (installment) {
                         allPromises.push(fetchPostCreate(installment));
                     }
@@ -109,15 +124,24 @@ const Form = () => {
             // Aguarda todas as Promises serem resolvidas
             await Promise.all(allPromises);
             reset()
-            navigate('/notifications/create');
-            console.log('notification create');
+            navigate('/notifications/generatedPlots');
+            //Coloca dinamico a page de notificação, atualiação ou create
+            const path = `/`;
+            navigate(`/notifications/generatedPlots`, {
+                state: {
+                    url: path,
+                    valueButton: {value: 'Home', icon: 'MdHome'},
+                    buttonNewRegister: true,
+                },
+            });
+
+            //console.log('Salvando');
             
         } catch (error) {
             console.log('error: ', error.message);
             navigate('/notifications/error');
         }finally{
             setLoadingProcess(false)
-            console.log('Finalizou');
         }
     }
     
@@ -136,7 +160,7 @@ const Form = () => {
                 <S.WrapButtons>
                     <Button
                         variant="outline-danger"
-                        onClick={() =>  navigate('/')}
+                        onClick={() =>  {localStorage.removeItem('uisStudents'), navigate('/')}}
                     >
                         <Theme.Icons.MdClose />
                         <span>Cancelar</span>

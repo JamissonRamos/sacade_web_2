@@ -23,14 +23,15 @@ const GenerateInstallments = () => {
         // Armazenando o array no Local Storage
         localStorage.setItem("uisStudents", JSON.stringify(data));
     }
-
-    const postRemoveLocalStorage = (name) => {
+    //clearLocalStored
+    const clearLocalStored = () => {
         // Exclui os dados do localStorage
-        localStorage.removeItem(name);
+        localStorage.removeItem('uisStudents');
+        localStorage.removeItem("generatedInstallments");
     }
 
     const fetchDocuments = async () => {
-        postRemoveLocalStorage('uisStudents')
+        clearLocalStored()
         const result = await getDocuments();
         const { success, data, error} = result;
         if(success){
@@ -66,6 +67,7 @@ const GenerateInstallments = () => {
         postCreateLocalStorage(data);
         navigate('/configurationInstallments');
     }
+
 
     return (
         <WrapPages>

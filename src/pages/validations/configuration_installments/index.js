@@ -15,7 +15,7 @@ export const ConfigurationInstallmentsSchema = yup.object().shape({
         .number()
         .typeError('O campo deve ser um número') // Caso o valor não seja numérico
         .integer('Deve ser um número inteiro') // Verifica se é um número inteiro
-        .min(1, 'O dia deve ser no mínimo 1')
+        .min(1, 'O valor mínimo deve ser 1')
         .required('Campo é obrigatório'),
     valueInstallment: yup
         .string()
