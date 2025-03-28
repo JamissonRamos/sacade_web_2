@@ -38,7 +38,7 @@ export const Card = styled.button`
     justify-content: space-between;
     padding: 1rem .6rem;
     margin: 0 auto 12px auto;
-    border-left: 5px solid ${props => props.checkedItems 
+    border-left: 5px solid ${props => props.$checkedItems 
         ? Theme.Colors.green800 
         : Theme.Colors.grey500};
     border-radius: 4px;
