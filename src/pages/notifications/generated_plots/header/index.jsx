@@ -21,19 +21,14 @@ const Header = () => {
                     </TextC.Body>
                 </S.WrapError>
 
-                <S.WrapError>
-                    <Theme.Icons.MdCheck 
-                        $error={false}
-                    />
+                <S.WrapError
+                    $error={false}
+                >
+                    <Theme.Icons.MdCheck />
                     <TextC.Body level={2}> 
                         As parcelas com este ícone foram geradas com sucesso. 
                     </TextC.Body>
                 </S.WrapError>
-
-
-
-
-
             </S.WrapSubTitle>
 
         </S.Header>

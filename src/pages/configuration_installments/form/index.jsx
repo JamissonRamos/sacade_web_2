@@ -34,20 +34,48 @@ const Form = () => {
             - Função para gerar parcelas;
             - O installment é obj para gerar as parcelas;
         */
-        const {uid, name, installmentNumber, dueDate, value } = installment;
+
+        const {uid, name, installmentNumber, dueDate, value, fees, interestAnnual, interestMonthly, interestDaily } = installment;
         
         let installmentObjAdd = {
             uid: uid,
-            name: name,
-            installmentNumber: installmentNumber,
+            name: name, //não vai para o banco de dados
+            installmentNumber: installmentNumber, //não vai para o banco de dados
             dueDate: dueDate,
             value: value,
             error: false // Inicializa como erro, muda para false se sucesso
         };
 
+        //Precisa separar os lemento para salvar no banco de dados 
+        const newInstallment = {
+            uid: uid, 
+            dueDate: dueDate, 
+            value: value, 
+            fees: fees, 
+            interestAnnual: interestAnnual, 
+            interestMonthly: interestMonthly, 
+            interestDaily: interestDaily
+        }
+
+/* 
+ uid,
+                        name,
+                        installmentNumber: `${i + 1}/${data.quantityInstallments}`,
+                        dueDate: resultDueDate,
+                        value: data.valueInstallment,
+                        fees: data.fees,
+                        interestAnnual: data.interestAnnual,
+                        interestMonthly: data.interestMonthly,
+                        interestDaily: data.interestDaily,
+
+
+
+*/
+
+
         try {
             
-            let result = await createDocuments(installment);
+            let result = await createDocuments(newInstallment);
     
             //const result = {success: true, message: 'error teste' }
 
