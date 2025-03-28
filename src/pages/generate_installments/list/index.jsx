@@ -106,6 +106,7 @@ const List = ({data, setStoreUid, selectAll}) => {
                         {status}
                       </Badge>
                 </S.WrapStatus>
+                
               </S.Card>
             ))
           }

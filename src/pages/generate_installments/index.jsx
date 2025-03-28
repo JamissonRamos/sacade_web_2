@@ -5,10 +5,11 @@ import Header from './header';
 import { LoadingOverlay } from '../../components/spinner/global/styled';
 import { Button, Form, Spinner } from 'react-bootstrap';
 import { TextC } from '../../components/Typography';
+import List from './list';
+
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useStudents } from '../../hooks/students';
-import List from './list';
-import { useNavigate } from 'react-router-dom';
 
 const GenerateInstallments = () => {
     const [registered, setRegistered] = useState(null);
@@ -36,7 +37,10 @@ const GenerateInstallments = () => {
         const { success, data, error} = result;
         if(success){
             //Passando para list gerar parcelas somente ativos e bloqueado
-            const newData = data.filter(obj => obj.status === 'ativo' || obj.status === 'bloqueado');
+            const newData = data
+                            .filter(obj => obj.status === 'ativo' || obj.status === 'bloqueado')
+                            .sort((a, b) => a.firstName?.localeCompare(b.firstName));
+            
             setRegistered( newData )
 
         }else{

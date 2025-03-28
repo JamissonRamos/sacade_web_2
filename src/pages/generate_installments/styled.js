@@ -22,10 +22,12 @@ export const Content = styled.div`
     width: 100%;
     min-width: 320px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding-bottom: .8rem;
-    /* overflow: auto; */
-    
 `;
+
 export const Empty = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
@@ -51,7 +53,7 @@ export const Empty = styled.div`
 export const SectionList = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
-    height: 74%;
+    height: 80%;
     padding-bottom: 3rem;
     margin-top: .4rem;
     & .form-check .form-check-input {
@@ -72,12 +74,7 @@ export const WrapButtons = styled.div`
     align-items: center;
     justify-content: center;
     gap: 12px;
-
     & button {
         ${StyledButton}
     } 
-
-    
 `;
-
-

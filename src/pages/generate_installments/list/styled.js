@@ -1,8 +1,6 @@
 import styled, { css } from "styled-components";
 import { Theme } from "../../../theme";
 
-
-
 const StyledText = css`
     @media (max-width: 768px) {
         & span {
@@ -14,7 +12,6 @@ const StyledText = css`
             font-size: .8em;
         }
     }
-
 `;
 
 export const Content = styled.div`
@@ -22,35 +19,35 @@ export const Content = styled.div`
     width: 100%;
     min-width: 350px;
     height: 100%;
-    padding-right:  1rem;
+    padding: 1rem;
+    padding-left: 0;
     overflow: auto;
-
 `;
+
 export const Cards = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     height: 100%;
-
     overflow: auto;
 `;
 
-export const Card = styled.div`
+export const Card = styled.button`
     /* border: 1px solid red; */
-
-
     width: 98%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: .8rem .6rem;
-    margin-bottom: .6rem;
+    padding: 1rem .6rem;
     margin: 0 auto 12px auto;
-    /* border-left: 5px solid  ${Theme.Colors.grey500}; */
     border-left: 5px solid ${props => props.checkedItems 
-            ? Theme.Colors.green800 
-            : Theme.Colors.grey500};
+        ? Theme.Colors.green800 
+        : Theme.Colors.grey500};
     border-radius: 4px;
     box-shadow: ${Theme.Shadow.sh900};
+    background-color: transparent;
+    &:hover {
+        background-color: ${Theme.Colors.grey100};
+    }
     & .form-check-inline {
         margin: 0;
     }
@@ -61,6 +58,7 @@ export const WrapContent = styled.div`
     /* border: 1px solid red; */
     display: flex;
     align-items: center;
+    padding: .6rem 0;
 `;
 
 export const WrapIndex = styled.div`
@@ -110,7 +108,7 @@ export const WrapStatus = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
-    & span{
+    & span {
         text-align: center;
         text-transform: uppercase; 
         font-weight: 500;
