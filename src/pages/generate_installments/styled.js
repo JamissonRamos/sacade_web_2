@@ -26,6 +26,9 @@ export const Content = styled.div`
     flex-direction: column;
     justify-content: space-between;
     padding-bottom: .8rem;
+    @media (max-width: 425px) {
+        justify-content: flex-start;
+    }
 `;
 
 export const Empty = styled.div`
@@ -71,13 +74,13 @@ export const SectionList = styled.div`
 `;
 
 export const WrapButtons = styled.div`
-    /* border: 1px solid red; */
+    border: 1px solid red;
     width: 100%;
-    height: 36px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    padding: .2rem;
     & button {
         ${StyledButton}
     } 
