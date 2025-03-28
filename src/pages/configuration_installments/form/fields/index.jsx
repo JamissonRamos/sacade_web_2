@@ -94,8 +94,8 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
         <>
             <Row className="mb-2 px-2 ">
                 <Col sm={6} md={6} lg={6}>
-                    <Form.Group className="p-1" controlId="GroupFirstInstallmentDate">
-                        <Form.Label className="m-0"> Data 1º Parcela * </Form.Label>
+                    <Form.Group className="p-1 mb-2" controlId="GroupFirstInstallmentDate">
+                        <Form.Label > Data 1º Parcela * </Form.Label>
                         <Form.Control   
                             type="date" 
                             name="firstDateInstallments"
@@ -108,8 +108,8 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
                     </Form.Group>
                 </Col>
                 <Col sm={6} md={6} lg={6}>
-                    <Form.Group className="p-1" controlId="GroupQuantityInstallments">
-                        <Form.Label className="m-0"> Quantidade Parcela * </Form.Label>
+                    <Form.Group className="p-1 mb-2" controlId="GroupQuantityInstallments">
+                        <Form.Label > Quantidade Parcela * </Form.Label>
                         <Form.Control 
                             type="text" 
                             inputMode="numeric"
@@ -127,8 +127,8 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
             </Row>
             <Row className="mb-2 px-2 ">
                 <Col  sm={6} md={6} lg={6}>
-                    <Form.Group className="p-1" controlId="GroupValueInstallment">
-                        <Form.Label className="m-0"> Valor Parcela * </Form.Label>
+                    <Form.Group className="p-1 mb-2" controlId="GroupValueInstallment">
+                        <Form.Label > Valor Parcela * </Form.Label>
                         <Form.Control 
                             type="text" 
                             inputMode="numeric"
@@ -147,8 +147,8 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
             </Row>
             <Row className="mb-2 px-2 ">
                 <Col  sm={6} md={6} lg={6}>
-                    <Form.Group className="p-1" controlId="GroupFees">
-                        <Form.Label className="m-0"> 
+                    <Form.Group className="p-1 mb-2" controlId="GroupFees">
+                        <Form.Label > 
                             Taxas Juros   
                             {
                                 formatFees == "R$ 0,00" ? null :
@@ -173,8 +173,8 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
                     </Form.Group>
                 </Col>
                 <Col  sm={6} md={6} lg={6}>
-                    <Form.Group className="p-1" controlId="GroupInterestDaily">
-                        <Form.Label className="m-0"> 
+                    <Form.Group className="p-1 mb-2" controlId="GroupInterestDaily">
+                        <Form.Label > 
                             Juros Diário 
                             {
                                 formatInterestDaily == "R$ 0,00" ? null :
@@ -200,33 +200,33 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
             </Row>
             <Row className="mb-2 px-2 ">
                 <Col  sm={6} md={6} lg={6}>
-                        <Form.Group className="p-1" controlId="GroupInterestMonthly">
-                            <Form.Label className="m-0"> 
-                                Juros Mensal 
-                                {
-                                    formatInterestMonthly == "R$ 0,00" ? null :
-                                    <span className="valueInterestRate">{formatInterestMonthly}</span>
-                                }
-                            </Form.Label>
-                            <Form.Control 
-                                type="text" 
-                                inputMode="numeric"
-                                name="interestMonthly"
-                                placeholder="Juros Mensal" 
-                                {...register("interestMonthly")}
-                                disabled= {fieldDisabled}
-                                isInvalid={!!errors.interestMonthly}
-                                onChange={(e) => handleChange(e)}
-                                onBlur={(e) => handleBlur(e)}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                                {errors.interestMonthly && errors.interestMonthly.message}
-                            </Form.Control.Feedback>
-                        </Form.Group>
-                    </Col>
+                    <Form.Group className="p-1 mb-2" controlId="GroupInterestMonthly">
+                        <Form.Label > 
+                            Juros Mensal 
+                            {
+                                formatInterestMonthly == "R$ 0,00" ? null :
+                                <span className="valueInterestRate">{formatInterestMonthly}</span>
+                            }
+                        </Form.Label>
+                        <Form.Control 
+                            type="text" 
+                            inputMode="numeric"
+                            name="interestMonthly"
+                            placeholder="Juros Mensal" 
+                            {...register("interestMonthly")}
+                            disabled= {fieldDisabled}
+                            isInvalid={!!errors.interestMonthly}
+                            onChange={(e) => handleChange(e)}
+                            onBlur={(e) => handleBlur(e)}
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {errors.interestMonthly && errors.interestMonthly.message}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Col>
                 <Col  sm={6} md={6} lg={6}>
-                    <Form.Group className="p-1" controlId="GroupInterestAnnual">
-                        <Form.Label className="m-0"> 
+                    <Form.Group className="p-1 mb-2" controlId="GroupInterestAnnual">
+                        <Form.Label > 
                             Juros Anual 
                             {
                                 formatInterestAnnual == "R$ 0,00" ? null :

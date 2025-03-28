@@ -19,15 +19,14 @@ export const Content = styled.div`
     width: 100%;
     min-width: 350px;
     height: 100%;
-    padding: 1rem;
     padding-left: 0;
-    overflow: auto;
 `;
 
 export const Cards = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     height: 100%;
+    padding: .6rem 0;
     overflow: auto;
 `;
 
@@ -52,6 +51,7 @@ export const Card = styled.button`
         margin: 0;
     }
     cursor: pointer;
+    
 `;
 
 export const WrapContent = styled.div`

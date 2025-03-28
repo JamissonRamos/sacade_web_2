@@ -2,7 +2,6 @@ import styled, { css } from "styled-components";
 import { Theme } from "../../../theme";
 
 const StyledButton = css`
-    /* width: 100%; */
     height: 100%;
     display: flex;
     align-items: center;
@@ -25,7 +24,7 @@ const StyledButton = css`
     }
     
     @media (max-width: 425px) {
-        width: 50%;
+        width: 80%;
     }
 `;
 
@@ -69,8 +68,6 @@ export const Form = styled.form`
         }
     }
     overflow: auto;
-    
-    
 `;
 
 export const WrapButtons = styled.div`
@@ -84,12 +81,9 @@ export const WrapButtons = styled.div`
     & button {
         ${StyledButton};
     }
-
+    @media (max-width: 425px) {
+        flex-direction: column;
+        align-items: center;
+        padding: .2rem;
+    }
 `;
-
-export const WrapLabelValue = styled.div`
-    /* border: 1px solid red; */
-    
-
-`;
-

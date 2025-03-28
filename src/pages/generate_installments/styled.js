@@ -56,6 +56,7 @@ export const SectionList = styled.div`
     height: 80%;
     padding-bottom: 3rem;
     margin-top: .4rem;
+    overflow-x: auto;
     & .form-check .form-check-input {
         /* Modificando o checkBox  */
         float: none;
@@ -63,6 +64,9 @@ export const SectionList = styled.div`
     }
     & label {
         color: ${Theme.Colors.blue700};
+    }
+    @media (max-width: 475px) {
+        height: 74%;
     }
 `;
 

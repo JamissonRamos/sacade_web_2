@@ -136,7 +136,6 @@ const GenerateInstallments = () => {
                     </Button>
                 </S.WrapButtons>
                 
-
             </S.Content>
         </WrapPages>
     )
