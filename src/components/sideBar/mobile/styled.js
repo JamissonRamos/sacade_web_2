@@ -60,6 +60,7 @@ export const WrapNavigationCircule = styled(Link)`
         height: 50px; 
         position: relative;
         bottom: 2px;
+        border: 3px solid ${Theme.Colors.grey500}; 
         border-radius: 10%;   
         box-shadow: none;    
     }
@@ -78,6 +79,16 @@ export const IconNavCircule = styled.div`
 
     &:hover{
         font-size: 1.4em;
+    }
+
+    @media (max-width: 375px) {
+        & svg {
+            font-size: 1.8em;  
+        }
+
+        &:hover{
+            font-size: 1.2em;
+        }
     }
 `;
 export const IconNav = styled.div`
