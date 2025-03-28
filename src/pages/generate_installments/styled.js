@@ -10,8 +10,16 @@ const StyledButton = css`
     gap: 8px;
     padding: 0;
     border-radius: 4px;
+    box-shadow: none;
     cursor: pointer;
     transition: background-color 0.4s ease, color 0.4s;
+    & .btn-success:disabled, .btn-success.disabled, 
+        fieldset:disabled .btn-success,
+        .btn:disabled, .btn.disabled, 
+        fieldset:disabled .btn  
+    {
+        box-shadow: none;
+    }
     @media (max-width: 768px) {
         width: 60%;
     }
@@ -74,7 +82,7 @@ export const SectionList = styled.div`
 `;
 
 export const WrapButtons = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
     height: 42px;
     display: flex;
