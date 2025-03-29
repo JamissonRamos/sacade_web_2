@@ -26,7 +26,5 @@ const pages = {
     ChangePassword: [1, 2, 3],
     UserLevel: [1],
     NoticeAuthorization: [1, 2, 3],
-    ConfigurationInstallments: [1],
-    GenerateInstallments: [1],
     StatusStudents: [1, 2],
 };

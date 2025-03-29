@@ -9,6 +9,9 @@ import ResponsibleList from './responsible_students/responsibleList';
 import FormCreateResponsible from './responsible_students/responsibleList/forms/create';
 import FormUpdateResponsible from './responsible_students/responsibleList/forms/update';
 import Payments from './payments';
+import ConfigurationInstallments from './configuration_installments';
+import GenerateInstallments from './generate_installments';
+import UpdateInsllments from './update_installments';
 import RegisterStudent from './register_student';
 import FormsController from './register_student/forms';
 import ChangePassword from './changePassword'
@@ -23,8 +26,6 @@ import NotificationsDelete from './notifications/delete';
 import NotificationsStudentCreate from './notifications/students_create';
 import NotificationsMaintenance from './notifications/maintenance';
 import NotificationsGeneratedPlots from './notifications/generated_plots';
-import ConfigurationInstallments from './configuration_installments';
-import GenerateInstallments from './generate_installments';
 import SplashScreen from './splash_screen';
 import CardListRegisterStudents from './register_student/cardListRegisterStudents';
 import StatusStudents from './status_students';
@@ -44,6 +45,9 @@ export const Pages = {
     FormCreateResponsible,
     FormUpdateResponsible,
     Payments,
+    ConfigurationInstallments,
+    GenerateInstallments,
+    UpdateInsllments,
     RegisterStudent,
     CardListRegisterStudents,
     FormsController,
@@ -59,8 +63,6 @@ export const Pages = {
     NotificationsDelete,
     NotificationsMaintenance,
     NotificationsGeneratedPlots,
-    ConfigurationInstallments,
-    GenerateInstallments,
     SplashScreen,
     StatusStudents,
     Helps

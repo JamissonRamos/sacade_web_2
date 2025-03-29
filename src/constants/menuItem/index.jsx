@@ -41,6 +41,11 @@ export const MenuItem = [
                 title: 'Gerar Parcelas',
                 path: '/generateInstallments',
                 icon: <Theme.Icons.RxCardStackPlus  />,
+            },
+            {
+                title: 'Alterar Parcelas',
+                path: '/updateInstallments',
+                icon: <Theme.Icons.GrDocumentUpdate  />,
             }
         ]
     },

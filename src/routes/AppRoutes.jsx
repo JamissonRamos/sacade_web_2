@@ -92,6 +92,23 @@ const AppContent = () => {
                                         <Pages.Payments /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/configurationInstallments" element={
+                                    <ProtectedRoute page='Payments'>
+                                        <Pages.ConfigurationInstallments /> 
+                                    </ProtectedRoute>
+                                } />
+                                <Route path="/generateInstallments" element={
+                                    <ProtectedRoute page='Payments'>
+                                        {/* <Pages.NotificationsMaintenance /> */}
+                                        <Pages.GenerateInstallments /> 
+                                    </ProtectedRoute>
+                                } />
+                                <Route path="/updateInstallments" element={
+                                    <ProtectedRoute page='Payments'>
+                                        {/* <Pages.NotificationsMaintenance /> */}
+                                        <Pages.UpdateInsllments /> 
+                                    </ProtectedRoute>
+                                } />
                                 <Route path="/statusStudents" element={
                                     <ProtectedRoute page='StatusStudents'>
                                         {/* <Pages.NotificationsMaintenance />  */}
@@ -112,17 +129,6 @@ const AppContent = () => {
                                 <Route path="/registerStudent/formsController/:uid?" element={
                                     <ProtectedRoute page='RegisterStudent'>
                                         <Pages.FormsController /> 
-                                    </ProtectedRoute>
-                                } />
-                                <Route path="/configurationInstallments" element={
-                                    <ProtectedRoute page='ConfigurationInstallments'>
-                                        <Pages.ConfigurationInstallments /> 
-                                    </ProtectedRoute>
-                                } />
-                                <Route path="/generateInstallments" element={
-                                    <ProtectedRoute page='GenerateInstallments'>
-                                        {/* <Pages.NotificationsMaintenance /> */}
-                                        <Pages.GenerateInstallments /> 
                                     </ProtectedRoute>
                                 } />
                                 <Route path="/changePassword" element={
