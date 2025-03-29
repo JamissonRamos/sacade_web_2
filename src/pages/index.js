@@ -12,6 +12,7 @@ import Payments from './payments';
 import ConfigurationInstallments from './configuration_installments';
 import GenerateInstallments from './generate_installments';
 import UpdateInsllments from './update_installments';
+import PlotHistory from './update_installments/plot_history';
 import RegisterStudent from './register_student';
 import FormsController from './register_student/forms';
 import ChangePassword from './changePassword'
@@ -48,6 +49,7 @@ export const Pages = {
     ConfigurationInstallments,
     GenerateInstallments,
     UpdateInsllments,
+    PlotHistory,
     RegisterStudent,
     CardListRegisterStudents,
     FormsController,

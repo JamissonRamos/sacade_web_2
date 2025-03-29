@@ -35,7 +35,6 @@ const Students = () => {
     return age < 18;
 };
 
-
   const fetchDocuments = async () => {
     const result = await getDocuments();
     const { success, data, error} = result;

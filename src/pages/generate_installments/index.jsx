@@ -36,7 +36,7 @@ const GenerateInstallments = () => {
         const result = await getDocuments();
         const { success, data, error} = result;
         if(success){
-            //Passando para list gerar parcelas somente ativos e bloqueado
+            //Passando para list gerar alunos somente ativos e bloqueado
             const newData = data
                             .filter(obj => obj.status === 'ativo' || obj.status === 'bloqueado')
                             .sort((a, b) => a.firstName?.localeCompare(b.firstName));
