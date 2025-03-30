@@ -20,7 +20,7 @@ const UpdateInsllments = () => {
     useEffect(() => {
         const fetch = async () => {
             const result = await FetchDocuments(getDocuments);
-            const { newData } = result;
+            const { newData  } = result;
             setRegistered(newData)
         }
         fetch();

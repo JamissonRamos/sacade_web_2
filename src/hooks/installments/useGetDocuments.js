@@ -3,13 +3,10 @@ import { useGetCollection } from "../firebase/collection_installments/useGetColl
 
 export const useGetDocuments = () => {
     const [loading, setLoading] = useState(false);
-//     const [error, setError] = useState(null);
     const { getCollection } = useGetCollection();
 
     const getDocuments = useCallback(async () => {
         setLoading(true);
-//         setError(null);
-
         try {
             const result = await getCollection();
             const { success, data, error} = result;
