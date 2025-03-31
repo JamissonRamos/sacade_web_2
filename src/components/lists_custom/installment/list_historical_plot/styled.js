@@ -3,19 +3,18 @@ import { Theme } from "../../../../theme";
 
 
 const StyledSections = css`
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 .2rem ;
+    padding: 0 .2rem;
 `;
 
-
 export const Container = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
-    min-width: 320px;
+    min-width: 330px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -42,7 +41,7 @@ export const WrapButton = styled.button`
 `;
 
 export const SectionsFirst = styled.div`
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     ${StyledSections}
 `;
 export const WrapDate = styled.div`
@@ -51,6 +50,7 @@ export const WrapDate = styled.div`
     padding: .2rem ;
     & span {
         font-weight: 500;
+        color: ${(props) => props.$fontColor};
     }
 `;
 export const WrapStatus = styled.div`
@@ -71,135 +71,91 @@ export const WrapStatus = styled.div`
 `;
 
 export const SectionsSecond = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     ${StyledSections}
+    justify-content: space-evenly;
+    
 `;
+
+export const WrapInterestRates = styled.div`
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    padding: .2rem .6rem;
+    background-color: ${Theme.Colors.grey200};
+    border-radius: 8px;
+`;
+export const WrapLabel = styled.div`
+    /* border: 1px solid red; */
+    padding: .2rem;
+    border-bottom: 3px solid ${(props) => (props.$borderBColor)};
+    & span{
+        font-weight: 900;
+        letter-spacing: 1px;
+    }
+`;
+export const WrapFeesMoney = styled.div`
+    /* border: 1px solid red; */
+    padding: .2rem;
+    & span{
+        font-size: .8em;
+        font-weight: 900;
+        letter-spacing: 1px;
+    }
+    @media (max-width: 425px) {
+        padding: 0 .2rem;
+        & span {
+            font-size: .7em;
+        }
+    }
+`;
+export const WrapFeesPercentage = styled.div`
+    /* border: 1px solid red; */
+    padding: .2rem;
+    & span{
+        font-size: .8em;
+        font-weight: 900;
+        letter-spacing: 1px;
+    }
+    @media (max-width: 425px) {
+        padding: 0 .2rem;
+        & span{
+            font-size: .7em;
+        }
+    }
+`;
+
 export const SectionsThird = styled.div`
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
+    margin-top: .8rem;
     ${StyledSections}
 `;
 
+export const WrapValue = styled.div`
+    /* border: 1px solid blue; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .4rem .8rem;
+    border-radius: 4px;
+    background-color: ${(props) => props.$fontColor};
+    & span {
+        /* font-size: 1em; */
+        font-weight: 500;
+        color: ${Theme.Colors.white800};
+    }
+`;
+export const WrapShowTaxes = styled.div`
+    border: 1px solid blue;
+    
+    display: flex;
+    gap: .4rem;
+    padding: .2rem;
+    & span{
+        font-size: .8em;
+        font-weight: 400;
+        letter-spacing: 1px;
+    }
+`;
 
-
-
-
-
-
-
-
-
-
-
-// export const WrapText = styled.div`
-//     /* border: 1px solid red; */
-//     width: 100%;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     padding: .1rem;
-//     & span {
-//         color: ${Theme.Colors.red500 };
-//         font-weight: 500;
-//     }
-// `;
-// export const Card = styled.div`
-//     /* border: 1px solid red; */
-//     width: 100%;
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-between;
-//     @media (max-width: 375px) {
-//         flex: auto;
-//     }
-// `;
-// export const SectionPrime = styled.div`
-//     /* border: 1px solid red; */
-//     flex: 5;
-//     display: flex;
-//     align-items: center;
-//     gap: 8px;
-//     padding: .2rem 0;
-//     @media (max-width: 375px) {
-//         flex: auto;
-//     }
-// `;
-// export const SectionSecondary = styled.div`
-//     /* border: 1px solid red; */
-//     /* flex: 1; */
-//     display: flex;
-//     justify-content: flex-end;
-//     padding: .2rem 0;
-//     @media (max-width: 475px) {
-//         padding: .2rem ;
-//     }
-// `;
-// export const WrapIndex = styled.div`
-//     /* border: 1px solid red; */
-//     width: auto;
-//     padding: .2rem;
-//     margin-right: .4rem;
-//     & span {
-//         font-weight: 500;
-//         color: ${Theme.Colors.grey800};
-//     }
-// `;
-// export const CircleFirstLetterNome = styled.div`
-//     /* border: 1px solid red; */
-//     width: 40px;
-//     height: 40px;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     padding: 1rem;
-//     margin-right: .8rem;
-//     background: ${Theme.Colors.blue100};
-//     border-radius: 20px;
-//     font-weight: 900;
-//     font-size: 20.1px;
-//     line-height: 25px;
-//     text-transform: uppercase;
-//     color: ${Theme.Colors.blue800};
-//     @media (max-width: 425px) {
-//         font-size: 18.1px;
-//     }
-//     @media (max-width: 375px) {
-//         width: 20px;
-//         height: 20px;
-//         padding: .8rem;
-//         margin-right: .6rem;
-//         font-size: 14.75px;
-//     }
-// `;
-// export const Name = styled.div`
-//     /* border: 1px solid blue; */
-//     display: flex;
-//     align-items: center;
-//     justify-content: start;
-//     padding: .2rem 0;
-//     text-align: start;
-//     font-size: 1rem;
-//     letter-spacing: 0.4px;
-//     font-weight: 500;
-//     line-height: 16px;
-//     color: ${Theme.Colors.grey800};
-//     @media (max-width: 425px) {
-//         font-size: .9rem;
-//     }
-//     @media (max-width: 375px) {
-//         font-size: .8em;
-//         letter-spacing: 0.6px;
-//         line-height: 16px;
-//     }
-// `;
-// export const Status = styled.div`
-//     /* border: 1px solid blue; */
-//     display: flex;
-//     align-items: center;
-//     & span {
-//         font-size: 10.75px;
-//         font-weight: 500;
-//         letter-spacing: 1px;
-//         line-height: 16px;
-//         text-transform: uppercase;
-//     }
-// `;

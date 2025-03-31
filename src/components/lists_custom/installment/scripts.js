@@ -1,15 +1,15 @@
 
-const styledBadge = (status) => 
-{
+const styledBadge = (status, daysLate) => 
+{    
     switch (status) {
         case 1: //Em Aberto
-            return { bg: "#00A791", text: "Em Aberto" };
+            return { bg: "#00A791", daysLate: daysLate, textLabel: "Em Aberto" };
         case 2: //Em Atrasado
-            return { bg: "#dc3545", text: "Em Atrasado" };
+            return { bg: "#dc3545", daysLate: daysLate,  textLabel: "Em Atrasado"  };
         case 3: //Fechado
-            return { bg: "#003CC7", text: "Fechado" };
+            return { bg: "#003CC7", daysLate: daysLate,  textLabel: "Fechado" };
         default: //Erro
-            return { bg: "#FF7F50", text: "Null" };
+            return { bg: "#FF7F50",  daysLate: daysLate,  textLabel: "Null" };
     }
 }
 
@@ -23,14 +23,47 @@ export const SetStatus = (status, dueDate) => {
     const [day, month, year] = dueDate.split("/");
     const dueDateObj = new Date(year, month - 1, day); // Mês em JavaScript começa do zero
 
+    // Calcular dias de atraso
+    const diffTime = today - dueDateObj; // Diferença em milissegundos
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Converter para dias
+    
     //Vlida o status, treu sempre fechado, false aberto ou em atraso
     if(status){
         return styledBadge(3)
     }else if (dueDateObj < today) {
-        return styledBadge(2);
-    }else if (dueDateObj >= today) {
+        
+        return styledBadge(2, diffDays);
+    }else if (dueDateObj > today) {
         return styledBadge(1);
     }else{
         return styledBadge(0);
     }
+};
+
+
+export const FormatNumberMoney = (valuePercentage, valueInstallment) => {
+    /* 
+        - Função para converter porcentagem digitada em R$;
+    */
+    if(valuePercentage === 0 || valueInstallment === 0) return 0
+    if(valuePercentage === '' || valueInstallment === '') return 0
+    
+    // Converte a porcentagem para decimal
+    const percentageDecimal = parseFloat(valuePercentage) * 100;
+    const numberValue = parseFloat(valueInstallment) / 100; // Converte para decimal
+    
+    // Calcula o valor da taxa
+    const valueCalculated = numberValue * percentageDecimal;
+    
+    return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    }).format(valueCalculated);
+};
+
+export const FormatNumberPercentage = (value) => {
+    /* Função para converter de numero para porcentagem */
+    if(value === 0) return 0
+    if(value=== '') return 0
+    return (value * 100).toFixed(2) + "%"; // Define o valor formatado
 };

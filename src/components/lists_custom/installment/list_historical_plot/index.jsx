@@ -1,6 +1,8 @@
 import * as S from './styled';
-import { TextC } from '../../../Typography';
-import { SetStatus } from '../scripts';
+import { FormatNumberMoney, FormatNumberPercentage, SetStatus } from '../scripts';
+import SectionsFirst from './components/sections_first';
+import SectionsThird from './components/sections_third';
+import SectionsSecond from './components/sections_second';
 
 
 const ListHistoricalPlot = ({data}) => {
@@ -15,38 +17,58 @@ const ListHistoricalPlot = ({data}) => {
     return (
 
         <S.Container>
-            {
-                data && data.map(({uid, dueDate, value, fees, interestAnnual, interestDaily, interestMonthly, statusPayment}, i) => {
-                        const newStatus = handleSetStatus(statusPayment, dueDate)
-                        
-                    return (
-                        <S.WrapButton 
-                            key={i}
-                            $borderLeft={newStatus.bg}
-                        >
-                            <S.SectionsFirst>
-                                <S.WrapDate> <TextC.Title level={1}> {dueDate} </TextC.Title> </S.WrapDate>
-                                <S.WrapStatus $bgColor={newStatus.bg}> <TextC.Body> {newStatus.text} </TextC.Body> </S.WrapStatus>
-                            </S.SectionsFirst>
-                            
-                            <S.SectionsSecond>
-                                <div>
-                                    label
-                                    R$ {fees}
-                                    {fees}
-                                </div>
-                                <div>{interestAnnual}</div>
-                                <div>{interestDaily}</div>
-                                <div>{interestMonthly}</div>
-                            </S.SectionsSecond>
-                            <S.SectionsThird>s</S.SectionsThird>
+        {
+            data && data.map(({uid, dueDate, value, fees, interestAnnual, interestDaily, interestMonthly, statusPayment}, i) => {
+                const newStatus = handleSetStatus(statusPayment, dueDate)
+                const newValorParcela = new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                }).format(value);
+                
+                const fineInterestValues = {
+                    newFeesMoney: FormatNumberMoney(fees, value),
+                    newFeesPercentage: FormatNumberPercentage(fees),
 
-                        </S.WrapButton>
-                    )
-                })
-            }
+                    newInterestDailyMoney: FormatNumberMoney(interestDaily, value),
+                    newInterestDailyPercentage: FormatNumberPercentage(interestDaily),
+                
+                    newInterestMonthlyMoney: FormatNumberMoney(interestMonthly, value),
+                    newInterestMonthlyPercentage: FormatNumberPercentage(interestMonthly),
+                
+                    newInterestAnnualMoney: FormatNumberMoney(interestAnnual, value),
+                    newInterestAnnualPercentage: FormatNumberPercentage(interestAnnual),
+                };
+
+                return (
+                    <S.WrapButton 
+                    key={i}
+                    $borderLeft={newStatus.bg}
+                >
+                    <SectionsFirst 
+                        dueDate={dueDate}
+                        statusText={newStatus.textLabel}
+                        styledStatus={newStatus}
+                    />
+                    
+                    <SectionsSecond 
+                        fineInterestValues={fineInterestValues}
+                        styledStatus={newStatus}
+                    />
+                    
+                    <SectionsThird 
+                        styledStatus={newStatus}
+                        daysLate={newStatus.daysLate}
+                        newValorParcela={newValorParcela}
+                        fineInterestValues={fineInterestValues}
+                    />
+
+                </S.WrapButton>
+                )
+            })
+        }
         </S.Container>
     )
 }
 
 export default ListHistoricalPlot
+
