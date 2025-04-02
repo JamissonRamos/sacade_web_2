@@ -11,11 +11,11 @@ export const useGetCollection = () => {
         
              // Mapeia os documentos para um array
             const documents = docSnap.docs.map(doc => ({
-                uid: doc.id, // Adiciona o ID do documento
+                id: doc.id, // Adiciona o ID do documento
                 ...doc.data()
             }));
 
-            // console.log('documents : ', documents);
+            console.log('documents : ', documents);
             return {success: true, data: documents };
         }catch (error) {
             console.error("Erro ao recuperar todos os documento:", error.message);

@@ -5,15 +5,17 @@ export const Container = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    /* align-items: center; */
     justify-content: space-evenly;
+    gap: .2rem;
     padding: 0 .2rem;
 `;
 
 export const WrapInterestRates = styled.div`
     /* border: 1px solid red; */
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     padding: .2rem .6rem;
     background-color: ${Theme.Colors.grey200};
     border-radius: 8px;
@@ -22,7 +24,7 @@ export const WrapInterestRates = styled.div`
 export const WrapLabel = styled.div`
     /* border: 1px solid red; */
     padding: .2rem;
-    border-bottom: 3px solid ${(props) => (props.$borderBColor)};
+    border-left: 3px solid ${(props) => (props.$borderBColor)};
     & span{
         font-weight: 900;
         letter-spacing: 1px;

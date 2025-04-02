@@ -29,14 +29,14 @@ export const SetStatus = (status, dueDate) => {
     
     //Vlida o status, treu sempre fechado, false aberto ou em atraso
     if(status){
-        return styledBadge(3)
+        return styledBadge(3, 0)
     }else if (dueDateObj < today) {
         
         return styledBadge(2, diffDays);
     }else if (dueDateObj > today) {
-        return styledBadge(1);
+        return styledBadge(1, 0);
     }else{
-        return styledBadge(0);
+        return styledBadge(0, 0);
     }
 };
 
@@ -65,4 +65,26 @@ export const FormatNumberPercentage = (value) => {
     if(value === 0) return 0
     if(value=== '') return 0
     return (value * 100).toFixed(2) + "%"; // Define o valor formatado
+};
+
+export const ParseCurrencyToNumber = (currency) => {
+// Função para converter o valor monetário para número
+    if(currency === '') return;
+    if(currency === 0) return;
+    
+    return parseFloat(
+        currency
+            .replace("R$", "") // Remove símbolo da moeda
+            .replace(/\./g, "") // Remove pontos de milhar
+            .replace(",", ".")  // Troca vírgula decimal por ponto
+            .trim()
+    );
+};
+
+export const FormatToCurrency = (value) => {
+    // Função para formatar número para moeda
+    return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    }).format(value);
 };

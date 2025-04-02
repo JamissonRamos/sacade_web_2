@@ -13,7 +13,7 @@ const SectionsFirst = ({dueDate, statusText, styledStatus}) => {
 
             <S.WrapStatus $bgColor={bg}>
                 {
-                    daysLate &&
+                    daysLate > 0 &&
                         <S.WrapDaysLate>
                             <TextC.Body> {daysLate} </TextC.Body>
                         </S.WrapDaysLate>
