@@ -1,9 +1,10 @@
 import { TextC } from '../../../../../Typography'
 import * as S from './styled'
 
-const SectionsThird = ({styledStatus, daysLate, newValorParcela, fineInterestValues }) => {
+const SectionsThird = ({styledStatus, daysLate, newValorParcela, 
+    fineInterestValues}) => {
     const { bg } = styledStatus;
-    const { newInterestDailyMoney } = fineInterestValues;
+    //const { newInterestDailyMoney } = fineInterestValues;
     
     return (
     
@@ -15,8 +16,8 @@ const SectionsThird = ({styledStatus, daysLate, newValorParcela, fineInterestVal
                     daysLate && daysLate > 0 
                     ?
                         <S.WrapShowTaxes>
-                            <TextC.Body level={1} > 4,80 </TextC.Body>
-                            <TextC.Body level={1} > {newInterestDailyMoney} </TextC.Body>
+                            {/* Receber o total de cada juro */}
+                            <TextC.Body level={1} > {0} </TextC.Body>
                         </S.WrapShowTaxes>
 
                     :   null

@@ -36,6 +36,7 @@ export const Content = styled.div`
     width: 100%;
     min-width: 320px;
     max-height: 80%;
+    
     padding-bottom: 1rem;
     overflow: auto;
 `;

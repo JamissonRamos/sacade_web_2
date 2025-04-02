@@ -40,7 +40,6 @@ export const SetStatus = (status, dueDate) => {
     }
 };
 
-
 export const FormatNumberMoney = (valuePercentage, valueInstallment) => {
     /* 
         - Função para converter porcentagem digitada em R$;

@@ -3,16 +3,20 @@ import { FormatNumberMoney, FormatNumberPercentage, SetStatus } from '../scripts
 import SectionsFirst from './components/sections_first';
 import SectionsThird from './components/sections_third';
 import SectionsSecond from './components/sections_second';
+import { useState } from 'react';
 
 
 const ListHistoricalPlot = ({data}) => {
-    console.log('data', data);
 
     const handleSetStatus = (status, dueDate) => {
     /* Função para definir o status da parcela */
 
         return SetStatus(status, dueDate)
     }
+
+
+
+
 
     return (
 
@@ -53,6 +57,7 @@ const ListHistoricalPlot = ({data}) => {
                     <SectionsSecond 
                         fineInterestValues={fineInterestValues}
                         styledStatus={newStatus}
+                    
                     />
                     
                     <SectionsThird 
