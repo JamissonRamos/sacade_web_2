@@ -71,6 +71,7 @@ export const ParseCurrencyToNumber = (currency) => {
 // Função para converter o valor monetário para número
     if(currency === '') return;
     if(currency === 0) return;
+    if(currency === 'R$ NaN') return  "R$ 0,00";
     
     return parseFloat(
         currency
@@ -82,7 +83,13 @@ export const ParseCurrencyToNumber = (currency) => {
 };
 
 export const FormatToCurrency = (value) => {
+    console.log('value', value);
+    
     // Função para formatar número para moeda
+    if(value === '') return "R$ 0,00";
+    if(value === 0) return  "R$ 0,00";
+    if(value === undefined) return  "R$ 0,00";
+
     return new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL',

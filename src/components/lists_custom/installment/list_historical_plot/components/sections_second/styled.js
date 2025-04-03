@@ -15,11 +15,21 @@ export const Container = styled.div`
 export const WrapInterestRates = styled.div`
     /* border: 1px solid red; */
     display: flex;
-    /* flex-direction: column; */
+    align-items: center;
+    justify-content: space-between;
     padding: .2rem .6rem;
     background-color: ${Theme.Colors.grey200};
     border-radius: 8px;
 `;
+
+// export const WrapInterestValues = styled.div`
+//     /* border: 1px solid red; */
+//     display: flex;
+//     align-items: center;
+//     gap: .4rem;
+// `;
+
+
 
 export const WrapLabel = styled.div`
     /* border: 1px solid red; */
@@ -39,12 +49,6 @@ export const WrapFeesMoney = styled.div`
         font-weight: 900;
         letter-spacing: 1px;
     }
-    @media (max-width: 425px) {
-        padding: 0 .2rem;
-        & span {
-            font-size: .7em;
-        }
-    }
 `;
 
 export const WrapFeesPercentage = styled.div`
@@ -54,11 +58,5 @@ export const WrapFeesPercentage = styled.div`
         font-size: .8em;
         font-weight: 900;
         letter-spacing: 1px;
-    }
-    @media (max-width: 425px) {
-        padding: 0 .2rem;
-        & span{
-            font-size: .7em;
-        }
     }
 `;

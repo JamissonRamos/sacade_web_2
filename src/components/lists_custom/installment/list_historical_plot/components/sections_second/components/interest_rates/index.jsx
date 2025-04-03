@@ -1,5 +1,5 @@
-import * as S from '../../styled'
 import { TextC } from '../../../../../../../Typography'
+import * as S from '../../styled'
 
 const InterestRates = ({fineInterestValues, styledStatus, interestValue}) => {
     
@@ -19,6 +19,7 @@ const InterestRates = ({fineInterestValues, styledStatus, interestValue}) => {
 
     //Valor monetário de juros já calculado
     const { 
+        interestFeesValue,
         interestDailyValue,
         interestMonthlyValue,
         interestAnnualValue
@@ -26,81 +27,63 @@ const InterestRates = ({fineInterestValues, styledStatus, interestValue}) => {
 
     return (
         <>
-            <S.WrapInterestRates>
-                <S.WrapLabel $borderBColor={bg}>
-                    <TextC.Label level={4}> Multa </TextC.Label>
-                </S.WrapLabel>
-                <S.WrapFeesMoney>
-                    <TextC.Body level={1}> {newFeesMoney} </TextC.Body>
-                </S.WrapFeesMoney>
-                <S.WrapFeesPercentage>
-                    <TextC.Body level={1}> {newFeesPercentage} </TextC.Body>
-                </S.WrapFeesPercentage>
-            </S.WrapInterestRates>
+            {
+                interestFeesValue !== "R$ 0,00" &&
+                    <S.WrapInterestRates>
 
-            <S.WrapInterestRates>
-                <S.WrapLabel $borderBColor={bg}>
-                    <TextC.Label level={4}> Diários </TextC.Label>
-                </S.WrapLabel>
-                <S.WrapFeesMoney>
-                    <TextC.Body level={1}> {newInterestDailyMoney} </TextC.Body>
-                </S.WrapFeesMoney>
-                <S.WrapFeesPercentage>
-                    <TextC.Body level={1}> {newInterestDailyPercentage} </TextC.Body>
-                </S.WrapFeesPercentage>
-                {
-                    daysLate > 0 
-                    ?
+                        <S.WrapLabel $borderBColor={bg}>
+                            <TextC.Label level={4}> Multa </TextC.Label>
+                        </S.WrapLabel>
+
+                        <S.WrapFeesMoney>
+                            <TextC.Body level={1}> {interestFeesValue} </TextC.Body>
+                        </S.WrapFeesMoney>
+
+                    </S.WrapInterestRates>
+            }
+
+            {
+                interestDailyValue !== "R$ 0,00" &&
+                    <S.WrapInterestRates>
+                        <S.WrapLabel $borderBColor={bg}>
+                            <TextC.Label level={4}> Juros Diários </TextC.Label>
+                        </S.WrapLabel>
+
                         <S.WrapFeesPercentage>
                             <TextC.Body level={1}> {interestDailyValue} </TextC.Body>
                         </S.WrapFeesPercentage>
-                    : null
-                }
+                    </S.WrapInterestRates>
+            }
+            
+            {
+                interestMonthlyValue !== "R$ 0,00" &&
+                    <S.WrapInterestRates>
 
-            </S.WrapInterestRates>
+                        <S.WrapLabel $borderBColor={bg}>
+                            <TextC.Label level={4}> Juros Mesal </TextC.Label>
+                        </S.WrapLabel>
 
-            <S.WrapInterestRates>
-                <S.WrapLabel $borderBColor={bg}>
-                    <TextC.Label level={4}> Mesal </TextC.Label>
-                </S.WrapLabel>
-                <S.WrapFeesMoney>
-                    <TextC.Body level={1}> {newInterestMonthlyMoney} </TextC.Body>
-                </S.WrapFeesMoney>
-                <S.WrapFeesPercentage>
-                    <TextC.Body level={1}> {newInterestMonthlyPercentage} </TextC.Body>
-                </S.WrapFeesPercentage>
-
-                {
-                    daysLate >= 0 
-                    ?
                         <S.WrapFeesPercentage>
                             <TextC.Body level={1}> {interestMonthlyValue} </TextC.Body>
                         </S.WrapFeesPercentage>
-                    : null
-                }
 
-            </S.WrapInterestRates>
+                    </S.WrapInterestRates>
+            }
 
-            <S.WrapInterestRates>
-                <S.WrapLabel $borderBColor={bg}>
-                    <TextC.Label level={4}> Anual </TextC.Label>
-                </S.WrapLabel>
-                <S.WrapFeesMoney>
-                    <TextC.Body level={1}> {newInterestAnnualMoney} </TextC.Body>
-                </S.WrapFeesMoney>
-                <S.WrapFeesPercentage>
-                    <TextC.Body level={1}> {newInterestAnnualPercentage} </TextC.Body>
-                </S.WrapFeesPercentage>
+            {
+                interestAnnualValue !== "R$ 0,00" &&
+                    <S.WrapInterestRates>
 
-                {
-                    daysLate >= 0 
-                    ?
+                        <S.WrapLabel $borderBColor={bg}>
+                            <TextC.Label level={4}> Juros Anual </TextC.Label>
+                        </S.WrapLabel>
+                        
                         <S.WrapFeesPercentage>
                             <TextC.Body level={1}> {interestAnnualValue} </TextC.Body>
                         </S.WrapFeesPercentage>
-                    : null
-                }
-            </S.WrapInterestRates>
+
+                    </S.WrapInterestRates>
+            }
         
         </>
     )

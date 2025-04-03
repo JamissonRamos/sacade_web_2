@@ -12,6 +12,12 @@ const StyledWrap = css`
         font-weight: 500;
         color: ${Theme.Colors.white800};
     }
+    @media (max-width: 425px) {
+        
+        & span{
+            font-size: .8em;
+        }
+    }
 `;
 
 export const Container = styled.div`

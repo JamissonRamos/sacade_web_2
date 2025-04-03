@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { FormatToCurrency, ParseCurrencyToNumber } from '../../../scripts';
 
 const SectionsSecond = ({ id, fineInterestValues, styledStatus, onCalculateTotal  }) => {
+    const [interestFeesValue, setInterestFeesValue] = useState("R$ 0,00");
     const [interestDailyValue, setInterestDailyValue] = useState("R$ 0,00");
     const [interestMonthlyValue, setInterestMonthlyValue] = useState("R$ 0,00");
     const [interestAnnualValue, setInterestAnnualValue] = useState("R$ 0,00");
@@ -12,10 +13,12 @@ const SectionsSecond = ({ id, fineInterestValues, styledStatus, onCalculateTotal
 
     //Valores dos Juros e Taxas calculados
     const interestValue = {
+        interestFeesValue,
         interestDailyValue,
         interestMonthlyValue,
         interestAnnualValue
     }
+
 
     const calculateDaily = () => {
         if (fineInterestValues?.newInterestDailyMoney) {
@@ -62,13 +65,13 @@ const SectionsSecond = ({ id, fineInterestValues, styledStatus, onCalculateTotal
         if (!fineInterestValues || daysLate <= 0) return;
         //valor de multa não tem calculo
         const newFeesMoney = fineInterestValues?.newFeesMoney;
-
         const fees = ParseCurrencyToNumber(newFeesMoney)
         const daily = calculateDaily() || 0;
         const monthl = calculateMonthl() || 0;
         const annual = calculateAnnual() || 0;
         const total =  fees + daily + monthl + annual || 0;
         
+        setInterestFeesValue(FormatToCurrency(fees))
         // Chama a função de callback para passar o valor para o componente pai
         onCalculateTotal(id, FormatToCurrency(total));
 
