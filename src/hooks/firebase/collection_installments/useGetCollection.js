@@ -15,7 +15,7 @@ export const useGetCollection = () => {
                 ...doc.data()
             }));
 
-            console.log('documents : ', documents);
+            //console.log('documents : ', documents);
             return {success: true, data: documents };
         }catch (error) {
             console.error("Erro ao recuperar todos os documento:", error.message);

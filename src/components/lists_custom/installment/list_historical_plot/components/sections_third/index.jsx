@@ -2,9 +2,7 @@ import * as S from './styled'
 import { TextC } from '../../../../../Typography'
 import { FormatToCurrency, ParseCurrencyToNumber } from '../../../scripts';
 
-const SectionsThird = ({styledStatus, installmentValue, totalInterest}) => {
-
-    const { bg, daysLate } = styledStatus;
+const SectionsThird = ({daysLate, styledStatus, installmentValue, totalInterest}) => {
     
     const installment = ParseCurrencyToNumber(installmentValue);
     const fees = ParseCurrencyToNumber(totalInterest) || 0;
@@ -14,7 +12,7 @@ const SectionsThird = ({styledStatus, installmentValue, totalInterest}) => {
     return (
     
         <S.Container>
-            <S.WrapValues $fontColor={bg}>
+            <S.WrapValues $fontColor={styledStatus}>
 
                 <S.WrapValueInterest>
                     {

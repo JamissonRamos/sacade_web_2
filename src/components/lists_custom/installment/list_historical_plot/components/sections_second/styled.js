@@ -6,7 +6,6 @@ export const Container = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     justify-content: space-evenly;
     gap: .2rem;
     padding: 0 .2rem;
@@ -21,15 +20,6 @@ export const WrapInterestRates = styled.div`
     background-color: ${Theme.Colors.grey200};
     border-radius: 8px;
 `;
-
-// export const WrapInterestValues = styled.div`
-//     /* border: 1px solid red; */
-//     display: flex;
-//     align-items: center;
-//     gap: .4rem;
-// `;
-
-
 
 export const WrapLabel = styled.div`
     /* border: 1px solid red; */

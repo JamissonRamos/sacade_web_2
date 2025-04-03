@@ -1,45 +1,4 @@
 
-const styledBadge = (status, daysLate) => 
-{    
-    switch (status) {
-        case 1: //Em Aberto
-            return { bg: "#00A791", daysLate: daysLate, textLabel: "Em Aberto" };
-        case 2: //Em Atrasado
-            return { bg: "#dc3545", daysLate: daysLate,  textLabel: "Em Atrasado"  };
-        case 3: //Fechado
-            return { bg: "#003CC7", daysLate: daysLate,  textLabel: "Fechado" };
-        default: //Erro
-            return { bg: "#FF7F50",  daysLate: daysLate,  textLabel: "Null" };
-    }
-}
-
-export const SetStatus = (status, dueDate) => {
-/* Função para definir o status da parcela */
-
-    //Data atual Zerar horas, minutos, segundos e milissegundos para comparar apenas a data
-    const today = new Date().setHours(0, 0, 0, 0); 
-
-    // Converter a dueDate para um objeto Date
-    const [day, month, year] = dueDate.split("/");
-    const dueDateObj = new Date(year, month - 1, day); // Mês em JavaScript começa do zero
-
-    // Calcular dias de atraso
-    const diffTime = today - dueDateObj; // Diferença em milissegundos
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Converter para dias
-    
-    //Vlida o status, treu sempre fechado, false aberto ou em atraso
-    if(status){
-        return styledBadge(3, 0)
-    }else if (dueDateObj < today) {
-        
-        return styledBadge(2, diffDays);
-    }else if (dueDateObj > today) {
-        return styledBadge(1, 0);
-    }else{
-        return styledBadge(0, 0);
-    }
-};
-
 export const FormatNumberMoney = (valuePercentage, valueInstallment) => {
     /* 
         - Função para converter porcentagem digitada em R$;
@@ -82,9 +41,7 @@ export const ParseCurrencyToNumber = (currency) => {
     );
 };
 
-export const FormatToCurrency = (value) => {
-    console.log('value', value);
-    
+export const FormatToCurrency = (value) => {    
     // Função para formatar número para moeda
     if(value === '') return "R$ 0,00";
     if(value === 0) return  "R$ 0,00";

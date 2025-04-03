@@ -1,19 +1,12 @@
 import * as S from './styled';
-import { FormatNumberMoney, FormatNumberPercentage, FormatToCurrency, SetStatus } from '../scripts';
 import SectionsFirst from './components/sections_first';
 import SectionsThird from './components/sections_third';
 import SectionsSecond from './components/sections_second';
+import { FormatNumberMoney, FormatNumberPercentage, FormatToCurrency } from '../scripts';
 import { useState } from 'react';
-
 
 const ListHistoricalPlot = ({data}) => {
     const [totalInterest, setTotalInterest] = useState({});
-
-    const handleSetStatus = (status, dueDate) => {
-    /* Função para definir o status da parcela */
-
-        return SetStatus(status, dueDate)
-    }
 
     const handleTotalCalculated = (id, calculatedValue) => {
         setTotalInterest((prev) => ({
@@ -21,13 +14,16 @@ const ListHistoricalPlot = ({data}) => {
             [id]: calculatedValue
         }));
     };
+
     return (
 
         <S.Container>
         {
-            data && data.map(({id, dueDate, value, fees, interestAnnual, interestDaily, interestMonthly, statusPayment}, i) => {
-                const newStatus = handleSetStatus(statusPayment, dueDate)
-                const newValorParcela = FormatToCurrency(value)  
+            data && data.map(({id, dueDate, value, fees, interestAnnual, interestDaily, interestMonthly, statusLabel, daysLate}, i) => {
+                const newStatus = statusLabel //handleSetStatus(statusPayment, dueDate);
+                const { bg, textLabel } = statusLabel;
+                
+                const newValorParcela = FormatToCurrency(value);  
                 const fineInterestValues = {
                     newFeesMoney: FormatNumberMoney(fees, value),
                     newFeesPercentage: FormatNumberPercentage(fees),
@@ -45,23 +41,26 @@ const ListHistoricalPlot = ({data}) => {
                 return (
                     <S.WrapButton 
                         key={i}
-                        $borderLeft={newStatus.bg}
+                        $borderLeft={bg}
                     >
                         <SectionsFirst 
                             dueDate={dueDate}
-                            statusText={newStatus.textLabel}
-                            styledStatus={newStatus}
+                            daysLate={daysLate}
+                            statusText={textLabel}
+                            styledStatus={bg}
                         />
                     
                         <SectionsSecond 
                             id={id} //Retorna dentro da função handleTotalCalculated
                             fineInterestValues={fineInterestValues}
-                            styledStatus={newStatus}
+                            daysLate={daysLate}
+                            styledStatus={bg}
                             onCalculateTotal={handleTotalCalculated}
                         />
                     
                         <SectionsThird 
-                            styledStatus={newStatus}
+                            daysLate={daysLate}
+                            styledStatus={bg}
                             installmentValue={newValorParcela}
                             totalInterest={totalInterest[id] || 0} // Passa o valor para o terceiro componente
                             
@@ -76,4 +75,3 @@ const ListHistoricalPlot = ({data}) => {
 }
 
 export default ListHistoricalPlot
-

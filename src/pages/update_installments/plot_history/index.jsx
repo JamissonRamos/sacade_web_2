@@ -1,12 +1,14 @@
+import  * as S from './styled'
+
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useInstallments } from "../../../hooks/installments";
+import { DaysLate, SetStatus } from "./scripts";
+
 import { WrapPages } from "../../../components/Wrappe/pages";
 import Header from "./header";
-import { useEffect, useState } from "react";
-import { FetchDocuments } from "./scripts";
-import { useInstallments } from "../../../hooks/installments";
 import { LoadingOverlay } from "../../../components/spinner/global/styled";
 import { Spinner } from "react-bootstrap";
-import  * as S from './styled'
 import { TextC } from "../../../components/Typography";
 import { ListsInstallment } from '../../../components/lists_custom/installment'
 
@@ -18,23 +20,32 @@ const PlotHistory = () => {
     const { uid, fullName } = location.state || {};  // Captura o UID do estado de navegação
     const { getDocuments, loading} = useInstallments.useGetDocuments()
 
+
     useEffect(() => {
         const fetch = async () => {
-            const result = await FetchDocuments(getDocuments, uid)
+            const result = await getDocuments();
             const { success, data, error } = result;
-
+            
             if(success){
-                setRegistered(data)
+                const filteredDataUid = data.filter(item => item.uid === uid) || []
+                
+                const addPropertyStatus = filteredDataUid.map(({ dueDate, statusPayment, ...props }) => ({
+                    ...props, 
+                    dueDate, 
+                    statusPayment, 
+                    daysLate: DaysLate(statusPayment, dueDate), 
+                    statusLabel: SetStatus(statusPayment, dueDate )
+                }));
+                console.log('addPropriedadeStatus', addPropertyStatus)
+                
+                setRegistered(addPropertyStatus)
             }else{
                 console.log('Error', error);
             }
         }
         fetch();
     }, [])
-    
-
-    console.log('registered', registered);
-    
+        
     return (
 
         <WrapPages>

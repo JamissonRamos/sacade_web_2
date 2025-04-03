@@ -1,22 +1,8 @@
-import { TextC } from '../../../../../../../Typography'
 import * as S from '../../styled'
+import { TextC } from '../../../../../../../Typography'
 
-const InterestRates = ({fineInterestValues, styledStatus, interestValue}) => {
+const InterestRates = ({styledStatus, interestValue}) => {
     
-    const { bg, daysLate} = styledStatus;
-
-    //Valores fixo de juros e multa monetário e porcentagem
-    const {
-        newFeesMoney,
-        newFeesPercentage,
-        newInterestDailyMoney,
-        newInterestDailyPercentage,
-        newInterestMonthlyMoney,
-        newInterestMonthlyPercentage,
-        newInterestAnnualMoney,
-        newInterestAnnualPercentage
-    } = fineInterestValues;
-
     //Valor monetário de juros já calculado
     const { 
         interestFeesValue,
@@ -31,7 +17,7 @@ const InterestRates = ({fineInterestValues, styledStatus, interestValue}) => {
                 interestFeesValue !== "R$ 0,00" &&
                     <S.WrapInterestRates>
 
-                        <S.WrapLabel $borderBColor={bg}>
+                        <S.WrapLabel $borderBColor={styledStatus}>
                             <TextC.Label level={4}> Multa </TextC.Label>
                         </S.WrapLabel>
 
@@ -45,7 +31,7 @@ const InterestRates = ({fineInterestValues, styledStatus, interestValue}) => {
             {
                 interestDailyValue !== "R$ 0,00" &&
                     <S.WrapInterestRates>
-                        <S.WrapLabel $borderBColor={bg}>
+                        <S.WrapLabel $borderBColor={styledStatus}>
                             <TextC.Label level={4}> Juros Diários </TextC.Label>
                         </S.WrapLabel>
 
@@ -59,7 +45,7 @@ const InterestRates = ({fineInterestValues, styledStatus, interestValue}) => {
                 interestMonthlyValue !== "R$ 0,00" &&
                     <S.WrapInterestRates>
 
-                        <S.WrapLabel $borderBColor={bg}>
+                        <S.WrapLabel $borderBColor={styledStatus}>
                             <TextC.Label level={4}> Juros Mesal </TextC.Label>
                         </S.WrapLabel>
 
@@ -74,7 +60,7 @@ const InterestRates = ({fineInterestValues, styledStatus, interestValue}) => {
                 interestAnnualValue !== "R$ 0,00" &&
                     <S.WrapInterestRates>
 
-                        <S.WrapLabel $borderBColor={bg}>
+                        <S.WrapLabel $borderBColor={styledStatus}>
                             <TextC.Label level={4}> Juros Anual </TextC.Label>
                         </S.WrapLabel>
                         
