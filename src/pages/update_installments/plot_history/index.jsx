@@ -12,15 +12,17 @@ import { Spinner } from "react-bootstrap";
 import { TextC } from "../../../components/Typography";
 import { ListsInstallment } from '../../../components/lists_custom/installment'
 
-
 const PlotHistory = () => {
-    const [registered, setRegistered] = useState([]);
+    const [registered, setRegistered] = useState([]); // full data
+    const [selectedFilter, setSelectedFilter] = useState(""); // Armazena a opção do filtro selecionado
+    const [filteredData, setFilteredData] = useState([]); // Armazena os dados filtrados
+
     const { ListHistoricalPlot } = ListsInstallment;
     const location = useLocation();  // Captura o UID da URL
     const { uid, fullName } = location.state || {};  // Captura o UID do estado de navegação
     const { getDocuments, loading} = useInstallments.useGetDocuments()
 
-
+    //LOADING
     useEffect(() => {
         const fetch = async () => {
             const result = await getDocuments();
@@ -28,29 +30,56 @@ const PlotHistory = () => {
             
             if(success){
                 const filteredDataUid = data.filter(item => item.uid === uid) || []
-                
-                const addPropertyStatus = filteredDataUid.map(({ dueDate, statusPayment, ...props }) => ({
-                    ...props, 
-                    dueDate, 
-                    statusPayment, 
-                    daysLate: DaysLate(statusPayment, dueDate), 
-                    statusLabel: SetStatus(statusPayment, dueDate )
-                }));
-                console.log('addPropriedadeStatus', addPropertyStatus)
-                
+
+                //Add os atributos de status e dias em atraso
+                const addPropertyStatus = filteredDataUid.map(({ dueDate, statusPayment, ...props }) => {
+                    const resul = SetStatus(statusPayment, dueDate );
+                    const {bg, textLabel} = resul;
+                    
+                    return {
+                        ...props, 
+                        dueDate, 
+                        statusPayment, 
+                        daysLate: DaysLate(statusPayment, dueDate), 
+                        statusLabel: textLabel,
+                        styledComponent: bg
+                    }
+                })
                 setRegistered(addPropertyStatus)
+                setFilteredData(addPropertyStatus)
             }else{
                 console.log('Error', error);
             }
         }
         fetch();
     }, [])
+
+    //FILTER STATUS
+    useEffect(() => {
+        //Filtrar as parcelas pelo click dos buttons de filtro
+        const filterDataStatus = registered.filter(({statusLabel}) => {
+            if (selectedFilter === 'Tudo'){
+                return true;
+            }
+            //console.log('statusLabel', statusLabel.textLabel);
+            return statusLabel == selectedFilter;
+        })
+
+        setFilteredData(filterDataStatus)
+    }, [selectedFilter])
+
+
+
         
     return (
 
         <WrapPages>
 
-            <Header fullName={fullName} />
+            <Header 
+                fullName={fullName} 
+                setSelectedFilter={setSelectedFilter}
+            />
+
             {
                 loading &&
                 <LoadingOverlay>
@@ -63,8 +92,9 @@ const PlotHistory = () => {
                     <span className="sr-only">Carregando os dados...</span>
                 </LoadingOverlay> 
             }
+            
             {
-                registered && registered.length == 0
+                filteredData && filteredData.length == 0
                 ?<S.Empty>
                     <TextC.Display level={2} >
                         Nenhum cadastro
@@ -74,10 +104,9 @@ const PlotHistory = () => {
                     </TextC.Body>
                 </S.Empty> 
                 :<S.Content>
-                    <ListHistoricalPlot data={registered}/>
+                    <ListHistoricalPlot data={filteredData} />
                 </S.Content>
             }
-
 
         </WrapPages>
     )

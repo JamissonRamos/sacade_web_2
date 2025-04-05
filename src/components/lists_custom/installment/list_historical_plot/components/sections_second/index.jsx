@@ -3,12 +3,11 @@ import InterestRates from './components/interest_rates';
 import { useEffect, useState } from 'react';
 import { FormatToCurrency, ParseCurrencyToNumber } from '../../../scripts';
 
-const SectionsSecond = ({ id, fineInterestValues, styledStatus, daysLate, onCalculateTotal  }) => {
+const SectionsSecond = ({ id, fineInterestValues, statusLabel, styledStatus, daysLate, onCalculateTotal  }) => {
     const [interestFeesValue, setInterestFeesValue] = useState("R$ 0,00");
     const [interestDailyValue, setInterestDailyValue] = useState("R$ 0,00");
     const [interestMonthlyValue, setInterestMonthlyValue] = useState("R$ 0,00");
     const [interestAnnualValue, setInterestAnnualValue] = useState("R$ 0,00");
-        
 
     //Valores dos Juros e Taxas calculados
     const interestValue = {
@@ -64,9 +63,9 @@ const SectionsSecond = ({ id, fineInterestValues, styledStatus, daysLate, onCalc
         //valor de multa não tem calculo
         const newFeesMoney = fineInterestValues?.newFeesMoney;
         const fees = ParseCurrencyToNumber(newFeesMoney)
-        const daily = calculateDaily() || 0;
-        const monthl = calculateMonthl() || 0;
-        const annual = calculateAnnual() || 0;
+        const daily = calculateDaily();
+        const monthl = calculateMonthl();
+        const annual = calculateAnnual();
         const total =  fees + daily + monthl + annual || 0;
 
         //Multa não tem calculo por dias, passar o valor de multa
@@ -77,10 +76,14 @@ const SectionsSecond = ({ id, fineInterestValues, styledStatus, daysLate, onCalc
 
     return(
         <S.Container>
-            <InterestRates 
-                styledStatus={styledStatus}
-                interestValue={interestValue}
-            />
+            {   
+                //Assim os cards de juros não são mostrado quando é selecionado um tipo de parcela
+                statusLabel == "Em Atraso" &&
+                    <InterestRates 
+                        styledStatus={styledStatus}
+                        interestValue={interestValue}
+                    />
+            }
         </S.Container>
 )}
 

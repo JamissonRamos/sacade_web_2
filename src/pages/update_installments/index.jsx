@@ -29,15 +29,11 @@ const UpdateInsllments = () => {
     //plotHistory
     const handleNavegation = (uid) =>{
 
-        console.log('uid', uid);
         //Recuperar nome compleo to aluno
         const foundStudent = registered.find((item) => item.uid === uid);
         const {firstName, lastName } = foundStudent;
 
         navigate('/plotHistory', { state: { uid: uid, fullName: `${firstName} ${lastName} `  } });
-        
-
-        
     }
 
     return (

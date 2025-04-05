@@ -8,7 +8,7 @@ export const SetStatus = (status, dueDate) => {
     if(status){
         return { bg: "#003CC7", textLabel: "Fechado" };
     }else if (diffDays > 0) {
-        return { bg: "#dc3545", textLabel: "Em Atrasado" };
+        return { bg: "#dc3545", textLabel: "Em Atraso" };
     }else if (diffDays <= 0) {
         return { bg: "#00A791", textLabel: "Em Aberto" };
     }else{

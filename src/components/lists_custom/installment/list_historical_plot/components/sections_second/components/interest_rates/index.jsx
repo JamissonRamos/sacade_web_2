@@ -1,6 +1,7 @@
 import * as S from '../../styled'
 import { TextC } from '../../../../../../../Typography'
 
+
 const InterestRates = ({styledStatus, interestValue}) => {
     
     //Valor monetário de juros já calculado
@@ -11,66 +12,38 @@ const InterestRates = ({styledStatus, interestValue}) => {
         interestAnnualValue
     } = interestValue
 
+    const fildsComponents = [
+        {label: 'Multa', value: interestFeesValue},
+        {label: 'Juros Diários', value: interestDailyValue},
+        {label: 'Juros Mesal', value: interestMonthlyValue},
+        {label: 'Juros Anual', value: interestAnnualValue},
+    ]   
+
     return (
         <>
             {
-                interestFeesValue !== "R$ 0,00" &&
-                    <S.WrapInterestRates>
+                fildsComponents.map(({label, value}) => {
 
-                        <S.WrapLabel $borderBColor={styledStatus}>
-                            <TextC.Label level={4}> Multa </TextC.Label>
-                        </S.WrapLabel>
+                    if (value === "R$ 0,00") return
 
-                        <S.WrapFeesMoney>
-                            <TextC.Body level={1}> {interestFeesValue} </TextC.Body>
-                        </S.WrapFeesMoney>
+                    return (
+                        <S.WrapInterestRates
+                            key={label}
+                        >
 
-                    </S.WrapInterestRates>
-            }
+                            <S.WrapLabel $borderBColor={styledStatus}>
+                                <TextC.Label level={4}> {label} </TextC.Label>
+                            </S.WrapLabel>
 
-            {
-                interestDailyValue !== "R$ 0,00" &&
-                    <S.WrapInterestRates>
-                        <S.WrapLabel $borderBColor={styledStatus}>
-                            <TextC.Label level={4}> Juros Diários </TextC.Label>
-                        </S.WrapLabel>
+                            <S.WrapFeesMoney>
+                                <TextC.Body level={1}> {value} </TextC.Body>
+                            </S.WrapFeesMoney>
 
-                        <S.WrapFeesPercentage>
-                            <TextC.Body level={1}> {interestDailyValue} </TextC.Body>
-                        </S.WrapFeesPercentage>
-                    </S.WrapInterestRates>
-            }
-            
-            {
-                interestMonthlyValue !== "R$ 0,00" &&
-                    <S.WrapInterestRates>
-
-                        <S.WrapLabel $borderBColor={styledStatus}>
-                            <TextC.Label level={4}> Juros Mesal </TextC.Label>
-                        </S.WrapLabel>
-
-                        <S.WrapFeesPercentage>
-                            <TextC.Body level={1}> {interestMonthlyValue} </TextC.Body>
-                        </S.WrapFeesPercentage>
-
-                    </S.WrapInterestRates>
-            }
-
-            {
-                interestAnnualValue !== "R$ 0,00" &&
-                    <S.WrapInterestRates>
-
-                        <S.WrapLabel $borderBColor={styledStatus}>
-                            <TextC.Label level={4}> Juros Anual </TextC.Label>
-                        </S.WrapLabel>
+                        </S.WrapInterestRates>
                         
-                        <S.WrapFeesPercentage>
-                            <TextC.Body level={1}> {interestAnnualValue} </TextC.Body>
-                        </S.WrapFeesPercentage>
-
-                    </S.WrapInterestRates>
+                    )
+                })
             }
-        
         </>
     )
 }
