@@ -9,6 +9,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: .8rem;
+    overflow: auto;
 `;
 
 export const WrapText = styled.div`
@@ -32,17 +33,20 @@ export const WrapText = styled.div`
 export const WrapFilterMenu = styled.div`
     /* border: 1px solid red; */
     width: 100%;
+    min-width: 470px;
     display: flex;
-    justify-content: flex-end;
     gap: .6rem;
-    padding: .2rem 1rem;
+    padding: .4rem 1rem;
+    margin-top: .8rem;
+    overflow: auto;
 `;
 
 export const WrapButton = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: .2rem  .8rem;
+    gap: .4rem;
+    padding: .3rem  .9rem;
     border-radius: 20px;
     background-color: ${Theme.Colors.grey200};
     transition: background-color 0.4s ease, color 0.4s;
@@ -60,18 +64,23 @@ export const WrapButton = styled.button`
     }
 
     &.active {
-        background-color: ${Theme.Colors.yellow700};
-        border-color: ${Theme.Colors.yellow800};
+        background-color: ${Theme.Colors.yellow400};
+        border-color: ${Theme.Colors.yellow400};
         & span{
             color:  ${Theme.Colors.grey100};
         }
     }
-    
-    @media (max-width: 520px) {
-        padding: .2rem  .4rem;
+
+    @media (max-width: 600px) {
+        padding: .2rem  .8rem;
         & span{
             font-size: .7em;
         }
     }
-    
+`;
+
+export const WrapTotal = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;

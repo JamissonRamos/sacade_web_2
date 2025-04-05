@@ -30,10 +30,14 @@ const Header = ({fullName, setSelectedFilter}) => {
                             onClick={() => handleOnClick(name)}
                         >
                             <TextC.Label level={3}>{name}</TextC.Label>
+
+                            <S.WrapTotal>
+                                <TextC.Label level={2}> 20 </TextC.Label>
+                            </S.WrapTotal>
                         </S.WrapButton>
                     ))
                 }
-            
+
             </S.WrapFilterMenu>
         </S.Container>
     ) 
