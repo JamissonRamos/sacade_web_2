@@ -16,11 +16,27 @@ const PlotHistory = () => {
     const [registered, setRegistered] = useState([]); // full data
     const [selectedFilter, setSelectedFilter] = useState(""); // Armazena a opção do filtro selecionado
     const [filteredData, setFilteredData] = useState([]); // Armazena os dados filtrados
+    const [statusCount, setStatusCount] = useState(0); // Armazena os dados filtrados
 
     const { ListHistoricalPlot } = ListsInstallment;
     const location = useLocation();  // Captura o UID da URL
     const { uid, fullName } = location.state || {};  // Captura o UID do estado de navegação
     const { getDocuments, loading} = useInstallments.useGetDocuments()
+
+    useEffect(() => {
+        console.log('passou');
+        // Agora, contamos os status
+        const statusCountMap = registered.reduce((acc, curr) => {
+            const label = curr.statusLabel;
+            acc[label] = (acc[label] || 0) + 1;
+            acc['Tudo'] = (acc['Tudo'] || 0) + 1;
+            return acc;
+        }, {});
+
+        console.log('statusCountMap', statusCountMap);
+        setStatusCount(statusCountMap)
+    }, [registered]);
+
 
     //LOADING
     useEffect(() => {
@@ -32,6 +48,8 @@ const PlotHistory = () => {
                 const filteredDataUid = data.filter(item => item.uid === uid) || []
 
                 //Add os atributos de status e dias em atraso
+                console.log('filteredDataUid', filteredDataUid);
+                
                 const addPropertyStatus = filteredDataUid.map(({ dueDate, statusPayment, ...props }) => {
                     const resul = SetStatus(statusPayment, dueDate );
                     const {bg, textLabel} = resul;
@@ -51,6 +69,7 @@ const PlotHistory = () => {
                 console.log('Error', error);
             }
         }
+
         fetch();
     }, [])
 
@@ -75,6 +94,7 @@ const PlotHistory = () => {
             <Header 
                 fullName={fullName} 
                 setSelectedFilter={setSelectedFilter}
+                statusCount={statusCount}
             />
 
             {

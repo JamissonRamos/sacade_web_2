@@ -8,7 +8,6 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: .8rem;
-    overflow: auto;
 `;
 
 export const WrapText = styled.div`
@@ -29,15 +28,19 @@ export const WrapText = styled.div`
     }
 `;
 
+export const WrapFilter = styled.div`
+    width: 100%;
+    overflow: auto;
+`;
+
 export const WrapFilterMenu = styled.div`
-    /* border: 1px solid red; */
+    border: 1px solid red;
     width: 100%;
     min-width: 470px;
     display: flex;
     gap: .6rem;
     padding: .4rem 1rem;
     margin-top: .8rem;
-    overflow: auto;
 `;
 
 export const WrapButton = styled.button`
