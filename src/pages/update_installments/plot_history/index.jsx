@@ -35,7 +35,7 @@ const PlotHistory = () => {
                 const addPropertyStatus = filteredDataUid.map(({ dueDate, statusPayment, ...props }) => {
                     const resul = SetStatus(statusPayment, dueDate );
                     const {bg, textLabel} = resul;
-                    
+
                     return {
                         ...props, 
                         dueDate, 
@@ -61,7 +61,6 @@ const PlotHistory = () => {
             if (selectedFilter === 'Tudo'){
                 return true;
             }
-            //console.log('statusLabel', statusLabel.textLabel);
             return statusLabel == selectedFilter;
         })
 
@@ -69,8 +68,6 @@ const PlotHistory = () => {
     }, [selectedFilter])
 
 
-
-        
     return (
 
         <WrapPages>
@@ -92,7 +89,7 @@ const PlotHistory = () => {
                     <span className="sr-only">Carregando os dados...</span>
                 </LoadingOverlay> 
             }
-            
+
             {
                 filteredData && filteredData.length == 0
                 ?<S.Empty>

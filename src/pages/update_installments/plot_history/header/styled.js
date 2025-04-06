@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Theme } from "../../../../theme";
 
-
 export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
@@ -77,10 +76,4 @@ export const WrapButton = styled.button`
             font-size: .7em;
         }
     }
-`;
-
-export const WrapTotal = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
 `;
