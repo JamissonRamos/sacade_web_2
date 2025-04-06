@@ -34,7 +34,7 @@ export const WrapFilter = styled.div`
 `;
 
 export const WrapFilterMenu = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
     min-width: 470px;
     display: flex;
