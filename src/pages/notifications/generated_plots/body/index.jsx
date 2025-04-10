@@ -22,7 +22,7 @@ const Body = ({allInstallments}) => {
                 acc[item.uid].dataInstallment.push({
                     installmentNumber: item.installmentNumber,
                     dueDate: item.dueDate,
-                    value: item.value,
+                    value: item.valueInstallment,
                     error: item.error, // Adicionei um campo de erro como no seu exemplo
                 });
 

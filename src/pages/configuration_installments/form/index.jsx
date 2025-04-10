@@ -35,14 +35,14 @@ const Form = () => {
             - O installment é obj para gerar as parcelas;
         */
 
-        const {uid, name, statusPayment, installmentNumber, dueDate, value, fees, interestAnnual, interestMonthly, interestDaily } = installment;
+        const {uid, name, statusPayment, installmentNumber, dueDate, valueInstallment, fees, interestAnnual, interestMonthly, interestDaily } = installment;
         
         let installmentObjAdd = {
             uid: uid,
             name: name, //não vai para o banco de dados
             installmentNumber: installmentNumber, //não vai para o banco de dados
             dueDate: dueDate,
-            value: value,
+            valueInstallment: valueInstallment,
             error: false // Inicializa como erro, muda para false se sucesso
         };
 
@@ -51,7 +51,7 @@ const Form = () => {
             uid: uid,
             statusPayment: statusPayment, 
             dueDate: dueDate, 
-            value: value, 
+            valueInstallment: valueInstallment, 
             fees: fees, 
             interestAnnual: interestAnnual, 
             interestMonthly: interestMonthly, 
@@ -122,7 +122,7 @@ const Form = () => {
                         statusPayment: false, //false => Aberto
                         installmentNumber: `${i + 1}/${data.quantityInstallments}`,
                         dueDate: resultDueDate,
-                        value: data.valueInstallment,
+                        valueInstallment: data.valueInstallment,
                         fees: data.fees,
                         interestAnnual: data.interestAnnual,
                         interestMonthly: data.interestMonthly,
