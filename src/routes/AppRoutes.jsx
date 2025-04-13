@@ -109,10 +109,17 @@ const AppContent = () => {
                                         <Pages.UpdateInsllments /> 
                                     </ProtectedRoute>
                                 } />
+
                                 <Route path="/plotHistory" element={
                                     <ProtectedRoute page='Payments'>
                                         {/* <Pages.NotificationsMaintenance /> */}
                                         <Pages.PlotHistory /> 
+                                    </ProtectedRoute>
+                                } />
+                                <Route path="/plotHistory/form_update" element={
+                                    <ProtectedRoute page='Payments'>
+                                        {/* <Pages.NotificationsMaintenance /> */}
+                                        <Pages.FormUpdateInstallment /> 
                                     </ProtectedRoute>
                                 } />
                                 <Route path="/statusStudents" element={

@@ -1,6 +1,6 @@
 import  * as S from './styled'
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useInstallments } from "../../../hooks/installments";
 import { DaysLate, SetStatus } from "./scripts";
@@ -17,14 +17,13 @@ const PlotHistory = () => {
     const [selectedFilter, setSelectedFilter] = useState(""); // Armazena a opção do filtro selecionado
     const [filteredData, setFilteredData] = useState([]); // Armazena os dados filtrados
     const [statusCount, setStatusCount] = useState(0); // Armazena os dados filtrados
-
+    const navigate = useNavigate();
     const { ListHistoricalPlot } = ListsInstallment;
     const location = useLocation();  // Captura o UID da URL
     const { uid, fullName } = location.state || {};  // Captura o UID do estado de navegação
     const { getDocuments, loading} = useInstallments.useGetDocuments()
 
     useEffect(() => {
-        console.log('passou');
         // Agora, contamos os status
         const statusCountMap = registered.reduce((acc, curr) => {
             const label = curr.statusLabel;
@@ -33,7 +32,6 @@ const PlotHistory = () => {
             return acc;
         }, {});
 
-        console.log('statusCountMap', statusCountMap);
         setStatusCount(statusCountMap)
     }, [registered]);
 
@@ -86,6 +84,14 @@ const PlotHistory = () => {
         setFilteredData(filterDataStatus)
     }, [selectedFilter])
 
+    const handleNavigation = (id) => {
+        //Filter somente ua parcela, que vai ser alterda
+        const selectDataUid = registered.filter(item => item.id === id) || []       
+        //Passar parcela para local storage
+        localStorage.setItem('parcelData', JSON.stringify(selectDataUid));
+
+        navigate('/plotHistory/form_update');        
+    }
 
     return (
 
@@ -121,7 +127,7 @@ const PlotHistory = () => {
                     </TextC.Body>
                 </S.Empty> 
                 :<S.Content>
-                    <ListHistoricalPlot data={filteredData} />
+                    <ListHistoricalPlot data={filteredData} navigation={handleNavigation}/>
                 </S.Content>
             }
 

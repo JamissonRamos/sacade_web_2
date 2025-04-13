@@ -21,7 +21,6 @@ const Header = ({fullName, setSelectedFilter, statusCount}) => {
             </S.WrapText>
         
             <S.WrapFilter>
-
                 <S.WrapFilterMenu>
                     {
                         buttons.map((name, i) => (
@@ -38,7 +37,6 @@ const Header = ({fullName, setSelectedFilter, statusCount}) => {
 
                         ))
                     }
-
                 </S.WrapFilterMenu>
             </S.WrapFilter>
         </S.Container>

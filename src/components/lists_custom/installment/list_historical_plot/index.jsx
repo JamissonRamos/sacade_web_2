@@ -5,7 +5,7 @@ import SectionsSecond from './components/sections_second';
 import { useState } from 'react';
 import { FormatNumberMoney, FormatNumberPercentage, FormatToCurrency } from '../scripts';
 
-const ListHistoricalPlot = ({data}) => {
+const ListHistoricalPlot = ({data, navigation}) => {
     const [totalInterest, setTotalInterest] = useState({});
 
     const handleTotalCalculated = (id, calculatedValue) => {
@@ -41,6 +41,7 @@ const ListHistoricalPlot = ({data}) => {
                     <S.WrapButton 
                         key={i}
                         $borderLeft={styledComponent}
+                        onClick={() =>  navigation(id)}
                     >
                         <SectionsFirst 
                             dueDate={dueDate}

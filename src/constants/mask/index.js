@@ -10,5 +10,5 @@ export const MaskList = {
     currency: ['R$ 999.999,99'],            // Máscara para valores monetários
     onlyNumber: ['9999999999999999999'],    //Ajuste conforme o número máximo de dígitos
     weight: ['999.99'],                  //Máscara para peso
-    height: ['9,99'],                     // Máscara para altura
+    height: ['9,99'],                     // Máscara para altura            // Máscara para valores monetários
 };

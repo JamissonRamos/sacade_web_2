@@ -98,12 +98,12 @@ const Fields = ({register, setValue, getValues, errors, fieldDisabled, setFieldD
                         <Form.Label > Data 1º Parcela * </Form.Label>
                         <Form.Control   
                             type="date" 
-                            name="firstDateInstallments"
-                            {...register("firstDateInstallments")}
-                            isInvalid={!!errors.firstDateInstallments}
+                            name="dueDate"
+                            {...register("dueDate")}
+                            isInvalid={!!errors.dueDate}
                         />
                         <Form.Control.Feedback type="invalid">
-                            {errors.firstDateInstallments && errors.firstDateInstallments.message}
+                            {errors.dueDate && errors.dueDate.message}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>

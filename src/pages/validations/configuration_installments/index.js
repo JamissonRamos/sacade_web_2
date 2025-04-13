@@ -2,7 +2,7 @@ import * as yup from "yup";
 
 
 export const ConfigurationInstallmentsSchema = yup.object().shape({
-    firstDateInstallments: yup
+    dueDate: yup
         .date()
         .nullable()
         .transform((value, originalValue) => {

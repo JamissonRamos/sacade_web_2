@@ -92,7 +92,7 @@ const Form = () => {
             data.interestDaily = FormatPercentageNumber(data.interestDaily);
             data.interestMonthly = FormatPercentageNumber(data.interestMonthly);
             data.valueInstallment = FormatMoneyNumber(data.valueInstallment);
-            data.firstDateInstallments = FormattedDate(data.firstDateInstallments);
+            data.dueDate = FormattedDate(data.dueDate);
             
             // Recuperar o documento do local storage
             const studentsUid = JSON.parse(localStorage.getItem('uisStudents')) || [];
@@ -113,8 +113,8 @@ const Form = () => {
 
                     // 1 loop sempre a data da parcela normal 2 loop em diante sempre colocar 30 dias
                     i === 0 
-                        ? resultDueDate = data.firstDateInstallments
-                        : resultDueDate = AddDaysToDate( data.firstDateInstallments, i)
+                        ? resultDueDate = data.dueDate
+                        : resultDueDate = AddDaysToDate( data.dueDate, i)
     
                     const installment = {
                         uid,
