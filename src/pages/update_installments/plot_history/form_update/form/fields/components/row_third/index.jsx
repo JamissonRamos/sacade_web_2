@@ -1,11 +1,11 @@
 import { Col, Row, Form } from "react-bootstrap"
 
-const RowFourth = (props) => {
+const RowThird = (props) => {
     const {register, errors, handleChange, handleBlur, interestValues, fieldDisabled } = props;
 
     const {
-        formatInterestMonthly,
-        formatInterestAnnual,
+        interestMonthly,
+        interestAnnual
     } = interestValues
 
     return (
@@ -16,8 +16,8 @@ const RowFourth = (props) => {
                     <Form.Label > 
                         Juros Mensal 
                         {
-                            formatInterestMonthly == "R$ 0,00" ? null :
-                            <span className="valueInterestRate">{formatInterestMonthly}</span>
+                            interestMonthly == "R$ 0,00" ? null :
+                            <span className="valueInterestRate">{interestMonthly}</span>
                         }
                     </Form.Label>
                     <Form.Control 
@@ -41,8 +41,8 @@ const RowFourth = (props) => {
                     <Form.Label > 
                         Juros Anual 
                         {
-                            formatInterestAnnual == "R$ 0,00" ? null :
-                                <span className="valueInterestRate">{formatInterestAnnual}</span>
+                            interestAnnual == "R$ 0,00" ? null :
+                                <span className="valueInterestRate">{interestAnnual}</span>
                             
                         }
                     </Form.Label>
@@ -66,4 +66,4 @@ const RowFourth = (props) => {
     )
 }
 
-export default RowFourth
+export default RowThird

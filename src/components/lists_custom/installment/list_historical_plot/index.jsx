@@ -14,12 +14,12 @@ const ListHistoricalPlot = ({data, navigation}) => {
             [id]: calculatedValue
         }));
     };
-
+    
     return (
 
         <S.Container>
         {
-            data && data.map(({id, dueDate, value, fees, interestAnnual, interestDaily, interestMonthly, statusLabel, styledComponent, daysLate}, i) => {
+            data && data.map(({id, dueDate, valueInstallment: value, fees, interestAnnual, interestDaily, interestMonthly, statusLabel, styledComponent, daysLate}, i) => {
 
                 const newValorParcela = FormatToCurrency(value);  
 

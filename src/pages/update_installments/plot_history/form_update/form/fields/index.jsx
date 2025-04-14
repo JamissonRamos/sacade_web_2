@@ -1,19 +1,17 @@
+import * as S from './styled'
+
 import { 
     OnlyNumber, /* Regra para deixa somente numero */
     FormatCurrency,
     ConvertMoneyNumber,
-    FormatNumberPercentage,
     ConvertPercentageMoney,
-    ConvertDate,
     ConvertNumberPercentage
 } from "../../../scripts";
-
 import { useEffect, useState } from "react";
 
-import * as S from './styled'
 import RowFirst from "./components/row_first"
 import RowSecond from "./components/row_second"
-import RowFourth from "./components/row_fourth"
+import RowThird from "./components/row_third"
 
 const Fields = ({data, register, setValue, getValues, errors, fieldDisabled, setFieldDisabled}) => {
     const [interestValues, setInterestValues] = useState({
@@ -62,7 +60,6 @@ const Fields = ({data, register, setValue, getValues, errors, fieldDisabled, set
         }else{
             maskedValue = ConvertNumberPercentage(fieldValue);
         }
-
         setValue(fieldName, maskedValue)
     };
 
@@ -70,9 +67,6 @@ const Fields = ({data, register, setValue, getValues, errors, fieldDisabled, set
         const fieldValueInstallment = getValues('valueInstallment')
         const fieldName = e.target.name;
         const fieldValue = e.target.value;
-
-        console.log(fieldName, fieldValue);
-
         const updatedValues = { ...interestValues };
         
         if(fieldName === 'valueInstallment'){
@@ -109,14 +103,14 @@ const Fields = ({data, register, setValue, getValues, errors, fieldDisabled, set
                 handleBlur={handleBlur}
             />
 
-            {/* <RowFourth 
-                // register={register}
-                // errors={errors}
-                // interestValues={interestValues}
-                // fieldDisabled={fieldDisabled}  
-                // handleChange={handleChange}
-                // handleBlur={handleBlur}
-            /> */}
+            <RowThird 
+                register={register}
+                errors={errors}
+                interestValues={interestValues}
+                fieldDisabled={fieldDisabled}  
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+            />
         </S.Container>
     )
 }

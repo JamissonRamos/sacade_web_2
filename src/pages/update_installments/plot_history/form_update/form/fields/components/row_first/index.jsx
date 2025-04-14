@@ -11,7 +11,7 @@ const RowFirst = (props) => {
                     <Form.Label > Data 1º Parcela * </Form.Label>
                     <Form.Control   
                         type="date" 
-                        name="dueDate"
+                        //name="dueDate"
                         {...register("dueDate")}
                         isInvalid={!!errors.dueDate}
                     />

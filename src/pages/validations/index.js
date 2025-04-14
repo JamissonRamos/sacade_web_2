@@ -7,6 +7,7 @@ import { ModalResponsibleSchema } from "./modal_responsible";
 import { ResponsibleStudents } from "./responsible_students";
 import { ConfigurationInstallmentsSchema } from "./configuration_installments";
 import { RegisterStudentSchema } from "./register_student";
+import { UpdateInstallmentsSchema } from "./update_installments";
 
 export const Validations = {
     UserSchema,
@@ -17,7 +18,8 @@ export const Validations = {
     ModalResponsibleSchema,
     ResponsibleStudents,
     ConfigurationInstallmentsSchema,
-    RegisterStudentSchema
+    RegisterStudentSchema,
+    UpdateInstallmentsSchema
     
 
 }

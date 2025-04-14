@@ -81,7 +81,7 @@ export const WrapButtons = styled.div`
     & button {
         ${StyledButton};
     }
-    @media (max-width: 425px) {
+    @media (max-width: 490px) {
         flex-direction: column;
         align-items: center;
         padding: .2rem;

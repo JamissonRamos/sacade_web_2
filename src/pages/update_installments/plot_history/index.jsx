@@ -35,7 +35,6 @@ const PlotHistory = () => {
         setStatusCount(statusCountMap)
     }, [registered]);
 
-
     //LOADING
     useEffect(() => {
         const fetch = async () => {

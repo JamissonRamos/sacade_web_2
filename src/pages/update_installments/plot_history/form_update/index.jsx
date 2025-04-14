@@ -1,9 +1,10 @@
 import * as S from './styled';
-import { useEffect, useState } from "react"
+
 import { WrapPages } from "../../../../components/Wrappe/pages";
 import Header from './header';
 import Form from './form';
 
+import { useEffect, useState } from "react"
 
 const FormUpdateInstallment = () => {
     const [registered, setRegistered] = useState([]);
@@ -18,9 +19,8 @@ const FormUpdateInstallment = () => {
         } else {
             console.log('Nenhum dado encontrado com a chave parcelData');
         }
-    
+        
         return () => {
-            console.log('passou depois')
             localStorage.removeItem('parcelData')
         }
         

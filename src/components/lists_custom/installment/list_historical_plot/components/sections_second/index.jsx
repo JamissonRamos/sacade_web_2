@@ -25,6 +25,8 @@ const SectionsSecond = ({ id, fineInterestValues, statusLabel, styledStatus, day
             if(dailyTotal > 0) {
                 setInterestDailyValue(FormatToCurrency(dailyTotal));                
                 return dailyTotal;
+            }else{
+                return 0
             }
         }
     }
@@ -37,9 +39,10 @@ const SectionsSecond = ({ id, fineInterestValues, statusLabel, styledStatus, day
             const monthlyTotal = monthlyInterest * monthsLate;
 
             if(monthlyTotal > 0){
-
                 setInterestMonthlyValue(FormatToCurrency(monthlyTotal));
                 return monthlyTotal;
+            }else{
+                return 0
             }
         }
     }
@@ -53,6 +56,8 @@ const SectionsSecond = ({ id, fineInterestValues, statusLabel, styledStatus, day
             if(annualTotal > 0){
                 setInterestAnnualValue(FormatToCurrency(annualTotal));
                 return annualTotal
+            }else{
+                return 0
             }
         }
     }
@@ -66,7 +71,8 @@ const SectionsSecond = ({ id, fineInterestValues, statusLabel, styledStatus, day
         const daily = calculateDaily();
         const monthl = calculateMonthl();
         const annual = calculateAnnual();
-        const total =  fees + daily + monthl + annual || 0;
+
+        const total =  fees + daily + monthl + annual || 0 ;
 
         //Multa não tem calculo por dias, passar o valor de multa
         setInterestFeesValue(FormatToCurrency(fees))
