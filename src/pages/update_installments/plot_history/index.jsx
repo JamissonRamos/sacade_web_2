@@ -43,9 +43,6 @@ const PlotHistory = () => {
             
             if(success){
                 const filteredDataUid = data.filter(item => item.uid === uid) || []
-
-                //Add os atributos de status e dias em atraso
-                console.log('filteredDataUid', filteredDataUid);
                 
                 const addPropertyStatus = filteredDataUid.map(({ dueDate, statusPayment, ...props }) => {
                     const resul = SetStatus(statusPayment, dueDate );
@@ -88,7 +85,6 @@ const PlotHistory = () => {
         const selectDataUid = registered.filter(item => item.id === id) || []       
         //Passar parcela para local storage
         localStorage.setItem('parcelData', JSON.stringify(selectDataUid));
-
         navigate('/plotHistory/form_update');        
     }
 

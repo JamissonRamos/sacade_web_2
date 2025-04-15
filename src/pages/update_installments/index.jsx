@@ -16,7 +16,6 @@ const UpdateInsllments = () => {
     const navigate = useNavigate();
     const { getDocuments, loading} = useStudents.useGetDocuments()
 
-
     useEffect(() => {
         const fetch = async () => {
             const result = await FetchDocuments(getDocuments);
@@ -26,14 +25,14 @@ const UpdateInsllments = () => {
         fetch();
     }, []);
 
-    //plotHistory
+
     const handleNavegation = (uid) =>{
 
         //Recuperar nome compleo to aluno
         const foundStudent = registered.find((item) => item.uid === uid);
         const {firstName, lastName } = foundStudent;
 
-        navigate('/plotHistory', { state: { uid: uid, fullName: `${firstName} ${lastName} `  } });
+        navigate('/plotHistory', { state: { uid: uid, fullName: `${firstName} ${lastName} `} });
     }
 
     return (

@@ -4,12 +4,11 @@ import { TextC } from '../Typography'
 import { Button } from 'react-bootstrap'
 
 const DeleteData =   ({registeredDelete, handleDeleteData, handleShowDelete }) => {
-    const {fullName} = registeredDelete;
-    
+    const {fullName} = registeredDelete || false;
     
     const handleDelete = async () => {
         handleDeleteData();
-        handleShowDelete()
+        handleShowDelete();
     }
     return (
         <>
@@ -28,7 +27,10 @@ const DeleteData =   ({registeredDelete, handleDeleteData, handleShowDelete }) =
                         <TextC.Body level='1'>
                             Realmente deseja excluir este cadastro? Esta ação não pode ser desfeita.
                         </TextC.Body>
-                        <TextC.Body level='5' >{fullName}</TextC.Body>
+                        {
+                            fullName &&
+                            <TextC.Body level='5' >{fullName}</TextC.Body>
+                        }
                     </S.WrapTitles>
 
                     <S.WrapButtons>

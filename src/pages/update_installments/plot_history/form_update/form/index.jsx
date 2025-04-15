@@ -10,13 +10,16 @@ import { useEffect, useState } from "react";
 
 import Fields from "./fields"
 import { LoadingOverlay } from "../../../../../components/spinner/global/styled";
-import { Button, Spinner } from "react-bootstrap";
-import { Theme } from "../../../../../theme";
+import { Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { FormatMoneyNumber, FormatPercentageNumber } from "../../../../configuration_installments/scripts";
 import { useInstallments } from "../../../../../hooks/installments";
+import Buttons from "./buttons";
+import DeleteData from "../../../../../components/alert_delete";
 
 const Form = ({registered}) => {
+    const [showModalDelete, setShowModalDelete] = useState(false);
+    const [registeredDelete, setRegisteredDelete] = useState(null);
     const [loading, setLoading] = useState(false);
     const [idDocument, setIdDocument] = useState(false);
     const [fieldDisabled, setFieldDisabled] = useState(true); // Habilitar e desabilitar campos
@@ -24,10 +27,44 @@ const Form = ({registered}) => {
     const navigate = useNavigate();
 
     const { updateInstallments, loading: loadingUpdate} = useInstallments.usePostDocumentsUpdate()
+    const { deleteInsllments, loading: loadingDelete } = useInstallments.usePostDocumentsDelete();
+    
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.UpdateInstallmentsSchema)
     });
+    
+    //Função para retornar a page de historico de parcelas
+    const handleCancel = () => navigate(-1);
+
+    // função para abrir o modal de deletar
+    const handleShowModalDelete = () => { 
+        setShowModalDelete((prevState) => !prevState);
+    };
+
+    //Função para deletar o registro
+    const handleDeleteItem = async () => {
+        const uid = registered[0].id;
+        console.log('Deletar registro: ', uid);
+        
+        const result = await deleteInsllments(uid)
+        const { success, message} = result; 
+        if(success){
+            handleShowModalDelete()
+            const path = `/updateInstallments`
+            navigate('/notifications/delete', {
+                state: {
+                    url: path,
+                    valueButton: {value: 'Lista Alunos', icon: 'MdPerson'},
+                },
+            });
+
+        }else{
+            reset()
+            navigate('/notifications/error');
+            console.log({message: `Deu algum erro: ${message}`})
+        }
+    }
 
     const handleOnSubmit = async (data) => {
         data.dueDate = FormattedDate(data.dueDate);
@@ -37,22 +74,25 @@ const Form = ({registered}) => {
         data.interestMonthly = FormatPercentageNumber(data.interestMonthly);
         data.valueInstallment = FormatMoneyNumber(data.valueInstallment);
         data.uid = idDocument;
-        console.log('data', data);
 
         const result = await updateInstallments(data);
         const { success, message} = result;
 
         if(success){
-            console.log('Atualizado');
-            
+            reset()
+            const path = `/updateInstallments`
+            navigate('/notifications/update', {
+                state: {
+                    url: path,
+                    valueButton: {value: 'Lista Alunos', icon: 'MdPerson'},
+                },
+            });
+
         }else{
-            console.log('Error', message);
-            
+            reset()
+            navigate('/notifications/error');
+            console.log({message: `Deu algum erro: ${message}`})
         }
-
-
-
-    
     }
 
     //Loading
@@ -76,9 +116,7 @@ const Form = ({registered}) => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [registered])
-    console.log('registered', registered);
     
-
     // Condicione a renderização do seu componente
     if (!loading ) {
         return (
@@ -106,42 +144,22 @@ const Form = ({registered}) => {
                     setFieldDisabled={setFieldDisabled}
                     data={registered}
                 />
-
-                <S.WrapButtons>
-                    <Button
-                        variant="outline-danger"
-                        onClick={()=>navigate(-1)}
-                    >
-                        <Theme.Icons.MdClose />
-                        <span>Cancelar</span>
-                    </Button> 
-
-                    <Button
-                        variant="success"
-                        type='submit'
-                        disabled={loadingUpdate ? true : false}
-                    >
-                        { 
-                            loadingUpdate 
-                            ?   <>
-                                    <Spinner
-                                        as="span"
-                                        animation="border"
-                                        size="sm"
-                                        role="status"
-                                        aria-hidden="true"
-                                    />
-                                        <span > Atualizando... </span>
-                                </> 
-                            :
-                                <>
-                                    <Theme.Icons.MdUpdate />
-                                    <span>Alterar Parcelas</span>
-                                </>
-                        } 
-                    </Button> 
-                </S.WrapButtons>
+                <Buttons 
+                    loadingUpdate={loadingUpdate}
+                    loadingDelete={loadingDelete}
+                    buttonCancel={handleCancel}
+                    handleShowModalDelete={handleShowModalDelete}
+                />
             </S.Form>
+            {
+                showModalDelete &&
+
+                    <DeleteData
+                        // registeredDelete = {registeredDelete}
+                        handleShowDelete = {handleShowModalDelete}
+                        handleDeleteData = {handleDeleteItem}
+                    />
+            }
         </S.Container>
     )
 }

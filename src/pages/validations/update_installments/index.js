@@ -8,7 +8,8 @@ export const UpdateInstallmentsSchema = yup.object().shape({
             // Se o campo for uma string vazia, transforma em null para não gerar erro de cast
             return originalValue === '' ? null : value;
         })
-        .min(new Date(), 'A data deve ser no futuro')
+        //A data para o form alterar parcelas deve ser que foi gerada no sistema
+        //.min(new Date(), 'A data deve ser no futuro')
         .required('Campo é obrigatório'),
     valueInstallment: yup
         .string()
