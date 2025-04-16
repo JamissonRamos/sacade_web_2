@@ -2,7 +2,6 @@ import * as S from './styled';
 import { Theme } from '../../../../../../theme';
 import { Button, Spinner } from 'react-bootstrap';
 
-
 const Buttons = (props) => {
     const {loadingUpdate, loadingDelete, buttonCancel, handleShowModalDelete} = props
     

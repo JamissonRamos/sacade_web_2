@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as S from './styled';
-import { useConfigurationInstallments } from '../../hooks/configuration_installments';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { LoadingOverlay } from '../../components/spinner/global/styled';
-import { Spinner } from 'react-bootstrap';
+// import { useConfigurationInstallments } from '../../hooks/configuration_installments';
+// import { useEffect, useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { LoadingOverlay } from '../../components/spinner/global/styled';
+// import { Spinner } from 'react-bootstrap';
 import Header from './header';
 import Form from './form';
 import {WrapPages} from '../../components/Wrappe/pages'
@@ -13,7 +13,7 @@ const ConfigurationInstallments = () => {
 
     //const [registered, setRegistered] = useState(null);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     ///const {getDocuments, loading} = useConfigurationInstallments.useGetDocuments();
 
