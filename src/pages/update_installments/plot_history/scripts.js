@@ -1,7 +1,6 @@
 import { mask } from 'remask';
 import { MaskList } from '../../../constants/mask';
 
-
 const removeCharacters = (value) =>{
     let newValue = value
 
@@ -22,7 +21,6 @@ export const ConvertNumberToCurrency = (value) => {
     }).format(value);
 
 }
-
 
 export const SetStatus = (status, dueDate) => {
 /* Função para definir o status da parcela */
@@ -109,7 +107,6 @@ export const ConvertMoneyNumber = (value) => {
 
     return convertValue
 };
-
 
 export const ConvertNumberPercentage = (value) => {
     /* Função para converter de numero para porcentagem */

@@ -7,6 +7,7 @@ import {
     ConvertPercentageMoney,
     ConvertNumberPercentage
 } from "../../../scripts";
+
 import { useEffect, useState } from "react";
 
 import RowFirst from "./components/row_first"
@@ -36,7 +37,7 @@ const Fields = ({data, register, setValue, getValues, errors, fieldDisabled, set
             }
         });
         setInterestValues(updatedValues);
-    }
+    };
 
     const updateFildsValueInstallment = (valueInstallment) => {
         if(!valueInstallment) return
@@ -46,7 +47,7 @@ const Fields = ({data, register, setValue, getValues, errors, fieldDisabled, set
             : setFieldDisabled(true)
             /* Alterar valors de juros e taxa caso altere o valor da parcela */
             percentageToMonetaryValueConverter(valueInstallment);
-    }
+    };
 
     const handleChange = (e) => {
         let fieldName = e.target.name;
@@ -60,7 +61,7 @@ const Fields = ({data, register, setValue, getValues, errors, fieldDisabled, set
         }else{
             maskedValue = ConvertNumberPercentage(fieldValue);
         }
-        setValue(fieldName, maskedValue)
+        setValue(fieldName, maskedValue);
     };
 
     const handleBlur = (e) => {
@@ -76,7 +77,7 @@ const Fields = ({data, register, setValue, getValues, errors, fieldDisabled, set
             updatedValues[fieldName] = ConvertPercentageMoney(fieldValue, fieldValueInstallment);
             setInterestValues(updatedValues);
         }
-    }
+    };
     
     useEffect(() => {
         if (data && Object.keys(data).length > 0) {
@@ -86,7 +87,7 @@ const Fields = ({data, register, setValue, getValues, errors, fieldDisabled, set
 
     return (
         <S.Container>
-            {/* Veirificado e Normalizado */}
+
             <RowFirst 
                 register={register}
                 errors={errors}

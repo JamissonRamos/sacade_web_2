@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Theme } from "../../../theme";
 
-
 export const Empty = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
@@ -36,7 +35,6 @@ export const Content = styled.div`
     width: 100%;
     min-width: 320px;
     max-height: 80%;
-    
     padding-bottom: 1rem;
     overflow: auto;
 `;

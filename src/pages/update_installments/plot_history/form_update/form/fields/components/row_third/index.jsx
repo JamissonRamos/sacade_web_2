@@ -3,10 +3,7 @@ import { Col, Row, Form } from "react-bootstrap"
 const RowThird = (props) => {
     const {register, errors, handleChange, handleBlur, interestValues, fieldDisabled } = props;
 
-    const {
-        interestMonthly,
-        interestAnnual
-    } = interestValues
+    const { interestMonthly, interestAnnual } = interestValues
 
     return (
         
@@ -36,14 +33,13 @@ const RowThird = (props) => {
                     </Form.Control.Feedback>
                 </Form.Group>
             </Col>
-            <Col  sm={6} md={6} lg={6}>
+            <Col sm={6} md={6} lg={6}>
                 <Form.Group className="p-1 mb-2" controlId="GroupInterestAnnual">
                     <Form.Label > 
                         Juros Anual 
                         {
                             interestAnnual == "R$ 0,00" ? null :
-                                <span className="valueInterestRate">{interestAnnual}</span>
-                            
+                            <span className="valueInterestRate">{interestAnnual}</span>
                         }
                     </Form.Label>
                     <Form.Control 

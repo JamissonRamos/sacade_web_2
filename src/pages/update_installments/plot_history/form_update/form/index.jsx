@@ -1,26 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-
 import * as S from "./styled"
 
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../../../../validations'
 import { ConvertDate, ConvertNumberToCurrency, FormatNumberPercentage, FormattedDate } from "../../scripts";
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FormatMoneyNumber, FormatPercentageNumber } from "../../../../configuration_installments/scripts";
+import { useInstallments } from "../../../../../hooks/installments";
 
 import Fields from "./fields"
 import { LoadingOverlay } from "../../../../../components/spinner/global/styled";
 import { Spinner } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { FormatMoneyNumber, FormatPercentageNumber } from "../../../../configuration_installments/scripts";
-import { useInstallments } from "../../../../../hooks/installments";
 import Buttons from "./buttons";
 import DeleteData from "../../../../../components/alert_delete";
 
 const Form = ({registered}) => {
-    const [showModalDelete, setShowModalDelete] = useState(false);
-    const [registeredDelete, setRegisteredDelete] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false); // Status para abrir ou fechar o modal de deletar
+    const [loading, setLoading] = useState(false); // Carregando os dados
     const [idDocument, setIdDocument] = useState(false);
     const [fieldDisabled, setFieldDisabled] = useState(true); // Habilitar e desabilitar campos
     const fields = ['fees', 'interestDaily', 'interestMonthly', 'interestAnnual']; //Nomes dos meu campos
@@ -38,15 +36,12 @@ const Form = ({registered}) => {
     const handleCancel = () => navigate(-1);
 
     // função para abrir o modal de deletar
-    const handleShowModalDelete = () => { 
-        setShowModalDelete((prevState) => !prevState);
-    };
+    const handleShowModalDelete = () => setShowModalDelete((prevState) => !prevState);
 
     //Função para deletar o registro
     const handleDeleteItem = async () => {
         const uid = registered[0].id;
-        console.log('Deletar registro: ', uid);
-        
+
         const result = await deleteInsllments(uid)
         const { success, message} = result; 
         if(success){
@@ -113,7 +108,6 @@ const Form = ({registered}) => {
             setIdDocument(firstItem.id)
             setLoading(true); // dados carregados
         }
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [registered])
     
@@ -155,7 +149,6 @@ const Form = ({registered}) => {
                 showModalDelete &&
 
                     <DeleteData
-                        // registeredDelete = {registeredDelete}
                         handleShowDelete = {handleShowModalDelete}
                         handleDeleteData = {handleDeleteItem}
                     />

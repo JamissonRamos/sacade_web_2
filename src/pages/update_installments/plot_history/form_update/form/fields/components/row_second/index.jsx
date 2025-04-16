@@ -3,21 +3,17 @@ import { Col, Row, Form } from "react-bootstrap"
 const RowSecond = (props) => {
     const {register, errors, fieldDisabled, handleChange, handleBlur, interestValues } = props
 
-    // , , 
-    const {
-        fees,
-        interestDaily,
-    } = interestValues
+    const {fees, interestDaily} = interestValues
 
     return (
         <Row className="mb-2 px-2 ">
-            <Col  sm={6} md={6} lg={6}>
+            <Col sm={6} md={6} lg={6}>
                 <Form.Group className="p-1 mb-2" controlId="GroupFees">
                     <Form.Label > 
                         Taxas Juros   
                         {
                             fees == "R$ 0,00" ? null :
-                                <span className="valueInterestRate">{fees}</span>
+                            <span  className="valueInterestRate">{fees}</span>
                         }
                     </Form.Label>
                     <Form.Control 
@@ -37,13 +33,13 @@ const RowSecond = (props) => {
                     
                 </Form.Group>
             </Col>
-            <Col  sm={6} md={6} lg={6}>
+            <Col sm={6} md={6} lg={6}>
                 <Form.Group className="p-1 mb-2" controlId="GroupInterestDaily">
                     <Form.Label > 
                         Juros Diário 
                         {
                             interestDaily == "R$ 0,00" ? null :
-                                <span className="valueInterestRate">{interestDaily}</span>
+                            <span className="valueInterestRate">{interestDaily}</span>
                         }
                     </Form.Label>
                     <Form.Control 

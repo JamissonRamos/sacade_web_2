@@ -21,10 +21,6 @@ const StyledButton = css`
     & svg {
         font-size: 1.2rem;
     }
-    
-    @media (max-width: 425px) {
-        width: 80%;
-    }
 `;
 
 export const Container = styled.div`
@@ -41,11 +37,17 @@ export const Container = styled.div`
 export const WrapButtonDelete = styled.div`
     /* border: 1px solid red; */
     width: 100%;
+    max-width: 500px;
     display: flex;
     justify-content: center;
     & button {
         ${StyledButton};
-        width: 40%;
+        width: 60%;
+    }
+    @media (max-width: 768px) {
+        & button {
+            width: 90%;
+        }
     }
 `;
 
@@ -53,15 +55,15 @@ export const WrapButtonUpdateCancel = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: flex-end;
     gap: 16px;
-    padding-bottom: 1rem;
+    padding: .4rem;
+    margin-top: 1rem;
     & button {
         ${StyledButton};
     }
     @media (max-width: 425px) {
-        flex-direction: column;
-        align-items: center;
-        padding: .2rem;
+        justify-content: center;
     }
 `;

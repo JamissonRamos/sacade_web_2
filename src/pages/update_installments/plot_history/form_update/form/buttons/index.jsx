@@ -1,13 +1,12 @@
 import * as S from './styled';
 import { Theme } from '../../../../../../theme';
 import { Button, Spinner } from 'react-bootstrap';
-import DeleteData from '../../../../../../components/alert_delete';
+
 
 const Buttons = (props) => {
     const {loadingUpdate, loadingDelete, buttonCancel, handleShowModalDelete} = props
     
     const handleLoading = (type) => {
-
         return (
             <>
                 <Spinner
@@ -24,9 +23,6 @@ const Buttons = (props) => {
             </>
         )
     }
-
-
-
 
     return (
         <S.Container>
