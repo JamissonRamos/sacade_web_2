@@ -2,6 +2,7 @@ import * as S           from "./styled";
 import { useAuth }      from '../../../contexts/authContext/AuthContex'
 import RegisterStudent  from "../components/register_stuedent";
 import Students         from "../components/students";
+import Nav from 'react-bootstrap/Nav';
 
 const Body = () => {
     const { currentUser } = useAuth(); //Recuperando user logado;
@@ -30,7 +31,6 @@ const Body = () => {
 
     return (
         <S.Container>
-
             <S.SectionStudents>
                 {
                     handleHasAccess('Students', status )
@@ -45,9 +45,10 @@ const Body = () => {
                     ? <RegisterStudent />
                     : null
                 }
-            </S.SectionRegisterStudents>
+            </S.SectionRegisterStudents> 
 
             {/* Outra seção de demostrativos */}
+
         </S.Container>
     ) 
 }

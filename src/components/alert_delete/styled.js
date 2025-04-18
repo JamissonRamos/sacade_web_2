@@ -33,7 +33,7 @@ export const AlertDelete = styled.div`
     background: ${Theme.Colors.white800};
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
     z-index: 10;
-    animation-duration: 1s;
+    animation-duration: .8s;
     animation-name: formModal;
     @keyframes formModal {
         from {

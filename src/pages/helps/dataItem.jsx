@@ -13,6 +13,11 @@ export const DataItemMenu = [
         icon: <Theme.Icons.RxCardStackPlus  />,
     },
     {
+        title: 'Alterar Parcelas',
+        path: 'https://accessible-storm-0f5.notion.site/Alterar-Parcelas-1c47ce9f30c180f9b33fee18c3821c61?pvs=4',
+        icon: <Theme.Icons.GrDocumentUpdate/>
+    },
+    {
         title: 'Central Ajuda',
         path: 'https://accessible-storm-0f5.notion.site/Central-Ajuda-1bc7ce9f30c18077a6d8c04e138b701b?pvs=4',
         icon: <Theme.Icons.MdHelp/>

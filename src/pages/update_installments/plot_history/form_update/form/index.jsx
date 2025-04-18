@@ -147,7 +147,6 @@ const Form = ({registered}) => {
             </S.Form>
             {
                 showModalDelete &&
-
                     <DeleteData
                         handleShowDelete = {handleShowModalDelete}
                         handleDeleteData = {handleDeleteItem}
