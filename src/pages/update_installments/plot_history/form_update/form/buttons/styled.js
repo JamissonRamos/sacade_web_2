@@ -24,14 +24,14 @@ const StyledButton = css`
 `;
 
 export const Container = styled.div`
-    /* border: 1px solid red; */
+    border: 1px solid red;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: .8rem;
     padding: .2rem;
-    margin-top: .4rem;
+    margin: .4rem 0;
 `;
 
 export const WrapButtonDelete = styled.div`
@@ -52,14 +52,14 @@ export const WrapButtonDelete = styled.div`
 `;
 
 export const WrapButtonUpdateCancel = styled.div`
-    /* border: 1px solid red; */
+    border: 1px solid red;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 16px;
-    padding: .4rem;
-    margin-top: 1rem;
+    /* padding: .4rem; */
+    /* margin-top: 1rem; */
     & button {
         ${StyledButton};
     }

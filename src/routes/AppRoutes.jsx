@@ -88,8 +88,8 @@ const AppContent = () => {
 
                                 <Route path="/payments" element={
                                     <ProtectedRoute page='Payments'>
-                                        {/* <Pages.NotificationsMaintenance /> */}
-                                        <Pages.Payments /> 
+                                        <Pages.NotificationsMaintenance />
+                                        {/* <Pages.Payments />  */}
                                     </ProtectedRoute>
                                 } />
                                 <Route path="/configurationInstallments" element={
