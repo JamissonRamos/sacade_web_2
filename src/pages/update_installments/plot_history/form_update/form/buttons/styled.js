@@ -31,7 +31,7 @@ export const Container = styled.div`
     align-items: center;
     gap: .8rem;
     padding: .2rem;
-    margin-bottom: <div className="8"></div>rem;
+    margin-bottom: .8rem;
 `;
 
 export const WrapButtonDelete = styled.div`
