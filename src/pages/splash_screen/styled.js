@@ -142,7 +142,7 @@ export const WrapButton = styled.div`
     }
 `;
 export const WrapVersion = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
     display: flex;
     align-items: center;
