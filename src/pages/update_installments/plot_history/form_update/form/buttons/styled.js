@@ -24,14 +24,14 @@ const StyledButton = css`
 `;
 
 export const Container = styled.div`
-    border: 1px solid red;
+    border: 1px solid blue;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: .8rem;
     padding: .2rem;
-    margin-bottom: .8rem;
+    margin-bottom: <div className="8"></div>rem;
 `;
 
 export const WrapButtonDelete = styled.div`
