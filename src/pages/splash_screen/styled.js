@@ -140,3 +140,19 @@ export const WrapButton = styled.div`
         }
     }
 `;
+export const WrapVersion = styled.div`
+    border: 1px solid red;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+    & span {
+        font-size: .7rem;
+        font-weight: 800;
+        text-align: center;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: ${Theme.Colors.grey700};
+    }
+`;
