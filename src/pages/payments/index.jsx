@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
 import { WrapPages } from '../../components/Wrappe/pages'
+import ListStudents from './list_student';
+import Header from './header';
+
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStudents } from "../../hooks/students";
 import { AddAttributeList } from './scripts';
-import ListStudents from './list_student';
-import Header from './header';
 
 const Payments = () => {
   const [registered, setRegistered] = useState(null);

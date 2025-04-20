@@ -2,7 +2,6 @@ import * as S           from "./styled";
 import { useAuth }      from '../../../contexts/authContext/AuthContex'
 import RegisterStudent  from "../components/register_stuedent";
 import Students         from "../components/students";
-import Nav from 'react-bootstrap/Nav';
 
 const Body = () => {
     const { currentUser } = useAuth(); //Recuperando user logado;
