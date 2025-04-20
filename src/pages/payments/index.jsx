@@ -3,10 +3,8 @@ import { WrapPages } from '../../components/Wrappe/pages'
 import { useNavigate } from 'react-router-dom';
 import { useStudents } from "../../hooks/students";
 import { AddAttributeList } from './scripts';
-import { LoadingOverlay } from '../../components/spinner/global/styled';
-import { Spinner } from 'react-bootstrap';
-import * as S from './styled';
-import ListPrimary from '../../components/lists_custom/students/list_primary';
+import ListStudents from './list_student';
+import Header from './header';
 
 const Payments = () => {
   const [registered, setRegistered] = useState(null);
@@ -36,6 +34,7 @@ const Payments = () => {
 
 
   const handleNavegation = (uid) =>{
+    console.log('handleNavegation', uid)
 //         //Recuperar nome compleo to aluno
 //         const foundStudent = registered.find((item) => item.uid === uid);
 //         const {firstName, lastName } = foundStudent;
@@ -45,23 +44,13 @@ const Payments = () => {
   
   return (
     <WrapPages>
-      {/* <Header /> */}
-    {
-      loading &&
-        <LoadingOverlay>
-          <Spinner
-            as="span"
-            animation="border"
-            role="status"
-            aria-hidden="true"
-          />
-          <span className="sr-only">Carregando os dados...</span>
-        </LoadingOverlay> 
-    }
-    <S.WrapList>
-        <ListPrimary data={registered} navigateOnClick={handleNavegation} />
-    </S.WrapList>
-</WrapPages>
+      <Header />
+      <ListStudents 
+        registered={registered} 
+        loading={loading} 
+        handleNavegation={handleNavegation}
+      /> 
+    </WrapPages>
   )
 }
 
