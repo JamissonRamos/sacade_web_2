@@ -13,7 +13,7 @@ import ConfigurationInstallments from './configuration_installments';
 import GenerateInstallments from './generate_installments';
 import UpdateInsllments from './update_installments';
 import FormUpdateInstallment from './update_installments/plot_history/form_update';
-import PlotHistory from './update_installments/plot_history';
+import PlotHistory from './plot_history';
 import RegisterStudent from './register_student';
 import FormsController from './register_student/forms';
 import ChangePassword from './changePassword'

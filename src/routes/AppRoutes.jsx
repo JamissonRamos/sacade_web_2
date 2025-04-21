@@ -116,7 +116,7 @@ const AppContent = () => {
                                         <Pages.PlotHistory /> 
                                     </ProtectedRoute>
                                 } />
-                                <Route path="/plotHistory/form_update" element={
+                                <Route path="/updateInstallments/formUpdate" element={
                                     <ProtectedRoute page='Payments'>
                                         {/* <Pages.NotificationsMaintenance /> */}
                                         <Pages.FormUpdateInstallment /> 

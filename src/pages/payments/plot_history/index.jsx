@@ -1,8 +1,9 @@
 
-const PlotHistory = () => {
-    return (
-        <div>PlotHistory</div>
-    )
-}
+// const PlotHistory = () => {
+//     return (
+        
+//         <div>PlotHistory</div>
+//     )
+// }
 
-export default PlotHistory
+// export default PlotHistory
