@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const Header = ({fullName, setSelectedFilter, statusCount}) => {
     const [active, setActive] = useState("Tudo");
-    const buttons = ["Tudo", "Em Aberto", "Em Atraso", "Fechado"];
+    const buttons = ["Tudo", "Em Dias", "Em Atraso", "Fechado"];
 
     const handleOnClick = (name) => {
         setActive(name);
@@ -17,7 +17,6 @@ const Header = ({fullName, setSelectedFilter, statusCount}) => {
             <S.WrapText>
                 <TextC.Title level={2}> Histórico de Parcela(s) de <strong> {fullName}  </strong> </TextC.Title>
                 <TextC.Body level={2}> Selecione uma parcela para visualizar seus detalhes. </TextC.Body>
-
             </S.WrapText>
         
             <S.WrapFilter>

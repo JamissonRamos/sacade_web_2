@@ -82,8 +82,7 @@ const PlotHistory = () => {
             navigate('/updateInstallments/formUpdate');        
         }else if(typeForm === 2){
             // Navegação para o update de parcelas    
-           // navigate('/plotHistory/form_update');        
-            console.log('form pagamnoto', id);
+            navigate('/payments/formPayments');        
         }
     }
 

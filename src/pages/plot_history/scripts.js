@@ -12,7 +12,7 @@ const SetStatus = (status, dueDate) => {
     }else if (diffDays > 0) {
         return { bg: "#dc3545", textLabel: "Em Atraso" };
     }else if (diffDays <= 0) {
-        return { bg: "#00A791", textLabel: "Em Aberto" };
+        return { bg: "#00A791", textLabel: "Em Dias" };
     }else{
         return { bg: "#FF7F50", textLabel: "Error" };
     }
