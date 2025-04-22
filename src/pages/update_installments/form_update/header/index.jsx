@@ -1,5 +1,5 @@
 import * as S from "./styled"
-import { TextC } from "../../../../../components/Typography"
+import { TextC } from "../../../../components/Typography"
 
 const Header = () => {
     return (

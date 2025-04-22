@@ -4,17 +4,17 @@ import * as S from "./styled"
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Validations } from '../../../../validations'
-import { ConvertDate, ConvertNumberToCurrency, FormatNumberPercentage, FormattedDate } from "../../scripts";
+import { Validations } from '../../../validations'
+import { ConvertDate, ConvertNumberToCurrency, FormatNumberPercentage, FormattedDate } from "../scripts";
 import { useNavigate } from "react-router-dom";
-import { FormatMoneyNumber, FormatPercentageNumber } from "../../../../configuration_installments/scripts";
-import { useInstallments } from "../../../../../hooks/installments";
+import { FormatMoneyNumber, FormatPercentageNumber } from "../../../configuration_installments/scripts";
+import { useInstallments } from "../../../../hooks/installments";
 
 import Fields from "./fields"
-import { LoadingOverlay } from "../../../../../components/spinner/global/styled";
+import { LoadingOverlay } from "../../../../components/spinner/global/styled";
 import { Spinner } from "react-bootstrap";
 import Buttons from "./buttons";
-import DeleteData from "../../../../../components/alert_delete";
+import DeleteData from "../../../../components/alert_delete";
 
 const Form = ({registered}) => {
     const [showModalDelete, setShowModalDelete] = useState(false); // Status para abrir ou fechar o modal de deletar

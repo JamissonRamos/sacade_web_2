@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Theme } from "../../../../../theme";
+import { Theme } from "../../../../theme";
 
 export const Container = styled.div`
     /* border: 1px solid blue; */

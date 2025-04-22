@@ -33,14 +33,13 @@ const Payments = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
   const handleNavegation = (uid) =>{
     console.log('handleNavegation', uid)
-//         //Recuperar nome compleo to aluno
-//         const foundStudent = registered.find((item) => item.uid === uid);
-//         const {firstName, lastName } = foundStudent;
+    //Recuperar nome compleo to aluno
+    const foundStudent = registered.find((item) => item.uid === uid);
+    const {firstName, lastName } = foundStudent;
 
-//         navigate('/plotHistory', { state: { uid: uid, form: 1, fullName: `${firstName} ${lastName} `} });
+    navigate('/plotHistory', { state: { uid: uid, typeForm: 2, fullName: `${firstName} ${lastName} `} });
   }
   
   return (

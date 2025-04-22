@@ -6,7 +6,7 @@ import {
     ConvertMoneyNumber,
     ConvertPercentageMoney,
     ConvertNumberPercentage
-} from "../../../scripts";
+} from "../../scripts";
 
 import { useEffect, useState } from "react";
 
