@@ -12,12 +12,10 @@ const FormPayments = () => {
     const [parcelData, setParcelData] = useState([]); 
     const [showModal, setShowModal] = useState(false);
 
-
     const handleShowModal = () => { 
         /* Função para abrir e fechar modal */
         setShowModal((prevState) => !prevState);
     };
-
 
     //loading data from localStorage
     useEffect(() => {
@@ -32,8 +30,6 @@ const FormPayments = () => {
 
         setParcelData(dataParcel);
     }, [])
-
-    
 
     return (
         <WrapPages>
@@ -56,7 +52,6 @@ const FormPayments = () => {
                     
                 />
             }
-           
 
         </WrapPages>
     )
