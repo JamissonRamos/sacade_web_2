@@ -2,7 +2,6 @@ import * as S from './styled';
 import { TextC } from '../../../../../components/Typography';
 import { CalculateValueFeesInterest, FormatToCurrency } from '../../../scripts';
 
-
 const Card = (props) => {
     const { data } = props;
     const {dueDate, daysLate, statusLabel, styledComponent, valueInstallment, fees, interestDaily, interestMonthly, interestAnnual } = data[0] || {};
