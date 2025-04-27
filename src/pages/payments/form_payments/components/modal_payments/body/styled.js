@@ -1,10 +1,15 @@
 import styled from "styled-components";
 import { Theme } from "../../../../../../theme";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+    /* border: 1px solid blue; */
+    width: 100%;
+    min-width: 320px;
+`;
 
 export const Form = styled.form`
     /* border: 1px solid blue; */
+    width: 100%;
     min-width: 320px;
     height: 100%;
     & label {

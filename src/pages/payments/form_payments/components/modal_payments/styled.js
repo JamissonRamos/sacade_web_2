@@ -41,7 +41,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
     display: flex;
     flex-direction: column;

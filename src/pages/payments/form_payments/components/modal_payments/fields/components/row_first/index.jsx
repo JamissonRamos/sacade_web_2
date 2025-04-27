@@ -1,18 +1,17 @@
 import { Col, Row, Form } from "react-bootstrap"
 
 const RowFirst = (props) => {
-
-    //const {register, errors, handleChange, handleBlur } = props 
+    const { register, errors } = props
 
     return (
         <Row className="mb-2 px-2 ">
-            <Col lg={4}>
+            <Col md={6} lg={6}>
                 <Form.Group className="p-1" controlId="grouPaymentMethod">
                     <Form.Label className="m-0"> Forma Pagamento *</Form.Label>
                     <Form.Select
                         name='paymentMethod'
-                        // {...register("paymentMethod")}
-                        // isInvalid={!!errors.paymentMethod}
+                        {...register("paymentMethod")}
+                        isInvalid={!!errors.paymentMethod}
                     >
                     <option value="">Selecione Forma Pagamento</option>
                     <option value={1}>Dinheiro</option>
@@ -20,27 +19,21 @@ const RowFirst = (props) => {
                     <option value={3}>Cartão Débito</option>
                     </Form.Select>
                     <Form.Control.Feedback type="invalid">
-                        teste de error
-                        
-                        {/* {errors.paymentMethod && errors.paymentMethod.message} */}
+                        {errors.paymentMethod && errors.paymentMethod.message}
                     </Form.Control.Feedback>
                 </Form.Group>
             </Col>
-            <Col  sm={6} md={6} lg={6}>
-                <Form.Group className="p-1 mb-2" controlId="GroupValueInstallment">
-                    <Form.Label > Valor Parcela * </Form.Label>
-                    <Form.Control 
-                        type="text" 
-                        inputMode="numeric"
-                        name="valueInstallment"
-                        placeholder="Valor da parcela" 
-                        {...register("valueInstallment")}
-                        isInvalid={!!errors.valueInstallment}
-                        onChange={(e) => handleChange(e)}
-                        onBlur={(e) => handleBlur(e)}
+            <Col md={6} lg={6}>
+                <Form.Group className="p-1 mb-2" controlId="groupPaymentDate">
+                    <Form.Label > Data Pagamento * </Form.Label>
+                    <Form.Control   
+                        type="date" 
+                        name="paymentDate"
+                        {...register("paymentDate")}
+                        isInvalid={!!errors.paymentDate }
                     />
                     <Form.Control.Feedback type="invalid">
-                        {errors.valueInstallment && errors.valueInstallment.message}
+                        {errors.paymentDate && errors.paymentDate.message}
                     </Form.Control.Feedback>
                 </Form.Group>
             </Col>

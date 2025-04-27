@@ -8,6 +8,7 @@ import { ResponsibleStudents } from "./responsible_students";
 import { ConfigurationInstallmentsSchema } from "./configuration_installments";
 import { RegisterStudentSchema } from "./register_student";
 import { UpdateInstallmentsSchema } from "./update_installments";
+import { PaymentsSchema } from "./payments";
 
 export const Validations = {
     UserSchema,
@@ -19,7 +20,8 @@ export const Validations = {
     ResponsibleStudents,
     ConfigurationInstallmentsSchema,
     RegisterStudentSchema,
-    UpdateInstallmentsSchema
+    UpdateInstallmentsSchema,
+    PaymentsSchema
     
 
 }
