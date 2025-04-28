@@ -6,8 +6,7 @@ import { useEffect, useState } from 'react'
 const ModalPayments = (props) => {
     const { showModal } = props
     const [registerdData, setRegisterdData] = useState({})
-
-
+    const [valueDiscount, setValueDiscount] = useState(0)
 
     //loading data from localStorage
     useEffect(() => {
@@ -29,9 +28,13 @@ const ModalPayments = (props) => {
     return (
         <S.Container>
             <S.Content>
-                <Header data={registerdData}/> 
+                <Header 
+                    data={registerdData} 
+                    valueDiscount={valueDiscount} 
+                /> 
                 <Body 
                     showModal={showModal}
+                    setValueDiscount={setValueDiscount}
                 />
             </S.Content>
         </S.Container>

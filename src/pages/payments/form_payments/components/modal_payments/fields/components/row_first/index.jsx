@@ -2,7 +2,7 @@ import { Col, Row, Form } from "react-bootstrap"
 
 const RowFirst = (props) => {
     const { register, errors } = props
-
+    
     return (
         <Row className="mb-2 px-2 ">
             <Col md={6} lg={6}>

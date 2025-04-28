@@ -69,20 +69,38 @@ export const CalculateValueFeesInterest  = (valuePercentage, valueInstallment) =
     return valueCalculated
 };
 
-// export const ParseCurrencyToNumber = (currency) => {
-// // Função para converter o valor monetário para número
-//     if(currency === '') return;
-//     if(currency === 0) return;
-//     if(currency === 'R$ NaN') return  "R$ 0,00";
+export const FormatNumberCurrency = (value) => {   
+    /* 
+        - Função para converter em Dinheiro  mais valor como string R$ 0,00;
+    */
+    if(value === 0) return
+    if(value === '') return
+    if(value === undefined) return ;
+
+    // Remove todos os caracteres que não são dígitos
+    const cleanedValue = value.replace(/\D/g, '');
+    const numberValue = parseInt(cleanedValue, 10) / 100; // Divide por 100 para ajustar as casas decimais
+    // Formata o número para o formato de moeda
+    const formattedValue = FormatToCurrency(numberValue);
     
-//     return parseFloat(
-//         currency
-//             .replace("R$", "") // Remove símbolo da moeda
-//             .replace(/\./g, "") // Remove pontos de milhar
-//             .replace(",", ".")  // Troca vírgula decimal por ponto
-//             .trim()
-//     );
-// };
+    return formattedValue
+};
+
+export const ParseCurrencyToNumber = (currency) => {
+// Função para converter o valor monetário para número
+    if(currency === '') return;
+    if(currency === 0) return;
+    if(currency === 'R$ NaN') return  "R$ 0,00";
+    if(currency === undefined) return  "R$ 0,00";
+    
+    return parseFloat(
+        currency
+            .replace("R$", "") // Remove símbolo da moeda
+            .replace(/\./g, "") // Remove pontos de milhar
+            .replace(",", ".")  // Troca vírgula decimal por ponto
+            .trim()
+    );
+};
 
 
 

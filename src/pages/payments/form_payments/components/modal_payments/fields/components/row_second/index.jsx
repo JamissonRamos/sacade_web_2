@@ -1,7 +1,7 @@
 import { Col, Row, Form } from "react-bootstrap"
 
 const RowSecond = (props) => {
-    const {register, errors} = props 
+    const {register, errors, handleChange, handleBlur} = props 
 
     return (
         <Row className="mb-2 px-2 ">
@@ -15,8 +15,8 @@ const RowSecond = (props) => {
                         placeholder="aplicar desconto na parcela" 
                         {...register("installmentDiscount")}
                         isInvalid={!!errors.installmentDiscount}
-                        //onChange={(e) => handleChange(e)}
-                        //onBlur={(e) => handleBlur(e)}
+                        onChange={(e) => handleChange(e)}
+                        onBlur={(e) => handleBlur(e)}
                     />
                     <Form.Control.Feedback type="invalid">
                         {errors.installmentDiscount && errors.installmentDiscount.message}
@@ -33,7 +33,7 @@ const RowSecond = (props) => {
                         placeholder="aplicar Acréscimo na parcela" 
                         {...register("installmentIncrease")}
                         isInvalid={!!errors.installmentIncrease}
-                        //onChange={(e) => handleChange(e)}
+                        onChange={(e) => handleChange(e)}
                         //onBlur={(e) => handleBlur(e)}
                     />
                     <Form.Control.Feedback type="invalid">
