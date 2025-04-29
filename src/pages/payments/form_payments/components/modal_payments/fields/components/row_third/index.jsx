@@ -1,7 +1,7 @@
 import { Col, Row, Form } from "react-bootstrap"
 
 const RowThird = (props) => {
-    const {register, errors} = props 
+    const {register, errors, handleChange, handleBlur} = props 
 
     return (
         <Row className="mb-2 px-2 ">
@@ -15,8 +15,8 @@ const RowThird = (props) => {
                         placeholder="Valor que foi pago" 
                         {...register("amountPaid")}
                         isInvalid={!!errors.amountPaid}
-                        //onChange={(e) => handleChange(e)}
-                        //onBlur={(e) => handleBlur(e)}
+                        onChange={(e) => handleChange(e)}
+                        onBlur={(e) => handleBlur(e)}
                     />
                     <Form.Control.Feedback type="invalid">
                         {errors.amountPaid && errors.amountPaid.message}

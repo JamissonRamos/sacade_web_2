@@ -3,9 +3,8 @@ import RowFirst from "./components/row_first"
 import RowSecond from "./components/row_second"
 import RowThird from "./components/row_third"
 
-
 const Fields = (props) => {
-    const { register, errors, setValue, setValueDiscount  } = props
+    const { register, errors, setValue, setValueDiscount, setValueIncrease, setValuePayments } = props
 
     const applicarMascara = (field, value) => {
         // Função para aplicar a máscara de moeda
@@ -16,21 +15,29 @@ const Fields = (props) => {
         setValue(field, newValue)
     };
 
-    const formatDiscountValueCalculate = (value) => {
-
-        // Função para formatar o valor do desconto
+    const formatCurrencyValueToNumber = (field, value) => {
+        // Função para formatar o valor monetario em number
         if (value === 0) return 0
         if (value === '') return 0
         if (value === 'R$ NaN') return "R$ 0,00";
 
-        console.log('formatDiscountValueCalculate', value);
         const newValue = ParseCurrencyToNumber(value);
-        console.log('newValue', newValue);
         
-        setValueDiscount(newValue);
+        switch (field) {
+            case 'installmentDiscount': 
+                setValueDiscount(newValue);
+                break;
+            case 'installmentIncrease':
+                setValueIncrease(newValue);
+                break;
+            case 'amountPaid':
+                setValuePayments(newValue);
+                break;
+            default:        
+                break;
+        };
     }   
     
-
     const handleChange = (event) => {
         // Função para lidar com a mudança de valor dos campos
         const { name, value } = event.target;
@@ -42,11 +49,13 @@ const Fields = (props) => {
             case 'installmentIncrease':
                 applicarMascara(name, value);
                 break;
+            case 'amountPaid':
+                applicarMascara(name, value);
+                break;
             default:
                 break;
         }
     };
-
 
     const handleBlur = (event) => {
         // Função para lidar com o evento de desfocar (blur) dos campos
@@ -54,11 +63,13 @@ const Fields = (props) => {
 
         switch (name) {
             case 'installmentDiscount':
-                console.log('blur', value);
-                formatDiscountValueCalculate(value)
+                formatCurrencyValueToNumber(name, value)
                 break;
             case 'installmentIncrease':
-                console.log('blur', value);
+                formatCurrencyValueToNumber(name, value)
+                break;
+            case 'amountPaid':
+                formatCurrencyValueToNumber(name, value)
                 break;
             default:
                 break;
@@ -77,10 +88,12 @@ const Fields = (props) => {
                 register={register}
                 handleChange={handleChange}
                 handleBlur={handleBlur}
-            />
+                />
             <RowThird 
                 errors={errors}
                 register={register}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
             />
         </>
     )

@@ -5,7 +5,7 @@ import * as S from './styled'
 import { useForm } from 'react-hook-form'
 import { Validations } from '../../../../../validations'
 const Body = (props) => {
-    const { showModal, setValueDiscount } = props
+    const { showModal, setValueDiscount, setValueIncrease, setValuePayments } = props
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.PaymentsSchema),
@@ -32,6 +32,8 @@ const Body = (props) => {
                     errors={errors}
                     setValue={setValue}
                     setValueDiscount={setValueDiscount}
+                    setValueIncrease={setValueIncrease}
+                    setValuePayments={setValuePayments}
                 />
 
                 <Buttons showModal={showModal}/>

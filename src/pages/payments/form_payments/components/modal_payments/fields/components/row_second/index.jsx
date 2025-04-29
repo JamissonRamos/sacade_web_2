@@ -34,7 +34,7 @@ const RowSecond = (props) => {
                         {...register("installmentIncrease")}
                         isInvalid={!!errors.installmentIncrease}
                         onChange={(e) => handleChange(e)}
-                        //onBlur={(e) => handleBlur(e)}
+                        onBlur={(e) => handleBlur(e)}
                     />
                     <Form.Control.Feedback type="invalid">
                         {errors.installmentIncrease && errors.installmentIncrease.message}

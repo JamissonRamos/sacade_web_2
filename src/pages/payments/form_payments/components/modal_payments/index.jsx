@@ -6,7 +6,11 @@ import { useEffect, useState } from 'react'
 const ModalPayments = (props) => {
     const { showModal } = props
     const [registerdData, setRegisterdData] = useState({})
-    const [valueDiscount, setValueDiscount] = useState(0)
+    //Esses 2 states é para receber o valor digitado e passsar para o header da page
+    const [valueDiscount, setValueDiscount] = useState(0)// Recebe o valor de desconto na parcela
+    const [valueIncrease, setValueIncrease] = useState(0) //Recebe o valor de acrescimo na parcela
+    const [valuePayments, setValuePayments] = useState(0) //Receber o Valor pago
+    const [statusPayments, setStatusPayments] = useState(false) //True se parcela foi quitada
 
     //loading data from localStorage
     useEffect(() => {
@@ -24,6 +28,8 @@ const ModalPayments = (props) => {
         }
     }, [])
 
+    // console.log('valuePayments', valuePayments);
+    // console.log('statusPayments', statusPayments);
     
     return (
         <S.Container>
@@ -31,10 +37,15 @@ const ModalPayments = (props) => {
                 <Header 
                     data={registerdData} 
                     valueDiscount={valueDiscount} 
+                    valueIncrease={valueIncrease} 
+                    valuePayments={valuePayments} 
+                    setStatusPayments={setStatusPayments} 
                 /> 
                 <Body 
                     showModal={showModal}
                     setValueDiscount={setValueDiscount}
+                    setValueIncrease={setValueIncrease}
+                    setValuePayments={setValuePayments}
                 />
             </S.Content>
         </S.Container>
