@@ -29,7 +29,7 @@ const ModalPayments = (props) => {
     }, [])
 
     // console.log('valuePayments', valuePayments);
-    // console.log('statusPayments', statusPayments);
+    //console.log('statusPayments', statusPayments);
     
     return (
         <S.Container>
@@ -46,6 +46,7 @@ const ModalPayments = (props) => {
                     setValueDiscount={setValueDiscount}
                     setValueIncrease={setValueIncrease}
                     setValuePayments={setValuePayments}
+                    statusPayments={statusPayments}
                 />
             </S.Content>
         </S.Container>

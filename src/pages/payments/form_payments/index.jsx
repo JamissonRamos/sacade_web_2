@@ -74,7 +74,6 @@ const FormPayments = () => {
                     
                 />
             }
-
         </WrapPages>
     )
 }

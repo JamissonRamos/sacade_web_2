@@ -7,6 +7,8 @@ const Header = ({data, valueDiscount, valueIncrease, valuePayments, setStatusPay
     const [valueParcel, setValueParcel] = useState(0);
     const [formattedDiscountValue, setFormattedDiscountValue] = useState(valueDiscount);
     const [formattedIncreaseValue, setFormattedIncreaseValue] = useState(valueIncrease);
+    const [formattedPaymentsValue, setFormattedPaymentsValue] = useState(valuePayments);
+    const [msgStatusParcel, setMsgStatusParcel] = useState('');
 
     const { formattedSubTotal, formattedTotalCalculated, formattedValueInstallment
     } = data
@@ -35,23 +37,32 @@ const Header = ({data, valueDiscount, valueIncrease, valuePayments, setStatusPay
         }
     }, [])
 
-    //Veriifcar se parcela foi pago
+    //Verificar as depedencias e ajusta o status da parcela
     useEffect(() =>{
-        console.log('Foi pago o valor de ', valuePayments);
+        setFormattedPaymentsValue(FormatToCurrency(valuePayments))
         const valueSubTotal = ParseCurrencyToNumber(valueParcel) 
-        console.log('Valor da parcela', valueSubTotal);
-        
-        
+
         const calculatePaymentAmountInstallmentAmount = valueSubTotal - valuePayments
 
-        console.log('Valor da parcela', calculatePaymentAmountInstallmentAmount);
-        
-        
+        if(calculatePaymentAmountInstallmentAmount > 0){
+            //Parcela em Aberto
+            setStatusPayments(false)
+            setMsgStatusParcel(
+                {status: false, msg:'A parcela ainda continua em aberto.'}
+            )
+        }else{
+            //Parcela Fechada
+            setStatusPayments(true)
+            setMsgStatusParcel(
+                {status: true, msg:'A parcela foi quitada.'}
+            )
+        }
+
     }, [valuePayments, valueParcel])
 
     return (
         <S.Container>
-            <TextC.Display level={1} >Pagar Parcela</TextC.Display>
+            <TextC.Display level={1}>Pagar Parcela</TextC.Display>
             <TextC.Body level={2} >Abaixo estão os dados da parcela.</TextC.Body>
             
             <S.WrapDataParcel>
@@ -90,10 +101,28 @@ const Header = ({data, valueDiscount, valueIncrease, valuePayments, setStatusPay
                 }
                 
                 <S.WrapField>
-                    <TextC.Body level={2} >Total a ser pago:</TextC.Body>
+                    <TextC.Body level={2} >Total a Ser Pago:</TextC.Body>
                     <TextC.Body level={2} >{valueParcel}</TextC.Body>
                 </S.WrapField>
+
+                {
+                    valuePayments > 0
+                    ?
+                        <S.WrapField>
+                            <TextC.Body level={2} >Valor Pago:</TextC.Body>
+                            <TextC.Body level={2} >{formattedPaymentsValue}</TextC.Body>
+                        </S.WrapField>
+
+                    :   null
+                }
             </S.WrapDataParcel>
+            {
+                valuePayments > 0 &&
+                <S.WrapStatusParcel $bg={msgStatusParcel.status}>
+                    <TextC.Body level={2}>{msgStatusParcel.msg}</TextC.Body>
+                </S.WrapStatusParcel>
+            }
+
         </S.Container>
     )
 }

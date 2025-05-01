@@ -4,14 +4,13 @@ import { Theme } from "../../../../../theme";
 export const Container = styled.div`
     width: 100%;
     min-width: 320px;
-    max-width: 900px;
-    max-height: 80vh;
+    max-width: 800px;
+    max-height: 90vh;
     position: fixed;
     top: 40vh;
-    left: 50%;
-    /* left: calc(240px); */
+    left: 56%;
     transform: translate(-350px, -40%);
-    padding: .8rem;
+    padding: .4rem;
     background: ${Theme.Colors.white800};
     box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
     z-index: 10;
@@ -27,16 +26,29 @@ export const Container = styled.div`
         }
     }
     @media (max-width: 1024px) {
-        width: 70%;
-        transform: translate(-200px, -40%);
+        width: 80%;
+        transform: translate(-368px, -40%);
     }
     @media (max-width: 768px) {
-        width: 80%;
-        transform: translate(-280px, -30%);
+        width: 84%;
+        max-height: 80vh;
+        transform: translate(-320px, -40%);
+    }
+    @media (max-width: 600px) {
+        width: 74%;
+        transform: translate(-180px, -40%);
     }
     @media (max-width: 425px) {
-        width: 95%;
-        transform: translate(-10px, -40%);
+        width: 84%;
+        max-height: 70vh;
+        transform: translate(-180px, -40%);
+    }
+    @media (max-width: 400px) {
+        width: 100%;
+        max-height: 100vh;
+        top: 0;
+        left: 0;
+        transform: translate(0, 0);
     }
 `;
 
@@ -46,4 +58,9 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0 .4rem;
+    margin-bottom: 1rem;
+    @media (max-width: 400px) {
+        padding: 0;
+    }
 `;

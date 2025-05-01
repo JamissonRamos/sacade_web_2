@@ -2,9 +2,11 @@ import styled from "styled-components";
 import { Theme } from "../../../../../../theme";
 
 export const Container = styled.div`
-    /* border: 1px solid blue; */
+    /* border: 1px solid red; */
     width: 100%;
     min-width: 320px;
+    /* padding: 0 .4rem ; */
+    
 `;
 
 export const Form = styled.form`
@@ -20,14 +22,6 @@ export const Form = styled.form`
         letter-spacing: 0.5px;
         line-height: 1.5;
         color: ${Theme.Colors.green800};
-        & .valueInterestRate {
-            margin-left: 8px;
-            font-size: 1em;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            line-height: 1.5;
-            color: ${Theme.Colors.blue2900};
-        }
     }
     & input:focus, .input-group input:focus,  select:focus {
         border-color: ${Theme.Colors.green800};

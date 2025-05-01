@@ -23,6 +23,9 @@ const StyledButton = css`
     & svg {
         font-size: 1.2rem;
     }
+    @media (max-width: 768px) {
+        width: 80%;
+    }
 `;
 
 export const Container = styled.div`
@@ -31,7 +34,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     gap: .8rem;
-    padding: .2rem;
+    padding: .2rem 0;
 `;
 
 export const WrapButtonUpdateCancel = styled.div`
@@ -44,7 +47,10 @@ export const WrapButtonUpdateCancel = styled.div`
     & button {
         ${StyledButton};
     }
+  
     @media (max-width: 425px) {
+        width: 100%;
         justify-content: center;
+        flex-direction: column;
     }
 `;

@@ -23,7 +23,11 @@ export const WrapDataParcel = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column; 
-    gap: .4rem;
+    gap: .6rem;
+    padding: .4rem .8rem;
+    background-color: ${Theme.Colors.grey100};
+    border-left: 4px solid ${Theme.Colors.blue400};
+    border-radius: 4px;
 `;
 
 export const WrapField = styled.div`
@@ -31,12 +35,22 @@ export const WrapField = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: .4rem;
-    padding: .2rem .4rem;
-    border-left: 4px solid ${Theme.Colors.blue400};
-    background-color: ${Theme.Colors.grey100};
     & span{
         color: ${Theme.Colors.grey600} !important;
+        font-weight: 500;
+    }
+`;
+export const WrapStatusParcel = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: .2rem .4rem;
+    border-left: 4px solid ${(props) => (props.$bg ? Theme.Colors.green800 : Theme.Colors.red800)};
+    background-color: ${(props) => (props.$bg ? Theme.Colors.green700 : Theme.Colors.red400)};
+    border-radius: 4px;
+    & span{
+        color: ${Theme.Colors.grey800} !important;
         font-weight: 500;
     }
 `;

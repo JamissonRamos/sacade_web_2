@@ -5,20 +5,24 @@ import * as S from './styled'
 import { useForm } from 'react-hook-form'
 import { Validations } from '../../../../../validations'
 const Body = (props) => {
-    const { showModal, setValueDiscount, setValueIncrease, setValuePayments } = props
+    const { showModal, setValueDiscount, setValueIncrease, setValuePayments, statusPayments } = props
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.PaymentsSchema),
         defaultValues: {
             paymentDate: new Date().toISOString().split('T')[0],
-            installmentDiscount: 0,
-            installmentIncrease: 0,
-            amountPaid: 0,
+            installmentDiscount: 'R$ 0,00',
+            installmentIncrease: 'R$ 0,00',
+            amountPaid: 'R$ 0,00',
         }
     });
 
     const onSubmit = (data) => {    
+        // 1 passar para o pagamento o uid da parcela
         console.log(data)
+        //Mudar status da entidade de parcela se quitado ou não 
+        console.log('statusPayments', statusPayments);
+        
 
     }
 
