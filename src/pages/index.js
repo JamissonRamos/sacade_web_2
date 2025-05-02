@@ -9,7 +9,8 @@ import ResponsibleList from './responsible_students/responsibleList';
 import FormCreateResponsible from './responsible_students/responsibleList/forms/create';
 import FormUpdateResponsible from './responsible_students/responsibleList/forms/update';
 import Payments from './payments';
-import FormPayments from './payments/form_payments';
+//import FormPayments from './payments/form_payments';
+import PaymentsForm from './payments_form';
 import ConfigurationInstallments from './configuration_installments';
 import GenerateInstallments from './generate_installments';
 import UpdateInsllments from './update_installments';
@@ -48,7 +49,8 @@ export const Pages = {
     FormCreateResponsible,
     FormUpdateResponsible,
     Payments,
-    FormPayments,
+    //FormPayments,
+    PaymentsForm,
     ConfigurationInstallments,
     GenerateInstallments,
     UpdateInsllments,

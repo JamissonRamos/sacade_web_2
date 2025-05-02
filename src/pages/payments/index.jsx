@@ -34,7 +34,7 @@ const Payments = () => {
   }, []);
 
   const handleNavegation = (uid) =>{
-    console.log('handleNavegation', uid)
+
     //Recuperar nome compleo to aluno
     const foundStudent = registered.find((item) => item.uid === uid);
     const {firstName, lastName } = foundStudent;
