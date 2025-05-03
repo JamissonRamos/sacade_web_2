@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { WrapPages } from '../../components/Wrappe/pages'
 import Header from './header'
 import Card from './card';
-import { Button } from 'react-bootstrap';
+import Body from './body';
 
 const PaymentsForm = () => {
     const [parcelData, setParcelData] = useState([]); 
@@ -29,20 +29,7 @@ const PaymentsForm = () => {
         <WrapPages>
             <Header />
             <Card data={parcelData} />
-            
-            <Button>pagar</Button>
-
-            <hr />
-            <h3>Pagamentos Feitos</h3>
-
-            <ul>
-                <li>data</li>
-                <li>Forma Pagamento</li>
-                <li>Acrescimos</li>
-                <li>Descontos</li>
-                <li>Valor Pago</li>
-            </ul>
-
+            <Body />
 
         </WrapPages>
     )
