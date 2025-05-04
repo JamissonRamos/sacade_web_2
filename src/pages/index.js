@@ -11,6 +11,7 @@ import FormUpdateResponsible from './responsible_students/responsibleList/forms/
 import Payments from './payments';
 //import FormPayments from './payments/form_payments';
 import PaymentsForm from './payments_form';
+import FormPay from './payments_form/form';
 import ConfigurationInstallments from './configuration_installments';
 import GenerateInstallments from './generate_installments';
 import UpdateInsllments from './update_installments';
@@ -51,6 +52,7 @@ export const Pages = {
     Payments,
     //FormPayments,
     PaymentsForm,
+    FormPay,
     ConfigurationInstallments,
     GenerateInstallments,
     UpdateInsllments,

@@ -17,13 +17,9 @@ const PaymentsForm = () => {
             console.log('parcelData vazio, Alguma coisa errada aconteceu');
             return
         }
-
         setParcelData(dataParcel);
-        
     }, [])
 
-    console.log('parcelData', parcelData);
-    
     return (
 
         <WrapPages>

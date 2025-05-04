@@ -7,7 +7,7 @@ const styledButton = css`
     align-items: center;
     justify-content: center;
     gap: .4rem;
-    padding: .6rem 1rem;
+    padding: .4rem 1rem;
     border-radius: 5px;
     border: none;
     cursor: pointer;
@@ -27,6 +27,23 @@ const styledButton = css`
     &:hover {
             transform: scale(1.02);
     }
+    @media (max-width: 768px) {
+        padding: .4rem .8rem;
+        & span{
+            font-size: .8em;
+        }
+    }
+    @media (max-width: 425px) {
+        padding: .2rem .6rem;
+        & span{
+            font-size: .7em;
+        }
+    }
+    @media (max-width: 375px) {
+        & span{
+            font-size: .8em;
+        }
+    }
 `;
 
 const styledOutline = css`
@@ -45,7 +62,6 @@ const styledOutline = css`
         & svg{
             color: ${Theme.Colors.white800};
         }
-        transform: scale(1.02);
     }
 
 `;
@@ -70,10 +86,16 @@ export const WrapButtons = styled.div`
     align-items: center;
     justify-content: space-between;
     
-    @media (max-width: 768px) {
+    @media (max-width: 520px) {
         flex-direction: column;
-        gap: 1rem;
+        gap: 1rem; 
         padding: .2rem 0;
+    }
+    @media (max-width: 425px) {
+        flex-direction: row;
+    }
+    @media (max-width: 375px) {
+        flex-direction: column;
     }
 `;
 

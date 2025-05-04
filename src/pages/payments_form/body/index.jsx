@@ -1,6 +1,6 @@
 import * as S from './styled'
 import { useNavigate } from 'react-router-dom';
-import Buttons from './components/buttons';
+import WrepButtons  from './components/buttons';
 import ListPay from './components/listPay';
 
 const Body = () => {
@@ -11,7 +11,10 @@ const Body = () => {
         navigation(-1);
     }
     const buttonPay = () => {
-        console.log('clicou no botão pay');
+        navigation('/paymentsForm/form/create');
+    }
+    const buttonUpdate = () => {
+        navigation('/paymentsForm/form/update');
     }
 
     //Função para volta a lista de parcela mais tamebm limpar o local storage
@@ -25,6 +28,9 @@ const Body = () => {
             case 'pay':
                 buttonPay();
                 break;
+            case 'update':
+                buttonUpdate();
+                break;
             default:
                 console.log('Algo saiu errado');
                 break;
@@ -33,10 +39,12 @@ const Body = () => {
 
     return (
         <S.Container>
-            <Buttons 
+            <WrepButtons 
                 clickButton={handleClickButton}
             />
-            <ListPay /> 
+            <ListPay 
+                clickButton={handleClickButton}
+            /> 
         </S.Container>
     )
 }

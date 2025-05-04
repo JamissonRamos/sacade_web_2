@@ -3,8 +3,8 @@ import * as S from './styled'
 import { Theme } from '../../../../../theme';
 import { TextC } from '../../../../../components/Typography';
 
-const Buttons = (props) => {
-    const {clickButton} = props;
+const WrepButtons = ({clickButton}) => {
+
 
     return (
         <S.Container>
@@ -35,4 +35,4 @@ const Buttons = (props) => {
     )
 }
 
-export default Buttons
+export default WrepButtons

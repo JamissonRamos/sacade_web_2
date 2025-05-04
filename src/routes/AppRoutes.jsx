@@ -98,6 +98,12 @@ const AppContent = () => {
                                         <Pages.PaymentsForm /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/paymentsForm/form/:typeForm?" element={
+                                    <ProtectedRoute page='Payments'>
+                                        {/* <Pages.NotificationsMaintenance /> */}
+                                        <Pages.FormPay /> 
+                                    </ProtectedRoute>
+                                } />
                                 <Route path="/configurationInstallments" element={
                                     <ProtectedRoute page='Payments'>
                                         <Pages.ConfigurationInstallments /> 

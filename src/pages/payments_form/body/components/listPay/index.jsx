@@ -1,6 +1,6 @@
 import * as S from './styled'
 
-const ListPay = () => {
+const ListPay = ({clickButton}) => {
     return (
         <S.Container>  
             <hr />
@@ -13,6 +13,13 @@ const ListPay = () => {
                 <li>Acrescimos</li>
                 <li>Descontos</li>
                 <li>Valor Pago</li>
+                {/* Ajusta possição do botão coloquei so para ver como fica a logica do botão */}
+                <li>
+                    <button
+                        name='update'
+                        onClick={clickButton}
+                    >Editar</button>
+                </li>
             </ul>
         </S.Container>
     )
