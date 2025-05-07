@@ -34,7 +34,7 @@ export const MenuItem = [
         subNav: [
             {
                 title: 'Pagar Parcelas',
-                path: '/payments',
+                path: '/monthlyFees',
                 icon: <Theme.Icons.MdAttachMoney/>
             },
             {

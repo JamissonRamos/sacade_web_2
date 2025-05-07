@@ -86,24 +86,21 @@ const AppContent = () => {
                                     // </ProtectedRoute>
                                 } />
 
-                                <Route path="/payments" element={
-                                    <ProtectedRoute page='Payments'>
+
+                                <Route path="/monthlyFees" element={
+                                    <ProtectedRoute page='MonthlyFees'>
                                         {/* <Pages.NotificationsMaintenance /> */}
-                                        <Pages.Payments /> 
+                                        <Pages.MonthlyFees /> 
                                     </ProtectedRoute>
                                 } />
-                                <Route path="/paymentsForm" element={
-                                    <ProtectedRoute page='Payments'>
+                                <Route path="/monthlyFeeDetails" element={
+                                    <ProtectedRoute page='MonthlyFees'>
                                         {/* <Pages.NotificationsMaintenance /> */}
-                                        <Pages.PaymentsForm /> 
+                                        <Pages.MonthlyFeeDetails /> 
                                     </ProtectedRoute>
                                 } />
-                                <Route path="/paymentsForm/form/:typeForm?" element={
-                                    <ProtectedRoute page='Payments'>
-                                        {/* <Pages.NotificationsMaintenance /> */}
-                                        <Pages.FormPay /> 
-                                    </ProtectedRoute>
-                                } />
+
+
                                 <Route path="/configurationInstallments" element={
                                     <ProtectedRoute page='Payments'>
                                         <Pages.ConfigurationInstallments /> 

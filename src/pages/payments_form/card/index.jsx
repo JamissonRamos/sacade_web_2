@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { CalculateValueFeesInterest, FormatToCurrency } from '../scripts';
 
 const Card = (props) => {
-    
+
     const { data } = props;
     const {dueDate, daysLate, statusLabel, styledComponent, valueInstallment, fees, interestDaily, interestMonthly, interestAnnual } = data[0] || {};
 
@@ -28,13 +28,11 @@ const Card = (props) => {
             formattedTotalCalculated,
             formattedSubTotal
         };
-        console.log('valueFormatted', valueFormatted);
-
         localStorage.setItem('cardParcelData', JSON.stringify(valueFormatted));
 
-        return(()=>{
-            localStorage.removeItem('cardParcelData')
-        })
+        // return(()=>{
+        //     localStorage.removeItem('cardParcelData')
+        // })
 
     }, [formattedSubTotal, formattedTotalCalculated, formattedValueInstallment]);
 
@@ -43,9 +41,9 @@ const Card = (props) => {
             <S.Card $BorderColor={styledComponent}>
                 <S.CardHeader>
                     <S.WrapDate $fontColor={styledComponent}>
-                        <TextC.Title level={1}> {dueDate} </TextC.Title> 
+                        <TextC.Title level={1}> {dueDate} </TextC.Title>
                     </S.WrapDate>
-            
+
                     <S.WrapStatus $bgColor={styledComponent}>
                         {
                             daysLate > 0 &&
@@ -54,7 +52,7 @@ const Card = (props) => {
                                 </S.WrapDaysLate>
                         }
                         <TextC.Body> {statusLabel} </TextC.Body>
-                    </S.WrapStatus> 
+                    </S.WrapStatus>
                 </S.CardHeader>
 
                 <S.CardBody>
@@ -62,7 +60,7 @@ const Card = (props) => {
                         {
                             daysLate > 0 && fees > 0 &&
                                 <S.WrapInterestRates >
-                                    <TextC.Body level={2}>Multa e Juros</TextC.Body>
+                                    <TextC.Body level={2}>Multa e Juros2</TextC.Body>
                                     <TextC.Body level={2}>{formattedTotalCalculated}</TextC.Body>
                                 </S.WrapInterestRates>
                         }

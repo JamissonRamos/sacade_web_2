@@ -8,10 +8,18 @@ import ResponsibleStudents from './responsible_students';
 import ResponsibleList from './responsible_students/responsibleList';
 import FormCreateResponsible from './responsible_students/responsibleList/forms/create';
 import FormUpdateResponsible from './responsible_students/responsibleList/forms/update';
-import Payments from './payments';
+
+import MonthlyFees from './monthly_fees';
+import MonthlyFeeDetails from './monthly_fee_details';
+
+
+/* ----------- pagar os pay ---------- */
+//import Payments from './payments';
 //import FormPayments from './payments/form_payments';
-import PaymentsForm from './payments_form';
-import FormPay from './payments_form/form';
+//import PaymentsForm from './payments_form';
+//import FormPay from './payments_form/form';
+/* ----------- pagar os pay ---------- */
+
 import ConfigurationInstallments from './configuration_installments';
 import GenerateInstallments from './generate_installments';
 import UpdateInsllments from './update_installments';
@@ -49,10 +57,17 @@ export const Pages = {
     ResponsibleList,
     FormCreateResponsible,
     FormUpdateResponsible,
-    Payments,
+    
+    /* ----------- pagar os pay ---------- */
+    //Payments,
     //FormPayments,
-    PaymentsForm,
-    FormPay,
+    //PaymentsForm,
+    //FormPay,
+    /* ----------- pagar os pay ---------- */
+
+    MonthlyFees,
+    MonthlyFeeDetails,
+    
     ConfigurationInstallments,
     GenerateInstallments,
     UpdateInsllments,
