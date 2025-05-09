@@ -43,6 +43,7 @@ import SplashScreen from './splash_screen';
 import CardListRegisterStudents from './register_student/cardListRegisterStudents';
 import StatusStudents from './status_students';
 import Helps from './helps';
+import MonthlyPayment from './monthly_payment';
 
 
 
@@ -67,6 +68,7 @@ export const Pages = {
 
     MonthlyFees,
     MonthlyFeeDetails,
+    MonthlyPayment,
     
     ConfigurationInstallments,
     GenerateInstallments,

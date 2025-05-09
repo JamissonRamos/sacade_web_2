@@ -30,6 +30,10 @@ const MonthlyFees = () => {
       }
       fetch();
 
+      //Limpar o local storage ao renderizar o component
+      localStorage.removeItem('cardParcelData');
+      localStorage.removeItem('parcelData');
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

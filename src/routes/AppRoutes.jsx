@@ -99,6 +99,13 @@ const AppContent = () => {
                                         <Pages.MonthlyFeeDetails /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/monthlyPayment/:idForm?" element={
+                                    /* 1 = Create; 2 = Update */
+                                    <ProtectedRoute page='MonthlyFees'>
+                                        {/* <Pages.NotificationsMaintenance /> */}
+                                        <Pages.MonthlyPayment /> 
+                                    </ProtectedRoute>
+                                } />
 
 
                                 <Route path="/configurationInstallments" element={
