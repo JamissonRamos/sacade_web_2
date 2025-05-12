@@ -24,13 +24,14 @@ const CardMonthlyFee = (props) => {
     // Salva no localStorage sempre que os dados mudam
     useEffect(() => {
         const valueFormatted = {
-            formattedValueInstallment,
-            formattedTotalCalculated,
-            formattedSubTotal
+            valueInstallment, //formattedValueInstallment,
+            totalCalculated, //formattedTotalCalculated,
+            subTotal //formattedSubTotal
         };
         localStorage.setItem('cardParcelData', JSON.stringify(valueFormatted));
 
-    }, [formattedSubTotal, formattedTotalCalculated, formattedValueInstallment]);
+    //}, [formattedSubTotal, formattedTotalCalculated, formattedValueInstallment]);
+    }, [subTotal, totalCalculated, valueInstallment]);
 
     return (
         <S.Container>

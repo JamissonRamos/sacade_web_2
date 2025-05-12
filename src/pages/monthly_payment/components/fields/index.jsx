@@ -23,7 +23,7 @@ const Fields = (props) => {
         return newValue
     };
 
-    const formatCurrencyValueToNumber = (field, value) => {
+    const formatCurrencyValueToNumber = (value) => {
         // Função para formatar o valor monetario em number
         if (value === 0) return "R$ 0,00";
         if (value === '') return "R$ 0,00";
@@ -31,39 +31,14 @@ const Fields = (props) => {
             
         const newValue = ParseCurrencyToNumber(value);
 
-        switch (field) {
-            case 'installmentDiscount': 
-                setValueDiscount(newValue);
-                break;
-            case 'installmentIncrease':
-                setValueIncrease(newValue);
-                break;
-            case 'amountPaid':
-                setValuePayments(newValue);
-                break;
-            default:        
-                break;
-        };
+        return newValue;
     }   
     
     const handleChange = (event) => {
         // Função para lidar com a mudança de valor dos campos
         const { name, value } = event.target;
         let newValue;
-
-        switch (name) {
-            case 'installmentDiscount':
-                newValue = applicarMascara( value);
-                break;
-            case 'installmentIncrease':
-                newValue = applicarMascara( value);
-                break;
-            case 'amountPaid':
-                newValue = applicarMascara( value);
-                break;
-            default:
-                break;
-        }
+        newValue = applicarMascara(value);
         setValue(name, newValue)
     };
 
@@ -71,19 +46,21 @@ const Fields = (props) => {
         // Função para lidar com o evento de desfocar (blur) dos campos
         const { name, value } = event.target;
 
+        const result = formatCurrencyValueToNumber(value);
+
         switch (name) {
-            case 'installmentDiscount':
-                formatCurrencyValueToNumber(name, value)
+            case 'installmentDiscount': 
+                setValueDiscount(result);
                 break;
             case 'installmentIncrease':
-                formatCurrencyValueToNumber(name, value)
+                setValueIncrease(result);
                 break;
             case 'amountPaid':
-                formatCurrencyValueToNumber(name, value)
+                setValuePayments(result);
                 break;
-            default:
+            default:        
                 break;
-        }
+        };
     }
 
     return (

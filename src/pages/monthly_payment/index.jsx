@@ -9,8 +9,13 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../validations';
 import WrapButtons from './components/buttons';
+import { useEffect, useState } from 'react';
 
 const MonthlyPayment = () => {
+    const [valueDiscount, setValueDiscount] = useState(0); // Recebe o valor de desconto na parcela
+    const [valueIncrease, setValueIncrease] = useState(0); // Recebe o valor de acrecimo na parcela
+    const [valuePayments, setValuePayments] = useState(0); // Recebe o valor de pagamento na parcela
+
     const { idForm } = useParams() || {}; 
 
     /* 
@@ -18,8 +23,8 @@ const MonthlyPayment = () => {
         - Controle do form
             * useEffetc para selecionar o form a ser alterado;
         - Função de Busca dados ja cadastrado caso o form seja update;
-    
     */
+
     //Validaçoes dos Campos;
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.PaymentsSchema),
@@ -31,6 +36,10 @@ const MonthlyPayment = () => {
         }
     });
 
+
+    //console.log('valueDiscount', valueDiscount);
+    //console.log('getValues', getValues('installmentDiscount'));
+    
 
     
     return (
@@ -44,6 +53,10 @@ const MonthlyPayment = () => {
                         ?   <FormCreate 
                                 register = {register}
                                 errors = {errors}
+                                setValue = {setValue}
+                                setValueDiscount = {setValueDiscount}
+                                setValueIncrease = {setValueIncrease}
+                                setValuePayments = {setValuePayments}
                             /> 
                         :   <FormUpdate 
                                 register = {register}
@@ -55,7 +68,11 @@ const MonthlyPayment = () => {
                 </S.Form>
 
                 {/* Passar vores dos campo de acresimo e descontos */}
-                <Footer />
+                <Footer
+                    valueDiscount={valueDiscount}
+                    valueIncrease={valueIncrease}
+                    valuePayments={valuePayments}
+                />
             </S.Content>
         </WrapPages>
     )
