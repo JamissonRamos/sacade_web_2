@@ -6,11 +6,11 @@ import { FormatToCurrency } from '../scripts';
 const Footer = (props) => {
     const { valueDiscount, valueIncrease, valuePayments } = props;
 
-    const [currentInstallmentValue, setCurrentInstallmentValue] = useState('R$ 0,00'); //Valor da Parcela Atual
-    const [totalInterestRatesCurrent, setTotalInterestRatesCurrent] = useState('R$ 0,00'); // Juros e Taxas Caculadas
-    const [currentValueDiscount, setCurrentValueDiscount] = useState('R$ 0,00'); //Valor de Desconto 
-    const [currentValueIncrease, setCurrentValueIncrease] = useState('R$ 0,00'); // Valor de Acresimo 
-    const [subTotal, setSubTotal] = useState('R$ 0,00');
+    const [currentInstallmentValue, setCurrentInstallmentValue] = useState(0); //Valor da Parcela Atual
+    const [totalInterestRatesCurrent, setTotalInterestRatesCurrent] = useState(0); // Juros e Taxas Caculadas
+    const [currentValueDiscount, setCurrentValueDiscount] = useState(0); //Valor de Desconto 
+    const [currentValueIncrease, setCurrentValueIncrease] = useState(0); // Valor de Acresimo 
+    const [subTotal, setSubTotal] = useState(0);
 
 
     //Recuperar dados do localStorage
@@ -26,9 +26,6 @@ const Footer = (props) => {
 
         const {subTotal, totalCalculated, valueInstallment } = formattedDataParcel;
 
-        setCurrentInstallmentValue(valueInstallment);
-        setTotalInterestRatesCurrent(totalCalculated);
-        setSubTotal(subTotal);
     }, [])
 
     //Validar dados a ser prenchdo
@@ -37,14 +34,11 @@ const Footer = (props) => {
         const formatValue = () => {
             setCurrentValueDiscount(valueDiscount);
             setCurrentValueIncrease(valueIncrease);
-
-
         }
         formatValue();
 
     }, [valueDiscount, valueIncrease]);
     
-
     
     return (
         <S.Container>
