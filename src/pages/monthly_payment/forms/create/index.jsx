@@ -14,6 +14,7 @@ const FormCreate = (props) => {
                 setValueDiscount = {setValueDiscount}
                 setValueIncrease = {setValueIncrease}
                 setValuePayments = {setValuePayments}
+
             />
         </div>
     )

@@ -5,6 +5,7 @@ export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     display: flex;
+    flex-direction: column;
     gap: .6rem;
     margin-top: 1rem;
     overflow: visible;
@@ -30,5 +31,27 @@ export const WrapField = styled.div`
     & span{
         color: ${Theme.Colors.grey600} !important;
         font-weight: 500;
+    }
+`;
+
+export const WrapNotice = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+`;
+
+export const WrapText = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    padding: .2rem .8rem;
+    background-color: ${ Theme.Colors.red400};
+    border-radius: 4px;
+    & span {
+        font-weight: 500;
+        letter-spacing: .8px;
+        color: ${Theme.Colors.red700};
     }
 `;

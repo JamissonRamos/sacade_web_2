@@ -15,6 +15,7 @@ const MonthlyPayment = () => {
     const [valueDiscount, setValueDiscount] = useState(0); // Recebe o valor de desconto na parcela
     const [valueIncrease, setValueIncrease] = useState(0); // Recebe o valor de acrecimo na parcela
     const [valuePayments, setValuePayments] = useState(0); // Recebe o valor de pagamento na parcela
+    const [blockPaymentProcess, setBlockPaymentProcess] = useState(false) //Bloquear btn de pagar parcela caso alguma regra não seja atendida
 
     const { idForm } = useParams() || {}; 
 
@@ -37,11 +38,6 @@ const MonthlyPayment = () => {
     });
 
 
-    //console.log('valueDiscount', valueDiscount);
-    //console.log('getValues', getValues('installmentDiscount'));
-    
-
-    
     return (
         <WrapPages>
             <S.Content>
@@ -64,7 +60,10 @@ const MonthlyPayment = () => {
                             />
                     }
 
-                    <WrapButtons idForm={Number(idForm)}/>
+                    <WrapButtons 
+                        idForm={Number(idForm)}
+                        blockPaymentProcess = {blockPaymentProcess}
+                    />
                 </S.Form>
 
                 {/* Passar vores dos campo de acresimo e descontos */}
@@ -72,6 +71,7 @@ const MonthlyPayment = () => {
                     valueDiscount={valueDiscount}
                     valueIncrease={valueIncrease}
                     valuePayments={valuePayments}
+                    setBlockPaymentProcess={setBlockPaymentProcess}
                 />
             </S.Content>
         </WrapPages>

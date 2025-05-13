@@ -4,17 +4,17 @@ import { TextC } from '../../../components/Typography';
 import { FormatToCurrency } from '../scripts';
 
 const Footer = (props) => {
-    const { valueDiscount, valueIncrease, valuePayments } = props;
+    const { valueDiscount, valueIncrease, valuePayments, setBlockPaymentProcess } = props;
 
-    const [currentInstallmentValue, setCurrentInstallmentValue] = useState(0); //Valor da Parcela Atual
-    const [totalInterestRatesCurrent, setTotalInterestRatesCurrent] = useState(0); // Juros e Taxas Caculadas
-    const [currentValueDiscount, setCurrentValueDiscount] = useState(0); //Valor de Desconto 
-    const [currentValueIncrease, setCurrentValueIncrease] = useState(0); // Valor de Acresimo 
-    const [currentValuePayments, setCurrentValuePayments] = useState(0); // Valor de Acresimo 
-    const [subTotal, setSubTotal] = useState(0);
+    const [currentInstallmentValue, setCurrentInstallmentValue] = useState(0); //Receber o valor da parcela
+    const [totalInterestRatesCurrent, setTotalInterestRatesCurrent] = useState(0); //Receber o total de multa e juros
+    const [currentValueDiscount, setCurrentValueDiscount] = useState(0); //Receber o Valor de Desconto da parcela
+    const [currentValueIncrease, setCurrentValueIncrease] = useState(0); //Receber o Valor de Acresimo da pacela
+    const [currentValuePayments, setCurrentValuePayments] = useState(0); //Recebe o Valor pago na parcela
+    const [subTotal, setSubTotal] = useState(0); //Recebe o valo atualizado da parcela
 
 
-    //Recuperar dados do localStorage
+    //Recuperar dados do localStorage e aplicar valores nas states
     useEffect(() => {
         //Recuperar array do localStorage
         const formattedDataParcel = JSON.parse(localStorage.getItem('cardParcelData')) || [];
@@ -25,6 +25,7 @@ const Footer = (props) => {
             return
         }   
 
+        //Extrair os valores da parcela
         const {subTotal, totalCalculated, valueInstallment } = formattedDataParcel;
 
         setCurrentInstallmentValue(valueInstallment)
@@ -33,7 +34,8 @@ const Footer = (props) => {
 
     }, [])
 
-    //Validar dados a ser prenchdo
+
+    //Atualizar valor da parcela
     useEffect(()=>{
 
         const formatValue = () => {
@@ -47,9 +49,13 @@ const Footer = (props) => {
             //Calcular total parcela aplicando desconto ou acrecimo
             let calculateNewValue = calculateSubTotal + valueIncrease - valueDiscount;
 
-        let paymentWithInstallmentValue = calculateNewValue - valuePayments;
-
-            if(calculateNewValue !== 0){
+            let paymentWithInstallmentValue = calculateNewValue - valuePayments;
+            
+            if(paymentWithInstallmentValue < 0){
+                setBlockPaymentProcess(true)
+                setSubTotal(paymentWithInstallmentValue);
+            }else{
+                setBlockPaymentProcess(false)
                 setSubTotal(paymentWithInstallmentValue);
             }
             
@@ -61,21 +67,15 @@ const Footer = (props) => {
     
     return (
         <S.Container>
-
-            <div>
-                {
-                    subTotal < 0 && <span>Valor a ser PAgo não pode ser menor que 0</span>
-                }
-            </div>
-            <div>
-                {
-                    subTotal === 0 && <span>Parcela Quitada e Fechada!</span>
-                }
-            </div>
-
-
-
-
+        
+            <S.WrapNotice>
+            {
+                subTotal < 0 && 
+                    <S.WrapText>
+                            <TextC.Body level={1}>O valor do desconto e o valor do pagamento não podem ser maiores do que o valor da parcela.</TextC.Body>
+                    </S.WrapText>
+            }
+            </S.WrapNotice>
 
             <S.WrapDataParcel>
                 <S.WrapField>
@@ -112,15 +112,14 @@ const Footer = (props) => {
                     {
                         subTotal === 0
                         ?   <>
-                                <TextC.Body level={2} >Valor Pago:</TextC.Body>
-                                <TextC.Body level={2} >{FormatToCurrency(valuePayments)}</TextC.Body>
+                                <TextC.Body level={2} > Valor Pago: </TextC.Body>
+                                <TextC.Body level={2} >{FormatToCurrency(currentValuePayments)}</TextC.Body>
                             </>
                         :
                             <>
                                 <TextC.Body level={2} >Total a Ser Pago:</TextC.Body>
                                 <TextC.Body level={2} >{FormatToCurrency(subTotal)}</TextC.Body>
                             </>
-                        
                     }
                 </S.WrapField>
             </S.WrapDataParcel>

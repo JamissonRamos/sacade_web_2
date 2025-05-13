@@ -4,8 +4,7 @@ import { TextC } from '../../../../components/Typography'
 import { Theme } from '../../../../theme'
 
 const WrapButtons = (props) => {
-    const { idForm } = props
-    
+    const { idForm, blockPaymentProcess } = props
     return (
         <S.Container>
             {
@@ -35,6 +34,7 @@ const WrapButtons = (props) => {
                 <S.WrapButtonsUpdatePay>
                     <Button
                         variant='success'
+                        disabled={blockPaymentProcess}
                     >
                         <Theme.Icons.MdPayments />
                         <TextC.Label level={4}>Pagar Mensalidade</TextC.Label>
