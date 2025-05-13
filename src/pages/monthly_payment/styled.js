@@ -2,12 +2,15 @@ import styled from "styled-components";
 import { Theme } from "../../theme";
 
 export const Content = styled.div`
-    /* border: 1px solid red; */
-    width: 100%;
+    border: 1px solid red;
+    width: 100%;    
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media (max-width: 425px) {
+        height: 94%;
+    }
 `;
 
 export const Form = styled.form`
@@ -32,4 +35,7 @@ export const Form = styled.form`
         }
     }
     overflow: auto;
+    @media (max-width: 425px) {
+        padding-bottom: .8rem;
+    }
 `;
