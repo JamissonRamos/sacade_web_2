@@ -109,18 +109,14 @@ const Footer = (props) => {
 
                 <S.WrapField>
 
-                    {
-                        subTotal === 0
-                        ?   <>
                                 <TextC.Body level={2} > Valor Pago: </TextC.Body>
                                 <TextC.Body level={2} >{FormatToCurrency(currentValuePayments)}</TextC.Body>
-                            </>
-                        :
-                            <>
+   
+                    {/* } */}
+                </S.WrapField>
+                <S.WrapField>
                                 <TextC.Body level={2} >Total a Ser Pago:</TextC.Body>
                                 <TextC.Body level={2} >{FormatToCurrency(subTotal)}</TextC.Body>
-                            </>
-                    }
                 </S.WrapField>
             </S.WrapDataParcel>
         </S.Container>
