@@ -10,6 +10,7 @@ const Footer = (props) => {
     const [totalInterestRatesCurrent, setTotalInterestRatesCurrent] = useState(0); // Juros e Taxas Caculadas
     const [currentValueDiscount, setCurrentValueDiscount] = useState(0); //Valor de Desconto 
     const [currentValueIncrease, setCurrentValueIncrease] = useState(0); // Valor de Acresimo 
+    const [currentValuePayments, setCurrentValuePayments] = useState(0); // Valor de Acresimo 
     const [subTotal, setSubTotal] = useState(0);
 
 
@@ -26,6 +27,10 @@ const Footer = (props) => {
 
         const {subTotal, totalCalculated, valueInstallment } = formattedDataParcel;
 
+        setCurrentInstallmentValue(valueInstallment)
+        setTotalInterestRatesCurrent(totalCalculated)
+        setSubTotal(subTotal)
+
     }, [])
 
     //Validar dados a ser prenchdo
@@ -34,14 +39,44 @@ const Footer = (props) => {
         const formatValue = () => {
             setCurrentValueDiscount(valueDiscount);
             setCurrentValueIncrease(valueIncrease);
+            setCurrentValuePayments(valuePayments);
+            
+            //Cacular total da parcela
+            let calculateSubTotal = currentInstallmentValue + totalInterestRatesCurrent;
+
+            //Calcular total parcela aplicando desconto ou acrecimo
+            let calculateNewValue = calculateSubTotal + valueIncrease - valueDiscount;
+
+        let paymentWithInstallmentValue = calculateNewValue - valuePayments;
+
+            if(calculateNewValue !== 0){
+                setSubTotal(paymentWithInstallmentValue);
+            }
+            
         }
         formatValue();
 
-    }, [valueDiscount, valueIncrease]);
+    }, [valueDiscount, valueIncrease, valuePayments]);
     
     
     return (
         <S.Container>
+
+            <div>
+                {
+                    subTotal < 0 && <span>Valor a ser PAgo não pode ser menor que 0</span>
+                }
+            </div>
+            <div>
+                {
+                    subTotal === 0 && <span>Parcela Quitada e Fechada!</span>
+                }
+            </div>
+
+
+
+
+
             <S.WrapDataParcel>
                 <S.WrapField>
                     <TextC.Body level={2} > Valor da Parcela: </TextC.Body>
@@ -52,7 +87,7 @@ const Footer = (props) => {
                     totalInterestRatesCurrent > 0 &&
                         <S.WrapField>
                             <TextC.Body level={2} > Multa e Juros: </TextC.Body>
-                            <TextC.Body level={2} > (+) {FormatToCurrency(totalInterestRatesCurrent)}</TextC.Body>
+                            <TextC.Body level={2} > (+) {FormatToCurrency(totalInterestRatesCurrent)} </TextC.Body>
                         </S.WrapField>
                 }
 
@@ -73,8 +108,20 @@ const Footer = (props) => {
                     }
 
                 <S.WrapField>
-                    <TextC.Body level={2} >Total a Ser Pago:</TextC.Body>
-                    <TextC.Body level={2} >{FormatToCurrency(subTotal)}</TextC.Body>
+
+                    {
+                        subTotal === 0
+                        ?   <>
+                                <TextC.Body level={2} >Valor Pago:</TextC.Body>
+                                <TextC.Body level={2} >{FormatToCurrency(valuePayments)}</TextC.Body>
+                            </>
+                        :
+                            <>
+                                <TextC.Body level={2} >Total a Ser Pago:</TextC.Body>
+                                <TextC.Body level={2} >{FormatToCurrency(subTotal)}</TextC.Body>
+                            </>
+                        
+                    }
                 </S.WrapField>
             </S.WrapDataParcel>
         </S.Container>
