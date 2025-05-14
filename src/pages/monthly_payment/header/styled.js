@@ -8,7 +8,7 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;   
     gap: .4rem;
-    padding: .8rem 0;
+    padding: .2rem 0;
     margin-bottom: 1rem; 
     & span{
         
