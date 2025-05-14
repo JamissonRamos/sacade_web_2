@@ -8,7 +8,7 @@ import ListMonthlyPayment from './list_monthly_payment';
 
 const MonthlyFeeDetails = () => {
     const [parcelData, setParcelData] = useState([]); 
-    const navigation = useNavigate();
+    const navigate = useNavigate();
 
     //loading data from localStorage
     useEffect(() => {
@@ -25,17 +25,17 @@ const MonthlyFeeDetails = () => {
 
     const buttonCancel = () => {
         localStorage.removeItem('parcelData');
-        navigation(-1);
+        navigate(-1);
     }
 
     const buttonPay = () => {
         console.log('pagamento');
-        navigation('/monthlyPayment/1');
+        navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 1} });
     }
 
     const buttonUpdate = () => {
         console.log('Editar');
-        navigation('/monthlyPayment/2');
+        navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 2} });
     }
 
     //Função para volta a lista de parcela mais tamebm limpar o local storage
