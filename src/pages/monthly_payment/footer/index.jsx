@@ -26,44 +26,47 @@ const Footer = (props) => {
         }   
 
         //Extrair os valores da parcela
-        const {subTotal, totalCalculated, valueInstallment } = formattedDataParcel;
+        const {totalCalculated, valueInstallment } = formattedDataParcel;
 
-        setCurrentInstallmentValue(valueInstallment)
-        setTotalInterestRatesCurrent(totalCalculated)
-        setSubTotal(subTotal)
+        //Cacular total da parcela
+        let calculateSubTotal = valueInstallment + totalCalculated;
+        
+        setCurrentInstallmentValue(valueInstallment);
+        setTotalInterestRatesCurrent(totalCalculated);
+        setSubTotal(calculateSubTotal);
+    }, []);
 
-    }, [])
 
+    useEffect(() => {
+        setCurrentValueDiscount(valueDiscount);
+        setCurrentValueIncrease(valueIncrease);
+        setCurrentValuePayments(valuePayments);
+        calculateSubTotal();
 
-    //Atualizar valor da parcela
-    useEffect(()=>{
+    }, [valueDiscount, valueIncrease, valuePayments ])
 
-        const formatValue = () => {
-            setCurrentValueDiscount(valueDiscount);
-            setCurrentValueIncrease(valueIncrease);
-            setCurrentValuePayments(valuePayments);
-            
-            //Cacular total da parcela
-            let calculateSubTotal = currentInstallmentValue + totalInterestRatesCurrent;
+    const calculateSubTotal = () => {
 
-            //Calcular total parcela aplicando desconto ou acrecimo
-            let calculateNewValue = calculateSubTotal + valueIncrease - valueDiscount;
+        // Cacular total da parcela
+        let subTotalInstallment = currentInstallmentValue + totalInterestRatesCurrent;
 
-            let paymentWithInstallmentValue = calculateNewValue - valuePayments;
-            
-            if(paymentWithInstallmentValue < 0){
-                setBlockPaymentProcess(true)
-                setSubTotal(paymentWithInstallmentValue);
-            }else{
-                setBlockPaymentProcess(false)
-                setSubTotal(paymentWithInstallmentValue);
-            }
-            
+        //Retorna sem fazer o calculo
+        if(subTotalInstallment === 0 ) return;
+
+        //Calcular total parcela aplicando desconto ou acrecimo
+        let calculateNewValue = subTotalInstallment + valueIncrease - valueDiscount;
+
+        //Calcular valor da parcela com o pagamento e arendeonda o valor final
+        let paymentWithInstallmentValue = Math.round((calculateNewValue - valuePayments) * 100) / 100;
+        
+        setSubTotal(paymentWithInstallmentValue);
+
+        if(paymentWithInstallmentValue < 0){
+            setBlockPaymentProcess(true);
+        }else{
+            setBlockPaymentProcess(false);
         }
-        formatValue();
-
-    }, [valueDiscount, valueIncrease, valuePayments]);
-    
+    }
     
     return (
         <S.Container>
@@ -109,14 +112,14 @@ const Footer = (props) => {
 
                 <S.WrapField>
 
-                                <TextC.Body level={2} > Valor Pago: </TextC.Body>
-                                <TextC.Body level={2} >{FormatToCurrency(currentValuePayments)}</TextC.Body>
-   
-                    {/* } */}
+                    <TextC.Body level={2} > Valor Pago: </TextC.Body>
+                    <TextC.Body level={2} >{FormatToCurrency(currentValuePayments)}</TextC.Body>
+
                 </S.WrapField>
+
                 <S.WrapField>
-                                <TextC.Body level={2} >Total a Ser Pago:</TextC.Body>
-                                <TextC.Body level={2} >{FormatToCurrency(subTotal)}</TextC.Body>
+                    <TextC.Body level={2} >Total a Ser Pago:</TextC.Body>
+                    <TextC.Body level={2} >{FormatToCurrency(subTotal)}</TextC.Body>
                 </S.WrapField>
             </S.WrapDataParcel>
         </S.Container>

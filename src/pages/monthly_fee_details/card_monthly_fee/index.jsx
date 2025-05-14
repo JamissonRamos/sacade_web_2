@@ -26,12 +26,10 @@ const CardMonthlyFee = (props) => {
         const valueFormatted = {
             valueInstallment, //formattedValueInstallment,
             totalCalculated, //formattedTotalCalculated,
-            subTotal //formattedSubTotal
         };
         localStorage.setItem('cardParcelData', JSON.stringify(valueFormatted));
 
-    //}, [formattedSubTotal, formattedTotalCalculated, formattedValueInstallment]);
-    }, [subTotal, totalCalculated, valueInstallment]);
+    }, [totalCalculated, valueInstallment]);
 
     return (
         <S.Container>
