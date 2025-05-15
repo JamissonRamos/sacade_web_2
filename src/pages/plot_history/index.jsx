@@ -58,7 +58,6 @@ const PlotHistory = () => {
         fetch();
     }, [])
 
-
     //FILTER STATUS
     useEffect(() => {
         //Filtrar as parcelas pelo click dos buttons de filtro

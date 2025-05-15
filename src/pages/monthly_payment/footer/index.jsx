@@ -4,7 +4,7 @@ import { TextC } from '../../../components/Typography';
 import { FormatToCurrency } from '../scripts';
 
 const Footer = (props) => {
-    const { valueDiscount, valueIncrease, valuePayments, setBlockPaymentProcess } = props;
+    const { valueDiscount, valueIncrease, valuePayments, setBlockPaymentProcess, setWasPaid} = props;
 
     const [currentInstallmentValue, setCurrentInstallmentValue] = useState(0); //Receber o valor da parcela
     const [totalInterestRatesCurrent, setTotalInterestRatesCurrent] = useState(0); //Receber o total de multa e juros
@@ -12,7 +12,6 @@ const Footer = (props) => {
     const [currentValueIncrease, setCurrentValueIncrease] = useState(0); //Receber o Valor de Acresimo da pacela
     const [currentValuePayments, setCurrentValuePayments] = useState(0); //Recebe o Valor pago na parcela
     const [subTotal, setSubTotal] = useState(0); //Recebe o valo atualizado da parcela
-
 
     //Recuperar dados do localStorage e aplicar valores nas states
     useEffect(() => {
@@ -35,7 +34,6 @@ const Footer = (props) => {
         setTotalInterestRatesCurrent(totalCalculated);
         setSubTotal(calculateSubTotal);
     }, []);
-
 
     useEffect(() => {
         setCurrentValueDiscount(valueDiscount);
@@ -61,6 +59,10 @@ const Footer = (props) => {
         
         setSubTotal(paymentWithInstallmentValue);
 
+        //Verificar se o valor pago quita a mensalidade, devolver true ou false;
+        paymentWithInstallmentValue === 0 ? setWasPaid(true) : setWasPaid(false);
+
+        //Verifica se o valor do pagamento é maior que o valor da mensalidade
         if(paymentWithInstallmentValue < 0){
             setBlockPaymentProcess(true);
         }else{

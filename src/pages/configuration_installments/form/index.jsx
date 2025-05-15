@@ -139,7 +139,7 @@ const Form = () => {
             // Aguarda todas as Promises serem resolvidas
             await Promise.all(allPromises);
             reset()
-            navigate('/notifications/generatedPlots');
+            //navigate('/notifications/generatedPlots');
             //Coloca dinamico a page de notificação, atualiação ou create
             const path = `/`;
             navigate(`/notifications/generatedPlots`, {

@@ -12,19 +12,22 @@ import WrapButtons from './components/buttons';
 import { useState } from 'react';
 import { FormattedDate, ParseCurrencyToNumber } from './scripts';
 import { useMonthlyFee } from '../../hooks/monthlyFee';
+import { useInstallments } from '../../hooks/installments';
 
 const MonthlyPayment = () => {
     const [valueDiscount, setValueDiscount] = useState(0); // Recebe o valor de desconto na parcela
     const [valueIncrease, setValueIncrease] = useState(0); // Recebe o valor de acrecimo na parcela
     const [valuePayments, setValuePayments] = useState(0); // Recebe o valor de pagamento na parcela
+    const [wasPaid, setWasPaid] = useState(false); // Indica se a mensalidade foi paga
     const [blockPaymentProcess, setBlockPaymentProcess] = useState(false) //Bloquear btn de pagar parcela caso alguma regra não seja atendida
 
-    const navigation = useNavigate();
+    const navigate = useNavigate();
     const location = useLocation();  // Captura o UID da URL
     // Captura os atributos do useLocation, typeForm: 1 = pagamento, update, 2 = pagamento
     const { uidMonthlyFee, idForm } = location.state || {};  
-
-    const {createDocuments, loading} = useMonthlyFee.usePostDocumentsCreate();
+    
+    const {createDocuments, loading: loadingCreate} = useMonthlyFee.usePostDocumentsCreate();
+    const {updateInstallments, loading: loadingInstallmentsUpdate} = useInstallments.usePostDocumentsUpdate();
     
     //Validaçoes dos Campos;
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
@@ -55,6 +58,10 @@ const MonthlyPayment = () => {
         }
     }
 
+    const monthlyDataUpdate = async (data) => {
+        const result = await updateInstallments(data);
+        return result;
+    }
 
     const handleSubmitForm = async (data) => {
         // - Ao Pagar ser redirencionado para pagina de notificação;
@@ -68,12 +75,37 @@ const MonthlyPayment = () => {
         data.amountPaid = ParseCurrencyToNumber(data.amountPaid);
         data.uidMonthlyFee = uidMonthlyFee;
 
-        console.log('data', data);
+        // Obj de atualização de dados da mensalidade
+        const dataUpdateInstallments = {
+            uid: uidMonthlyFee,
+            dataPayment: data.paymentDate,
+            statusPayment: wasPaid,
+        }
+
         const result = await createDocuments(data);
         const {success, message} = result;
         
         if(success){
-            console.log('Pagamento feito com sucesso!');
+            // Cria uma condiçao para verificar se a aprcela foi toda quitada, caso não não deve atualizar a parcela;
+            // tem o caso de ter quitado aparcela mais a parceal foi aberta novamente, assim mudar o stataus da mensalidade;
+            
+            // Aqui vou fazer alteração no status da mensalidade;
+            const resultUpdate = await monthlyDataUpdate(dataUpdateInstallments);
+            const {success, message} = resultUpdate;
+            if(success){
+                console.log('Mensalidade atualizada com sucesso!');
+                const path = `/monthlyFees`;
+                //Coloca dinamico a page de notificação, atualiação ou create
+                navigate(`/notifications/create`, {
+                    state: {
+                        url: path,
+                        valueButton: {value: 'Novo Pagamento', icon: 'MdAttachMoney'},
+                        buttonNewRegister: false,
+                    },
+                });
+            }else{
+                console.log('Erro ao atualizar mensalidade', message);
+            }
             
         }else{
             console.log('error no pagamento de mensalidade', message);
@@ -84,6 +116,7 @@ const MonthlyPayment = () => {
     return (
         <WrapPages>
             <S.Content>
+
                 <Header idForm={idForm}/>
 
                 <S.Form onSubmit={handleSubmit(handleSubmitForm)}>
@@ -111,6 +144,7 @@ const MonthlyPayment = () => {
                         idForm={Number(idForm)}
                         blockPaymentProcess = {blockPaymentProcess}
                         clickButton = {handleClickButton}
+                        loadingCreate={loadingCreate || loadingInstallmentsUpdate}
                     />
                 </S.Form>
 
@@ -120,6 +154,7 @@ const MonthlyPayment = () => {
                     valueIncrease={valueIncrease}
                     valuePayments={valuePayments}
                     setBlockPaymentProcess={setBlockPaymentProcess}
+                    setWasPaid={setWasPaid}
                 />
             </S.Content>
         </WrapPages>

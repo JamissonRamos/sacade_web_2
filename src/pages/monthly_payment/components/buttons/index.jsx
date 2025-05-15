@@ -1,10 +1,10 @@
-import { Button } from 'react-bootstrap'
+import { Button, Spinner } from 'react-bootstrap'
 import * as S from './styled'
 import { TextC } from '../../../../components/Typography'
 import { Theme } from '../../../../theme'
 
 const WrapButtons = (props) => {
-    const { idForm, blockPaymentProcess, clickButton } = props;
+    const { idForm, blockPaymentProcess, clickButton, loadingCreate } = props;
 
     const labelButton = idForm  == 1 
     ? 'Pagar Mensalidade' 
@@ -45,11 +45,26 @@ const WrapButtons = (props) => {
                     <Button
                         type='submit'
                         variant='success'
-                        disabled={blockPaymentProcess}
+                        disabled={blockPaymentProcess || loadingCreate}
                     >
-                        <Theme.Icons.MdPayments />
-                        <TextC.Label level={4}> {labelButton} </TextC.Label>
-                        
+                        {
+                            loadingCreate
+                            ?   <>
+                                    <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
+                                    <span> Pagando Mensalidade... </span>
+                                </>
+                            :
+                                <>
+                                    <Theme.Icons.MdPayments />
+                                    <TextC.Label level={4}> {labelButton} </TextC.Label>
+                                </>
+                        }   
                     </Button>
 
                 </S.WrapButtonsUpdatePay>
