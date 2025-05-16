@@ -67,14 +67,14 @@ const containedStyles = css`
 const outlineStyles = css`
     background-color: transparent;
     transition: background-color 0.4s ease, color 0.4s;
-    border: .75px solid ${Theme.Colors.red800} ;
+    border: .75px solid ${Theme.Colors.blue700} ;
     & span, svg {
-        color: ${Theme.Colors.red800 };
+        color: ${Theme.Colors.blue2900 };
     }
 
     &:hover, span:hover {
         background-color: ${() => {
-        const color =  Theme.Colors.red800; 
+        const color =  Theme.Colors.blue700; 
         const r = parseInt(color.slice(1, 3), 16);
         const g = parseInt(color.slice(3, 5), 16);
         const b = parseInt(color.slice(5, 7), 16);
