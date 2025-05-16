@@ -94,15 +94,16 @@ const MonthlyPayment = () => {
             const {success, message} = resultUpdate;
             if(success){
                 console.log('Mensalidade atualizada com sucesso!');
-                const path = `/monthlyFees`;
+                const path = `/notifications/monthlyPayment`;
                 //Coloca dinamico a page de notificação, atualiação ou create
-                navigate(`/notifications/create`, {
-                    state: {
-                        url: path,
-                        valueButton: {value: 'Novo Pagamento', icon: 'MdAttachMoney'},
-                        buttonNewRegister: false,
-                    },
-                });
+                navigate(path)
+                // navigate(`/notifications/create`, {
+                //     state: {
+                //         url: path,
+                //         valueButton: {value: 'Novo Pagamento', icon: 'MdAttachMoney'},
+                //         buttonNewRegister: false,
+                //     },
+                // });
             }else{
                 console.log('Erro ao atualizar mensalidade', message);
             }

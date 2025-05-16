@@ -39,6 +39,7 @@ import NotificationsDelete from './notifications/delete';
 import NotificationsStudentCreate from './notifications/students_create';
 import NotificationsMaintenance from './notifications/maintenance';
 import NotificationsGeneratedPlots from './notifications/generated_plots';
+import NotificationsMonthlyPayment from './notifications/monthly_payment';
 import SplashScreen from './splash_screen';
 import CardListRegisterStudents from './register_student/cardListRegisterStudents';
 import StatusStudents from './status_students';
@@ -90,6 +91,7 @@ export const Pages = {
     NotificationsDelete,
     NotificationsMaintenance,
     NotificationsGeneratedPlots,
+    NotificationsMonthlyPayment,
     SplashScreen,
     StatusStudents,
     Helps

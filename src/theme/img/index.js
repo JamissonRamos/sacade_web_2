@@ -21,6 +21,8 @@ import Maintenance from '../../assets/maintenance.png'
 import studentsMan from '../../assets/studentsMan.png'
 import studentsWoman from '../../assets/studentsWoman.png'
 import studentWomanMan from '../../assets/studentWomanMan.png'
+import MonthlyFee from '../../assets/monthlyFee.png'
+import TransferMoney from '../../assets/transferMoney.png'
 
 export const ImgC = {
     Logo,
@@ -45,4 +47,6 @@ export const ImgC = {
     studentsMan,
     studentsWoman,
     studentWomanMan,
+    MonthlyFee,
+    TransferMoney,
 }

@@ -194,6 +194,9 @@ const AppContent = () => {
                                 <Route path="/notifications/generatedPlots" element={
                                     <Pages.NotificationsGeneratedPlots /> 
                                 } />
+                                <Route path="/notifications/monthlyPayment" element={
+                                    <Pages.NotificationsMonthlyPayment /> 
+                                } />
                                 <Route path="/helps" element={
                                     <Pages.Helps /> 
                                 } />
