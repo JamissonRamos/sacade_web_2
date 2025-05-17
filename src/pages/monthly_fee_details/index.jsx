@@ -5,10 +5,30 @@ import CardMonthlyFee from './card_monthly_fee';
 import WrepButtons from './buttons';
 import { useNavigate } from 'react-router-dom';
 import ListMonthlyPayment from './list_monthly_payment';
-
+import { useMonthlyFee } from '../../hooks/monthlyFee';
+import * as S from './styled';
 const MonthlyFeeDetails = () => {
     const [parcelData, setParcelData] = useState([]); 
+    const [allPaymentMonthlFee, setAllPaymentMonthlyFee] = useState([]); 
     const navigate = useNavigate();
+
+    const { documentsID, loading } = useMonthlyFee.useGetDocumentsIDMonthlyFee();
+
+    const buttonCancel = () => {
+        localStorage.removeItem('parcelData');
+        navigate(-1);
+    }
+
+    const buttonPay = () => {
+        const subTotalPayment = allPaymentMonthlFee.reduce((acc, item) => acc + item.amountPaid, 0);
+        navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 1, subTotalPayment} });
+    }
+
+    const buttonUpdate = () => {
+        console.log('Editar');
+        navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 2} });
+    }
+
 
     //loading data from localStorage
     useEffect(() => {
@@ -23,20 +43,24 @@ const MonthlyFeeDetails = () => {
         setParcelData(dataParcel);
     }, []);
 
-    const buttonCancel = () => {
-        localStorage.removeItem('parcelData');
-        navigate(-1);
-    }
+    //Buscas todos' os pagamento relacionado a mensalidade
+    useEffect(() => {
 
-    const buttonPay = () => {
-        console.log('pagamento');
-        navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 1} });
-    }
+        if(!parcelData[0]?.id) return;
+        let uidMonthlyFee = parcelData[0].id || '';
 
-    const buttonUpdate = () => {
-        console.log('Editar');
-        navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 2} });
-    }
+        const fetchData = async () => {
+            const result = await documentsID(uidMonthlyFee);
+            const { success, data, message } = result;
+            if (success) {
+                setAllPaymentMonthlyFee(data);
+            } else {
+                console.log('Erro ao recuperar os dados:', message);
+            }
+        };
+        fetchData();
+
+    }, [parcelData]);
 
     //Função para volta a lista de parcela mais tamebm limpar o local storage
     const handleClickButton = (e) => {
@@ -62,9 +86,18 @@ const MonthlyFeeDetails = () => {
 
         <WrapPages>
             <Header />
+        
+
+
+
+
             <CardMonthlyFee data={parcelData} />
             <WrepButtons clickButton={handleClickButton}/>
-            <ListMonthlyPayment clickButton={handleClickButton}/>
+            <ListMonthlyPayment 
+                loading={loading}
+                data={allPaymentMonthlFee}
+                clickButton={handleClickButton}
+            />
             
         </WrapPages>
     )

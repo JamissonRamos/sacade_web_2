@@ -7,7 +7,7 @@ export const Container = styled.div`
     padding: .2rem 0;
 `;
 export const Cards = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
     display: flex;
     flex-direction: column;

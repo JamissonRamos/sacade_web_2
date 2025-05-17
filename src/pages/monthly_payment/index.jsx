@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../validations';
 import WrapButtons from './components/buttons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FormattedDate, ParseCurrencyToNumber } from './scripts';
 import { useMonthlyFee } from '../../hooks/monthlyFee';
 import { useInstallments } from '../../hooks/installments';
@@ -18,14 +18,15 @@ const MonthlyPayment = () => {
     const [valueDiscount, setValueDiscount] = useState(0); // Recebe o valor de desconto na parcela
     const [valueIncrease, setValueIncrease] = useState(0); // Recebe o valor de acrecimo na parcela
     const [valuePayments, setValuePayments] = useState(0); // Recebe o valor de pagamento na parcela
+    const [allMonthlyPayment, setAllMonthlyPayment] = useState(0); // Recebe o valor de total pago na mensalidade e passar para o footer calcular valor atual da mensalidade;
     const [wasPaid, setWasPaid] = useState(false); // Indica se a mensalidade foi paga
     const [blockPaymentProcess, setBlockPaymentProcess] = useState(false) //Bloquear btn de pagar parcela caso alguma regra não seja atendida
 
     const navigate = useNavigate();
     const location = useLocation();  // Captura o UID da URL
     // Captura os atributos do useLocation, typeForm: 1 = pagamento, update, 2 = pagamento
-    const { uidMonthlyFee, idForm } = location.state || {};  
-    
+    const { uidMonthlyFee, idForm, subTotalPayment } = location.state || {};  
+
     const {createDocuments, loading: loadingCreate} = useMonthlyFee.usePostDocumentsCreate();
     const {updateInstallments, loading: loadingInstallmentsUpdate} = useInstallments.usePostDocumentsUpdate();
     
@@ -40,6 +41,13 @@ const MonthlyPayment = () => {
         }
     });
 
+    // carregar component
+    useEffect(() => {
+        // Recuperar o total ja pago na mensalidade, passar para state setAllMonthlyPayment;
+        if (subTotalPayment !== 0) {
+            setAllMonthlyPayment(subTotalPayment);
+        }
+    }, [subTotalPayment]);
 
     //Função para volta a lista de parcela mais tamebm limpar o local storage
     const handleClickButton = (e) => {
@@ -47,7 +55,7 @@ const MonthlyPayment = () => {
 
         switch (name) {
             case 'cancel':
-                navigation(-1);
+                navigate(-1);
                 break;
             case 'delete':
                 // vou passar o modal de delete 
@@ -154,6 +162,7 @@ const MonthlyPayment = () => {
                     valueDiscount={valueDiscount}
                     valueIncrease={valueIncrease}
                     valuePayments={valuePayments}
+                    allMonthlyPayment={allMonthlyPayment}
                     setBlockPaymentProcess={setBlockPaymentProcess}
                     setWasPaid={setWasPaid}
                 />

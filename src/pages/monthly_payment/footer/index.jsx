@@ -4,7 +4,7 @@ import { TextC } from '../../../components/Typography';
 import { FormatToCurrency } from '../scripts';
 
 const Footer = (props) => {
-    const { valueDiscount, valueIncrease, valuePayments, setBlockPaymentProcess, setWasPaid} = props;
+    const { valueDiscount, valueIncrease, valuePayments, allMonthlyPayment, setBlockPaymentProcess, setWasPaid} = props;
 
     const [currentInstallmentValue, setCurrentInstallmentValue] = useState(0); //Receber o valor da parcela
     const [totalInterestRatesCurrent, setTotalInterestRatesCurrent] = useState(0); //Receber o total de multa e juros
@@ -41,7 +41,7 @@ const Footer = (props) => {
         setCurrentValuePayments(valuePayments);
         calculateSubTotal();
 
-    }, [valueDiscount, valueIncrease, valuePayments ])
+    }, [valueDiscount, valueIncrease, valuePayments, allMonthlyPayment])
 
     const calculateSubTotal = () => {
 
@@ -54,8 +54,12 @@ const Footer = (props) => {
         //Calcular total parcela aplicando desconto ou acrecimo
         let calculateNewValue = subTotalInstallment + valueIncrease - valueDiscount;
 
+        // calcular o valor total ja pago na mensalidade, com o valor que esta sendo pago na mensalidade
+        let allPayments = allMonthlyPayment + valuePayments;
+
+
         //Calcular valor da parcela com o pagamento e arendeonda o valor final
-        let paymentWithInstallmentValue = Math.round((calculateNewValue - valuePayments) * 100) / 100;
+        let paymentWithInstallmentValue = Math.round((calculateNewValue - allPayments) * 100) / 100;
         
         setSubTotal(paymentWithInstallmentValue);
 
