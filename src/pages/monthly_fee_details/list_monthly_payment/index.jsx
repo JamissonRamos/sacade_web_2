@@ -2,26 +2,20 @@ import { Button, Spinner } from 'react-bootstrap'
 import { TextC } from '../../../components/Typography'
 import * as S from './styled'
 import { LoadingOverlay } from '../../../components/spinner/global/styled';
+import { FormatToCurrency } from '../scripts';
+import MonthlySummaries from './components/monthly_summaries';
+import PaymentListData from './components/payment_list_data';
 
 const ListMonthlyPayment = (props) => {
-    const { clickButton, loading, data } = props;
+    const { clickButton, loading, data, totalValueMonthlyFee } = props;
     const dataMonthlyFee = data || [];
     const subTotalPayment = dataMonthlyFee.reduce((acc, item) => acc + item.amountPaid, 0) || 0;
-    console.log('dataMonthlyFee', dataMonthlyFee);
-    
+   
 
-    const handlepaymentMethod = (paymentMethod) => {
-        switch (paymentMethod) {
-            case 1:
-                return 'Dinheiro';
-            case 2:
-                return 'Pix';
-            case 3:
-                return 'Cartão Débito';
-            default:
-                return 'Forma de Pagamento Desconhecida';
-        }
-    }
+    console.log('totalValueMonthlyFee', totalValueMonthlyFee);
+    console.log('subTotalPayment', subTotalPayment);
+
+  
 
     return (
         <S.Container>  
@@ -37,56 +31,30 @@ const ListMonthlyPayment = (props) => {
                         <span className="sr-only">Carregando os pagamentos...</span>
                     </LoadingOverlay> 
             }
-            <div>
-                <TextC.Title level={2}>Pagamentos Feitos</TextC.Title>
-                <div>
-                    <TextC.Body level={3}> {dataMonthlyFee.length} Pagamentos</TextC.Body>
-                    <TextC.Body level={3}> {subTotalPayment} Total Pago</TextC.Body>
-                </div>
-            </div>
+            <S.Header>
+                <TextC.Title level={2}> Dados de Pagamento </TextC.Title>
+                <MonthlySummaries 
+                    dataMonthlyFee={dataMonthlyFee.length}
+                    totalValueMonthlyFee={totalValueMonthlyFee}
+                    subTotalPayment={subTotalPayment}
+                />
+            </S.Header>
+
             <S.Cards>
+                ddd ddd ssss sssss sssss
                 {
                     dataMonthlyFee?.map(({paymentDate, paymentMethod, installmentIncrease, installmentDiscount, amountPaid}, index) => (
-                        <S.Card key={index}>
-                            <div>
-                                <div>
-                                    <TextC.Body level={3}> data Pagamento </TextC.Body>
-                                    <TextC.Body level={3}> {paymentDate} </TextC.Body>
-                                </div>
-                                <div>
-                                    <TextC.Body level={3}> Forma Pagamento </TextC.Body>
-                                    <TextC.Body level={3}> {handlepaymentMethod(paymentMethod)} </TextC.Body>
-                                </div>
-
-                            </div>
-                            <div>
-                                <div>
-                                    <TextC.Body level={3}> Acréscimo </TextC.Body>
-                                    <TextC.Body level={3}> {installmentIncrease} </TextC.Body>
-                                </div>
-                                <div>
-                                    <TextC.Body level={3}> Descontos </TextC.Body>
-                                    <TextC.Body level={3}> {installmentDiscount} </TextC.Body>
-                                </div>
-                            </div>
-
-                            <div>
-                                <TextC.Body level={3}> Valor Pago </TextC.Body>
-                                <TextC.Body level={3}> {amountPaid} </TextC.Body>
-
-                            </div>
-                            <div>
-                                <Button
-                                    name='updatePay'
-                                    onClick={(e) => clickButton(e)}
-                                >Editar</Button>
-                            </div>
-                        </S.Card>
+                        <PaymentListData key={index}
+                            clickButton={clickButton}
+                            loading={loading}
+                            paymentDate={paymentDate}
+                            paymentMethod={paymentMethod}   
+                            installmentIncrease={installmentIncrease}
+                            installmentDiscount={installmentDiscount}
+                            amountPaid={amountPaid}
+                        />
                     ))
                 }
-                
-           
-
 
             </S.Cards>
         </S.Container>

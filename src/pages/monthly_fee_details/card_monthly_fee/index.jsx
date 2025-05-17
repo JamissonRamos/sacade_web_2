@@ -5,16 +5,23 @@ import { CalculateValueFeesInterest, FormatToCurrency } from '../scripts';
 
 const CardMonthlyFee = (props) => {
 
-    const { data } = props;
+    const { data, setTotalValueMonthlyFee } = props;
     const {dueDate, daysLate, statusLabel, styledComponent, valueInstallment, fees, interestDaily, interestMonthly, interestAnnual } = data[0] || {};
 
     //Calculo de juros e taxas
-    const totalFees = CalculateValueFeesInterest(fees, valueInstallment);
-    const totalInterestDaily = CalculateValueFeesInterest(interestDaily, valueInstallment);
-    const totalInterestMonthly = CalculateValueFeesInterest(interestMonthly, valueInstallment);
-    const totalInterestAnnual = CalculateValueFeesInterest(interestAnnual, valueInstallment);
-    const totalCalculated = totalFees + (totalInterestDaily * daysLate) + (totalInterestMonthly * Math.floor(daysLate / 30)) + (totalInterestAnnual * Math.floor(daysLate / 365));
-    const subTotal = (valueInstallment + totalCalculated)
+
+    const totalFees = daysLate > 0 
+                        ? CalculateValueFeesInterest(fees, valueInstallment) : 0;
+    const totalInterestDaily = daysLate > 0 
+                        ? CalculateValueFeesInterest(interestDaily, valueInstallment) : 0;
+    const totalInterestMonthly = daysLate > 0 
+                        ? CalculateValueFeesInterest(interestMonthly, valueInstallment) : 0;
+    const totalInterestAnnual = daysLate > 0 
+                        ? CalculateValueFeesInterest(interestAnnual, valueInstallment) : 0;
+    const totalCalculated = daysLate > 0 
+                        ? totalFees + (totalInterestDaily * daysLate) + (totalInterestMonthly * Math.floor(daysLate / 30)) + (totalInterestAnnual * Math.floor(daysLate / 365)) : 0;
+    const subTotal =  (valueInstallment + totalCalculated) ;
+
 
     //Formatação dos valores
     const formattedValueInstallment = FormatToCurrency(valueInstallment)
@@ -23,22 +30,20 @@ const CardMonthlyFee = (props) => {
 
     // Salva no localStorage sempre que os dados mudam
     useEffect(() => {
+        setTotalValueMonthlyFee(subTotal);
         const valueFormatted = {
             valueInstallment, //formattedValueInstallment,
             totalCalculated, //formattedTotalCalculated,
         };
         localStorage.setItem('cardParcelData', JSON.stringify(valueFormatted));
 
-    }, [totalCalculated, valueInstallment]);
+    }, [totalCalculated, valueInstallment, setTotalValueMonthlyFee, subTotal]);
 
     return (
         <S.Container>
-            <S.Card $BorderColor={styledComponent}>
+            {/* Com a mudança devo retirar o atributo $BorderColor, não uso mais */}
+            <S.Card>
                 <S.CardHeader>
-                    <S.WrapDate $fontColor={styledComponent}>
-                        <TextC.Title level={1}> {dueDate} </TextC.Title>
-                    </S.WrapDate>
-
                     <S.WrapStatus $bgColor={styledComponent}>
                         {
                             daysLate > 0 &&
@@ -46,12 +51,34 @@ const CardMonthlyFee = (props) => {
                                     <TextC.Body> {daysLate} </TextC.Body>
                                 </S.WrapDaysLate>
                         }
-                        <TextC.Body> {statusLabel} </TextC.Body>
-                    </S.WrapStatus>
-                </S.CardHeader>
+                        <TextC.Body> 
+                            { daysLate > 0 
+                                ? `dias ${statusLabel}` : statusLabel} 
+                        </TextC.Body>
 
-                <S.CardBody>
-                    <S.WrapContentCard $bgColor={styledComponent}>
+
+
+
+
+                    </S.WrapStatus>
+
+                    <TextC.Title level={2}> Dados da Mensalidade </TextC.Title>
+                    
+                    <S.WrapDate $fontColor={styledComponent}>
+                        <TextC.Body level={2}> Data de Vencimento: </TextC.Body>
+                        <TextC.Body level={2}> {dueDate} </TextC.Body>
+                    </S.WrapDate>
+
+                </S.CardHeader>
+                
+                <S.CardBody $fontColor={styledComponent}>
+                    {/* <S.WrapContentCard $bgColor={styledComponent}> */}
+                        
+                        <S.WrapInstallment >
+                            <TextC.Body level={2}>Parcela</TextC.Body>
+                            <TextC.Body level={2}>{formattedValueInstallment}</TextC.Body>
+                        </S.WrapInstallment>
+
                         {
                             daysLate > 0 && fees > 0 &&
                                 <S.WrapInterestRates >
@@ -60,10 +87,7 @@ const CardMonthlyFee = (props) => {
                                 </S.WrapInterestRates>
                         }
 
-                        <S.WrapInstallment $bgColor={styledComponent}>
-                            <TextC.Body level={2}>Parcela</TextC.Body>
-                            <TextC.Body level={2}>{formattedValueInstallment}</TextC.Body>
-                        </S.WrapInstallment>
+                       
 
                         {
                             daysLate > 0 &&
@@ -73,7 +97,7 @@ const CardMonthlyFee = (props) => {
                                 </S.WrapSubTotal>
                         }
 
-                    </S.WrapContentCard>
+                    {/* </S.WrapContentCard> */}
                 </S.CardBody>
             </S.Card>
         </S.Container>

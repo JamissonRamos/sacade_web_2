@@ -10,6 +10,7 @@ import * as S from './styled';
 const MonthlyFeeDetails = () => {
     const [parcelData, setParcelData] = useState([]); 
     const [allPaymentMonthlFee, setAllPaymentMonthlyFee] = useState([]); 
+    const [totalValueMonthlyFee, setTotalValueMonthlyFee] = useState(0); //Pegar o valor total da mensalidade dentro do card, onde é calculado o valor total da mensalidade 
     const navigate = useNavigate();
 
     const { documentsID, loading } = useMonthlyFee.useGetDocumentsIDMonthlyFee();
@@ -86,19 +87,21 @@ const MonthlyFeeDetails = () => {
 
         <WrapPages>
             <Header />
-        
+            <S.Container>
+                <CardMonthlyFee 
+                    data={parcelData} 
+                    setTotalValueMonthlyFee={setTotalValueMonthlyFee}
+                />
+                <ListMonthlyPayment 
+                    loading={loading}
+                    data={allPaymentMonthlFee}
+                    totalValueMonthlyFee={totalValueMonthlyFee}
+                    clickButton={handleClickButton}
+                />
+                <WrepButtons clickButton={handleClickButton}/>
+                
+            </S.Container>
 
-
-
-
-            <CardMonthlyFee data={parcelData} />
-            <WrepButtons clickButton={handleClickButton}/>
-            <ListMonthlyPayment 
-                loading={loading}
-                data={allPaymentMonthlFee}
-                clickButton={handleClickButton}
-            />
-            
         </WrapPages>
     )
 }
