@@ -17,7 +17,7 @@ export const Container = styled.div`
     min-width: 320px;
     display: flex;
     justify-content: center;
-    padding: 1rem ;
+    padding: .8rem ;
     margin-top: .6rem;
 `;
 
@@ -80,6 +80,12 @@ export const WrapStatus = styled.div`
     */
 `;
 
+export const WrapTitle = styled.div`
+    /* border: 1px solid blue;     */
+    width: 100%;
+    padding: .2rem 0rem;
+`;
+
 export const WrapDaysLate= styled.div`
     /* border: 1px solid blue; */
     width: 24px;
@@ -107,9 +113,6 @@ export const WrapDate = styled.div`
     }
 `;
 
-
-
-
 export const CardBody  = styled.div`
     /* border: 1px solid red; */
     width: 100%;
@@ -126,9 +129,6 @@ export const CardBody  = styled.div`
 
 `;
 
-// export const WrapContentCard  = styled.div`
-// `;
-
 export const WrapInstallment  = styled.div`
     /* border: 1px solid red; */
     ${styledWrapContent}
@@ -137,7 +137,6 @@ export const WrapInterestRates  = styled.div`
     /* border: 1px solid red; */
     ${styledWrapContent}
 `;
-
 
 export const WrapSubTotal  = styled.div`
     /* border: 1px solid red; */

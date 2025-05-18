@@ -92,13 +92,15 @@ const MonthlyFeeDetails = () => {
                     data={parcelData} 
                     setTotalValueMonthlyFee={setTotalValueMonthlyFee}
                 />
+
+                <WrepButtons clickButton={handleClickButton}/>
+
                 <ListMonthlyPayment 
                     loading={loading}
                     data={allPaymentMonthlFee}
                     totalValueMonthlyFee={totalValueMonthlyFee}
                     clickButton={handleClickButton}
                 />
-                <WrepButtons clickButton={handleClickButton}/>
                 
             </S.Container>
 

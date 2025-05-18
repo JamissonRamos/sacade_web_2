@@ -41,7 +41,6 @@ const ListMonthlyPayment = (props) => {
             </S.Header>
 
             <S.Cards>
-                ddd ddd ssss sssss sssss
                 {
                     dataMonthlyFee?.map(({paymentDate, paymentMethod, installmentIncrease, installmentDiscount, amountPaid}, index) => (
                         <PaymentListData key={index}

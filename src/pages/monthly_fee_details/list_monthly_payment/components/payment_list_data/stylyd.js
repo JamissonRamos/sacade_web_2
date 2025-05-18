@@ -1,90 +1,71 @@
-import styled from "styled-components"; 
+import styled, { css } from "styled-components"; 
 import { Theme } from "../../../../../theme";
 
-// export const Container = styled.div`
-//     border: 1px solid red;
-//     width: 100%;
-//     display: flex;
-//     flex-direction: column;
-//     padding: .4rem .8rem;
-//     `;
-
-// export const WrapRow = styled.div`
-//     border: 1px solid red;
-//     display: flex;
-
-//     padding: .4rem .8rem;
-//     border: 1px solid red;
-// `;
-
-export const TableContainer = styled.div`
-  width: 100%;
-  overflow-x: auto;
-  margin: 1rem 0;
-`;
-
-export const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
-
-  & tbody {
-    display: flex;
-    justify-content: space-between;
+const styledButton = css`
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  transition: all 0.3s ease-in-out;
+  & span {
+    font-weight: 500;
+    color: ${ Theme.Colors.blue2800};
   }
-  @media (max-width: 768px) {
-    display: block;
-  }
-`;
-
-export const TableRow = styled.tr`
-  &:nth-child(even) {
-    background-color: ${ Theme.Colors.gray100};
-  }
-
-  @media (max-width: 768px) {
-    display: block;
-    margin-bottom: 1rem;
-    border: 1px solid ${ Theme.Colors.gray300};
-    border-radius: 4px;
-  }
-`;
-
-export const TableHeader = styled.th`
-  text-align: left;
-  padding: 0.75rem;
-  background-color: ${ Theme.Colors.gray200};
-  font-weight: 500;
-
-  @media (max-width: 768px) {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-  }
-`;
-
-export const TableCell = styled.td`
-  padding: 0.75rem;
-  border-bottom: 1px solid ${ Theme.Colors.gray300};
-  ${({ highlight }) => highlight && `font-weight: bold; color: ${ Theme.Colors.grey500};`}
-
-  @media (max-width: 768px) {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    border-bottom: none;
-
-    &:before {
-      content: attr(data-label);
-      font-weight: bold;
-      display: inline-block;
-      width: 50%;
+  &:hover { 
+    background-color: ${ Theme.Colors.blue2800};
+    border: 1px solid ${ Theme.Colors.blue2800};
+    & span {
+      color: ${ Theme.Colors.white800};
     }
   }
+  
+  @media (max-width: 768px) {
+    width: 60%;
+  }
+  @media (max-width: 425px) {
+    width: 80%;
+  }
 `;
 
-export const ButtonContainer = styled.div`
+export const Container = styled.div`
+  /* border: 1px solid red; */
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
-  margin-top: 1rem;
+  flex-direction: column;
+  padding: 0;
+  border-bottom: 2px solid ${Theme.Colors.grey400};
+`;
+
+export const WrapSection = styled.div`
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+    padding: 0rem .8rem;
+`;
+
+export const WrapRow = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between; 
+    padding: .2rem 1rem;
+    & span {
+      margin-bottom: 0.2rem;
+      font-weight: 500;
+      color: ${ Theme.Colors.gray500};
+    }
+`;
+export const WrapButton = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding: .2rem 1rem;
+    margin: .4rem 0 .8rem 0;
+    & button {
+      ${styledButton};
+    }
 `;

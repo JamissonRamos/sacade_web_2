@@ -2,8 +2,8 @@ import styled, { css } from "styled-components";
 import { Theme } from "../../../theme";
 
 const styledButton = css`
-    width: 100%;
-    max-width: 500px;
+    width: 60%;
+    max-width: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,29 +17,28 @@ const styledButton = css`
         border-radius: 8px;
     }
     & svg{
-            font-size: 1.2em;
-            color: ${Theme.Colors.white800};
-        }
+        font-size: 1.2em;
+        color: ${Theme.Colors.white800};
+    }
     & span{
-        font-size: 1em;
+        font-size: .8em;
         font-weight: 500;
         color: ${Theme.Colors.white800};
     }
     &:hover {
-            transform: scale(1.02);
+        transform: scale(1.02);
     }
     @media (max-width: 768px) {
+        width: 80%;
         padding: .4rem .8rem;
         & span{
             font-size: .8em;
         }
     }
     @media (max-width: 425px) {
-        padding: .2rem .6rem;
-        & span{
-            font-size: .7em;
-        }
+        padding: .4rem .6rem;
     }
+
     @media (max-width: 375px) {
         & span{
             font-size: .8em;
@@ -47,64 +46,24 @@ const styledButton = css`
     }
 `;
 
-const styledOutline = css`
-    background: transparent;
-    border: 1px solid ${Theme.Colors.yellow800};
-    & svg{
-        color: ${Theme.Colors.yellow400};
-    }
-    & span{
-        color: ${Theme.Colors.yellow400};
-    }
-    &:hover {
-        background-color: ${Theme.Colors.yellow400};
-        & span{
-            color: ${Theme.Colors.white800};
-        }
-        & svg{
-            color: ${Theme.Colors.white800};
-        }
-    }
-
-`;
-
-const styledWrepCancelPay = css`
-    width: 100%;
-    display: flex;
-    align-items: center;    
-    justify-content: center;
-    padding: 0 .8rem;
-`;
-
 export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    padding: .2rem 0;
+    margin-bottom: 1rem;
 `;
 
 export const WrapButtons = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     display: flex; 
-    flex-direction: column;
-    gap: .8rem;
-    padding: 1rem;
-`;
-
-export const WrapButtonCancel = styled.div`
-    /* border: 1px solid red; */
-    ${styledWrepCancelPay}
-    button {
-        ${styledButton};
-        ${styledOutline}
-    }
-`;
-
-export const WrapButtonPay = styled.div`
-    /* border: 1px solid red; */
-    ${styledWrepCancelPay}
+    align-items: center;
+    justify-content: center;
+    padding: .4rem 1rem;
+    border-bottom: 2px solid ${Theme.Colors.grey400}; 
+    
     button {
         background: ${Theme.Colors.green800};
         ${styledButton}
+        margin-bottom: 1rem;
     }
 `;

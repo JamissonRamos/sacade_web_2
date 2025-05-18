@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Theme } from "../../../../../theme";
 
 export const Container = styled.div`
     /* border: 1px solid red; */
@@ -7,6 +8,7 @@ export const Container = styled.div`
     justify-content: space-evenly;
     gap: .8rem;
     padding: .2rem 0;
+    border-bottom: 2px solid ${Theme.Colors.grey400}; 
 `;
 
 export const WrapData = styled.div`
@@ -16,6 +18,7 @@ export const WrapData = styled.div`
     align-items: center;
     justify-content: center;
     gap: .4rem;
+    
     & span{
         font-weight: 500;
     }
