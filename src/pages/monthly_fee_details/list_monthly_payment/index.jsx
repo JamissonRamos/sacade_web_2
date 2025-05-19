@@ -10,12 +10,6 @@ const ListMonthlyPayment = (props) => {
     const { clickButton, loading, data, totalValueMonthlyFee } = props;
     const dataMonthlyFee = data || [];
     const subTotalPayment = dataMonthlyFee.reduce((acc, item) => acc + item.amountPaid, 0) || 0;
-   
-
-    console.log('totalValueMonthlyFee', totalValueMonthlyFee);
-    console.log('subTotalPayment', subTotalPayment);
-
-  
 
     return (
         <S.Container>  

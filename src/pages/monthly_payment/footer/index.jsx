@@ -13,6 +13,8 @@ const Footer = (props) => {
     const [currentValuePayments, setCurrentValuePayments] = useState(0); //Recebe o Valor pago na parcela
     const [subTotal, setSubTotal] = useState(0); //Recebe o valo atualizado da parcela
 
+    console.log('currentValuePayments', currentValuePayments);
+    
     //Recuperar dados do localStorage e aplicar valores nas states
     useEffect(() => {
         //Recuperar array do localStorage
@@ -38,7 +40,7 @@ const Footer = (props) => {
     useEffect(() => {
         setCurrentValueDiscount(valueDiscount);
         setCurrentValueIncrease(valueIncrease);
-        setCurrentValuePayments(valuePayments);
+        setCurrentValuePayments(allMonthlyPayment + valuePayments);
         calculateSubTotal();
 
     }, [valueDiscount, valueIncrease, valuePayments, allMonthlyPayment])

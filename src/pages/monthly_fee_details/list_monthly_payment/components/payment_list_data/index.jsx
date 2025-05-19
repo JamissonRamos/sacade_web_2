@@ -33,14 +33,22 @@ const PaymentListData = (props) => {
             </S.WrapSection>
 
             <S.WrapSection>
-                <S.WrapRow>
-                    <TextC.Body level={2}> Acréscimo </TextC.Body>
-                    <TextC.Body level={2}> {FormatToCurrency(installmentIncrease)} </TextC.Body>
-                </S.WrapRow>
-                <S.WrapRow>
-                    <TextC.Body level={2}> Descontos </TextC.Body>
-                    <TextC.Body level={2}> {FormatToCurrency(installmentDiscount)} </TextC.Body>
-                </S.WrapRow>
+
+                {
+                    installmentIncrease > 0 &&
+                    <S.WrapRow>
+                        <TextC.Body level={2}> Acréscimo </TextC.Body>
+                        <TextC.Body level={2}> {FormatToCurrency(installmentIncrease)} </TextC.Body>
+                    </S.WrapRow>
+                }
+
+                {
+                    installmentDiscount > 0 && 
+                    <S.WrapRow>
+                        <TextC.Body level={2}> Descontos </TextC.Body>
+                        <TextC.Body level={2}> {FormatToCurrency(installmentDiscount)} </TextC.Body>
+                    </S.WrapRow>
+                }
             </S.WrapSection>
 
             <S.WrapSection>

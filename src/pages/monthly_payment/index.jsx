@@ -26,7 +26,7 @@ const MonthlyPayment = () => {
     const location = useLocation();  // Captura o UID da URL
     // Captura os atributos do useLocation, typeForm: 1 = pagamento, update, 2 = pagamento
     const { uidMonthlyFee, idForm, subTotalPayment } = location.state || {};  
-
+    
     const {createDocuments, loading: loadingCreate} = useMonthlyFee.usePostDocumentsCreate();
     const {updateInstallments, loading: loadingInstallmentsUpdate} = useInstallments.usePostDocumentsUpdate();
     
@@ -47,7 +47,7 @@ const MonthlyPayment = () => {
         if (subTotalPayment !== 0) {
             setAllMonthlyPayment(subTotalPayment);
         }
-    }, [subTotalPayment]);
+    }, []);
 
     //Função para volta a lista de parcela mais tamebm limpar o local storage
     const handleClickButton = (e) => {

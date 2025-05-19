@@ -15,9 +15,9 @@ const MonthlyFeeDetails = () => {
 
     const { documentsID, loading } = useMonthlyFee.useGetDocumentsIDMonthlyFee();
 
-    const buttonCancel = () => {
-        localStorage.removeItem('parcelData');
-        navigate(-1);
+    const parseDate = (dateStr) => {
+        const [day, month, year] = dateStr.split('/');
+        return new Date(`${month}/${day}/${year}`);
     }
 
     const buttonPay = () => {
@@ -54,6 +54,9 @@ const MonthlyFeeDetails = () => {
             const result = await documentsID(uidMonthlyFee);
             const { success, data, message } = result;
             if (success) {
+                //Ordena data por data de pagamento
+                data.sort((a, b) => parseDate(b.paymentDate) - parseDate(a.paymentDate));
+
                 setAllPaymentMonthlyFee(data);
             } else {
                 console.log('Erro ao recuperar os dados:', message);
@@ -69,7 +72,8 @@ const MonthlyFeeDetails = () => {
 
         switch (name) {
             case 'cancel':
-                buttonCancel();
+                //Retiaar essa função, pois não é mais necessário
+                // buttonCancel();
                 break;
             case 'createrPay':
                 buttonPay();
