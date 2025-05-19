@@ -11,6 +11,8 @@ const MonthlyFeeDetails = () => {
     const [parcelData, setParcelData] = useState([]); 
     const [allPaymentMonthlFee, setAllPaymentMonthlyFee] = useState([]); 
     const [totalValueMonthlyFee, setTotalValueMonthlyFee] = useState(0); //Pegar o valor total da mensalidade dentro do card, onde é calculado o valor total da mensalidade 
+    const [statusMonthlyFee, setStatusMonthlyFee] = useState(false); //Pegar o status da mensalidade para desabilitar o botão de pagamento caso seja status fechado
+
     const navigate = useNavigate();
 
     const { documentsID, loading } = useMonthlyFee.useGetDocumentsIDMonthlyFee();
@@ -42,6 +44,8 @@ const MonthlyFeeDetails = () => {
             return
         }
         setParcelData(dataParcel);
+        //statusLabel
+        setStatusMonthlyFee(dataParcel[0].statusLabel === 'Fechado' ? true : false);
     }, []);
 
     //Buscas todos' os pagamento relacionado a mensalidade
@@ -97,7 +101,10 @@ const MonthlyFeeDetails = () => {
                     setTotalValueMonthlyFee={setTotalValueMonthlyFee}
                 />
 
-                <WrepButtons clickButton={handleClickButton}/>
+                <WrepButtons 
+                    clickButton={handleClickButton}
+                    statusMonthlyFee={statusMonthlyFee}
+                />
 
                 <ListMonthlyPayment 
                     loading={loading}

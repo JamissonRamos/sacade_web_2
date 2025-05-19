@@ -3,7 +3,7 @@ import * as S from './styled'
 import { Theme } from '../../../theme';
 import { TextC } from '../../../components/Typography';
 
-const WrepButtons = ({clickButton}) => {
+const WrepButtons = ({clickButton, statusMonthlyFee}) => {
     return (
         <S.Container>
             <S.WrapButtons>
@@ -11,6 +11,7 @@ const WrepButtons = ({clickButton}) => {
                     name='createrPay'
                     variant={'success'}
                     onClick={(e) =>  clickButton(e)}
+                    disabled={statusMonthlyFee}
                 >   
                     <TextC.Body>Pagar Mensalidades</TextC.Body> 
                     <Theme.Icons.MdAttachMoney/>

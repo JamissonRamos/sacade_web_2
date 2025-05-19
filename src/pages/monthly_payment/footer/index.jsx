@@ -12,8 +12,6 @@ const Footer = (props) => {
     const [currentValueIncrease, setCurrentValueIncrease] = useState(0); //Receber o Valor de Acresimo da pacela
     const [currentValuePayments, setCurrentValuePayments] = useState(0); //Recebe o Valor pago na parcela
     const [subTotal, setSubTotal] = useState(0); //Recebe o valo atualizado da parcela
-
-    console.log('currentValuePayments', currentValuePayments);
     
     //Recuperar dados do localStorage e aplicar valores nas states
     useEffect(() => {
