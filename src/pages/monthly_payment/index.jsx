@@ -25,7 +25,7 @@ const MonthlyPayment = () => {
     const navigate = useNavigate();
     const location = useLocation();  // Captura o UID da URL
     // Captura os atributos do useLocation, typeForm: 1 = pagamento, update, 2 = pagamento
-    const { uidMonthlyFee, idForm, subTotalPayment } = location.state || {};  
+    const { uidMonthlyFee, idForm, subTotalPayment, idPayment } = location.state || {};  
     
     const {createDocuments, loading: loadingCreate} = useMonthlyFee.usePostDocumentsCreate();
     const {updateInstallments, loading: loadingInstallmentsUpdate} = useInstallments.usePostDocumentsUpdate();
@@ -140,6 +140,7 @@ const MonthlyPayment = () => {
                                 setValuePayments = {setValuePayments}
                             /> 
                         :   <FormUpdate 
+                                idPayment={idPayment}
                                 register = {register}
                                 errors = {errors}
                                 setValue = {setValue}

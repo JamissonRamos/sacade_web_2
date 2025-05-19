@@ -36,8 +36,10 @@ const ListMonthlyPayment = (props) => {
 
             <S.Cards>
                 {
-                    dataMonthlyFee?.map(({paymentDate, paymentMethod, installmentIncrease, installmentDiscount, amountPaid}, index) => (
+                    dataMonthlyFee?.map(({id, paymentDate, paymentMethod, installmentIncrease, installmentDiscount, amountPaid}, index) => (
+                        
                         <PaymentListData key={index}
+                            id={id}
                             clickButton={clickButton}
                             loading={loading}
                             paymentDate={paymentDate}

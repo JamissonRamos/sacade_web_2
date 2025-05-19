@@ -42,6 +42,18 @@
 // //         console.log('Error ao tentar filtra e ordena alunos');
 // //     }
 // // }
+
+
+
+//Função para formatar a data no formato 'dd/mm/yyyy' para o formato 'mm/dd/yyyy'
+export const ConvertDateBrUSS = (dateStr) => {
+    const [day, month, year] = dateStr.split('/');
+
+
+    return (`${year}-${month}-${day}`);
+}
+
+
 export const FormatToCurrency = (value) => {    
     // Função para formatar número para moeda
     if(value === '') return "R$ 0,00";

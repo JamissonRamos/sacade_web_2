@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import { FormatToCurrency } from '../../../scripts';
 
 const PaymentListData = (props) => {
-    const { clickButton, paymentDate, paymentMethod, installmentIncrease, installmentDiscount, amountPaid } = props;
+    const {id, clickButton, paymentDate, paymentMethod, installmentIncrease, installmentDiscount, amountPaid } = props;
 
     const handlepaymentMethod = (paymentMethod) => {
         switch (paymentMethod) {
@@ -60,8 +60,9 @@ const PaymentListData = (props) => {
 
             <S.WrapButton>
                 <Button
-                    variant="outline-primary"
+                    id={id}
                     name='updatePay'
+                    variant="outline-primary"
                     onClick={(e) => clickButton(e)}
                 >
                 <TextC.Label level={4}>Atualizar</TextC.Label>

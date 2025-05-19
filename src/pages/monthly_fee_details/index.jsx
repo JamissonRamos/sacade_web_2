@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import ListMonthlyPayment from './list_monthly_payment';
 import { useMonthlyFee } from '../../hooks/monthlyFee';
 import * as S from './styled';
+import { ConvertDateBrUSS } from '../monthly_payment/scripts';
 const MonthlyFeeDetails = () => {
     const [parcelData, setParcelData] = useState([]); 
     const [allPaymentMonthlFee, setAllPaymentMonthlyFee] = useState([]); 
@@ -17,19 +18,17 @@ const MonthlyFeeDetails = () => {
 
     const { documentsID, loading } = useMonthlyFee.useGetDocumentsIDMonthlyFee();
 
-    const parseDate = (dateStr) => {
-        const [day, month, year] = dateStr.split('/');
-        return new Date(`${month}/${day}/${year}`);
-    }
+    // Função para calcular o valor total dos pagamentos
+    const subTotalPayment = allPaymentMonthlFee.reduce((acc, item) => acc + item.amountPaid, 0);
 
     const buttonPay = () => {
-        const subTotalPayment = allPaymentMonthlFee.reduce((acc, item) => acc + item.amountPaid, 0);
+        
         navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 1, subTotalPayment} });
     }
 
-    const buttonUpdate = () => {
-        console.log('Editar');
-        navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 2} });
+    const buttonUpdate = (id) => {
+       // console.log('Editar', id);
+        navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 2, subTotalPayment, idPayment: id} });
     }
 
 
@@ -58,8 +57,10 @@ const MonthlyFeeDetails = () => {
             const result = await documentsID(uidMonthlyFee);
             const { success, data, message } = result;
             if (success) {
+                //console.log('dta', data);
+                
                 //Ordena data por data de pagamento
-                data.sort((a, b) => parseDate(b.paymentDate) - parseDate(a.paymentDate));
+                data.sort((a, b) => new Date(ConvertDateBrUSS(b.paymentDate)) - new Date(ConvertDateBrUSS(a.paymentDate)));
 
                 setAllPaymentMonthlyFee(data);
             } else {
@@ -72,7 +73,7 @@ const MonthlyFeeDetails = () => {
 
     //Função para volta a lista de parcela mais tamebm limpar o local storage
     const handleClickButton = (e) => {
-        const { name } = e.currentTarget
+        const { name, id } = e.currentTarget
 
         switch (name) {
             case 'cancel':
@@ -83,7 +84,7 @@ const MonthlyFeeDetails = () => {
                 buttonPay();
                 break;
             case 'updatePay':
-                buttonUpdate();
+                buttonUpdate(id);
                 break;
             default:
                 console.log('Algo saiu errado');
