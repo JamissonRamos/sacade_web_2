@@ -16,7 +16,7 @@ export const useGetCollectionById = () => {
                 const document = docSnap.data();
                 return {success: true, data: document }; //Retorna o documento com o id
             }else {
-                return {success: false, message: "Coleção não encontrada2!" };
+                return {success: false, message: "Coleção não encontrada!" };
             }
         }catch (error) {
             console.error("Erro ao recuperar o documento:", error.message);

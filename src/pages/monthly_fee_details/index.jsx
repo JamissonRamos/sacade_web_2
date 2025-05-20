@@ -8,11 +8,14 @@ import ListMonthlyPayment from './list_monthly_payment';
 import { useMonthlyFee } from '../../hooks/monthlyFee';
 import * as S from './styled';
 import { ConvertDateBrUSS } from '../monthly_payment/scripts';
+import DeleteMonthlyFee from './delete_monthly_fee';
 const MonthlyFeeDetails = () => {
     const [parcelData, setParcelData] = useState([]); 
     const [allPaymentMonthlFee, setAllPaymentMonthlyFee] = useState([]); 
     const [totalValueMonthlyFee, setTotalValueMonthlyFee] = useState(0); //Pegar o valor total da mensalidade dentro do card, onde é calculado o valor total da mensalidade 
     const [statusMonthlyFee, setStatusMonthlyFee] = useState(false); //Pegar o status da mensalidade para desabilitar o botão de pagamento caso seja status fechado
+    const [showModalDelete, setShowModalDelete] = useState(false); //Controla o modal de exclusão
+    const [idToDelete, setIdToDelete] = useState(null); //Receber o id da mensalidade a ser excluida;
 
     const navigate = useNavigate();
 
@@ -26,9 +29,12 @@ const MonthlyFeeDetails = () => {
         navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 1, subTotalPayment} });
     }
 
-    const buttonUpdate = (id) => {
-       // console.log('Editar', id);
-        navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 2, subTotalPayment, idPayment: id} });
+    const buttonDelete = (id) => {
+        // console.log('delete', id);
+        setShowModalDelete((prevState) => !prevState);
+        setIdToDelete(id);
+        
+        //navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 2, subTotalPayment, idPayment: id} });
     }
 
 
@@ -83,14 +89,18 @@ const MonthlyFeeDetails = () => {
             case 'createrPay':
                 buttonPay();
                 break;
-            case 'updatePay':
-                buttonUpdate(id);
+            case 'delete':
+                buttonDelete(id);
                 break;
             default:
                 console.log('Algo saiu errado');
                 break;
         }
     }
+
+    // const handleShowModalDelete = () => { 
+    //     setShowModalDelete((prevState) => !prevState);
+    // };
 
     return (
 
@@ -113,9 +123,16 @@ const MonthlyFeeDetails = () => {
                     totalValueMonthlyFee={totalValueMonthlyFee}
                     clickButton={handleClickButton}
                 />
-                
             </S.Container>
 
+            {
+                showModalDelete &&
+                    <DeleteMonthlyFee
+                        showModalDelete={buttonDelete}
+                        uid={idToDelete}
+                    />
+
+            }
         </WrapPages>
     )
 }

@@ -10,14 +10,18 @@ const styledButton = css`
   transition: all 0.3s ease-in-out;
   & span {
     font-weight: 500;
-    color: ${ Theme.Colors.blue2800};
+    color: ${ Theme.Colors.red800};
   }
-  &:hover { 
-    background-color: ${ Theme.Colors.blue2800};
-    border: 1px solid ${ Theme.Colors.blue2800};
-    & span {
-      color: ${ Theme.Colors.white800};
+  & svg {
+      font-size: 1.2rem;
     }
+  &:hover { 
+    background-color: ${ Theme.Colors.red400};
+    border: 1px solid ${ Theme.Colors.red500};
+    & span, svg {
+      color: ${ Theme.Colors.red600};
+    }
+   
   }
   
   @media (max-width: 768px) {

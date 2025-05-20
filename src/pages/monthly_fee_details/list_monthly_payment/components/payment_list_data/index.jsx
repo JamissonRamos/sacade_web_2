@@ -61,12 +61,12 @@ const PaymentListData = (props) => {
             <S.WrapButton>
                 <Button
                     id={id}
-                    name='updatePay'
-                    variant="outline-primary"
+                    name='delete'
+                    variant="outline-danger"
                     onClick={(e) => clickButton(e)}
                 >
-                <TextC.Label level={4}>Atualizar</TextC.Label>
-                <Theme.Icons.MdEdit />
+                <TextC.Label level={4}>Excluir</TextC.Label>
+                <Theme.Icons.MdDelete />
                 </Button>
             </S.WrapButton>
         </S.Container>

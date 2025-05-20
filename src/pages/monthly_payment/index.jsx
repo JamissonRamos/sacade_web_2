@@ -2,7 +2,7 @@ import * as S from './styled';
 import { WrapPages } from '../../components/Wrappe/pages'
 import { useLocation, useNavigate } from 'react-router-dom';
 import FormCreate from './forms/create';
-import FormUpdate from './forms/update';
+
 import Header from './header';
 import Footer from './footer';
 import { useForm } from 'react-hook-form';
@@ -139,15 +139,7 @@ const MonthlyPayment = () => {
                                 setValueIncrease = {setValueIncrease}
                                 setValuePayments = {setValuePayments}
                             /> 
-                        :   <FormUpdate 
-                                idPayment={idPayment}
-                                register = {register}
-                                errors = {errors}
-                                setValue = {setValue}
-                                setValueDiscount = {setValueDiscount}
-                                setValueIncrease = {setValueIncrease}
-                                setValuePayments = {setValuePayments}
-                            />
+                        :   null
                     }
 
                     <WrapButtons 
