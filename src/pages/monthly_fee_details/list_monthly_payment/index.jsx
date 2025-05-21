@@ -1,8 +1,7 @@
-import { Button, Spinner } from 'react-bootstrap'
-import { TextC } from '../../../components/Typography'
 import * as S from './styled'
+import { Spinner } from 'react-bootstrap'
+import { TextC } from '../../../components/Typography'
 import { LoadingOverlay } from '../../../components/spinner/global/styled';
-import { FormatToCurrency } from '../scripts';
 import MonthlySummaries from './components/monthly_summaries';
 import PaymentListData from './components/payment_list_data';
 
@@ -10,7 +9,7 @@ const ListMonthlyPayment = (props) => {
     const { clickButton, loading, data, totalValueMonthlyFee } = props;
     const dataMonthlyFee = data || [];
     const subTotalPayment = dataMonthlyFee.reduce((acc, item) => acc + item.amountPaid, 0) || 0;
-
+    
     return (
         <S.Container>  
             {
@@ -57,22 +56,3 @@ const ListMonthlyPayment = (props) => {
 }
 
 export default ListMonthlyPayment
-
-
-// /* 
-// <ul>
-//                     <li>data</li>
-//                     <li>Forma Pagamento</li>
-//                     <li>Acrescimos</li>
-//                     <li>Descontos</li>
-//                     <li>Valor Pago</li>
-//                     {/* Ajusta possição do botão coloquei so para ver como fica a logica do botão */}
-//                     <li>
-//                         <button
-//                             name='update'
-//                             onClick={clickButton}
-//                         >Editar</button>
-//                     </li>
-//                 </ul>
-
-// */

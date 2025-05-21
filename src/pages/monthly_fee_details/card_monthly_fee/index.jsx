@@ -9,7 +9,6 @@ const CardMonthlyFee = (props) => {
     const {dueDate, daysLate, statusLabel, styledComponent, valueInstallment, fees, interestDaily, interestMonthly, interestAnnual } = data[0] || {};
 
     //Calculo de juros e taxas
-
     const totalFees = daysLate > 0 
                         ? CalculateValueFeesInterest(fees, valueInstallment) : 0;
     const totalInterestDaily = daysLate > 0 
@@ -20,8 +19,8 @@ const CardMonthlyFee = (props) => {
                         ? CalculateValueFeesInterest(interestAnnual, valueInstallment) : 0;
     const totalCalculated = daysLate > 0 
                         ? totalFees + (totalInterestDaily * daysLate) + (totalInterestMonthly * Math.floor(daysLate / 30)) + (totalInterestAnnual * Math.floor(daysLate / 365)) : 0;
-    const subTotal =  (valueInstallment + totalCalculated) ;
 
+    const subTotal =  Number((valueInstallment + totalCalculated).toFixed(2));
 
     //Formatação dos valores
     const formattedValueInstallment = FormatToCurrency(valueInstallment)
@@ -54,10 +53,6 @@ const CardMonthlyFee = (props) => {
                             { daysLate > 0 
                                 ? `dias ${statusLabel}` : statusLabel} 
                         </TextC.Body>
-
-
-
-
 
                     </S.WrapStatus>
 

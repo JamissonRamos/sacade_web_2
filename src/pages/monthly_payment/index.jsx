@@ -1,15 +1,15 @@
 import * as S from './styled';
 import { WrapPages } from '../../components/Wrappe/pages'
-import { useLocation, useNavigate } from 'react-router-dom';
 import FormCreate from './forms/create';
-
 import Header from './header';
 import Footer from './footer';
+import WrapButtons from './components/buttons';
+
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../validations';
-import WrapButtons from './components/buttons';
-import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { FormattedDate, ParseCurrencyToNumber } from './scripts';
 import { useMonthlyFee } from '../../hooks/monthlyFee';
 import { useInstallments } from '../../hooks/installments';
@@ -25,13 +25,13 @@ const MonthlyPayment = () => {
     const navigate = useNavigate();
     const location = useLocation();  // Captura o UID da URL
     // Captura os atributos do useLocation, typeForm: 1 = pagamento, update, 2 = pagamento
-    const { uidMonthlyFee, idForm, subTotalPayment, idPayment } = location.state || {};  
+    const { uidMonthlyFee, idForm, subTotalPayment } = location.state || {};  
     
     const {createDocuments, loading: loadingCreate} = useMonthlyFee.usePostDocumentsCreate();
     const {updateInstallments, loading: loadingInstallmentsUpdate} = useInstallments.usePostDocumentsUpdate();
     
     //Validaçoes dos Campos;
-    const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
+    const { register, handleSubmit, setValue, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(Validations.PaymentsSchema),
         defaultValues: {
             paymentDate: new Date().toISOString().split('T')[0],
@@ -72,10 +72,6 @@ const MonthlyPayment = () => {
     }
 
     const handleSubmitForm = async (data) => {
-        // - Ao Pagar ser redirencionado para pagina de notificação;
-        // - Tenho que mudar o status da parcela, alterar o status de parcela, como data de pagamento com a data em abeto;
-        // - add o uid da parcela, para ficar vinculado;
-
         data.paymentMethod = Number(data.paymentMethod);
         data.paymentDate = FormattedDate(data.paymentDate);
         data.installmentDiscount = ParseCurrencyToNumber(data.installmentDiscount);
@@ -94,31 +90,18 @@ const MonthlyPayment = () => {
         const {success, message} = result;
         
         if(success){
-            // Cria uma condiçao para verificar se a aprcela foi toda quitada, caso não não deve atualizar a parcela;
-            // tem o caso de ter quitado aparcela mais a parceal foi aberta novamente, assim mudar o stataus da mensalidade;
-            
             // Aqui vou fazer alteração no status da mensalidade;
             const resultUpdate = await monthlyDataUpdate(dataUpdateInstallments);
             const {success, message} = resultUpdate;
             if(success){
-                console.log('Mensalidade atualizada com sucesso!');
                 const path = `/notifications/monthlyPayment`;
-                //Coloca dinamico a page de notificação, atualiação ou create
+                reset();
                 navigate(path)
-                // navigate(`/notifications/create`, {
-                //     state: {
-                //         url: path,
-                //         valueButton: {value: 'Novo Pagamento', icon: 'MdAttachMoney'},
-                //         buttonNewRegister: false,
-                //     },
-                // });
             }else{
                 console.log('Erro ao atualizar mensalidade', message);
             }
-            
         }else{
             console.log('error no pagamento de mensalidade', message);
-            
         }
     }
 

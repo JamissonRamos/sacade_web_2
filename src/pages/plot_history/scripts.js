@@ -16,10 +16,6 @@ const setStatus = (status, diffDays) => {
 
 const daysLate = (status, date) => {
 /* Função para definir os dias de atrasos*/
-
-    //Caso seja True retorna 0 pois esta pago não precisa gerar calculo
-    //if(status) return  0;
-
     //Data atual Zerar horas, minutos, segundos e milissegundos para comparar apenas a data
     const today = new Date().setHours(0, 0, 0, 0); 
 

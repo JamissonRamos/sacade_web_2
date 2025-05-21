@@ -7,8 +7,6 @@ export const usePostCollectionUpdateIdStudent = () => {
     const collectionName = 'responsible_students'
 
     const updateIdStudent = useCallback(async (documentUid, newUids) => {
-        console.log('documentUid', documentUid);
-        console.log('newUids', newUids);
         
         try {
             const docRef = doc(db, collectionName, documentUid);

@@ -21,7 +21,6 @@ const styledButton = css`
     & span, svg {
       color: ${ Theme.Colors.red600};
     }
-   
   }
   
   @media (max-width: 768px) {

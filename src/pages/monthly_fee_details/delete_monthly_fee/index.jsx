@@ -1,28 +1,58 @@
 import * as S from './styled'
-import { Button, Spinner } from 'react-bootstrap'
 import { TextC } from '../../../components/Typography'
 import { Theme } from '../../../theme'
+import { Button, Spinner } from 'react-bootstrap'
 import { useMonthlyFee } from '../../../hooks/monthlyFee'
+import { useInstallments } from '../../../hooks/installments'
 import { useNavigate } from 'react-router-dom'
 
 const DeleteMonthlyFee = (props) => {
-    const { showModalDelete, uid } = props;
+    const { showModalDelete, uidPay, uidParcel } = props;
+
+    const uidPayments = uidPay || false;
+    const uidInstallments = uidParcel || false;
+
     const navigate = useNavigate();
 
     const {deleteInsllments, loading: loadingDelete } = useMonthlyFee.usePostDocumentsDelete();
+    const {updateInstallments, loading: loadingInstallmentsUpdate} = useInstallments.usePostDocumentsUpdate();
 
+    const updateInstallmentsData = async () => {
+        const dataToChange = {
+            uid: uidInstallments,
+            statusPayment: false,
+            dataPayment: "",
+        }
+
+        const result = await updateInstallments(dataToChange);
+        const {success, message} = result;
+
+        if(!success){
+            console.log('Atualização da parcela não foi concluida', message);
+            return false
+        }
+
+        return true
+    }
+    
     const handleDeleteItem = async () => {
-        const result = await deleteInsllments(uid);
+        const result = await deleteInsllments(uidPayments);
         const { success, message} = result; 
         if(success){
-            showModalDelete();
-            const path = (-1)
-            navigate('/notifications/delete', {
-                state: {
-                    url: path,
-                    valueButton: {value: 'Voltar Mensalidades', icon: 'MdPayments'},
-                },
-            });
+            const resultUpdate = await updateInstallmentsData();
+            if(resultUpdate){
+                showModalDelete();
+                const path = (-2)
+                navigate('/notifications/delete', {
+                    state: {
+                        url: path,
+                        valueButton: {value: 'Voltar Mensalidades', icon: 'MdPayments'},
+                    },
+                })
+            }else{
+                navigate('/notifications/error');
+            }
+
         }else{
             console.log('Deu erro: ', message);
             navigate('/notifications/error');
@@ -61,11 +91,11 @@ const DeleteMonthlyFee = (props) => {
                     <S.WrapButton>
                         <Button  
                             variant="success"
-                            disabled={loadingDelete}
+                            disabled={loadingDelete || loadingInstallmentsUpdate}
                             onClick={handleDeleteItem}
                         >
                             {
-                                loadingDelete
+                                loadingDelete || loadingInstallmentsUpdate
                                 ?   <>
                                         <Spinner
                                             as="span"

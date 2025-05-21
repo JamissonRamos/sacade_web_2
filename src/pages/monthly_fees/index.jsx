@@ -21,8 +21,7 @@ const MonthlyFees = () => {
         if(success) {
           // Adiciona o atributo isMinor a cada objeto no array data
           const newListStudent = await AddAttributeList(data);
-
-          setRegistered(newListStudent)
+          setRegistered(newListStudent);
           return;
         }else{
           console.log('Error ao Busca Student:', error);
@@ -38,7 +37,7 @@ const MonthlyFees = () => {
   }, []);
 
   const handleNavegation = (uid) =>{
-    //Recuperar nome compleo to aluno
+    //Recuperar nome compleo do aluno
     const foundStudent = registered.find((item) => item.uid === uid);
     const {firstName, lastName } = foundStudent;
 

@@ -1,5 +1,5 @@
-import { Button } from 'react-bootstrap'
 import * as S from './styled'
+import { Button } from 'react-bootstrap'
 import { Theme } from '../../../theme';
 import { TextC } from '../../../components/Typography';
 

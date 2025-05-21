@@ -3,9 +3,7 @@ import Fields from '../../components/fields';
 const FormCreate = (props) => {
     
     const { register, errors, setValue, setValueDiscount, setValueIncrease, setValuePayments} = props;
-
     return (
-
         <div>
             <Fields 
                 register = {register}

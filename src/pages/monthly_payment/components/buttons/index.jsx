@@ -1,5 +1,5 @@
-import { Button, Spinner } from 'react-bootstrap'
 import * as S from './styled'
+import { Button, Spinner } from 'react-bootstrap'
 import { TextC } from '../../../../components/Typography'
 import { Theme } from '../../../../theme'
 

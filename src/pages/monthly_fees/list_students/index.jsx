@@ -1,7 +1,7 @@
 import * as S from './styled'
-import { Spinner } from 'react-bootstrap'
 import { LoadingOverlay } from '../../../components/spinner/global/styled'
 import ListPrimary from '../../../components/lists_custom/students/list_primary'
+import { Spinner } from 'react-bootstrap'
 
 const ListStudents = (props) => {
     const { registered, loading, handleNavegation } = props

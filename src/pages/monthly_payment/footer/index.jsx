@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
 import * as S from './styled';
 import { TextC } from '../../../components/Typography';
+import { useEffect, useState } from 'react'
 import { FormatToCurrency } from '../scripts';
 
 const Footer = (props) => {
@@ -46,7 +46,8 @@ const Footer = (props) => {
     const calculateSubTotal = () => {
 
         // Cacular total da parcela
-        let subTotalInstallment = currentInstallmentValue + totalInterestRatesCurrent;
+        // let subTotalInstallment = currentInstallmentValue + totalInterestRatesCurrent;
+        let subTotalInstallment =  Number((currentInstallmentValue + totalInterestRatesCurrent).toFixed(2));
 
         //Retorna sem fazer o calculo
         if(subTotalInstallment === 0 ) return;
@@ -56,7 +57,6 @@ const Footer = (props) => {
 
         // calcular o valor total ja pago na mensalidade, com o valor que esta sendo pago na mensalidade
         let allPayments = allMonthlyPayment + valuePayments;
-
 
         //Calcular valor da parcela com o pagamento e arendeonda o valor final
         let paymentWithInstallmentValue = Math.round((calculateNewValue - allPayments) * 100) / 100;

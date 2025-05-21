@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { Theme } from "../../../theme";
-
 
 export const Container = styled.div`
     /* border: 1px solid red; */
@@ -23,5 +21,4 @@ export const Cards = styled.div`
     display: flex;
     flex-direction: column;
     gap: .4rem;
-     
 `;

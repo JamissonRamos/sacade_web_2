@@ -28,17 +28,6 @@ export const Card = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* gap: .8rem; */
-    
-    /* 
-    max-width: 500px;
-    padding: .8rem;
-    box-shadow: ${Theme.Shadow.sh600};
-    border-radius: 6px;
-    border-left: 5px solid ${props => props.$BorderColor ? props.$BorderColor : Theme.Colors.primary};
-
-    */
-
 `;
 
 export const CardHeader  = styled.div`
@@ -46,18 +35,10 @@ export const CardHeader  = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* gap: .6rem; */
-    
-    /* 
-    align-items: center;
-    justify-content: space-between;   
-    
-    */
 `;
 
 export const WrapStatus = styled.div`
     /* border: 1px solid blue; */
-    
     display: flex;
     align-items: center;
     gap: .4rem;
@@ -73,11 +54,6 @@ export const WrapStatus = styled.div`
         text-transform: uppercase;
         color: ${Theme.Colors.white800};
     }
-    
-    /* 
-    border-radius: 9px;
-    
-    */
 `;
 
 export const WrapTitle = styled.div`
@@ -121,8 +97,6 @@ export const CardBody  = styled.div`
     justify-content: space-between;
     gap: .6rem;
     padding: .2rem 1rem;
-    /* border-radius: 4px; */
-    /* background-color: ${props => props.$bgColor}; */
     & span {
         color: ${(props) => props.$fontColor};
     }
