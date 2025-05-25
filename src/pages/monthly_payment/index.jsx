@@ -68,8 +68,6 @@ const MonthlyPayment = () => {
         data.installmentIncrease = ParseCurrencyToNumber(data.installmentIncrease);
         data.amountPaid = ParseCurrencyToNumber(data.amountPaid);
         data.uidMonthlyFee = uidMonthlyFee;
-
-        console.log('wasPaid', wasPaid);
         
         // Obj de atualização de dados da mensalidade
         const dataUpdateInstallments = {

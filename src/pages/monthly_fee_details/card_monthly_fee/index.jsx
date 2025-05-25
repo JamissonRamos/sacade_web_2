@@ -5,7 +5,7 @@ import { CalculateValueFeesInterest, FormatToCurrency } from '../scripts';
 
 const CardMonthlyFee = (props) => {
 
-    const { data, subTotalPayment, subTotalIncrease, subTotalDiscount, setTotalValueMonthlyFee } = props;
+    const { data, totaAllPaymentMonthlFee, subTotalPayment, subTotalIncrease, subTotalDiscount, setTotalValueMonthlyFee } = props;
     const {dueDate, daysLate, statusLabel, styledComponent, valueInstallment, fees, interestDaily, interestMonthly, interestAnnual } = data[0] || {};
 
     //Calculo de juros e taxas
@@ -29,7 +29,8 @@ const CardMonthlyFee = (props) => {
     const formattedValueInstallment = FormatToCurrency(valueInstallment)
     const formattedTotalCalculated = FormatToCurrency(totalCalculated)
     const formattedTotal = FormatToCurrency(Total)
-    const formattedSubTotal = FormatToCurrency(subTotal)
+    //Caso o valor seja -0,00 abs muda para 0
+    const formattedSubTotal = FormatToCurrency(Math.abs(subTotal) < 1e-10 ? 0 : subTotal)
     const formattedSubTotalPayment = FormatToCurrency(subTotalPayment)
     const formattedSubTotalIncrease = FormatToCurrency(subTotalIncrease)
     const formattedSubTotalDiscount = FormatToCurrency(subTotalDiscount)  
@@ -43,7 +44,7 @@ const CardMonthlyFee = (props) => {
         localStorage.setItem('cardParcelData', JSON.stringify(valueFormatted));
 
     }, [totalCalculated, valueInstallment, setTotalValueMonthlyFee, subTotal]);
-
+    
     return (
         <S.Container>
             <S.Card>
@@ -93,11 +94,19 @@ const CardMonthlyFee = (props) => {
                                 <TextC.Body level={2}>{formattedTotal}</TextC.Body>
                             </S.WrapInterestRates>
                     }
+                    
+                    {
+                        totaAllPaymentMonthlFee > 0 &&
+                        <S.WrapInstallment >
+                            <TextC.Body level={2}>Pagamento</TextC.Body>
+                            <TextC.Body level={2}>{totaAllPaymentMonthlFee}</TextC.Body>
+                        </S.WrapInstallment>
+                    }
 
                     {  
                         subTotalPayment  > 0 &&
                         <S.WrapInstallment >
-                            <TextC.Body level={2}>Pagamento</TextC.Body>
+                            <TextC.Body level={2}>Valo Pago</TextC.Body>
                             <TextC.Body level={2}>{formattedSubTotalPayment}</TextC.Body>
                         </S.WrapInstallment>
                     }

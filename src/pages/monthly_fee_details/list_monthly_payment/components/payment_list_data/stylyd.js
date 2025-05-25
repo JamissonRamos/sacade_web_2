@@ -35,40 +35,50 @@ export const Container = styled.div`
   /* border: 1px solid red; */
   width: 100%;
   display: flex;
-  flex-direction: column;
-  padding: 0;
-  border-bottom: 2px solid ${Theme.Colors.grey400};
+  align-items: center;
+  justify-content: center;
+  padding: .6rem ;
+`;
+
+export const Card = styled.div`
+  /* border: 1px solid red; */
+  width: 100%;
+  max-width: 800px;
+  box-shadow: ${Theme.Shadow.sh700};
+  border-top: 10px solid ${Theme.Colors.grey500};
+  border-radius: 4px;
+  padding: .8rem 0;
 `;
 
 export const WrapSection = styled.div`
-    /* border: 1px solid red; */
-    display: flex;
-    flex-direction: column;
-    gap: 0rem;
-    padding: 0rem .8rem;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
 `;
 
 export const WrapRow = styled.div`
-    /* border: 1px solid red; */
-    width: 100%;
-    display: flex;
-    justify-content: space-between; 
-    padding: .2rem 1rem;
-    & span {
-      margin-bottom: 0.2rem;
-      font-weight: 500;
-      color: ${ Theme.Colors.gray500};
-    }
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between; 
+  padding: .2rem .8rem;
+  & span {
+    margin-bottom: .2rem;
+    font-weight: 500;
+    color: ${Theme.Colors.grey700};
+    
+  }
 `;
+
 export const WrapButton = styled.div`
-    /* border: 1px solid red; */
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    padding: .2rem 1rem;
-    margin: .4rem 0 .8rem 0;
-    & button {
-      ${styledButton};
-    }
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  padding: .2rem 1rem;
+  margin: .6rem 0 .4rem 0;
+  & button {
+    ${styledButton};
+  }
 `;

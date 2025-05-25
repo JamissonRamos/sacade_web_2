@@ -19,6 +19,9 @@ export const Container = styled.div`
     justify-content: center;
     padding: .8rem ;
     margin-top: .6rem;
+    @media (max-width: 768px) {
+        padding: .2rem;
+    }
 `;
 
 export const Card = styled.div`

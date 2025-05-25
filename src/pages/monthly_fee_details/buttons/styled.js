@@ -8,7 +8,7 @@ const styledButton = css`
     align-items: center;
     justify-content: center;
     gap: .4rem;
-    padding: .4rem 1rem;
+    padding: .6rem 1rem;
     border-radius: 5px;
     border: none;
     cursor: pointer;
@@ -49,7 +49,6 @@ const styledButton = css`
 export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    margin-bottom: 1rem;
 `;
 
 export const WrapButtons = styled.div`
@@ -58,12 +57,9 @@ export const WrapButtons = styled.div`
     display: flex; 
     align-items: center;
     justify-content: center;
-    padding: .4rem 1rem;
-    border-bottom: 2px solid ${Theme.Colors.grey400}; 
-    
+    padding: .4rem 1rem;    
     button {
         background: ${Theme.Colors.green800};
         ${styledButton}
-        margin-bottom: 1rem;
     }
 `;

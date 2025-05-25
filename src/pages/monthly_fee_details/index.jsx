@@ -105,6 +105,7 @@ const MonthlyFeeDetails = () => {
             <S.Container>
                 <CardMonthlyFee 
                     data={parcelData} 
+                    totaAllPaymentMonthlFee={allPaymentMonthlFee.length}
                     subTotalPayment={subTotalPayment}
                     subTotalIncrease={subTotalIncrease}
                     subTotalDiscount={subTotalDiscount}
