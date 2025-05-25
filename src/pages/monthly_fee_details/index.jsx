@@ -19,16 +19,21 @@ const MonthlyFeeDetails = () => {
     const [showModalDelete, setShowModalDelete] = useState(false); //Controla o modal de exclusão
     const [idToDelete, setIdToDelete] = useState(null); //Receber o id do pagamento a ser excluida;
     const [idParcel, setIdParcel] = useState(null); //Receber o id da mensalidade para ser alterado;
+    
+    //dados pagamentos
+    const [subTotalPayment, setSubTotalPayment] = useState(0); //Recebe o valor total ja pago na mensalidade
+    const [subTotalIncrease, setSubTotalIncrease] = useState(0); //Recebe o valor total de acrescimo na mensalidade
+    const [subTotalDiscount, setSubTotalDiscount] = useState(0); //Recebe o valor total de desconto na mensalidade
 
     const navigate = useNavigate();
 
     const { documentsID, loading } = useMonthlyFee.useGetDocumentsIDMonthlyFee();
 
     // Função para calcular o valor total dos pagamentos
-    const subTotalPayment = allPaymentMonthlFee.reduce((acc, item) => acc + item.amountPaid, 0);
+    //const subTotalPayment = allPaymentMonthlFee.reduce((acc, item) => acc + item.amountPaid, 0);
 
     const buttonPay = () => {
-        navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 1, subTotalPayment}});
+        navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 1}});
     }
 
     const buttonDelete = (id) => {
@@ -64,6 +69,9 @@ const MonthlyFeeDetails = () => {
                 //Ordena data por data de pagamento
                 data.sort((a, b) => new Date(ConvertDateBrUSS(b.paymentDate)) - new Date(ConvertDateBrUSS(a.paymentDate)));
                 setAllPaymentMonthlyFee(data);
+                setSubTotalPayment(Number(data.reduce((acc, item) => acc + item.amountPaid, 0)))
+                setSubTotalIncrease(Number(data.reduce((acc, item) => acc + item.installmentIncrease, 0)))
+                setSubTotalDiscount(Number(data.reduce((acc, item) => acc + item.installmentDiscount, 0)))
             } else {
                 console.log('Erro ao recuperar os dados:', message);
             }
@@ -89,7 +97,7 @@ const MonthlyFeeDetails = () => {
                 break;
         }
     }
-
+    
     return (
 
         <WrapPages>
@@ -97,6 +105,9 @@ const MonthlyFeeDetails = () => {
             <S.Container>
                 <CardMonthlyFee 
                     data={parcelData} 
+                    subTotalPayment={subTotalPayment}
+                    subTotalIncrease={subTotalIncrease}
+                    subTotalDiscount={subTotalDiscount}
                     setTotalValueMonthlyFee={setTotalValueMonthlyFee}
                 />
 
@@ -109,6 +120,10 @@ const MonthlyFeeDetails = () => {
                     loading={loading}
                     data={allPaymentMonthlFee}
                     totalValueMonthlyFee={totalValueMonthlyFee}
+                    subTotalPayment={subTotalPayment}
+                    subTotalIncrease={subTotalIncrease}
+                    subTotalDiscount={subTotalDiscount}
+
                     clickButton={handleClickButton}
                 />
             </S.Container>

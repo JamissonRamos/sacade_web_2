@@ -5,7 +5,7 @@ import { CalculateValueFeesInterest, FormatToCurrency } from '../scripts';
 
 const CardMonthlyFee = (props) => {
 
-    const { data, setTotalValueMonthlyFee } = props;
+    const { data, subTotalPayment, subTotalIncrease, subTotalDiscount, setTotalValueMonthlyFee } = props;
     const {dueDate, daysLate, statusLabel, styledComponent, valueInstallment, fees, interestDaily, interestMonthly, interestAnnual } = data[0] || {};
 
     //Calculo de juros e taxas
@@ -20,19 +20,25 @@ const CardMonthlyFee = (props) => {
     const totalCalculated = daysLate > 0 
                         ? totalFees + (totalInterestDaily * daysLate) + (totalInterestMonthly * Math.floor(daysLate / 30)) + (totalInterestAnnual * Math.floor(daysLate / 365)) : 0;
 
-    const subTotal =  Number((valueInstallment + totalCalculated).toFixed(2));
+    const Total =  Number((valueInstallment + totalCalculated).toFixed(2)); //Calcular Valor Original da Parcel
+    let subTotal = (valueInstallment + totalCalculated - subTotalPayment) || 0; // Calcular Valor descontando pagamento
+    subTotal += subTotalIncrease; //Valor da parcela com o total de acrescimo
+    subTotal -=  subTotalDiscount; //Valor da parcela com o total de desconto
 
     //Formatação dos valores
     const formattedValueInstallment = FormatToCurrency(valueInstallment)
     const formattedTotalCalculated = FormatToCurrency(totalCalculated)
+    const formattedTotal = FormatToCurrency(Total)
     const formattedSubTotal = FormatToCurrency(subTotal)
+    const formattedSubTotalPayment = FormatToCurrency(subTotalPayment)
+    const formattedSubTotalIncrease = FormatToCurrency(subTotalIncrease)
+    const formattedSubTotalDiscount = FormatToCurrency(subTotalDiscount)  
 
     // Salva no localStorage sempre que os dados mudam
     useEffect(() => {
         setTotalValueMonthlyFee(subTotal);
         const valueFormatted = {
-            valueInstallment, //formattedValueInstallment,
-            totalCalculated, //formattedTotalCalculated,
+            subTotal
         };
         localStorage.setItem('cardParcelData', JSON.stringify(valueFormatted));
 
@@ -80,11 +86,42 @@ const CardMonthlyFee = (props) => {
                                 <TextC.Body level={2}>{formattedTotalCalculated}</TextC.Body>
                             </S.WrapInterestRates>
                     }
+                    {
+                        daysLate > 0 && fees > 0 &&
+                            <S.WrapInterestRates >
+                                <TextC.Body level={2}>Total</TextC.Body>
+                                <TextC.Body level={2}>{formattedTotal}</TextC.Body>
+                            </S.WrapInterestRates>
+                    }
 
+                    {  
+                        subTotalPayment  > 0 &&
+                        <S.WrapInstallment >
+                            <TextC.Body level={2}>Pagamento</TextC.Body>
+                            <TextC.Body level={2}>{formattedSubTotalPayment}</TextC.Body>
+                        </S.WrapInstallment>
+                    }
+
+                    {  
+                        subTotalDiscount > 0 &&
+                        <S.WrapInstallment >
+                            <TextC.Body level={2}>Desconto</TextC.Body>
+                            <TextC.Body level={2}>{formattedSubTotalDiscount}</TextC.Body>
+                        </S.WrapInstallment>
+                    }
+
+                    {  
+                        subTotalIncrease  > 0 &&
+                        <S.WrapInstallment >
+                            <TextC.Body level={2}>Acréscimo</TextC.Body>
+                            <TextC.Body level={2}>{formattedSubTotalIncrease}</TextC.Body>
+                        </S.WrapInstallment>
+                    }
+                
                     {
                         daysLate > 0 &&
                             <S.WrapSubTotal $bgColor={styledComponent}>
-                                <TextC.Body level={3}>Total</TextC.Body>
+                                <TextC.Body level={3}>Falta Pagar</TextC.Body>
                                 <TextC.Body level={3}>{formattedSubTotal}</TextC.Body>
                             </S.WrapSubTotal>
                     }

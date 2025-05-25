@@ -1,11 +1,10 @@
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore"; 
+import { collection, getDocs, query, where } from "firebase/firestore"; 
 import { db } from '../../../services/firebase/config';
 
 export const useGetCollectionByIdMonthlyFee = () => {
     const collectionName = 'monthly_fee'
 
     const getDocumentsByIdMonthlyFee = async (uidMonthlyFee) => {
-        console.log('uidMonthlyFee', uidMonthlyFee);
         
         try {
             // array-contains

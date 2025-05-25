@@ -4,130 +4,105 @@ import { useEffect, useState } from 'react'
 import { FormatToCurrency } from '../scripts';
 
 const Footer = (props) => {
-    const { valueDiscount, valueIncrease, valuePayments, allMonthlyPayment, setBlockPaymentProcess, setWasPaid} = props;
+    const { valueDiscount, valueIncrease, valuePayments, setBlockPaymentProcess, setWasPaid} = props;
 
-    const [currentInstallmentValue, setCurrentInstallmentValue] = useState(0); //Receber o valor da parcela
-    const [totalInterestRatesCurrent, setTotalInterestRatesCurrent] = useState(0); //Receber o total de multa e juros
-    const [currentValueDiscount, setCurrentValueDiscount] = useState(0); //Receber o Valor de Desconto da parcela
-    const [currentValueIncrease, setCurrentValueIncrease] = useState(0); //Receber o Valor de Acresimo da pacela
-    const [currentValuePayments, setCurrentValuePayments] = useState(0); //Recebe o Valor pago na parcela
-    const [subTotal, setSubTotal] = useState(0); //Recebe o valo atualizado da parcela
+    const [valueIncreaseInput, setValueIncreaseInput] = useState(0); //Valor do Acrecimo Input;
+    const [valueDiscountInput, setValueDiscountInput] = useState(0); //Valor de Desconto Input;
+
+    const [subTotalFixed, setSubTotalFixed] = useState(0); //Valor da parcela calculando com valore fixado;
+    const [subTotalInput, setSubTotalInput] = useState(0); //Valor da parcela calculando com valore do input;
     
-    //Recuperar dados do localStorage e aplicar valores nas states
     useEffect(() => {
-        //Recuperar array do localStorage
-        const formattedDataParcel = JSON.parse(localStorage.getItem('cardParcelData')) || [];
+    /* 
+        -Carregar e atualizar staetes de valores da mensalidade;
+        -Valores fixos
+    */
+    const dataPay = JSON.parse(localStorage.getItem('cardParcelData')) || [];
+    
+    if (dataPay.length === 0) return;
 
-        //Verificar se o array está vazio
-        if (formattedDataParcel.length === 0) {
-            console.log('Valores da parcela não foi gerado');
+    //Verificar se vou precisar de todos esses valores, ou somente do subtotal
+    const { subTotal } = dataPay;
+
+    //SubTotal traz o valor que resta a pagar
+    setSubTotalFixed(subTotal);
+
+    }, []); // Executa apenas na 1ª renderização
+
+    useEffect(() => {
+        setValueIncreaseInput(valueIncrease);
+        setValueDiscountInput(valueDiscount);
+
+        //Caso tenha alterados os campos para 0 voltar o valor inicial da mensalidade
+        if(valuePayments === 0 && valueIncrease === 0 && valueDiscount === 0) {
+            setSubTotalInput((prev) => {
+                return prev - subTotalInput;
+            }); 
+            setBlockPaymentProcess(false);
             return
-        }   
+        }
 
-        //Extrair os valores da parcela
-        const {totalCalculated, valueInstallment } = formattedDataParcel;
-
-        //Cacular total da parcela
-        let calculateSubTotal = valueInstallment + totalCalculated;
+        //Receber o valor do input de pagamento
+        let calcInput = subTotalFixed - valuePayments;  
+    
+        calcInput += valueIncrease
+        calcInput -= valueDiscount
         
-        setCurrentInstallmentValue(valueInstallment);
-        setTotalInterestRatesCurrent(totalCalculated);
-        setSubTotal(calculateSubTotal);
-    }, []);
+        setSubTotalInput(Math.round((calcInput) * 100 ) / 100);
 
-    useEffect(() => {
-        setCurrentValueDiscount(valueDiscount);
-        setCurrentValueIncrease(valueIncrease);
-        setCurrentValuePayments(allMonthlyPayment + valuePayments);
-        calculateSubTotal();
-
-    }, [valueDiscount, valueIncrease, valuePayments, allMonthlyPayment])
-
-    const calculateSubTotal = () => {
-
-        // Cacular total da parcela
-        // let subTotalInstallment = currentInstallmentValue + totalInterestRatesCurrent;
-        let subTotalInstallment =  Number((currentInstallmentValue + totalInterestRatesCurrent).toFixed(2));
-
-        //Retorna sem fazer o calculo
-        if(subTotalInstallment === 0 ) return;
-
-        //Calcular total parcela aplicando desconto ou acrecimo
-        let calculateNewValue = subTotalInstallment + valueIncrease - valueDiscount;
-
-        // calcular o valor total ja pago na mensalidade, com o valor que esta sendo pago na mensalidade
-        let allPayments = allMonthlyPayment + valuePayments;
-
-        //Calcular valor da parcela com o pagamento e arendeonda o valor final
-        let paymentWithInstallmentValue = Math.round((calculateNewValue - allPayments) * 100) / 100;
-        
-        setSubTotal(paymentWithInstallmentValue);
-
-        //Verificar se o valor pago quita a mensalidade, devolver true ou false;
-        paymentWithInstallmentValue === 0 ? setWasPaid(true) : setWasPaid(false);
+        //Validar se foi pago o valor total da divida, caso sim true para alterar o status da parcela;
+        calcInput.toFixed(2) == '-0.00' ? setWasPaid(true) : setWasPaid(false);
 
         //Verifica se o valor do pagamento é maior que o valor da mensalidade
-        if(paymentWithInstallmentValue < 0){
+        if(calcInput <= -0.01 ){
             setBlockPaymentProcess(true);
         }else{
             setBlockPaymentProcess(false);
         }
-    }
-    
+        
+    }, [valuePayments, valueIncrease, valueDiscount])
+
     return (
         <S.Container>
-        
             <S.WrapNotice>
-            {
-                subTotal < 0 && 
-                    <S.WrapText>
-                            <TextC.Body level={1}>O valor do desconto e o valor do pagamento não podem ser maiores do que o valor da parcela.</TextC.Body>
-                    </S.WrapText>
-            }
+                {
+                    subTotalInput < 0 && 
+                        <S.WrapText>
+                                <TextC.Body level={1}>O valor do desconto ou do pagamento não pode ser superior ao valor da parcela.</TextC.Body>
+                        </S.WrapText>
+                }
+                
             </S.WrapNotice>
-
             <S.WrapDataParcel>
+
                 <S.WrapField>
-                    <TextC.Body level={2} > Valor da Parcela: </TextC.Body>
-                    <TextC.Body level={2} > (+) {FormatToCurrency(currentInstallmentValue)} </TextC.Body>
+                    <TextC.Body level={2} >Valor em Aberto:</TextC.Body>
+                    <TextC.Body level={2} >{FormatToCurrency(subTotalFixed)}</TextC.Body>
                 </S.WrapField>
 
                 {
-                    totalInterestRatesCurrent > 0 &&
-                        <S.WrapField>
-                            <TextC.Body level={2} > Multa e Juros: </TextC.Body>
-                            <TextC.Body level={2} > (+) {FormatToCurrency(totalInterestRatesCurrent)} </TextC.Body>
-                        </S.WrapField>
-                }
-
-                {
-                    currentValueIncrease > 0 &&
+                    valueIncreaseInput > 0 &&
                     <S.WrapField>
                         <TextC.Body level={2} >Acréscimo:</TextC.Body>
-                        <TextC.Body level={2} >(+) {FormatToCurrency(currentValueIncrease)}</TextC.Body>
+                        <TextC.Body level={2} >(+) {FormatToCurrency(valueIncreaseInput)}</TextC.Body>
                     </S.WrapField>
                 }
-
-                    {
-                        currentValueDiscount > 0 &&
-                        <S.WrapField>     
-                            <TextC.Body level={2} >Desconto:</TextC.Body>
-                            <TextC.Body level={2} >(-) {FormatToCurrency(currentValueDiscount)}</TextC.Body>
-                        </S.WrapField>
-                    }
-
-                <S.WrapField>
-
-                    <TextC.Body level={2} > Valor Pago: </TextC.Body>
-                    <TextC.Body level={2} >{FormatToCurrency(currentValuePayments)}</TextC.Body>
-
-                </S.WrapField>
-
-                <S.WrapField>
-                    <TextC.Body level={2} >Total a Ser Pago:</TextC.Body>
-                    <TextC.Body level={2} >{FormatToCurrency(subTotal)}</TextC.Body>
-                </S.WrapField>
+                {
+                    valueDiscountInput > 0 &&
+                    <S.WrapField>
+                        <TextC.Body level={2} > Desconto: </TextC.Body>
+                        <TextC.Body level={2} >(-) {FormatToCurrency(valueDiscountInput)}</TextC.Body>
+                    </S.WrapField>
+                }
+                {
+                    subTotalInput !== 0 && subTotalFixed !== subTotalInput &&
+                    <S.WrapField>
+                        <TextC.Body level={2} > { subTotalInput < 0 ? 'Ultrapassou:' : 'Falta Pagar:' } </TextC.Body>
+                        <TextC.Body level={2} > {FormatToCurrency(subTotalInput)} </TextC.Body>
+                    </S.WrapField>
+                }
             </S.WrapDataParcel>
+
         </S.Container>
     )
 }

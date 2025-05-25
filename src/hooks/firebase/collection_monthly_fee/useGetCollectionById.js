@@ -5,7 +5,6 @@ export const useGetCollectionById = () => {
     const collectionName = 'monthly_fee'
 
     const getDocumentById = async (uid) => {
-        console.log('2uid: ', uid);
         
         try {            
             const docRef = doc(db, collectionName, uid); // Referência ao documentos

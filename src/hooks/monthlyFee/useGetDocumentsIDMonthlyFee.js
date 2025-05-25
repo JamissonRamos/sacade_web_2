@@ -7,7 +7,6 @@ export const useGetDocumentsIDMonthlyFee = () => {
     const {getDocumentsByIdMonthlyFee} = useGetCollectionByIdMonthlyFee();
 
     const documentsID = useCallback( async (uid) => {
-        console.log('uid', uid);
         
         setLoading(true);
         try {
