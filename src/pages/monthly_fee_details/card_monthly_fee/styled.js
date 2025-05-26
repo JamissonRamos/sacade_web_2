@@ -38,6 +38,10 @@ export const CardHeader  = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    & span {
+        font-weight: 500;
+        color: ${Theme.Colors.grey600};
+    }
 `;
 
 export const WrapStatus = styled.div`

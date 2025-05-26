@@ -78,9 +78,11 @@ const PlotHistory = () => {
 
         if(typeForm === 1){
             // Navegação para o update de parcelas    
-            navigate('/updateInstallments/formUpdate');        
+            console.log('teste 1');
+            //navigate('/updateInstallments/formUpdate');        
         }else if(typeForm === 2){
-            // Navegação para o update de parcelas    
+            // Navegação para o update de parcelas  
+            console.log('teste 2');
             navigate('/monthlyFeeDetails');        
         }
     }

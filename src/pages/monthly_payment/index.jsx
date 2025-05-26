@@ -24,9 +24,11 @@ const MonthlyPayment = () => {
     const navigate = useNavigate();
     const location = useLocation();  // Captura o UID da URL
     // Captura os atributos do useLocation, typeForm: 1 = pagamento, update, 2 = pagamento
-    const { uidMonthlyFee, idForm } = location.state || {};  
+    const { uidMonthlyFee, maxPaymentDate } = location.state || {};  
     const {createDocuments, loading: loadingCreate} = useMonthlyFee.usePostDocumentsCreate();
     const {updateInstallments, loading: loadingInstallmentsUpdate} = useInstallments.usePostDocumentsUpdate();
+    
+   //console.log('maxPaymentDate', maxPaymentDate);
     
     //Validaçoes dos Campos;
     const { register, handleSubmit, setValue, reset, formState:{ errors } } = useForm({
@@ -63,30 +65,47 @@ const MonthlyPayment = () => {
 
     const handleSubmitForm = async (data) => {
         data.paymentMethod = Number(data.paymentMethod);
-        data.paymentDate = FormattedDate(data.paymentDate);
+
+        // console.log(' data.paymentDate', data.paymentDate);
+        // //console.log(' maxPaymentDate',  FormattedDate(maxPaymentDate));
+        // console.log(' maxPaymentDate2',  maxPaymentDate);
+        
+
+
+
+        //Compara maior data de pagamento com a data a ser salvo e pegar a maior data 
+        const PaymentDateToBbeSaved = maxPaymentDate > data.paymentDate ? maxPaymentDate : data.paymentDate;
+       // console.log('PaymentDateToBbeSaved', PaymentDateToBbeSaved);
+
+        data.paymentDate = FormattedDate(PaymentDateToBbeSaved) //FormattedDate(data.paymentDate);
         data.installmentDiscount = ParseCurrencyToNumber(data.installmentDiscount);
         data.installmentIncrease = ParseCurrencyToNumber(data.installmentIncrease);
         data.amountPaid = ParseCurrencyToNumber(data.amountPaid);
         data.uidMonthlyFee = uidMonthlyFee;
-        
+        ''
         // Obj de atualização de dados da mensalidade
         const dataUpdateInstallments = {
             uid: uidMonthlyFee,
-            dataPayment: data.paymentDate,
+            dataPayment: wasPaid ? FormattedDate(PaymentDateToBbeSaved) : "", 
             statusPayment: wasPaid,
         }
 
-        const result = await createDocuments(data);
+        const result = await createDocuments(data); //{success: true, message: 'erro de teste'}
         const {success, message} = result;
         
         if(success){
             // Aqui vou fazer alteração no status da mensalidade;
-            const resultUpdate = await monthlyDataUpdate(dataUpdateInstallments);
+
+
+            const resultUpdate = await monthlyDataUpdate(dataUpdateInstallments); //{success: true, message: 'erro de teste'} //
             const {success, message} = resultUpdate;
-            if(success){
+            if(success){               
                 const path = `/notifications/monthlyPayment`;
                 reset();
                 navigate(path)
+                //Limpar o local storage ao renderizar o component
+                localStorage.removeItem('cardParcelData');
+                localStorage.removeItem('parcelData');
             }else{
                 console.log('Erro ao atualizar mensalidade', message);
             }
@@ -99,12 +118,13 @@ const MonthlyPayment = () => {
         <WrapPages>
             <S.Content>
 
-                <Header idForm={idForm}/>
+                <Header /> {/* idForm={idForm} */}
 
                 <S.Form onSubmit={handleSubmit(handleSubmitForm)}>
                     {
-                        idForm == 1
-                        ?   <FormCreate 
+                        //idForm == 1
+                        //?   
+                        <FormCreate 
                                 register = {register}
                                 errors = {errors}
                                 setValue = {setValue}
@@ -112,11 +132,11 @@ const MonthlyPayment = () => {
                                 setValueIncrease = {setValueIncrease}
                                 setValuePayments = {setValuePayments}
                             /> 
-                        :   null
+                        //:   null
                     }
 
                     <WrapButtons 
-                        idForm={Number(idForm)}
+                        //idForm={Number(idForm)}
                         blockPaymentProcess = {blockPaymentProcess}
                         clickButton = {handleClickButton}
                         loadingCreate={loadingCreate || loadingInstallmentsUpdate}

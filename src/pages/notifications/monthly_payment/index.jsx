@@ -23,11 +23,11 @@ const NotificationsMonthlyPayment = () => {
                 <S.Footer>
 
                     <S.ButtonOutline
-                        onClick={() => navigate('/monthlyFees')}
+                        onClick={() => navigate(-3)}
                     >
                         <Theme.Icons.MdAttachMoney />
                         <TextC.Body level={2}>
-                            Novo Pagamento
+                            Histórico da Mensalidade
                         </TextC.Body>
                     </S.ButtonOutline>
 

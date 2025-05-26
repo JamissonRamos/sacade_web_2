@@ -15,6 +15,13 @@ export const Header = styled.div`
     padding: .4rem 1rem;
     margin-bottom: .8rem;
     border-bottom: 2px solid ${Theme.Colors.grey400};
+    & span {
+        font-weight: 500;
+        color: ${Theme.Colors.grey600};
+    }
+    @media (max-width: 768px) {
+        padding: .2rem;
+    }
 `;
 
 export const Cards = styled.div`

@@ -1,11 +1,9 @@
 import { TextC } from '../../../components/Typography'
 import * as S from './styled'
 
-const Header = ({idForm}) => {
-    const title = idForm  == 1 ? 'Pagar Mensalidade' : 'Atualizar Mensalidade';
-    const subTitle = idForm  == 1 
-    ? 'Neste formulário, você pode efetuar o pagamento da mensalidade.' 
-    : 'Este formulário permitirá a atualização dos dados de pagamento.';
+const Header = () => {
+    const title = 'Pagar Mensalidade' ;
+    const subTitle = 'Neste formulário, você pode efetuar o pagamento da mensalidade.';
     return (
         <S.Container>
             <TextC.Display level={1}>

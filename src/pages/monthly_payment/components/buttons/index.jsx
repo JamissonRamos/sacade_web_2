@@ -4,15 +4,15 @@ import { TextC } from '../../../../components/Typography'
 import { Theme } from '../../../../theme'
 
 const WrapButtons = (props) => {
-    const { idForm, blockPaymentProcess, clickButton, loadingCreate } = props;
-
-    const labelButton = idForm  == 1 
-    ? 'Pagar Mensalidade' 
-    : 'Atualizar Mensalidade';
+    const { blockPaymentProcess, clickButton, loadingCreate } = props;
+    //idForm
+    // const labelButton = idForm  == 1 
+    // ? 'Pagar Mensalidade' 
+    // : 'Atualizar Mensalidade';
 
     return (
         <S.Container>
-            {
+            {/* {
                 idForm !== 1 &&
                 <S.WrapButtonDelete>
                     <Button
@@ -26,7 +26,7 @@ const WrapButtons = (props) => {
                         
                     </Button>
                 </S.WrapButtonDelete>
-            }
+            } */}
 
             <S.WrapButtonsAction>
                 <S.WrapButtonsCancel>
@@ -62,7 +62,7 @@ const WrapButtons = (props) => {
                             :
                                 <>
                                     <Theme.Icons.MdPayments />
-                                    <TextC.Label level={4}> {labelButton} </TextC.Label>
+                                    <TextC.Label level={4}> Pagar Mensalidade </TextC.Label>
                                 </>
                         }   
                     </Button>

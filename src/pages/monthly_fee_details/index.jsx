@@ -24,16 +24,13 @@ const MonthlyFeeDetails = () => {
     const [subTotalPayment, setSubTotalPayment] = useState(0); //Recebe o valor total ja pago na mensalidade
     const [subTotalIncrease, setSubTotalIncrease] = useState(0); //Recebe o valor total de acrescimo na mensalidade
     const [subTotalDiscount, setSubTotalDiscount] = useState(0); //Recebe o valor total de desconto na mensalidade
+    const [maxPaymentDate, setMaxPaymentDate] = useState(''); //Recebe a maior data de pagamento
 
     const navigate = useNavigate();
-
     const { documentsID, loading } = useMonthlyFee.useGetDocumentsIDMonthlyFee();
 
-    // Função para calcular o valor total dos pagamentos
-    //const subTotalPayment = allPaymentMonthlFee.reduce((acc, item) => acc + item.amountPaid, 0);
-
     const buttonPay = () => {
-        navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, idForm: 1}});
+        navigate('/monthlyPayment', { state: { uidMonthlyFee: parcelData[0].id, maxPaymentDate: maxPaymentDate}});
     }
 
     const buttonDelete = (id) => {
@@ -66,9 +63,17 @@ const MonthlyFeeDetails = () => {
             const result = await documentsID(uidMonthlyFee);
             const { success, data, message } = result;
             if (success) {
+                console.log('Data', data);
+                
                 //Ordena data por data de pagamento
                 data.sort((a, b) => new Date(ConvertDateBrUSS(b.paymentDate)) - new Date(ConvertDateBrUSS(a.paymentDate)));
+                //Recuperar a maior data de pagemento
+                const maxPaymentDate = new Date(ConvertDateBrUSS(data[0]?.paymentDate));
+
+                console.log('Maior data de pagamento:', (maxPaymentDate));
+
                 setAllPaymentMonthlyFee(data);
+                setMaxPaymentDate(maxPaymentDate);
                 setSubTotalPayment(Number(data.reduce((acc, item) => acc + item.amountPaid, 0)))
                 setSubTotalIncrease(Number(data.reduce((acc, item) => acc + item.installmentIncrease, 0)))
                 setSubTotalDiscount(Number(data.reduce((acc, item) => acc + item.installmentDiscount, 0)))

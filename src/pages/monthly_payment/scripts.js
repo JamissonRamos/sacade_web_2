@@ -1,13 +1,3 @@
-
-//Função para formatar a data no formato 'dd/mm/yyyy' para o formato 'mm/dd/yyyy'
-export const ConvertDateBrUSS = (dateStr) => {
-    const [day, month, year] = dateStr.split('/');
-
-
-    return (`${year}-${month}-${day}`);
-}
-
-
 export const FormatToCurrency = (value) => {    
     // Função para formatar número para moeda
     if(value === '') return "R$ 0,00";
@@ -55,9 +45,23 @@ export const ParseCurrencyToNumber = (currency) => {
 
 export const FormattedDate = (birthDate) => {
     const newDate = new Date(birthDate);
-    const day = String(newDate.getDate()).padStart(2, '0');
+    const day = String(newDate.getDate()).padStart(2,'0');
     const month = String(newDate.getMonth() + 1).padStart(2, '0'); // Mês começa em 0
     const year = newDate.getFullYear();
     
     return `${day}/${month}/${year}`;
+}
+
+//Função para formatar a data no formato 'dd/mm/yyyy' para o formato 'mm/dd/yyyy'
+export const ConvertDateBrUSS = (dateStr) => {
+    console.log('dateStr', dateStr);
+    
+    const [day, month, year] = dateStr.split('/');
+    return (`${year} ${month} ${day}`);
+}
+
+//Função para formatar a data no formato 'aaa/mm/dd' formato da iso
+export const ParseDateBR = (dateStr) => {
+    const [day, month, year] = dateStr.split('/');
+    return new Date(year, month - 1, day);
 }

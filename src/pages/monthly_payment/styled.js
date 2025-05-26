@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Theme } from "../../theme";
 
 export const Content = styled.div`
-    /* border: 1px solid blue; */
+    border: 1px solid blue;
     width: 100%;    
     height: 100%;
     display: flex;
