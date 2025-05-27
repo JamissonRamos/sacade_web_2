@@ -23,7 +23,6 @@ const StyledButton = css`
     & svg {
         font-size: 1.2rem;
     }
-
 `;
 
 // Definindo a animação
@@ -108,7 +107,6 @@ export  const Content = styled.div`
     overflow: auto;
 `;
 
-
 export  const Header = styled.div`
     /* border: 1px solid red; */
     width: 100%;
@@ -133,7 +131,7 @@ export  const Body = styled.div`
     flex-direction: column;
     gap: 16px;
     align-items: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     & span {
         text-align: center;
         color: ${Theme.Colors.grey800};
@@ -143,7 +141,8 @@ export  const Body = styled.div`
 export  const WrapImg = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    max-height: 80%;
+    max-width: 400px;
+    max-height: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -157,7 +156,7 @@ export  const WrapImg = styled.div`
         width: 80%;
     }
     @media (max-width: 425px) {
-        width: 60%;
+        width: 90%;
     }
 `;
 
