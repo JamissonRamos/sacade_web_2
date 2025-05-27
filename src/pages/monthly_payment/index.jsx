@@ -23,12 +23,10 @@ const MonthlyPayment = () => {
 
     const navigate = useNavigate();
     const location = useLocation();  // Captura o UID da URL
-    // Captura os atributos do useLocation, typeForm: 1 = pagamento, update, 2 = pagamento
-    const { uidMonthlyFee, maxPaymentDate } = location.state || {};  
+    const { uidMonthlyFee, maxPaymentDate } = location.state || {};  // Captura os atributos do useLocation
+
     const {createDocuments, loading: loadingCreate} = useMonthlyFee.usePostDocumentsCreate();
     const {updateInstallments, loading: loadingInstallmentsUpdate} = useInstallments.usePostDocumentsUpdate();
-    
-   //console.log('maxPaymentDate', maxPaymentDate);
     
     //Validaçoes dos Campos;
     const { register, handleSubmit, setValue, reset, formState:{ errors } } = useForm({
@@ -65,17 +63,8 @@ const MonthlyPayment = () => {
 
     const handleSubmitForm = async (data) => {
         data.paymentMethod = Number(data.paymentMethod);
-
-        // console.log(' data.paymentDate', data.paymentDate);
-        // //console.log(' maxPaymentDate',  FormattedDate(maxPaymentDate));
-        // console.log(' maxPaymentDate2',  maxPaymentDate);
-        
-
-
-
         //Compara maior data de pagamento com a data a ser salvo e pegar a maior data 
         const PaymentDateToBbeSaved = maxPaymentDate > data.paymentDate ? maxPaymentDate : data.paymentDate;
-       // console.log('PaymentDateToBbeSaved', PaymentDateToBbeSaved);
 
         data.paymentDate = FormattedDate(PaymentDateToBbeSaved) //FormattedDate(data.paymentDate);
         data.installmentDiscount = ParseCurrencyToNumber(data.installmentDiscount);
@@ -95,8 +84,6 @@ const MonthlyPayment = () => {
         
         if(success){
             // Aqui vou fazer alteração no status da mensalidade;
-
-
             const resultUpdate = await monthlyDataUpdate(dataUpdateInstallments); //{success: true, message: 'erro de teste'} //
             const {success, message} = resultUpdate;
             if(success){               
@@ -118,25 +105,20 @@ const MonthlyPayment = () => {
         <WrapPages>
             <S.Content>
 
-                <Header /> {/* idForm={idForm} */}
+                <Header />
 
                 <S.Form onSubmit={handleSubmit(handleSubmitForm)}>
-                    {
-                        //idForm == 1
-                        //?   
-                        <FormCreate 
-                                register = {register}
-                                errors = {errors}
-                                setValue = {setValue}
-                                setValueDiscount = {setValueDiscount}
-                                setValueIncrease = {setValueIncrease}
-                                setValuePayments = {setValuePayments}
-                            /> 
-                        //:   null
-                    }
+
+                    <FormCreate 
+                        register = {register}
+                        errors = {errors}
+                        setValue = {setValue}
+                        setValueDiscount = {setValueDiscount}
+                        setValueIncrease = {setValueIncrease}
+                        setValuePayments = {setValuePayments}
+                    /> 
 
                     <WrapButtons 
-                        //idForm={Number(idForm)}
                         blockPaymentProcess = {blockPaymentProcess}
                         clickButton = {handleClickButton}
                         loadingCreate={loadingCreate || loadingInstallmentsUpdate}

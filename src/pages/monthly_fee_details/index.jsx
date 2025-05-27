@@ -62,15 +62,11 @@ const MonthlyFeeDetails = () => {
         const fetchData = async () => {
             const result = await documentsID(uidMonthlyFee);
             const { success, data, message } = result;
-            if (success) {
-                console.log('Data', data);
-                
+            if (success) {               
                 //Ordena data por data de pagamento
                 data.sort((a, b) => new Date(ConvertDateBrUSS(b.paymentDate)) - new Date(ConvertDateBrUSS(a.paymentDate)));
                 //Recuperar a maior data de pagemento
                 const maxPaymentDate = new Date(ConvertDateBrUSS(data[0]?.paymentDate));
-
-                console.log('Maior data de pagamento:', (maxPaymentDate));
 
                 setAllPaymentMonthlyFee(data);
                 setMaxPaymentDate(maxPaymentDate);

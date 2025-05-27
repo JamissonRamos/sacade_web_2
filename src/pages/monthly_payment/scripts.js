@@ -54,8 +54,6 @@ export const FormattedDate = (birthDate) => {
 
 //Função para formatar a data no formato 'dd/mm/yyyy' para o formato 'mm/dd/yyyy'
 export const ConvertDateBrUSS = (dateStr) => {
-    console.log('dateStr', dateStr);
-    
     const [day, month, year] = dateStr.split('/');
     return (`${year} ${month} ${day}`);
 }

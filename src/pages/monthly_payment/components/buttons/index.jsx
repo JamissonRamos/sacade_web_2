@@ -5,29 +5,9 @@ import { Theme } from '../../../../theme'
 
 const WrapButtons = (props) => {
     const { blockPaymentProcess, clickButton, loadingCreate } = props;
-    //idForm
-    // const labelButton = idForm  == 1 
-    // ? 'Pagar Mensalidade' 
-    // : 'Atualizar Mensalidade';
 
     return (
         <S.Container>
-            {/* {
-                idForm !== 1 &&
-                <S.WrapButtonDelete>
-                    <Button
-                        name='delete'
-                        variant='danger'
-                        onClick={(e) => clickButton(e)}
-
-                    >
-                        <Theme.Icons.MdDelete />
-                        <TextC.Label level={4} >Excluir</TextC.Label>
-                        
-                    </Button>
-                </S.WrapButtonDelete>
-            } */}
-
             <S.WrapButtonsAction>
                 <S.WrapButtonsCancel>
                     <Button

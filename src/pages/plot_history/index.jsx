@@ -20,8 +20,8 @@ const PlotHistory = () => {
     const { ListHistoricalPlot } = ListsInstallment;
     const navigate = useNavigate();
     const location = useLocation();  // Captura o UID da URL
-    // Captura os atributos do useLocation, typeForm: 1 = update, 2 = pagamento
-    const { uid, typeForm,  fullName } = location.state || {};  
+    // Captura os atributos do useLocation
+    const { uid, fullName } = location.state || {};  
     const { getDocuments, loading} = useInstallments.useGetDocuments()
 
     // Fução para filtrar os status e somar as qtds
@@ -76,15 +76,7 @@ const PlotHistory = () => {
         //Passar parcela para local storage
         localStorage.setItem('parcelData', JSON.stringify(selectDataUid));
 
-        if(typeForm === 1){
-            // Navegação para o update de parcelas    
-            console.log('teste 1');
-            //navigate('/updateInstallments/formUpdate');        
-        }else if(typeForm === 2){
-            // Navegação para o update de parcelas  
-            console.log('teste 2');
-            navigate('/monthlyFeeDetails');        
-        }
+        navigate('/monthlyFeeDetails');        
     }
 
     return (
