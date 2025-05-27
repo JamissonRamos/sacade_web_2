@@ -4,7 +4,6 @@ import { Theme } from "../../../theme";
 
 const StyledButton = css`
     min-width: 100px;
-    max-width: 200px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -15,16 +14,16 @@ const StyledButton = css`
     transition: background-color 0.4s ease, color 0.4s;
     cursor: pointer;
     & span {
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 18px;
+        font-size: 14px;
+        font-weight: 600;
         text-align: center;
         letter-spacing: 0.05em;
         text-transform: uppercase;
     }
     & svg {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
+
 `;
 
 // Definindo a animação
@@ -54,14 +53,14 @@ const containedStyles = css`
 
     &:hover {
         background-color: ${() => {
-        const color =  Theme.Colors.green800; 
-        const r = parseInt(color.slice(1, 3), 16);
-        const g = parseInt(color.slice(3, 5), 16);
-        const b = parseInt(color.slice(5, 7), 16);
-        
-        // Escurecendo a cor em 85 para cada canal RGB
-        return `rgb(${Math.max(r - 85, 0)}, ${Math.max(g - 85, 0)}, ${Math.max(b - 85, 0)})`;
-    }};
+            const color =  Theme.Colors.green800; 
+            const r = parseInt(color.slice(1, 3), 16);
+            const g = parseInt(color.slice(3, 5), 16);
+            const b = parseInt(color.slice(5, 7), 16);
+            
+            // Escurecendo a cor em 85 para cada canal RGB
+            return `rgb(${Math.max(r - 85, 0)}, ${Math.max(g - 85, 0)}, ${Math.max(b - 85, 0)})`;
+        }};
     }
 `;
 const outlineStyles = css`
@@ -100,16 +99,12 @@ export  const Container = styled.div`
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-
-    
 `;
-
 
 export  const Content = styled.div`
     /* border: 1px solid blue; */
     width: 100%;
     height: 100%;
-    padding: 0 1rem;
     overflow: auto;
 `;
 
@@ -121,6 +116,7 @@ export  const Header = styled.div`
     align-items: center;
     gap: 8px;
     padding: .8rem;
+    margin-bottom: 1rem;
     & svg {
         font-size: 1.5em;
         color: ${Theme.Colors.green800};
@@ -129,20 +125,21 @@ export  const Header = styled.div`
         color: ${Theme.Colors.green800};
     }
 `;
+
 export  const Body = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 70%;
     display: flex;
     flex-direction: column;
     gap: 16px;
     align-items: center;
-    /* padding: .8rem; */
+    margin-bottom: 3rem;
     & span {
         text-align: center;
         color: ${Theme.Colors.grey800};
     }
 `;
+
 export  const WrapImg = styled.div`
     /* border: 1px solid red; */
     width: 100%;
@@ -156,19 +153,22 @@ export  const WrapImg = styled.div`
         object-fit: contain;
         animation: ${slideIn} 0.8s ease-out forwards; /* Aplica a animação à imagem */
     }
-
+    @media (max-width: 768px) {
+        width: 80%;
+    }
+    @media (max-width: 425px) {
+        width: 60%;
+    }
 `;
 
 export  const Footer = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     display: flex;
-    gap: 16px;
     align-items: center;
     justify-content: center;
     gap: 16px;
-    /* padding: .8rem; */
-    @media (max-width: 320px) {
+    @media (max-width: 500px) {
         flex-direction: column;
     }
 `;

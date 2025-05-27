@@ -8,7 +8,7 @@ const StyledButton = css`
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 8px 12px;
+    padding: 9px 12px;
     border-radius: 4px;
     transition: background-color 0.4s ease, color 0.4s;
     cursor: pointer;
@@ -37,22 +37,9 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     gap: .8rem;
-    padding: .2rem 0;
+    padding: 0;
 `;
 
-export const WrapButtonDelete = styled.div`
-    /* border: 1px solid red; */
-    width: 60%;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    & button {
-        ${StyledButton};
-    }
-    @media (max-width: 768px) {
-        width: 90%;
-    }
-`;
 
 export const WrapButtonsAction = styled.div`
     /* border: 1px solid red; */
@@ -69,7 +56,7 @@ export const WrapButtonsAction = styled.div`
 
 export const WrapButtonsUpdatePay = styled.div`
     /* border: 1px solid red; */
-    padding: .2rem;
+    padding: .4rem;
     & button {
         ${StyledButton};
     }

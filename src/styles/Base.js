@@ -35,7 +35,9 @@ const Base = createGlobalStyle`
         }
     }
 
-    
+    chatgpt-sidebar {
+		display: none !important;
+	}
 
 `;
 

@@ -25,18 +25,19 @@ const NotificationsMonthlyPayment = () => {
                     <S.ButtonOutline
                         onClick={() => navigate(-3)}
                     >
-                        <Theme.Icons.MdAttachMoney />
                         <TextC.Body level={2}>
-                            Histórico da Mensalidade
+                            Histórico Mensalidades
                         </TextC.Body>
+                        <Theme.Icons.MdAttachMoney />
                     </S.ButtonOutline>
 
                     <S.ButtonContainer
                         onClick={() =>  navigate('/')}
                     >
-                        <Theme.Icons.MdHome />
                         <TextC.Body level={2}>Home</TextC.Body>
+                        <Theme.Icons.MdHome />
                     </S.ButtonContainer>
+
                 </S.Footer>
             </S.Content>
         </S.Container>

@@ -15,6 +15,7 @@ export const PaymentsSchema = yup.object().shape({
             return originalValue === '' ? null : value;
         })
         .min(new Date(1900, 0, 1), 'A data deve ser posterior a 01/01/1900')
+        .max(new Date(), 'A data não pode ser no futuro')
         .required('Campo Data Pagamento é obrigatório'),
     installmentDiscount: yup
         .string()
