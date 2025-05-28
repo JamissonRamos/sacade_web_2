@@ -17,8 +17,7 @@ const MonthlyFees = () => {
       const fetch = async () => {
         const result = await getDocuments();
         const { success, data, error} = result;
-        
-        if(success) {
+        if(success) {          
           // Adiciona o atributo isMinor a cada objeto no array data
           const newListStudent = await AddAttributeList(data);
           setRegistered(newListStudent);
