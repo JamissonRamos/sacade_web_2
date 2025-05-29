@@ -95,9 +95,11 @@ const MonthlyPayment = () => {
                 localStorage.removeItem('parcelData');
             }else{
                 console.log('Erro ao atualizar mensalidade', message);
+                navigate('/notifications/error');
             }
         }else{
             console.log('error no pagamento de mensalidade', message);
+            navigate('/notifications/error');
         }
     }
 
