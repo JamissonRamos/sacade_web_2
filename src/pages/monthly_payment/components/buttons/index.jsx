@@ -15,8 +15,8 @@ const WrapButtons = (props) => {
                         variant='outline-danger'
                         onClick={(e) => clickButton(e)}
                     >
-                        <Theme.Icons.MdCancel />
                         <TextC.Label level={4}>Cancelar</TextC.Label>
+                        <Theme.Icons.MdCancel />
                         
                     </Button>
                 </S.WrapButtonsCancel>
@@ -41,8 +41,8 @@ const WrapButtons = (props) => {
                                 </>
                             :
                                 <>
-                                    <Theme.Icons.MdPayments />
                                     <TextC.Label level={4}> Pagar Mensalidade </TextC.Label>
+                                    <Theme.Icons.MdPayments />
                                 </>
                         }   
                     </Button>
