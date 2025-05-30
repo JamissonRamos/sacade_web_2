@@ -20,11 +20,12 @@ const CardMonthlyFee = (props) => {
     const totalCalculated = daysLate > 0 
                         ? totalFees + (totalInterestDaily * daysLate) + (totalInterestMonthly * Math.floor(daysLate / 30)) + (totalInterestAnnual * Math.floor(daysLate / 365)) : 0;
 
-    const Total =  Number((valueInstallment + totalCalculated).toFixed(2)); //Calcular Valor Original da Parcel
+    const Total =  Number((valueInstallment + totalCalculated)); //Calcular Valor Original da Parcel
+
     let subTotal = (valueInstallment + totalCalculated - subTotalPayment) || 0; // Calcular Valor descontando pagamento
     subTotal += subTotalIncrease; //Valor da parcela com o total de acrescimo
     subTotal -=  subTotalDiscount; //Valor da parcela com o total de desconto
-
+    
     //Formatação dos valores
     const formattedValueInstallment = FormatToCurrency(valueInstallment)
     const formattedTotalCalculated = FormatToCurrency(totalCalculated)

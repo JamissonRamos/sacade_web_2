@@ -7,14 +7,14 @@ import { FormatNumberMoney, FormatNumberPercentage, FormatToCurrency } from '../
 
 const ListHistoricalPlot = ({data, navigation}) => {
     const [totalInterest, setTotalInterest] = useState({});
-
+    
     const handleTotalCalculated = (id, calculatedValue) => {
         setTotalInterest((prev) => ({
             ...prev,
             [id]: calculatedValue
         }));
     };
-    
+
     return (
 
         <S.Container>

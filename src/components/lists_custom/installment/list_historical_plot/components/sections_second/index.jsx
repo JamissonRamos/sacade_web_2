@@ -21,7 +21,6 @@ const SectionsSecond = ({ id, fineInterestValues, statusLabel, styledStatus, day
         if (fineInterestValues?.newInterestDailyMoney) {
             const dailyInterest = ParseCurrencyToNumber(fineInterestValues.newInterestDailyMoney);
             const dailyTotal = dailyInterest * daysLate;
-
             if(dailyTotal > 0) {
                 setInterestDailyValue(FormatToCurrency(dailyTotal));                
                 return dailyTotal;
@@ -68,18 +67,18 @@ const SectionsSecond = ({ id, fineInterestValues, statusLabel, styledStatus, day
         //valor de multa não tem calculo
         const newFeesMoney = fineInterestValues?.newFeesMoney;
         const fees = ParseCurrencyToNumber(newFeesMoney)
-        const daily = calculateDaily();
-        const monthl = calculateMonthl();
-        const annual = calculateAnnual();
-
+        const daily = calculateDaily() || 0;
+        const monthl = calculateMonthl() || 0;
+        const annual = calculateAnnual() || 0;
+        
         const total =  fees + daily + monthl + annual || 0 ;
-
+        
         //Multa não tem calculo por dias, passar o valor de multa
         setInterestFeesValue(FormatToCurrency(fees))
         // Chama a função de callback para passar o valor para o componente pai
         onCalculateTotal(id, FormatToCurrency(total));
     }, []);
-
+    
     return(
         <S.Container>
             {   

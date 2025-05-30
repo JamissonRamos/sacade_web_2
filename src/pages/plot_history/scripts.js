@@ -74,3 +74,9 @@ export const AddPaymentStatusProperties = (data) => {
 
     return newData
 }
+
+//Função para formatar a data no formato 'dd/mm/yyyy' para o formato 'mm/dd/yyyy'
+export const ConvertDateBrUSS = (dateStr) => {
+    const [day, month, year] = dateStr.split('/');
+    return (`${year} ${month} ${day}`);
+}

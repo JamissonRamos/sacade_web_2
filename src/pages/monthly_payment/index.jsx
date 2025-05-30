@@ -71,7 +71,7 @@ const MonthlyPayment = () => {
         data.installmentIncrease = ParseCurrencyToNumber(data.installmentIncrease);
         data.amountPaid = ParseCurrencyToNumber(data.amountPaid);
         data.uidMonthlyFee = uidMonthlyFee;
-        ''
+        
         // Obj de atualização de dados da mensalidade
         const dataUpdateInstallments = {
             uid: uidMonthlyFee,

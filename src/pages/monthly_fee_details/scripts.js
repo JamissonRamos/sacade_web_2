@@ -19,8 +19,9 @@ export const CalculateValueFeesInterest  = (valuePercentage, valueInstallment) =
     const percentageDecimal = parseFloat(valuePercentage) * 100;
     const numberValue = parseFloat(valueInstallment) / 100; // Converte para decimal
     
-    // Calcula o valor da taxa
-    const valueCalculated = numberValue * percentageDecimal 
+    // // Calcula o valor da taxa
+    // const valueCalculated = numberValue * percentageDecimal 
+    const valueCalculated = parseFloat((numberValue * percentageDecimal).toFixed(2));
 
     return valueCalculated
 };

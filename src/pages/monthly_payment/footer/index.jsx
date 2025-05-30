@@ -51,7 +51,8 @@ const Footer = (props) => {
         setSubTotalInput(Math.round((calcInput) * 100 ) / 100);
 
         //Validar se foi pago o valor total da divida, caso sim true para alterar o status da parcela;
-        calcInput.toFixed(2) == '-0.00' ? setWasPaid(true) : setWasPaid(false);
+        // calcInput.toFixed(2) == '-0.00' ? setWasPaid(true) : setWasPaid(false); //Dessa forma deu erro no processo de pagamento 
+        calcInput <= 0 ? setWasPaid(true) : setWasPaid(false);
 
         //Verifica se o valor do pagamento é maior que o valor da mensalidade
         if(calcInput <= -0.01 ){

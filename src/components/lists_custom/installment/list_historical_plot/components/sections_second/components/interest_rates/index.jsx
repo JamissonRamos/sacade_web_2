@@ -13,12 +13,13 @@ const InterestRates = ({styledStatus, interestValue}) => {
     } = interestValue
 
     const fildsComponents = [
-        {label: 'Multa', value: interestFeesValue},
+        {label: 'Multa 2', value: interestFeesValue},
         {label: 'Juros Diários', value: interestDailyValue},
         {label: 'Juros Mesal', value: interestMonthlyValue},
         {label: 'Juros Anual', value: interestAnnualValue},
     ]   
 
+    
     return (
         <>
             {

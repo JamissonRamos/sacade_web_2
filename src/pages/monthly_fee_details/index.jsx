@@ -137,7 +137,6 @@ const MonthlyFeeDetails = () => {
                         uidPay={idToDelete}
                         uidParcel={idParcel}
                     />
-
             }
         </WrapPages>
     )

@@ -4,6 +4,8 @@ import { FormatToCurrency, ParseCurrencyToNumber } from '../../../scripts';
 
 const SectionsThird = ({daysLate, styledStatus, installmentValue, totalInterest}) => {
     
+
+    
     const installment = ParseCurrencyToNumber(installmentValue);
     const fees = ParseCurrencyToNumber(totalInterest) || 0;
 

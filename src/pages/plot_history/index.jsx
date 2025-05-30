@@ -3,7 +3,7 @@ import  * as S from './styled'
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useInstallments } from "../../hooks/installments";
-import {  AddPaymentStatusProperties} from "./scripts";
+import {  AddPaymentStatusProperties, ConvertDateBrUSS} from "./scripts";
 
 import { WrapPages } from "../../components/Wrappe/pages";
 import Header from "./header";
@@ -43,7 +43,12 @@ const PlotHistory = () => {
             const result = await getDocuments();
             const { success, data, error } = result;
             if(success){
+                
                 const filteredDataUid = data.filter(item => item.uid === uid) || []
+                
+                //Ordena data por data de pagamento
+                filteredDataUid.sort((a, b) => new Date(ConvertDateBrUSS(a.dueDate)) - new Date(ConvertDateBrUSS(b.dueDate)));
+
                 const newFilteredData = AddPaymentStatusProperties(filteredDataUid);
                 if(newFilteredData.length > 0){
                     // Caso não tenha parcelas, os valores dos usestate do inicio
