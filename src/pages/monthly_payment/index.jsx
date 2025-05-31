@@ -20,7 +20,7 @@ const MonthlyPayment = () => {
     const [valuePayments, setValuePayments] = useState(0); // Recebe o valor de pagamento na parcela
     const [wasPaid, setWasPaid] = useState(false); // Indica se a mensalidade foi paga
     const [blockPaymentProcess, setBlockPaymentProcess] = useState(false) //Bloquear btn de pagar parcela caso alguma regra não seja atendida
-
+    
     const navigate = useNavigate();
     const location = useLocation();  // Captura o UID da URL
     const { uidMonthlyFee, maxPaymentDate } = location.state || {};  // Captura os atributos do useLocation

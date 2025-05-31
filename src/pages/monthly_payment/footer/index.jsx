@@ -25,7 +25,7 @@ const Footer = (props) => {
     const { subTotal } = dataPay;
 
     //SubTotal traz o valor que resta a pagar
-    setSubTotalFixed(subTotal);
+    setSubTotalFixed(Math.round((subTotal) * 100 ) / 100 );
 
     }, []); // Executa apenas na 1ª renderização
 
@@ -43,15 +43,15 @@ const Footer = (props) => {
         }
 
         //Receber o valor do input de pagamento
-        let calcInput = subTotalFixed - valuePayments;  
+        let calcInput = subTotalFixed; 
     
-        calcInput += valueIncrease
-        calcInput -= valueDiscount
+        calcInput += valueIncrease;
+        calcInput -= valueDiscount;
+        calcInput -= valuePayments; 
         
         setSubTotalInput(Math.round((calcInput) * 100 ) / 100);
 
         //Validar se foi pago o valor total da divida, caso sim true para alterar o status da parcela;
-        // calcInput.toFixed(2) == '-0.00' ? setWasPaid(true) : setWasPaid(false); //Dessa forma deu erro no processo de pagamento 
         calcInput <= 0 ? setWasPaid(true) : setWasPaid(false);
 
         //Verifica se o valor do pagamento é maior que o valor da mensalidade
