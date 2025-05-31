@@ -9,6 +9,7 @@ import { ConvertDate, ConvertNumberToCurrency, FormatNumberPercentage, Formatted
 import { useNavigate } from "react-router-dom";
 import { FormatMoneyNumber, FormatPercentageNumber } from "../../../configuration_installments/scripts";
 import { useInstallments } from "../../../../hooks/installments";
+import { useMonthlyFee } from "../../../../hooks/monthlyFee";
 
 import Fields from "./fields"
 import { LoadingOverlay } from "../../../../components/spinner/global/styled";
@@ -26,6 +27,8 @@ const Form = ({registered}) => {
 
     const { updateInstallments, loading: loadingUpdate} = useInstallments.usePostDocumentsUpdate()
     const { deleteInsllments, loading: loadingDelete } = useInstallments.usePostDocumentsDelete();
+    const { getDocuments, loading: loadingDocument } = useMonthlyFee.useGetDocuments();
+    const { deleteInsllments: deleteMonthlyFee , loading: loadingDeleteInsllments } = useMonthlyFee.usePostDocumentsDelete();
     
 
     const { register, handleSubmit, setValue, getValues, reset, formState:{ errors } } = useForm({
@@ -37,15 +40,32 @@ const Form = ({registered}) => {
 
     // função para abrir o modal de deletar
     const handleShowModalDelete = () => setShowModalDelete((prevState) => !prevState);
-
+    
     //Função para deletar o registro
     const handleDeleteItem = async () => {
         const uid = registered[0].id;
 
-        const result = await deleteInsllments(uid)
+        //- recupere todos os pagamento feitos
+        const resultDocument = await getDocuments();
+        
+        if (!resultDocument.success){
+            console.log('Algo deu errado na busca dos pagamentos', resultDocument.message);
+            navigate('/notifications/error');
+            return
+        }
+        //- filtrar todos os pagamentos que tem relação com uid a ser excluidos
+        const newDataPay = resultDocument.data.filter(item => item.uidMonthlyFee === uid)
+                                                .map(item => ({ id: item.id, uidMonthlyFee: item.uidMonthlyFee }));
+        const result =  await deleteInsllments(uid) //{ success: true, message: 'error de teste'}
         const { success, message} = result; 
         if(success){
+            newDataPay.map(async ({id}) => {
+                console.log('Excluir id ', id);
+                await deleteMonthlyFee(id)
+            })
+
             handleShowModalDelete()
+            
             const path = `/updateInstallments`
             navigate('/notifications/delete', {
                 state: {
@@ -140,7 +160,7 @@ const Form = ({registered}) => {
                 />
                 <Buttons 
                     loadingUpdate={loadingUpdate}
-                    loadingDelete={loadingDelete}
+                    loadingDelete={loadingDelete || loadingDocument || loadingDeleteInsllments}
                     buttonCancel={handleCancel}
                     handleShowModalDelete={handleShowModalDelete}
                 />

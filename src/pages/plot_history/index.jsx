@@ -21,7 +21,8 @@ const PlotHistory = () => {
     const navigate = useNavigate();
     const location = useLocation();  // Captura o UID da URL
     // Captura os atributos do useLocation
-    const { uid, fullName } = location.state || {};  
+    // 1 = Form Pagamento de Mensalidade; 2 = Form Atualizar pagamnento
+    const { uid, showForm, fullName } = location.state || {};  
     const { getDocuments, loading} = useInstallments.useGetDocuments()
 
     // Fução para filtrar os status e somar as qtds
@@ -44,7 +45,7 @@ const PlotHistory = () => {
             const { success, data, error } = result;
             if(success){
                 
-                const filteredDataUid = data.filter(item => item.uid === uid) || []
+                const filteredDataUid = data.filter(item => item.uidStudent === uid) || []
                 
                 //Ordena data por data de pagamento
                 filteredDataUid.sort((a, b) => new Date(ConvertDateBrUSS(a.dueDate)) - new Date(ConvertDateBrUSS(b.dueDate)));
@@ -81,7 +82,21 @@ const PlotHistory = () => {
         //Passar parcela para local storage
         localStorage.setItem('parcelData', JSON.stringify(selectDataUid));
 
-        navigate('/monthlyFeeDetails');        
+        let path = false;
+
+        switch (showForm) {
+            case 1:
+                path = '/monthlyFeeDetails'
+                break;
+            case 2:
+                path = '/updateInstallments/formUpdate'
+                break;
+            default:
+                console.log('Alguma deu errado!');
+                break;
+        }
+        
+        navigate(path);        
     }
 
     return (

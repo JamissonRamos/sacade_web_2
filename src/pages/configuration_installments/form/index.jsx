@@ -48,7 +48,7 @@ const Form = () => {
 
         //Precisa separar os lemento para salvar no banco de dados 
         const newInstallment = {
-            uid: uid,
+            uidStudent: uid,
             statusPayment: statusPayment, 
             dueDate: dueDate, 
             valueInstallment: valueInstallment, 

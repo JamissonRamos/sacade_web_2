@@ -32,7 +32,7 @@ const UpdateInsllments = () => {
         const foundStudent = registered.find((item) => item.uid === uid);
         const {firstName, lastName } = foundStudent;
 
-        navigate('/plotHistory', { state: { uid: uid, typeForm: 1, fullName: `${firstName} ${lastName} `} });
+        navigate('/plotHistory', { state: { uid: uid, showForm: 2, fullName: `${firstName} ${lastName} `} });
     }
 
     return (

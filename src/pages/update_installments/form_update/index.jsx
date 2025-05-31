@@ -15,6 +15,8 @@ const FormUpdateInstallment = () => {
         // Verifica se há dados e converte de JSON para objeto
         if (parcelData) {
             const parsedData = JSON.parse(parcelData);
+            console.log('parsedData', parsedData);
+            
             setRegistered(parsedData)
         } else {
             console.log('Nenhum dado encontrado com a chave parcelData');

@@ -119,6 +119,8 @@ const AppContent = () => {
                                         <Pages.GenerateInstallments /> 
                                     </ProtectedRoute>
                                 } />
+
+                                
                                 <Route path="/updateInstallments" element={
                                     <ProtectedRoute page='Payments'>
                                         {/* <Pages.NotificationsMaintenance /> */}

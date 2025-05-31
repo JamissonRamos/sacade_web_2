@@ -1,4 +1,4 @@
-// import { useGetDocuments } from "./useGetDocuments";
+import { useGetDocuments } from "./useGetDocuments";
 import { useGetDocumentsID } from "./useGetDocumentsID";
 import { useGetDocumentsIDMonthlyFee } from "./useGetDocumentsIDMonthlyFee";
 import { usePostDocumentsCreate } from "./usePostDocumentsCreate";
@@ -6,7 +6,7 @@ import { usePostDocumentsCreate } from "./usePostDocumentsCreate";
 import { usePostDocumentsDelete } from "./usePostDocumentsDelete";
 
 export const useMonthlyFee = {
-    // useGetDocuments,
+    useGetDocuments,
     useGetDocumentsID,
     useGetDocumentsIDMonthlyFee,
     usePostDocumentsCreate,
