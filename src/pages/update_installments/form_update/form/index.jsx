@@ -60,7 +60,6 @@ const Form = ({registered}) => {
         const { success, message} = result; 
         if(success){
             newDataPay.map(async ({id}) => {
-                console.log('Excluir id ', id);
                 await deleteMonthlyFee(id)
             })
 
