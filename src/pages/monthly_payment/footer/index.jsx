@@ -13,23 +13,27 @@ const Footer = (props) => {
     const [subTotalInput, setSubTotalInput] = useState(0); //Valor da parcela calculando com valore do input;
     
     useEffect(() => {
-    /* 
-        -Carregar e atualizar staetes de valores da mensalidade;
-        -Valores fixos
-    */
-    const dataPay = JSON.parse(localStorage.getItem('cardParcelData')) || [];
-    
-    if (dataPay.length === 0) return;
+        /* 
+            -Carregar e atualizar staetes de valores da mensalidade;
+            -Valores fixos
+        */
+        const dataPay = JSON.parse(localStorage.getItem('cardParcelData')) || [];
+        
+        if (dataPay.length === 0) return;
 
-    //Verificar se vou precisar de todos esses valores, ou somente do subtotal
-    const { subTotal } = dataPay;
+        //Verificar se vou precisar de todos esses valores, ou somente do subtotal
+        const { subTotal } = dataPay;
 
-    //SubTotal traz o valor que resta a pagar
-    setSubTotalFixed(Math.round((subTotal) * 100 ) / 100 );
+        //SubTotal traz o valor que resta a pagar
+        setSubTotalFixed(Math.round((subTotal) * 100 ) / 100 );
+        // console.log('subTotal', subTotal);
+        
 
     }, []); // Executa apenas na 1ª renderização
 
     useEffect(() => {
+        // console.log('Passou inicio');
+        
         setValueIncreaseInput(valueIncrease);
         setValueDiscountInput(valueDiscount);
 
@@ -61,6 +65,7 @@ const Footer = (props) => {
             setBlockPaymentProcess(false);
         }
         
+        // console.log('Passou Final');
     }, [valuePayments, valueIncrease, valueDiscount])
 
     return (
