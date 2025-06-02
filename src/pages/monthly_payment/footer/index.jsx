@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { FormatToCurrency } from '../scripts';
 
 const Footer = (props) => {
-    const { valueDiscount, valueIncrease, valuePayments, setBlockPaymentProcess, setWasPaid} = props;
+    const { valueDiscount, valueIncrease, valuePayments, setBlockPaymentProcess, } = props; //setWasPaid
 
     const [valueIncreaseInput, setValueIncreaseInput] = useState(0); //Valor do Acrecimo Input;
     const [valueDiscountInput, setValueDiscountInput] = useState(0); //Valor de Desconto Input;
@@ -56,7 +56,7 @@ const Footer = (props) => {
         setSubTotalInput(Math.round((calcInput) * 100 ) / 100);
 
         //Validar se foi pago o valor total da divida, caso sim true para alterar o status da parcela;
-        calcInput <= 0 ? setWasPaid(true) : setWasPaid(false);
+        //calcInput <= 0 ? setWasPaid(true) : setWasPaid(false);
 
         console.log('calcInput', calcInput);
         console.log('calcInput formt', Math.round((calcInput) * 100 ) / 100);
@@ -85,7 +85,7 @@ const Footer = (props) => {
             <S.WrapDataParcel>
 
                 <S.WrapField>
-                    <TextC.Body level={2} >Valor em Aberto:</TextC.Body>
+                    <TextC.Body level={2} >Valor em Aberto 2:</TextC.Body>
                     <TextC.Body level={2} >{FormatToCurrency(subTotalFixed)}</TextC.Body>
                 </S.WrapField>
 

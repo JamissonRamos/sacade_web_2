@@ -19,7 +19,7 @@ const MonthlyPayment = () => {
     const [valueIncrease, setValueIncrease] = useState(0); // Recebe o valor de acrecimo na parcela
     const [valuePayments, setValuePayments] = useState(0); // Recebe o valor de pagamento na parcela
     const [subTotalFixed, setSubTotalFixed] = useState(0) // Esse Vai ser o valor total da parcela vindo de detalhe
-    const [wasPaid, setWasPaid] = useState(false); // Indica se a mensalidade foi paga
+    //const [wasPaid, setWasPaid] = useState(false); // Indica se a mensalidade foi paga
     const [blockPaymentProcess, setBlockPaymentProcess] = useState(false) //Bloquear btn de pagar parcela caso alguma regra não seja atendida
     
     const navigate = useNavigate();
@@ -67,9 +67,9 @@ const MonthlyPayment = () => {
         //Compara maior data de pagamento com a data a ser salvo e pegar a maior data 
         const PaymentDateToBbeSaved = maxPaymentDate > data.paymentDate ? maxPaymentDate : data.paymentDate;
 
-        const teste = subTotalFixed - ParseCurrencyToNumber(data.amountPaid);
-        
-        console.log('teste', teste);
+        const realInstallmentValue = subTotalFixed - ParseCurrencyToNumber(data.amountPaid);
+        const wasPaid = realInstallmentValue > 0 ? false : true;
+        console.log('wasPaid', wasPaid);
         
 
         data.paymentDate = FormattedDate(PaymentDateToBbeSaved) //FormattedDate(data.paymentDate);
@@ -84,7 +84,7 @@ const MonthlyPayment = () => {
         const dataUpdateInstallments = {
             uid: uidMonthlyFee,
             dataPayment: wasPaid ? FormattedDate(PaymentDateToBbeSaved) : "", 
-            statusPayment: teste > 0 ? false : true ,
+            statusPayment: wasPaid,
         }
 
         const result = await createDocuments(data); //{success: true, message: 'erro de teste'}
@@ -125,9 +125,7 @@ const MonthlyPayment = () => {
         const { subTotal } = dataPay;
 
         //SubTotal traz o valor que resta a pagar
-        setSubTotalFixed(Math.round((subTotal) * 100 ) / 100 );
-        // console.log('subTotal', subTotal);
-        
+        setSubTotalFixed(Math.round((subTotal) * 100 ) / 100 );        
 
     }, []); // Executa apenas na 1ª renderização
 
@@ -161,7 +159,7 @@ const MonthlyPayment = () => {
                     valueIncrease={valueIncrease}
                     valuePayments={valuePayments}
                     setBlockPaymentProcess={setBlockPaymentProcess}
-                    setWasPaid={setWasPaid}
+                    //setWasPaid={setWasPaid}
                 />
             </S.Content>
         </WrapPages>
