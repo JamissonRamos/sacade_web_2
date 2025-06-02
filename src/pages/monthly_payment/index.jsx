@@ -5,7 +5,7 @@ import Header from './header';
 import Footer from './footer';
 import WrapButtons from './components/buttons';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Validations } from '../validations';
@@ -18,6 +18,7 @@ const MonthlyPayment = () => {
     const [valueDiscount, setValueDiscount] = useState(0); // Recebe o valor de desconto na parcela
     const [valueIncrease, setValueIncrease] = useState(0); // Recebe o valor de acrecimo na parcela
     const [valuePayments, setValuePayments] = useState(0); // Recebe o valor de pagamento na parcela
+    const [subTotalFixed, setSubTotalFixed] = useState(0) // Esse Vai ser o valor total da parcela vindo de detalhe
     const [wasPaid, setWasPaid] = useState(false); // Indica se a mensalidade foi paga
     const [blockPaymentProcess, setBlockPaymentProcess] = useState(false) //Bloquear btn de pagar parcela caso alguma regra não seja atendida
     
@@ -66,17 +67,24 @@ const MonthlyPayment = () => {
         //Compara maior data de pagamento com a data a ser salvo e pegar a maior data 
         const PaymentDateToBbeSaved = maxPaymentDate > data.paymentDate ? maxPaymentDate : data.paymentDate;
 
+        const teste = subTotalFixed - ParseCurrencyToNumber(data.amountPaid);
+        
+        console.log('teste', teste);
+        
+
         data.paymentDate = FormattedDate(PaymentDateToBbeSaved) //FormattedDate(data.paymentDate);
         data.installmentDiscount = ParseCurrencyToNumber(data.installmentDiscount);
         data.installmentIncrease = ParseCurrencyToNumber(data.installmentIncrease);
         data.amountPaid = ParseCurrencyToNumber(data.amountPaid);
         data.uidMonthlyFee = uidMonthlyFee;
         
+        ///console.log('index wasPaid', wasPaid);
+        
         // Obj de atualização de dados da mensalidade
         const dataUpdateInstallments = {
             uid: uidMonthlyFee,
             dataPayment: wasPaid ? FormattedDate(PaymentDateToBbeSaved) : "", 
-            statusPayment: wasPaid,
+            statusPayment: teste > 0 ? false : true ,
         }
 
         const result = await createDocuments(data); //{success: true, message: 'erro de teste'}
@@ -102,6 +110,26 @@ const MonthlyPayment = () => {
             navigate('/notifications/error');
         }
     }
+
+        
+    useEffect(() => {
+        /* 
+            -Carregar e atualizar staetes de valores da mensalidade;
+            -Valores fixos
+        */
+        const dataPay = JSON.parse(localStorage.getItem('cardParcelData')) || [];
+        
+        if (dataPay.length === 0) return;
+
+        //Verificar se vou precisar de todos esses valores, ou somente do subtotal
+        const { subTotal } = dataPay;
+
+        //SubTotal traz o valor que resta a pagar
+        setSubTotalFixed(Math.round((subTotal) * 100 ) / 100 );
+        // console.log('subTotal', subTotal);
+        
+
+    }, []); // Executa apenas na 1ª renderização
 
     return (
         <WrapPages>

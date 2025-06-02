@@ -58,6 +58,9 @@ const Footer = (props) => {
         //Validar se foi pago o valor total da divida, caso sim true para alterar o status da parcela;
         calcInput <= 0 ? setWasPaid(true) : setWasPaid(false);
 
+        console.log('calcInput', calcInput);
+        console.log('calcInput formt', Math.round((calcInput) * 100 ) / 100);
+        
         //Verifica se o valor do pagamento é maior que o valor da mensalidade
         if(calcInput <= -0.01 ){
             setBlockPaymentProcess(true);
