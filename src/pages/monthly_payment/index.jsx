@@ -69,16 +69,12 @@ const MonthlyPayment = () => {
 
         const realInstallmentValue = subTotalFixed - ParseCurrencyToNumber(data.amountPaid);
         const wasPaid = realInstallmentValue > 0 ? false : true;
-        console.log('wasPaid', wasPaid);
-        
 
         data.paymentDate = FormattedDate(PaymentDateToBbeSaved) //FormattedDate(data.paymentDate);
         data.installmentDiscount = ParseCurrencyToNumber(data.installmentDiscount);
         data.installmentIncrease = ParseCurrencyToNumber(data.installmentIncrease);
         data.amountPaid = ParseCurrencyToNumber(data.amountPaid);
         data.uidMonthlyFee = uidMonthlyFee;
-        
-        ///console.log('index wasPaid', wasPaid);
         
         // Obj de atualização de dados da mensalidade
         const dataUpdateInstallments = {

@@ -26,14 +26,10 @@ const Footer = (props) => {
 
         //SubTotal traz o valor que resta a pagar
         setSubTotalFixed(Math.round((subTotal) * 100 ) / 100 );
-        // console.log('subTotal', subTotal);
-        
 
     }, []); // Executa apenas na 1ª renderização
 
     useEffect(() => {
-        // console.log('Passou inicio');
-        
         setValueIncreaseInput(valueIncrease);
         setValueDiscountInput(valueDiscount);
 
@@ -55,12 +51,6 @@ const Footer = (props) => {
         
         setSubTotalInput(Math.round((calcInput) * 100 ) / 100);
 
-        //Validar se foi pago o valor total da divida, caso sim true para alterar o status da parcela;
-        //calcInput <= 0 ? setWasPaid(true) : setWasPaid(false);
-
-        console.log('calcInput', calcInput);
-        console.log('calcInput formt', Math.round((calcInput) * 100 ) / 100);
-        
         //Verifica se o valor do pagamento é maior que o valor da mensalidade
         if(calcInput <= -0.01 ){
             setBlockPaymentProcess(true);
@@ -68,7 +58,6 @@ const Footer = (props) => {
             setBlockPaymentProcess(false);
         }
         
-        // console.log('Passou Final');
     }, [valuePayments, valueIncrease, valueDiscount])
 
     return (
@@ -85,7 +74,7 @@ const Footer = (props) => {
             <S.WrapDataParcel>
 
                 <S.WrapField>
-                    <TextC.Body level={2} >Valor em Aberto 2:</TextC.Body>
+                    <TextC.Body level={2} >Valor em Aberto:</TextC.Body>
                     <TextC.Body level={2} >{FormatToCurrency(subTotalFixed)}</TextC.Body>
                 </S.WrapField>
 
