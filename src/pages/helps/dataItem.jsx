@@ -8,6 +8,11 @@ export const DataItemMenu = [
         icon: <Theme.Icons.MdSupervisedUserCircle/>
     },
     {
+        title: 'Alunos',
+        path: 'https://accessible-storm-0f5.notion.site/Alunos-1b87ce9f30c180588be9cbb4023194fe?pvs=143',
+        icon: <Theme.Icons.MdPerson/>
+    },
+    {
         title: 'Pagar Parcelas',
         path: 'https://accessible-storm-0f5.notion.site/Pagar-Mensalidades-1b87ce9f30c18049badef0bfb3ff5a10?pvs=143',
         icon: <Theme.Icons.MdAttachMoney  />,

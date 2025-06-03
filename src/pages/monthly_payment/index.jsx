@@ -107,7 +107,6 @@ const MonthlyPayment = () => {
         }
     }
 
-        
     useEffect(() => {
         /* 
             -Carregar e atualizar staetes de valores da mensalidade;
@@ -155,7 +154,6 @@ const MonthlyPayment = () => {
                     valueIncrease={valueIncrease}
                     valuePayments={valuePayments}
                     setBlockPaymentProcess={setBlockPaymentProcess}
-                    //setWasPaid={setWasPaid}
                 />
             </S.Content>
         </WrapPages>
