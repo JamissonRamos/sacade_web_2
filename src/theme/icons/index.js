@@ -10,6 +10,7 @@ import * as GR      from "react-icons/gr";
 
 
 export const Icons = {  
+    //money
 
     MdHome:                     MD.MdHome,
     MdOutlineArrowForwardIos:   MD.MdOutlineArrowForwardIos,
