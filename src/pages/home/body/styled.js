@@ -4,6 +4,7 @@ import { Theme } from "../../../theme";
 const CustomTabs = css`
     border: none;
     display: flex;
+    justify-content: center;
     gap: 1rem;
     &.custom-tabs .nav-link {
         width: 100%;
