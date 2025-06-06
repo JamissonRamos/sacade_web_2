@@ -10,7 +10,7 @@ const CustomTabs = css`
         width: 100%;
         display: flex;
         gap: 8px;
-        border-radius: 8px; /* Remover bordas arredondadas */
+        border-radius: 8px;
         & svg{
             font-size: 1.8em;
             color: ${Theme.Colors.grey500}; /* Cor do texto das abas */
@@ -24,10 +24,10 @@ const CustomTabs = css`
         background-color: ${Theme.Colors.blue400}; /* Cor de fundo da aba ativa */
         color: ${Theme.Colors.grey400}; /* Cor do texto da aba ativa */
     }
+
     &.custom-tabs a {
         padding: 9px 16px;
     }
-
 
     @media (max-width: 1024px) {
         &.custom-tabs .nav-link {
@@ -39,16 +39,6 @@ const CustomTabs = css`
             }
         }
     }
-
-    /* @media (max-width: 528px) {
-        height: 120px;
-    } */
-    /* @media (max-width: 425px) {
-        height: 50px;
-    } */
-    /* @media (max-width: 409px) {
-        height: 90px;
-    } */
 `;
 
 export const Container = styled.div`
@@ -67,7 +57,6 @@ export const Container = styled.div`
         /* border: 1px solid red; */
         margin-top: 1rem;
     }
-
 `;
 
 export const SectionStudents = styled.div`

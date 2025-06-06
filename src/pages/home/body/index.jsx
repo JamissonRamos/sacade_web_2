@@ -6,34 +6,22 @@ import { MDBTabs, MDBTabsContent, MDBTabsItem, MDBTabsLink, MDBTabsPane } from "
 import { useState } from "react";
 import { Theme } from "../../../theme";
 import { TextC } from "../../../components/Typography";
+import { HasAccess } from "../script";
 
 const Body = () => {
     const [basicActive, setBasicActive] = useState('tab1');
     const { currentUser } = useAuth(); //Recuperando user logado;
     const { status } = currentUser  //Recuperando status de user logado;
 
-    //nomeando status 
-    const statusMap = {
-        Administrador: 1,
-        Assistente: 2,
-        Visitante: 3,
-    };
-
-    //atribuindo permicoes as secoes
-    const sectionsAuth = {
-        Students: [ 1, 2, 3],
-        RegisterStudent: [1, 2],
-    };
-
     //Comparando status com permicoes
     const handleHasAccess = (sections, status) => {
-        let result
-        const statusIndex = statusMap[status];
-        result = sectionsAuth[sections]?.includes(statusIndex) || false; // Verifica se o status tem permissão    
-        return result
+        if (sections == "") return;
+        if (status == "") return;
+
+        return HasAccess(sections, status)
     };
 
-        const handleBasicClick = (value) => {
+    const handleBasicClick = (value) => {
         //Tabs nav
         if (value === basicActive) {
             return;
@@ -41,10 +29,10 @@ const Body = () => {
         setBasicActive(value);
     };
 
+
+
     return (
 
-        //vedeio para ajuda a fazer as abas do dashboard
-        //  https://www.youtube.com/watch?v=L6CeOQ4fqng
         <S.Container>
             <MDBTabs className='custom-tabs'>
                 <MDBTabsItem>
@@ -63,20 +51,13 @@ const Body = () => {
                     
             <MDBTabsContent>
                 <MDBTabsPane open={basicActive === 'tab1'}> 
+                    
                     <S.SectionStudents>
-                        {
-                            handleHasAccess('Students', status )
-                            ? <Students />
-                            : null
-                        }
+                        { handleHasAccess('Students', status ) && <Students /> }
                     </S.SectionStudents>
 
                     <S.SectionRegisterStudents>
-                        {
-                            handleHasAccess('RegisterStudent', status )
-                            ? <RegisterStudent />
-                            : null
-                        }
+                        { handleHasAccess('RegisterStudent', status ) && <RegisterStudent /> }
                     </S.SectionRegisterStudents>
                     
                 </MDBTabsPane>

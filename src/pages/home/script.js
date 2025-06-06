@@ -1,19 +1,19 @@
-export const AccountantStudents = () => {
+const statusMap = {
+    //nomeando status de user logado no sistema 
+    Administrador: 1,
+    Assistente: 2,
+    Visitante: 3,
+};
 
-    return 1000;
-}
-export const TotalInDelay = (installments) => {
-    /* Função para calcular  total de parcelas em atraso*/
-    console.log('installments:', installments);
+const sectionsAuth = {
+    //Atribundo aos status do user logado as permições de acesso
+    Students: [ 1, 2, 3],
+    RegisterStudent: [1, 2],
+};
 
-    /* 
-        - 1 recuperar as parcels em atraso;
-        - 2 pegar o valor das parcelas em atraso;
-        - calcular valor de juros e multa em atraso;
-        - calcular todos os valores e  retorna o montante;
-
-        PAREI PARA IR FAZER A PARTE DE CADASTRSO E LIBERAR O SISTEMA PARA 1 FASE;
-    */
-    
-    return 0;
-}
+export const HasAccess = (sections, status) => {
+    //Função para mepar status do user logado e sua permissões 
+    const statusIndex = statusMap[status]; //Recuperar o status do user e pegar o index dele e atribir corretamente
+    const result = sectionsAuth[sections]?.includes(statusIndex) || false; // Verifica se o status tem permissão    
+    return result;
+};
