@@ -40,6 +40,12 @@ const CustomTabs = css`
         }
     }
 `;
+const styledSections = css`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    gap: 10px;
+`;
 
 export const Container = styled.div`
     /* border: 1px solid red; */
@@ -61,15 +67,13 @@ export const Container = styled.div`
 
 export const SectionStudents = styled.div`
     /* border: 1px solid red; */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; 
-    gap: 10px;
+    ${styledSections}
 `;
 export const SectionRegisterStudents = styled.div`
     /* border: 1px solid red; */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; 
-    gap: 10px;
+    ${styledSections}
+`;
+export const SectionFinancial = styled.div`
+    /* border: 1px solid red; */
+    ${styledSections}
 `;

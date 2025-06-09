@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Theme } from "../../../theme";
 import { TextC } from "../../../components/Typography";
 import { HasAccess } from "../script";
+import Financial from "../components/financial";
 
 const Body = () => {
     const [basicActive, setBasicActive] = useState('tab1');
@@ -63,7 +64,9 @@ const Body = () => {
                 </MDBTabsPane>
 
                 <MDBTabsPane open={basicActive === 'tab2'}> 
-                    Financeiro
+                    <S.SectionFinancial>
+                        { handleHasAccess('Financial', status ) && <Financial /> }
+                    </S.SectionFinancial>
                 </MDBTabsPane>
                             
             </MDBTabsContent>

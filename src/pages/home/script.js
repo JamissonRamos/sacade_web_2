@@ -9,6 +9,7 @@ const sectionsAuth = {
     //Atribundo aos status do user logado as permições de acesso
     Students: [ 1, 2, 3],
     RegisterStudent: [1, 2],
+    Financial: [1]
 };
 
 export const HasAccess = (sections, status) => {

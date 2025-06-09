@@ -38,6 +38,7 @@ export const Icons = {
     MdArrowForward:             MD.MdArrowForward,
     MdArrowBack:                MD.MdArrowBack,
     MdOutlineArrowDownward:     MD.MdOutlineArrowDownward,
+    MdOutlineArrowUpward:       MD.MdOutlineArrowUpward,
     MdCancel:                   MD.MdCancel,
     MdSend:                     MD.MdSend,
     MdLocationOn:               MD.MdLocationOn,
