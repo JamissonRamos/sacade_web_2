@@ -17,7 +17,7 @@ const StyledCard = css`
 `;
 
 export const Container = styled.div`
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
 `;
 
@@ -34,7 +34,7 @@ export const WrapCards = styled.div`
 export const WrapCard = styled.div`
     /* border: 1px solid red; */
     ${StyledCard}
-    border-left: 5px solid ${({borderColor}) => borderColor};
+    border-left: 5px solid ${({$borderColor}) => $borderColor};
 `;
 
 export const SectionHeader = styled.div`
@@ -64,11 +64,11 @@ export const SectionIconFloating = styled.div`
     align-items: center;
     justify-content: center;
     padding: .2rem;
-    border: 2px solid ${(props) => props.bgColor};
+    border: 2px solid ${(props) => props.$bgColor};
     border-radius: 100px;
     
     & svg{
         font-size: 2em;
-        color: ${(props) => props.bgColor};
+        color: ${(props) => props.$bgColor};
     }
 `;
