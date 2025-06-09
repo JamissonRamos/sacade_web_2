@@ -17,14 +17,12 @@ const StyledCard = css`
 `;
 
 export const Container = styled.div`
-    /* border: 1px solid red; */
+    border: 1px solid red;
     width: 100%;
-    min-width: 320px;
 `;
 
 export const WrapCards = styled.div`
     /* border: 1px solid blue; */
-    min-width: 350px;
     max-height: 200px;
     display: flex;
     align-items: center;
