@@ -1,5 +1,3 @@
-
-
 const statusMap = {
     //nomeando status de user logado no sistema 
     Administrador: 1,
@@ -31,9 +29,9 @@ export const CalculateAllPaymentsMonth = (data) => {
     //Função para Calcuar todos os pagamentos do mes
     let totalPayments = 0;
     const totalPaid = data.reduce((sum, payment) => {
-    // Converte a string de data (dd/mm/yyyy) em partes
-    const [dia, mes, ano] = payment.paymentDate.split('/').map(Number);
-    // Verifica se o pagamento foi feito no mês e ano atuais
+        // Converte a string de data (dd/mm/yyyy) em partes
+        const [dia, mes, ano] = payment.paymentDate.split('/').map(Number);
+        // Verifica se o pagamento foi feito no mês e ano atuais
         if (mes === mesAtual && ano === anoAtual) {
             totalPayments ++
             return sum + payment.amountPaid;
@@ -65,8 +63,6 @@ export const CalculateAllDelaysMonth = (data) => {
                     let valueDueFixed = newInstallments.valueInstallment || 0;
                     let valueDue = newInstallments.valueInstallment || 0;
                     let daysDelay = Math.floor((hoje - expirationDate) / (1000 * 60 * 60 * 24));
-                    console.log('valueDue', valueDue); 
-                    console.log('daysDelay', daysDelay); 
 
                     // Calcular juros/fees
                     if (newInstallments.fees) {
@@ -95,8 +91,78 @@ export const CalculateAllDelaysMonth = (data) => {
     
 }
 
+export const CalculateAllDelays = (data) => {
+    //Função para Calcuar todos os atrasos 
+    const dataInstallments = data || [];
+    let allTotalOverdueInstallments = 0 //totalParcelasVencidas
+    let allTotalAmountDue = 0 //totalValorDevido
 
+    dataInstallments.forEach(({statusPayment, ...newInstallments}) => {
 
+        if(statusPayment === false){
+            // Converter dueDate para objeto Date
+            const [dia, mes, ano] = newInstallments.dueDate.split('/').map(Number);
+            const expirationDate = new Date(ano, mes - 1, dia);
+
+            // Verificar se a parcela está vencida (antes de hoje)
+            if (expirationDate < hoje) {  
+                // Verificar se o vencimento foi no mês atual
+                allTotalOverdueInstallments ++            
+                let valueDueFixed = newInstallments.valueInstallment || 0;
+                let valueDue = newInstallments.valueInstallment || 0;
+                let daysDelay = Math.floor((hoje - expirationDate) / (1000 * 60 * 60 * 24));
+
+                // Calcular juros/fees
+                if (newInstallments.fees) {
+                    const feeCharged = newInstallments.fees * 100
+                    const feeChargedMonetary = Math.round(( valueDueFixed * feeCharged)) / 100
+                    valueDue += feeChargedMonetary
+                }
+
+                    // Calcular juros diários
+                if (newInstallments.interestDaily) {
+                    const valueInteres = newInstallments.interestDaily;
+                    //Calculando e deixnado valor arredondado valor do juro em cima do valor da parcela
+                    const interestCharged = Math.round(( valueDueFixed *  valueInteres ) * 100) / 100;
+                    //Calcular valor do juro com a qtd de dias atraso
+                    const interestChargedMonetary =  Math.round(( interestCharged * daysDelay ) * 100) / 100 ;
+                    //Repassando valor do calculo do juro para soma total
+                    valueDue += interestChargedMonetary;
+                }  
+                
+                // Calcular juros mensais
+                if (newInstallments.interestMonthly) {
+                    const valueInteres = newInstallments.interestMonthly;
+                    const monthsDelay = daysDelay / 30;
+                    //Calculando e deixnado valor arredondado valor do juro em cima do valor da parcela
+                    const interestCharged = Math.round(( valueDueFixed *  valueInteres ) * 100) / 100;
+                    //Calcular valor do juro com a qtd de dias atraso
+                    const interestChargedMonetary =  Math.round(( interestCharged * monthsDelay ) * 100) / 100 ;
+                    //Repassando valor do calculo do juro para soma total
+                    valueDue += interestChargedMonetary;
+                }
+
+                    // Calcular juros anuais
+                if (newInstallments.interestAnnual) {
+                    const valueInteres = newInstallments.interestAnnual;
+                    const yearsDelay = daysDelay / 365;
+                    //Calculando e deixnado valor arredondado valor do juro em cima do valor da parcela
+                    const interestCharged = Math.round(( valueDueFixed *  valueInteres ) * 100) / 100;
+                    //Calcular valor do juro com a qtd de dias atraso
+                    const interestChargedMonetary =  Math.round(( interestCharged * yearsDelay ) * 100) / 100 ;
+                    //Repassando valor do calculo do juro para soma total
+                    valueDue += interestChargedMonetary;
+                }
+
+                allTotalAmountDue += Math.round((valueDue) * 100 ) / 100 
+            
+            }
+        }
+    });
+
+    return {allTotalAmountDue, allTotalOverdueInstallments}
+    
+}
 
 
 export const FormatToCurrency = (value) => {    

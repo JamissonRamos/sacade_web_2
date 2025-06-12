@@ -3,13 +3,14 @@ import FinancialCards from "./financial_cards";
 import { useEffect, useState } from 'react';
 import { useInstallments } from '../../../../hooks/installments'
 import { useMonthlyFee } from '../../../../hooks/monthlyFee'
-import { CalculateAllDelaysMonth, CalculateAllPaymentsMonth } from '../../script';
+import { CalculateAllDelays, CalculateAllDelaysMonth, CalculateAllPaymentsMonth } from '../../script';
 
 
 const Financial = () => {
     const [dataInstallments, setDataInstallments] =  useState([]);
     const [dataMonthlyFee, setDataMonthlyFee] =  useState([]);
     const [resultsPayments, setResultsPayments] = useState({});
+    const [resultsAllDelays, setResultsAllDelays] = useState({});
     const [resultsDelaysMonth, setResultsDelaysMonth] = useState({});
 
     const {getDocuments:getInstallments, loading: loadingInstallments } = useInstallments.useGetDocuments()
@@ -25,23 +26,18 @@ const Financial = () => {
 
             if (installmentsResult.success) {
                 setDataInstallments(installmentsResult.data);
-                console.log('Parcelas:', installmentsResult.data);
             } else {
                 console.error('Erro ao buscar parcelas:', installmentsResult.message);
             }
 
             if (monthlyFeeResult.success) {
                 setDataMonthlyFee(monthlyFeeResult.data);
-                console.log('Mensalidade:', monthlyFeeResult.data);
             } else {
                 console.error('Erro ao buscar mensalidade:', monthlyFeeResult.message);
             }
         } catch (error) {
             console.error('Erro na busca de dados:', error);
-        } //finally {
-        //     setLoading(false);
-        // }
-    
+        }
     }
 
 
@@ -65,8 +61,12 @@ const Financial = () => {
             setResultsDelaysMonth(0);
             return;
         }
+        //Resultados dos calculos das parcelas, calculando o total e o valor de acordo a necessidade
         const {totalAmountDue, totalOverdueInstallments} = CalculateAllDelaysMonth(dataInstallments)        
+        const {allTotalAmountDue, allTotalOverdueInstallments} = CalculateAllDelays(dataInstallments)  
+        //Atibuindo valores para ser repassado para os cards
         setResultsDelaysMonth({totalAmountDue, totalOverdueInstallments});
+        setResultsAllDelays({allTotalAmountDue, allTotalOverdueInstallments});
 
     }, [dataInstallments]);
 
@@ -78,6 +78,7 @@ const Financial = () => {
                 loading={loadingInstallments || loadingMonthlyFee}
                 resultsPayments={resultsPayments}
                 resultsDelaysMonth={resultsDelaysMonth}
+                resultsAllDelays={resultsAllDelays}
             />
             <div>porcentagem a receber no mes</div>
             <div>grafico do recebido do ano</div>

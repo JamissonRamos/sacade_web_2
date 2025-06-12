@@ -5,8 +5,9 @@ import * as S from './styled'
 import { FormatToCurrency } from '../../../script'
 
 const FinancialCards = (props) => {
-    const { loading, resultsPayments, resultsDelaysMonth} = props
-    const {totalAmountDue, totalOverdueInstallments } = resultsDelaysMonth;
+    const { loading, resultsPayments, resultsDelaysMonth, resultsAllDelays } = props
+    const { totalAmountDue, totalOverdueInstallments } = resultsDelaysMonth;
+    const { allTotalAmountDue, allTotalOverdueInstallments} = resultsAllDelays;
 
     const { totalPaid, totalPayments  } = resultsPayments;
     return (
@@ -96,13 +97,13 @@ const FinancialCards = (props) => {
                         :
                             <>
                                 <S.SectionHeader $bgColor={Theme.Colors.yellow800}>
-                                    <TextC.Title level={1}> 3 Atrasados do Ano</TextC.Title>
+                                    <TextC.Title level={1}> {allTotalOverdueInstallments} Atrasados do Ano</TextC.Title>
                                     <TextC.Label level={2}>Total de mensalidades vencidas</TextC.Label>
 
                                 </S.SectionHeader>
 
                                 <S.SectionBody> 
-                                    <TextC.Body level={3}>R$ 100,00</TextC.Body>
+                                    <TextC.Body level={3}>{allTotalAmountDue}</TextC.Body>
                                 </S.SectionBody>
 
                                 <S.SectionIconFloating $bgColor={Theme.Colors.red800}>
