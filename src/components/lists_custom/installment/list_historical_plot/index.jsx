@@ -26,7 +26,7 @@ const ListHistoricalPlot = ({data, navigation}) => {
                 const fineInterestValues = {
                     newFeesMoney: FormatNumberMoney(fees, value),
                     newFeesPercentage: FormatNumberPercentage(fees),
-
+                    
                     newInterestDailyMoney: FormatNumberMoney(interestDaily, value),
                     newInterestDailyPercentage: FormatNumberPercentage(interestDaily),
                 

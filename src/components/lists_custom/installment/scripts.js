@@ -9,6 +9,7 @@ export const FormatNumberMoney = (valuePercentage, valueInstallment) => {
     // Converte a porcentagem para decimal
     const percentageDecimal = parseFloat(valuePercentage) * 100;
     const numberValue = parseFloat(valueInstallment) / 100; // Converte para decimal
+
     
     // Calcula o valor da taxa
     const valueCalculated = numberValue * percentageDecimal;
@@ -23,6 +24,7 @@ export const FormatNumberPercentage = (value) => {
     /* Função para converter de numero para porcentagem */
     if(value === 0) return 0
     if(value=== '') return 0
+    
     return (value * 100).toFixed(2) + "%"; // Define o valor formatado
 };
 

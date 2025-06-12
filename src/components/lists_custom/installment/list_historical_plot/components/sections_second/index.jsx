@@ -18,7 +18,7 @@ const SectionsSecond = ({ id, fineInterestValues, statusLabel, styledStatus, day
     }
 
     const calculateDaily = () => {
-        if (fineInterestValues?.newInterestDailyMoney) {
+        if (fineInterestValues?.newInterestDailyMoney) {            
             const dailyInterest = ParseCurrencyToNumber(fineInterestValues.newInterestDailyMoney);
             const dailyTotal = dailyInterest * daysLate;
             if(dailyTotal > 0) {
@@ -70,7 +70,7 @@ const SectionsSecond = ({ id, fineInterestValues, statusLabel, styledStatus, day
         const daily = calculateDaily() || 0;
         const monthl = calculateMonthl() || 0;
         const annual = calculateAnnual() || 0;
-        
+                
         const total =  fees + daily + monthl + annual || 0 ;
         
         //Multa não tem calculo por dias, passar o valor de multa

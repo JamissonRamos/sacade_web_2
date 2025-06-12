@@ -40,9 +40,18 @@ export const WrapCard = styled.div`
 export const SectionHeader = styled.div`
     /* border: 1px solid red; */
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
     & span{
         font-weight: 500;
         letter-spacing: 0.8px;
+    };
+    & span:nth-child(2){
+        font-weight: 900;
+        font-style: italic;
+        letter-spacing: 0.9px;
+        color: ${(props) => props.$bgColor};
     };
 `;
 
@@ -53,6 +62,7 @@ export const SectionBody = styled.div`
         font-size: 1em;
         font-weight: 500;
         letter-spacing: 1px;
+
     };
 `;
 
