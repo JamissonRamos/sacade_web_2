@@ -31,7 +31,7 @@ const FinancialCards = (props) => {
                     :
                         <>
                             <S.SectionHeader $bgColor={Theme.Colors.green800}>
-                                <TextC.Title level={1}> Total de {totalPayments} Recebidos do Mês</TextC.Title>
+                                <TextC.Title level={1}> Recebimentos do Mês: {totalPayments}</TextC.Title>
                                 <TextC.Label level={2}>Todos os pagamento realizados no mês</TextC.Label>
                             </S.SectionHeader>
 
@@ -64,7 +64,7 @@ const FinancialCards = (props) => {
                     :
                         <>
                             <S.SectionHeader $bgColor={Theme.Colors.red800}>
-                                <TextC.Title level={1}>{totalOverdueInstallments} Atrasado do Mês</TextC.Title>
+                                <TextC.Title level={1}> Atrasados do Mês: {totalOverdueInstallments}</TextC.Title>
                                 <TextC.Label level={2}>Total de mensalidades Atrasdas do mês</TextC.Label>
                             </S.SectionHeader>
 
@@ -97,7 +97,7 @@ const FinancialCards = (props) => {
                         :
                             <>
                                 <S.SectionHeader $bgColor={Theme.Colors.yellow800}>
-                                    <TextC.Title level={1}> {allTotalOverdueInstallments} Atrasados do Ano</TextC.Title>
+                                    <TextC.Title level={1}> Total de Atrasos: {allTotalOverdueInstallments} </TextC.Title>
                                     <TextC.Label level={2}>Total de mensalidades vencidas</TextC.Label>
 
                                 </S.SectionHeader>
