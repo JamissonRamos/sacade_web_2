@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useInstallments } from '../../../../hooks/installments'
 import { useMonthlyFee } from '../../../../hooks/monthlyFee'
 import { CalculateAllDelays, CalculateAllDelaysMonth, CalculateAllPaymentsMonth } from '../../script';
+import PaymentReceiptGraph from './payment_receipt_graph';
 
 
 const Financial = () => {
@@ -80,7 +81,7 @@ const Financial = () => {
                 resultsDelaysMonth={resultsDelaysMonth}
                 resultsAllDelays={resultsAllDelays}
             />
-            <div>porcentagem a receber no mes</div>
+            <PaymentReceiptGraph /> 
             <div>grafico do recebido do ano</div>
         </S.Container>
     )
