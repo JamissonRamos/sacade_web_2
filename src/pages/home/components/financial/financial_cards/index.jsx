@@ -103,7 +103,7 @@ const FinancialCards = (props) => {
                                 </S.SectionHeader>
 
                                 <S.SectionBody> 
-                                    <TextC.Body level={3}>{allTotalAmountDue}</TextC.Body>
+                                    <TextC.Body level={3}>{FormatToCurrency(allTotalAmountDue)}</TextC.Body>
                                 </S.SectionBody>
 
                                 <S.SectionIconFloating $bgColor={Theme.Colors.red800}>

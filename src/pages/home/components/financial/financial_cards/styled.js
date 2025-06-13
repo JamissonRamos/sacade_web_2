@@ -9,7 +9,7 @@ const StyledCard = css`
     position: relative; /* Adicionado para posicionar o pseudo-elemento */
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    justify-content: space-between;
     padding: 1rem .8rem;
     margin: 0 auto; /* O justify-content: center; no WrapCards não funcionou  */
     box-shadow: ${Theme.Shadow.sh900};
@@ -80,5 +80,13 @@ export const SectionIconFloating = styled.div`
     & svg{
         font-size: 2em;
         color: ${(props) => props.$bgColor};
+    }
+
+    @media (max-width: 425px) {
+        bottom: 14px;
+        & svg{
+            font-size: 1.4em;
+            color: ${(props) => props.$bgColor};
+        }
     }
 `;
