@@ -19,7 +19,6 @@ export const HasAccess = (sections, status) => {
     return result;
 };
 
-
 /* Calculos de mensalidade pagas e atrasadas */
 const hoje = new Date();
 const mesAtual = hoje.getMonth() + 1; // getMonth() retorna 0-11
@@ -164,6 +163,31 @@ export const CalculateAllDelays = (data) => {
     
 }
 
+export const AccountantPaymentOpen = (data) => {
+    //Função para Contar o total de pagamento e total de parcelas abertas e valor a receber no mes
+    // Filtra as mensalidades do mês atual
+    const monthlyfeesDoMonth = data.filter(item => {
+        if (!item.dueDate) return false;
+        const [dia, mes, ano] = item.dueDate.split('/').map(Number);
+        return mes === mesAtual && ano === anoAtual;
+    });
+
+    // Separa em pagas e em aberto
+    const monthlyFeesPaid = monthlyfeesDoMonth.filter(item => item.statusPayment === true);
+    const monthlPpaymentsOpen = monthlyfeesDoMonth.filter(item => item.statusPayment !== true);
+
+    // Calcula os totais
+    const totalMonthlyFeesPaid = monthlyFeesPaid.length;
+    const totalMonthlyFeesOutstanding = monthlPpaymentsOpen.length ;
+
+    // Calcula o valor a receber (soma das mensalidades em aberto)
+    const valueReceive = monthlPpaymentsOpen.reduce((total, item) => {
+        return total + (item.valueInstallment || 0);
+    }, 0);
+
+    return {totalMonthlyFeesPaid, totalMonthlyFeesOutstanding, valueReceive}
+    
+}
 
 export const FormatToCurrency = (value) => {    
     // Função para formatar número para moeda

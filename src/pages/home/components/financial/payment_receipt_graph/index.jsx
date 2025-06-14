@@ -1,88 +1,96 @@
-import { useState } from 'react';
+
 import * as S from './styled';
-import ReactApexChart from 'react-apexcharts';
+
 import { TextC } from '../../../../../components/Typography';
 
-const PaymentReceiptGraph = () => {
-    let labelParaReceber = 'Total Receber';
-    let valorParaReceber = 'R$ 300,00';
-    const [state, setState] = useState({
-        series: [2, 30],
-        options: {
-            labels: ['Pagamentos', 'Receber'],
-            chart: {
-                type: 'donut',
-            },
-            responsive: [
-                {
-                    breakpoint: 925,
-                    options: {
-                        chart: {
-                            width: 450,
-                            height: 450,
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                },
-                {
-                    breakpoint: 768,
-                    options: {
-                        chart: {
-                            width: 400,
-                            height: 350,
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                },
-                {
-                    breakpoint: 575,
-                    options: {
-                        chart: {
-                            width: 250,
-                            height: 300,
-                        },
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }
-            ],
-            plotOptions: {
-                pie: {
-                    donut: {
-                        labels: {
-                            show: true,
-                            total: {
-                                show: true,
-                                label: labelParaReceber,
-                                formatter: function () {
-                                    return valorParaReceber;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-    });
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { Theme } from '../../../../../theme';
 
+
+const PaymentReceiptGraph = (props) => {
+
+    const valorTotalReceberMes = 'R$ 858,55';
+
+
+    const renderCustomizedLabel = ({cx,cy,midAngle,innerRadius,outerRadius,percent}) => {
+        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+        const x = cx + radius * Math.cos(-midAngle * Math.PI / 180);
+        const y = cy + radius * Math.sin(-midAngle * Math.PI / 180);
+
+        return (
+            <text
+                x={x}
+                y={y}
+                fill="white"
+                textAnchor="middle"
+                dominantBaseline="central"
+                style={{ fontSize: '14px', fontWeight: 'bold' }}
+            >
+                {`${(percent * 100).toFixed(0)}%`}
+            </text>
+        );
+    };
+
+    const data = [
+        { name: 'Pagamentos', value: 2 },
+        { name: 'Receber', value: 30 },
+    ];
+    const COLORS = [Theme.Colors.green800, Theme.Colors.red600];
+    
     return (
 
         <S.Container>
             <S.WrapTitle>
-                <TextC.Title level={1}> Informações de Pagamentos  </TextC.Title>
+                <TextC.Title level={1}> Análise das Mensalidades do Mês </TextC.Title>
             </S.WrapTitle>
-            <ReactApexChart 
-                options={state.options} 
-                series={state.series} 
-                type="donut" 
-                width='580'
-                height='450'
-            />
+            
+            <ResponsiveContainer width="90%" height="100%" minWidth={300}>
+                <PieChart 
+                >
+                    <Pie
+                        data={data}
+                        cx={'50%'}
+                        cy={'50%'}
+                        innerRadius={'60%'}
+                        outerRadius={'90%'}
+                        paddingAngle={4}
+                        dataKey="value"
+                        label={renderCustomizedLabel}
+                        labelLine={false} // Remove a linha que liga o label à fatia
+                    >
+                        {data.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+
+                    </Pie>
+                    <Legend 
+                        payload={data.map((item, index) => ({
+                            value: `${item.name} (${item.value})`,
+                            type: 'circle',
+                            color: COLORS[index % COLORS.length],
+                        }))}
+                        formatter={(value, entry, index) => (
+                            <span style={{ color: Theme.Colors.grey500, fontSize: '12px' }}>
+                                {index + 1}  {value}
+                            </span>
+                        )}
+                    />
+
+                        {/* Texto no centro do primeiro Pie */}
+                        <text 
+                            x={'50%'} 
+                            y={'45%'} 
+                            textAnchor="middle" 
+                            dominantBaseline="middle" 
+                            fill={Theme.Colors.grey500} 
+                            style={{ fontSize: '14px', fontWeight: 'bold' }}
+                            >
+                                Total Receber {valorTotalReceberMes}
+                        </text>
+                </PieChart>
+            
+            </ResponsiveContainer>
+
         </S.Container>
     )
 }

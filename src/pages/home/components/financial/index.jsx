@@ -3,7 +3,7 @@ import FinancialCards from "./financial_cards";
 import { useEffect, useState } from 'react';
 import { useInstallments } from '../../../../hooks/installments'
 import { useMonthlyFee } from '../../../../hooks/monthlyFee'
-import { CalculateAllDelays, CalculateAllDelaysMonth, CalculateAllPaymentsMonth } from '../../script';
+import { AccountantPaymentOpen, CalculateAllDelays, CalculateAllDelaysMonth, CalculateAllPaymentsMonth } from '../../script';
 import PaymentReceiptGraph from './payment_receipt_graph';
 
 
@@ -13,6 +13,7 @@ const Financial = () => {
     const [resultsPayments, setResultsPayments] = useState({});
     const [resultsAllDelays, setResultsAllDelays] = useState({});
     const [resultsDelaysMonth, setResultsDelaysMonth] = useState({});
+    const [resultsPaymentReceiptGraph, setPaymentReceiptGraph] = useState({});
 
     const {getDocuments:getInstallments, loading: loadingInstallments } = useInstallments.useGetDocuments()
     const {getDocuments: getMonthlyFee, loading: loadingMonthlyFee } = useMonthlyFee.useGetDocuments()
@@ -60,17 +61,25 @@ const Financial = () => {
         /* Chamar todas as funções relacionadas calculos de parcelas */
         if (!dataInstallments || dataInstallments.length == 0) {
             setResultsDelaysMonth(0);
+            setResultsAllDelays(0);
+            setPaymentReceiptGraph(0);
             return;
         }
         //Resultados dos calculos das parcelas, calculando o total e o valor de acordo a necessidade
         const {totalAmountDue, totalOverdueInstallments} = CalculateAllDelaysMonth(dataInstallments)        
-        const {allTotalAmountDue, allTotalOverdueInstallments} = CalculateAllDelays(dataInstallments)  
+        const {allTotalAmountDue, allTotalOverdueInstallments} = CalculateAllDelays(dataInstallments)
+        const {totalMonthlyFeesPaid, totalMonthlyFeesOutstanding, valueReceive} = AccountantPaymentOpen(dataInstallments)
+        
         //Atibuindo valores para ser repassado para os cards
         setResultsDelaysMonth({totalAmountDue, totalOverdueInstallments});
         setResultsAllDelays({allTotalAmountDue, allTotalOverdueInstallments});
+        setPaymentReceiptGraph({totalMonthlyFeesPaid, totalMonthlyFeesOutstanding, valueReceive})
 
     }, [dataInstallments]);
 
+    //console.log('dataInstallments', dataInstallments);
+    console.log('resultsPaymentReceiptGraph', resultsPaymentReceiptGraph);
+    
     
     return (
         <S.Container>
@@ -80,8 +89,12 @@ const Financial = () => {
                 resultsPayments={resultsPayments}
                 resultsDelaysMonth={resultsDelaysMonth}
                 resultsAllDelays={resultsAllDelays}
-            />
-            <PaymentReceiptGraph /> 
+                
+                />
+            <PaymentReceiptGraph 
+                resultsPaymentReceiptGraph={resultsPaymentReceiptGraph}
+            
+            /> 
             <div>grafico do recebido do ano</div>
         </S.Container>
     )
