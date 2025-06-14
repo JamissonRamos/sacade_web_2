@@ -9,6 +9,7 @@ import { Theme } from '../../../../../theme';
 
 const PaymentReceiptGraph = (props) => {
 
+
     const valorTotalReceberMes = 'R$ 858,55';
 
 
@@ -39,42 +40,41 @@ const PaymentReceiptGraph = (props) => {
     
     return (
 
-        <S.Container>
+        <S.Container >
             <S.WrapTitle>
                 <TextC.Title level={1}> Análise das Mensalidades do Mês </TextC.Title>
             </S.WrapTitle>
-            
-            <ResponsiveContainer width="90%" height="100%" minWidth={300}>
-                <PieChart 
-                >
-                    <Pie
-                        data={data}
-                        cx={'50%'}
-                        cy={'50%'}
-                        innerRadius={'60%'}
-                        outerRadius={'90%'}
-                        paddingAngle={4}
-                        dataKey="value"
-                        label={renderCustomizedLabel}
-                        labelLine={false} // Remove a linha que liga o label à fatia
+                <ResponsiveContainer width="100%" height={400} >
+                    <PieChart 
                     >
-                        {data.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
+                        <Pie
+                            data={data}
+                            cx={'50%'}
+                            cy={'50%'}
+                            innerRadius={'64%'}
+                            outerRadius={'90%'}
+                            paddingAngle={4}
+                            dataKey="value"
+                            label={renderCustomizedLabel}
+                            labelLine={false} // Remove a linha que liga o label à fatia
+                        >
+                            {data.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            ))}
 
-                    </Pie>
-                    <Legend 
-                        payload={data.map((item, index) => ({
-                            value: `${item.name} (${item.value})`,
-                            type: 'circle',
-                            color: COLORS[index % COLORS.length],
-                        }))}
-                        formatter={(value, entry, index) => (
-                            <span style={{ color: Theme.Colors.grey500, fontSize: '12px' }}>
-                                {index + 1}  {value}
-                            </span>
-                        )}
-                    />
+                        </Pie>
+                        <Legend 
+                            payload={data.map((item, index) => ({
+                                value: `${item.name} (${item.value})`,
+                                type: 'circle',
+                                color: COLORS[index % COLORS.length],
+                            }))}
+                            formatter={(value, entry, index) => (
+                                <span style={{ color: Theme.Colors.grey500, fontSize: '12px' }}>
+                                    {index + 1}  {value}
+                                </span>
+                            )}
+                        />
 
                         {/* Texto no centro do primeiro Pie */}
                         <text 
@@ -87,10 +87,9 @@ const PaymentReceiptGraph = (props) => {
                             >
                                 Total Receber {valorTotalReceberMes}
                         </text>
-                </PieChart>
-            
-            </ResponsiveContainer>
-
+                    </PieChart>
+                
+                </ResponsiveContainer>
         </S.Container>
     )
 }

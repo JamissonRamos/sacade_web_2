@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Theme } from "../../../../../theme";
 
 export const Container = styled.div`
@@ -12,7 +12,8 @@ export const Container = styled.div`
     padding: .4rem;
     box-shadow: ${Theme.Shadow.sh900};
     border-radius: 4px;
-    overflow: auto;
+    /* overflow: auto; */
+    overflow: visible;
 `;
 
 export const WrapTitle = styled.div`
