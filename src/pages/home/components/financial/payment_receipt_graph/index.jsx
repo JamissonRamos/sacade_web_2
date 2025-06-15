@@ -37,7 +37,6 @@ const PaymentReceiptGraph = (props) => {
     const COLORS = [Theme.Colors.green800, Theme.Colors.red600];
     
     return (
-
         <S.Container >
             <S.WrapTitle>
                 <TextC.Title level={1}> Análise das Mensalidades do Mês </TextC.Title>

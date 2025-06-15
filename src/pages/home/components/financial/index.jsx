@@ -5,6 +5,7 @@ import { useInstallments } from '../../../../hooks/installments'
 import { useMonthlyFee } from '../../../../hooks/monthlyFee'
 import { AccountantPaymentOpen, CalculateAllDelays, CalculateAllDelaysMonth, CalculateAllPaymentsMonth } from '../../script';
 import PaymentReceiptGraph from './payment_receipt_graph';
+import PaymentsGraphicMonth from './payments_graphic_month';
 
 
 const Financial = () => {
@@ -98,7 +99,7 @@ const Financial = () => {
                 resultsPaymentReceiptGraph={resultsPaymentReceiptGraph}
                 resultsDelaysMonth={resultsDelaysMonth}
             /> 
-            <div>grafico do recebido do ano</div>
+            <PaymentsGraphicMonth />
         </S.Container>
     )
 }
