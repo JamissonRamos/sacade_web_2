@@ -49,37 +49,40 @@ const Financial = () => {
 
     useEffect(() => {
         /* Chamar todas as funções relacionadas calculos de pagamentos */
+        // Valores padrão para manter a estrutura consistente
+        const defaultResults = { 
+            totalPaid: 0, 
+            totalPayments: 0 
+        };
+
         if (!dataMonthlyFee || dataMonthlyFee.length == 0) {
-            setResultsPayments(0);
+            setResultsPayments(defaultResults);
             return;
         }
         const {totalPaid, totalPayments} = CalculateAllPaymentsMonth(dataMonthlyFee)
         setResultsPayments({ totalPaid, totalPayments });
     }, [dataMonthlyFee]);
 
+
     useEffect(() => {
         /* Chamar todas as funções relacionadas calculos de parcelas */
+
         if (!dataInstallments || dataInstallments.length == 0) {
-            setResultsDelaysMonth(0);
-            setResultsAllDelays(0);
-            setPaymentReceiptGraph(0);
+            setResultsDelaysMonth({totalAmountDue: 0, totalOverdueInstallments: 0});
+            setResultsAllDelays({allTotalAmountDue: 0, allTotalOverdueInstallments: 0});
+            setPaymentReceiptGraph({totalMonthlyFeesPaid: 0, totalMonthlyFeesOutstanding: 0} )
             return;
         }
         //Resultados dos calculos das parcelas, calculando o total e o valor de acordo a necessidade
         const {totalAmountDue, totalOverdueInstallments} = CalculateAllDelaysMonth(dataInstallments)        
         const {allTotalAmountDue, allTotalOverdueInstallments} = CalculateAllDelays(dataInstallments)
-        const {totalMonthlyFeesPaid, totalMonthlyFeesOutstanding, valueReceive} = AccountantPaymentOpen(dataInstallments)
+        const {totalMonthlyFeesPaid, totalMonthlyFeesOutstanding} = AccountantPaymentOpen(dataInstallments)
         
         //Atibuindo valores para ser repassado para os cards
         setResultsDelaysMonth({totalAmountDue, totalOverdueInstallments});
         setResultsAllDelays({allTotalAmountDue, allTotalOverdueInstallments});
-        setPaymentReceiptGraph({totalMonthlyFeesPaid, totalMonthlyFeesOutstanding, valueReceive})
-
+        setPaymentReceiptGraph({totalMonthlyFeesPaid, totalMonthlyFeesOutstanding} )
     }, [dataInstallments]);
-
-    //console.log('dataInstallments', dataInstallments);
-    console.log('resultsPaymentReceiptGraph', resultsPaymentReceiptGraph);
-    
     
     return (
         <S.Container>
@@ -93,7 +96,7 @@ const Financial = () => {
                 />
             <PaymentReceiptGraph 
                 resultsPaymentReceiptGraph={resultsPaymentReceiptGraph}
-            
+                resultsDelaysMonth={resultsDelaysMonth}
             /> 
             <div>grafico do recebido do ano</div>
         </S.Container>

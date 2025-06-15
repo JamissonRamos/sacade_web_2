@@ -24,6 +24,7 @@ const hoje = new Date();
 const mesAtual = hoje.getMonth() + 1; // getMonth() retorna 0-11
 const anoAtual = hoje.getFullYear();
 
+//Totdos os pagamentos dentro mes atual
 export const CalculateAllPaymentsMonth = (data) => {
     //Função para Calcuar todos os pagamentos do mes
     let totalPayments = 0;
@@ -37,10 +38,10 @@ export const CalculateAllPaymentsMonth = (data) => {
         }
         return sum;
     }, 0);
-
     return {totalPaid, totalPayments}
 }
 
+//Mensalidades em atrasos do mes atual
 export const CalculateAllDelaysMonth = (data) => {
     //Função para Calcuar todos os atrasos do mes
     const dataInstallments = data || [];
@@ -86,10 +87,10 @@ export const CalculateAllDelaysMonth = (data) => {
         }
     });
 
-    return {totalAmountDue,totalOverdueInstallments}
-    
+    return {totalAmountDue, totalOverdueInstallments}
 }
 
+//Todos as mensaliades em atraso
 export const CalculateAllDelays = (data) => {
     //Função para Calcuar todos os atrasos 
     const dataInstallments = data || [];
@@ -163,8 +164,10 @@ export const CalculateAllDelays = (data) => {
     
 }
 
+//Todos os pagamentos e mensalidades do mes atual
 export const AccountantPaymentOpen = (data) => {
-    //Função para Contar o total de pagamento e total de parcelas abertas e valor a receber no mes
+    //Funnção para saber vlores de pagamentos e mensalidades do mes
+
     // Filtra as mensalidades do mês atual
     const monthlyfeesDoMonth = data.filter(item => {
         if (!item.dueDate) return false;
@@ -181,11 +184,11 @@ export const AccountantPaymentOpen = (data) => {
     const totalMonthlyFeesOutstanding = monthlPpaymentsOpen.length ;
 
     // Calcula o valor a receber (soma das mensalidades em aberto)
-    const valueReceive = monthlPpaymentsOpen.reduce((total, item) => {
-        return total + (item.valueInstallment || 0);
-    }, 0);
+    // const valueReceive = monthlPpaymentsOpen.reduce((total, item) => {
+    //     return total + (item.valueInstallment || 0);
+    // }, 0);
 
-    return {totalMonthlyFeesPaid, totalMonthlyFeesOutstanding, valueReceive}
+    return {totalMonthlyFeesPaid, totalMonthlyFeesOutstanding}
     
 }
 

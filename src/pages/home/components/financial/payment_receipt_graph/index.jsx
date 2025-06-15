@@ -1,17 +1,15 @@
-
 import * as S from './styled';
-
 import { TextC } from '../../../../../components/Typography';
-
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 import { Theme } from '../../../../../theme';
-
+import { FormatToCurrency } from '../../../script';
 
 const PaymentReceiptGraph = (props) => {
+    const { resultsDelaysMonth, resultsPaymentReceiptGraph } = props;
+    const { totalAmountDue } = resultsDelaysMonth;
+    const { totalMonthlyFeesPaid, totalMonthlyFeesOutstanding } = resultsPaymentReceiptGraph;
 
-
-    const valorTotalReceberMes = 'R$ 858,55';
-
+    const valorTotalReceberMes = FormatToCurrency(totalAmountDue);
 
     const renderCustomizedLabel = ({cx,cy,midAngle,innerRadius,outerRadius,percent}) => {
         const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -33,8 +31,8 @@ const PaymentReceiptGraph = (props) => {
     };
 
     const data = [
-        { name: 'Pagamentos', value: 2 },
-        { name: 'Receber', value: 30 },
+        { name: 'Pagamentos', value: totalMonthlyFeesPaid },
+        { name: 'Receber', value: totalMonthlyFeesOutstanding },
     ];
     const COLORS = [Theme.Colors.green800, Theme.Colors.red600];
     
