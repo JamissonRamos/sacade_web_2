@@ -41,52 +41,52 @@ const PaymentReceiptGraph = (props) => {
             <S.WrapTitle>
                 <TextC.Title level={1}> Análise das Mensalidades do Mês </TextC.Title>
             </S.WrapTitle>
-                <ResponsiveContainer width="100%" height={400} >
-                    <PieChart 
+            <ResponsiveContainer width="100%" height={400} >
+                <PieChart 
+                >
+                    <Pie
+                        data={data}
+                        cx={'50%'}
+                        cy={'50%'}
+                        innerRadius={'64%'}
+                        outerRadius={'90%'}
+                        paddingAngle={4}
+                        dataKey="value"
+                        label={renderCustomizedLabel}
+                        labelLine={false} // Remove a linha que liga o label à fatia
                     >
-                        <Pie
-                            data={data}
-                            cx={'50%'}
-                            cy={'50%'}
-                            innerRadius={'64%'}
-                            outerRadius={'90%'}
-                            paddingAngle={4}
-                            dataKey="value"
-                            label={renderCustomizedLabel}
-                            labelLine={false} // Remove a linha que liga o label à fatia
+                        {data.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        ))}
+
+                    </Pie>
+                    <Legend 
+                        payload={data.map((item, index) => ({
+                            value: `${item.name} (${item.value})`,
+                            type: 'circle',
+                            color: COLORS[index % COLORS.length],
+                        }))}
+                        formatter={(value, entry, index) => (
+                            <span style={{ color: Theme.Colors.grey500, fontSize: '12px' }}>
+                                {index + 1}  {value}
+                            </span>
+                        )}
+                    />
+
+                    {/* Texto no centro do primeiro Pie */}
+                    <text 
+                        x={'50%'} 
+                        y={'45%'} 
+                        textAnchor="middle" 
+                        dominantBaseline="middle" 
+                        fill={Theme.Colors.grey500} 
+                        style={{ fontSize: '14px', fontWeight: 'bold' }}
                         >
-                            {data.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                            ))}
-
-                        </Pie>
-                        <Legend 
-                            payload={data.map((item, index) => ({
-                                value: `${item.name} (${item.value})`,
-                                type: 'circle',
-                                color: COLORS[index % COLORS.length],
-                            }))}
-                            formatter={(value, entry, index) => (
-                                <span style={{ color: Theme.Colors.grey500, fontSize: '12px' }}>
-                                    {index + 1}  {value}
-                                </span>
-                            )}
-                        />
-
-                        {/* Texto no centro do primeiro Pie */}
-                        <text 
-                            x={'50%'} 
-                            y={'45%'} 
-                            textAnchor="middle" 
-                            dominantBaseline="middle" 
-                            fill={Theme.Colors.grey500} 
-                            style={{ fontSize: '14px', fontWeight: 'bold' }}
-                            >
-                                Total Receber {valorTotalReceberMes}
-                        </text>
-                    </PieChart>
-                
-                </ResponsiveContainer>
+                            Total Receber {valorTotalReceberMes}
+                    </text>
+                </PieChart>
+            
+            </ResponsiveContainer>
         </S.Container>
     )
 }

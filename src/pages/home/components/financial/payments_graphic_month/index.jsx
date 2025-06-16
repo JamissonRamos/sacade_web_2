@@ -1,6 +1,6 @@
 import * as S from './styled';
 import { TextC } from '../../../../../components/Typography';
-import { BarChart, Bar, ResponsiveContainer, ComposedChart, CartesianGrid, XAxis, YAxis, Legend, Area, Line, Label } from 'recharts';
+import { BarChart, Bar, ResponsiveContainer, ComposedChart, CartesianGrid, XAxis, YAxis, Legend, Area, Line, Label, LabelList } from 'recharts';
 import { Theme } from '../../../../../theme';
 import { FormatToCurrency } from '../../../script';
 import { Tooltip } from 'react-bootstrap';
@@ -25,7 +25,7 @@ const PaymentsGraphicMonth = (props) => {
     return (
 
         <S.Container> 
-            <ResponsiveContainer width="100%" height="100%">
+            <ResponsiveContainer width="100%" height={600} >
                 <ComposedChart
                     layout="vertical"
                     width={500}
@@ -35,7 +35,7 @@ const PaymentsGraphicMonth = (props) => {
                         top: 20,
                         right: 30,
                         bottom: 20,
-                        left: 40,
+                        left: 30,
                     }}
                 >
                     <CartesianGrid stroke="#f5f5f5" />
@@ -43,7 +43,23 @@ const PaymentsGraphicMonth = (props) => {
                     <YAxis dataKey="name" type="category" scale="auto" /> 
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="recebido" barSize={12} fill="#413ea0" />
+                    <Bar 
+                        dataKey="recebido" 
+                        barSize={26} 
+                        fill="#413ea0" 
+                        radius={[0, 4, 4, 0]}
+                        >
+                        <LabelList 
+                            dataKey="recebido" 
+                            position="centerTop" 
+                            formatter={(value) => `${FormatToCurrency(value)}`}
+                            style={{
+                                fill: Theme.Colors.grey100,
+                                fontSize: 10,
+                            }}
+                            
+                        />
+                    </Bar>
                 </ComposedChart>
             </ResponsiveContainer>
         </S.Container>
