@@ -24,6 +24,41 @@ const hoje = new Date();
 const mesAtual = hoje.getMonth() + 1; // getMonth() retorna 0-11
 const anoAtual = hoje.getFullYear();
 
+//Todos os pamentos dentro do ano atual
+export const CalculateAllPaymentsYear = (data) => {
+    //Função para somar toodos os pagamento do ano e separar do mes
+    const allPaymentsPerMonth = [];
+    const nameMonth = [
+        "Janeiro",
+        "Fevereiro",
+        "Março",
+        "Abril",
+        "Maio",
+        "Junho",
+        "Julho",
+        "Agosto",
+        "Setembro",
+        "Outubro",
+        "Novembro",
+        "Dezembro",
+    ];
+
+    // Inicializa um array com 12 meses (índices 1-12)
+    for (let i = 0; i <= 12; i++) {
+        allPaymentsPerMonth.push({ month: nameMonth[i], total: 0 });
+    }
+
+    data.forEach((payment) => {
+        const [day, month, year] = payment.paymentDate.split('/').map(Number);
+        
+        if (year === anoAtual) {
+            // Adiciona o valor ao mês correspondente (month - 1 porque o array começa em 0)
+            allPaymentsPerMonth[month - 1].total += payment.amountPaid;
+        }
+    });
+
+    return { allPaymentsPerMonth };
+};
 //Totdos os pagamentos dentro mes atual
 export const CalculateAllPaymentsMonth = (data) => {
     //Função para Calcuar todos os pagamentos do mes
