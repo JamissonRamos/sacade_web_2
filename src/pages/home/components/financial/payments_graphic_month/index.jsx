@@ -1,8 +1,7 @@
 import * as S from './styled';
-import { Bar, ResponsiveContainer, ComposedChart, CartesianGrid, XAxis, YAxis, Legend, LabelList } from 'recharts';
+import { Bar, ResponsiveContainer, ComposedChart, CartesianGrid, XAxis, YAxis, Legend, LabelList, Tooltip } from 'recharts';
 import { Theme } from '../../../../../theme';
 import { FormatToCurrency } from '../../../script';
-import { Tooltip } from 'react-bootstrap';
 
 const PaymentsGraphicMonth = (props) => {
     const { resultAllPaymentsPerYear } = props;

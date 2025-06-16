@@ -7,7 +7,6 @@ import { AccountantPaymentOpen, CalculateAllDelays, CalculateAllDelaysMonth, Cal
 import PaymentReceiptGraph from './payment_receipt_graph';
 import PaymentsGraphicMonth from './payments_graphic_month';
 
-
 const Financial = () => {
     const [dataInstallments, setDataInstallments] =  useState([]);
     const [dataMonthlyFee, setDataMonthlyFee] =  useState([]);
