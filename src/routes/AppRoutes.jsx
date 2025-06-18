@@ -86,7 +86,6 @@ const AppContent = () => {
                                     // </ProtectedRoute>
                                 } />
 
-
                                 <Route path="/monthlyFees" element={
                                     <ProtectedRoute page='MonthlyFees'>
                                         {/* <Pages.NotificationsMaintenance /> */}
@@ -104,6 +103,12 @@ const AppContent = () => {
                                     <ProtectedRoute page='MonthlyFees'>
                                         {/* <Pages.NotificationsMaintenance /> */}
                                         <Pages.MonthlyPayment /> 
+                                    </ProtectedRoute>
+                                } />
+                                <Route path="/reports/students" element={
+                                    <ProtectedRoute page='ReportsStudents'>
+                                        {/* <Pages.NotificationsMaintenance /> */}
+                                        <Pages.ReportStudents /> 
                                     </ProtectedRoute>
                                 } />
 

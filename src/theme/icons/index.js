@@ -7,6 +7,7 @@ import * as AI      from "react-icons/ai";
 import * as RX      from "react-icons/rx";
 import * as PI      from "react-icons/pi";
 import * as GR      from "react-icons/gr";
+import * as TB      from "react-icons/tb";
 
 
 export const Icons = {  
@@ -69,5 +70,6 @@ export const Icons = {
     AiOutlineProduct:           AI.AiOutlineProduct,
     RxCardStackPlus:            RX.RxCardStackPlus,
     PiAddressBookFill:          PI.PiAddressBookFill,
-    GrDocumentUpdate:           GR.GrDocumentUpdate
+    GrDocumentUpdate:           GR.GrDocumentUpdate,
+    TbReportAnalytics:          TB.TbReportAnalytics,
 }

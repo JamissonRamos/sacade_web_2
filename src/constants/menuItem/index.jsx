@@ -60,6 +60,20 @@ export const MenuItem = [
         icon: <Theme.Icons.PiAddressBookFill/>
     },
     {
+        title: 'Relatórios',
+        path: '#',
+        icon:  <Theme.Icons.TbReportAnalytics/>,
+        iconClosed:  <Theme.Icons.RiArrowUpSFill/>,
+        iconOpened: <Theme.Icons.RiArrowDownSFill/>,
+        subNav: [
+            {
+                title: 'Alunos',
+                path: '/reports/students',
+                icon: <Theme.Icons.MdPerson  />,
+            }
+        ]
+    },
+    {
         title: 'Configurações',
         path: '#',
         icon:  <Theme.Icons.MdSettings/>,

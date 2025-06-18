@@ -2,6 +2,7 @@ import * as S from './styled';
 import { Bar, ResponsiveContainer, ComposedChart, CartesianGrid, XAxis, YAxis, Legend, LabelList, Tooltip } from 'recharts';
 import { Theme } from '../../../../../theme';
 import { FormatToCurrency } from '../../../script';
+import { TextC } from '../../../../../components/Typography';
 
 const PaymentsGraphicMonth = (props) => {
     const { resultAllPaymentsPerYear } = props;
@@ -9,6 +10,9 @@ const PaymentsGraphicMonth = (props) => {
 
     return (
         <S.Container> 
+            <S.WrapTitle>
+                <TextC.Title level={1}> Totos os pagamento do ano </TextC.Title>
+            </S.WrapTitle>
             <ResponsiveContainer width="100%" height={600} >
                 <ComposedChart
                     layout="vertical"

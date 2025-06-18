@@ -12,14 +12,6 @@ import FormUpdateResponsible from './responsible_students/responsibleList/forms/
 import MonthlyFees from './monthly_fees';
 import MonthlyFeeDetails from './monthly_fee_details';
 
-
-/* ----------- pagar os pay ---------- */
-//import Payments from './payments';
-//import FormPayments from './payments/form_payments';
-//import PaymentsForm from './payments_form';
-//import FormPay from './payments_form/form';
-/* ----------- pagar os pay ---------- */
-
 import ConfigurationInstallments from './configuration_installments';
 import GenerateInstallments from './generate_installments';
 import UpdateInsllments from './update_installments';
@@ -45,8 +37,7 @@ import CardListRegisterStudents from './register_student/cardListRegisterStudent
 import StatusStudents from './status_students';
 import Helps from './helps';
 import MonthlyPayment from './monthly_payment';
-
-
+import ReportStudents from './reports/students';
 
 export const Pages = {
     Home,
@@ -59,18 +50,9 @@ export const Pages = {
     ResponsibleList,
     FormCreateResponsible,
     FormUpdateResponsible,
-    
-    /* ----------- pagar os pay ---------- */
-    //Payments,
-    //FormPayments,
-    //PaymentsForm,
-    //FormPay,
-    /* ----------- pagar os pay ---------- */
-
     MonthlyFees,
     MonthlyFeeDetails,
     MonthlyPayment,
-    
     ConfigurationInstallments,
     GenerateInstallments,
     UpdateInsllments,
@@ -94,5 +76,6 @@ export const Pages = {
     NotificationsMonthlyPayment,
     SplashScreen,
     StatusStudents,
-    Helps
+    Helps,
+    ReportStudents
 }
