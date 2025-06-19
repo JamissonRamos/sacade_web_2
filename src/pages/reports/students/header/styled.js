@@ -6,7 +6,7 @@ export const Container = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: .8rem;
+    gap: 0;
     margin-bottom: 1rem;
 `;
 export const WrapTexts = styled.div`
@@ -36,7 +36,8 @@ export const Button = styled.button`
     align-items: center;
     justify-content: center;
     padding: 4px 9px;
-    background-color: ${Theme.Colors.grey100};
+    /* background-color: ${Theme.Colors.grey100}; */
+    background-color: transparent;
     border-radius: 4px;
     color: ${Theme.Colors.green800};
     transition: all 0.4s ;
@@ -50,6 +51,3 @@ export const Button = styled.button`
         font-size: 1.1em;
     }
 `;
-
-
-

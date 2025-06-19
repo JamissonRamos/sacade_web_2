@@ -9,9 +9,9 @@ const Fields = (props) => {
     return (
         <S.Container >
 
-            <Row className="mb-2 px-2">
-                <Col lg={6} md={6} sm={4}>
-                    <InputGroup >
+            <Row className="mb-2 px-2 display-flex align-items-center justify-content-end">
+                <Col className="mb-2" lg={6} md={6} sm={12}>
+                    <Form.Group >
                         <Form.Control
                             type="text"
                             name="firstName"
@@ -19,10 +19,10 @@ const Fields = (props) => {
                             onChange={handleFilterChange}
                             value={filters.firstName}
                         />
-                    </InputGroup>
+                    </Form.Group>
                 </Col>
 
-                <Col lg={3} md={3} sm={4}>
+                <Col className="mb-2" lg={3} md={3} sm={4} >
                     <InputGroup >
                         <Form.Select
                             name="status"
@@ -40,7 +40,7 @@ const Fields = (props) => {
                     </InputGroup>
                 </Col>
 
-                <Col lg={3} md={3} sm={4}>
+                <Col className="mb-2" lg={3} md={3} sm={3}>
                     <InputGroup >
                         <Form.Select
                             name="sex"

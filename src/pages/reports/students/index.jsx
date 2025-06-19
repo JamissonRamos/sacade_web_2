@@ -1,9 +1,10 @@
 import * as S from './styled';
 import { useEffect, useState } from 'react';
-import Table from 'react-bootstrap/Table';
+
 
 import Header from './header';
 import Fields from './fields';
+import Body from './Body';
 
 const ReportStudents = () => {
 
@@ -100,8 +101,7 @@ const ReportStudents = () => {
         <S.Container>
             <Header />
 
-            <div>
-                {/* Filtros */}
+            {/* <div> */}
                 <Fields 
                     filters={filters} 
                     handleFilterChange={handleFilterChange} 
@@ -109,42 +109,17 @@ const ReportStudents = () => {
                     uniqueSexes={uniqueSexes}
                 />
                 
-                {/* Tabela */}
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nome</th>
-                                <th>Data de Nascimento</th>
-                                <th>Gênero</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredData.map((item) => (
-                                <tr key={item.id}>
-                                    <td>{item.id}</td>
-                                    <td>{item.firstName} {item.lastName}</td>
-                                    <td>{item.birthDate}</td>
-                                    <td>{item.sex}</td>
-                                    <td>{item.status}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td >Total</td>
-                                    <td>{totalStudents}</td>
-                                </tr>
-                            </tfoot>
-                    </Table>
+                <Body 
+                    filteredData={filteredData}
+                    totalStudents={totalStudents}
+                />
 
-                    {filteredData.length === 0 && (
-                        <div className="text-center text-muted py-3">
-                            No records found matching your filters.
-                        </div>
-                    )}
-            </div>
+                {filteredData.length === 0 && (
+                    <div className="text-center text-muted py-3">
+                        No records found matching your filters.
+                    </div>
+                )}
+            {/* </div> */}
 
             <div>roda pe</div>
         </S.Container>

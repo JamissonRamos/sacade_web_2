@@ -7,6 +7,7 @@ export const Container = styled.div`
 
     & input, select {
         box-shadow: none;
+        font-size: .8em;
     };
     & input:focus, select:focus {
         border-color: ${Theme.Colors.green800};
