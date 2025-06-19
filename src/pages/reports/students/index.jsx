@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import Header from './header';
 import Fields from './fields';
 import Body from './Body';
+import { Theme } from '../../../theme';
+import { TextC } from '../../../components/Typography';
 
 const ReportStudents = () => {
 
@@ -101,27 +103,33 @@ const ReportStudents = () => {
         <S.Container>
             <Header />
 
-            {/* <div> */}
-                <Fields 
-                    filters={filters} 
-                    handleFilterChange={handleFilterChange} 
-                    uniqueStatuses={uniqueStatuses} 
-                    uniqueSexes={uniqueSexes}
-                />
-                
+            <Fields 
+                filters={filters} 
+                handleFilterChange={handleFilterChange} 
+                uniqueStatuses={uniqueStatuses} 
+                uniqueSexes={uniqueSexes}
+            />
+            
+            {filteredData.length > 0 && 
                 <Body 
                     filteredData={filteredData}
                     totalStudents={totalStudents}
                 />
+            }
 
-                {filteredData.length === 0 && (
-                    <div className="text-center text-muted py-3">
-                        No records found matching your filters.
-                    </div>
-                )}
-            {/* </div> */}
+            {filteredData.length === 0 && (
+                <div className="text-center text-muted py-3">
+                    <p>Nenhum aluno encontrado.</p>
+                </div>
+            )}
 
-            <div>roda pe</div>
+            <S.WrapButton> 
+                <S.Button>
+                    <TextC.Label>Baixar Dados</TextC.Label>
+                    <Theme.Icons.MdSaveAlt />
+                </S.Button>
+            </S.WrapButton>
+
         </S.Container>
     )
 }

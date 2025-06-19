@@ -8,9 +8,8 @@ const Fields = (props) => {
 
     return (
         <S.Container >
-
             <Row className="mb-2 px-2 display-flex align-items-center justify-content-end">
-                <Col className="mb-2" lg={6} md={6} sm={12}>
+                <Col className="mb-2" lg={6} md={12} sm={12}>
                     <Form.Group >
                         <Form.Control
                             type="text"
@@ -22,7 +21,7 @@ const Fields = (props) => {
                     </Form.Group>
                 </Col>
 
-                <Col className="mb-2" lg={3} md={3} sm={4} >
+                <Col className="mb-2" lg={3} md={6} sm={6} xs={6}>
                     <InputGroup >
                         <Form.Select
                             name="status"
@@ -40,7 +39,7 @@ const Fields = (props) => {
                     </InputGroup>
                 </Col>
 
-                <Col className="mb-2" lg={3} md={3} sm={3}>
+                <Col className="mb-2" lg={3} md={6} sm={6} xs={6}>
                     <InputGroup >
                         <Form.Select
                             name="sex"

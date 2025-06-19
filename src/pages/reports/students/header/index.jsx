@@ -12,11 +12,6 @@ const Header = () => {
                 <TextC.Title level={2}> Relatórios dos Alunos </TextC.Title>
                 <TextC.Body level={2}> Relação de todos os alunos cadastrados. </TextC.Body>
             </S.WrapTexts>
-            <S.WrapButton> 
-                <S.Button>
-                    <Theme.Icons.MdSaveAlt />
-                </S.Button>
-            </S.WrapButton>
         </S.Container>
     )
 }

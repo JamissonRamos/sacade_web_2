@@ -6,7 +6,7 @@ const Body = (props) => {
 
     return (
         <S.Container>
-            <Table striped bordered hover responsive > {/* size="sm" */}
+            <Table striped bordered hover responsive className="custom-table">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -15,6 +15,7 @@ const Body = (props) => {
                         <th>Status</th>
                     </tr>
                 </thead>
+                
                 <tbody>
                     {filteredData.map((item) => (
                         <tr key={item.id}>
@@ -27,8 +28,8 @@ const Body = (props) => {
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td >Total</td>
-                        <td>{totalStudents}</td>
+                        <th >Total</th>
+                        <td colSpan={12}>{totalStudents}</td>
                     </tr>
                 </tfoot>
             </Table>
