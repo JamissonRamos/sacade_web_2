@@ -4,6 +4,7 @@ import { Theme } from "../../../../theme";
 export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
+    min-width: 300px;
     padding-right: 1rem;
     & input, select {
         box-shadow: none;

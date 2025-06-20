@@ -67,6 +67,8 @@ export const Icons = {
     FaDollarSign:               FA.FaDollarSign,             
     FaMapMarkerAlt:             FA.FaMapMarkerAlt,             
     FaMoneyCheckAlt:            FA.FaMoneyCheckAlt,             
+    FaMale:                     FA.FaMale,             
+    FaFemale:                   FA.FaFemale,             
     AiOutlineProduct:           AI.AiOutlineProduct,
     RxCardStackPlus:            RX.RxCardStackPlus,
     PiAddressBookFill:          PI.PiAddressBookFill,

@@ -1,113 +1,143 @@
 import * as S from './styled';
-import { useEffect, useState } from 'react';
-
-
 import Header from './header';
-import Fields from './fields';
 import Body from './Body';
+import Fields from './fields';
+import { Spinner } from 'react-bootstrap';
+import { AlertCustom } from '../../../components/alert_custom';
+import { useEffect, useState } from 'react';
 import { Theme } from '../../../theme';
 import { TextC } from '../../../components/Typography';
+import { GeneratePdf } from '../../../hooks/createDocPdf';
+import { useStudents } from '../../../hooks/students';
+import { LoadingOverlay } from '../../../components/spinner/global/styled';
 
 const ReportStudents = () => {
-
-    // Dados iniciais da tabela
-    const initialData = [
-        { id: 1, firstName: 'mark', lastName: 'Otto', birthDate: '1990-01-15', status: 'ativo', sex: 'masculino' },
-        { id: 2, firstName: 'Jacob', lastName: 'Thornton', birthDate: '1985-02-20', status: 'inativo', sex: 'masculino' },
-        { id: 3, firstName: 'Larry', lastName: 'Bird', birthDate: '1978-03-25', status: 'bloqueado', sex: 'masculino' },
-        { id: 4, firstName: 'Jane', lastName: 'Doe', birthDate: '1992-04-30', status: 'ativo', sex: 'feminino' },
-        { id: 5, firstName: 'John', lastName: 'Smith', birthDate: '1988-05-10', status: 'inativo', sex: 'masculino' },
-        { id: 6, firstName: 'Emily', lastName: 'Johnson', birthDate: '1995-06-14', status: 'ativo', sex: 'feminino' },
-        { id: 7, firstName: 'Michael', lastName: 'Brown', birthDate: '1980-07-22', status: 'bloqueado', sex: 'masculino' },
-        { id: 8, firstName: 'Sarah', lastName: 'Davis', birthDate: '1993-08-18', status: 'ativo', sex: 'feminino' },
-        { id: 9, firstName: 'David', lastName: 'Wilson', birthDate: '1982-09-05', status: 'inativo', sex: 'masculino' },
-        { id: 10, firstName: 'Sophia', lastName: 'Miller', birthDate: '1991-10-11', status: 'ativo', sex: 'feminino' },
-        { id: 11, firstName: 'James', lastName: 'Garcia', birthDate: '1987-11-15', status: 'bloqueado', sex: 'masculino' },
-        { id: 12, firstName: 'Olivia', lastName: 'Martinez', birthDate: '1994-12-20', status: 'ativo', sex: 'feminino' },
-        { id: 13, firstName: 'William', lastName: 'Hernandez', birthDate: '1983-01-30', status: 'inativo', sex: 'masculino' },
-        { id: 14, firstName: 'Ava', lastName: 'Lopez', birthDate: '1996-02-25', status: 'ativo', sex: 'feminino' },
-        { id: 15, firstName: 'Daniel', lastName: 'Gonzalez', birthDate: '1989-03-12', status: 'bloqueado', sex: 'masculino' },
-        { id: 16, firstName: 'Mia', lastName: 'Wilson', birthDate: '1990-04-27', status: 'ativo', sex: 'feminino' },
-        { id: 17, firstName: 'Matthew', lastName: 'Anderson', birthDate: '1986-05-19', status: 'inativo', sex: 'masculino' },
-        { id: 18, firstName: 'Isabella', lastName: 'Thomas', birthDate: '1992-06-09', status: 'ativo', sex: 'feminino' },
-        { id: 19, firstName: 'Ethan', lastName: 'Taylor', birthDate: '1984-07-14', status: 'bloqueado', sex: 'masculino' },
-        { id: 20, firstName: 'Charlotte', lastName: 'Moore', birthDate: '1991-08-21', status: 'ativo', sex: 'feminino' },
-    ];
-
     // Estado para armazenar os dados filtrados
-    const [filteredData, setFilteredData] = useState(initialData);
-
-    // Criando um objeto para rastrear os status já adicionados
-    const statusTracker = {};
-    const uniqueStatuses = [];
+    const [allStudents, setAllStudents] = useState([]);
+    const [filteredData, setFilteredData] = useState([]);
+    // Estado para controlar o alerta de criação do PDF
+    const [isCreatDocPdf, setIsisCreatDocPdf] = useState({showAlert: false, success: false, message: ''});
     
-    const sexesTracker = {};
-    const uniqueSexes = [];
-    
-    // Extraindo os tipos de status únicos do array
-    initialData.forEach(({status}) => {
-
-        if (!statusTracker[status]) {
-            statusTracker[status] = true; // Marca o status como encontrado
-            uniqueStatuses.push(status); // Adiciona o usuário ao array
-        }
-    });
-
-    // Extraindo os tipos de status únicos do array
-    initialData.forEach(({sex}) => {
-
-        if (!sexesTracker[sex]) {
-            sexesTracker[sex] = true; // Marca o sexo como encontrado
-            uniqueSexes.push(sex); // Adiciona o sexo ao array
-        }
-    });
+    const { getDocuments, loading: loadingGetDoc} = useStudents.useGetDocuments();
+    const {createDocPdf, loading: loadingCreateDocPdf } = GeneratePdf()
 
     // Estado para os valores dos filtros
     const [filters, setFilters] = useState({
-        firstName: '',
         status: '',
         sex: ''
     });
 
+    // Peaggando o total de alunos filtrados
+    const totalStudents = filteredData.length;
+
+    // Estado para controlar o carregamento dos dados
+    const fetch = async () => {
+        const result = await getDocuments();
+        const {success, data } = result;
+        if(success){
+            const newData = data.map((item, index) => ({
+                id: index + 1,
+                firstName: item.firstName || '',
+                lastName: item.lastName|| '',
+                sex: item.sex.toUpperCase() || '',
+                status: item.status.toUpperCase() || '',
+            }));
+            setFilteredData(newData);
+            setAllStudents(newData);
+        }else{
+            console.log('Erro ao buscar documentos:', result.message);
+        }
+    }
+
     // Função para lidar com mudanças nos filtros
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
-        
         setFilters(prev => ({
         ...prev,
         [name]: value
         }));
     };
-    
+
+        // Função para gerar o PDF (placeholder)
+    const handleGeneratePdf = async () => {
+
+        // Recuperar o cabeçalho da tabela
+        const headersDoc = ['#', 'Nome', 'Status', 'Sexo'];
+        // Recuperar o título do PDF
+        const titleDoc = 'Relatório de Alunos';
+        // Recuperar os dados do PDF
+        const dataDoc = filteredData.map((item, index) => [
+            index + 1,
+            `${item.firstName} ${item.lastName}`,
+            item.status,
+            item.sex
+        ]);
+        // Nome do arquivo PDF  
+        const nameDoc = `relatorio_alunos${filters.status !== "" ? `_${filters.status}` : ''}${filters.sex !== "" ? `_${filters.sex}` : ''}`;
+
+        //GeneratePdf
+        const result = await createDocPdf({headersDoc, titleDoc, dataDoc, nameDoc});
+        const { success, message } = result;
+        if (success) {
+            setIsisCreatDocPdf({showAlert: true, success: true, message: 'PDF gerado com sucesso!'});
+        }else{
+            setIsisCreatDocPdf({showAlert: true, success: false, message: 'Erro ao gerar PDF.'});
+            console.error('Erro ao gerar PDF:', message); 
+            
+        }
+    } 
+
+    // Carregar os dados do alunos
+    useEffect(() => {
+        fetch()
+    }, []);
+
     // Efeito para filtrar os dados sempre que os filtros mudarem
     useEffect(() => {
-        if (filters.firstName === '' && filters.status === '' && filters.sex === '')  setFilteredData(initialData);
+        if(allStudents.length === 0) return;
 
-        const filtered = initialData.filter(item => {
+        if (filters.firstName === '' && filters.status === '' && filters.sex === '')  setFilteredData(allStudents);
+
+        const filtered = allStudents.filter(item => {
             return (
-                item.firstName.toLowerCase().includes(filters.firstName.toLowerCase()) &&
                 (filters.status === '' || item.status === filters.status) &&
                 (filters.sex === '' || item.sex === filters.sex)
             );
         });
-        console.log('filtered', filtered);
-
         setFilteredData(filtered);
     }, [filters]);
 
-
-    const totalStudents = filteredData.length;
     
-    return (
+    // Renderizando o componente
+    if (loadingGetDoc) {
+        return (
+            <LoadingOverlay>
+                <Spinner
+                    as="span"
+                    animation="border"
+                    role="status"
+                    aria-hidden="true"
+                />
+                <span>Carregando os dados...</span>
+            </LoadingOverlay> 
+        );
+    }
 
+    return (
         <S.Container>
+            {isCreatDocPdf.showAlert &&
+                <AlertCustom 
+                    variant={isCreatDocPdf.success ? 'success' : 'danger'}
+                    handleCloseAlert={() => setIsisCreatDocPdf({success: false, message: ''})}>
+                    {isCreatDocPdf.message}
+                </AlertCustom>
+            }
+
             <Header />
 
             <Fields 
                 filters={filters} 
                 handleFilterChange={handleFilterChange} 
-                uniqueStatuses={uniqueStatuses} 
-                uniqueSexes={uniqueSexes}
             />
             
             {filteredData.length > 0 && 
@@ -124,9 +154,30 @@ const ReportStudents = () => {
             )}
 
             <S.WrapButton> 
-                <S.Button>
-                    <TextC.Label>Baixar Dados</TextC.Label>
-                    <Theme.Icons.MdSaveAlt />
+                <S.Button
+                    type="button"
+                    onClick={() => {handleGeneratePdf()}}
+                    disabled={loadingCreateDocPdf}
+                >
+                    { loadingCreateDocPdf 
+                        ?   
+                            <>
+                                <Spinner
+                                    as="span"
+                                    animation="border"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                />
+                                <span> Gerando Documento... </span>
+                            </> 
+                        :
+                            <>
+                                <TextC.Label>Baixar Dados</TextC.Label>
+                                <Theme.Icons.MdSaveAlt />
+                            </>
+                    }
+
                 </S.Button>
             </S.WrapButton>
 
