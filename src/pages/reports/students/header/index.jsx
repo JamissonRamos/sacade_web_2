@@ -1,8 +1,5 @@
 import * as S from './styled';
 import { TextC } from '../../../../components/Typography';
-import { Theme } from '../../../../theme';
-
-
 
 const Header = () => {
 

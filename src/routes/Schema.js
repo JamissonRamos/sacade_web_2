@@ -30,4 +30,5 @@ const pages = {
     NoticeAuthorization: [1, 2, 3],
     StatusStudents: [1, 2],
     ReportsStudents: [1, 2],
+    ReportsTracks: [1, 2],
 };

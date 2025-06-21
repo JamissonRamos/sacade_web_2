@@ -70,6 +70,11 @@ export const MenuItem = [
                 title: 'Alunos',
                 path: '/reports/students',
                 icon: <Theme.Icons.MdPerson  />,
+            },
+            {
+                title: 'Faixas Atual',
+                path: '/reports/tracks/currentStudentTracks',
+                icon: <Theme.Icons.PiAddressBookFill/>,
             }
         ]
     },

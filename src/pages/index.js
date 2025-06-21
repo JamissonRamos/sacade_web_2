@@ -38,6 +38,7 @@ import StatusStudents from './status_students';
 import Helps from './helps';
 import MonthlyPayment from './monthly_payment';
 import ReportStudents from './reports/students';
+import ReportCurrentStudentTracks from './reports/tracks/current_student_tracks';
 
 export const Pages = {
     Home,
@@ -77,5 +78,6 @@ export const Pages = {
     SplashScreen,
     StatusStudents,
     Helps,
-    ReportStudents
+    ReportStudents,
+    ReportCurrentStudentTracks
 }
