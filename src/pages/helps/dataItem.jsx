@@ -28,6 +28,11 @@ export const DataItemMenu = [
         icon: <Theme.Icons.GrDocumentUpdate/>
     },
     {
+        title: 'Relatório',
+        path: 'https://accessible-storm-0f5.notion.site/Relat-rios-2167ce9f30c180988459fc11b9362964?pvs=73',
+        icon: <Theme.Icons.TbReportAnalytics/>
+    },
+    {
         title: 'Central Ajuda',
         path: 'https://accessible-storm-0f5.notion.site/Central-Ajuda-1bc7ce9f30c18077a6d8c04e138b701b?pvs=4',
         icon: <Theme.Icons.MdHelp/>

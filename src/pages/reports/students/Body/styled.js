@@ -5,7 +5,7 @@ export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     min-width: 320px;
-    height: 66%;
+    height: 70%;
     padding-bottom: 1rem;
     overflow: auto;
 
@@ -20,7 +20,6 @@ export const Container = styled.div`
         border: 1px solid ${Theme.Colors.white800}; 
     }
 
-
     & thead tr th, tbody tr td {
         font-size: 1em;
         font-weight: 500;
@@ -30,7 +29,7 @@ export const Container = styled.div`
         background-color: blue; /* Cor de fundo padrão */
     }
 
-    & .custom-table tbody  tr:nth-last-child(odd) td{
+    & .custom-table tbody tr:nth-last-child(odd) td{
         background-color: ${Theme.Colors.grey100};/* Cor para linhas ímpares */
     }
     

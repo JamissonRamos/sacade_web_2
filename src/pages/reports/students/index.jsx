@@ -27,16 +27,12 @@ const ReportStudents = () => {
         sex: ''
     });
 
-    // Peaggando o total de alunos filtrados
-    const totalStudents = filteredData.length;
-
     // Estado para controlar o carregamento dos dados
     const fetch = async () => {
         const result = await getDocuments();
         const {success, data } = result;
         if(success){
-            const newData = data.map((item, index) => ({
-                id: index + 1,
+            const newData = data.map((item) => ({
                 firstName: item.firstName || '',
                 lastName: item.lastName|| '',
                 sex: item.sex.toUpperCase() || '',
@@ -143,7 +139,7 @@ const ReportStudents = () => {
             {filteredData.length > 0 && 
                 <Body 
                     filteredData={filteredData}
-                    totalStudents={totalStudents}
+                    //totalStudents={totalStudents}
                 />
             }
 

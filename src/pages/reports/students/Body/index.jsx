@@ -1,22 +1,25 @@
+import * as S from './styled'
 import { Badge } from 'react-bootstrap';
 import { Theme } from '../../../../theme';
-import * as S from './styled'
 import Table from 'react-bootstrap/Table';
+import { useEffect, useState } from 'react';
 
 const Body = (props) => {
-    const { filteredData, totalStudents } = props;
+    const { filteredData} = props;
+    const [data, setData] = useState([]);
+    const totalStudents = filteredData.length;
 
     const handleBadge = (status) => 
     {
         let bg
         switch (status) {
-            case 'ativo':
+            case 'ATIVO':
                 bg = "success"
                 break;
-            case 'bloqueado':
+            case 'BLOQUEADO':
                 bg = "warning"
                 break;
-            case 'inativo':
+            case 'INATIVO':
                 bg = "danger"
                 break;
 
@@ -26,22 +29,35 @@ const Body = (props) => {
         }
         return bg 
     }
+
+    useEffect(() => {
+        if(!filteredData || filteredData.length === 0) return;
+        const data = filteredData.sort((a, b) => a.firstName.localeCompare(b.firstName));
+        const newData = data.map((item, index) => ({
+            ...item,
+            id: index + 1 // Adiciona o índice como ID
+        }));
+
+        setData(newData);
+    }, [filteredData]);
+
+
     return (
         <S.Container>
-            <Table   hover responsive className="custom-table">
+            <Table hover responsive className="custom-table">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th className='text-center'>#</th>
                         <th>Nome</th>
-                        <th>Gênero</th>
-                        <th>Status</th>
+                        <th className='text-center'>Gênero</th>
+                        <th className='text-center'>Status</th>
                     </tr>
                 </thead>
                 
                 <tbody>
-                    {filteredData.map((item) => (
+                    {data && data.map((item) => (
                         <tr key={item.id}>
-                            <td>{item.id}</td>
+                            <td className='text-center'>{item.id}</td>
                             <td>{item.firstName} {item.lastName}</td>
                             <td>
                                 <S.WrapSex>
@@ -68,8 +84,8 @@ const Body = (props) => {
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th >Total</th>
-                        <th colSpan={12}>{totalStudents}</th>
+                        <th className='text-center '>Total</th>
+                        <th colSpan={12} className='text-center py-3' >{totalStudents}</th>
                     </tr>
                 </tfoot>
             </Table>
