@@ -2,10 +2,10 @@ import Table from 'react-bootstrap/Table';
 
 const TableCustom = (props) => {
     const { data } = props
-    console.log('data', data);
     
 
     return (
+        
         <Table striped bordered hover responsive className='custom-table' >
             <thead>
                 <tr>
