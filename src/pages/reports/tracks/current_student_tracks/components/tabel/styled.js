@@ -2,28 +2,32 @@ import styled from "styled-components";
 import { Theme } from "../../../../../../theme";
 
 export const Container = styled.div`
-    /* border: 1px solid red; */
+    /* border: 2px solid blue; */
     width: 100%;
     min-width: 320px;
-    height: 70%;
+    height: 90%;
     padding-bottom: 1rem;
     overflow: auto;
 
     & .custom-table tbody tr td, tfoot tr th{
         border: none;
-
     }
 
-    & thead tr th {
+    & .custom-table thead tr th {
         background-color: ${Theme.Colors.blue500};
+        font-size: 1em;
+        font-weight: 900;
         color: ${Theme.Colors.white800}; 
-        border: 1px solid ${Theme.Colors.white800}; 
+        border: 2px solid ${Theme.Colors.white800}; 
+        &.hidle-boder-left {
+            border-left: hidden;
+        }
+        &.hidle-boder-right {
+            border-right: hidden;
+        }
     }
 
-    & thead tr th, tbody tr td {
-        font-size: 1em;
-        font-weight: 500;
-    }
+
     
     & .custom-table tbody tr {
         background-color: blue; /* Cor de fundo padrão */
@@ -41,22 +45,22 @@ export const Container = styled.div`
         color: ${Theme.Colors.grey800};
     }
 
-    @media (max-width: 768px) {
+    /* @media (max-width: 768px) {
         height: 58%;
-    }
-    @media (max-width: 600px) {
+    } */
+    /* @media (max-width: 600px) {
         .custom-table thead tr th {
-            font-size: 0.8em; /* Ajusta o tamanho da fonte */
+            font-size: 0.8em; 
         }   
         .custom-table tbody tr td {
-            font-size: 0.7em; /* Ajusta o tamanho da fonte */
+            font-size: 0.7em; 
             font-weight: 900;
         }   
-    }
+    } */
 
-    @media (max-width: 425px) {
+    /* @media (max-width: 425px) {
         height: 50%;
-    }
+    } */
 `;
 
 export const WrapSex = styled.div`

@@ -1,3 +1,4 @@
+import * as S from "./styled";
 import Table from 'react-bootstrap/Table';
 
 const TableCustom = (props) => {
@@ -5,43 +6,46 @@ const TableCustom = (props) => {
     
 
     return (
-        
-        <Table striped bordered hover responsive className='custom-table' >
-            <thead>
-                <tr>
-                    <th className='text-center'>#</th>
-                    <th>Nome</th>
-                    <th className='text-center'>Idade</th>
-                    <th className='text-center'>Gênero</th>
-                    <th className='text-center'>Status</th>
-                    <th className='text-center'>Altura</th>
-                    <th className='text-center'>Peso</th>
-                    <th className='text-center'>Grau</th>
-                    <th className='text-center'>Faixa</th>
-                </tr>
-            </thead>
-            <tbody>
-                { 
-                    data && data.map((item, i) => {
-                        const {uidStudent, firstName, lastName, age, sex, status, studentHeight, studentWeight, degrees, range} = item;
-                        
-                        return (
-                            <tr key={uidStudent}>
-                                <td className='text-center'>{i + 1}</td>
-                                <td>{firstName} {lastName}</td>
-                                <td className='text-center'>{age}</td>
-                                <td className='text-center'>{sex}</td>
-                                <td className='text-center'>{status}</td>
-                                <td className='text-center'>{studentHeight} - m</td>
-                                <td className='text-center'>{studentWeight} - Kg</td>
-                                <td className='text-center'>{degrees}</td>   
-                                <td className='text-center'>{range}</td>      
-                            </tr>
-                        )
-                    })
-                }
-            </tbody>
-        </Table> 
+        <S.Container>
+            <Table striped bordered hover responsive className='custom-table' >
+                <thead>
+                    <tr>
+                        <th className='text-center hidle-boder-left'>#</th>
+                        <th>Nome</th>
+                        <th className='text-center'>Idade</th>
+                        <th className='text-center'>Gênero</th>
+                        <th className='text-center'>Status</th>
+                        <th className='text-center'>Altura</th>
+                        <th className='text-center'>Peso</th>
+                        <th className='text-center'>Grau</th>
+                        <th className='text-center hidle-boder-right'>Faixa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { 
+                        data && data.map((item, i) => {
+                            const {uidStudent, firstName, lastName, age, sex, status, studentHeight, studentWeight, degrees, range} = item;
+                            
+                            return (
+                                <tr key={uidStudent}>
+                                    <td className='text-center'>{i + 1}</td>
+                                    <td>{firstName} {lastName}</td>
+                                    <td className='text-center'>{age}</td>
+                                    <td className='text-center'>{sex}</td>
+                                    <td className='text-center'>{status}</td>
+                                    <td className='text-center'>{studentHeight} - m</td>
+                                    <td className='text-center'>{studentWeight} - Kg</td>
+                                    <td className='text-center'>{degrees}</td>   
+                                    <td className='text-center'>{range}</td>      
+                                </tr>
+                            )
+                        })
+                    }
+
+                </tbody>
+            </Table> 
+        </S.Container>
+            
     )
 }
 
