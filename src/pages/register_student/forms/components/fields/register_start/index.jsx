@@ -3,12 +3,12 @@ import { Col, Row, Form } from 'react-bootstrap'
 import { MDBRange } from 'mdb-react-ui-kit'
 import { useState } from 'react';
 import { CapitalizedValue } from '../../body/script';
-
+import { Tracks } from '../../../../../../constants/ranger';
 
 const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}) => {
     // Estado para armazenar o valor selecionado
     const [rangeValue, setRangeValue] = useState(0);
-
+    
     // Função para atualizar o estado quando o valor do range muda
     const handleRangeChange = (event) => {
         const valueRange = parseInt(event.target.value, 10);        
@@ -71,29 +71,16 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
                             isInvalid={!!errors.range}
                         >
                             <option value="">Selecione Faixa</option>
-                            {/* <!-- Faixas para Crianças e Adolescentes --> */}
-                            <option value="branca">Branca</option>
-                            <option value="cinza_branca">Cinza e Branca</option>
-                            <option value="cinza">Cinza</option>
-                            <option value="cinza_preta">Cinza e Preta</option>
-                            <option value="amarela_branca">Amarela e Branca</option>
-                            <option value="amarela">Amarela</option>
-                            <option value="amarela_preta">Amarela e Preta</option>
-                            <option value="laranja_branca">Laranja e Branca</option>
-                            <option value="laranja">Laranja</option>
-                            <option value="laranja_preta">Laranja e Preta</option>
-                            <option value="verde_branca">Verde e Branca</option>
-                            <option value="verde">Verde</option>
-                            <option value="verde_preta">Verde e Preta</option>
-
-                            {/* <!-- Faixas para Adultos --> */}
-                            <option value="azul">Azul</option>
-                            <option value="roxa">Roxa</option>
-                            <option value="marrom">Marrom</option>
-                            <option value="preta">Preta</option>
-                            <option value="coral">Coral</option>
-                            <option value="vermelha_preta">Vermelha e Preta</option>
-                            <option value="vermelha">Vermelha</option>                        
+                            {
+                                Tracks.map(({value, label}) => (
+                                    <option 
+                                        key={value}
+                                        value={value}
+                                    > 
+                                        {label}
+                                    </option>
+                                ))
+                            }
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
                             {errors.range && errors.range.message}
@@ -106,7 +93,7 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
                             className="p-1"
                             defaultValue={0}
                             min='0'
-                            max='10'
+                            max='6'
                             step='1'
                             label='Selecione os Graus'
                             name='degrees'
