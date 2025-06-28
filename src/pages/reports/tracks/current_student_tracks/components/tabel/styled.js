@@ -1,6 +1,22 @@
 import styled, {css} from "styled-components"; 
 import { Theme } from "../../../../../../theme";
 
+const styledText = css`
+    font-size: .8em;
+    font-weight: 900;
+    letter-spacing: 1px;
+    line-height: 16px;
+    text-transform: uppercase;
+    @media (max-width: 768px) {
+        font-size: .8em;
+        font-weight: 700;
+    }
+    @media (max-width: 425px) {
+        font-size: .6em;
+        font-weight: 900;
+    }
+`;
+
 export const Container = styled.div`
     /* border: 2px solid blue; */
     width: 100%;
@@ -64,26 +80,10 @@ export const Container = styled.div`
     } */
 `;
 
-const styledText = css`
-    font-size: 1em;
-    font-weight: 900;
-    letter-spacing: 1px;
-    line-height: 16px;
-    text-transform: uppercase;
-    @media (max-width: 768px) {
-        font-size: .8em;
-        font-weight: 700;
-    }
-    @media (max-width: 425px) {
-        font-size: .6em;
-        font-weight: 900;
-    }
 
-`;
 export const WrapFullName = styled.div`
     /* border: 1px solid red; */
     min-width: 140px;
-
     display: flex;
     align-items: center;
     & span {
@@ -136,12 +136,15 @@ export const Status = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    & span {
+    /* & span {
         font-size: .8em;
         font-weight: 900;
         letter-spacing: 1px;
         line-height: 16px;
         text-transform: uppercase;
+    } */
+    & span {
+        ${styledText}
     }
 `;
 

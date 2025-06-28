@@ -60,9 +60,6 @@ const TableCustom = (props) => {
                                         </S.WrapFullName>
                                     </td>
 
-
-
-
                                     <td className='text-center'>
                                         <S.WrapAge $colorFont={age}>
                                             {age}
