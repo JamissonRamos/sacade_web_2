@@ -44,10 +44,11 @@ export const Empty = styled.div`
 export const WrapButton = styled.div`
     /* border: 1px solid red; */
     width: 100%;
+    height: 10%;
     display: flex;
     justify-content: center;
     padding: .4rem;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
 `;
 
 export const Button = styled.button`

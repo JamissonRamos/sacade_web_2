@@ -12,7 +12,6 @@ import { LoadingOverlay } from '../../../../components/spinner/global/styled';
 import { Spinner } from 'react-bootstrap';
 
 const ReportCurrentStudentTracks = () => {
-
     const [registeredStudents, setRegisteredStudents]   = useState([]) //Todos os alunos cadastro no sistema
     const [registeredRange, setRegisteredRange]         = useState([]) //Todos as fichas dos alunos
     const [clsFormStudents, setClsFormStudents]         = useState([]) //Uma cnsulta(csl) alunos e suas fichas
@@ -106,9 +105,12 @@ const ReportCurrentStudentTracks = () => {
                         </TextC.Body>
                     </S.Empty> 
                 :
-                    <Body 
-                        filteredData={clsFormStudents}
-                    />
+                    <>
+                    
+                        <Body 
+                            filteredData={clsFormStudents}
+                        />
+                    </>
             }
 
             <S.WrapButton> 

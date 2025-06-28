@@ -73,7 +73,7 @@ const CardList = ({data, fullname }) => {
                                 <S.WrapTrackDegrees>   
                                     <BadgeCustom bg={colors.bg} textColor={colors.textColor} borderColor={colors.borderColor}>
                                         <TextC.Body level={4}> {updatedRange} <span> {degrees} </span> </TextC.Body>
-                                </BadgeCustom>
+                                    </BadgeCustom>
 
                                 </S.WrapTrackDegrees>
 

@@ -5,13 +5,11 @@ export const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
     min-width: 320px;
-    display: flex;
-    justify-content: flex-end;
-    padding: 1rem 0;
+
+    padding: .8rem 0;
 
     select {
-        width: 300px;
-        max-width: 300px;
+        width: 200px;
         box-shadow: none;
         font-size: .8em;
     };
@@ -26,8 +24,8 @@ export const Container = styled.div`
 
     & .Custom-Row {
         /* border: 1px solid blue; */
-        width: 300px;
-        padding-right: .8rem;
+        display: flex;
+        justify-content: flex-end;
     }
 `;
 
