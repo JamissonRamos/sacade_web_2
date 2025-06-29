@@ -7,6 +7,6 @@ export const Container = styled.div`
     height: 80%;
     /* padding-bottom: 2rem; */
     @media (max-width: 425px) {
-        height: 80%;
+        height: 74%;
     }
 `;
