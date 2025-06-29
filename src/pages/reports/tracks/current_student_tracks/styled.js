@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Theme } from "../../../../theme";
 
 export const Container = styled.div`
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     width: 100%;
     min-width: 320px;
     height: 100%;
