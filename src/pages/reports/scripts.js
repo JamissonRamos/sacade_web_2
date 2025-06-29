@@ -53,3 +53,14 @@ export const ExtractRangeData = (data) => {
 
     return newListRange;
 };
+
+export const FormatRangeName = (track) => {
+        if (track === "") return
+        // Verifica se tem underscore e substitui por "e"
+        if (track.includes("_")) {
+            const formatTrack = track.replace(/_/g, " e ");
+            return formatTrack.toUpperCase();
+        }else{
+            return track.toUpperCase();
+        }
+    }

@@ -54,7 +54,7 @@ const ReportStudents = () => {
         }));
     };
 
-        // Função para gerar o PDF (placeholder)
+    // Função para gerar o PDF (placeholder)
     const handleGeneratePdf = async () => {
 
         // Recuperar o cabeçalho da tabela

@@ -7,19 +7,63 @@ import { useEffect, useState } from 'react';
 import { useStudents } from '../../../../hooks/students';
 import { useRegisterStudents } from '../../../../hooks/registerStudent';
 import { useNavigate } from 'react-router-dom';
-import { ExtractRangeData, ExtractStudentData } from '../../scripts';
+import { ExtractRangeData, ExtractStudentData, FormatRangeName } from '../../scripts';
 import { LoadingOverlay } from '../../../../components/spinner/global/styled';
 import { Spinner } from 'react-bootstrap';
+import { GeneratePdf } from '../../../../hooks/createDocPdf';
+import { AlertCustom } from '../../../../components/alert_custom';
 
 const ReportCurrentStudentTracks = () => {
     const [registeredStudents, setRegisteredStudents]   = useState([]) //Todos os alunos cadastro no sistema
     const [registeredRange, setRegisteredRange]         = useState([]) //Todos as fichas dos alunos
     const [clsFormStudents, setClsFormStudents]         = useState([]) //Uma cnsulta(csl) alunos e suas fichas
+    const [dataGeneratePdf, setDataGeneratePdf]         = useState([]) //Um array com a lista de faixa dos alunos, lista ser gerada em pdf
+    // Estado para controlar o alerta de criação do PDF
+    const [isCreatDocPdf, setIsisCreatDocPdf] = useState({showAlert: false, success: false, message: ''});
     const navigate = useNavigate();
 
     const { getDocuments: getStudents, loading: loadingStudent} = useStudents.useGetDocuments()
     const { getDocuments: getRanger, loading: loadingRanger}    = useRegisterStudents.useGetDocuments()
+    const { createDocPdf, loading: loadingPdf }                 = GeneratePdf()
 
+
+    // Função para gerar o PDF (placeholder)
+    const handleGeneratePdf = async () => {
+
+        // Recuperar o cabeçalho da tabela
+        const headersDoc = ['#', 'Nome', 'Idade', 'Gênero', 'Status', 'Altura', 'Peso', 'Grau', 'Faixa'];
+        // Recuperar o título do PDF
+        const titleDoc = 'Relatório das Faixas';
+        
+        if(dataGeneratePdf.length < 0) return;
+
+        // Recuperar os dados do PDF
+        const dataDoc = dataGeneratePdf.map((item, index) => [
+            index + 1,
+            `${item.firstName} ${item.lastName}`,
+            item.age,
+            item.sex,
+            item.status,
+            item.studentHeight,
+            item.studentWeight,
+            item.degrees,
+            FormatRangeName(item.range)
+        ]);
+        // Nome do arquivo PDF  
+        const nameDoc = 'relatorio_faixa_alunos';
+
+        //GeneratePdf
+        const result = await createDocPdf({headersDoc, titleDoc, dataDoc, nameDoc});
+        const { success, message } = result;
+        if (success) {
+            setIsisCreatDocPdf({showAlert: true, success: true, message: 'PDF gerado com sucesso!'});
+        }else{
+            setIsisCreatDocPdf({showAlert: true, success: false, message: 'Erro ao gerar PDF.'});
+            console.error('Erro ao gerar PDF:', message); 
+            
+        }
+    } 
+    
     //Busca os dados na base de dados 
     useEffect(() => {
         const fetchData = async () => {
@@ -79,7 +123,13 @@ const ReportCurrentStudentTracks = () => {
     
     return (
         <S.Container>
-
+            {isCreatDocPdf.showAlert &&
+                <AlertCustom 
+                    variant={isCreatDocPdf.success ? 'success' : 'danger'}
+                    handleCloseAlert={() => setIsisCreatDocPdf({success: false, message: ''})}>
+                    {isCreatDocPdf.message}
+                </AlertCustom>
+            }
             <Header />
             {
                 loadingStudent || loadingRanger &&
@@ -109,6 +159,7 @@ const ReportCurrentStudentTracks = () => {
                     
                         <Body 
                             filteredData={clsFormStudents}
+                            setDataGeneratePdf={setDataGeneratePdf}
                         />
                     </>
             }
@@ -116,8 +167,8 @@ const ReportCurrentStudentTracks = () => {
             <S.WrapButton> 
                 <S.Button
                     type="button"
-                    // onClick={() => {handleGeneratePdf()}}
-                    disabled={loadingStudent || loadingRanger}
+                    onClick={() => {handleGeneratePdf()}}
+                    disabled={loadingStudent || loadingRanger || loadingPdf}
                 >
                     <TextC.Label>Baixar Dados</TextC.Label>
                     <Theme.Icons.MdSaveAlt />

@@ -49,7 +49,6 @@ const TableCustom = (props) => {
                     { 
                         data && data.map((item, i) => {
                             const {uidStudent, firstName, lastName, age, sex, status, studentHeight, studentWeight, degrees, range} = item;
-                            console.log('range', range);
                             
                             return (
                                 <tr key={uidStudent}>

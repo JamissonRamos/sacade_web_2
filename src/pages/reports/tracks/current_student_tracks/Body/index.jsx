@@ -4,14 +4,10 @@ import Fields from '../components/fields';
 import TableCustom from '../components/tabel';
 
 const Body = (props) => {
-    const { filteredData } = props;
+    const { filteredData, setDataGeneratePdf } = props;
     const [data, setData] = useState([]);
     const totalStudents = data.length;
 
-    console.log('all', filteredData);
-    
-    //const [filteredData, setFilteredData] = useState([]);
-    //const [allStudents, setAllStudents] = useState([]);
     // Estado para os valores dos filtros
     const [filters, setFilters] = useState({
         range: '',
@@ -38,7 +34,7 @@ const Body = (props) => {
         setData(newData);
     }, [filteredData]);
 
-        // Efeito para filtrar os dados sempre que os filtros mudarem
+    // Efeito para filtrar os dados sempre que os filtros mudarem
     useEffect(() => {
         if(filteredData.length === 0) return;
 
@@ -51,6 +47,7 @@ const Body = (props) => {
             );
         });
         setData(filtered);
+        setDataGeneratePdf(filtered);
     }, [filters]);
 
 
