@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { Theme } from "../../../../theme";
 
 export const Container = styled.div`
-    border: 2px solid red;
+    border: 2px solid blue;
     width: 100%;
     min-width: 320px;
     height: 100%;
     padding: .8rem;
     @media (max-width: 425px) {
-        height: 100%;
+        height: 98%;
     }
 `;
 
@@ -47,7 +47,7 @@ export const Empty = styled.div`
 export const WrapButton = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-    height: 10%;
+    /* height: 10%; */
     display: flex;
     justify-content: center;
     padding: .4rem;
