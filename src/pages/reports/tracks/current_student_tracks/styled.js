@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { Theme } from "../../../../theme";
 
 export const Container = styled.div`
-    border: 2px solid blue;
+    border: 2px solid red;
     width: 100%;
     min-width: 320px;
     height: 100%;
     padding: .8rem;
     @media (max-width: 425px) {
-        height: 84%;
+        height: 100%;
     }
 `;
 

@@ -21,7 +21,7 @@ export const Container = styled.div`
     /* border: 2px solid blue; */
     width: 100%;
     min-width: 320px;
-    height: 94%;
+    height: 100%;
     overflow: auto;
 
     & .custom-table thead tr th {
@@ -75,9 +75,9 @@ export const Container = styled.div`
         }   
     }
 
-    /* @media (max-width: 425px) {
-        height: 50%;
-    } */
+    @media (max-width: 425px) {
+        height: 80%;
+    }
 `;
 
 
