@@ -29,6 +29,7 @@ const pages = {
     UserLevel: [1],
     NoticeAuthorization: [1, 2, 3],
     StatusStudents: [1, 2],
+    ReportsMenu: [1, 2],
     ReportsStudents: [1, 2],
     ReportsTracks: [1, 2],
 };

@@ -39,6 +39,7 @@ import Helps from './helps';
 import MonthlyPayment from './monthly_payment';
 import ReportStudents from './reports/students';
 import ReportCurrentStudentTracks from './reports/tracks/current_student_tracks';
+import ReportsMenu from './reports_menu';
 
 export const Pages = {
     Home,
@@ -79,5 +80,6 @@ export const Pages = {
     StatusStudents,
     Helps,
     ReportStudents,
+    ReportsMenu,
     ReportCurrentStudentTracks
 }

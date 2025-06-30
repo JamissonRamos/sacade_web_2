@@ -1,5 +1,6 @@
 import * as S from './styled';
-import { TextC } from '../../../../components/Typography';
+import { TextC } from '../../../components/Typography';
+import { Link } from 'react-router-dom';
 
 const Body = ({ItemsMenu}) => {
     
@@ -9,10 +10,9 @@ const Body = ({ItemsMenu}) => {
                 ItemsMenu &&
                 ItemsMenu.map(({title, icon, path}, i) =>{
                     return (
-                        <S.Card
+                        <Link
                             key={i}
-                            href={path}
-                            target={path === "#" ? "_self" : "_blank" }    
+                            to={path}  
                         >
                             <S.CardSvg>
                                 {icon}
@@ -22,7 +22,7 @@ const Body = ({ItemsMenu}) => {
                                 <TextC.Label level={5}> {title} </TextC.Label>
                             </S.CardName>
 
-                        </S.Card>
+                        </Link>
 
                     )
                 })

@@ -61,22 +61,8 @@ export const MenuItem = [
     },
     {
         title: 'Relatórios',
-        path: '#',
+        path: '/reports',
         icon:  <Theme.Icons.TbReportAnalytics/>,
-        iconClosed:  <Theme.Icons.RiArrowUpSFill/>,
-        iconOpened: <Theme.Icons.RiArrowDownSFill/>,
-        subNav: [
-            {
-                title: 'Alunos',
-                path: '/reports/students',
-                icon: <Theme.Icons.MdPerson  />,
-            },
-            {
-                title: 'Faixas Atual',
-                path: '/reports/tracks/currentStudentTracks',
-                icon: <Theme.Icons.PiAddressBookFill/>,
-            }
-        ]
     },
     {
         title: 'Configurações',
