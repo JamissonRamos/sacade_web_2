@@ -40,6 +40,7 @@ import MonthlyPayment from './monthly_payment';
 import ReportStudents from './reports/students';
 import ReportCurrentStudentTracks from './reports/tracks/current_student_tracks';
 import ReportsMenu from './reports_menu';
+import FinancialPaymentMonth from './reports/financial/financial_payment_month';
 
 export const Pages = {
     Home,
@@ -81,5 +82,6 @@ export const Pages = {
     Helps,
     ReportStudents,
     ReportsMenu,
-    ReportCurrentStudentTracks
+    ReportCurrentStudentTracks,
+    FinancialPaymentMonth
 }

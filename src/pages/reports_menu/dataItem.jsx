@@ -16,7 +16,7 @@ export const DataItemMenu = [
     //Grupo Financeiro
     {
         title: 'Relatório Financeiro',
-        path: '#',
+        path: '/reports/financial/paymentMonth',
         icon: <Theme.Icons.FaMoneyCheckAlt/>
     },
 

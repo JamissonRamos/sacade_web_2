@@ -127,6 +127,13 @@ const AppContent = () => {
                                         <Pages.ReportCurrentStudentTracks /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/reports/financial/paymentMonth" element={
+                                    <ProtectedRoute page='ReportsTracks'>
+                                        {/* <Pages.NotificationsMaintenance /> */}
+                                        <Pages.FinancialPaymentMonth /> 
+                                    </ProtectedRoute>
+                                } />
+
 
 
                                 <Route path="/configurationInstallments" element={
