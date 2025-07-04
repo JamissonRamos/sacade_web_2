@@ -73,6 +73,8 @@ const FinancialPaymentMonth = () => {
                 loading={loadingStudent || loadingMonthlyFee || loadingInstallments}
                 data={clsAllPayments}
             /> 
+            
+            
 
             {clsAllPayments.length === 0 && (
                 <div className="text-center text-muted py-3">

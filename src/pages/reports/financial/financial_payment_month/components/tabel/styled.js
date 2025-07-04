@@ -2,28 +2,25 @@ import styled, {css} from "styled-components";
 import { Theme } from "../../../../../../theme";
 
 const styledText = css`
-    font-size: .8em;
-    font-weight: 900;
+    font-size: 1em;
+    font-weight: 500;
     letter-spacing: 1px;
-    line-height: 16px;
-    text-transform: uppercase;
     @media (max-width: 768px) {
         font-size: .8em;
-        font-weight: 700;
+        font-weight: 900;
     }
     @media (max-width: 425px) {
-        font-size: .6em;
+        font-size: .7em;
         font-weight: 900;
     }
 `;
 
 export const Container = styled.div`
-    /* border: 2px solid blue; */
+    border: 2px solid blue;
     width: 100%;
     min-width: 320px;
-    height: 100%;
+    max-height: 84%;
     overflow: auto;
-
     & .custom-table thead tr th {
         background-color: ${Theme.Colors.blue500};
         font-size: .9em;
@@ -50,7 +47,7 @@ export const Container = styled.div`
 
     & .custom-table tbody tr td {
         color: ${Theme.Colors.grey800};
-        font-size: .9em;
+        font-size: 1em;
         font-weight: 500;
     }
 
@@ -80,7 +77,6 @@ export const Container = styled.div`
     }
 `;
 
-
 export const WrapFullName = styled.div`
     /* border: 1px solid red; */
     min-width: 140px;
@@ -91,79 +87,13 @@ export const WrapFullName = styled.div`
     }
 `;
 
-export const WrapAge = styled.div`
-    /* border: 1px solid red; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    font-size: .9em;
-    font-weight: 900;
-    & svg {
-        font-size: 1.4em;
-        color: ${({$colorFont}) => $colorFont > 17 ? Theme.Colors.green800 : Theme.Colors.red800};
-    }
-
-`;
-
-export const WrapSex = styled.div`
-    /* border: 1px solid red; */
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-`;
-
-export const WrapSexText = styled.div`
-    /* border: 1px solid red; */
-    font-weight: 900;
-`;
-
-export const WrapSexIcon = styled.div`
-    /* border: 1px solid red; */
-    & svg {
-        padding: .2rem;
-        border: 1px solid ${({$bgColor}) => $bgColor === 'homem' ? Theme.Colors.blue2900 : Theme.Colors.red600 };
-        border-radius: 50%;
-        font-size: 1.5em;
-        color: ${({$bgColor}) => $bgColor === 'homem' ? Theme.Colors.blue2900 : Theme.Colors.red600 };
-    }
-`;
-
 export const WrapStatus = styled.div`
     /* border: 1px solid blue; */
     display: flex;
     align-items: center;
     justify-content: center;
-    /* & span {
-        font-size: .8em;
-        font-weight: 900;
-        letter-spacing: 1px;
-        line-height: 16px;
-        text-transform: uppercase;
-    } */
     & span {
         ${styledText}
+        text-transform: uppercase;
     }
-`;
-
-export const WrapHeightWeight = styled.div`
-    /* border: 1px solid red; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    & svg {
-        font-size: 1.6em;
-        color: ${Theme.Colors.green800};
-    }
-`;
-
-export const WrapRange = styled.div`
-    /* border: 1px solid red; */
-    min-width: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 `;
