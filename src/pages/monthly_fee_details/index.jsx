@@ -61,6 +61,7 @@ const MonthlyFeeDetails = () => {
 
         const fetchData = async () => {
             const result = await documentsID(uidMonthlyFee);
+            
             const { success, data, message } = result;
             if (success) {               
                 //Ordena data por data de pagamento

@@ -16,7 +16,7 @@ const styledCard = css`
     &:hover {
         width: 250px;
         height: 58px;
-        border-bottom: 4px solid ${Theme.Colors.blue400} ;
+        border-bottom: 4px solid ${Theme.Colors.blue400};
     }
 `;
 
@@ -28,8 +28,8 @@ export const Container = styled.div`
     gap: 1rem;
     flex-wrap: wrap;
     padding: .8rem .2rem;
-    & a {
-        ${styledCard}
+    & a{
+        ${styledCard};
     }
 `;
 

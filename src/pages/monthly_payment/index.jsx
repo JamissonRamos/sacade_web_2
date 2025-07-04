@@ -67,7 +67,6 @@ const MonthlyPayment = () => {
         //Compara maior data de pagamento com a data a ser salvo e pegar a maior data 
         const PaymentDateToBbeSaved = maxPaymentDate > data.paymentDate ? maxPaymentDate : data.paymentDate;
 
-        console.log('subTotalFixed', subTotalFixed);
         const discountValue = ParseCurrencyToNumber(data.installmentDiscount);
         const increaseValue = ParseCurrencyToNumber(data.installmentIncrease);
         const amountPaidValue = ParseCurrencyToNumber(data.amountPaid);
@@ -80,7 +79,7 @@ const MonthlyPayment = () => {
         data.installmentDiscount = ParseCurrencyToNumber(data.installmentDiscount);
         data.installmentIncrease = ParseCurrencyToNumber(data.installmentIncrease);
         data.amountPaid = ParseCurrencyToNumber(data.amountPaid);
-        data.uidMonthlyFee = uidMonthlyFee;
+        data.uidiInstallments = uidMonthlyFee;
         
         // Obj de atualização de dados da mensalidade
         const dataUpdateInstallments = {

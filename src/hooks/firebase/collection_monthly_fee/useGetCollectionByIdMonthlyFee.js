@@ -4,12 +4,12 @@ import { db } from '../../../services/firebase/config';
 export const useGetCollectionByIdMonthlyFee = () => {
     const collectionName = 'monthly_fee'
 
-    const getDocumentsByIdMonthlyFee = async (uidMonthlyFee) => {
+    const getDocumentsByIdMonthlyFee = async (id) => {
         
         try {
             // array-contains
             // const q = query(collection(db, collectionName), where("idStudent", "==", idStudent));
-            const q = query(collection(db, collectionName), where("uidMonthlyFee", "==", uidMonthlyFee));
+            const q = query(collection(db, collectionName), where("uidiInstallments", "==", id));
 
             const querySnapshot = await getDocs(q);
 

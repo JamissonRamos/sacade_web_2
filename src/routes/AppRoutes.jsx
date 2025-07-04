@@ -168,6 +168,7 @@ const AppContent = () => {
                                         <Pages.FormUpdateInstallment /> 
                                     </ProtectedRoute>
                                 } />
+                                
                                 <Route path="/statusStudents" element={
                                     <ProtectedRoute page='StatusStudents'>
                                         {/* <Pages.NotificationsMaintenance />  */}

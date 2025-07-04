@@ -63,4 +63,4 @@ export const FormatRangeName = (track) => {
         }else{
             return track.toUpperCase();
         }
-    }
+}
