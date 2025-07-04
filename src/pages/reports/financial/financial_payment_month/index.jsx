@@ -9,11 +9,7 @@ import { useMonthlyFee } from '../../../../hooks/monthlyFee'
 import { useInstallments } from '../../../../hooks/installments'
 
 const FinancialPaymentMonth = () => {
-    const [registeredStudents, setRegisteredStudents]           = useState([]) //Todos os alunos cadastro no sistema
-    const [registeredMonthlyFee, setRegistereMonthlyFee]        = useState([]) //Todos os alunos cadastro no sistema
-    const [registeredInstallments, setRegistereInstallments]    = useState([]) //Todos os alunos cadastro no sistema
-    const [clsAllPayments, setClsAllPayments]                   = useState([]) //Uma cnsulta(csl) todos os pagamentos, com alunos e suas parcelas
-    
+    const [clsAllPayments, setClsAllPayments] = useState([]) //Uma cnsulta(csl) todos os pagamentos, com alunos e suas parcelas
     const navigate = useNavigate();
 
     const {getDocuments: getStudents, loading: loadingStudent} = useStudents.useGetDocuments()

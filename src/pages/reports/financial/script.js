@@ -71,7 +71,8 @@ export const ConverterFormatPayment = (value) => {
         default:
             return 'Sem Opção'
     }
-}
+};
+
 export const ConverterStatusMonthlyFee = (value) => {
     switch (value) {
         case true:

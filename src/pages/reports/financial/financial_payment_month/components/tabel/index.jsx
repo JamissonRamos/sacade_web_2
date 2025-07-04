@@ -69,12 +69,9 @@ const TableCustom = (props) => {
                                         </S.WrapStatus>
                                     </td>
 
-
                                 </tr>
                             )
-
                         })
-
                     }
                 </tbody>
 
@@ -87,8 +84,6 @@ const TableCustom = (props) => {
                         </tr>
                     </tfoot>
                 }
-
-
 
             </Table> 
         </S.Container>

@@ -18,7 +18,7 @@ const Body = (props) => {
 
     const {createDocPdf, loading: loadingCreateDocPdf } = GeneratePdf()
     
-        // Função para gerar o PDF (placeholder)
+    // Função para gerar o PDF (placeholder)
     const handleGeneratePdf = async () => {
         // Recuperar o cabeçalho da tabela
         const headersDoc = ['#', 'Nome', 'Pagamento', 'Pago', 'Forma', 'Status'];
@@ -65,8 +65,7 @@ const Body = (props) => {
                 </AlertCustom>
             }
             
-            {
-                loading
+            {loading
                 ?
                     <LoadingOverlay>
                         <Spinner
@@ -90,27 +89,27 @@ const Body = (props) => {
                     type="button"
                     onClick={() => {handleGeneratePdf()}}
                     disabled={loadingCreateDocPdf}
-            >
-            { loadingCreateDocPdf 
-                ?   
-                    <>
-                        <Spinner
-                            as="span"
-                            animation="border"
-                            size="sm"
-                            role="status"
-                            aria-hidden="true"
-                        />
-                        <span> Gerando Documento... </span>
-                    </> 
-                :
-                    <>
-                        <TextC.Label>Baixar Dados</TextC.Label>
-                        <Theme.Icons.MdSaveAlt />
-                    </>
-            }
+                >
+                    { loadingCreateDocPdf 
+                        ?   
+                            <>
+                                <Spinner
+                                    as="span"
+                                    animation="border"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                />
+                                <span> Gerando Documento... </span>
+                            </> 
+                        :
+                            <>
+                                <TextC.Label>Baixar Dados</TextC.Label>
+                                <Theme.Icons.MdSaveAlt />
+                            </>
+                    }
 
-            </S.Button>
+                </S.Button>
             </S.WrapButton>
         </S.Container>
     )
