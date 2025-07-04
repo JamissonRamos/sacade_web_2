@@ -65,7 +65,6 @@ const FinancialPaymentMonth = () => {
     }, []);
 
     return (
-
         <S.Container>
             <Header />
 
@@ -74,8 +73,6 @@ const FinancialPaymentMonth = () => {
                 data={clsAllPayments}
             /> 
             
-            
-
             {clsAllPayments.length === 0 && (
                 <div className="text-center text-muted py-3">
                     <p>Não foi indentificdo nenhum pagamento nesse mês.</p>
