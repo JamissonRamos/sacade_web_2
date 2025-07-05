@@ -93,7 +93,7 @@ export const WrapStatus = styled.div`
     align-items: center;
     justify-content: center;
     & span {
-        ${styledText}
+        ${styledText};
         text-transform: uppercase;
     }
 `;

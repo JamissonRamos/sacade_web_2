@@ -5,7 +5,8 @@ import { ConverterFormatPayment, ConverterStatusMonthlyFee, FormatToCurrency } f
 
 const TableCustom = (props) => {
     const { data, totalStudents } = props
-
+    const totalPaid = data ? data.reduce((total, {amountPaid}) => total + amountPaid, 0) : 0; //Soma de todos os pagamento do mes
+    
     const handleStatusPayment = (status) => 
     {
         let bg
@@ -81,6 +82,8 @@ const TableCustom = (props) => {
                         <tr>
                             <th className='text-center '>Total</th>
                             <th  className='text-end py-3' >{totalStudents}</th>
+                            <th  className='text-end py-3' ></th>
+                            <th  className='text-end py-3' >{FormatToCurrency(totalPaid)}</th>
                         </tr>
                     </tfoot>
                 }

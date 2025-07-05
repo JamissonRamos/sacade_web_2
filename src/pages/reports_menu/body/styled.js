@@ -29,7 +29,8 @@ export const Container = styled.div`
     flex-wrap: wrap;
     padding: .8rem .2rem;
     & a{
-        ${styledCard}
+        ${styledCard};
+        transform: none;
     }
 `;
 
