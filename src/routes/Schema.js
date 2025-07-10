@@ -31,5 +31,5 @@ const pages = {
     ReportsMenu: [1, 2],
     ReportsStudents: [1, 2],
     ReportsTracks: [1, 2],
-    FinancialPaymentMonth: [1],
+    ReportsFinancial: [1],
 };

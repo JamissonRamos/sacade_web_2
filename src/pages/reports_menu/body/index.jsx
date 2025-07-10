@@ -8,7 +8,7 @@ const Body = ({ItemsMenu}) => {
         <S.Container>
             {
                 ItemsMenu &&
-                ItemsMenu.map(({title, icon, path}, i) =>{
+                ItemsMenu.map(({title, icon, path}, i) => {
                     return (
                         <Link
                             key={i}
@@ -23,7 +23,6 @@ const Body = ({ItemsMenu}) => {
                             </S.CardName>
 
                         </Link>
-
                     )
                 })
             }

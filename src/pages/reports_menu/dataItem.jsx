@@ -20,5 +20,10 @@ export const DataItemMenu = [
         path: '/reports/financial/paymentMonth',
         icon: <Theme.Icons.FaMoneyCheckAlt/>
     },
+    {
+        title: 'Atrasados do Mês',
+        path: '/reports/financial/lateMonth',
+        icon: <Theme.Icons.FaMoneyCheckAlt/>
+    },
 
 ];

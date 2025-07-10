@@ -154,7 +154,7 @@ export const CalculateAllDelays = (data) => {
                     valueDue += feeChargedMonetary
                 }
 
-                    // Calcular juros diários
+                // Calcular juros diários
                 if (newInstallments.interestDaily) {
                     const valueInteres = newInstallments.interestDaily;
                     //Calculando e deixnado valor arredondado valor do juro em cima do valor da parcela
@@ -177,7 +177,7 @@ export const CalculateAllDelays = (data) => {
                     valueDue += interestChargedMonetary;
                 }
 
-                    // Calcular juros anuais
+                // Calcular juros anuais
                 if (newInstallments.interestAnnual) {
                     const valueInteres = newInstallments.interestAnnual;
                     const yearsDelay = daysDelay / 365;

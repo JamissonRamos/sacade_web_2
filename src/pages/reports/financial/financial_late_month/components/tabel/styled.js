@@ -92,8 +92,50 @@ export const WrapStatus = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    & span{
+    & span {
         ${styledText};
         text-transform: uppercase;
+    }
+`;
+
+export const WrapNotice = styled.div`
+    /* border: 1px solid blue; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    padding: .2rem 0;
+    & span{
+        text-align: center;
+        color: ${Theme.Colors.grey700};
+    }
+`;
+
+export const WrapButton = styled.button`
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: .4rem 1rem;
+    margin-top: 1.2rem;
+    background: transparent;
+    border: 1.75px solid ${Theme.Colors.grey500};
+    border-radius: 4px;
+    transition: all 0.4s;
+    & span, svg{
+        font-size: 1em;
+        font-weight: 700;
+        color: ${Theme.Colors.grey500};
+    }
+    & svg {
+        font-size: 1.2em;
+    }
+    &:hover{
+        background-color: ${Theme.Colors.grey500};
+        & span, svg{
+            color: ${Theme.Colors.grey100};
+        }
     }
 `;

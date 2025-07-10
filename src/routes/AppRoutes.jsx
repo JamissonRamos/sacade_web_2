@@ -92,6 +92,7 @@ const AppContent = () => {
                                         <Pages.MonthlyFees /> 
                                     </ProtectedRoute>
                                 } />
+
                                 <Route path="/monthlyFeeDetails" element={
                                     <ProtectedRoute page='MonthlyFees'>
                                         {/* <Pages.NotificationsMaintenance /> */}
@@ -128,9 +129,15 @@ const AppContent = () => {
                                     </ProtectedRoute>
                                 } />
                                 <Route path="/reports/financial/paymentMonth" element={
-                                    <ProtectedRoute page='ReportsTracks'>
+                                    <ProtectedRoute page='ReportsFinancial'>
                                         {/* <Pages.NotificationsMaintenance /> */}
                                         <Pages.FinancialPaymentMonth /> 
+                                    </ProtectedRoute>
+                                } />
+                                <Route path="/reports/financial/lateMonth" element={
+                                    <ProtectedRoute page='ReportsFinancial'>
+                                        {/* <Pages.NotificationsMaintenance /> */}
+                                        <Pages.FinancialLateMonth /> 
                                     </ProtectedRoute>
                                 } />
 
