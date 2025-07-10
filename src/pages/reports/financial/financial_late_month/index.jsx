@@ -4,8 +4,7 @@ import Header from './header'
 import { useStudents } from '../../../../hooks/students'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ExtractStudentData, SetUpLateConsultation } from '../script'
-//import { useMonthlyFee } from '../../../../hooks/monthlyFee'
+import { ExtractStudentData } from '../script'
 import { useInstallments } from '../../../../hooks/installments'
 import { LateMonthlyPaymentsMonth } from '../../../../hooks/consultations/students_installments/late_monthly_paymentsMonth'
 
@@ -14,7 +13,6 @@ const FinancialLateMonth = () => {
     const navigate = useNavigate();
 
     const {getDocuments: getStudents, loading: loadingStudent} = useStudents.useGetDocuments();
-    //const {getDocuments: getMonthlyFee, loading: loadingMonthlyFee } = useMonthlyFee.useGetDocuments();
     const {getDocuments: getInstallments, loading: loadingInstallments } = useInstallments.useGetDocuments();
 
     //Busca os dados na base de dados 
@@ -35,23 +33,13 @@ const FinancialLateMonth = () => {
                     return;
                 }
 
-                //const monthlyFeeResult = await getMonthlyFee();
-                // if (!monthlyFeeResult.success) {
-                //     console.log('Erro ao buscar Fichas dos Alunos', monthlyFeeResult.message);
-                //     navigate('/notifications/error');
-                //     return;
-                // }
-
                 //Verificando se tem dados a ser mostrados 
                 if(!studentsResult.data || studentsResult.data.length === 0 ) return
                 if(!installmentsResult.data || installmentsResult.data.length === 0 ) return
-                //if(!monthlyFeeResult.data || monthlyFeeResult.data.length === 0 ) return
 
                 //Extrair dados das lista e passar para os states e ser alterados
                 const resultExtractStudents = ExtractStudentData(studentsResult.data);
-                //const resultCls = SetUpLateConsultation(resultExtractStudents, installmentsResult.data);
                 const resultCls = LateMonthlyPaymentsMonth(resultExtractStudents, installmentsResult.data);
-                console.log('resultCls', resultCls);
                 
                 setConsultation(resultCls);
 

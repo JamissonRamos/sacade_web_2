@@ -40,6 +40,7 @@ const Body = (props) => {
 
         ]});
         
+          console.log('dataDocpagamento', dataDoc);
         // Nome do arquivo PDF  
         const nameDoc = `relatorio_pagamentos_mes`;
 
