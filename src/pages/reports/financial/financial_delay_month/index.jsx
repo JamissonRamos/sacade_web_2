@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ExtractStudentData } from '../script'
 import { useInstallments } from '../../../../hooks/installments'
-import { LateMonthlyPaymentsMonth } from '../../../../hooks/consultations/students_installments/late_monthly_paymentsMonth'
+import { DelayMonthlyPaymentsMonth } from '../../../../hooks/consultations/students_installments/delay_monthly_paymentsMonth'
 
-const FinancialLateMonth = () => {
+const FinancialDelayMonth = () => {
     const [consultation, setConsultation] = useState([]) //Uma cnsulta(csl) todos os pagamentos, com alunos e suas parcelas
     const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ const FinancialLateMonth = () => {
 
                 //Extrair dados das lista e passar para os states e ser alterados
                 const resultExtractStudents = ExtractStudentData(studentsResult.data);
-                const resultCls = LateMonthlyPaymentsMonth(resultExtractStudents, installmentsResult.data);
+                const resultCls = DelayMonthlyPaymentsMonth(resultExtractStudents, installmentsResult.data);
                 
                 setConsultation(resultCls);
 
@@ -66,4 +66,4 @@ const FinancialLateMonth = () => {
     )
 }
 
-export default FinancialLateMonth
+export default FinancialDelayMonth

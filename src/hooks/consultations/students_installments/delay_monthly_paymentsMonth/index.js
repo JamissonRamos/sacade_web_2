@@ -140,7 +140,7 @@ function cacularInterest (data) {
     return result;
 }
 
-export const LateMonthlyPaymentsMonth = (dataStudents, dataInstallments) =>{
+export const DelayMonthlyPaymentsMonth = (dataStudents, dataInstallments) =>{
     /* 
         * Consulta para verficar quais alunos estão com as mensalidade em atraso;
         * Todas as mensalidade em atraso referente ao mês atual;

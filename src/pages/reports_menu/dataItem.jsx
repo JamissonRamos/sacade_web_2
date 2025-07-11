@@ -22,6 +22,11 @@ export const DataItemMenu = [
     },
     {
         title: 'Atrasados do Mês',
+        path: '/reports/financial/delayMonth',
+        icon: <Theme.Icons.FaMoneyCheckAlt/>
+    },
+    {
+        title: 'Todos Atrasos',
         path: '/reports/financial/lateMonth',
         icon: <Theme.Icons.FaMoneyCheckAlt/>
     },

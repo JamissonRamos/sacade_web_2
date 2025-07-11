@@ -22,8 +22,6 @@ const Body = (props) => {
     
     // Função para gerar o PDF (placeholder)
     const handleGeneratePdf = async () => {
-        console.log('entrou');
-        
         // Recuperar o cabeçalho da tabela
         const headersDoc = ['#', 'Nome', 'Vencimento', 'Dias', 'Mensalidade', 'Multa e Juros', "Total"];
         // Recuperar o título do PDF

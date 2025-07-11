@@ -134,10 +134,10 @@ const AppContent = () => {
                                         <Pages.FinancialPaymentMonth /> 
                                     </ProtectedRoute>
                                 } />
-                                <Route path="/reports/financial/lateMonth" element={
+                                <Route path="/reports/financial/delayMonth" element={
                                     <ProtectedRoute page='ReportsFinancial'>
                                         {/* <Pages.NotificationsMaintenance /> */}
-                                        <Pages.FinancialLateMonth /> 
+                                        <Pages.FinancialDelayMonth /> 
                                     </ProtectedRoute>
                                 } />
 
