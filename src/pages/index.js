@@ -42,6 +42,7 @@ import ReportCurrentStudentTracks from './reports/tracks/current_student_tracks'
 import ReportsMenu from './reports_menu';
 import FinancialPaymentMonth from './reports/financial/financial_payment_month';
 import FinancialDelayMonth from './reports/financial/financial_delay_month';
+import FinancialAllDelays from './reports/financial/financial_all_delays';
 
 export const Pages = {
     Home,
@@ -85,5 +86,6 @@ export const Pages = {
     ReportsMenu,
     ReportCurrentStudentTracks,
     FinancialPaymentMonth,
-    FinancialDelayMonth
+    FinancialDelayMonth,
+    FinancialAllDelays
 }

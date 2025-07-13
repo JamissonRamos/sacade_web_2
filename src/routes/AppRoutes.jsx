@@ -140,6 +140,12 @@ const AppContent = () => {
                                         <Pages.FinancialDelayMonth /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/reports/financial/allDelays" element={
+                                    <ProtectedRoute page='ReportsFinancial'>
+                                        {/* <Pages.NotificationsMaintenance /> */}
+                                        <Pages.FinancialAllDelays /> 
+                                    </ProtectedRoute>
+                                } />
 
 
 

@@ -27,7 +27,7 @@ export const DataItemMenu = [
     },
     {
         title: 'Todos Atrasos',
-        path: '/reports/financial/lateMonth',
+        path: '/reports/financial/allDelays',
         icon: <Theme.Icons.FaMoneyCheckAlt/>
     },
 
