@@ -43,6 +43,7 @@ import ReportsMenu from './reports_menu';
 import FinancialPaymentMonth from './reports/financial/financial_payment_month';
 import FinancialDelayMonth from './reports/financial/financial_delay_month';
 import FinancialAllDelays from './reports/financial/financial_all_delays';
+import CompetitorStudent from './reports/tracks/competitor_student';
 
 export const Pages = {
     Home,
@@ -87,5 +88,6 @@ export const Pages = {
     ReportCurrentStudentTracks,
     FinancialPaymentMonth,
     FinancialDelayMonth,
-    FinancialAllDelays
+    FinancialAllDelays,
+    CompetitorStudent
 }

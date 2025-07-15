@@ -8,7 +8,7 @@ import {DataItemMenu} from './dataItem'
 const ReportsMenu = () => {
 
     const itensMenu = DataItemMenu || []
-
+        
     return (
         <WrapPages>
             <S.Container>

@@ -8,11 +8,12 @@ const Body = ({ItemsMenu}) => {
         <S.Container>
             {
                 ItemsMenu &&
-                ItemsMenu.map(({title, icon, path}, i) => {
+                ItemsMenu.map(({title, icon, path, nextPage}, i) => {                    
                     return (
                         <Link
                             key={i}
-                            to={path}  
+                            to={path}
+                            state={nextPage ? { nextPage } : null}
                         >
                             <S.CardSvg>
                                 {icon}

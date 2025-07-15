@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import * as S from './styled';
 import { TextC } from "../../../components/Typography/index"
 
@@ -7,9 +7,8 @@ const Menu = ({item, showSidebar, handleShowModal}) => {
     const showSubMenu = () => {setSubMenu(!subMenu); };
     const handleClick = () => { showSubMenu();  };
 
-    // console.log(showSidebar)
     const { title, path, icon, subNav, iconOpened, iconClosed } = item;
-
+    
     const handleOnclick = () =>{
 
         if(subNav){
@@ -22,7 +21,8 @@ const Menu = ({item, showSidebar, handleShowModal}) => {
     }
     return (
         <S.Container>
-            <S.Navigator to={path} onClick={handleOnclick}>
+            <S.Navigator to={ path} onClick={handleOnclick}>
+
                 <S.WrapItens>
                     <S.IconNav> {icon } </S.IconNav>
                     <S.LabelNav $showSidebar={showSidebar}>
@@ -45,7 +45,12 @@ const Menu = ({item, showSidebar, handleShowModal}) => {
                     subMenu && 
                     subNav.map((item, i) => {
                         return (
-                            <S.DropdownLink key={i} to={item.path} onClick={handleClick}>
+                            <S.DropdownLink 
+                                key={i} 
+                                to={item.path} 
+                                state={item.nextPage ? { nextPage: item.nextPage  } : null}
+                                onClick={handleClick}
+                            >
                                 <S.IconNav> {item.icon } </S.IconNav>
                                 <S.LabelNav $showSidebar={showSidebar}>
                                     <TextC.Label level={3} > {item.title} </TextC.Label>

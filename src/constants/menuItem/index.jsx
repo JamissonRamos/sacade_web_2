@@ -40,6 +40,7 @@ export const MenuItem = [
             {
                 title: 'Gerar Parcelas',
                 path: '/generateInstallments',
+                nextPage: "/configurationInstallments",
                 icon: <Theme.Icons.RxCardStackPlus  />,
             },
             {

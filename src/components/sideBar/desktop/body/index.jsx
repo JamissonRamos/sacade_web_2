@@ -4,6 +4,7 @@ import { MenuItem } from '../../../../constants/menuItem'
 import Menu from '../../menu'
 
 const Body = ({showSidebar}) => {
+
     return (
         <S.Container>
             {

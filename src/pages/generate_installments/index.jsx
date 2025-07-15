@@ -7,7 +7,7 @@ import { Button, Form, Spinner } from 'react-bootstrap';
 import { TextC } from '../../components/Typography';
 import List from './list';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useStudents } from '../../hooks/students';
 
@@ -17,6 +17,8 @@ const GenerateInstallments = () => {
     const [selectAll, setSelectAll] = useState(false) //CheckBox All Students
 
     const navigate = useNavigate();
+    const location = useLocation();
+    const { nextPage } = location.state || {};
 
     const { getDocuments, loading} = useStudents.useGetDocuments()
     
@@ -32,7 +34,7 @@ const GenerateInstallments = () => {
     }
 
     const fetchDocuments = async () => {
-        clearLocalStored()
+        clearLocalStored();
         const result = await getDocuments();
         const { success, data, error} = result;
         if(success){
@@ -69,7 +71,9 @@ const GenerateInstallments = () => {
 
     const handleClick =  (data) => {
         postCreateLocalStorage(data);
-        navigate('/configurationInstallments');
+
+        // navigate('/configurationInstallments');
+        navigate(nextPage);
     }
 
 

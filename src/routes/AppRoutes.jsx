@@ -128,6 +128,12 @@ const AppContent = () => {
                                         <Pages.ReportCurrentStudentTracks /> 
                                     </ProtectedRoute>
                                 } />
+                                <Route path="/reports/tracks/competitorStudent" element={
+                                    <ProtectedRoute page='ReportsTracks'>
+                                        {/* <Pages.NotificationsMaintenance /> */}
+                                        <Pages.CompetitorStudent /> 
+                                    </ProtectedRoute>
+                                } />
                                 <Route path="/reports/financial/paymentMonth" element={
                                     <ProtectedRoute page='ReportsFinancial'>
                                         {/* <Pages.NotificationsMaintenance /> */}

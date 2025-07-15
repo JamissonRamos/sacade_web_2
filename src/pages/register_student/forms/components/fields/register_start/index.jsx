@@ -87,7 +87,7 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
-                <Col md={6} lg={6} >
+                <Col md={6} lg={6   } >
                     <Form.Group className="p-2" controlId="GroupDegrees">
                         <MDBRange
                             className="p-1"

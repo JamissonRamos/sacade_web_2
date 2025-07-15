@@ -1,6 +1,7 @@
 import { Theme } from "../../theme";
 
 export const DataItemMenu = [
+    
     //Grupo de Alunos
     {
         title: 'Alunos',
@@ -9,8 +10,14 @@ export const DataItemMenu = [
     },
     //Grupo Fichas
     {
-        title: 'Fichas',
+        title: 'Fichas dos Alunos',
         path: '/reports/tracks/currentStudentTracks',
+        icon: <Theme.Icons.PiAddressBookFill/>
+    },
+    {
+        title: 'Competidores',
+        path: "/generateInstallments",
+        nextPage: "/reports/tracks/competitorStudent",
         icon: <Theme.Icons.PiAddressBookFill/>
     },
     
