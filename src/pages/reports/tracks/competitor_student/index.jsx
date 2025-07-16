@@ -69,7 +69,7 @@ const CompetitorStudent = () => {
     // Função para gerar o PDF (placeholder)
     const handleGeneratePdf = async () => {
         // Recuperar o cabeçalho da tabela
-        const headersDoc = ['#', 'Nome', 'Idade', 'Gênero', 'Altura', 'Peso', 'Grau', 'Faixa'];
+        const headersDoc = ['#', 'Nome', 'Data Nascimento', 'Idade', 'Gênero', 'Altura', 'Peso', 'Grau', 'Faixa'];
         // Recuperar o título do PDF
         const titleDoc = 'Relatório dos Competidores';
         
