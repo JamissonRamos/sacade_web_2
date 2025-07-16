@@ -1,0 +1,97 @@
+import * as S from "./styled";
+import { Theme } from "../../../../../../theme";
+import Table from 'react-bootstrap/Table';
+import BadgeCustomTrack from "../../../../../../components/badge_custom_track";
+import { BiRightArrow } from "react-icons/bi";
+
+const TableCustom = (props) => {
+    const { data, totalStudents } = props
+
+    return (
+        <S.Container>
+            <Table  hover responsive className='custom-table' >
+                <thead>
+                    <tr>
+                        <th className='text-center hidle-boder-left'>#</th>
+                        <th>Nome</th>
+                        <th className='text-center'>Data Nascimento</th>
+                        <th className='text-center'>Idade</th>
+                        <th className='text-center'>Gênero</th>
+                        <th className='text-center'>Altura</th>
+                        <th className='text-center'>Peso</th>
+                        <th className='text-center'>Grau</th>
+                        <th className='text-center hidle-boder-right'>Faixa</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    { 
+                        data && data.map((item, i) => {
+                            const {uidStudent, firstName, lastName, birthDate, age, sex, studentHeight, studentWeight, degrees, range} = item;
+                            
+                            return (
+                                <tr key={uidStudent}>
+                                    <td className='text-center'>{i + 1}</td>
+                                    <td>
+                                        <S.WrapFullName>
+                                            <span>{firstName} {lastName}</span>
+                                        </S.WrapFullName>
+                                    </td>
+                                    <td className='text-center'>{birthDate}</td>
+
+                                    <td className='text-center'>
+                                        <S.WrapAge $colorFont={age}>
+                                            {age}
+                                            {
+                                                age > 17 ? <Theme.Icons.MdOutlineArrowUpward /> : <Theme.Icons.MdOutlineArrowDownward />
+                                            }
+                                        </S.WrapAge>
+                                    </td>
+                                    <td className='text-center'>
+                                        <S.WrapSex>
+                                            <S.WrapSexText>
+                                                {sex === 'homem' ? 'H' : 'M'} 
+                                            </S.WrapSexText>
+                                            <S.WrapSexIcon $bgColor={sex}>
+                                                {sex === 'homem' ? <Theme.Icons.FaMale /> : <Theme.Icons.FaFemale />}
+                                            </S.WrapSexIcon>
+                                        </S.WrapSex>
+                                    </td>
+                                    <td className='text-center'>
+                                        <S.WrapHeightWeight>
+                                            {studentHeight}
+                                            <Theme.Icons.MdHeight />
+                                        </S.WrapHeightWeight>
+                                    </td>
+                                    <td className='text-center'>
+                                        <S.WrapHeightWeight>
+                                            {studentWeight}
+                                            <Theme.Icons.FaWeight />
+                                        </S.WrapHeightWeight>
+                                    </td>
+                                    <td className='text-center'>{degrees}</td>   
+                                    <td className='text-center'>
+                                        <S.WrapRange>
+                                            <BadgeCustomTrack track={range} />
+                                        </S.WrapRange>
+                                    
+                                    </td>      
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <th className='text-center '>Total</th>
+                        <th  className='text-end py-3' >{totalStudents}</th>
+                    </tr>
+                </tfoot>
+            </Table> 
+        </S.Container>
+            
+    )
+}
+
+export default TableCustom

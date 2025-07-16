@@ -1,7 +1,7 @@
-import * as S from './styled'
-import Header from './header'
-import { TextC } from '../../../../components/Typography'
-import { Theme } from '../../../../theme'
+import * as S from './styled';
+import Header from './header';
+import { TextC } from '../../../../components/Typography';
+import { Theme } from '../../../../theme';
 import Body from './Body';
 import { useEffect, useState } from 'react';
 import { useStudents } from '../../../../hooks/students';
@@ -25,7 +25,6 @@ const ReportCurrentStudentTracks = () => {
     const { getDocuments: getStudents, loading: loadingStudent} = useStudents.useGetDocuments()
     const { getDocuments: getRanger, loading: loadingRanger}    = useRegisterStudents.useGetDocuments()
     const { createDocPdf, loading: loadingPdf }                 = GeneratePdf()
-
 
     // Função para gerar o PDF (placeholder)
     const handleGeneratePdf = async () => {
@@ -130,9 +129,10 @@ const ReportCurrentStudentTracks = () => {
                     {isCreatDocPdf.message}
                 </AlertCustom>
             }
+
             <Header />
-            {
-                loadingStudent || loadingRanger &&
+
+            {loadingStudent || loadingRanger &&
                     <LoadingOverlay>
                         <Spinner
                             as="span"
@@ -144,8 +144,7 @@ const ReportCurrentStudentTracks = () => {
                     </LoadingOverlay> 
             }
 
-            {
-                clsFormStudents.length == 0 ?
+            {clsFormStudents.length == 0 ?
                     <S.Empty>
                         <TextC.Display level={2} >
                             Nenhum cadastro
@@ -156,7 +155,6 @@ const ReportCurrentStudentTracks = () => {
                     </S.Empty> 
                 :
                     <>
-                    
                         <Body 
                             filteredData={clsFormStudents}
                             setDataGeneratePdf={setDataGeneratePdf}
