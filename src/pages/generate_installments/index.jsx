@@ -133,7 +133,7 @@ const GenerateInstallments = () => {
                         <span>
                             {
                                 storesUid.length <= 0 ? 'Selecione Aluno(s)' : 
-                                `Gerar ${storesUid.length} Parcela(s)`
+                                `Foi Selecionado ${storesUid.length} Aluno${storesUid.length > 1 ? 's' : ''}`
                             }                            
                         </span>
 

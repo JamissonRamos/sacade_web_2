@@ -4,8 +4,8 @@ import { TextC } from "../../../components/Typography"
 const Header = () => {
     return (
         <S.Container>
-            <TextC.Title level={2}> Gerar Parcelas </TextC.Title>
-            <TextC.Body level={2}> Selecione os alunos para gerar as parcelas </TextC.Body>
+            <TextC.Title level={2}> Selecionar Alunos </TextC.Title>
+            <TextC.Body level={2}> Escolher os alunos da lista </TextC.Body>
         </S.Container>
     ) 
 }
