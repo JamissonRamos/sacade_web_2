@@ -2,7 +2,6 @@ import * as S from "./styled";
 import { Theme } from "../../../../../../theme";
 import Table from 'react-bootstrap/Table';
 import BadgeCustomTrack from "../../../../../../components/badge_custom_track";
-import { BiRightArrow } from "react-icons/bi";
 
 const TableCustom = (props) => {
     const { data, totalStudents } = props
