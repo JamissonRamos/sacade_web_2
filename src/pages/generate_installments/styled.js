@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { Theme } from "../../theme";
 
 const StyledButton = css`
-    width: 40%;
+    width: 60%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@ const StyledButton = css`
         box-shadow: none;
     }
     @media (max-width: 768px) {
-        width: 60%;
+        width: 100%;
     }
 `;
 

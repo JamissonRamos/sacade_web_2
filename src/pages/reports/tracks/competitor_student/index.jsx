@@ -79,6 +79,7 @@ const CompetitorStudent = () => {
         const dataDoc = dataGeneratePdf.map((item, index) => [
             index + 1,
             `${item.firstName} ${item.lastName}`,
+            item.birthDate,
             item.age,
             FormatRangeName(item.sex),
             item.studentHeight,
