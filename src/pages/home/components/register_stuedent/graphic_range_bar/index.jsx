@@ -2,7 +2,6 @@ import * as S               from './styled';
 import { TextC }            from '../../../../../components/Typography';
 import { StyledBadgeColor } from '../script';
 
-
 const GraphicBar = ({data}) => {
     // Transformar o objeto em um array de objetos com label e value
     const formattedData = Object.entries(data).map(([label, value]) => ({
@@ -10,15 +9,24 @@ const GraphicBar = ({data}) => {
         value
     }));
 
-    const countRanger = Object.keys(data).length;
+    // Calcular o número total de faixas
+    const countRanger = formattedData.reduce((acc, item) => acc + item.value, 0); 
 
+    // 1. Calcular porcentagens brutas
+    const rawPercentages = formattedData.map(({ value }) =>
+        (value / countRanger) * 100
+    );
+
+    // 2. Arredondar
+    let percentages = rawPercentages.map(p => Math.floor(p));
+    
     return (
         <S.Container>
             {
                 formattedData && formattedData.map(({label, value}, i) => {
                     const updatedRange = label.replace(/_/g, ' e ')
                     const colors = StyledBadgeColor(label) // Obter cores para o badge
-                    const widthBar = Math.floor((value / countRanger) * 100);
+                    const widthBar = percentages[i] //Math.floor((value / countRanger) * 100);
 
                     return (
                         <S.Row key={i}>

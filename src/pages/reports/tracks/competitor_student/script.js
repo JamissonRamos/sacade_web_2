@@ -1,5 +1,5 @@
 
-export const CurrentAge = (birthDate) => {
+const CurrentAge = (birthDate) => {
 
     // Converte a string da data para um objeto Date
     const [day, month, year] = birthDate.split('/');
@@ -55,7 +55,7 @@ export const ExtractRangeData = (data) => {
 
 export const ConsultationStudentRecord = (dataStudents, dataRange) => {
     //Criando consulta de alunos e suas fichas
-
+    
     //Combinar alunos e suas fichas
     const combinedStudents = dataStudents.map(student => {
 
@@ -71,6 +71,7 @@ export const ConsultationStudentRecord = (dataStudents, dataRange) => {
             ...rangeInfo,
         };
     });
+    
     return combinedStudents
 };
 

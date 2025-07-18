@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useStudents } from "../../../../hooks/students";
 import { useRegisterStudents } from "../../../../hooks/registerStudent";
 import { useNavigate } from "react-router-dom";
-import { ConsultationStudentRecord, ExtractRangeData, ExtractStudentData, FormatRangeName } from "./script";
+import {ConsultationStudentRecord, ExtractRangeData, ExtractStudentData, FormatRangeName} from './script';
 import { GeneratePdf } from '../../../../hooks/createDocPdf';
 import { Theme } from '../../../../theme';
 
