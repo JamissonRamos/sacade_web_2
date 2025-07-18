@@ -54,13 +54,14 @@ export const ExtractRangeData = (data) => {
 };
 
 export const ConsultationStudentRecord = (dataStudents, dataRange) => {
-    //Criando consulta de alunos e suas fichas
-    
     //Combinar alunos e suas fichas
     const combinedStudents = dataStudents.map(student => {
+        //Criando consulta de alunos e suas fichas
+        let hasMatch = false
 
         const rangeInfo = dataRange.reduce((acc, {idStudent, ...rest}) => {
             if (idStudent === student.uidStudent) {
+                hasMatch = true
                 return rest; // Retorna apenas as outras propriedades
             }
             return acc;
@@ -69,10 +70,12 @@ export const ConsultationStudentRecord = (dataStudents, dataRange) => {
         return {
             ...student,
             ...rangeInfo,
+            isMatched: hasMatch
         };
     });
     
-    return combinedStudents
+    const result = combinedStudents.filter(student => student.isMatched)
+    return result
 };
 
 export const FormatRangeName = (track) => {

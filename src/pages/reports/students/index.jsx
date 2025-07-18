@@ -32,7 +32,7 @@ const ReportStudents = () => {
         const result = await getDocuments();
         const {success, data } = result;
         if(success){
-            const newData = data.map((item) => ({
+            const newData = data && data.map((item) => ({
                 firstName: item.firstName || '',
                 lastName: item.lastName|| '',
                 sex: item.sex.toUpperCase() || '',

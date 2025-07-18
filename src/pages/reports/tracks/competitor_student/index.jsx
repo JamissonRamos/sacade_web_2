@@ -54,7 +54,7 @@ const CompetitorStudent = () => {
             const resultExtractStudents = ExtractStudentData(studentsResult.data)
             const resultExtractRange = ExtractRangeData(rangerResult.data);
             const resultClsAlunoRecord = ConsultationStudentRecord(resultExtractStudents, resultExtractRange);
-
+            
             //Filtrar alunos que estão no localStorage
             const filteredStudents = resultClsAlunoRecord.filter(student =>
                 resultStudentsLocalStorage.some(localStudent => localStudent.uid === student.uidStudent)

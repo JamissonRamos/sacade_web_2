@@ -8,7 +8,7 @@ import { useStudents } from '../../../../hooks/students';
 import { useRegisterStudents } from '../../../../hooks/registerStudent';
 import { useNavigate } from 'react-router-dom';
 import { ExtractRangeData, ExtractStudentData, FormatRangeName } from '../../scripts';
-import { LoadingOverlay } from '../../../../components/spinner/global/styled';
+import { LoadingOverlay } from '../../../../components/spinner/global/styled';      
 import { Spinner } from 'react-bootstrap';
 import { GeneratePdf } from '../../../../hooks/createDocPdf';
 import { AlertCustom } from '../../../../components/alert_custom';
@@ -103,9 +103,11 @@ const ReportCurrentStudentTracks = () => {
     //Alunos e suas fichas atual
     useEffect(() => {
         const combinedStudents = registeredStudents.map(student => {
-
+            // Se rangeInfo não for null, houve match
+            let hasMatch = false
             const rangeInfo = registeredRange.reduce((acc, {idStudent, ...rest}) => {
                 if (idStudent === student.uidStudent) {
+                    hasMatch = true; // Define a flag como true se houver correspondência
                     return rest; // Retorna apenas as outras propriedades
                 }
                 return acc;
@@ -114,10 +116,11 @@ const ReportCurrentStudentTracks = () => {
             return {
                 ...student,
                 ...rangeInfo,
-                isMatched: !!rangeInfo   // Flag indicando se houve correspondência
+                isMatched: hasMatch   // Flag indicando se houve correspondência
             };
         });
-        setClsFormStudents(combinedStudents);
+
+        setClsFormStudents(combinedStudents.filter(student => student.isMatched));
     }, [registeredRange, registeredStudents])
     
     return (
