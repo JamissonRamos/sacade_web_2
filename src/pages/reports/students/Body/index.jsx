@@ -31,6 +31,8 @@ const Body = (props) => {
     }
 
     useEffect(() => {
+
+        if(!filteredData) return;
         if(!filteredData || filteredData.length === 0) return;
         const data = filteredData.sort((a, b) => a.firstName.localeCompare(b.firstName));
         const newData = data.map((item, index) => ({
