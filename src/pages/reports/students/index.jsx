@@ -35,8 +35,9 @@ const ReportStudents = () => {
             const newData = data && data.map((item) => ({
                 firstName: item.firstName || '',
                 lastName: item.lastName|| '',
-                sex: item.sex.toUpperCase() || '',
-                status: item.status.toUpperCase() || '',
+                //sex: item.sex.toUpperCase() || '',
+                sex: item.sex?.toUpperCase() || "",
+                status: item.status?.toUpperCase() || "",
             }));
             setFilteredData(newData);
             setAllStudents(newData);
@@ -62,7 +63,7 @@ const ReportStudents = () => {
         // Recuperar o título do PDF
         const titleDoc = 'Relatório de Alunos';
         // Recuperar os dados do PDF
-        const dataDoc = filteredData.map((item, index) => [
+        const dataDoc = filteredData && filteredData.map((item, index) => [
             index + 1,
             `${item.firstName} ${item.lastName}`,
             item.status,
