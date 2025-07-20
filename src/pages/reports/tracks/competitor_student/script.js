@@ -23,7 +23,7 @@ const currentAge = (birthDate) => {
     return age;
 };
 
-export const ExtractStudentData = (data) => {
+export const ExtractStudent = (data) => {
 //Extrair os dados da lista de alunos       
     //Filter Status, e sxtrair dados
     const formattedStudents = data
@@ -39,7 +39,7 @@ export const ExtractStudentData = (data) => {
     return formattedStudents
 };
 
-export const ExtractRangeData = (data) => {
+export const ExtractRange = (data) => {
 //Extrair os dados da lista de fichas, somente a ficha atual
 
     const newListRange = data

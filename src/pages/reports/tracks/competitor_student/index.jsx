@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import { GeneratePdf } from '../../../../hooks/createDocPdf';
 import { Theme } from '../../../../theme';
-import { QueryCombineStudentRecord, ExtractRangeData, ExtractStudentData, FormatRangeName } from './script';
+import { ExtractStudent, ExtractRange, FormatRangeName, QueryCombineStudentRecord } from './script';
 import Header from './header';
 import Body from './Body';
 import { LoadingOverlay } from '../../../../components/spinner/global/styled';
@@ -51,8 +51,8 @@ const CompetitorStudent = () => {
             if(!rangerResult.data || rangerResult.data.length === 0 ) return
 
             //Extrair dados das lista e passar para os states e ser alterados
-            const resultExtractStudents = ExtractStudentData(studentsResult.data)
-            const resultExtractRange = ExtractRangeData(rangerResult.data);
+            const resultExtractStudents = ExtractStudent(studentsResult.data)
+            const resultExtractRange = ExtractRange(rangerResult.data);
             const resultClsAlunoRecord = QueryCombineStudentRecord(resultExtractStudents, resultExtractRange);
             
             //Filtrar alunos que estão no localStorage
