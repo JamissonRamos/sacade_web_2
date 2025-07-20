@@ -35,11 +35,10 @@ const ReportStudents = () => {
             const newData = data && data.map((item) => ({
                 firstName: item.firstName || '',
                 lastName: item.lastName|| '',
-                //sex: item.sex.toUpperCase() || '',
                 sex: item.sex?.toUpperCase() || "",
                 status: item.status?.toUpperCase() || "",
             }));
-            setFilteredData(newData);
+            setFilteredData(newData);   
             setAllStudents(newData);
         }else{
             console.log('Erro ao buscar documentos:', result.message);
