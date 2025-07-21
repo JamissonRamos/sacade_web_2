@@ -3,6 +3,11 @@ import { Theme } from "../../theme";
 export const DataItemMenu = [
 
     {
+        title: 'Home',
+        path: 'https://accessible-storm-0f5.notion.site/Home-1b87ce9f30c180b4813dec494854c5c2?pvs=74',
+        icon: <Theme.Icons.MdHome/>
+    },
+    {
         title: 'Usuários',
         path: 'https://accessible-storm-0f5.notion.site/Usu-rios-1b77ce9f30c180778733dc1ef49b3489?pvs=4',
         icon: <Theme.Icons.MdSupervisedUserCircle/>
