@@ -63,7 +63,7 @@ export const WrapContent = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 16px;
 `;
 
 export const WrapTex = styled.div`
@@ -102,7 +102,10 @@ export const WrapButton = styled.div`
     padding: .2rem 0;
     & button {
         &.btn:disabled{
-            border: 0.075px solid ${Theme.Colors.blue500};
+            border: 0.075px solid ${Theme.Colors.grey600};
+            & span, svg{
+                color: ${Theme.Colors.grey600};
+            }
         }
         ${StyledButton}
         ${outlineStyles(Theme.Colors.blue500)}

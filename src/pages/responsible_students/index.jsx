@@ -59,8 +59,8 @@ const ResponsibleStudents = () => {
                 errorStudents && <Alert variant={'danger'}> {errorStudents} </Alert>
             }
             <S.HeaderPage>
-                <TextC.Title level={2}> Lista de Alunos</TextC.Title>
-                <TextC.Body level={1}> Deve selecionar um aluno já cadastrado para adicionar ou editar responsável </TextC.Body>
+                <TextC.Title level={2}> Lista de Alunos </TextC.Title>
+                <TextC.Body level={2}> Deve selecionar um aluno já cadastrado para adicionar ou editar responsável </TextC.Body>
             </S.HeaderPage>
 
             {

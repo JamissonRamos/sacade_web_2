@@ -25,7 +25,6 @@ const CardList = ({data}) => {
 
     return (
         <S.Container>
-
             {
                 data && 
                     <ListPrimary 

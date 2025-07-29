@@ -7,8 +7,9 @@ import { useState } from 'react';
 const List = ({data, setStoreUid}) => { 
 
   const [checkedItems, setCheckedItems] = useState({});
-
-  const handleCheckboxChange = (uid) => {
+  
+  const handleCheckboxChange = (uid, relationshipLevel) => {
+    
     /* Manipular o meu checkBox */    
     setCheckedItems((prev) => ({
       ...prev,
@@ -17,18 +18,21 @@ const List = ({data, setStoreUid}) => {
 
     /* Manipular array com os uids */
     setStoreUid((prev) => {
-      if (prev.includes(uid)) {
-        // Se o uid já estiver no array, remove-o
-        return prev.filter((id) => id !== uid);
+      // Verifica se já existe algum item com o mesmo uid
+      const exists = prev.some(item => item.uidResponsible === uid);
+
+      if (exists) {
+        // Se o uid já estiver no array, remove todos os itens com esse uid
+        return prev.filter((item) => item.uidResponsible !== uid);
       } else {
-        // Se não estiver, adiciona-o
-        return [...prev, uid];
-      }
+        // Se não estiver, adiciona o novo objeto
+        return [...prev, {uidResponsible: uid , relationshipLevel}];
+      } 
     });
   };
 
-  const handleCardClick = (uid) => {
-    handleCheckboxChange(uid);
+  const handleCardClick = (uid, relationshipLevel) => {
+    handleCheckboxChange(uid, relationshipLevel);
   };
 
   return (
@@ -37,8 +41,8 @@ const List = ({data, setStoreUid}) => {
         <S.Cards>
           {
             data && data.map(({uid, fullName, relationshipLevel }, i) => (
-
-              <S.Card key={i} checkedItems={checkedItems[uid]} onClick={() => handleCardClick(uid)}>
+              
+              <S.Card key={i} checkedItems={checkedItems[uid]} onClick={() => handleCardClick(uid, relationshipLevel)}>
 
                 <S.WrapContent>
 
@@ -52,7 +56,7 @@ const List = ({data, setStoreUid}) => {
                     type={'checkbox'}
                     id={i}
                     checked={!!checkedItems[uid]} // Verifica se o checkbox deve estar marcado
-                    onChange={() => handleCheckboxChange(uid)} // Atualiza o estado ao mudar
+                    onChange={() => handleCheckboxChange(uid, relationshipLevel)} // Atualiza o estado ao mudar
                     onClick={(e) => e.stopPropagation()} // Impede que o clique no checkbox dispare o clique do card
                   />
 
@@ -65,11 +69,11 @@ const List = ({data, setStoreUid}) => {
 
                 </S.WrapContent>
               
-                <S.WrapStatus>
+                {/* <S.WrapStatus>
                       <Badge bg={'primary'} text="light">
                         {relationshipLevel}
                       </Badge>
-                </S.WrapStatus>
+                </S.WrapStatus> */}
               </S.Card>
             ))
           }

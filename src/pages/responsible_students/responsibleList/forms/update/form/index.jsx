@@ -76,11 +76,23 @@ const FormUpdate = ({registered}) => {
         }
     }
 
-    const handleOnSubmit = async (data) => {        
+    const handleOnSubmit = async (data) => {
+        const dataStudentLocalStorage = JSON.parse(localStorage.getItem('student')) || [];
+        const {uid} = dataStudentLocalStorage[0] || ""; 
+
         data.birthDate = FormattedDate(data.birthDate)
         data.phone = unMask(data.phone);
         data.cep = unMask(data.cep);
-
+        // Atualiza o array idStudentLevel
+        data.idStudentLevel = data.idStudentLevel.map(item => {
+        if (item.idStudent === uid) {
+            return {
+                idStudent: uid,
+                relationshipLevel: data.relationshipLevel
+            };
+        }
+        return item;
+    });        
         const result = await updateResponsibleStudent(data);
         const { success, message } = result;
 
@@ -88,7 +100,7 @@ const FormUpdate = ({registered}) => {
             const path = `/responsibleStudents/responsibleList/`
             navigate('/notifications/update', {
                 state: {
-                    uid: data.idStudent[0],
+                    uid: uid,
                     url: path,
                     valueButton: {value: 'Lista Responsáveis', icon: 'MdPerson'},
                 },
@@ -99,7 +111,7 @@ const FormUpdate = ({registered}) => {
             navigate('/notifications/error');
         }
     }
-
+    
     return (
         <S.Container>
             <S.Form>

@@ -40,6 +40,7 @@ const BodyForm = () => {
         data.phone = unMask(data.phone);
         data.cep = unMask(data.cep);
         data.idStudent = [uidStudent];
+        data.idStudentLevel = {idStudent: uidStudent, relationshipLevel: data.relationshipLevel}
 
         const result = await createResponsibleStudent(data);
         //const result = { success: true, uidResponsibleStudents:'Rf098aopEf5Q3NlFuiqI' , message: 'teste de erro' }

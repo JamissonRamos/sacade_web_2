@@ -27,7 +27,7 @@ const NotificationsStudentCreate = () => {
 
         const uidResponsible = await handleGetUidResponsible();
 
-        const result  = await getDocuments();
+        const result = await getDocuments();
         const {success, data, message} = result;
 
         if (success){

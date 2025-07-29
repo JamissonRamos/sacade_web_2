@@ -10,8 +10,6 @@ import { useLocation } from 'react-router-dom'
 import Header from './header'
 import ListResponsible from './listResponsible'
 
-
-
 const ResponsibleList = () => {
     const [registered, setRegistered] = useState(false);
     
@@ -27,6 +25,7 @@ const ResponsibleList = () => {
     const fetchDocuments = async () => {
         const result = await getDocumentsByIdStudents(uid);
         const { success, data} = result;
+        
         if(success)
         {            
             setRegistered(data)
@@ -38,8 +37,6 @@ const ResponsibleList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    
-    
     return (
         <WrapPages>
             <Header fullFirstName={fillNameStudent}  />

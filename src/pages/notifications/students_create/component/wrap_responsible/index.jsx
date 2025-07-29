@@ -14,8 +14,8 @@ const WrapResponsible = ({isRegistered, isLoadingResponsible}) => {
     const loading = isLoadingResponsible || false;
     const registered = isRegistered || false;
     const navigate = useNavigate();
-
-    const {updateResponsibleStudentUidStudent, loading: loadingUpIdStudent  } = usePostDocumentsUpdateIdStudent();
+    
+    const { updateResponsibleStudentUidStudent, loading: loadingUpIdStudent  } = usePostDocumentsUpdateIdStudent();
 
     const getUidStudent = async () => {
 
@@ -42,28 +42,29 @@ const WrapResponsible = ({isRegistered, isLoadingResponsible}) => {
 
     }
 
-
     const handleOnclick = async () => {
 
         const result = await getUidStudent();
-        const {success, uid, message} = result;
+        const {success, uid, message} = result;        
 
-        if(success){
-
+        if(success){            
             // storesUid.forEach(async (responsible)  =>  {
             const updatePromises = storesUid.map(async (responsible) => {
-                const resultUp =  await updateResponsibleStudentUidStudent(responsible, uid)
+                const { uidResponsible, relationshipLevel } = responsible;
+                const idStudentLevel = { idStudent: uid, relationshipLevel }; // O idStudent é o UID do aluno
+                const resultUp = await updateResponsibleStudentUidStudent(uidResponsible, idStudentLevel) //{ success: false, message: 'erro de teste' } 
                 const { success, message } = resultUp;
     
                 if (success) {
                     console.log('Atualizado com sucesso!');
                 }else{
-                    console.log('error ao add responsável ' + responsible , message);
+                    console.log('error ao add responsável ' + responsible.relationshipLevel , message);
                 }
             });
 
             // Aguarda que todas as promessas sejam resolvidas
             await Promise.all(updatePromises);
+            //console.log('retirar a comentario de baxo da navegaçõa');
             
             navigate('/responsibleStudents/responsibleList/', { state: { uid: uid} })
             
@@ -123,8 +124,6 @@ const WrapResponsible = ({isRegistered, isLoadingResponsible}) => {
                                             <span>Adicionar Responsável</span>
                                             <Theme.Icons.MdPerson />
                                         </>
-
-
                                 }
                             </Button>
                         </S.WrapButton>

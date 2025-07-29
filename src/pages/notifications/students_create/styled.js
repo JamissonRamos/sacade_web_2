@@ -53,7 +53,7 @@ const outlineStyles =  (color) => css`
 export  const Container = styled.div`
     /* border: 1px solid red; */
     width: 100%;
-        max-width: 500px;
+        max-width: 800px;
         min-width: 320px;
     height: 100%;
     display: flex;
@@ -77,7 +77,6 @@ export  const Header = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 8px;
     & svg {
         font-size: 1.5em;
         color: ${Theme.Colors.green800};
@@ -93,7 +92,7 @@ export  const Body = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 16px;
     align-items: center;
     padding: .8rem 0;
 `;
@@ -105,7 +104,8 @@ export  const WrapButton = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    padding: .2em 0;
+    margin-bottom: 1.2em;
     & button {
         max-width: 100%;
         max-height: 100%;
@@ -115,8 +115,8 @@ export  const WrapButton = styled.div`
 export const ButtonResponsible = styled.button`
     ${StyledButton}
     ${outlineStyles(Theme.Colors.yellow800)}
-    margin-bottom: 1rem;
 `;
+
 export const ButtonListStudent = styled.button`
     ${StyledButton}
     ${outlineStyles(Theme.Colors.blue900)}
