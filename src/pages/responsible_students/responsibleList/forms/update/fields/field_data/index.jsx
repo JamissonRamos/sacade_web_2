@@ -47,22 +47,22 @@ const FieldData = ({register, setValue, errors}) => {
                             {...register("relationshipLevel")}
                             isInvalid={!!errors.relationshipLevel}
                         >
-                        <option value="">Selecione Parente</option>
-                        <option value="pai">Pai</option>
-                        <option value="mae">Mãe</option>
-                        <option value="irmao">Irmão</option>
-                        <option value="irma">Irmã</option>
-                        <option value="filho">Filho</option>
-                        <option value="filha">Filha</option>
-                        <option value="avô">Avô</option>
-                        <option value="avó">Avó</option>
-                        <option value="tio">Tio</option>
-                        <option value="tia">Tia</option>
-                        <option value="primo">Primo</option>
-                        <option value="prima">Prima</option>
-                        <option value="cunhado">Cunhado</option>
-                        <option value="cunhada">Cunhada</option>
-                        <option value="outro">Outro</option>
+                            <option value="">Selecione Parente</option>
+                            <option value="pai">Pai</option>
+                            <option value="mae">Mãe</option>
+                            <option value="irmao">Irmão</option>
+                            <option value="irma">Irmã</option>
+                            <option value="filho">Filho</option>
+                            <option value="filha">Filha</option>
+                            <option value="avô">Avô</option>
+                            <option value="avó">Avó</option>
+                            <option value="tio">Tio</option>
+                            <option value="tia">Tia</option>
+                            <option value="primo">Primo</option>
+                            <option value="prima">Prima</option>
+                            <option value="cunhado">Cunhado</option>
+                            <option value="cunhada">Cunhada</option>
+                            <option value="outro">Outro</option>
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
                             {errors.relationshipLevel && errors.relationshipLevel.message}

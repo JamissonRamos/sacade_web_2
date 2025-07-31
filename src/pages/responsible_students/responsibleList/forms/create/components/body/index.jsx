@@ -41,7 +41,7 @@ const BodyForm = () => {
         dataToSave.phone = unMask(dataToSave.phone);
         dataToSave.cep = unMask(dataToSave.cep);
         dataToSave.idStudent = [uidStudent];
-        dataToSave.idStudentLevel = {idStudent: uidStudent, relationshipLevel: relationshipLevel}
+        dataToSave.idStudentLevel = [{idStudent: uidStudent, relationshipLevel: relationshipLevel}]
 
         const result = await createResponsibleStudent(dataToSave);
         //const result = { success: true, uidResponsibleStudents:'Rf098aopEf5Q3NlFuiqI' , message: 'teste de erro' }

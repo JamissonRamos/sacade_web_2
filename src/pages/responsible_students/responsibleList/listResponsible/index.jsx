@@ -14,8 +14,6 @@ const ListResponsible = ({data}) => {
     navigate('/responsibleStudents/form_update', { state: { uid: uid } });
   };
 
-
-
   return (
     <S.Container>
       {

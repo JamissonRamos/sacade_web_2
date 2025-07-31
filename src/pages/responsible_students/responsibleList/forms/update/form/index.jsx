@@ -42,6 +42,14 @@ const FormUpdate = ({registered}) => {
                 }else if (key === 'cep') {
                     const newCep = ApplyMask(key, registered[key])
                     setValue(key, newCep);
+                }else if (key === 'idStudentLevel') {
+                    const studentLevel = registered[key].map(item => {
+                        return {
+                            idStudent: item.idStudent,
+                            relationshipLevel: item.relationshipLevel
+                        }
+                    });
+                    setValue('relationshipLevel', studentLevel[0].relationshipLevel);
                 }else {
                     setValue(key, registered[key]);
                 }
@@ -78,22 +86,30 @@ const FormUpdate = ({registered}) => {
 
     const handleOnSubmit = async (data) => {
         const dataStudentLocalStorage = JSON.parse(localStorage.getItem('student')) || [];
-        const {uid} = dataStudentLocalStorage[0] || ""; 
+        const {uid} = dataStudentLocalStorage[0] || " "; 
+        const { relationshipLevel, ...dataToSave } = data;
+        let studentLevel;
 
-        data.birthDate = FormattedDate(data.birthDate)
-        data.phone = unMask(data.phone);
-        data.cep = unMask(data.cep);
-        // Atualiza o array idStudentLevel
-        data.idStudentLevel = data.idStudentLevel.map(item => {
-        if (item.idStudent === uid) {
-            return {
-                idStudent: uid,
-                relationshipLevel: data.relationshipLevel
-            };
+        // Essa condição para criar o atributo idStudentLevel se não tiver
+        if(data.idStudentLevel){
+            studentLevel = data.idStudentLevel.map(item => {
+                if (item.idStudent === uid) {
+                    return {
+                        idStudent: uid,
+                        relationshipLevel: relationshipLevel
+                    };
+                }
+            });
+        }else {
+            studentLevel = {idStudent: uid, relationshipLevel: relationshipLevel}
         }
-        return item;
-    });        
-        const result = await updateResponsibleStudent(data);
+
+        dataToSave.birthDate = FormattedDate(data.birthDate)
+        dataToSave.phone = unMask(data.phone);
+        dataToSave.cep = unMask(data.cep);
+        dataToSave.idStudentLevel = [studentLevel]  
+
+        const result = await updateResponsibleStudent(dataToSave);
         const { success, message } = result;
 
         if(success){

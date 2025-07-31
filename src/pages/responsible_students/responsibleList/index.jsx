@@ -37,8 +37,6 @@ const ResponsibleList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    console.log('registered', registered);
-    
     return (
         <WrapPages>
             <Header fullFirstName={fillNameStudent}  />
