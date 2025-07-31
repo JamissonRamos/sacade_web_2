@@ -62,18 +62,19 @@ const List = ({data, setStoreUid}) => {
 
                   <S.WrapName>
                     <S.CircleLetterName>
-                        <span>{fullName && fullName.charAt(0)}</span>
+                      <span>{fullName && fullName.charAt(0)}</span>
                     </S.CircleLetterName>
                     <TextC.Body level={2}>{fullName}</TextC.Body>
                   </S.WrapName>
 
                 </S.WrapContent>
               
-                {/* <S.WrapStatus>
-                      <Badge bg={'primary'} text="light">
-                        {relationshipLevel}
-                      </Badge>
-                </S.WrapStatus> */}
+                <S.WrapStatus>
+                  <Badge bg={'primary'} text="light">
+                    {relationshipLevel}
+                  </Badge>
+
+                </S.WrapStatus>
               </S.Card>
             ))
           }

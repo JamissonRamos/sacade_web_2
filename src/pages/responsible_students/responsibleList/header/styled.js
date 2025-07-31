@@ -51,6 +51,12 @@ export const Container = styled.div`
     }
 `;
 
+export const WrapNameStudent = styled.div`
+    display: inline;
+    font-weight: bold;
+    color: ${Theme.Colors.yellow800};
+`;
+
 export const WrapButtonCreate = styled.div`
     /* border: 1px solid red; */
     width: 100%;

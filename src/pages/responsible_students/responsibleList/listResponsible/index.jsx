@@ -14,17 +14,21 @@ const ListResponsible = ({data}) => {
     navigate('/responsibleStudents/form_update', { state: { uid: uid } });
   };
 
+
+
   return (
     <S.Container>
       {
           registered && registered.map(({id, fullName, idStudentLevel}, i) => {
 
-            if (!idStudentLevel || idStudentLevel.length === 0) return;
-            if (!Array.isArray(idStudentLevel)) return;
-
-            const level = idStudentLevel.find(item => item.idStudent === uid);
-
-            const relationshipLevel = level ? level.relationshipLevel : 'N/A';
+            let relationshipLevel = 'N/A';
+            if(idStudentLevel){
+              if (!Array.isArray(idStudentLevel)) return;
+              const level = idStudentLevel.find(item => item.idStudent === uid);
+              relationshipLevel = level ? level.relationshipLevel : 'N/A';
+            }else {
+              relationshipLevel = registered.relationshipLevel
+            }
             
             return (
             
@@ -61,60 +65,6 @@ const ListResponsible = ({data}) => {
 
     </S.Container>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      // <S.Content>
-      //   {
-      //     registered && registered.map(({id, fullName, relationshipLevel}, i) => (
-      //       <S.WrapButtons 
-      //         key={id}
-      //         onClick={() => handleNavForm(id)}  
-      //       >
-      //         <S.CardItem >
-      //           <S.Wrap>
-      //             <S.WrapNameCircule>
-      //               <S.CircleLetterName>
-      //                 {fullName && fullName.charAt(0)}
-      //               </S.CircleLetterName>
-      //               <S.Name>
-      //                 <TextC.Body level={2}>  {fullName} </TextC.Body>
-      //               </S.Name>
-
-
-      //             </S.WrapNameCircule>
-
-      //             <S.Status>
-      //               <TextC.Body level={2}> {relationshipLevel} </TextC.Body>
-      //             </S.Status>
-
-      //           </S.Wrap>
-      //         </S.CardItem>
-
-      //       </S.WrapButtons>
-      //     ))
-      //   }        
-
-      // </S.Content>
   );
 
 }

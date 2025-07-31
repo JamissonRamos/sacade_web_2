@@ -104,8 +104,8 @@ export  const WrapButton = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: .8rem;
     padding: .2em 0;
-    margin-bottom: 1.2em;
     & button {
         max-width: 100%;
         max-height: 100%;
@@ -120,5 +120,4 @@ export const ButtonResponsible = styled.button`
 export const ButtonListStudent = styled.button`
     ${StyledButton}
     ${outlineStyles(Theme.Colors.blue900)}
-    margin-bottom: 1.2rem;
 `;

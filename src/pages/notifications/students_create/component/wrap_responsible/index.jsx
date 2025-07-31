@@ -73,7 +73,7 @@ const WrapResponsible = ({isRegistered, isLoadingResponsible}) => {
             navigate('/notifications/error');
         }
     }
-
+    
     return (
 
         <S.Container>
@@ -99,7 +99,8 @@ const WrapResponsible = ({isRegistered, isLoadingResponsible}) => {
 
                         <S.WrapTex>
                             <TextC.Body level={2}> 
-                                Foram realizados cadastros anteriores de responsáveis. Para adicionar esses responsáveis ao cadastro do aluno, basta selecioná-los e clicar em "Adicionar Responsável".   
+                                Para adicionar responsáveis ao cadastro do aluno, selecione-os e clique em "Adicionar Responsável". 
+                                Para alterar o status de grau de parentesco, isso deve ser feito na próxima página ao atualizar o cadastro.   
                             </TextC.Body>
                         </S.WrapTex>
                     

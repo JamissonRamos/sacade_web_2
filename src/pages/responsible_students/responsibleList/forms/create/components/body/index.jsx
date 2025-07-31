@@ -1,5 +1,5 @@
-import { Button, Form, Spinner } from 'react-bootstrap'
 import * as S from './styled'
+import { Button, Form, Spinner } from 'react-bootstrap'
 import FieldData from '../fields/field_data'
 import FieldAddress from '../fields/field_address'
 import { Theme } from '../../../../../../../theme'
@@ -10,7 +10,6 @@ import { AddUidResponsibleStudentArray, FormattedDate, GetUidLocalStorage } from
 import { unMask } from 'remask';
 import { useResponsibleStudents } from '../../../../../../../hooks/responsibleStudents'
 import { useNavigate } from 'react-router-dom'
-
 
 const BodyForm = () => {
     const navigate = useNavigate();
@@ -35,14 +34,16 @@ const BodyForm = () => {
 
     const handleOnSubmit = async (data) => {
         const uidStudent =  GetUidLocalStorage();
+        //Remover relationshipLevel do objeto data
+        const { relationshipLevel, ...dataToSave } = data;
 
-        data.birthDate = FormattedDate(data.birthDate)
-        data.phone = unMask(data.phone);
-        data.cep = unMask(data.cep);
-        data.idStudent = [uidStudent];
-        data.idStudentLevel = {idStudent: uidStudent, relationshipLevel: data.relationshipLevel}
+        dataToSave.birthDate = FormattedDate(dataToSave.birthDate)
+        dataToSave.phone = unMask(dataToSave.phone);
+        dataToSave.cep = unMask(dataToSave.cep);
+        dataToSave.idStudent = [uidStudent];
+        dataToSave.idStudentLevel = {idStudent: uidStudent, relationshipLevel: relationshipLevel}
 
-        const result = await createResponsibleStudent(data);
+        const result = await createResponsibleStudent(dataToSave);
         //const result = { success: true, uidResponsibleStudents:'Rf098aopEf5Q3NlFuiqI' , message: 'teste de erro' }
         const { success, uidResponsibleStudents, message } = result;
         
