@@ -65,14 +65,14 @@ const FormUpdate = ({registered}) => {
     };
 
     const handleDeleteItem = async () => {
-        const result = await deleteResponsibleStudent(registered.uid)
+        const result = await deleteResponsibleStudent(registered.uid, idStudentLocalStorage)
         const { success, message} = result; 
         if(success){
             handleShowModalDelete()
             const path = `/responsibleStudents/responsibleList/`
             navigate('/notifications/delete', {
                 state: {
-                    uid: registered.idStudent[0],
+                    uid: idStudentLocalStorage, //registered.idStudent[0],
                     url: path,
                     valueButton: {value: 'Lista Responsáveis', icon: 'MdPerson'},
                 },

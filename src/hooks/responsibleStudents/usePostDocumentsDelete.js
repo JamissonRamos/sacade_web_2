@@ -5,10 +5,10 @@ export const usePostDocumentsDelete = () => {
     const [loading, seLoading] = useState(false);
     const {collectionDelete} = usePostCollectionDelete();
 
-    const deleteResponsibleStudent = useCallback( async (uid) => {
+    const deleteResponsibleStudent = useCallback( async (idResponsible, idStudent) => {
         seLoading(true);      
         try {
-            const result = await collectionDelete(uid)
+            const result = await collectionDelete(idResponsible, idStudent)
             const { success, message } = result;
             if(success)
             {
