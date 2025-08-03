@@ -7,8 +7,8 @@ import { useState } from 'react';
 const List = ({data, setStoreUid}) => { 
 
   const [checkedItems, setCheckedItems] = useState({});
-  
-  const handleCheckboxChange = (uid, relationshipLevel) => {
+  //relationshipLevel
+  const handleCheckboxChange = (uid ) => {
     
     /* Manipular o meu checkBox */    
     setCheckedItems((prev) => ({
@@ -26,13 +26,15 @@ const List = ({data, setStoreUid}) => {
         return prev.filter((item) => item.uidResponsible !== uid);
       } else {
         // Se não estiver, adiciona o novo objeto
-        return [...prev, {uidResponsible: uid , relationshipLevel}];
+        return [...prev, {uidResponsible: uid , relationshipLevel:"Nenhum"}];
       } 
     });
   };
 
-  const handleCardClick = (uid, relationshipLevel) => {
-    handleCheckboxChange(uid, relationshipLevel);
+  //relationshipLevel
+  const handleCardClick = (uid) => {
+    //relationshipLevel
+    handleCheckboxChange(uid);
   };
 
   return (
@@ -40,9 +42,10 @@ const List = ({data, setStoreUid}) => {
       
         <S.Cards>
           {
-            data && data.map(({uid, fullName, relationshipLevel }, i) => (
-              
-              <S.Card key={i} checkedItems={checkedItems[uid]} onClick={() => handleCardClick(uid, relationshipLevel)}>
+            //relationshipLevel
+            data && data.map(({uid, fullName }, i) => (
+              //relationshipLevel
+              <S.Card key={i} checkedItems={checkedItems[uid]} onClick={() => handleCardClick(uid)}>
 
                 <S.WrapContent>
 
@@ -56,7 +59,8 @@ const List = ({data, setStoreUid}) => {
                     type={'checkbox'}
                     id={i}
                     checked={!!checkedItems[uid]} // Verifica se o checkbox deve estar marcado
-                    onChange={() => handleCheckboxChange(uid, relationshipLevel)} // Atualiza o estado ao mudar
+                    //relationshipLevel
+                    onChange={() => handleCheckboxChange(uid)} // Atualiza o estado ao mudar
                     onClick={(e) => e.stopPropagation()} // Impede que o clique no checkbox dispare o clique do card
                   />
 
@@ -69,12 +73,12 @@ const List = ({data, setStoreUid}) => {
 
                 </S.WrapContent>
               
-                <S.WrapStatus>
+                {/* <S.WrapStatus>
                   <Badge bg={'primary'} text="light">
                     {relationshipLevel}
                   </Badge>
 
-                </S.WrapStatus>
+                </S.WrapStatus> */}
               </S.Card>
             ))
           }

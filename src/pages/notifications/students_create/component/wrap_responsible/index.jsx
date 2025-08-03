@@ -55,9 +55,7 @@ const WrapResponsible = ({isRegistered, isLoadingResponsible}) => {
                 const resultUp = await updateResponsibleStudentUidStudent(uidResponsible, idStudentLevel) //{ success: false, message: 'erro de teste' } 
                 const { success, message } = resultUp;
     
-                if (success) {
-                    console.log('Atualizado com sucesso!');
-                }else{
+                if (!success) {
                     console.log('error ao add responsável ' + responsible.relationshipLevel , message);
                 }
             });
@@ -99,7 +97,7 @@ const WrapResponsible = ({isRegistered, isLoadingResponsible}) => {
 
                         <S.WrapTex>
                             <TextC.Body level={2}> 
-                                Para adicionar responsáveis ao cadastro do aluno, selecione-os e clique em "Adicionar Responsável". 
+                                Para adicionar responsáveis ao cadastro do aluno, selecione-os e clique em Adicionar Responsável. 
                                 Para alterar o status de grau de parentesco, isso deve ser feito na próxima página ao atualizar o cadastro.   
                             </TextC.Body>
                         </S.WrapTex>

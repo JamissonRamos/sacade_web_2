@@ -19,6 +19,9 @@ const FormUpdate = ({registered}) => {
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [registeredDelete, setRegisteredDelete] = useState(null);
 
+    const dataStudentLocalStorage = JSON.parse(localStorage.getItem('student')) || [];
+    const {uid: idStudentLocalStorage} = dataStudentLocalStorage[0] || ""; 
+
     const navigate = useNavigate();
 
     const { updateResponsibleStudent, loading: loadingUpdate } = useResponsibleStudents.usePostDocumentsUpdate();
@@ -43,13 +46,9 @@ const FormUpdate = ({registered}) => {
                     const newCep = ApplyMask(key, registered[key])
                     setValue(key, newCep);
                 }else if (key === 'idStudentLevel') {
-                    const studentLevel = registered[key].map(item => {
-                        return {
-                            idStudent: item.idStudent,
-                            relationshipLevel: item.relationshipLevel
-                        }
-                    });
-                    setValue('relationshipLevel', studentLevel[0].relationshipLevel);
+                    //Filter level by idStudentLocalStorage
+                    const keyExists = registered[key].find(item => item.idStudent === idStudentLocalStorage);
+                    setValue('relationshipLevel', keyExists.relationshipLevel);
                 }else {
                     setValue(key, registered[key]);
                 }
@@ -85,30 +84,40 @@ const FormUpdate = ({registered}) => {
     }
 
     const handleOnSubmit = async (data) => {
-        const dataStudentLocalStorage = JSON.parse(localStorage.getItem('student')) || [];
-        const {uid} = dataStudentLocalStorage[0] || " "; 
         const { relationshipLevel, ...dataToSave } = data;
         let studentLevel;
 
-        // Essa condição para criar o atributo idStudentLevel se não tiver
-        if(data.idStudentLevel){
-            studentLevel = data.idStudentLevel.map(item => {
-                if (item.idStudent === uid) {
-                    return {
-                        idStudent: uid,
-                        relationshipLevel: relationshipLevel
-                    };
-                }
-            });
-        }else {
-            studentLevel = {idStudent: uid, relationshipLevel: relationshipLevel}
+        // Verifica se idStudentLevel existe e é um array
+        if(registered.idStudentLevel){
+
+            // Procura se já existe um item com o mesmo idStudent
+            const existingIndex = registered.idStudentLevel.findIndex(item => item.idStudent === idStudentLocalStorage);
+            
+            if(existingIndex >= 0) {
+                // Atualiza o item existente
+                studentLevel = [...registered.idStudentLevel];
+                studentLevel[existingIndex] = {
+                    ...studentLevel[existingIndex], // Mantém todas as propriedades existentes
+                    relationshipLevel: relationshipLevel // Atualiza apenas esta propriedade
+                };
+            } else {
+                // Adiciona um novo item ao array
+                studentLevel = [
+                    ...registered.idStudentLevel,
+                    {idStudent: idStudentLocalStorage, relationshipLevel: relationshipLevel}
+                ];
+            }
+        } else {
+            // Cria um novo array com um único item
+            studentLevel = [{idStudent: idStudentLocalStorage, relationshipLevel: relationshipLevel}];
         }
 
         dataToSave.birthDate = FormattedDate(data.birthDate)
         dataToSave.phone = unMask(data.phone);
         dataToSave.cep = unMask(data.cep);
-        dataToSave.idStudentLevel = [studentLevel]  
+        dataToSave.idStudentLevel = studentLevel;
 
+        //const result =   {success: true, message: 'Atualização bem-sucedida', };
         const result = await updateResponsibleStudent(dataToSave);
         const { success, message } = result;
 
@@ -116,7 +125,7 @@ const FormUpdate = ({registered}) => {
             const path = `/responsibleStudents/responsibleList/`
             navigate('/notifications/update', {
                 state: {
-                    uid: uid,
+                    uid: idStudentLocalStorage,
                     url: path,
                     valueButton: {value: 'Lista Responsáveis', icon: 'MdPerson'},
                 },
@@ -195,14 +204,12 @@ const FormUpdate = ({registered}) => {
                                 </>
                             } 
                         </Button>  
-
                     </S.WrapButtonUpdateCancel>
                 </Form>
             </S.Form>
 
             {
                 showModalDelete &&
-
                     <DeleteData
                         registeredDelete = {registeredDelete}
                         handleShowDelete = {handleShowModalDelete}

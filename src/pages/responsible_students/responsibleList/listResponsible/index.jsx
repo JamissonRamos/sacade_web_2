@@ -10,7 +10,16 @@ const ListResponsible = ({data}) => {
   const dataStudentLocalStorage = JSON.parse(localStorage.getItem('student')) || [];
   const { uid } = dataStudentLocalStorage[0] || ""; 
 
-  const handleNavForm = (uid) => { 
+  const handlesBadge = (badge) => {
+    switch (badge) {
+      case 'Nenhum':
+        return 'danger';
+      default:
+        return 'primary'
+    }
+  };
+
+  const handleNavForm = (uid) => {
     navigate('/responsibleStudents/form_update', { state: { uid: uid } });
   };
 
@@ -49,7 +58,7 @@ const ListResponsible = ({data}) => {
                   </S.SectionPrime>
                   <S.SectionSecondary>
                     <S.Status>
-                      <Badge>
+                      <Badge bg={handlesBadge(relationshipLevel)} text="light">
                         {relationshipLevel}
                       </Badge>
                     </S.Status>
