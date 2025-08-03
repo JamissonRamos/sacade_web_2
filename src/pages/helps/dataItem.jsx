@@ -18,6 +18,11 @@ export const DataItemMenu = [
         icon: <Theme.Icons.MdPerson/>
     },
     {
+        title: 'Responsáveis Aluno',
+        path: 'https://accessible-storm-0f5.notion.site/Respons-veis-Aluno-1b87ce9f30c180f1aa8aed1947b339a7?pvs=73',
+        icon: <Theme.Icons.FaUsers/>
+    },
+    {
         title: 'Pagar Parcelas',
         path: 'https://accessible-storm-0f5.notion.site/Pagar-Mensalidades-1b87ce9f30c18049badef0bfb3ff5a10?pvs=143',
         icon: <Theme.Icons.MdAttachMoney  />,
