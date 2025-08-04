@@ -46,9 +46,16 @@ const FormUpdate = ({registered}) => {
                     const newCep = ApplyMask(key, registered[key])
                     setValue(key, newCep);
                 }else if (key === 'idStudentLevel') {
+
                     //Filter level by idStudentLocalStorage
                     const keyExists = registered[key].find(item => item.idStudent === idStudentLocalStorage);
-                    setValue('relationshipLevel', keyExists.relationshipLevel);
+
+                    if(keyExists.relationshipLevel === 'Nenhum'){
+                        setValue('relationshipLevel', '');
+                    }else{
+                        setValue('relationshipLevel', keyExists.relationshipLevel);
+                    }
+
                 }else {
                     setValue(key, registered[key]);
                 }

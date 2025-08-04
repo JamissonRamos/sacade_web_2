@@ -42,9 +42,9 @@ export const Card = styled.div`
     margin-bottom: .6rem;
     margin: 0 auto 12px auto;
     /* border-left: 5px solid  ${Theme.Colors.grey500}; */
-    border-left: 5px solid ${props => props.checkedItems 
-            ? Theme.Colors.green800 
-            : Theme.Colors.grey500};
+    border-left: 5px solid ${props => props.$checkedItems 
+        ? Theme.Colors.green800 
+        : Theme.Colors.grey500};
     border-radius: 4px;
     box-shadow: ${Theme.Shadow.sh900};
     & .form-check-inline {

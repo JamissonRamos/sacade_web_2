@@ -62,8 +62,6 @@ const WrapResponsible = ({isRegistered, isLoadingResponsible}) => {
 
             // Aguarda que todas as promessas sejam resolvidas
             await Promise.all(updatePromises);
-            //console.log('retirar a comentario de baxo da navegaçõa');
-            
             navigate('/responsibleStudents/responsibleList/', { state: { uid: uid} })
             
         }else{

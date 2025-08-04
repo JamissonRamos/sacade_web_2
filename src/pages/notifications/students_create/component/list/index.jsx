@@ -1,6 +1,6 @@
 import * as S from './styled';
 import { TextC } from '../../../../../components/Typography'
-import { Badge, Form} from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useState } from 'react';
 
 
@@ -31,9 +31,7 @@ const List = ({data, setStoreUid}) => {
     });
   };
 
-  //relationshipLevel
   const handleCardClick = (uid) => {
-    //relationshipLevel
     handleCheckboxChange(uid);
   };
 
@@ -42,10 +40,8 @@ const List = ({data, setStoreUid}) => {
       
         <S.Cards>
           {
-            //relationshipLevel
             data && data.map(({uid, fullName }, i) => (
-              //relationshipLevel
-              <S.Card key={i} checkedItems={checkedItems[uid]} onClick={() => handleCardClick(uid)}>
+              <S.Card key={i} $checkedItems={checkedItems[uid]} onClick={() => handleCardClick(uid)}>
 
                 <S.WrapContent>
 
@@ -72,13 +68,6 @@ const List = ({data, setStoreUid}) => {
                   </S.WrapName>
 
                 </S.WrapContent>
-              
-                {/* <S.WrapStatus>
-                  <Badge bg={'primary'} text="light">
-                    {relationshipLevel}
-                  </Badge>
-
-                </S.WrapStatus> */}
               </S.Card>
             ))
           }

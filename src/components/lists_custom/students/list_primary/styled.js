@@ -56,7 +56,7 @@ export const SectionPrime = styled.div`
     gap: 8px;
     padding: .2rem 0;
     @media (max-width: 375px) {
-        flex: auto;
+        /* flex: auto; */
     }
 `;
 export const SectionSecondary = styled.div`
