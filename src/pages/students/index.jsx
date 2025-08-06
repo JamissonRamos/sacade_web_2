@@ -21,8 +21,13 @@ const Students = () => {
   
   const isUnderage = (birthDate) => {
     if (!birthDate) return false; // Caso a data seja inválida ou não fornecida
+
+    // Converte a data de "DD/MM/YYYY" para "MM/DD/YYYY"
+    const [day, month, year] = birthDate.split('/');
+    const formattedDate = `${month}/${day}/${year}`;
+    
     const today = new Date();
-    const birth = new Date(birthDate);
+    const birth = new Date(formattedDate);
 
     const age = today.getFullYear() - birth.getFullYear();
     const monthDiff = today.getMonth() - birth.getMonth();
@@ -32,6 +37,7 @@ const Students = () => {
     if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
         return age - 1 < 18;
     }
+
     return age < 18;
 };
 
