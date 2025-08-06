@@ -79,14 +79,13 @@ const ListPrimary = ({data, navigateOnClick}) => {
             data && data.map(({uid, firstName, lastName, status, isMinor}, i) => {
                 // Chame a função aqui
                 const statusMinor = storesStudent[uid] === false && isMinor; // Se for menor e não tiver responsável
-
                 return (
                     <S.WrapButton 
                         key={uid}
                         onClick={() => navigateOnClick(uid)}
                         $isMinor={statusMinor}
                     >
-                        {statusMinor && 
+                        {!statusMinor && 
                             <S.WrapText>
                                 <TextC.Body level={1}>É necessário cadastrar um responsável para este aluno.</TextC.Body>
                             </S.WrapText>
