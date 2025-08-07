@@ -55,7 +55,7 @@ const SplashScreen = () => {
                     </S.Card>
                 </S.Cards>
                 <S.WrapVersion>
-                    <span> V. 1.4 </span>
+                    <span> V. 1.5 </span>
                 </S.WrapVersion>
             </S.Content>
 

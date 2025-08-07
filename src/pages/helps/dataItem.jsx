@@ -38,6 +38,11 @@ export const DataItemMenu = [
         icon: <Theme.Icons.GrDocumentUpdate/>
     },
     {
+        title: 'Status Alunos',
+        path: 'https://accessible-storm-0f5.notion.site/Status-Alunos-1b87ce9f30c1804da071fb3f8671018a?pvs=73',
+        icon: <Theme.Icons.MdPerson/>
+    },
+    {
         title: 'Relatórios',
         path: 'https://accessible-storm-0f5.notion.site/Relat-rios-2167ce9f30c180988459fc11b9362964?pvs=73',
         icon: <Theme.Icons.TbReportAnalytics/>

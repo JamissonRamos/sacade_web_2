@@ -52,10 +52,10 @@ const ChangeRegistrationModal = ({data, showModal, handleClose, onUserUpdate}) =
 
     // Função para lidar com o submit do formulário
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); 
 
         // Validação do campo 'status'
-        if (formData.status === "") {
+        if (formData.status === "" || formData.status === undefined) {
             setError("Por favor, selecione um Status valido.");
             return; // Interrompe o envio do formulário
         }else if(formData.status === status) {
