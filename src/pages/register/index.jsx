@@ -30,7 +30,7 @@ const Register = () => {
   const handleOnClickCep = async (value) => {
 
     if (!value) return{success: false, message: "Cep não foi fornecido."}
-    if (value.length <= 8) return{success: false, message: "  ."}
+    if (value.length <= 8) return{success: false, message: " ."}
 
     const response = await fetchCep(value); // Chama a função do script e aguarda a resposta
 

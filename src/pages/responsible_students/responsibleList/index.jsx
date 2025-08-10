@@ -30,6 +30,7 @@ const ResponsibleList = () => {
         {            
             setRegistered(data)
         }
+
     }
     
     useEffect(() => {
