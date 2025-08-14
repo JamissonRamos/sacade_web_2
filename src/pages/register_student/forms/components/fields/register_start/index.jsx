@@ -29,7 +29,7 @@ const RegisterStat = ({register, setValue, watch, errors, handleApplyChewChange}
             <Row className="mb-2 px-2">
                 <Col md={6} lg={6}>
                     <Form.Group className="p-1" controlId="GroupDateUpdate">
-                        <Form.Label className="m-0"> Data Atualização * </Form.Label>
+                        <Form.Label className="m-0"> Data Graduação * </Form.Label>
                         <Form.Control   
                             type="date" 
                             name="dateUpdate" 
