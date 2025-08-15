@@ -43,6 +43,11 @@ export const DataItemMenu = [
         icon: <Theme.Icons.MdPerson/>
     },
     {
+        title: 'Ficha',
+        path: 'https://accessible-storm-0f5.notion.site/Ficha-1b87ce9f30c180c69527e5b2dc61c215?pvs=74',
+        icon: <Theme.Icons.PiAddressBookFill/>
+    },
+    {
         title: 'Relatórios',
         path: 'https://accessible-storm-0f5.notion.site/Relat-rios-2167ce9f30c180988459fc11b9362964?pvs=73',
         icon: <Theme.Icons.TbReportAnalytics/>
